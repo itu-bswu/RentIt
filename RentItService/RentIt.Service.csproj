@@ -53,7 +53,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
+    <Content Include="Services\ExampleService.svc" />
+    <Content Include="Services\UpDownloadService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -63,11 +64,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="Interfaces\IUpDownService.cs" />
+    <Compile Include="Services\ExampleService.svc.cs">
+      <DependentUpon>ExampleService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="Interfaces\IExampleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UpDownloadService.svc.cs">
+      <DependentUpon>UpDownloadService.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
