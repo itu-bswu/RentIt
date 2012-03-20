@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RentItService.Services.UpDownService" CodeBehind="UpDownloadService.svc.cs" %>
