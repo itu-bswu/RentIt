@@ -2,12 +2,13 @@
 {
     using System;
     using System.ServiceModel;
+    using Tools;
 
     /// <summary>
     /// Interface of the download service.
     /// </summary>
     /// <author>Jakob Melnyk</author>
-    [ServiceContract(Namespace = "RentItService")]
+    [ServiceContract(Namespace = Constants.UpDownloadNamespace)]
     public interface IUpDownloadService
     {
         /// <summary>

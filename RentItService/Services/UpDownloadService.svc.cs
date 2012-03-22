@@ -2,19 +2,29 @@
 {
     using Interfaces;
 
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UpDownService" in code, svc and config file together.
+    /// <summary>
+    /// 
+    /// </summary>
     public class UpDownloadService : IUpDownloadService
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dlRequest"></param>
+        /// <returns></returns>
         public RemoteFileStream DownloadFile(FileRequest dlRequest)
         {
-            //TODO: Implement
-            throw new System.NotImplementedException();
+            // TODO: Implement
+            return new RemoteFileStream();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ulRequest"></param>
         public void UploadFile(RemoteFileStream ulRequest)
         {
-            //TODO: Implement
-            throw new System.NotImplementedException();
+            // TODO: Implement
         }
     }
 }
