@@ -7,7 +7,7 @@
     /// Interface of the download service.
     /// </summary>
     /// <author>Jakob Melnyk</author>
-    [ServiceContract]
+    [ServiceContract(Namespace = "RentItService")]
     public interface IUpDownloadService
     {
         /// <summary>
@@ -77,5 +77,4 @@
             }
         }
     }
-
 }
