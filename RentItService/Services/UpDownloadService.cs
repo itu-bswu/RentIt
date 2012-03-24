@@ -33,8 +33,7 @@
                 }
 
                 // Open stream
-                FileStream stream = new FileStream(
-                    filePath, FileMode.Open, FileAccess.Read);
+                FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
 
                 // Set up rfs
                 return new RemoteFileStream(downloadRequest.FileName, fileInfo.Length, stream);
