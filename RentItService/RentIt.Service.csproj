@@ -34,7 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -56,7 +61,9 @@
   <ItemGroup>
     <Content Include="Services\ExampleService.svc" />
     <Content Include="Services\UpDownloadService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -65,8 +72,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Movie.cs" />
+    <Compile Include="Entities\Rental.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IUpDownService.cs" />
+    <Compile Include="Mapping\MovieMap.cs" />
+    <Compile Include="Mapping\RentalMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="RentITContext.cs" />
     <Compile Include="Services\ExampleService.svc.cs">
       <DependentUpon>ExampleService.svc</DependentUpon>
     </Compile>
@@ -78,6 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
