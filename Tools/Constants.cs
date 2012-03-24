@@ -6,5 +6,7 @@
     public class Constants
     {
         public const string UpDownloadNamespace = "RentItService";
+
+        public const string UploadDownloadFileFolder = @"c:\UploadDownloadTest";
     }
 }
