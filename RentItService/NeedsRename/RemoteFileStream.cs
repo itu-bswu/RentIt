@@ -11,6 +11,33 @@
     [MessageContract]
     public class RemoteFileStream : IDisposable
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoteFileStream"/> class. 
+        /// </summary>
+        public RemoteFileStream()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoteFileStream"/> class. 
+        /// </summary>
+        /// <param name="name">
+        /// The name of the file.
+        /// </param>
+        /// <param name="l">
+        /// The length of the stream.
+        /// </param>
+        /// <param name="stream">
+        /// The stream.
+        /// </param>
+        public RemoteFileStream(string name, long l, Stream stream)
+        {
+            FileName = name;
+            Length = l;
+            FileByteStream = stream;
+        }
+
         #region Fields
 
         /// <summary>
@@ -32,25 +59,16 @@
         public Stream FileByteStream { get; private set; }
         #endregion
 
-        /// <summary>
-        /// Constructor for RemoteFileStream
-        /// </summary>
-        public RemoteFileStream(string name, long l, Stream stream)
-        {
-            FileName = name;
-            Length = l;
-            FileByteStream = stream;
-        }
 
         /// <summary>
         /// Disposes of the stream. //TODO: Needs more precise summary.
         /// </summary>
         public void Dispose()
         {
-            if (FileByteStream != null)
+            if (this.FileByteStream != null)
             {
-                FileByteStream.Close();
-                FileByteStream = null;
+                this.FileByteStream.Close();
+                this.FileByteStream = null;
             }
         }
     }
