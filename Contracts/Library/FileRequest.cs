@@ -4,7 +4,7 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-namespace RentItService.Library
+namespace Contracts.Library
 {
     using System.ServiceModel;
 
@@ -16,8 +16,21 @@ namespace RentItService.Library
     public class FileRequest
     {
         /// <summary>
-        /// Name of the desired file.
+        /// Initializes a new instance of the <see cref="FileRequest"/> class.
         /// </summary>
+        /// <param name="fileName">
+        /// The name of the file.
+        /// </param>
+        /// <author>Jakob Melnyk</author>
+        public FileRequest(string fileName)
+        {
+            this.FileName = fileName;
+        }
+
+        /// <summary>
+        /// Gets the name of the desired file.
+        /// </summary>
+        /// <author>Jakob Melnyk</author>
         [MessageBodyMember]
         public string FileName { get; private set; }
     }
