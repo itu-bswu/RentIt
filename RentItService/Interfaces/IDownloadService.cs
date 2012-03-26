@@ -4,11 +4,13 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-namespace Contracts.Interfaces
+namespace RentItService.Interfaces
 {
     using System.ServiceModel;
 
     using Contracts.Library;
+
+    using RentItService.Entities;
 
     /// <summary>
     /// Interface of the download service.
@@ -24,13 +26,13 @@ namespace Contracts.Interfaces
         /// The user token.
         /// </param>
         /// <param name="downloadRequest">
-        /// The movie to download. TODO: Need to change this to movie from string
+        /// The movie to download.
         /// </param>
         /// <returns>
         /// The stream information necessary for download.
         /// </returns>
         /// <author>Jakob Melnyk</author>
         [OperationContract]
-        RemoteFileStream DownloadFile(string token, string downloadRequest);
+        RemoteFileStream DownloadFile(string token, Movie downloadRequest);
     }
 }
