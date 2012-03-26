@@ -20,7 +20,7 @@ namespace RentItService
         /// Initializes static members of the <see cref="RentItContext"/> class.
         /// </summary>
         static RentItContext()
-        { 
+        {
             Database.SetInitializer<RentItContext>(null);
         }
 
@@ -38,7 +38,7 @@ namespace RentItService
         /// Gets or sets a set of rentals in RentIt.
         /// </summary>
         public DbSet<Rental> Rentals { get; set; }
-        
+
         /// <summary>
         /// Model configuration.
         /// </summary>

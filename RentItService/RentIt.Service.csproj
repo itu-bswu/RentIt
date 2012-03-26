@@ -59,7 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\Service.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\UserType.cs" />
@@ -70,15 +78,12 @@
     <Compile Include="Mapping\RentalMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="RentITContext.cs" />
-    <Compile Include="Interfaces\IUpDownloadService.cs" />
-    <Compile Include="NeedsRename\FileRequest.cs" />
-    <Compile Include="NeedsRename\RemoteFileStream.cs" />
-    <Compile Include="Interfaces\IExampleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\UpDownloadService.cs" />
+    <Compile Include="Services\DownloadService.cs" />
+    <Compile Include="Services\UploadService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -88,6 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <ProjectReference Include="..\Contracts\RentIt.Contracts.csproj">
+      <Project>{6FE88E8D-B6D3-44B1-B6D2-932433A9B1A4}</Project>
+      <Name>RentIt.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{ECE3AAC9-455E-4FAD-B8BA-6BFD42F787A8}</Project>
       <Name>Tools</Name>
