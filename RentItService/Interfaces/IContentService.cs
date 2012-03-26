@@ -11,24 +11,24 @@ namespace RentItService.Interfaces
     using RentItService.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Service contract for the content provider operations.
     /// </summary>
     [ServiceContract]
     public interface IContentService
     {
         /// <summary>
-        /// 
+        /// Operation used to update movie information.
         /// </summary>
-        /// <param name="token"></param>
-        /// <param name="movieObject"></param>
+        /// <param name="token">The user token.</param>
+        /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
         [OperationContract]
         void EditMovieInformation(string token, Movie movieObject);
 
         /// <summary>
-        /// 
+        /// Deletes a movie from the service.
         /// </summary>
-        /// <param name="token"></param>
-        /// <param name="movieObject"></param>
+        /// <param name="token">The user token.</param>
+        /// <param name="movieObject">The movie to be deleted.</param>
         [OperationContract]
         void DeleteMovie(string token, Movie movieObject);
     }

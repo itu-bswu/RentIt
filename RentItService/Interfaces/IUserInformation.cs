@@ -12,57 +12,57 @@ namespace RentItService.Interfaces
     using RentItService.Entities;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Service contract for user information.
     /// </summary>
     [ServiceContract]
     public interface IUserInformation
     {
         /// <summary>
-        /// 
+        /// Creates a new user in the database.
         /// </summary>
-        /// <param name="userObject"></param>
-        /// <returns></returns>
+        /// <param name="userObject">The user object containg the user information.</param>
+        /// <returns>The session token.</returns>
         [OperationContract]
         string SignUp(User userObject);
 
         /// <summary>
-        /// 
+        /// Logs the user in returning a session token.
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
+        /// <param name="userName">The user name used in the signup.</param>
+        /// <param name="password">The user password.</param>
+        /// <returns>The session token.</returns>
         [OperationContract]
         string LogIn(string userName, string password);
 
         /// <summary>
-        /// 
+        /// Updates a user profile.
         /// </summary>
-        /// <param name="token"></param>
-        /// <param name="userObject"></param>
+        /// <param name="token">The session token.</param>
+        /// <param name="userObject">The updated user object.</param>
         [OperationContract]
         void EditProfile(string token, User userObject);
 
         /// <summary>
-        /// 
+        /// Gets all of the previous and current rentals of the user.
         /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
+        /// <param name="token">The session token.</param>
+        /// <returns>An IEnumerable containing all the users rentals.</returns>
         [OperationContract]
-        IEnumerable<Movie> GetRentalHistory(string token);
+        IEnumerable<Rental> GetRentalHistory(string token);
 
         /// <summary>
-        /// 
+        /// Gets all of the current rentals.
         /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
+        /// <param name="token">The session token.</param>
+        /// <returns>An IEnumerable containg the active rentals.</returns>
         [OperationContract]
-        IEnumerable<Movie> GetCurrentRentals(string token);
+        IEnumerable<Rental> GetCurrentRentals(string token);
 
         /// <summary>
-        /// 
+        /// Creates a rental entry in the database.
         /// </summary>
-        /// <param name="token"></param>
-        /// <param name="movieId"></param>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieId">The ID of the movie to be rented.</param>
         [OperationContract]
         void RentMovie(string token, int movieId);
     }
