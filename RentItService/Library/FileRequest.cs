@@ -1,4 +1,10 @@
-﻿namespace RentItService.NeedsRename
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="FileRequest.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentItService.Library
 {
     using System.ServiceModel;
 

@@ -1,4 +1,10 @@
-﻿namespace RentItService.NeedsRename
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="RemoteFileStream.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentItService.Library
 {
     using System;
     using System.IO;

@@ -1,7 +1,14 @@
-﻿namespace RentItService.Interfaces
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="IUpDownloadService.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+
+namespace RentItService.Interfaces
 {
     using System.ServiceModel;
-    using RentItService.NeedsRename;
+    using RentItService.Library;
     using Tools;
 
     /// <summary>

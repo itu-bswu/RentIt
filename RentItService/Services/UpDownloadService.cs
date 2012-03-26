@@ -1,10 +1,16 @@
-﻿namespace RentItService.Services
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="UpDownloadService.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentItService.Services
 {
     using System;
     using System.IO;
 
     using RentItService.Interfaces;
-    using RentItService.NeedsRename;
+    using RentItService.Library;
 
     using Tools;
 
