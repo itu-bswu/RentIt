@@ -8,7 +8,6 @@ namespace RentItService.Interfaces
 {
     using System.Collections.Generic;
     using System.ServiceModel;
-
     using RentItService.Entities;
 
     /// <summary>
@@ -20,15 +19,9 @@ namespace RentItService.Interfaces
         /// <summary>
         /// Gets information about a specific movie.
         /// </summary>
-        /// <param name="token">
-        /// The session token.
-        /// </param>
-        /// <param name="movieId">
-        /// The ID of the movie to get.
-        /// </param>
-        /// <returns>
-        /// A movie object equivalent to the entry in the database.
-        /// </returns>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieId">The ID of the movie to get.</param>
+        /// <returns>A movie object equivalent to the entry in the database.</returns>
         [OperationContract]
         Movie GetMovieInformation(string token, int movieId);
 

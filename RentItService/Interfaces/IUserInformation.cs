@@ -8,7 +8,6 @@ namespace RentItService.Interfaces
 {
     using System.Collections.Generic;
     using System.ServiceModel;
-
     using RentItService.Entities;
 
     /// <summary>
