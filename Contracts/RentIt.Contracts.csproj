@@ -46,10 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IDownloadService.cs" />
-    <Compile Include="Interfaces\IUploadService.cs" />
-    <Compile Include="Library\FileRequest.cs" />
-    <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

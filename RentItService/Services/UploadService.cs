@@ -8,8 +8,9 @@ namespace RentItService.Services
 {
     using System.IO;
 
-    using Contracts.Interfaces;
-    using Contracts.Library;
+    using RentItService.Entities;
+    using RentItService.Interfaces;
+    using RentItService.Library;
 
     using Tools;
 
@@ -32,7 +33,7 @@ namespace RentItService.Services
         /// The movie object.
         /// </param>
         /// <author>Jakob Melnyk</author>
-        public void UploadFile(string token, RemoteFileStream uploadRequest, string movieObject)
+        public void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
             FileStream targetStream;
             Stream sourceStream = uploadRequest.FileByteStream;

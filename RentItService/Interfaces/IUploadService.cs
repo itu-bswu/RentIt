@@ -4,11 +4,12 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-namespace Contracts.Interfaces
+namespace RentItService.Interfaces
 {
     using System.ServiceModel;
 
-    using Contracts.Library;
+    using RentItService.Entities;
+    using RentItService.Library;
 
     /// <summary>
     /// Contract for the UploadService
@@ -30,6 +31,6 @@ namespace Contracts.Interfaces
         /// The movie object.
         /// </param>
         /// <author>Jakob Melnyk</author>
-        void UploadFile(string token, RemoteFileStream uploadRequest, string movieObject);
+        void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject);
     }
 }

@@ -4,7 +4,7 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-namespace Contracts.Library
+namespace RentItService.Library
 {
     using System.ServiceModel;
 

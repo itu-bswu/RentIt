@@ -8,9 +8,8 @@ namespace RentItService.Interfaces
 {
     using System.ServiceModel;
 
-    using Contracts.Library;
-
     using RentItService.Entities;
+    using RentItService.Library;
 
     /// <summary>
     /// Interface of the download service.
