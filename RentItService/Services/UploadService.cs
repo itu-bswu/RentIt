@@ -6,6 +6,7 @@
 
 namespace RentItService.Services
 {
+    using System;
     using System.IO;
 
     using RentItService.Entities;
@@ -23,35 +24,45 @@ namespace RentItService.Services
         /// <summary>
         /// Used to upload a file to the database.
         /// </summary>
-        /// <param name="token">
-        /// The user token.
-        /// </param>
-        /// <param name="uploadRequest">
-        /// The RemoteFileStream to upload.
-        /// </param>
-        /// <param name="movieObject">
-        /// The movie object.
-        /// </param>
+        /// <param name="token">The user token.</param>
+        /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
+        /// <param name="movieObject">The movie object.</param>
         /// <author>Jakob Melnyk</author>
         public void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
-            FileStream targetStream;
-            Stream sourceStream = uploadRequest.FileByteStream;
-
-            string filePath = Path.Combine(Constants.UploadDownloadFileFolder, uploadRequest.FileName);
-
-            using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            if (movieObject != null && movieObject.FilePath != null)
             {
-                const int BufferLength = 8192;
-                byte[] buffer = new byte[BufferLength];
-                int count;
-                while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
+                // TODO: Figure out movieObject ID
+                string newFileName = movieObject.ID + "_" + movieObject.Title + Path.GetExtension(uploadRequest.FileName);
+                string filePath = Path.Combine(Constants.UploadDownloadFileFolder, newFileName);
+                FileInfo destination = new FileInfo(filePath);
+
+                if (destination.Directory != null && !destination.Directory.Exists)
                 {
-                    targetStream.Write(buffer, 0, count);
+                    destination.Directory.Create();
                 }
 
-                targetStream.Close();
-                sourceStream.Close();
+                FileStream targetStream;
+                Stream sourceStream = uploadRequest.FileByteStream;
+                using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    const int BufferLength = 8192;
+                    byte[] buffer = new byte[BufferLength];
+                    int count;
+                    while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
+                    {
+                        targetStream.Write(buffer, 0, count);
+                    }
+
+                    targetStream.Close();
+                    sourceStream.Close();
+                }
+
+                // TODO: Add new movie to database
+            }
+            else
+            {
+                throw new Exception(); // TODO: Better exception.
             }
         }
     }

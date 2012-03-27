@@ -24,15 +24,9 @@ namespace RentItService.Services
         /// <summary>
         /// Creates a stream for downloading a file from the server.
         /// </summary>
-        /// <param name="token">
-        /// The user token.
-        /// </param>
-        /// <param name="downloadRequest">
-        /// The movie to download. TODO: Need to change this to movie from string
-        /// </param>
-        /// <returns>
-        /// The stream information necessary for download.
-        /// </returns>
+        /// <param name="token">The user token.</param>
+        /// <param name="downloadRequest">The movie to download.</param>
+        /// <returns>The stream information necessary for download.</returns>
         /// <author>Jakob Melnyk</author>
         public RemoteFileStream DownloadFile(string token, Movie downloadRequest)
         {
@@ -48,7 +42,7 @@ namespace RentItService.Services
                 }
 
                 // Open stream
-                FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                FileStream stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
 
                 // Set up rfs
                 return new RemoteFileStream(downloadRequest.FilePath, fileInfo.Length, stream);

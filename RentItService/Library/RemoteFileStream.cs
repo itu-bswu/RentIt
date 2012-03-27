@@ -28,15 +28,9 @@ namespace RentItService.Library
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoteFileStream"/> class. 
         /// </summary>
-        /// <param name="name">
-        /// The name of the file.
-        /// </param>
-        /// <param name="l">
-        /// The length of the stream.
-        /// </param>
-        /// <param name="stream">
-        /// The stream.
-        /// </param>
+        /// <param name="name">The name of the file.</param>
+        /// <param name="l">The length of the stream.</param>
+        /// <param name="stream">The stream.</param>
         /// <author>Jakob Melnyk</author>
         public RemoteFileStream(string name, long l, Stream stream)
         {
