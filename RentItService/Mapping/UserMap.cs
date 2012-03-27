@@ -41,6 +41,10 @@ namespace RentItService.Mapping
             this.Property(t => t.FullName)
                 .IsFixedLength()
                 .HasMaxLength(100);
+
+            this.Property(t => t.Token)
+                .IsFixedLength()
+                .HasMaxLength(100);
                 
             // Table & Column Mappings
             this.ToTable("User");
@@ -50,6 +54,7 @@ namespace RentItService.Mapping
             this.Property(t => t.Email).HasColumnName("email");
             this.Property(t => t.FullName).HasColumnName("full_name");
             this.Property(t => t.TypeValue).HasColumnName("type");
+            this.Property(t => t.Token).HasColumnName("token");
         }
     }
 }

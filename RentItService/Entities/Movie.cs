@@ -47,6 +47,11 @@ namespace RentItService.Entities
         public string FilePath { get; set; }
 
         /// <summary>
+        /// Gets or sets the genre of the movie.
+        /// </summary>
+        public string Genre { get; set; }
+
+        /// <summary>
         /// Gets or sets a list of rentals of the movie.
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
