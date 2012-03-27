@@ -18,7 +18,7 @@ namespace RentItService.Services
         /// <param name="userObject">The user object containg the user information.</param>
         /// <returns>The session token.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public string SignUp(User userObject)
+        public bool SignUp(User userObject)
         {
             // TODO: Implement SignUp
             throw new NotImplementedException();

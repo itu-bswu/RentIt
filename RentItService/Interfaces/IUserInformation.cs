@@ -24,7 +24,7 @@ namespace RentItService.Interfaces
         /// <returns>The session token.</returns>
         /// <author>Jakob Melnyk</author>
         [OperationContract]
-        string SignUp(User userObject);
+        bool SignUp(User userObject);
 
         /// <summary>
         /// Logs the user in returning a session token.
