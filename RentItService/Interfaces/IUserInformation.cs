@@ -14,6 +14,7 @@ namespace RentItService.Interfaces
     /// <summary>
     /// Service contract for user information.
     /// </summary>
+    /// <author>Jakob Melnyk</author>
     [ServiceContract]
     public interface IUserInformation
     {
@@ -22,6 +23,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="userObject">The user object containg the user information.</param>
         /// <returns>The session token.</returns>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         string SignUp(User userObject);
 
@@ -31,6 +33,7 @@ namespace RentItService.Interfaces
         /// <param name="userName">The user name used in the signup.</param>
         /// <param name="password">The user password.</param>
         /// <returns>The session token.</returns>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         string LogIn(string userName, string password);
 
@@ -39,6 +42,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="userObject">The updated user object.</param>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         void EditProfile(string token, User userObject);
 
@@ -47,6 +51,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containing all the users rentals.</returns>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         IEnumerable<Rental> GetRentalHistory(string token);
 
@@ -55,6 +60,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containg the active rentals.</returns>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         IEnumerable<Rental> GetCurrentRentals(string token);
 
@@ -63,6 +69,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to be rented.</param>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         void RentMovie(string token, int movieId);
     }
