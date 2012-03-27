@@ -3,8 +3,9 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
-
+    using System.Diagnostics.Contracts;
     using RentItService.Entities;
+    using RentItService.Enums;
     using RentItService.Interfaces;
 
     /// <summary>
@@ -20,8 +21,20 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public bool SignUp(User userObject)
         {
-            // TODO: Implement SignUp
-            throw new NotImplementedException();
+            Contract.Requires(userObject != null);
+            Contract.Requires(userObject.Username != null);
+            Contract.Requires(userObject.Email != null);
+            Contract.Requires(userObject.Password != null);
+
+            userObject.Type = UserType.User;
+            userObject.Token = string.Empty;
+            // TODO: Hash password with Salt
+
+            using (var db = new RentItContext())
+            {
+                db.Users.Add(userObject);
+                return (db.SaveChanges() > 0);
+            }
         }
 
         /// <summary>
