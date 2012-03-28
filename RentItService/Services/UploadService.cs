@@ -56,6 +56,7 @@ namespace RentItService.Services
                 // Attempts to upload the file to the server.
                 try
                 {
+                    // New file name will simply be the id in the database and 
                     string newFileName = temporaryFilePath + "_" + Path.GetExtension(uploadRequest.FileName);
                     string filePath = Path.Combine(Constants.UploadDownloadFileFolder, newFileName);
 
