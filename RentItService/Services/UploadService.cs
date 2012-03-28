@@ -7,7 +7,9 @@
 namespace RentItService.Services
 {
     using System;
+    using System.Globalization;
     using System.IO;
+    using System.Linq;
 
     using RentItService.Entities;
     using RentItService.Interfaces;
@@ -30,39 +32,61 @@ namespace RentItService.Services
         /// <author>Jakob Melnyk</author>
         public void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
-            if (movieObject != null && movieObject.FilePath != null)
+            if (movieObject != null && movieObject.FilePath != null && uploadRequest != null)
             {
-                // TODO: Figure out movieObject ID
-                string newFileName = movieObject.ID + "_" + movieObject.Title + Path.GetExtension(uploadRequest.FileName);
-                string filePath = Path.Combine(Constants.UploadDownloadFileFolder, newFileName);
-                FileInfo destination = new FileInfo(filePath);
+                // TODO: Figure out safer way to determine temporary filepath.
+                string temporaryFilePath = DateTime.Now.ToString(CultureInfo.InvariantCulture) + movieObject.Title;
 
-                if (destination.Directory != null && !destination.Directory.Exists)
+                // Creates the new movie in the database.
+                using (var db = new RentItContext())
                 {
-                    destination.Directory.Create();
+                    var newMovie = new Movie
+                        {
+                            Description = movieObject.Description,
+                            Genre = movieObject.Genre,
+                            Title = movieObject.Title,
+                            FilePath = temporaryFilePath
+                        };
+                    db.Movies.Add(newMovie);
+                    db.SaveChanges();
+                    var tempMovie = db.Movies.First(m => m.FilePath == temporaryFilePath);
+                    temporaryFilePath = tempMovie.ID.ToString(CultureInfo.InvariantCulture);
                 }
 
-                FileStream targetStream;
-                Stream sourceStream = uploadRequest.FileByteStream;
-                using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                // Attempts to upload the file to the server.
+                try
                 {
-                    const int BufferLength = 8192;
-                    byte[] buffer = new byte[BufferLength];
-                    int count;
-                    while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
+                    string newFileName = temporaryFilePath + "_" + Path.GetExtension(uploadRequest.FileName);
+                    string filePath = Path.Combine(Constants.UploadDownloadFileFolder, newFileName);
+
+                    FileStream targetStream;
+                    Stream sourceStream = uploadRequest.FileByteStream;
+                    using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                     {
-                        targetStream.Write(buffer, 0, count);
+                        const int BufferLength = 8192;
+                        byte[] buffer = new byte[BufferLength];
+                        int count;
+                        while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
+                        {
+                            targetStream.Write(buffer, 0, count);
+                        }
+
+                        targetStream.Close();
+                        sourceStream.Close();
                     }
-
-                    targetStream.Close();
-                    sourceStream.Close();
                 }
-
-                // TODO: Add new movie to database
+                catch (Exception e)
+                { // In case filestream fails, movie has to be deleted from database.
+                    using (var db = new RentItContext())
+                    {
+                        var movie = db.Movies.First(m => m.FilePath == temporaryFilePath);
+                        db.Movies.Remove(movie);
+                    }
+                }
             }
             else
             {
-                throw new Exception(); // TODO: Better exception.
+                throw new Exception(); // TODO: Throw some exception pertaining to null values.
             }
         }
     }
