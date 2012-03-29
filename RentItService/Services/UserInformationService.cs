@@ -47,11 +47,19 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="userObject">The updated user object.</param>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public void EditProfile(string token, User userObject)
+        public User EditProfile(string token, User userObject)
         {
-            // TODO: Implement EditProfile
-            throw new NotImplementedException();
+            // TODO: User validation
+            using (var db = new RentItContext())
+            {
+                User user = db.Users.Find(userObject.ID);
+                user.Email = userObject.Email;
+                user.FullName = userObject.FullName;
+                user.Password = userObject.Password;
+                db.SaveChanges();
+                user = db.Users.Find(userObject.ID);
+                return user;
+            }
         }
 
         /// <summary>
@@ -83,11 +91,9 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to be rented.</param>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public void RentMovie(string token, int movieId)
         {
             // TODO: Validation
-            // User stuff
             User user = new User();
 
             using (var db = new RentItContext())
