@@ -8,6 +8,7 @@ namespace RentItService.Services
 {
     using System;
     using System.IO;
+    using System.Linq;
 
     using RentItService.Entities;
     using RentItService.Interfaces;
@@ -24,38 +25,48 @@ namespace RentItService.Services
         /// <summary>
         /// Creates a stream for downloading a file from the server.
         /// </summary>
-        /// <param name="token">
-        /// The user token.
-        /// </param>
-        /// <param name="downloadRequest">
-        /// The movie to download. TODO: Need to change this to movie from string
-        /// </param>
-        /// <returns>
-        /// The stream information necessary for download.
-        /// </returns>
+        /// <param name="token">The user token.</param>
+        /// <param name="downloadRequest">The movie to download.</param>
+        /// <returns>The stream information necessary for download.</returns>
         /// <author>Jakob Melnyk</author>
         public RemoteFileStream DownloadFile(string token, Movie downloadRequest)
         {
-            try
+            using (var db = new RentItContext())
             {
-                string filePath = Path.Combine(Constants.UploadDownloadFileFolder, downloadRequest.FilePath);
-                FileInfo fileInfo = new FileInfo(filePath);
+                string filePath;
 
-                // Check to see if file exists.
-                if (!fileInfo.Exists)
+                var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
+                if (movie.Genre == downloadRequest.Genre
+                    & movie.Description == downloadRequest.Description
+                    & movie.Title == downloadRequest.Title)
                 {
-                    throw new FileNotFoundException("File not found", downloadRequest.FilePath);
+                    filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
+                }
+                else
+                {
+                    throw new Exception(); // TODO: Throw better exception.
                 }
 
-                // Open stream
-                FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                try
+                {
+                    FileInfo fileInfo = new FileInfo(filePath);
 
-                // Set up rfs
-                return new RemoteFileStream(downloadRequest.FilePath, fileInfo.Length, stream);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not create the stream.", e);
+                    // Check to see if file exists.
+                    if (!fileInfo.Exists)
+                    {
+                        throw new FileNotFoundException("File not found", downloadRequest.FilePath);
+                    }
+
+                    // Open stream
+                    FileStream stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+
+                    // Set up rfs
+                    return new RemoteFileStream(movie.FilePath, fileInfo.Length, stream);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Could not create the stream.", e);
+                }
             }
         }
     }

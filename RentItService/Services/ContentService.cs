@@ -1,41 +1,34 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="ContentService.cs" company="">
-//   
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// <summary>
-//   Defines the ContentService type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace RentItService.Services
 {
-    using System.Linq;
+    using System;
 
     using RentItService.Entities;
     using RentItService.Enums;
     using RentItService.Interfaces;
 
     /// <summary>
-    /// The class that implements the methods needed to edit movie information 
-    /// and delete movies.
+    /// Service for the content providers.
     /// </summary>
-    public class ContentService : IContentService
+    public partial class Service : IContentService
     {
         /// <summary>
-        /// The database that holds the data.
+        /// The context that grants access to the database
         /// </summary>
-        private RentItContext dbContext = new RentItContext();
+        private RentItContext db = new RentItContext();
 
         /// <summary>
-        /// Edits the information of a movie
+        /// Operation used to update movie information.
         /// </summary>
-        /// <param name="token">
-        /// The token that's used to verify whether a used is logged
-        /// in or not.
-        /// </param>
-        /// <param name="movieObject">
-        /// The movie object that holds the new information.
-        /// </param>
+        /// <param name="token">The user token.</param>
+        /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
+        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
+        /// <author></author>
         public void EditMovieInformation(string token, Movie movieObject)
         {
             User user = new User();
@@ -44,20 +37,28 @@ namespace RentItService.Services
             {
                 if (user.Type.Equals(UserType.ContentProvider) || user.Type.Equals(UserType.SystemAdmin))
                 {
-                    var movie = this.dbContext.Movies.Find(movieObject.ID);
+                    var movie = this.db.Movies.Find(movieObject.ID);
 
                     movie.Description = movieObject.Description;
                     movie.ImagePath = movieObject.ImagePath;
                     movie.Title = movieObject.Title;
                     movie.Rentals = movieObject.Rentals;
 
-                    this.dbContext.SaveChanges();
+                    this.db.SaveChanges();
                 }
             }
         }
 
+        /// <summary>
+        /// Deletes a movie from the service.
+        /// </summary>
+        /// <param name="token">The user token.</param>
+        /// <param name="movieObject">The movie to be deleted.</param>
+        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
+        /// <author></author>
         public void DeleteMovie(string token, Movie movieObject)
         {
+            // TODO: Implement DeleteMovie
             throw new System.NotImplementedException();
         }
     }
