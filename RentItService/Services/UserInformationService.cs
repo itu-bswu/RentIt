@@ -3,7 +3,7 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
-
+    using System.Diagnostics.Contracts;
     using RentItService.Entities;
     using RentItService.Interfaces;
 
@@ -18,10 +18,14 @@ namespace RentItService.Services
         /// <param name="userObject">The user object containg the user information.</param>
         /// <returns>The session token.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public string SignUp(User userObject)
+        public bool SignUp(User userObject)
         {
-            // TODO: Implement SignUp
-            throw new NotImplementedException();
+            Contract.Requires(userObject != null);
+            Contract.Requires(userObject.Username != null);
+            Contract.Requires(userObject.Email != null);
+            Contract.Requires(userObject.Password != null);
+
+            return (User.SignUp(userObject) != null);
         }
 
         /// <summary>
@@ -31,10 +35,12 @@ namespace RentItService.Services
         /// <param name="password">The user password.</param>
         /// <returns>The session token.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public string LogIn(string userName, string password)
+        public User LogIn(string userName, string password)
         {
-            // TODO: Implement LogIn
-            throw new NotImplementedException();
+            Contract.Requires(userName != null);
+            Contract.Requires(password != null);
+
+            return User.Login(userName, password);
         }
 
         /// <summary>
