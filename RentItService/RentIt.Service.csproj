@@ -59,9 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\Service.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dummydata.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
