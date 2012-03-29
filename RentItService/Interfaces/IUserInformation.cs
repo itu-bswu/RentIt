@@ -34,7 +34,7 @@ namespace RentItService.Interfaces
         /// <returns>The session token.</returns>
         /// <author>Jakob Melnyk</author>
         [OperationContract]
-        string LogIn(string userName, string password);
+        User LogIn(string userName, string password);
 
         /// <summary>
         /// Updates a user profile.

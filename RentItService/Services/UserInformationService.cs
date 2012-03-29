@@ -5,7 +5,6 @@ namespace RentItService.Services
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using RentItService.Entities;
-    using RentItService.Enums;
     using RentItService.Interfaces;
 
     /// <summary>
@@ -26,15 +25,7 @@ namespace RentItService.Services
             Contract.Requires(userObject.Email != null);
             Contract.Requires(userObject.Password != null);
 
-            userObject.Type = UserType.User;
-            userObject.Token = string.Empty;
-            // TODO: Hash password with Salt
-
-            using (var db = new RentItContext())
-            {
-                db.Users.Add(userObject);
-                return (db.SaveChanges() > 0);
-            }
+            return (User.SignUp(userObject) != null);
         }
 
         /// <summary>
@@ -44,10 +35,12 @@ namespace RentItService.Services
         /// <param name="password">The user password.</param>
         /// <returns>The session token.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public string LogIn(string userName, string password)
+        public User LogIn(string userName, string password)
         {
-            // TODO: Implement LogIn
-            throw new NotImplementedException();
+            Contract.Requires(userName != null);
+            Contract.Requires(password != null);
+
+            return User.Login(userName, password);
         }
 
         /// <summary>
