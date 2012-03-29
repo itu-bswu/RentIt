@@ -50,6 +50,8 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
+            User.GetByToken(token);
+
             using (var db = new RentItContext())
             {
                 return db.Movies.Where(movie => movie.Genre.Equals(genre));
