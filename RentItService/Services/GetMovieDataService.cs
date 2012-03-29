@@ -61,6 +61,8 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> Search(string token, string search)
         {
+            User.GetByToken(token);
+
             using (var db = new RentItContext())
             {
                 return db.Movies.Where(movie => movie.Title.Contains(search));
