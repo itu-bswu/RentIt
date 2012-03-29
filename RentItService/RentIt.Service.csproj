@@ -59,26 +59,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\Service.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Interfaces\IContentService.cs" />
+    <Compile Include="Interfaces\IDownloadService.cs" />
+    <Compile Include="Interfaces\IGetMovieData.cs" />
+    <Compile Include="Interfaces\IUploadService.cs" />
+    <Compile Include="Interfaces\IUserInformation.cs" />
+    <Compile Include="Library\FileRequest.cs" />
+    <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Mapping\MovieMap.cs" />
     <Compile Include="Mapping\RentalMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="RentITContext.cs" />
-    <Compile Include="Interfaces\IUpDownloadService.cs" />
-    <Compile Include="NeedsRename\FileRequest.cs" />
-    <Compile Include="NeedsRename\RemoteFileStream.cs" />
-    <Compile Include="Interfaces\IExampleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ContentService.cs" />
+    <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\UpDownloadService.cs" />
+    <Compile Include="Services\DownloadService.cs" />
+    <Compile Include="Services\UploadService.cs" />
+    <Compile Include="Services\UserInformationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
