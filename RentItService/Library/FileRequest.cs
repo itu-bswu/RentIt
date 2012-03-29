@@ -6,22 +6,19 @@
 
 namespace RentItService.Library
 {
-    using System.ServiceModel;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Used to request an up/download.
     /// </summary>
     /// <author>Jakob Melnyk</author>
-    [MessageContract]
+    [DataContract]
     public class FileRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileRequest"/> class.
         /// </summary>
-        /// <param name="fileName">
-        /// The name of the file.
-        /// </param>
-        /// <author>Jakob Melnyk</author>
+        /// <param name="fileName">The name of the file.</param>
         public FileRequest(string fileName)
         {
             this.FileName = fileName;
@@ -31,7 +28,7 @@ namespace RentItService.Library
         /// Gets the name of the desired file.
         /// </summary>
         /// <author>Jakob Melnyk</author>
-        [MessageBodyMember]
+        [DataMember]
         public string FileName { get; private set; }
     }
 }
