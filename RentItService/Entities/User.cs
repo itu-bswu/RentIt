@@ -70,6 +70,11 @@ namespace RentItService.Entities
         }
 
         /// <summary>
+        /// Gets or sets the user's login token.
+        /// </summary>
+        public string Token { get; set; }
+
+        /// <summary>
         /// Gets or sets a list of the user's rentals.
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }

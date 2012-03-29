@@ -1,12 +1,19 @@
-﻿namespace Tools
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="Constants.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace Tools
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Different constants used in the solution.
     /// </summary>
     public class Constants
     {
-        public const string UpDownloadNamespace = "RentItService";
-
+        /// <summary>
+        /// The folder used for uploads and downloads.
+        /// </summary>
         public const string UploadDownloadFileFolder = @"c:\UploadDownloadTest";
     }
 }
