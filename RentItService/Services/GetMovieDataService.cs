@@ -3,6 +3,7 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using RentItService.Entities;
     using RentItService.Interfaces;
@@ -60,8 +61,10 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> Search(string token, string search)
         {
-            // TODO: Implement Search
-            throw new System.NotImplementedException();
+            using (var db = new RentItContext())
+            {
+                return db.Movies.Where(movie => movie.Title.Contains(search));
+            }
         }
     }
 }
