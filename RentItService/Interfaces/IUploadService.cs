@@ -31,6 +31,7 @@ namespace RentItService.Interfaces
         /// The movie object.
         /// </param>
         /// <author>Jakob Melnyk</author>
+        [OperationContract]
         void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject);
     }
 }

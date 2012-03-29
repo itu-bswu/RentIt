@@ -1,4 +1,9 @@
-﻿
+﻿// -----------------------------------------------------------------------
+// <copyright file="UserInformationService.cs" company="">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
 namespace RentItService.Services
 {
     using System;
@@ -10,7 +15,7 @@ namespace RentItService.Services
     /// <summary>
     /// Service for accessing user information.
     /// </summary>
-    public class UserInformationService : IUserInformation
+    public partial class Service : IUserInformation
     {
         /// <summary>
         /// Creates a new user in the database.
@@ -81,8 +86,20 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public void RentMovie(string token, int movieId)
         {
-            // TODO: Implement RentMovie
-            throw new NotImplementedException();
+            // TODO: Validation
+            // User stuff
+            User user = new User();
+
+            using (var db = new RentItContext())
+            {
+                db.Rentals.Add(new Rental()
+                    {
+                        MovieID = movieId,
+                        UserID = user.ID,
+                        Time = DateTime.Now
+                    });
+                db.SaveChanges();
+            }
         }
     }
 }

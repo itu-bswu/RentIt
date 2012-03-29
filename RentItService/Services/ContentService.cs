@@ -7,6 +7,7 @@
 namespace RentItService.Services
 {
     using System;
+    using System.Linq;
 
     using RentItService.Entities;
     using RentItService.Interfaces;
@@ -38,8 +39,17 @@ namespace RentItService.Services
         /// <author></author>
         public void DeleteMovie(string token, Movie movieObject)
         {
-            // TODO: Implement DeleteMovie
-            throw new System.NotImplementedException();
+            // TODO: Validation
+            using (var db = new RentItContext())
+            {
+                foreach (var r in db.Rentals.Where(r => r.MovieID == movieObject.ID))
+                {
+                    db.Rentals.Remove(r);
+                }
+
+                db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
+                db.SaveChanges();
+            }
         }
     }
 }

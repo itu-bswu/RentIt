@@ -7,6 +7,7 @@
 namespace RentItService.Services
 {
     using System;
+    using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
 
@@ -31,6 +32,12 @@ namespace RentItService.Services
         /// <author>Jakob Melnyk</author>
         public RemoteFileStream DownloadFile(string token, Movie downloadRequest)
         {
+            Contract.Requires(downloadRequest != null & token != null);
+            Contract.Requires(downloadRequest.Genre != null
+                                & downloadRequest.Description != null
+                & downloadRequest.Title != null);
+
+            // TODO: Validation
             using (var db = new RentItContext())
             {
                 string filePath;
@@ -49,7 +56,7 @@ namespace RentItService.Services
 
                 try
                 {
-                    FileInfo fileInfo = new FileInfo(filePath);
+                    var fileInfo = new FileInfo(filePath);
 
                     // Check to see if file exists.
                     if (!fileInfo.Exists)
@@ -58,7 +65,7 @@ namespace RentItService.Services
                     }
 
                     // Open stream
-                    FileStream stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+                    var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
 
                     // Set up rfs
                     return new RemoteFileStream(movie.FilePath, fileInfo.Length, stream);

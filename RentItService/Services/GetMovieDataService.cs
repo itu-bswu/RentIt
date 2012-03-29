@@ -1,4 +1,9 @@
-﻿
+﻿// -----------------------------------------------------------------------
+// <copyright file="GetMovieDataService.cs" company="">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
 namespace RentItService.Services
 {
     using System;
