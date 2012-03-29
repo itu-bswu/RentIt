@@ -10,7 +10,7 @@ namespace RentItService.Services
     /// <summary>
     /// Service for accessing user information.
     /// </summary>
-    public class UserInformationService : IUserInformation
+    public partial class Service : IUserInformation
     {
         /// <summary>
         /// Creates a new user in the database.
