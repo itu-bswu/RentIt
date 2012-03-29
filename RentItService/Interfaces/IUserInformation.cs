@@ -8,7 +8,6 @@ namespace RentItService.Interfaces
 {
     using System.Collections.Generic;
     using System.ServiceModel;
-
     using RentItService.Entities;
 
     /// <summary>
@@ -25,7 +24,7 @@ namespace RentItService.Interfaces
         /// <returns>The session token.</returns>
         /// <author>Jakob Melnyk</author>
         [OperationContract]
-        string SignUp(User userObject);
+        bool SignUp(User userObject);
 
         /// <summary>
         /// Logs the user in returning a session token.
@@ -35,7 +34,7 @@ namespace RentItService.Interfaces
         /// <returns>The session token.</returns>
         /// <author>Jakob Melnyk</author>
         [OperationContract]
-        string LogIn(string userName, string password);
+        User LogIn(string userName, string password);
 
         /// <summary>
         /// Updates a user profile.
