@@ -36,6 +36,10 @@ namespace RentItService.Mapping
                 .IsRequired()
                 .IsFixedLength()
                 .HasMaxLength(100);
+
+            this.Property(t => t.Genre)
+                .IsFixedLength()
+                .HasMaxLength(50);
                 
             // Table & Column Mappings
             this.ToTable("Movie");
@@ -44,6 +48,7 @@ namespace RentItService.Mapping
             this.Property(t => t.Description).HasColumnName("description");
             this.Property(t => t.ImagePath).HasColumnName("image_path");
             this.Property(t => t.FilePath).HasColumnName("file_path");
+            this.Property(t => t.Genre).HasColumnName("genre");
         }
     }
 }
