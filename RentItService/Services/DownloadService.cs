@@ -37,9 +37,14 @@ namespace RentItService.Services
                                 & downloadRequest.Description != null
                 & downloadRequest.Title != null);
 
-            // TODO: Validation
             using (var db = new RentItContext())
             {
+                User user = User.GetByToken(token);
+                if (!(user.Rentals.Any(x => x.MovieID == downloadRequest.ID & x.UserID == user.ID)))
+                {
+                    throw new Exception();
+                }
+
                 string filePath;
 
                 var movie = db.Movies.First(m => m.ID == downloadRequest.ID);

@@ -13,6 +13,7 @@ namespace RentItService.Services
     using System.Linq;
 
     using RentItService.Entities;
+    using RentItService.Enums;
     using RentItService.Interfaces;
     using RentItService.Library;
 
@@ -30,11 +31,15 @@ namespace RentItService.Services
         /// <param name="token">The user token.</param>
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
         /// <param name="movieObject">The movie object.</param>
-        /// <author>Jakob Melnyk</author>
-        public void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
+        /// <returns>True if upload was successful, false if not.</returns>
+        public bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
             Contract.Requires(movieObject != null && movieObject.FilePath != null && uploadRequest != null);
-            // TODO: Validation
+            User user = User.GetByToken(token);
+            if (user.Type != UserType.ContentProvider)
+            {
+                throw new Exception(); // TODO: Throw better exception.
+            }
 
             // TODO: Figure out safer way to determine temporary filepath.
             string temporaryFilePath = DateTime.Now.ToString(CultureInfo.InvariantCulture) + movieObject.Title;
@@ -77,6 +82,8 @@ namespace RentItService.Services
                         targetStream.Close();
                         sourceStream.Close();
                     }
+
+                    return true;
                 }
                 catch
                 { // In case filestream fails, movie has to be deleted from database.
@@ -86,6 +93,8 @@ namespace RentItService.Services
                     db.SaveChanges();
                 }
             }
+
+            return false;
         }
     }
 }
