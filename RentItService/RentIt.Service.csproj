@@ -80,14 +80,16 @@
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="RentITContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ContentService.cs" />
-    <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\DownloadService.cs" />
     <Compile Include="Services\UploadService.cs" />
+
+    <Compile Include="Services\ContentService.cs" />
+    <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

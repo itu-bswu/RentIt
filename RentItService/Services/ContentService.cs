@@ -10,6 +10,7 @@ namespace RentItService.Services
 
     using RentItService.Entities;
     using RentItService.Enums;
+    using RentItService.Exceptions;
     using RentItService.Interfaces;
 
     /// <summary>
@@ -31,10 +32,10 @@ namespace RentItService.Services
         /// <author></author>
         public void EditMovieInformation(string token, Movie movieObject)
         {
-            User user = new User();
-
-            if (user != null)
+            try
             {
+                User user = User.GetByToken(token);
+
                 if (user.Type.Equals(UserType.ContentProvider) || user.Type.Equals(UserType.SystemAdmin))
                 {
                     var movie = this.db.Movies.Find(movieObject.ID);
@@ -46,6 +47,10 @@ namespace RentItService.Services
 
                     this.db.SaveChanges();
                 }
+            }
+            catch (UserNotFoundException)
+            {
+                //
             }
         }
 

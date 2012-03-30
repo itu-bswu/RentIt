@@ -14,6 +14,7 @@ namespace RentItService.Services
     using System.Linq;
 
     using RentItService.Entities;
+    using RentItService.Exceptions;
     using RentItService.Interfaces;
 
     /// <summary>
@@ -33,14 +34,16 @@ namespace RentItService.Services
         /// <returns>A movie object equivalent to the entry in the database.</returns>
         public Movie GetMovieInformation(string token, int movieId)
         {
-            User user = new User();
-
-            if (user != null)
+            try
             {
+                User user = User.GetByToken(token);
+
                 return Enumerable.FirstOrDefault(this.dbContext.Movies, movie => movie.ID == movieId);
             }
-
-            return null;
+            catch (UserNotFoundException)
+            {
+                return null;
+            }
         }
 
         /// <summary>Gets the most downloaded movies.</summary>
