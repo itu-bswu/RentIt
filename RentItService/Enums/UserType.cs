@@ -6,6 +6,7 @@
 
 namespace RentItService.Enums
 {
+
     /// <summary>
     /// Enum representing user types and rights.
     /// </summary>
