@@ -10,23 +10,22 @@ namespace RentItService.Services
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
-
-    using RentItService.Entities;
-    using RentItService.Interfaces;
-    using RentItService.Library;
-
+    using Entities;
+    using Interfaces;
+    using Library;
     using Tools;
 
     /// <summary>
-    /// The RentIt service class.
+    /// The download service class.
     /// </summary>
     /// <author>Jakob Melnyk</author>
     public partial class Service : IDownloadService
     {
         /// <summary>
-        /// Creates a stream for downloading a file from the server.
+        /// Creates a stream for downloading a file from the server. 
+        /// The movie is identified by the ID in the instance of the Movie class.
         /// </summary>
-        /// <param name="token">The user token.</param>
+        /// <param name="token">The session token.</param>
         /// <param name="downloadRequest">The movie to download.</param>
         /// <returns>The stream information necessary for download.</returns>
         /// <author>Jakob Melnyk</author>
@@ -77,7 +76,7 @@ namespace RentItService.Services
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("Could not create the stream.", e);
+                    throw new Exception("Could not create the stream.", e); // TODO: Why catch and throw another exception?
                 }
             }
         }

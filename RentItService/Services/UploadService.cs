@@ -11,12 +11,12 @@ namespace RentItService.Services
     using System.Globalization;
     using System.IO;
     using System.Linq;
-
-    using RentItService.Entities;
-    using RentItService.Enums;
-    using RentItService.Interfaces;
-    using RentItService.Library;
-
+	
+    using Enums;
+    using Entities;
+    using Interfaces;
+    using Library;
+	
     using Tools;
 
     /// <summary>
@@ -26,11 +26,11 @@ namespace RentItService.Services
     public partial class Service : IUploadService
     {
         /// <summary>
-        /// Used to upload a file to the database.
+        /// Upload a new media file, and add a new movie with that file.
         /// </summary>
         /// <param name="token">The user token.</param>
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
-        /// <param name="movieObject">The movie object.</param>
+        /// <param name="movieObject">The movie object with the movie information.</param>
         /// <returns>True if upload was successful, false if not.</returns>
         public bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {

@@ -7,22 +7,22 @@
 namespace RentItService.Interfaces
 {
     using System.ServiceModel;
-    using RentItService.Entities;
-    using RentItService.Library;
+    using Entities;
+    using Library;
 
     /// <summary>
-    /// Contract for the UploadService
+    /// Contract for the upload service.
     /// </summary>
     /// <author>Jakob Melnyk</author>
     [ServiceContract]
     public interface IUploadService
     {
         /// <summary>
-        /// Used to upload a file to the database.
+        /// Upload a new media file, and add a new movie with that file.
         /// </summary>
-        /// <param name="token">The user token.</param>
+        /// <param name="token">The session token.</param>
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
-        /// <param name="movieObject">The movie object.</param>
+		/// <param name="movieObject">The movie object with the movie information.</param>
         /// <returns>True if upload was successful, false if not.</returns>
         [OperationContract]
         bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject);
