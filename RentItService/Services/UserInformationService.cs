@@ -1,11 +1,16 @@
-﻿
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="UserInformationService.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
 namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using RentItService.Entities;
-    using RentItService.Interfaces;
+    using Entities;
+    using Interfaces;
 
     /// <summary>
     /// Service for accessing user information.
@@ -16,8 +21,7 @@ namespace RentItService.Services
         /// Creates a new user in the database.
         /// </summary>
         /// <param name="userObject">The user object containg the user information.</param>
-        /// <returns>The session token.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
+        /// <returns>True for success; false otherwise.</returns>
         public bool SignUp(User userObject)
         {
             Contract.Requires(userObject != null);
@@ -29,12 +33,11 @@ namespace RentItService.Services
         }
 
         /// <summary>
-        /// Logs the user in returning a session token.
+        /// Logs the user in returning user information (and a session token).
         /// </summary>
         /// <param name="userName">The user name used in the signup.</param>
         /// <param name="password">The user password.</param>
-        /// <returns>The session token.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
+        /// <returns>The user information.</returns>
         public User LogIn(string userName, string password)
         {
             Contract.Requires(userName != null);
