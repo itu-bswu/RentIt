@@ -149,7 +149,7 @@ namespace RentItService.Entities
 
                 if (!db.Users.Any(u => u.Username == username && u.Password == password))
                 {
-                    throw new UserNotFoundException("No user with the given token was found!");
+                    throw new UserNotFoundException("No user with the given login information was found!");
                 }
 
                 var user = db.Users.First(u => u.Username == username && u.Password == password);
