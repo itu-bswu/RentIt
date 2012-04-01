@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,7 +86,6 @@
     </Compile>
     <Compile Include="Services\DownloadService.cs" />
     <Compile Include="Services\UploadService.cs" />
-
     <Compile Include="Services\ContentService.cs" />
     <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\UserInformationService.cs" />

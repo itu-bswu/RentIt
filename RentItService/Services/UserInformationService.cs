@@ -10,6 +10,7 @@ namespace RentItService.Services
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using Entities;
+    using Enums;
     using Interfaces;
 
     /// <summary>
@@ -62,7 +63,6 @@ namespace RentItService.Services
 
             using (var db = new RentItContext())
             {
-
                 User user = db.Users.Find(userObject.ID);
                 if (u.ID != user.ID)
                 {

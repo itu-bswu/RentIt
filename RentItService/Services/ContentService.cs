@@ -40,7 +40,7 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieObject">The movie to be deleted.</param>
-        /// <author></author>
+        /// <author>Jakob Melnyk</author>
         public void DeleteMovie(string token, Movie movieObject)
         {
             User user = User.GetByToken(token);
