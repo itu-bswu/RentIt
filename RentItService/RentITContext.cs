@@ -24,6 +24,21 @@ namespace RentItService
             Database.SetInitializer<RentItContext>(null);
         }
 
+        #region Constructor(s)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentItContext"/> class.
+        /// </summary>
+        public RentItContext()
+        {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+        }
+
+        #endregion Constructor(s)
+
+        #region Entity collections
+
         /// <summary>
         /// Gets or sets all users of RentIt.
         /// </summary>
@@ -39,6 +54,10 @@ namespace RentItService
         /// </summary>
         public DbSet<Rental> Rentals { get; set; }
 
+        #endregion Entity collections
+
+        #region Configuration
+        
         /// <summary>
         /// Model configuration.
         /// </summary>
@@ -50,5 +69,7 @@ namespace RentItService
             modelBuilder.Configurations.Add(new RentalMap());
             modelBuilder.Configurations.Add(new UserMap());
         }
+
+        #endregion Configuration
     }
 }
