@@ -85,7 +85,6 @@
     </Compile>
     <Compile Include="Services\DownloadService.cs" />
     <Compile Include="Services\UploadService.cs" />
-
     <Compile Include="Services\ContentService.cs" />
     <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
@@ -103,6 +102,16 @@
       <Project>{ECE3AAC9-455E-4FAD-B8BA-6BFD42F787A8}</Project>
       <Name>Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
