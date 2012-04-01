@@ -85,7 +85,6 @@
     </Compile>
     <Compile Include="Services\DownloadService.cs" />
     <Compile Include="Services\UploadService.cs" />
-
     <Compile Include="Services\ContentService.cs" />
     <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\UserInformationService.cs" />
