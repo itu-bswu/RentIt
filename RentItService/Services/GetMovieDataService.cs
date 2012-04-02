@@ -8,6 +8,7 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Linq;
 
     using Entities;
@@ -20,23 +21,20 @@ namespace RentItService.Services
     /// </summary>
     public partial class Service : IGetMovieData
     {
-        RentItContext dbContext = new RentItContext();
-
         /// <summary>Gets information about a specific movie.</summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to get.</param>
         /// <returns>A movie object equivalent to the entry in the database.</returns>
         public Movie GetMovieInformation(string token, int movieId)
         {
-            try
-            {
-                User user = User.GetByToken(token);
+            Contract.Requires(token != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
 
-                return Enumerable.FirstOrDefault(this.dbContext.Movies, movie => movie.ID == movieId);
-            }
-            catch (UserNotFoundException)
+            User user = User.GetByToken(token);
+
+            using (var db = new RentItContext())
             {
-                return null;
+                return Enumerable.FirstOrDefault(db.Movies, movie => movie.ID == movieId);
             }
         }
 
