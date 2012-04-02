@@ -6,6 +6,8 @@
 
 namespace RentItService.Interfaces
 {
+    using System;
+    using System.Diagnostics.Contracts;
     using System.ServiceModel;
     using Entities;
     using Library;
