@@ -22,7 +22,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
-		/// <param name="movieObject">The movie object with the movie information.</param>
+        /// <param name="movieObject">The movie object with the movie information.</param>
         /// <returns>True if upload was successful, false if not.</returns>
         [OperationContract]
         bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject);

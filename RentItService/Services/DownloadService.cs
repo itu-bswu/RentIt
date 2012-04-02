@@ -13,6 +13,9 @@ namespace RentItService.Services
     using Entities;
     using Interfaces;
     using Library;
+
+    using RentItService.FunctionClasses;
+
     using Tools;
 
     /// <summary>
@@ -31,54 +34,14 @@ namespace RentItService.Services
         /// <author>Jakob Melnyk</author>
         public RemoteFileStream DownloadFile(string token, Movie downloadRequest)
         {
-            Contract.Requires(downloadRequest != null & token != null);
-            Contract.Requires(downloadRequest.Genre != null
-                                & downloadRequest.Description != null
-                & downloadRequest.Title != null);
+            Contract.Requires<ArgumentNullException>(token != null);
 
-            using (var db = new RentItContext())
-            {
-                User user = User.GetByToken(token);
-                if (!(user.Rentals.Any(x => x.MovieID == downloadRequest.ID & x.UserID == user.ID)))
-                {
-                    throw new Exception();
-                }
+            Contract.Requires<ArgumentNullException>(downloadRequest != null);
+            Contract.Requires(downloadRequest.Genre != null &
+                              downloadRequest.Description != null &
+                              downloadRequest.Title != null);
 
-                string filePath;
-
-                var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
-                if (movie.Genre == downloadRequest.Genre
-                    & movie.Description == downloadRequest.Description
-                    & movie.Title == downloadRequest.Title)
-                {
-                    filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
-                }
-                else
-                {
-                    throw new Exception(); // TODO: Throw better exception.
-                }
-
-                try
-                {
-                    var fileInfo = new FileInfo(filePath);
-
-                    // Check to see if file exists.
-                    if (!fileInfo.Exists)
-                    {
-                        throw new FileNotFoundException("File not found", downloadRequest.FilePath);
-                    }
-
-                    // Open stream
-                    var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
-
-                    // Set up rfs
-                    return new RemoteFileStream(movie.FilePath, fileInfo.Length, stream);
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Could not create the stream.", e); // TODO: Why catch and throw another exception?
-                }
-            }
+            UploadDownload.DownloadFile(token, downloadRequest);
         }
     }
 }

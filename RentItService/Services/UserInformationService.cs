@@ -13,6 +13,8 @@ namespace RentItService.Services
     using Enums;
     using Interfaces;
 
+    using RentItService.Exceptions;
+
     /// <summary>
     /// Service for accessing user information.
     /// </summary>
@@ -55,26 +57,14 @@ namespace RentItService.Services
         /// <returns>The edited user profile.</returns>
         public User EditProfile(string token, User userObject)
         {
-            User u = User.GetByToken(token);
-            if (u.Type != UserType.User & u.Type != UserType.SystemAdmin)
-            {
-                throw new Exception(); // TODO: Throw better exception.
-            }
+            Contract.Requires<NullReferenceException>(token != null & userObject != null);
+            Contract.Requires<NullReferenceException>(userObject.Username != null);
+            Contract.Requires<NullReferenceException>(userObject.Email != null);
+            Contract.Requires<NullReferenceException>(userObject.Password != null);
 
-            using (var db = new RentItContext())
-            {
-                User user = db.Users.Find(userObject.ID);
-                if (u.ID != user.ID)
-                {
-                    throw new Exception(); // TODO: Throw better exception
-                }
-                user.Email = userObject.Email;
-                user.FullName = userObject.FullName;
-                user.Password = userObject.Password;
-                db.SaveChanges();
-                user = db.Users.Find(userObject.ID);
-                return user;
-            }
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
+
+            return User.EditProfile(token, userObject);
         }
 
         /// <summary>
@@ -108,22 +98,10 @@ namespace RentItService.Services
         /// <param name="movieId">The ID of the movie to be rented.</param>
         public void RentMovie(string token, int movieId)
         {
-            User user = User.GetByToken(token);
-            if (user.Type != UserType.User)
-            {
-                throw new Exception(); // TODO: Throw better exception.
-            }
+            Contract.Requires<NullReferenceException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
 
-            using (var db = new RentItContext())
-            {
-                db.Rentals.Add(new Rental()
-                    {
-                        MovieID = movieId,
-                        UserID = user.ID,
-                        Time = DateTime.Now
-                    });
-                db.SaveChanges();
-            }
+            User.RentMovie(token, movieId);
         }
     }
 }
