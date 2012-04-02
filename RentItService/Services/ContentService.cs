@@ -7,7 +7,10 @@
 namespace RentItService.Services
 {
     using System;
+    using System.Linq;
+
     using Entities;
+    using Enums;
     using Interfaces;
 
     /// <summary>
@@ -37,12 +40,25 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieObject">The movie to be deleted.</param>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
-        /// <author></author>
+        /// <author>Jakob Melnyk</author>
         public void DeleteMovie(string token, Movie movieObject)
         {
-            // TODO: Implement DeleteMovie
-            throw new NotImplementedException();
+            User user = User.GetByToken(token);
+            if (user.Type != UserType.ContentProvider & user.Type != UserType.SystemAdmin)
+            {
+                throw new Exception(); // TODO: Throw better exception
+            }
+
+            using (var db = new RentItContext())
+            {
+                foreach (var r in db.Rentals.Where(r => r.MovieID == movieObject.ID))
+                {
+                    db.Rentals.Remove(r);
+                }
+
+                db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
+                db.SaveChanges();
+            }
         }
     }
 }
