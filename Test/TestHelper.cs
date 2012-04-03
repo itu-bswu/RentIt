@@ -28,7 +28,7 @@ namespace RentIt.Tests
                 // User setup
                 if (!db.Users.Any(a => a.Username == "testUser"))
                 {
-                    User u = new User()
+                    User u = new User
                         {
                             Email = "testUser@testing.dk",
                             FullName = "Test User",
@@ -51,7 +51,7 @@ namespace RentIt.Tests
                 // ContentProvider setup
                 if (!db.Users.Any(a => a.Username == "testContentProvider"))
                 {
-                    User u = new User()
+                    User u = new User
                     {
                         Email = "testContentProvider@testing.dk",
                         FullName = "Test ContentProvider",
@@ -74,7 +74,7 @@ namespace RentIt.Tests
                 // Admin setup
                 if (!db.Users.Any(a => a.Username == "testAdmin"))
                 {
-                    User u = new User()
+                    User u = new User
                     {
                         Email = "testAdmin@testing.dk",
                         FullName = "Test Admin",
@@ -96,13 +96,16 @@ namespace RentIt.Tests
             }
         }
 
+        /// <summary>
+        /// Sets up test data for the movie table.
+        /// </summary>
         public static void SetUpTestMovies()
         {
             using (var db = new RentItContext())
             {
                 if (!db.Movies.Any(m => m.Description.Equals("testMovie1")))
                 {
-                    Movie movie = new Movie()
+                    Movie movie = new Movie
                     {
                         Description = "testMovie1",
                         FilePath = "no file location",

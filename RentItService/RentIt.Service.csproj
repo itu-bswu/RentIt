@@ -105,6 +105,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Exceptions\InsufficientAccessLevelException.cs" />
     <Compile Include="Exceptions\NotAUserException.cs" />
+    <Compile Include="FunctionClasses\UploadDownload.cs" />
     <Compile Include="Interfaces\IContentService.cs" />
     <Compile Include="Interfaces\IDownloadService.cs" />
     <Compile Include="Interfaces\IGetMovieData.cs" />
