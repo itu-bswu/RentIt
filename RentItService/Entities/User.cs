@@ -210,6 +210,55 @@ namespace RentItService.Entities
             }
         }
 
+        /// <summary>
+        /// Creates a rental entry in the database.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieId">The ID of the movie to be rented.</param>
+        public static void RentMovie(string token, int movieId)
+        {
+            Contract.Requires<NullReferenceException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
+
+            User user = User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                db.Rentals.Add(new Rental() { MovieID = movieId, UserID = user.ID, Time = DateTime.Now });
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Updates a user profile.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="userObject">The updated user object.</param>
+        /// <returns>The edited user profile.</returns>
+        public static User EditProfile(string token, User userObject)
+        {
+            Contract.Requires<NullReferenceException>(token != null & userObject != null);
+            Contract.Requires<NullReferenceException>(userObject.Username != null);
+            Contract.Requires<NullReferenceException>(userObject.Email != null);
+            Contract.Requires<NullReferenceException>(userObject.Password != null);
+
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
+
+            User u = User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                User user = db.Users.Find(userObject.ID);
+
+                user.Email = userObject.Email;
+                user.FullName = userObject.FullName;
+                user.Password = userObject.Password;
+
+                db.SaveChanges();
+                user = db.Users.Find(userObject.ID);
+                return user;
+            }
+        }
         #endregion Static methods
     }
 }

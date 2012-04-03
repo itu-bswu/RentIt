@@ -1,4 +1,4 @@
-﻿//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // <copyright file="UserInformationService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -10,7 +10,10 @@ namespace RentItService.Services
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using Entities;
+    using Enums;
     using Interfaces;
+
+    using RentItService.Exceptions;
 
     /// <summary>
     /// Service for accessing user information.
@@ -51,11 +54,17 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="userObject">The updated user object.</param>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public void EditProfile(string token, User userObject)
+        /// <returns>The edited user profile.</returns>
+        public User EditProfile(string token, User userObject)
         {
-            // TODO: Implement EditProfile
-            throw new NotImplementedException();
+            Contract.Requires<NullReferenceException>(token != null & userObject != null);
+            Contract.Requires<NullReferenceException>(userObject.Username != null);
+            Contract.Requires<NullReferenceException>(userObject.Email != null);
+            Contract.Requires<NullReferenceException>(userObject.Password != null);
+
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
+
+            return User.EditProfile(token, userObject);
         }
 
         /// <summary>
@@ -87,11 +96,12 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to be rented.</param>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public void RentMovie(string token, int movieId)
         {
-            // TODO: Implement RentMovie
-            throw new NotImplementedException();
+            Contract.Requires<NullReferenceException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
+
+            User.RentMovie(token, movieId);
         }
     }
 }

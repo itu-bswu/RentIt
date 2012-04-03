@@ -30,7 +30,7 @@ namespace RentItService.Services
             Contract.Requires(token != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
 
-            User user = User.GetByToken(token);
+            var user = User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
