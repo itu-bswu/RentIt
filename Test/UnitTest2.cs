@@ -87,6 +87,7 @@ namespace RentIt.Tests
 
         /// <summary>
         /// Tests the editing of the information of a movie
+        /// Fails because of whitespace issues currently
         /// </summary>
         [TestMethod]
         public void EditMovieInformationTest()
@@ -116,13 +117,23 @@ namespace RentIt.Tests
 
                 Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
 
+                // This part can be removed when the whitespace issue has been fixed
+                if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
+                {
+                    db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
+                    db.SaveChanges();
+                }
+
                 Assert.AreEqual(foundMovie.Title, "Trolling for beginners");
                 Assert.AreEqual(foundMovie.Description, "How to troll, for people new to the art");
                 Assert.AreEqual(foundMovie.Genre, "NoGenre");
                 Assert.AreEqual(foundMovie.FilePath, "You no take file location!");
 
-                db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
-                db.SaveChanges();
+                if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
+                {
+                    db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -204,11 +215,11 @@ namespace RentIt.Tests
         }
 
         /// <summary>
+        /// Test for successful edit of profile.
         /// </summary>
         [TestMethod]
         public void EditProfileTest()
         {
-            Service service = new Service();
             string oldPassword;
             string oldName;
             string oldEmail;
@@ -219,15 +230,15 @@ namespace RentIt.Tests
 
                 User user = db.Users.First(u => u.Username == "testUser");
 
-                Assert.AreEqual("test.dk", user.Password.TrimEnd(Convert.ToChar(" ")));
-                Assert.AreEqual("Test User", user.FullName.TrimEnd(Convert.ToChar(" ")));
-                Assert.AreEqual("testUser@testing.dk", user.Email.TrimEnd(Convert.ToChar(" ")));
+                Assert.AreEqual("test.dk", user.Password);
+                Assert.AreEqual("Test User", user.FullName);
+                Assert.AreEqual("testUser@testing.dk", user.Email);
 
                 oldPassword = user.Password;
                 oldName = user.FullName;
                 oldEmail = user.Email;
 
-                User user2 = new User()
+                User user2 = new User
                     {
                         Email = user.Email.ToUpper(),
                         FullName = user.FullName.ToUpper(),
@@ -259,13 +270,12 @@ namespace RentIt.Tests
         }
 
         /// <summary>
+        /// Test for someone editing a profile that is not his own.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
         public void InsufficientExceptionEditProfileTest()
         {
-            Service service = new Service();
-
             using (var db = new RentItContext())
             {
                 TestHelper.SetUpTestUsers();
@@ -273,7 +283,7 @@ namespace RentIt.Tests
                 User user = db.Users.First(u => u.Username == "testUser");
                 User user1 = db.Users.First(u => u.Username == "testContentProvider");
 
-                User user2 = new User()
+                User user2 = new User
                 {
                     Email = user.Email.ToUpper(),
                     FullName = user.FullName.ToUpper(),
@@ -291,20 +301,19 @@ namespace RentIt.Tests
         }
 
         /// <summary>
+        /// Tests for invald input.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void InvalidInputEditProfileTest()
         {
-            Service service = new Service();
-
             using (var db = new RentItContext())
             {
                 TestHelper.SetUpTestUsers();
 
                 User user = db.Users.First(u => u.Username == "testUser");
 
-                User user2 = new User()
+                User user2 = new User
                 {
                     Email = user.Email.ToUpper(),
                     FullName = null,
@@ -321,10 +330,12 @@ namespace RentIt.Tests
             }
         }
 
+        /// <summary>
+        /// Tests a successful rent of a movie.
+        /// </summary>
         [TestMethod]
         public void RentMovieTest()
         {
-            Service service = new Service();
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
@@ -353,45 +364,43 @@ namespace RentIt.Tests
             }
         }
 
+        /// <summary>
+        /// Tests for a rent where the user renting is not of type "User".
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotAUserException))]
-        public void NotAUserRentMediaTest()
+        public void NotAUserRentMovieTest()
         {
-            Service service = new Service();
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
-
-            string testToken;
-            int testID;
 
             using (var db = new RentItContext())
             {
                 User user = db.Users.First(u => u.Username == "testContentProvider");
                 Movie movie = db.Movies.First(m => m.Description.Equals("testMovie1"));
 
-                testToken = user.Token;
-                testID = movie.ID;
+                string testToken = user.Token;
+                int testID = movie.ID;
 
                 User.RentMovie(testToken, testID);
             }
         }
 
+        /// <summary>
+        /// Tests for invalid input in a rent movie action.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void InvalidInputRentMediaTest()
+        public void InvalidInputRentMovieTest()
         {
-            Service service = new Service();
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
-
-            string testToken;
-            int testID;
 
             using (var db = new RentItContext())
             {
                 Movie movie = db.Movies.First(m => m.Description.Equals("testMovie1"));
 
-                testID = movie.ID;
+                int testID = movie.ID;
 
                 User.RentMovie(null, testID);
             }

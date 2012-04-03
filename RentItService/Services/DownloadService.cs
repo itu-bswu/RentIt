@@ -8,15 +8,10 @@ namespace RentItService.Services
 {
     using System;
     using System.Diagnostics.Contracts;
-    using System.IO;
-    using System.Linq;
     using Entities;
+    using FunctionClasses;
     using Interfaces;
     using Library;
-
-    using RentItService.FunctionClasses;
-
-    using Tools;
 
     /// <summary>
     /// The download service class.
