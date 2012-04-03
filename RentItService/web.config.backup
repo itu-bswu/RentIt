@@ -18,15 +18,15 @@
   </system.web>
   <system.serviceModel>
     <services>
-      <service name="Services.Service">
-        <endpoint address="ContentService" binding="basicHttpBinding" contract="IContentService" />
-        <endpoint address="Download" binding="basicHttpBinding" contract="IDownloadService" />
-        <endpoint address="GetMovieData" binding="basicHttpBinding" contract="IGetMovieData" />
-        <endpoint address="Upload" binding="basicHttpBinding" contract="IUploadService" />
-        <endpoint address="UserInformation" binding="basicHttpBinding" contract="IUserInformation" />
+      <service name ="Services.Service" >
+        <endpoint address ="ContentService" binding="basicHttpBinding" contract="IContentService"/>
+        <endpoint address ="Download" binding="basicHttpBinding" contract="IDownloadService"/>
+        <endpoint address ="GetMovieData" binding="basicHttpBinding" contract="IGetMovieData"/>
+        <endpoint address ="Upload" binding="basicHttpBinding" contract="IUploadService"/>
+        <endpoint address ="UserInformation" binding="basicHttpBinding" contract="IUserInformation"/>
         <host>
           <baseAddresses>
-            <add baseAddress="http://localhost:1337" />
+            <add baseAddress="http://localhost:1337"/>
           </baseAddresses>
         </host>
       </service>
@@ -42,10 +42,18 @@
     <serviceHostingEnvironment multipleSiteBindingsEnabled="true" />
     <bindings>
       <basicHttpBinding>
-        <binding name="BasicHttpBinding_IUpDownloadService" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00" allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard" maxBufferSize="2147483647" maxBufferPoolSize="524288" maxReceivedMessageSize="2147483647" messageEncoding="Text" textEncoding="utf-8" transferMode="Streamed" useDefaultWebProxy="true">
-          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+        <binding name="BasicHttpBinding_IUpDownloadService" closeTimeout="00:01:00"
+                            openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+                            allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+                            maxBufferSize="2147483647" maxBufferPoolSize="524288" maxReceivedMessageSize="2147483647"
+                            messageEncoding="Text" textEncoding="utf-8" transferMode="Streamed"
+                            useDefaultWebProxy="true">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647"
+                          maxArrayLength="2147483647" maxBytesPerRead="2147483647"
+                          maxNameTableCharCount="2147483647"/>
           <security mode="None">
-            <transport clientCredentialType="None" proxyCredentialType="None" realm="" />
+            <transport clientCredentialType="None" proxyCredentialType="None"
+                          realm="" />
             <message clientCredentialType="UserName" algorithmSuite="Default" />
           </security>
         </binding>
@@ -55,12 +63,4 @@
   <system.webServer>
     <modules runAllManagedModulesForAllRequests="true" />
   </system.webServer>
-  <appSettings>
-    <add key="microsoft.visualstudio.teamsystems.aspnetdevserver:/" value="8647;True;4020;4;-8588682867975804889" />
-    <add key="microsoft.visualstudio.teamsystems.backupinfo" value="6;web.config.backup" />
-  </appSettings>
-  <runtime>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-    </assemblyBinding>
-  </runtime>
 </configuration>

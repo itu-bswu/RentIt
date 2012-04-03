@@ -41,9 +41,10 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="userObject">The updated user object.</param>
-        /// <author>TBD</author>
+        /// <returns>The resulting user object.</returns>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
-        void EditProfile(string token, User userObject);
+        User EditProfile(string token, User userObject);
 
         /// <summary>
         /// Gets all of the previous and current rentals of the user.
