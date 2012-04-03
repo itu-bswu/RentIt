@@ -104,6 +104,7 @@
     <Compile Include="Entities\Rental.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Exceptions\InsufficientAccessLevelException.cs" />
+    <Compile Include="Exceptions\NoMovieFoundException.cs" />
     <Compile Include="Exceptions\NotAUserException.cs" />
     <Compile Include="FunctionClasses\UploadDownload.cs" />
     <Compile Include="Interfaces\IContentService.cs" />

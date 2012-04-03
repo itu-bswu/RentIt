@@ -8,25 +8,34 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+    using System.Linq;
+
     using Entities;
     using Interfaces;
+
+    using RentItService.Exceptions;
 
     /// <summary>
     /// The movie information service.
     /// </summary>
     public partial class Service : IGetMovieData
     {
-        /// <summary>
-        /// Gets information about a specific movie.
-        /// </summary>
+        /// <summary>Gets information about a specific movie.</summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to get.</param>
         /// <returns>A movie object equivalent to the entry in the database.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public Movie GetMovieInformation(string token, int movieId)
         {
-            // TODO: Implement GetMovieInformation
-            throw new NotImplementedException();
+            Contract.Requires(token != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
+
+            var user = User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                return Enumerable.FirstOrDefault(db.Movies, movie => movie.ID == movieId);
+            }
         }
 
         /// <summary>

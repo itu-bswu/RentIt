@@ -29,6 +29,13 @@ namespace RentItService.Services
         /// <author>Jakob Melnyk</author>
         public RemoteFileStream DownloadFile(string token, Movie downloadRequest)
         {
+            Contract.Requires<ArgumentNullException>(token != null);
+
+            Contract.Requires<ArgumentNullException>(downloadRequest != null);
+            Contract.Requires(downloadRequest.Genre != null &
+                              downloadRequest.Description != null &
+                              downloadRequest.Title != null);
+
             return UploadDownload.DownloadFile(token, downloadRequest);
         }
     }
