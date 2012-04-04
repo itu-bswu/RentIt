@@ -31,7 +31,7 @@ namespace RentIt.Tests
             {
                 TestHelper.SetUpTestMovies();
                 TestHelper.SetUpTestUsers();
-                
+
                 User testUser = db.Users.First(u => u.Username == "testUser");
                 Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
 
@@ -102,16 +102,16 @@ namespace RentIt.Tests
                 User testUser = db.Users.First(u => u.Username == "testAdmin");
                 Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
 
-               var newMovie = new Movie()
-                   {
-                       ID = testMovie.ID,
-                       Description = "How to troll, for people new to the art",
-                       FilePath = "You no take file location!",
-                       Genre = "NoGenre",
-                       ImagePath = "N/A",
-                       Rentals = new Collection<Rental>(),
-                       Title = "Trolling for beginners"
-                   };
+                var newMovie = new Movie()
+                    {
+                        ID = testMovie.ID,
+                        Description = "How to troll, for people new to the art",
+                        FilePath = "You no take file location!",
+                        Genre = "NoGenre",
+                        ImagePath = "N/A",
+                        Rentals = new Collection<Rental>(),
+                        Title = "Trolling for beginners"
+                    };
 
                 service.EditMovieInformation(testUser.Token, newMovie);
 
