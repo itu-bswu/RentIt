@@ -25,25 +25,20 @@ namespace RentItService.Mapping
             // Properties
             this.Property(t => t.Username)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(50);
                 
             this.Property(t => t.Password)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
                 
             this.Property(t => t.Email)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
                 
             this.Property(t => t.FullName)
-                .IsFixedLength()
                 .HasMaxLength(100);
 
             this.Property(t => t.Token)
-                .IsFixedLength()
                 .HasMaxLength(100);
                 
             // Table & Column Mappings

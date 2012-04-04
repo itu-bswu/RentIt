@@ -8,19 +8,20 @@ namespace RentItService.Library
 {
     using System;
     using System.IO;
-    using System.ServiceModel;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Contains the information necessary to up/down load a file.
     /// </summary>
     /// <author>Jakob Melnyk</author>
-    [MessageContract]
+    [DataContract]
     public class RemoteFileStream : IDisposable
     {
+        #region Constructor(s)
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoteFileStream"/> class. 
         /// </summary>
-        /// <author>Jakob Melnyk</author>
         public RemoteFileStream()
         {
         }
@@ -28,51 +29,43 @@ namespace RentItService.Library
         /// <summary>
         /// Initializes a new instance of the <see cref="RemoteFileStream"/> class. 
         /// </summary>
-        /// <param name="name">
-        /// The name of the file.
-        /// </param>
-        /// <param name="l">
-        /// The length of the stream.
-        /// </param>
-        /// <param name="stream">
-        /// The stream.
-        /// </param>
-        /// <author>Jakob Melnyk</author>
-        public RemoteFileStream(string name, long l, Stream stream)
+        /// <param name="name">The name of the file.</param>
+        /// <param name="length">The length of the stream.</param>
+        /// <param name="stream">The stream.</param>
+        public RemoteFileStream(string name, long length, Stream stream)
         {
             this.FileName = name;
-            this.Length = l;
+            this.Length = length;
             this.FileByteStream = stream;
         }
 
-        #region Fields
+        #endregion Constructor(s)
+        
+        #region Properties
 
         /// <summary>
         /// Gets the location of the file on the source system.
         /// </summary>
-        /// <author>Jakob Melnyk</author>
-        [MessageHeader(MustUnderstand = true)]
+        [DataMember]
         public string FileName { get; private set; }
 
         /// <summary>
         /// Gets the length of the file used in the stream.
         /// </summary>
-        /// <author>Jakob Melnyk</author>
-        [MessageHeader(MustUnderstand = true)]
+        [DataMember]
         public long Length { get; private set; }
 
         /// <summary>
         /// Gets the stream used to up/down load the file.
         /// </summary>
-        /// <author>Jakob Melnyk</author>
-        [MessageBodyMember(Order = 1)]
+        [DataMember]
         public Stream FileByteStream { get; private set; }
-        #endregion
+
+        #endregion Properties
 
         /// <summary>
-        /// Disposes of the stream. //TODO: Needs more precise summary.
+        /// Disposal of the stream.
         /// </summary>
-        /// <author>Jakob Melnyk</author>
         public void Dispose()
         {
             if (this.FileByteStream != null)

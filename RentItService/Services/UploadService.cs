@@ -6,11 +6,18 @@
 
 namespace RentItService.Services
 {
+    using System;
+    using System.Diagnostics.Contracts;
+    using System.Globalization;
     using System.IO;
+    using System.Linq;
+    using Entities;
+    using Enums;
+    using Interfaces;
+    using Library;
 
-    using RentItService.Entities;
-    using RentItService.Interfaces;
-    using RentItService.Library;
+    using RentItService.Exceptions;
+    using RentItService.FunctionClasses;
 
     using Tools;
 
@@ -21,38 +28,27 @@ namespace RentItService.Services
     public partial class Service : IUploadService
     {
         /// <summary>
-        /// Used to upload a file to the database.
+        /// Upload a new media file, and add a new movie with that file.
         /// </summary>
-        /// <param name="token">
-        /// The user token.
-        /// </param>
-        /// <param name="uploadRequest">
-        /// The RemoteFileStream to upload.
-        /// </param>
-        /// <param name="movieObject">
-        /// The movie object.
-        /// </param>
-        /// <author>Jakob Melnyk</author>
-        public void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
+        /// <param name="token">The user token.</param>
+        /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
+        /// <param name="movieObject">The movie object with the movie information.</param>
+        /// <returns>True if upload was successful, false if not.</returns>
+        public bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
-            FileStream targetStream;
-            Stream sourceStream = uploadRequest.FileByteStream;
+            Contract.Requires<NullReferenceException>(token != null);
 
-            string filePath = Path.Combine(Constants.UploadDownloadFileFolder, uploadRequest.FileName);
+            Contract.Requires<NullReferenceException>(uploadRequest != null);
+            Contract.Requires<NullReferenceException>(
+                uploadRequest.FileByteStream != null & uploadRequest.FileName != null);
 
-            using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                const int BufferLength = 8192;
-                byte[] buffer = new byte[BufferLength];
-                int count;
-                while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
-                {
-                    targetStream.Write(buffer, 0, count);
-                }
+            Contract.Requires<NullReferenceException>(movieObject != null);
+            Contract.Requires<NullReferenceException>(
+                movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
 
-                targetStream.Close();
-                sourceStream.Close();
-            }
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+
+            return UploadDownload.UploadFile(token, uploadRequest, movieObject);
         }
     }
 }
