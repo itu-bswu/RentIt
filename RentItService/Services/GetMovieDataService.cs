@@ -3,6 +3,7 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using RentItService.Entities;
     using RentItService.Interfaces;
@@ -26,10 +27,18 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containing the most downloaded movies.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
-        public IEnumerable<Movie> GetMostDownloaded(string token)
+        public IEnumerable<Tuple<Movie, int>> GetMostDownloaded(string token)
         {
-            // TODO: Implement GetMostDownloaded
-            throw new System.NotImplementedException();
+            // TODO: User validation
+            using (var db = new RentItContext())
+            {
+                List<Tuple<Movie, int>> topRentals = new List<Tuple<Movie, int>>();
+                foreach (Movie m in db.Movies.ToList())
+                {
+                    topRentals.Add(Tuple.Create(m, m.Rentals.Count()));
+                }
+                topRentals.
+            }
         }
 
         /// <summary>Gets the genres in the database.</summary>

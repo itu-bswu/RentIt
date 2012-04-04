@@ -2,6 +2,7 @@
 namespace RentItService.Services
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
 
     using RentItService.Entities;
@@ -58,7 +59,11 @@ namespace RentItService.Services
         public IEnumerable<Rental> GetRentalHistory(string token)
         {
             // TODO: Implement GetRentalHistory
-            throw new NotImplementedException();
+            using (var db = new RentItContext())
+            {
+                var rentalHistory = from u in User where u.Token = token select u.Rentals;
+            }
+
         }
 
         /// <summary>

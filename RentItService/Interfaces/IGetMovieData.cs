@@ -6,6 +6,7 @@
 
 namespace RentItService.Interfaces
 {
+    using System;
     using System.Collections.Generic;
     using System.ServiceModel;
 
@@ -24,11 +25,11 @@ namespace RentItService.Interfaces
         [OperationContract]
         Movie GetMovieInformation(string token, int movieId);
 
-        /// <summary>Gets the most downloaded movies.</summary>
+        /// <summary>Gets a list of the most downloaded movies and the numbers of downloads they have.</summary>
         /// <param name="token">The session token.</param>
-        /// <returns>An IEnumerable containing the most downloaded movies.</returns>
+        /// <returns>An IEnumerable containing the most downloaded movies and number of downloads.</returns>
         [OperationContract]
-        IEnumerable<Movie> GetMostDownloaded(string token);
+        IEnumerable<Tuple<Movie, int>> GetMostDownloaded(string token);
 
         /// <summary>Gets the genres in the database.</summary>
         /// <param name="token">The session token.</param>
