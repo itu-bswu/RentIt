@@ -12,7 +12,6 @@ namespace RentItService.Entities
     using System.Linq;
     using Enums;
     using Exceptions;
-    using Tools.Encryption;
 
     /// <summary>
     /// User entity (Entity Framework POCO class).
@@ -259,6 +258,22 @@ namespace RentItService.Entities
                 return user;
             }
         }
+
+        /// <summary>
+        /// Gets all of the previous and current rentals of the user.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>An IEnumerable containing all the users rentals.</returns>
+        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
+        public static IEnumerable<Rental> GetRentalHistory(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
+
+            return User.GetByToken(token).Rentals;
+        }
+
+
         #endregion Static methods
     }
 }

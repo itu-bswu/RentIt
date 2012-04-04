@@ -7,7 +7,6 @@
 namespace RentItService.Services
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using Entities;
@@ -76,12 +75,10 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public IEnumerable<Rental> GetRentalHistory(string token)
         {
-            // TODO: Implement GetRentalHistory
-            using (var db = new RentItContext())
-            {
-                var rentalHistory = from u in User where u.Token = token select u.Rentals;
-            }
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
 
+            return User.GetRentalHistory(token);
         }
 
         /// <summary>
