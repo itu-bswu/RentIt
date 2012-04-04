@@ -91,6 +91,8 @@
   <ItemGroup>
     <Compile Include="DataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -172,6 +174,10 @@
   <ItemGroup>
     <Content Include="Utils\Dataset\Create.sql" />
     <Content Include="Utils\Dataset\Data.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scenarios\ContentProvider\" />
+    <Folder Include="Scenarios\SystemAdmin\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -120,7 +120,6 @@
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="RentITContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MovieService.cs" />
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
