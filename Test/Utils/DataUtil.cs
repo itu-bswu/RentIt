@@ -70,3 +70,4 @@ namespace RentIt.Tests.Utils
         #endregion Methods
     }
 }
+
