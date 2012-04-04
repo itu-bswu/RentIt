@@ -8,8 +8,7 @@ namespace RentItService.Interfaces
 {
     using System.Collections.Generic;
     using System.ServiceModel;
-
-    using RentItService.Entities;
+    using Entities;
 
     /// <summary>
     /// Service contract for user information.
@@ -22,36 +21,37 @@ namespace RentItService.Interfaces
         /// Creates a new user in the database.
         /// </summary>
         /// <param name="userObject">The user object containg the user information.</param>
-        /// <returns>The session token.</returns>
-        /// <author>Jakob Melnyk</author>
+        /// <returns>True for success; false otherwise.</returns>
+        /// <author>Niklas Hansen</author>
         [OperationContract]
-        string SignUp(User userObject);
+        bool SignUp(User userObject);
 
         /// <summary>
-        /// Logs the user in returning a session token.
+        /// Logs the user in returning user information (and a session token).
         /// </summary>
         /// <param name="userName">The user name used in the signup.</param>
         /// <param name="password">The user password.</param>
         /// <returns>The session token.</returns>
-        /// <author>Jakob Melnyk</author>
+        /// <author>Niklas Hansen</author>
         [OperationContract]
-        string LogIn(string userName, string password);
+        User LogIn(string userName, string password);
 
         /// <summary>
         /// Updates a user profile.
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="userObject">The updated user object.</param>
+        /// <returns>The resulting user object.</returns>
         /// <author>Jakob Melnyk</author>
         [OperationContract]
-        void EditProfile(string token, User userObject);
+        User EditProfile(string token, User userObject);
 
         /// <summary>
         /// Gets all of the previous and current rentals of the user.
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containing all the users rentals.</returns>
-        /// <author>Jakob Melnyk</author>
+        /// <author>TBD</author>
         [OperationContract]
         IEnumerable<Rental> GetRentalHistory(string token);
 
@@ -60,7 +60,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containg the active rentals.</returns>
-        /// <author>Jakob Melnyk</author>
+        /// <author>TBD</author>
         [OperationContract]
         IEnumerable<Rental> GetCurrentRentals(string token);
 

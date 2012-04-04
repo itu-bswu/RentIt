@@ -7,13 +7,17 @@
 namespace RentItService.Services
 {
     using System;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using Entities;
+    using Enums;
+    using Interfaces;
+    using Library;
 
-    using RentItService.Entities;
-    using RentItService.Interfaces;
-    using RentItService.Library;
+    using RentItService.Exceptions;
+    using RentItService.FunctionClasses;
 
     using Tools;
 
@@ -24,71 +28,27 @@ namespace RentItService.Services
     public partial class Service : IUploadService
     {
         /// <summary>
-        /// Used to upload a file to the database.
+        /// Upload a new media file, and add a new movie with that file.
         /// </summary>
         /// <param name="token">The user token.</param>
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
-        /// <param name="movieObject">The movie object.</param>
-        /// <author>Jakob Melnyk</author>
-        public void UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
+        /// <param name="movieObject">The movie object with the movie information.</param>
+        /// <returns>True if upload was successful, false if not.</returns>
+        public bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
-            if (movieObject != null && movieObject.FilePath != null && uploadRequest != null)
-            {
-                // TODO: Figure out safer way to determine temporary filepath.
-                string temporaryFilePath = DateTime.Now.ToString(CultureInfo.InvariantCulture) + movieObject.Title;
+            Contract.Requires<NullReferenceException>(token != null);
 
-                using (var db = new RentItContext())
-                {
-                    // Creates the new movie in the database.
-                    var newMovie = new Movie
-                        {
-                            Description = movieObject.Description,
-                            Genre = movieObject.Genre,
-                            Title = movieObject.Title,
-                            FilePath = temporaryFilePath
-                        };
-                    db.Movies.Add(newMovie);
-                    db.SaveChanges();
+            Contract.Requires<NullReferenceException>(uploadRequest != null);
+            Contract.Requires<NullReferenceException>(
+                uploadRequest.FileByteStream != null & uploadRequest.FileName != null);
 
-                    // Sets the new filepath.
-                    var tempMovie = db.Movies.First(m => m.FilePath == temporaryFilePath);
-                    tempMovie.FilePath = temporaryFilePath + "_" + Path.GetExtension(uploadRequest.FileName);
-                    db.SaveChanges();
+            Contract.Requires<NullReferenceException>(movieObject != null);
+            Contract.Requires<NullReferenceException>(
+                movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
 
-                    // Attempts to upload the file to the server.
-                    try
-                    {
-                        string filePath = Path.Combine(Constants.UploadDownloadFileFolder, tempMovie.FilePath);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-                        FileStream targetStream;
-                        Stream sourceStream = uploadRequest.FileByteStream;
-                        using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
-                        {
-                            const int BufferLength = 8192;
-                            byte[] buffer = new byte[BufferLength];
-                            int count;
-                            while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
-                            {
-                                targetStream.Write(buffer, 0, count);
-                            }
-
-                            targetStream.Close();
-                            sourceStream.Close();
-                        }
-                    }
-                    catch (Exception e)
-                    { // In case filestream fails, movie has to be deleted from database.
-
-                        var movie = db.Movies.First(m => m.FilePath == temporaryFilePath);
-                        db.Movies.Remove(movie);
-                        db.SaveChanges();
-                    }
-                }
-            }
-            else
-            {
-                throw new Exception(); // TODO: Throw some exception pertaining to null values.
-            }
+            return UploadDownload.UploadFile(token, uploadRequest, movieObject);
         }
     }
 }
