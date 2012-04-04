@@ -56,7 +56,7 @@ namespace RentIt.Tests
                         Email = "testContentProvider@testing.dk",
                         FullName = "Test ContentProvider",
                         Password = "test.dk",
-                        Type = UserType.User,
+                        Type = UserType.ContentProvider,
                         Token = "testContentProviderToken",
                         Username = "testContentProvider"
                     };

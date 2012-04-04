@@ -26,21 +26,21 @@ namespace RentItService.Mapping
             this.Property(t => t.Username)
                 .IsRequired()
                 .HasMaxLength(50);
-                
+
             this.Property(t => t.Password)
                 .IsRequired()
                 .HasMaxLength(100);
-                
+
             this.Property(t => t.Email)
                 .IsRequired()
                 .HasMaxLength(100);
-                
+
             this.Property(t => t.FullName)
                 .HasMaxLength(100);
 
             this.Property(t => t.Token)
                 .HasMaxLength(100);
-                
+
             // Table & Column Mappings
             this.ToTable("User");
             this.Property(t => t.ID).HasColumnName("user_id");

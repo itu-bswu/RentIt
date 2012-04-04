@@ -67,7 +67,6 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-
     <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -80,7 +79,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -93,6 +91,8 @@
   <ItemGroup>
     <Compile Include="DataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,7 +107,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\RentItService.Entities.Movie.datasource" />
     <None Include="Properties\DataSources\RentItService.Entities.Rental.datasource" />
     <None Include="Properties\DataSources\RentItService.Entities.User.datasource" />
@@ -155,11 +157,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-
     <Compile Include="TestHelper.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="UnitTest2.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RentItService\RentIt.Service.csproj">
@@ -170,6 +170,14 @@
       <Project>{ECE3AAC9-455E-4FAD-B8BA-6BFD42F787A8}</Project>
       <Name>Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Utils\Dataset\Create.sql" />
+    <Content Include="Utils\Dataset\Data.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scenarios\ContentProvider\" />
+    <Folder Include="Scenarios\SystemAdmin\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
