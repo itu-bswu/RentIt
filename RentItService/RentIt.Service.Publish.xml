@@ -1,4 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="https://rentit.itu.dk:8172/MsDeploy.axd" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/RentIt12" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="True" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="Profile1" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="rentit12" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAn3MP0dU2wUG7x8s1gzfW0wAAAAACAAAAAAAQZgAAAAEAACAAAACPgYRt5Zyfuem+wQ7Slj5J+piC/eU9jyHU9i5IKCchFAAAAAAOgAAAAAIAACAAAABv95wPuc6qh1Mm0Xfp1o8/d5/iiD3ImqZEQ/ZFzo3sZiAAAAA/XfD9UMDdmpMasFQ8cj4GVYGiGmpXfLXb22wkPB3//0AAAADKQjY6u1jYwjhlzrmsEu+4wley7FfwaFqZD+UoVxKKZoyn9tisC9hHz1UB3Oep8XuAUTbSRrhZCOf4QOUrbMZS" SelectedForPublish="True" />
+  <publishProfile publishUrl="https://rentit.itu.dk:8172/MsDeploy.axd" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/RentIt12" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="True" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Production" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="rentit12" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAn3MP0dU2wUG7x8s1gzfW0wAAAAACAAAAAAAQZgAAAAEAACAAAABl4KeQnld/rcO7Ggnzm0DREug2ECbvMFdoRuB6Dk3+PgAAAAAOgAAAAAIAACAAAABVraI6LPeS0f8je0GE7UrQqNHMGKunMk2m70sNQBCTsDAAAABe8as5MzXxLpHsowCNU/kzxYErCmd4eRbuCOweD7a6HNSEIUe0ubg6hW62im2aZI9AAAAAQR42th+LYuqhunivryFJs83X8QRD6C2WiRflHM7hn8ymOXI/z18OkZ4H18wN0PSALXV9mWlZAit6FfXK7rz6lA==" SelectedForPublish="True">
+    <file relUrl="Services/Service.svc" publishTime="03/24/2012 16:01:24" />
+    <file relUrl="bin/RentItService.pdb" publishTime="04/01/2012 14:02:25" />
+    <file relUrl="Web.config" publishTime="04/01/2012 14:02:40" />
+    <file relUrl="bin/Tools.dll" publishTime="04/01/2012 14:02:24" />
+    <file relUrl="bin/Tools.pdb" publishTime="04/01/2012 14:02:24" />
+    <file relUrl="App.config" publishTime="03/22/2012 14:35:22" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="03/20/2012 21:32:30" />
+    <file relUrl="packages.config" publishTime="03/22/2012 14:35:15" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="03/20/2012 21:32:30" />
+    <file relUrl="bin/RentItService.dll" publishTime="04/01/2012 14:02:25" />
+  </publishProfile>
 </publishData>
