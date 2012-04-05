@@ -109,7 +109,7 @@ namespace RentItService.Entities
         /// <returns>The new user.</returns>
         public static User SignUp(User user)
         {
-            Contract.Requires<ArgumentException>(user != null);
+            Contract.Requires<ArgumentNullException>(user != null);
             Contract.Requires<ArgumentException>(user.Username != null);
             Contract.Requires<ArgumentException>(user.Email != null);
             Contract.Requires<ArgumentException>(user.Password != null);
@@ -121,6 +121,11 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
+                if (db.Users.Any(u => u.Username == user.Username))
+                {
+                    throw new UsernameInUseException("Username is already in use!");
+                }
+
                 db.Users.Add(user);
                 if (db.SaveChanges() > 0)
                 {
