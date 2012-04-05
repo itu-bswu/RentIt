@@ -12,7 +12,6 @@ namespace RentItService.Entities
     using System.Linq;
     using Enums;
     using Exceptions;
-
     using Tools.Encryption;
 
     /// <summary>
@@ -110,10 +109,10 @@ namespace RentItService.Entities
         /// <returns>The new user.</returns>
         public static User SignUp(User user)
         {
-            Contract.Requires(user != null);
-            Contract.Requires(user.Username != null);
-            Contract.Requires(user.Email != null);
-            Contract.Requires(user.Password != null);
+            Contract.Requires<ArgumentNullException>(user != null);
+            Contract.Requires<ArgumentException>(user.Username != null);
+            Contract.Requires<ArgumentException>(user.Email != null);
+            Contract.Requires<ArgumentException>(user.Password != null);
 
             user.ID = 0;
             user.Type = UserType.User;
@@ -122,6 +121,11 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
+                if (db.Users.Any(u => u.Username == user.Username))
+                {
+                    throw new UsernameInUseException("Username is already in use!");
+                }
+
                 db.Users.Add(user);
                 if (db.SaveChanges() > 0)
                 {
@@ -140,8 +144,8 @@ namespace RentItService.Entities
         /// <returns>User object, containing the user's token</returns>
         public static User Login(string username, string password)
         {
-            Contract.Requires(username != null);
-            Contract.Requires(password != null);
+            Contract.Requires<ArgumentNullException>(username != null);
+            Contract.Requires<ArgumentNullException>(password != null);
             Contract.Ensures(Contract.Result<User>() != null);
 
             using (var db = new RentItContext())
@@ -197,7 +201,7 @@ namespace RentItService.Entities
         /// <returns>The user with the given token</returns>
         public static User GetByToken(string token)
         {
-            Contract.Requires(token != null);
+            Contract.Requires<UserNotFoundException>(token != null);
             Contract.Ensures(Contract.Result<User>() != null);
 
             using (var db = new RentItContext())
@@ -260,21 +264,6 @@ namespace RentItService.Entities
                 return user;
             }
         }
-
-        /// <summary>
-        /// Gets all of the previous and current rentals of the user.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <returns>An IEnumerable containing all the users rentals.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
-        public static IEnumerable<Rental> GetRentalHistory(string token)
-        {
-            Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
-
-            return User.GetByToken(token).Rentals;
-        }
-
 
         #endregion Static methods
     }

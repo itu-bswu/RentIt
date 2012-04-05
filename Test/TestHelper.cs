@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+﻿﻿// -----------------------------------------------------------------------
 // <copyright file="TestHelper.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -6,9 +6,9 @@
 
 namespace RentIt.Tests
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-
     using RentItService;
     using RentItService.Entities;
     using RentItService.Enums;
@@ -21,8 +21,11 @@ namespace RentIt.Tests
         /// <summary>
         /// Sets up a test user, test content provider and a test admin
         /// </summary>
-        public static void SetUpTestUsers()
+        /// <returns>The users that have been set up.</returns>
+        public static IEnumerable<User> SetUpTestUsers()
         {
+            List<User> users = new List<User>();
+
             using (var db = new RentItContext())
             {
                 // User setup
@@ -39,13 +42,16 @@ namespace RentIt.Tests
                         };
                     db.Users.Add(u);
                     db.SaveChanges();
+                    users.Add(u);
                 }
                 else
                 {
-                    db.Users.First(a => a.Username == "testUser").Password = "test.dk";
-                    db.Users.First(a => a.Username == "testUser").FullName = "Test User";
-                    db.Users.First(a => a.Username == "testUser").Email = "testUser@testing.dk";
+                    var user = db.Users.First(a => a.Username == "testUser");
+                    user.Password = "test.dk";
+                    user.FullName = "Test User";
+                    user.Email = "testUser@testing.dk";
                     db.SaveChanges();
+                    users.Add(user);
                 }
 
                 // ContentProvider setup
@@ -62,13 +68,16 @@ namespace RentIt.Tests
                     };
                     db.Users.Add(u);
                     db.SaveChanges();
+                    users.Add(u);
                 }
                 else
                 {
-                    db.Users.First(a => a.Username == "testContentProvider").Password = "test.dk";
-                    db.Users.First(a => a.Username == "testContentProvider").FullName = "Test ContentProvider";
-                    db.Users.First(a => a.Username == "testContentProvider").Email = "testContentProvider@testing.dk";
+                    var user = db.Users.First(a => a.Username == "testContentProvider");
+                    user.Password = "test.dk";
+                    user.FullName = "Test ContentProvider";
+                    user.Email = "testContentProvider@testing.dk";
                     db.SaveChanges();
+                    users.Add(user);
                 }
 
                 // Admin setup
@@ -85,15 +94,20 @@ namespace RentIt.Tests
                     };
                     db.Users.Add(u);
                     db.SaveChanges();
+                    users.Add(u);
                 }
                 else
                 {
-                    db.Users.First(a => a.Username == "testAdmin").Password = "test.dk";
-                    db.Users.First(a => a.Username == "testAdmin").FullName = "Test Admin";
-                    db.Users.First(a => a.Username == "testAdmin").Email = "testAdmin@testing.dk";
+                    var user = db.Users.First(a => a.Username == "testAdmin");
+                    user.Password = "test.dk";
+                    user.FullName = "Test Admin";
+                    user.Email = "testAdmin@testing.dk";
                     db.SaveChanges();
+                    users.Add(user);
                 }
             }
+
+            return users;
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+?// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ContentService.cs" company="">
 //   
 // </copyright>
@@ -78,22 +78,12 @@ namespace RentItService.Services
         /// <author>Jakob Melnyk</author>
         public void DeleteMovie(string token, Movie movieObject)
         {
-            User user = User.GetByToken(token);
-            if (user.Type != UserType.ContentProvider & user.Type != UserType.SystemAdmin)
-            {
-                throw new Exception(); // TODO: Throw better exception
-            }
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(movieObject != null);
 
-            using (var db = new RentItContext())
-            {
-                foreach (var r in db.Rentals.Where(r => r.MovieID == movieObject.ID))
-                {
-                    db.Rentals.Remove(r);
-                }
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-                db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
-                db.SaveChanges();
-            }
+            Movie.DeleteMovie(token, movieObject);
         }
     }
 }

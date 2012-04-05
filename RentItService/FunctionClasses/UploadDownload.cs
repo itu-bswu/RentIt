@@ -33,14 +33,14 @@ namespace RentItService.FunctionClasses
         /// <returns>True if upload was successful, false if not.</returns>
         public static bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
-            Contract.Requires<NullReferenceException>(token != null);
+            Contract.Requires<ArgumentNullException>(token != null);
 
-            Contract.Requires<NullReferenceException>(uploadRequest != null);
-            Contract.Requires<NullReferenceException>(uploadRequest.FileByteStream != null &
+            Contract.Requires<ArgumentNullException>(uploadRequest != null);
+            Contract.Requires<ArgumentNullException>(uploadRequest.FileByteStream != null &
                                                       uploadRequest.FileName != null);
 
-            Contract.Requires<NullReferenceException>(movieObject != null);
-            Contract.Requires<NullReferenceException>(movieObject.Description != null &
+            Contract.Requires<ArgumentNullException>(movieObject != null);
+            Contract.Requires<ArgumentNullException>(movieObject.Description != null &
                                                       movieObject.Genre != null &
                                                       movieObject.Title != null);
 
