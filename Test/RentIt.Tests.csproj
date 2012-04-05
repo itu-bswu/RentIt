@@ -158,7 +158,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Compile Include="TestHelper.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="UnitTest2.cs" />
   </ItemGroup>
   <ItemGroup>
