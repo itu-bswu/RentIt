@@ -13,6 +13,8 @@ namespace RentItService.Entities
     using Enums;
     using Exceptions;
 
+    using Tools.Encryption;
+
     /// <summary>
     /// User entity (Entity Framework POCO class).
     /// </summary>
@@ -216,7 +218,7 @@ namespace RentItService.Entities
         /// <param name="movieId">The ID of the movie to be rented.</param>
         public static void RentMovie(string token, int movieId)
         {
-            Contract.Requires<NullReferenceException>(token != null);
+            Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
 
             User user = User.GetByToken(token);
@@ -236,10 +238,10 @@ namespace RentItService.Entities
         /// <returns>The edited user profile.</returns>
         public static User EditProfile(string token, User userObject)
         {
-            Contract.Requires<NullReferenceException>(token != null & userObject != null);
-            Contract.Requires<NullReferenceException>(userObject.Username != null);
-            Contract.Requires<NullReferenceException>(userObject.Email != null);
-            Contract.Requires<NullReferenceException>(userObject.Password != null);
+            Contract.Requires<ArgumentNullException>(token != null & userObject != null);
+            Contract.Requires<ArgumentNullException>(userObject.Username != null);
+            Contract.Requires<ArgumentNullException>(userObject.Email != null);
+            Contract.Requires<ArgumentNullException>(userObject.Password != null);
 
             Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
 
