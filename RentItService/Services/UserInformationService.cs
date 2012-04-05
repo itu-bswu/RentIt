@@ -11,10 +11,9 @@ namespace RentItService.Services
     using System.Diagnostics.Contracts;
     using Entities;
     using Enums;
+    using Exceptions;
     using Interfaces;
-
-    using RentItService.Exceptions;
-
+    
     /// <summary>
     /// Service for accessing user information.
     /// </summary>
