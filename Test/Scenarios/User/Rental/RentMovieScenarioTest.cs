@@ -22,11 +22,22 @@ namespace RentIt.Tests.Scenarios.User.Rental
     public class RentMovieScenarioTest : DataTest
     {
         /// <summary>
-        /// Tests a successful rent of a movie.
+        /// Purpose: Check if it is possible to rent a movie.
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. A user called "testUser" exists in the database.
+        ///     2. A movie called "testMovie1" exists in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. 
+        ///     2. Rent movie.
+        ///     3. Make sure the new rental is in database.
+        ///     4. Remove rental from database.
         /// </summary>
         [TestMethod]
         public void RentMovieTest()
         {
+            // Arrange
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
@@ -42,11 +53,13 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 testToken = user.Token;
                 testID = movie.ID;
                 testTokenID = User.GetByToken(testToken).ID;
-                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID));
-
-                User.RentMovie(testToken, testID);
+                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "Rental exists before call of RentMovie.");
             }
 
+            // Act
+            User.RentMovie(testToken, testID);
+
+            // Assert and clean up
             using (var db = new RentItContext())
             {
                 Assert.IsTrue(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID));
@@ -57,7 +70,13 @@ namespace RentIt.Tests.Scenarios.User.Rental
         }
 
         /// <summary>
-        /// Tests for a rent where the user renting is not of type "User".
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotAUserException))]
@@ -78,7 +97,13 @@ namespace RentIt.Tests.Scenarios.User.Rental
         }
 
         /// <summary>
-        /// Tests for invalid input in a rent movie action.
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]

@@ -16,13 +16,19 @@ namespace RentIt.Tests.Scenarios.User.Profile
     using RentItService.Exceptions;
 
     /// <summary>
-    /// Scenario tests for the EditProfile functionality.
+    /// Scenario tests for the EditProfile Feature.
     /// </summary>
     [TestClass]
     public class EditProfileScenarioTest : DataTest
     {
         /// <summary>
-        /// Test for successful edit of profile.
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         public void EditProfileTest()
@@ -75,7 +81,13 @@ namespace RentIt.Tests.Scenarios.User.Profile
         }
 
         /// <summary>
-        /// Test for someone editing a profile that is not his own.
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
@@ -104,7 +116,13 @@ namespace RentIt.Tests.Scenarios.User.Profile
         }
 
         /// <summary>
-        /// Tests for invald input.
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]

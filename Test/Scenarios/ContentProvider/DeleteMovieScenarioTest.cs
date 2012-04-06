@@ -22,7 +22,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
     public class DeleteMovieScenarioTest : DataTest
     {
         /// <summary>
-        /// Test for successful deletion of a movie.
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         public void DeleteMovieTest()
@@ -49,7 +55,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         }
 
         /// <summary>
-        /// Test for a non-content provider trying to delete a movie
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
@@ -70,7 +82,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         }
 
         /// <summary>
-        /// Test for invalid input when trying to delete a movie.
+        /// Purpose: 
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1.
+        /// <para></para>
+        /// Steps:
+        ///     1.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
