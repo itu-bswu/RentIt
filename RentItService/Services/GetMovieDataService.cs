@@ -71,17 +71,7 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the filtered movies.</returns>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
-            User.GetByToken(token);
-
-            using (var db = new RentItContext())
-            {
-                if (db.Movies.Count(movie => movie.Genre.Equals(genre)) == 0)
-                {
-                    throw new UnknownGenreException();
-                }
-
-                return db.Movies.Where(movie => movie.Genre.Equals(genre));
-            }
+            return Movie.ByGenre(token, genre);
         }
 
         /// <summary>
