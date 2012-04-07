@@ -126,5 +126,29 @@ namespace RentItService.Entities
                        select movie;
             }
         }
+
+        /// <summary>
+        /// Filters the list of movies into a particular genre.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="genre">The genre to filter by.</param>
+        /// <returns>An IEnumerable containing the filtered movies.</returns>
+        public static IEnumerable<Movie> ByGenre(string token, string genre)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(genre != null);
+
+            User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                if (db.Movies.Count(movie => movie.Genre.Equals(genre)) == 0)
+                {
+                    throw new UnknownGenreException();
+                }
+
+                return db.Movies.Where(movie => movie.Genre.Equals(genre));
+            }
+        }
     }
 }
