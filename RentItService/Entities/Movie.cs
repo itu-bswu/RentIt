@@ -87,10 +87,10 @@ namespace RentItService.Entities
                     db.Rentals.Remove(r);
                 }
 
+                var filePath = Constants.UploadDownloadFileFolder + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
+
                 db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
                 db.SaveChanges();
-
-                var filePath = Constants.UploadDownloadFileFolder + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
 
                 if (File.Exists(filePath))
                 {
