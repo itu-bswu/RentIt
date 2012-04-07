@@ -21,7 +21,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
     {
         /// <summary>
         /// Purpose: Verify that it is possible to sign up.
-        /// 
+        /// <para></para>
         /// Steps:
         ///     1. Create an instance of the User class.
         ///     2. Fill with valid information.
@@ -60,7 +60,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
         /// Purpose: Verify that type is automatically set to user, 
         /// token is reset and ID is auto-generated when trying to 
         /// set those settings to invalid values.
-        /// 
+        /// <para></para>
         /// Steps:
         ///     1. Create an instance of the User class.
         ///     2. Fill with invalid Type, ID and Token.
@@ -97,7 +97,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
         /// <summary>
         /// Purpose: Verify that username has to be set.
-        /// 
+        /// <para></para>
         /// Steps:
         ///     1. Create an instance of the User class.
         ///     2. Fill with valid info, but empty username.
@@ -122,7 +122,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
         /// <summary>
         /// Purpose: Verify that email has to be set.
-        /// 
+        /// <para></para>
         /// Steps:
         ///     1. Create an instance of the User class.
         ///     2. Fill with valid info, but empty email.
@@ -147,7 +147,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
         /// <summary>
         /// Purpose: Verify that password has to be set.
-        /// 
+        /// <para></para>
         /// Steps:
         ///     1. Create an instance of the User class.
         ///     2. Fill with valid info, but empty password.
@@ -173,10 +173,10 @@ namespace RentIt.Tests.Scenarios.User.Profile
         /// <summary>
         /// Purpose: Verify that it is not possible to signup 
         /// with a username that is already in use.
-        /// 
+        /// <para></para>
         /// Pre-conditions:
         ///     1. A user with some username exists in the database.
-        /// 
+        /// <para></para>
         /// Steps:
         ///     1. Create an instance of the User class.
         ///     2. Fill it with valid information, but with the same username as pre-condition 1.

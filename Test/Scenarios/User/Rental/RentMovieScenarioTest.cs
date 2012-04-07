@@ -22,11 +22,23 @@ namespace RentIt.Tests.Scenarios.User.Rental
     public class RentMovieScenarioTest : DataTest
     {
         /// <summary>
-        /// Tests a successful rent of a movie.
+        /// Purpose: Verify that it is possible to rent a movie.
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. A user called "testUser" exists in the database.
+        ///     2. A movie called "testMovie1" exists in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Make sure the user and movie exists in the database.
+        ///     2. Make sure the rental does not already exist.
+        ///     3. Rent movie.
+        ///     4. Make sure the new rental is in database.
+        ///     5. Remove rental from database.
         /// </summary>
         [TestMethod]
         public void RentMovieTest()
         {
+            // Arrange
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
@@ -42,14 +54,16 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 testToken = user.Token;
                 testID = movie.ID;
                 testTokenID = User.GetByToken(testToken).ID;
-                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID));
-
-                User.RentMovie(testToken, testID);
+                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "Rental exists before call of RentMovie.");
             }
 
+            // Act
+            User.RentMovie(testToken, testID);
+
+            // Assert and clean up
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID));
+                Assert.IsTrue(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "The rental was not created.");
 
                 db.Rentals.Remove(db.Rentals.First(r => r.UserID == testTokenID & r.MovieID == testID));
                 db.SaveChanges();
@@ -57,12 +71,22 @@ namespace RentIt.Tests.Scenarios.User.Rental
         }
 
         /// <summary>
-        /// Tests for a rent where the user renting is not of type "User".
+        /// Purpose: Verify that only users can rent movies.
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. A user with user name "testContentProvider" must exist in the database.
+        ///     2. A movie with the title "testMovie1" must exist in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Make sure the movie and the user exist in the database.
+        ///     2. Attempt to rent the movie.
+        ///     3. Catch the expected NotAUserException.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotAUserException))]
         public void NotAUserRentMovieTest()
         {
+            TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
             using (var db = new RentItContext())
@@ -78,7 +102,15 @@ namespace RentIt.Tests.Scenarios.User.Rental
         }
 
         /// <summary>
-        /// Tests for invalid input in a rent movie action.
+        /// Purpose: Verify that null values are not valid.
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. A movie with the title "testMovie1" must exist in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Make sure the database contains the required movie.
+        ///     2. Attempt to rent movie with a null user.
+        ///     3. Catch argument null exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
