@@ -1,11 +1,8 @@
-?// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentService.cs" company="">
-//   
-// </copyright>
-// <summary>
-//   Service for the content providers.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ContentService.cs"company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
 
 namespace RentItService.Services
 {
