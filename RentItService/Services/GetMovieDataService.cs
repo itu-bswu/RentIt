@@ -87,7 +87,16 @@ namespace RentItService.Services
 
             using (var db = new RentItContext())
             {
-                return db.Movies.Where(movie => movie.Title.Contains(search));
+                var searchTitle = search.ToLower();
+                var components = searchTitle.Split(' ');
+
+                return from movie in db.Movies
+                       let title = movie.Title.ToLower()
+                       let titleComponents = title.Split(' ')
+                       where titleComponents.Any(components.Contains)
+                       orderby title.Equals(searchTitle) descending
+                       orderby titleComponents.Count(components.Contains) descending
+                       select movie;
             }
         }
     }
