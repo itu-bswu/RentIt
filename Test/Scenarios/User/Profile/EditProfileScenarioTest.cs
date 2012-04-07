@@ -46,6 +46,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             string oldPassword;
             string oldName;
             string oldEmail;
+            int oldID;
 
             using (var db = new RentItContext())
             {
@@ -58,6 +59,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 oldPassword = user.Password;
                 oldName = user.FullName;
                 oldEmail = user.Email;
+                oldID = user.ID;
 
                 var user2 = new User
                 {
@@ -81,9 +83,9 @@ namespace RentIt.Tests.Scenarios.User.Profile
             {
                 User user = db.Users.First(u => u.Username == "testUser");
 
-                Assert.AreEqual(oldPassword.ToUpper(), user.Password);
-                Assert.AreEqual(oldName.ToUpper(), user.FullName);
-                Assert.AreEqual(oldEmail.ToUpper(), user.Email);
+                Assert.AreEqual(oldID, User.Login(user.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
+                Assert.AreEqual(oldName.ToUpper(), user.FullName, "The name was not changed as expected.");
+                Assert.AreEqual(oldEmail.ToUpper(), user.Email, "The email was not changed as expected.");
 
                 user.Password = "test.dk";
                 user.FullName = "Test User";
