@@ -72,6 +72,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [TestMethod]
         public void SignUpWithInvalidInfo()
         {
+            const int InitialID = 13371337;
+
             // Arrange
             var user = new User
             {
@@ -80,7 +82,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Email = "unique@username.com",
                 Password = "Test1234",
                 Type = UserType.SystemAdmin,
-                ID = 13371337,
+                ID = InitialID,
                 Token = "a1b2c3d4"
             };
 
@@ -89,7 +91,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
             // Assert
             Assert.AreEqual(result.Type, UserType.User, "User type has not changed to user!");
-            Assert.AreNotEqual(result.ID, user.ID, "User ID har not changed!");
+            Assert.AreNotEqual(result.ID, InitialID, "User ID har not changed!");
             Assert.AreEqual(result.Token, string.Empty, "Token has not been reset!");
         }
 
@@ -192,6 +194,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Username = existingUser.Username,
                 FullName = "Unique Username",
                 Email = "unique@username.com",
+                Password = "Test1234"
             };
 
             // Act
