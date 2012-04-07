@@ -100,7 +100,9 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="RentItService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -124,6 +126,10 @@
   <ItemGroup>
     <Compile Include="DataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\ContentService\EditMovieInformationTest.cs" />
+    <Compile Include="Scenarios\GetMovieDataService\GetMovieInformationTest.cs" />
+    <Compile Include="Scenarios\UserInformationService\GetContentPublishersTest.cs" />
+    <Compile Include="Scenarios\UserInformationService\GetUsersTest.cs" />
     <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />

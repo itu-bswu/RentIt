@@ -22,6 +22,7 @@ namespace RentItService.Interfaces
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to get the information of.</param>
         /// <returns>A movie object equivalent to the entry in the database.</returns>
+        /// <author>Jacob Grooss</author>
         [OperationContract]
         Movie GetMovieInformation(string token, int movieId);
 
