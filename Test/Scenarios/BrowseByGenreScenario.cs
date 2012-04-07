@@ -6,6 +6,7 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;
+    using RentItService.Entities;
     using RentItService.Services;
     using RentItService.Exceptions;
 
@@ -18,17 +19,15 @@
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
-            Service service = new Service();
-
-            string testGenre = "testGenre";
+            var service = new Service();
+            const string testGenre = "testGenre";
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUser");
+                var user = db.Users.First(u => u.Username == "testUser");
+                var movies = service.GetMoviesByGenre(user.Token, testGenre);
 
-                IEnumerable<Movie> movies = service.GetMoviesByGenre(user.Token, testGenre);
-
-                Assert.IsTrue(movies.Count() == 1 && movies.Single().Genre == testGenre);
+                Assert.IsTrue(movies.Single().Genre == testGenre);
             }
         }
 
@@ -38,13 +37,13 @@
         {
             TestHelper.SetUpTestUsers();
 
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUser");
+                var user = db.Users.First(u => u.Username == "testUser");
 
-                Assert.IsTrue(db.Movies.Count() == 0);
+                Assert.IsTrue(db.Movies.Single() != null);
                 service.GetMoviesByGenre(user.Token, "testGenre");
             }
         }
