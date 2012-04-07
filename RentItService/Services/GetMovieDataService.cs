@@ -8,16 +8,13 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
-<<<<<<< HEAD
-    using System.Linq;
-=======
     using System.Diagnostics.Contracts;
     using System.Linq;
 
     using Entities;
     using Interfaces;
->>>>>>> develop
 
+    using RentItService;
     using RentItService.Exceptions;
 
     /// <summary>
@@ -75,17 +72,12 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
-<<<<<<< HEAD
             User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
                 return db.Movies.Where(movie => movie.Genre.Equals(genre));
             }
-=======
-            // TODO: Implement GetMoviesByGenre
-            throw new NotImplementedException();
->>>>>>> develop
         }
 
         /// <summary>

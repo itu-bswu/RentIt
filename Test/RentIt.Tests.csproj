@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="DataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\BrowseByGenreScenario.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
