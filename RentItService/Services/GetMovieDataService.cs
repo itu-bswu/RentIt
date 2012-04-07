@@ -69,13 +69,17 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
             User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
+                if (db.Movies.Count(movie => movie.Genre.Equals(genre)) == 0)
+                {
+                    throw new UnknownGenreException();
+                }
+
                 return db.Movies.Where(movie => movie.Genre.Equals(genre));
             }
         }
