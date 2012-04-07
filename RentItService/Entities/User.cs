@@ -109,10 +109,10 @@ namespace RentItService.Entities
         /// <returns>The new user.</returns>
         public static User SignUp(User user)
         {
-            Contract.Requires(user != null);
-            Contract.Requires(user.Username != null);
-            Contract.Requires(user.Email != null);
-            Contract.Requires(user.Password != null);
+            Contract.Requires<ArgumentNullException>(user != null);
+            Contract.Requires<ArgumentException>(user.Username != null);
+            Contract.Requires<ArgumentException>(user.Email != null);
+            Contract.Requires<ArgumentException>(user.Password != null);
 
             user.ID = 0;
             user.Type = UserType.User;
@@ -121,6 +121,11 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
+                if (db.Users.Any(u => u.Username == user.Username))
+                {
+                    throw new UsernameInUseException("Username is already in use!");
+                }
+
                 db.Users.Add(user);
                 if (db.SaveChanges() > 0)
                 {
@@ -139,8 +144,8 @@ namespace RentItService.Entities
         /// <returns>User object, containing the user's token</returns>
         public static User Login(string username, string password)
         {
-            Contract.Requires(username != null);
-            Contract.Requires(password != null);
+            Contract.Requires<ArgumentNullException>(username != null);
+            Contract.Requires<ArgumentNullException>(password != null);
             Contract.Ensures(Contract.Result<User>() != null);
 
             using (var db = new RentItContext())
@@ -149,7 +154,7 @@ namespace RentItService.Entities
 
                 if (!db.Users.Any(u => u.Username == username && u.Password == password))
                 {
-                    throw new UserNotFoundException("No user with the given token was found!");
+                    throw new UserNotFoundException("No user with the given login information was found!");
                 }
 
                 var user = db.Users.First(u => u.Username == username && u.Password == password);
@@ -196,7 +201,7 @@ namespace RentItService.Entities
         /// <returns>The user with the given token</returns>
         public static User GetByToken(string token)
         {
-            Contract.Requires(token != null);
+            Contract.Requires<UserNotFoundException>(token != null);
             Contract.Ensures(Contract.Result<User>() != null);
 
             using (var db = new RentItContext())
@@ -207,6 +212,56 @@ namespace RentItService.Entities
                 }
 
                 return db.Users.First(u => u.Token == token);
+            }
+        }
+
+        /// <summary>
+        /// Creates a rental entry in the database.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieId">The ID of the movie to be rented.</param>
+        public static void RentMovie(string token, int movieId)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
+
+            User user = User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                db.Rentals.Add(new Rental() { MovieID = movieId, UserID = user.ID, Time = DateTime.Now });
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Updates a user profile.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="userObject">The updated user object.</param>
+        /// <returns>The edited user profile.</returns>
+        public static User EditProfile(string token, User userObject)
+        {
+            Contract.Requires<ArgumentNullException>(token != null & userObject != null);
+            Contract.Requires<ArgumentNullException>(userObject.Username != null);
+            Contract.Requires<ArgumentNullException>(userObject.Email != null);
+            Contract.Requires<ArgumentNullException>(userObject.Password != null);
+
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
+
+            User u = User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                User user = db.Users.Find(userObject.ID);
+
+                user.Email = userObject.Email;
+                user.FullName = userObject.FullName;
+                user.Password = userObject.Password;
+
+                db.SaveChanges();
+                user = db.Users.Find(userObject.ID);
+                return user;
             }
         }
 

@@ -6,7 +6,13 @@
 
 namespace RentItService.Entities
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+    using System.Linq;
+
+    using RentItService.Enums;
+    using RentItService.Exceptions;
 
     /// <summary>
     /// Movie entity (Entity Framework POCO class).
@@ -55,5 +61,32 @@ namespace RentItService.Entities
         /// Gets or sets a list of rentals of the movie.
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
+
+        /// <summary>
+        /// Deletes a movie from the service. 
+        /// The movie is identified by the ID in the instance of the Movie class. 
+        /// The other properties in the Movie instance are ignored.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieObject">The movie to be deleted.</param>
+        /// <author>Jakob Melnyk</author>
+        public static void DeleteMovie(string token, Movie movieObject)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(movieObject != null);
+
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+
+            using (var db = new RentItContext())
+            {
+                foreach (var r in db.Rentals.Where(r => r.MovieID == movieObject.ID))
+                {
+                    db.Rentals.Remove(r);
+                }
+
+                db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -25,20 +25,16 @@ namespace RentItService.Mapping
             // Properties
             this.Property(t => t.Title)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
                 
             this.Property(t => t.ImagePath)
-                .IsFixedLength()
                 .HasMaxLength(100);
                 
             this.Property(t => t.FilePath)
                 .IsRequired()
-                .IsFixedLength()
                 .HasMaxLength(100);
 
             this.Property(t => t.Genre)
-                .IsFixedLength()
                 .HasMaxLength(50);
                 
             // Table & Column Mappings
