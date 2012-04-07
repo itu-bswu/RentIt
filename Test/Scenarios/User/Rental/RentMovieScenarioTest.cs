@@ -54,7 +54,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 testToken = user.Token;
                 testID = movie.ID;
                 testTokenID = User.GetByToken(testToken).ID;
-                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "Rental exists before call of RentMovie.", "Rental already exists in the database, so test is not valid.");
+                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "Rental exists before call of RentMovie.");
             }
 
             // Act
@@ -102,13 +102,15 @@ namespace RentIt.Tests.Scenarios.User.Rental
         }
 
         /// <summary>
-        /// Purpose: 
+        /// Purpose: Verify that null values are not valid.
         /// <para></para>
         /// Pre-condtions:
-        ///     1.
+        ///     1. A movie with the title "testMovie1" must exist in the database.
         /// <para></para>
         /// Steps:
-        ///     1.
+        ///     1. Make sure the database contains the required movie.
+        ///     2. Attempt to rent movie with a null user.
+        ///     3. Catch argument null exception.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
