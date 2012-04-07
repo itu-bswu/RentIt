@@ -6,9 +6,11 @@
 
 namespace RentItService.Interfaces
 {
+    using System;
+    using System.Diagnostics.Contracts;
     using System.ServiceModel;
-    using RentItService.Entities;
-    using RentItService.Library;
+    using Entities;
+    using Library;
 
     /// <summary>
     /// Interface of the download service.
@@ -18,9 +20,10 @@ namespace RentItService.Interfaces
     public interface IDownloadService
     {
         /// <summary>
-        /// Creates a stream for downloading a file from the server.
+        /// Creates a stream for downloading a file from the server. 
+        /// The movie is identified by the ID in the instance of the Movie class.
         /// </summary>
-        /// <param name="token">The user token.</param>
+        /// <param name="token">The session token.</param>
         /// <param name="downloadRequest">The movie to download.</param>
         /// <returns>The stream information necessary for download.</returns>
         [OperationContract]
