@@ -9,10 +9,13 @@ namespace RentItService.Entities
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+    using System.IO;
     using System.Linq;
 
     using RentItService.Enums;
     using RentItService.Exceptions;
+
+    using Tools;
 
     /// <summary>
     /// Movie entity (Entity Framework POCO class).
@@ -84,8 +87,15 @@ namespace RentItService.Entities
                     db.Rentals.Remove(r);
                 }
 
+                var filePath = Constants.UploadDownloadFileFolder + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
+
                 db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
                 db.SaveChanges();
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
             }
         }
 

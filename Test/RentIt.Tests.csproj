@@ -128,6 +128,7 @@
     <Compile Include="DataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios\SearchScenarioTest.cs" />
+    <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
@@ -214,7 +215,6 @@
     <Content Include="Utils\Dataset\Data.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scenarios\ContentProvider\" />
     <Folder Include="Scenarios\SystemAdmin\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
