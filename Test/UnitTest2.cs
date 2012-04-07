@@ -124,10 +124,10 @@ namespace RentIt.Tests
                     db.SaveChanges();
                 }
 
-                Assert.AreEqual(foundMovie.Title, "Trolling for beginners");
-                Assert.AreEqual(foundMovie.Description, "How to troll, for people new to the art");
-                Assert.AreEqual(foundMovie.Genre, "NoGenre");
-                Assert.AreEqual(foundMovie.FilePath, "You no take file location!");
+                Assert.AreEqual("Trolling for beginners", foundMovie.Title);
+                Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description);
+                Assert.AreEqual("NoGenre", foundMovie.Genre);
+                Assert.AreEqual("You no take file location!", foundMovie.FilePath);
 
                 if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
                 {

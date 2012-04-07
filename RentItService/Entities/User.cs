@@ -223,13 +223,13 @@ namespace RentItService.Entities
         public static void RentMovie(string token, int movieId)
         {
             Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
+            Contract.Requires<NotAUserException>(GetByToken(token).Type == UserType.User);
 
-            User user = User.GetByToken(token);
+            User user = GetByToken(token);
 
             using (var db = new RentItContext())
             {
-                db.Rentals.Add(new Rental() { MovieID = movieId, UserID = user.ID, Time = DateTime.Now });
+                db.Rentals.Add(new Rental { MovieID = movieId, UserID = user.ID, Time = DateTime.Now });
                 db.SaveChanges();
             }
         }
@@ -247,9 +247,10 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(userObject.Email != null);
             Contract.Requires<ArgumentNullException>(userObject.Password != null);
 
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
+            Contract.Requires<ArgumentException>(userObject.Email != string.Empty & userObject.Email.Contains("@"));
+            Contract.Requires<ArgumentException>(userObject.Password != string.Empty);
 
-            User u = User.GetByToken(token);
+            Contract.Requires<InsufficientAccessLevelException>(GetByToken(token).ID == userObject.ID);
 
             using (var db = new RentItContext())
             {
@@ -257,7 +258,7 @@ namespace RentItService.Entities
 
                 user.Email = userObject.Email;
                 user.FullName = userObject.FullName;
-                user.Password = userObject.Password;
+                user.Password = Hash.Sha384(user.Password + Salt);
 
                 db.SaveChanges();
                 user = db.Users.Find(userObject.ID);
