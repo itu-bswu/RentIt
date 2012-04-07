@@ -83,21 +83,7 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
         public IEnumerable<Movie> Search(string token, string search)
         {
-            User.GetByToken(token);
-
-            using (var db = new RentItContext())
-            {
-                var searchTitle = search.ToLower();
-                var components = searchTitle.Split(' ');
-
-                return from movie in db.Movies
-                       let title = movie.Title.ToLower()
-                       let titleComponents = title.Split(' ')
-                       where titleComponents.Any(components.Contains)
-                       orderby title.Equals(searchTitle) descending
-                       orderby titleComponents.Count(components.Contains) descending
-                       select movie;
-            }
+            return Movie.Search(token, search);
         }
     }
 }

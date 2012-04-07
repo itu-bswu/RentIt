@@ -88,5 +88,33 @@ namespace RentItService.Entities
                 db.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Searches the database for a specific movie title.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="search">The search string.</param>
+        /// <returns>An IEnumerable containing the movies fitting the search.</returns>
+        public static IEnumerable<Movie> Search(string token, string search)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(search != null);
+
+            User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                var searchTitle = search.ToLower();
+                var components = searchTitle.Split(' ');
+
+                return from movie in db.Movies
+                       let title = movie.Title.ToLower()
+                       let titleComponents = title.Split(' ')
+                       where titleComponents.Any(components.Contains)
+                       orderby title.Equals(searchTitle) descending
+                       orderby titleComponents.Count(components.Contains) descending
+                       select movie;
+            }
+        }
     }
 }

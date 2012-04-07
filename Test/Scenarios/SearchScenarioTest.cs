@@ -7,6 +7,7 @@
 
     using RentItService;
     using RentItService.Services;
+    using RentItService.Entities;
 
     [TestClass]
     public class SearchScenarioTest : DataTest
@@ -20,12 +21,10 @@
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
-            var service = new Service();
-
             using (var db = new RentItContext())
             {
                 var user = db.Users.First(u => u.Username == "testUser");
-                var movies = service.Search(user.Token, "testMovie1");
+                var movies = Movie.Search(user.Token, "testMovie1");
 
                 Assert.IsTrue(movies.Single().Title.Equals("testMovie1"));
             }
@@ -40,12 +39,10 @@
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
-            var service = new Service();
-
             using (var db = new RentItContext())
             {
                 var user = db.Users.First(u => u.Username == "testUser");
-                var movies = service.Search(user.Token, "Movie");
+                var movies = Movie.Search(user.Token, "Movie");
 
                 Assert.IsTrue(movies.Single().Title.Equals("testMovie1"));
             }
@@ -60,12 +57,10 @@
             TestHelper.SetUpTestUsers();
             TestHelper.SetUpTestMovies();
 
-            var service = new Service();
-
             using (var db = new RentItContext())
             {
                 var user = db.Users.First(u => u.Username == "testUser");
-                var movies = service.Search(user.Token, "TESTmOVIE1");
+                var movies = Movie.Search(user.Token, "TESTmOVIE1");
 
                 Assert.IsTrue(movies.Single().Title.Equals("testMovie1"));
             }
@@ -79,12 +74,10 @@
         {
             TestHelper.SetUpTestUsers();
 
-            var service = new Service();
-
             using (var db = new RentItContext())
             {
                 var user = db.Users.First(u => u.Username == "testUser");
-                var movies = service.Search(user.Token, "movie");
+                var movies = Movie.Search(user.Token, "movie");
 
                 Assert.IsFalse(movies.Any());
             }
