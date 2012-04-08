@@ -44,10 +44,10 @@ namespace RentIt.Tests.Utils
         /// </summary>
         public void Empty()
         {
-            this.context.Database.ExecuteSqlCommand("EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
             this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? DISABLE TRIGGER ALL'");
             this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'DELETE FROM ?'");
-            this.context.Database.ExecuteSqlCommand("exec sp_MSforeachtable 'DBCC CHECKIDENT (''?'', RESEED)'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'DBCC CHECKIDENT (''?'', RESEED, 0)'");
             this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL'");
             this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? ENABLE TRIGGER ALL'");
         }
