@@ -22,6 +22,7 @@ namespace RentItService.Interfaces
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to get the information of.</param>
         /// <returns>A movie object equivalent to the entry in the database.</returns>
+        /// <author>Jacob Grooss</author>
         [OperationContract]
         Movie GetMovieInformation(string token, int movieId);
 
@@ -34,6 +35,15 @@ namespace RentItService.Interfaces
         IEnumerable<Movie> GetMostDownloaded(string token);
 
         /// <summary>
+        /// Gets the newest movies.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="limit">Amount of results to get (0 for unlimited).</param>
+        /// <returns>An IEnumerable containing the newest added movies.</returns>
+        [OperationContract]
+        IEnumerable<Movie> GetNewest(string token, int limit = 0);
+
+            /// <summary>
         /// Gets all the genres currently applied to the movies in the database.
         /// </summary>
         /// <param name="token">The session token.</param>

@@ -9,10 +9,13 @@ namespace RentItService.Entities
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+    using System.IO;
     using System.Linq;
 
     using RentItService.Enums;
     using RentItService.Exceptions;
+
+    using Tools;
 
     /// <summary>
     /// Movie entity (Entity Framework POCO class).
@@ -84,8 +87,84 @@ namespace RentItService.Entities
                     db.Rentals.Remove(r);
                 }
 
+                var filePath = Constants.UploadDownloadFileFolder + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
+
                 db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
                 db.SaveChanges();
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Searches the database for a specific movie title.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="search">The search string.</param>
+        /// <returns>An IEnumerable containing the movies fitting the search.</returns>
+        public static IEnumerable<Movie> Search(string token, string search)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(search != null);
+
+            User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                var searchTitle = search.ToLower();
+                var components = searchTitle.Split(' ');
+
+                return from movie in db.Movies
+                       let title = movie.Title.ToLower()
+                       let titleComponents = title.Split(' ')
+                       where titleComponents.Any(components.Contains)
+                       orderby title.Equals(searchTitle) descending
+                       orderby titleComponents.Count(components.Contains) descending
+                       select movie;
+            }
+        }
+
+        /// <summary>
+        /// Filters the list of movies into a particular genre.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="genre">The genre to filter by.</param>
+        /// <returns>An IEnumerable containing the filtered movies.</returns>
+        public static IEnumerable<Movie> ByGenre(string token, string genre)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(genre != null);
+
+            User.GetByToken(token);
+
+            using (var db = new RentItContext())
+            {
+                if (db.Movies.Count(movie => movie.Genre.Equals(genre)) == 0)
+                {
+                    throw new UnknownGenreException();
+                }
+
+                return db.Movies.Where(movie => movie.Genre.Equals(genre));
+            }
+        }
+
+        /// <summary>
+        /// Returns the newest added movies.
+        /// </summary>
+        /// <param name="limit">The maximum amount of movies to return (0 = unlimited).</param>
+        /// <returns>An IEnumerable of the newest movies.</returns>
+        public static IEnumerable<Movie> Newest(int limit = 0)
+        {
+            Contract.Requires<ArgumentException>(limit >= 0);
+
+            using (var db = new RentItContext())
+            {
+                var movies = db.Movies.OrderByDescending(m => m.ID); // TODO: Add release date to movies.
+
+                return limit > 0 ? movies.Take(limit) : movies;
             }
         }
 

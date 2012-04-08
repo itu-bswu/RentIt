@@ -8,7 +8,9 @@ namespace RentItService.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
+    using System.Linq;
     using Entities;
     using Enums;
     using Exceptions;
@@ -103,6 +105,62 @@ namespace RentItService.Services
             Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
 
             User.RentMovie(token, movieId);
+        }
+
+        /// <summary>
+        /// Returns a list of all the users.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <author>Jacob Grooss</author>
+        /// <returns>The list of users.</returns>
+        public IEnumerable<User> GetUsers(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            using (var db = new RentItContext())
+            {
+                var result = new Collection<User>();
+
+                foreach (var user in db.Users)
+                {
+                    if (user.Type == UserType.User && !result.Contains(user))
+                    {
+                        result.Add(user);
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Returns a list of all the content publishers.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <author>Jacob Grooss</author>
+        /// <returns>The list of content publishers.</returns>
+        public IEnumerable<User> GetContentPublishers(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            using (var db = new RentItContext())
+            {
+                var result = new Collection<User>();
+
+                foreach (var user in db.Users)
+                {
+                    if (user.Type == UserType.ContentProvider && !result.Contains(user))
+                    {
+                        result.Add(user);
+                    }
+                }
+
+                return result;
+            }
         }
     }
 }

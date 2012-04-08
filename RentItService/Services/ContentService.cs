@@ -1,14 +1,13 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentService.cs"company="RentIt">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ContentService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace RentItService.Services
 {
     using System;
     using System.Diagnostics.Contracts;
-    using System.Linq;
 
     using Entities;
     using Enums;
@@ -21,12 +20,11 @@ namespace RentItService.Services
     /// </summary>
     public partial class Service : IContentService
     {
-
         /// <summary>Operation used to update movie information.</summary>
         /// <param name="token">The user token.</param>
         /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
-        /// <author></author>
+        /// <author>Jacob Grooss</author>
         public void EditMovieInformation(string token, Movie movieObject)
         {
             Contract.Requires(token != null);
@@ -35,16 +33,10 @@ namespace RentItService.Services
             Contract.Requires(movieObject.ImagePath != null);
             Contract.Requires(movieObject.Title != null);
             Contract.Requires(movieObject.Genre != null);
-
-            User user = User.GetByToken(token);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type != UserType.User);
 
             using (var db = new RentItContext())
             {
-                if (user.Type != UserType.ContentProvider && user.Type != UserType.SystemAdmin)
-                {
-                    throw new InsufficientAccessLevelException();
-                }
-
                 if (db.Movies.Find(movieObject.ID) == null)
                 {
                     throw new NoMovieFoundException();
@@ -59,7 +51,6 @@ namespace RentItService.Services
 
                 db.Movies.Remove(db.Movies.Find(movieObject.ID));
                 db.SaveChanges();
-
                 db.Movies.Add(movie);
                 db.SaveChanges();
             }

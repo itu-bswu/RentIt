@@ -22,6 +22,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
+        /// <author>Jacob Grooss</author>
         [OperationContract]
         void EditMovieInformation(string token, Movie movieObject);
 
