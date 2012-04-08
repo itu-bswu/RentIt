@@ -7,6 +7,7 @@
 namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System;
+    using System.IO;
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -38,6 +39,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         public void DeleteMovieTest()
         {
             TestHelper.SetUpTestMovies();
+            FileInfo fi;
 
             using (var db = new RentItContext())
             {
@@ -47,6 +49,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
                 var user1 = db.Users.First(u => u.Username == "testContentProvider");
 
+                fi = new FileInfo(testMovie.FilePath);
+
                 Movie.DeleteMovie(user1.Token, testMovie);
             }
 
@@ -54,6 +58,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             {
                 Assert.IsFalse(db.Movies.Any(m => m.Description.Equals("testMovie1")));
             }
+
+            Assert.IsFalse(fi.Exists);
 
             TestHelper.SetUpTestMovies();
         }
