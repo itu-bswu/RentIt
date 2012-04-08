@@ -152,5 +152,22 @@ namespace RentItService.Entities
                 return result;
             }
         }
+
+        /// <summary>
+        /// Returns the newest added movies.
+        /// </summary>
+        /// <param name="limit">The maximum amount of movies to return (0 = unlimited).</param>
+        /// <returns>An IEnumerable of the newest movies.</returns>
+        public static IEnumerable<Movie> Newest(int limit = 0)
+        {
+            Contract.Requires<ArgumentException>(limit >= 0);
+
+            using (var db = new RentItContext())
+            {
+                var movies = db.Movies.OrderByDescending(m => m.ID); // TODO: Add release date to movies.
+
+                return limit > 0 ? movies.Take(limit) : movies;
+            }
+        }
     }
 }

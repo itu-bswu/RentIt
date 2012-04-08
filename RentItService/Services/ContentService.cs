@@ -1,11 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentService.cs" company="">
-//   
+// <copyright file="ContentService.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// <summary>
-//   Service for the content providers.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------
 
 namespace RentItService.Services
 {
@@ -23,7 +20,6 @@ namespace RentItService.Services
     /// </summary>
     public partial class Service : IContentService
     {
-
         /// <summary>Operation used to update movie information.</summary>
         /// <param name="token">The user token.</param>
         /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
@@ -38,8 +34,6 @@ namespace RentItService.Services
             Contract.Requires(movieObject.Title != null);
             Contract.Requires(movieObject.Genre != null);
             Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type != UserType.User);
-
-            User user = User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
@@ -57,7 +51,6 @@ namespace RentItService.Services
 
                 db.Movies.Remove(db.Movies.Find(movieObject.ID));
                 db.SaveChanges();
-
                 db.Movies.Add(movie);
                 db.SaveChanges();
             }
