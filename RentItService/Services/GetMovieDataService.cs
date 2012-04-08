@@ -1,8 +1,8 @@
-﻿//-------------------------------------------------------------------------------------------------
+﻿﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GetMovieDataService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace RentItService.Services
 {
@@ -48,6 +48,17 @@ namespace RentItService.Services
         {
             // TODO: Implement GetMostDownloaded
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the newest movies.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="limit">Amount of results to get (0 for unlimited).</param>
+        /// <returns>An IEnumerable containing the newest added movies.</returns>
+        public IEnumerable<Movie> GetNewest(string token, int limit = 0)
+        {
+            return Movie.Newest(limit);
         }
 
         /// <summary>
