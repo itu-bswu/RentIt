@@ -36,7 +36,7 @@
             {
                 var user = db.Users.First(u => u.Username == "testUser");
 
-                Assert.IsTrue(db.Movies.Single() != null);
+                Assert.IsFalse(db.Movies.Any());
                 Movie.ByGenre(user.Token, "testGenre");
             }
         }
