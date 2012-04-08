@@ -39,17 +39,18 @@ namespace RentIt.Tests.Scenarios.User.Profile
             int userId;
 
             // Pre-condition
+            var user = new User
+            {
+                Username = username,
+                Password = Password,
+                Email = "Very@unique.com"
+            };
+
+            User.SignUp(user);
+
             using (var db = new RentItContext())
             {
-                var user = new User
-                {
-                    Username = username,
-                    Password = Password,
-                    Email = "Very@unique.com"
-                };
-
-                db.Users.Add(user);
-                userId = user.ID;
+                userId = db.Users.First(u => u.Username == username).ID;
             }
 
             // Step 1
@@ -120,15 +121,15 @@ namespace RentIt.Tests.Scenarios.User.Profile
                     password = User.GenerateToken();
                 }
                 while (db.Users.Any(u => u.Username == username || u.Password == password));
-
-                var user = new User
-                {
-                    Username = username,
-                    Password = "very" + password + "unique",
-                    Email = "Very@unique.com"
-                };
-                db.Users.Add(user);
             }
+
+            var user = new User
+            {
+                Username = username,
+                Password = "very" + password + "unique",
+                Email = "Very@unique.com"
+            };
+            User.SignUp(user);
 
             // Step 1
             User.Login(username, password);
@@ -162,15 +163,15 @@ namespace RentIt.Tests.Scenarios.User.Profile
                     password = User.GenerateToken();
                 }
                 while (db.Users.Any(u => u.Username == username || u.Password == password));
-
-                var user = new User
-                {
-                    Username = "very" + username + "unique",
-                    Password = password,
-                    Email = "Very@unique.com"
-                };
-                db.Users.Add(user);
             }
+
+            var user = new User
+            {
+                Username = "very" + username + "unique",
+                Password = password,
+                Email = "Very@unique.com"
+            };
+            User.SignUp(user);
 
             // Step 1
             User.Login(username, password);
@@ -205,25 +206,25 @@ namespace RentIt.Tests.Scenarios.User.Profile
                     password = User.GenerateToken();
                 }
                 while (db.Users.Any(u => u.Username == username || u.Password == password));
-
-                // Pre-condition 1
-                var user1 = new User
-                {
-                    Username = username,
-                    Password = "very" + password + "unique",
-                    Email = "Very@unique.com"
-                };
-                db.Users.Add(user1);
-
-                // Pre-condition 2
-                var user2 = new User
-                {
-                    Username = "very" + username + "unique",
-                    Password = password,
-                    Email = "Very@unique.com"
-                };
-                db.Users.Add(user2);
             }
+
+            // Pre-condition 1
+            var user1 = new User
+            {
+                Username = username,
+                Password = "very" + password + "unique",
+                Email = "Very@unique.com"
+            };
+            User.SignUp(user1);
+
+            // Pre-condition 2
+            var user2 = new User
+            {
+                Username = "very" + username + "unique",
+                Password = password,
+                Email = "Very@unique.com"
+            };
+            User.SignUp(user2);
 
             // Step 1
             User.Login(username, password);

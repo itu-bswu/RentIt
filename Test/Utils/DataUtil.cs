@@ -14,26 +14,25 @@ namespace RentIt.Tests.Utils
     /// <summary>
     /// Utility for loading data.
     /// </summary>
-    public static class DataUtil
+    public class DataUtil : IDisposable
     {
         #region Fields
 
         /// <summary>
-        /// Database connection.
+        /// EF Context.
         /// </summary>
-        private static readonly Database Database;
+        private readonly DbContext context;
 
         #endregion Fields
 
         #region Constructor(s)
 
         /// <summary>
-        /// Initializes static members of the <see cref="DataUtil"/> class.
+        /// Initializes a new instance of the <see cref="DataUtil"/> class.
         /// </summary>
-        static DataUtil()
+        public DataUtil()
         {
-            var context = new RentItContext();
-            Database = context.Database;
+            this.context = new RentItContext();
         }
 
         #endregion Constructor(s)
@@ -43,30 +42,42 @@ namespace RentIt.Tests.Utils
         /// <summary>
         /// Empties all tables.
         /// </summary>
-        public static void Empty()
+        public void Empty()
         {
-            Database.ExecuteSqlCommand("EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
-            Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? DISABLE TRIGGER ALL'");
-            Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'DELETE FROM ?'");
-            Database.ExecuteSqlCommand("exec sp_MSforeachtable 'DBCC CHECKIDENT (''?'', RESEED)'");
-            Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL'");
-            Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? ENABLE TRIGGER ALL'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? DISABLE TRIGGER ALL'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'DELETE FROM ?'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'DBCC CHECKIDENT (''?'', RESEED, 0)'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL'");
+            this.context.Database.ExecuteSqlCommand("EXEC sp_MSForEachTable 'ALTER TABLE ? ENABLE TRIGGER ALL'");
         }
 
         /// <summary>
         /// Loads a given data-set.
         /// </summary>
         /// <param name="fileName">The SQL file to load.</param>
-        public static void Load(string fileName)
+        public void Load(string fileName)
         {
             var sql = File.ReadAllText(Environment.CurrentDirectory + @"..\..\..\..\Test\Utils\" + fileName);
             var commands = sql.Split(new[] { "GO\r\n", "GO ", "GO\t" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var cmd in commands)
             {
-                Database.ExecuteSqlCommand(cmd);
+                this.context.Database.ExecuteSqlCommand(cmd);
             }
         }
 
         #endregion Methods
+
+        #region IDisposable
+
+        /// <summary>
+        /// Disposes the DataUtil.
+        /// </summary>
+        public void Dispose()
+        {
+            this.context.Dispose();
+        }
+
+        #endregion IDisposable
     }
 }
