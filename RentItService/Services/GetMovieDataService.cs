@@ -1,8 +1,8 @@
-﻿//-------------------------------------------------------------------------------------------------
+﻿﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GetMovieDataService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace RentItService.Services
 {
@@ -14,6 +14,7 @@ namespace RentItService.Services
     using Entities;
     using Interfaces;
 
+    using RentItService;
     using RentItService.Exceptions;
 
     /// <summary>
@@ -25,12 +26,11 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to get.</param>
         /// <returns>A movie object equivalent to the entry in the database.</returns>
+        /// <author>Jacob Grooss</author>
         public Movie GetMovieInformation(string token, int movieId)
         {
             Contract.Requires(token != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-
-            var user = User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
@@ -51,6 +51,17 @@ namespace RentItService.Services
         }
 
         /// <summary>
+        /// Gets the newest movies.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="limit">Amount of results to get (0 for unlimited).</param>
+        /// <returns>An IEnumerable containing the newest added movies.</returns>
+        public IEnumerable<Movie> GetNewest(string token, int limit = 0)
+        {
+            return Movie.Newest(limit);
+        }
+
+        /// <summary>
         /// Gets all the genres currently applied to the movies in the database.
         /// </summary>
         /// <param name="token">The session token.</param>
@@ -68,11 +79,9 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
-            // TODO: Implement GetMoviesByGenre
-            throw new NotImplementedException();
+            return Movie.ByGenre(token, genre);
         }
 
         /// <summary>
@@ -81,11 +90,9 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="search">The search string.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> Search(string token, string search)
         {
-            // TODO: Implement Search
-            throw new NotImplementedException();
+            return Movie.Search(token, search);
         }
     }
 }

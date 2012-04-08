@@ -72,5 +72,23 @@ namespace RentItService.Interfaces
         /// <author>Jakob Melnyk</author>
         [OperationContract]
         void RentMovie(string token, int movieId);
+
+        /// <summary>
+        /// Returns a list of all the users.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <author>Jacob Grooss</author>
+        /// <returns>The list of users.</returns>
+        [OperationContract]
+        IEnumerable<User> GetUsers(string token);
+
+        /// <summary>
+        /// Returns a list of all the content publishers.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <author>Jacob Grooss</author>
+        /// <returns>The list of content publishers.</returns>
+        [OperationContract]
+        IEnumerable<User> GetContentPublishers(string token);
     }
 }

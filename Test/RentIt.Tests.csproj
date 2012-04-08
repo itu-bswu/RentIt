@@ -100,7 +100,9 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="RentItService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -112,6 +114,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -123,8 +126,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTest.cs" />
+    <Compile Include="Scenarios\User\Browsing\BrowseByGenreScenario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\User\Browsing\BrowseNewestScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Browsing\SearchScenarioTest.cs" />
+    <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
+    <Compile Include="Scenarios\ContentProvider\EditMovieInformationTest.cs" />
+    <Compile Include="Scenarios\User\Browsing\GetMovieInformationTest.cs" />
+    <Compile Include="Scenarios\SystemAdmin\GetContentPublishersTest.cs" />
+    <Compile Include="Scenarios\SystemAdmin\GetUsersTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
@@ -208,10 +220,7 @@
     <Content Include="Utils\Dataset\Create.sql" />
     <Content Include="Utils\Dataset\Data.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scenarios\ContentProvider\" />
-    <Folder Include="Scenarios\SystemAdmin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
