@@ -1,8 +1,8 @@
-﻿//-------------------------------------------------------------------------------------------------
+﻿﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GetMovieDataService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace RentItService.Services
 {
@@ -31,8 +31,6 @@ namespace RentItService.Services
         {
             Contract.Requires(token != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-
-            var user = User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
