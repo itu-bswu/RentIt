@@ -8,7 +8,7 @@
     using RentItService.Exceptions;
 
     [TestClass]
-    public class BrowseByGenreScenario
+    public class BrowseByGenreScenario : DataTest
     {
         [TestMethod]
         public void BrowseKnownGenreTest()

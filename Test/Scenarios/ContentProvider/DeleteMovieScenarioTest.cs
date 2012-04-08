@@ -43,7 +43,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("testMovie1")));
+                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("testMovie1")), "Pre-condition 1 does not hold.");
 
                 var testMovie = db.Movies.First(m => m.Description.Equals("testMovie1"));
 
@@ -56,10 +56,10 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             using (var db = new RentItContext())
             {
-                Assert.IsFalse(db.Movies.Any(m => m.Description.Equals("testMovie1")));
+                Assert.IsFalse(db.Movies.Any(m => m.Description.Equals("testMovie1")), "Movie is still in the database.");
             }
 
-            Assert.IsFalse(fi.Exists);
+            Assert.IsFalse(fi.Exists, "The file still exists in the file system.");
 
             TestHelper.SetUpTestMovies();
         }
@@ -85,7 +85,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("testMovie1")));
+                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("testMovie1")), "Pre-condition 1 does not hold.");
 
                 var testMovie = db.Movies.First(m => m.Description.Equals("testMovie1"));
 
