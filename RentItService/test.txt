@@ -7,3 +7,11 @@ skal have en content provider
 skal have en admin
 
 skal have en bruger der har lejet den samme film flere gange
+
+
+
+skal prøve at hente en liste når der ikke er nogen rentals i systemet
+
+skal prøve at hente en liste når der er  under 10 rentals
+
+skal prøve at hente en liste når der er over 10 rentals

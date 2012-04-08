@@ -27,16 +27,16 @@ namespace RentIt.Tests.Scenarios.User.Profile
             TestHelper.SetUpRentalTestUsers();
             TestHelper.SetUpMoviesForRentalTest();
             TestHelper.SetUpTestRentals();
+            TestHelper.SetUpTestUsers();
 
             using (var db = new RentItContext())
             {
                 User user = db.Users.First(u => u.Username == "testUserRent2");
 
-                var result = User.GetRentalHistory(user.Token);
-
                 Assert.AreEqual(user.Rentals, "batman");
             }
         }
+
         /// <summary>
         /// Tests a user with no rental history
         /// </summary>
@@ -47,12 +47,14 @@ namespace RentIt.Tests.Scenarios.User.Profile
             {
                 User user = db.Users.First(u => u.Username == "testUserRent1");
 
-                var result = User.GetRentalHistory(user.Token);
-
                 Assert.AreEqual(user.Rentals, null);
             }
         }
 
+        /// <summary>
+        /// Tests a user wtih serveral movies in rental history,
+        /// with multiple instance of the same movie
+        /// </summary>
         [TestMethod]
         public void MultipleRentalHistory()
         {
@@ -63,6 +65,34 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 var result = User.GetRentalHistory(user.Token);
 
                 Assert.AreEqual(user.Rentals, result);
+            }
+        }
+
+        /// <summary>
+        /// Tests that a contentProvider has no rental history
+        /// </summary>
+        [TestMethod]
+        public void ContentproviderRentalHistory()
+        {
+            using (var db = new RentItContext())
+            {
+                User user = db.Users.First(u => u.Username == "testContentProvider");
+
+                Assert.AreEqual(user.Rentals, null);
+            }
+        }
+
+        /// <summary>
+        /// Tests that a admin has no rental history
+        /// </summary>
+        [TestMethod]
+        public void AdminRentalHistory()
+        {
+            using (var db = new RentItContext())
+            {
+                User user = db.Users.First(u => u.Username == "testAdmin");
+
+                Assert.AreEqual(user.Rentals, null);
             }
         }
 

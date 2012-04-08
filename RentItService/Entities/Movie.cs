@@ -88,5 +88,27 @@ namespace RentItService.Entities
                 db.SaveChanges();
             }
         }
+
+        public static IEnumerable<Movie> MostDownloaded(string token)
+        {
+            using (var db = new RentItContext())
+            {
+                List<MovieDownload> md = new List<MovieDownload>();
+                foreach (Movie m in db.Movies)
+                {
+                    md.Add(new MovieDownload(m, m.Rentals.Count));
+                }
+
+                List<Movie> movies = new List<Movie>();
+                for (int i = 0; i < 10; i++)
+                {
+                    MovieDownload m = md.Max();
+                    md.Remove(m);
+                    movies.Add(m.movie);
+                }
+
+                return movies;
+            }
+        }
     }
 }
