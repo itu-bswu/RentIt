@@ -164,7 +164,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                var movies = db.Movies.OrderByDescending(m => m.ID); // TODO: Add release date to movies.
+                var movies = db.Movies.OrderByDescending(m => m.ID).ToList(); // TODO: Add release date to movies.
 
                 return limit > 0 ? movies.Take(limit) : movies;
             }
