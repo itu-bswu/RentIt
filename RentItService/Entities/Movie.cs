@@ -14,6 +14,7 @@ namespace RentItService.Entities
 
     using RentItService.Enums;
     using RentItService.Exceptions;
+    using RentItService.Library;
 
     using Tools;
 
@@ -183,7 +184,7 @@ namespace RentItService.Entities
                 {
                     MovieDownload m = md.Max();
                     md.Remove(m);
-                    movies.Add(m.movie);
+                    movies.Add(m.Movie);
                 }
 
                 return movies;
