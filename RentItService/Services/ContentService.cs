@@ -11,7 +11,6 @@ namespace RentItService.Services
 {
     using System;
     using System.Diagnostics.Contracts;
-    using System.Linq;
 
     using Entities;
     using Enums;
@@ -29,7 +28,7 @@ namespace RentItService.Services
         /// <param name="token">The user token.</param>
         /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
-        /// <author></author>
+        /// <author>Jacob Grooss</author>
         public void EditMovieInformation(string token, Movie movieObject)
         {
             Contract.Requires(token != null);
@@ -38,16 +37,12 @@ namespace RentItService.Services
             Contract.Requires(movieObject.ImagePath != null);
             Contract.Requires(movieObject.Title != null);
             Contract.Requires(movieObject.Genre != null);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type != UserType.User);
 
             User user = User.GetByToken(token);
 
             using (var db = new RentItContext())
             {
-                if (user.Type != UserType.ContentProvider && user.Type != UserType.SystemAdmin)
-                {
-                    throw new InsufficientAccessLevelException();
-                }
-
                 if (db.Movies.Find(movieObject.ID) == null)
                 {
                     throw new NoMovieFoundException();

@@ -131,6 +131,10 @@
     <Compile Include="Scenarios\User\Browsing\BrowseNewestScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\SearchScenarioTest.cs" />
     <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
+    <Compile Include="Scenarios\ContentProvider\EditMovieInformationTest.cs" />
+    <Compile Include="Scenarios\User\Browsing\GetMovieInformationTest.cs" />
+    <Compile Include="Scenarios\SystemAdmin\GetContentPublishersTest.cs" />
+    <Compile Include="Scenarios\SystemAdmin\GetUsersTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
@@ -216,9 +220,7 @@
     <Content Include="Utils\Dataset\Create.sql" />
     <Content Include="Utils\Dataset\Data.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scenarios\SystemAdmin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

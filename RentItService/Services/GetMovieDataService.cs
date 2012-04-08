@@ -26,6 +26,7 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="movieId">The ID of the movie to get.</param>
         /// <returns>A movie object equivalent to the entry in the database.</returns>
+        /// <author>Jacob Grooss</author>
         public Movie GetMovieInformation(string token, int movieId)
         {
             Contract.Requires(token != null);
