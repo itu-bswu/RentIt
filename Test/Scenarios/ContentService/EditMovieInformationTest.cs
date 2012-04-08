@@ -1,10 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EditMovieInformationTest.cs" company="">
-//   
+// <copyright file="EditMovieInformationTest.cs" company="RentIt">
+//   Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// <summary>
-//   Defines the EditMovieInformationTest type.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.Scenarios.ContentService
@@ -26,8 +23,20 @@ namespace RentIt.Tests.Scenarios.ContentService
     public class EditMovieInformationTest : DataTest
     {
         /// <summary>
-        /// Tests the editing of the information of a movie
-        /// Fails because of whitespace issues currently
+        /// Purpose: Verify that the method changes the values of the movie
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. The movie "testMovie1" must exist in teh database.
+        ///     2. An admin must exist in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Assert that pre-conditions hold.
+        ///     2. Create a new movie with new values, but with 
+        ///        the ID from "testMovie1".
+        ///     3. Call EditMovieInformation with the with the 
+        ///        token from the admin and the new movie.
+        ///     4. Assert that a movie with the name "Trolling 
+        ///        for beginners" exists in the database.
         /// </summary>
         [TestMethod]
         public void EditMovieInformationTest1()
@@ -42,43 +51,43 @@ namespace RentIt.Tests.Scenarios.ContentService
                 User testUser = db.Users.First(u => u.Username == "testAdmin");
                 Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
 
-                var newMovie = new Movie()
-                {
-                    ID = testMovie.ID,
-                    Description = "How to troll, for people new to the art",
-                    FilePath = "You no take file location!",
-                    Genre = "NoGenre",
-                    ImagePath = "N/A",
-                    Rentals = new Collection<Rental>(),
-                    Title = "Trolling for beginners"
-                };
+                var newMovie = new Movie
+                    {
+                        ID = testMovie.ID,
+                        Description = "How to troll, for people new to the art",
+                        FilePath = "You no take file location!",
+                        Genre = "NoGenre",
+                        ImagePath = "N/A",
+                        Rentals = new Collection<Rental>(),
+                        Title = "Trolling for beginners"
+                    };
 
                 service.EditMovieInformation(testUser.Token, newMovie);
 
                 Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
 
-                // This part can be removed when the whitespace issue has been fixed
-                if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
-                {
-                    db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
-                    db.SaveChanges();
-                }
-
                 Assert.AreEqual("Trolling for beginners", foundMovie.Title);
                 Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description);
                 Assert.AreEqual("NoGenre", foundMovie.Genre);
-
-                //                if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
-                //                {
-                //                    db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
-                //                    db.SaveChanges();
-                //                }
             }
         }
 
         /// <summary>
-        /// Tests if an exception is thrown when trying to edit movie
-        /// information as a normal user
+        /// Purpose: Verify that the method throws the correct exception
+        /// when called by an account with an insufficient user type
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. The movie "testMovie1" must exist in teh database.
+        ///     2. A normal user must exist in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Assert that pre-conditions hold.
+        ///     2. Create a new movie with new values, but with 
+        ///        the ID from "testMovie1".
+        ///     3. Call EditMovieInformation with the with the 
+        ///        token from the user and the new movie.
+        ///     4. Assert that an InsufficientAccessLevelException
+        ///        is thrown.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
@@ -94,30 +103,37 @@ namespace RentIt.Tests.Scenarios.ContentService
                 User testUser = db.Users.First(u => u.Username == "testUser");
                 Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
 
-                var newMovie = new Movie()
-                {
-                    ID = testMovie.ID,
-                    Description = "How to troll, for people new to the art",
-                    FilePath = "You no take file location!",
-                    Genre = "NoGenre",
-                    ImagePath = "N/A",
-                    Rentals = new Collection<Rental>(),
-                    Title = "Trolling for beginners"
-                };
+                var newMovie = new Movie
+                    {
+                        ID = testMovie.ID,
+                        Description = "How to troll, for people new to the art",
+                        FilePath = "You no take file location!",
+                        Genre = "NoGenre",
+                        ImagePath = "N/A",
+                        Rentals = new Collection<Rental>(),
+                        Title = "Trolling for beginners"
+                    };
 
                 service.EditMovieInformation(testUser.Token, newMovie);
-
-                //                if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
-                //                {
-                //                    db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
-                //                    db.SaveChanges();
-                //                }
             }
         }
 
         /// <summary>
-        /// Tests if the information is saved if an invalid movieId is given
-        /// as a parameter. The information shouldn't be saved.
+        /// Purpose: Verify that the method throws the correct exception
+        /// when called by an account with an insufficient user type
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. The movie "testMovie1" must exist in teh database.
+        ///     2. An admin must exist in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Assert that pre-conditions hold.
+        ///     2. Create a new movie with new values, and a
+        ///        very high ID.
+        ///     3. Call EditMovieInformation with the with the 
+        ///        token from the admin and the new movie.
+        ///     4. Assert that a NoMovieFoundException
+        ///        is thrown.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NoMovieFoundException))]
@@ -132,24 +148,18 @@ namespace RentIt.Tests.Scenarios.ContentService
 
                 User testUser = db.Users.First(u => u.Username == "testAdmin");
 
-                var newMovie = new Movie()
-                {
-                    ID = 1337,
-                    Description = "How to troll, for people new to the art",
-                    FilePath = "You no take file location!",
-                    Genre = "NoGenre",
-                    ImagePath = "N/A",
-                    Rentals = new Collection<Rental>(),
-                    Title = "Trolling for beginners"
-                };
+                var newMovie = new Movie
+                    {
+                        ID = 89485618,
+                        Description = "How to troll, for people new to the art",
+                        FilePath = "You no take file location!",
+                        Genre = "NoGenre",
+                        ImagePath = "N/A",
+                        Rentals = new Collection<Rental>(),
+                        Title = "Trolling for beginners"
+                    };
 
                 service.EditMovieInformation(testUser.Token, newMovie);
-
-                //                if (db.Movies.First(u => u.Title == "Trolling for beginners") != null)
-                //                {
-                //                    db.Movies.Remove(db.Movies.First(u => u.Title == "Trolling for beginners"));
-                //                    db.SaveChanges();
-                //                }
             }
         }
     }

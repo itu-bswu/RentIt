@@ -1,10 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GetContentProvidersTest.cs" company="">
-//   
+// <copyright file="GetContentPublishersTest.cs" company="RentIt">
+//   Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// <summary>
-//   Defines the GetContentProvidersTest type.
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.Scenarios.UserInformationService
@@ -25,7 +22,19 @@ namespace RentIt.Tests.Scenarios.UserInformationService
     public class GetContentPublishersTest : DataTest
     {
         /// <summary>
-        /// Tests the GetContentPublishers method
+        /// Purpose: Verify that a list of content publishers is returned
+        /// and that the list contains only content publishers
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. At least one content publisher must exist in the database
+        ///     2. An admin must exist in the database.
+        /// <para></para>
+        /// Steps:
+        ///     1. Assert that pre-conditions hold.
+        ///     2. Call GetContentPublishers with the token from the admin.
+        ///     3. Assert that the list holds the correct amount of content
+        ///        publishers and that the test content publisher is among
+        ///        them.
         /// </summary>
         [TestMethod]
         public void GetContentProvidersTest1()
@@ -55,8 +64,16 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         }
 
         /// <summary>
-        /// Tests if the method throws the right exception when
-        /// calling it with a wrong user type
+        /// Purpose: Verify that the method throws the correct exception
+        /// when it's not an admin calling it.
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. At least one normal user must exist in the database
+        /// <para></para>
+        /// Steps:
+        ///     1. Assert that pre-conditions hold.
+        ///     2. Call GetContentPublishers with the token from the user.
+        ///     3. Assert that an InsufficientAccessLevelException is thrown.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
@@ -70,13 +87,21 @@ namespace RentIt.Tests.Scenarios.UserInformationService
 
                 User testUser = db.Users.First(u => u.Username == "testUser");
 
-                var userList = service.GetContentPublishers(testUser.Token);
+                service.GetContentPublishers(testUser.Token);
             }
         }
 
         /// <summary>
-        /// Tests if the method throws the right exception when
-        /// calling it with an invalid token
+        /// Purpose: Verify that the method throws the correct exception
+        /// when it recieves an invalid token.
+        /// <para></para>
+        /// Pre-condtions:
+        ///     1. The token used must not corrospond to a user.
+        /// <para></para>
+        /// Steps:
+        ///     1. Assert that pre-conditions hold.
+        ///     2. Call GetContentPublishers with the token.
+        ///     3. Assert that a UserNotFoundException is thrown.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
@@ -84,11 +109,17 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         {
             Service service = new Service();
 
+            string token = "bneiuwnvu9p28h3ny84o28uyh43892";
+
+// ReSharper disable UnusedVariable
+            // Disabled because we've been told to use this
+            // piece of code for the time being
             using (var db = new RentItContext())
+// ReSharper restore UnusedVariable
             {
                 TestHelper.SetUpTestUsers();
 
-                var userList = service.GetContentPublishers("bneiuwnvu9p28h3ny84o28uyh43892");
+                service.GetContentPublishers(token);
             }
         }
     }
