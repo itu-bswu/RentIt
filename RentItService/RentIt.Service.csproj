@@ -141,6 +141,7 @@
     <Compile Include="Exceptions\InsufficientAccessLevelException.cs" />
     <Compile Include="Exceptions\NoMovieFoundException.cs" />
     <Compile Include="Exceptions\NotAUserException.cs" />
+    <Compile Include="Exceptions\UnknownGenreException.cs" />
     <Compile Include="Exceptions\UsernameInUseException.cs" />
     <Compile Include="FunctionClasses\UploadDownload.cs" />
     <Compile Include="Interfaces\IContentService.cs" />
@@ -188,6 +189,9 @@
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
