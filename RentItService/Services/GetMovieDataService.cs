@@ -14,6 +14,7 @@ namespace RentItService.Services
     using Entities;
     using Interfaces;
 
+    using RentItService;
     using RentItService.Exceptions;
 
     /// <summary>
@@ -69,11 +70,9 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
-            // TODO: Implement GetMoviesByGenre
-            throw new NotImplementedException();
+            return Movie.ByGenre(token, genre);
         }
 
         /// <summary>
@@ -82,11 +81,9 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="search">The search string.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> Search(string token, string search)
         {
-            // TODO: Implement Search
-            throw new NotImplementedException();
+            return Movie.Search(token, search);
         }
     }
 }

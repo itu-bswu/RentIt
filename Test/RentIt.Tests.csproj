@@ -100,7 +100,7 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -114,6 +114,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -125,13 +126,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios\ContentService\EditMovieInformationTest.cs" />
     <Compile Include="Scenarios\GetMovieDataService\GetMovieInformationTest.cs" />
     <Compile Include="Scenarios\UserInformationService\GetContentPublishersTest.cs" />
     <Compile Include="Scenarios\UserInformationService\GetUsersTest.cs" />
     <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
+    <Compile Include="Scenarios\BrowseByGenreScenario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenarios\SearchScenarioTest.cs" />
+    <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
