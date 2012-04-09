@@ -4,10 +4,13 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace RentIt.Tests.Scenarios.UserInformationService
+namespace RentIt.Tests.Scenarios.SystemAdmin
 {
     using System.Linq;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using RentIt.Tests.Utils;
 
     using RentItService;
     using RentItService.Entities;
@@ -31,22 +34,23 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
+        ///     2. Login as the admin.
         ///     2. Call GetContentPublishers with the token from the admin.
         ///     3. Assert that the list holds the correct amount of content
         ///        publishers and that the test content publisher is among
         ///        them.
         /// </summary>
         [TestMethod]
-        public void GetContentProvidersTest1()
+        public void GetContentProvidersValidTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestUsers();
+                var testAdmin = TestUser.SystemAdmin;
+                var testProvider = TestUser.ContentProvider;
 
-                User testAdmin = db.Users.First(u => u.Username == "testAdmin");
-                User testProvider = db.Users.First(u => u.Username == "testContentProvider");
+                User.Login(testAdmin.Username, testAdmin.Password);
 
                 Assert.IsNotNull(testProvider);
 
@@ -59,7 +63,7 @@ namespace RentIt.Tests.Scenarios.UserInformationService
                 publisherList = service.GetContentPublishers(testAdmin.Token);
 
                 Assert.IsNotNull(publisherList);
-                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.Username == "testContentProvider").ID);
+                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.Username == "Universal Pictures").ID);
             }
         }
 
@@ -77,15 +81,15 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
-        public void InvalidUserTypeTest()
+        public void GetContentPublishersInvalidUserTypeTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestUsers();
+                var testUser = TestUser.User;
 
-                User testUser = db.Users.First(u => u.Username == "testUser");
+                User.Login(testUser.Username, testUser.Password);
 
                 service.GetContentPublishers(testUser.Token);
             }
@@ -105,20 +109,14 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
-        public void InvalidTokenTest()
+        public void GetContentPublishersInvalidTokenTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             string token = "bneiuwnvu9p28h3ny84o28uyh43892";
 
-// ReSharper disable UnusedVariable
-            // Disabled because we've been told to use this
-            // piece of code for the time being
             using (var db = new RentItContext())
-// ReSharper restore UnusedVariable
             {
-                TestHelper.SetUpTestUsers();
-
                 service.GetContentPublishers(token);
             }
         }
