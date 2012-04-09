@@ -127,10 +127,8 @@ namespace RentItService.FunctionClasses
                     throw new InsufficientAccessLevelException();
                 }
 
-                string filePath;
-
                 var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
-                filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
+                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
 
                 var fileInfo = new FileInfo(filePath);
 

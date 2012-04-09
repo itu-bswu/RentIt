@@ -10,12 +10,11 @@ namespace RentItService.Services
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
-    using System.Linq;
     using Entities;
     using Enums;
     using Exceptions;
     using Interfaces;
-    
+
     /// <summary>
     /// Service for accessing user information.
     /// </summary>
@@ -90,8 +89,10 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public IEnumerable<Rental> GetCurrentRentals(string token)
         {
-            // TODO: Implement GetCurrentRentals
-            throw new NotImplementedException();
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+
+            return User.GetCurrentRentals(token);
         }
 
         /// <summary>

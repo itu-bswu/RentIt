@@ -97,5 +97,18 @@ namespace RentItService.Services
         {
             return Movie.Search(token, search);
         }
+
+        /// <summary>
+        /// Finds all the movies in the database and returns them.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>All the active movies in the database.</returns>
+        public IEnumerable<Movie> GetAllMovies(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+
+            return Movie.GetAllMovies(token);
+        }
     }
 }

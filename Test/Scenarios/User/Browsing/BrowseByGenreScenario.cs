@@ -6,7 +6,6 @@
 
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
-    using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;

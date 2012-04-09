@@ -43,7 +43,7 @@ namespace RentItService.Interfaces
         [OperationContract]
         IEnumerable<Movie> GetNewest(string token, int limit = 0);
 
-            /// <summary>
+        /// <summary>
         /// Gets all the genres currently applied to the movies in the database.
         /// </summary>
         /// <param name="token">The session token.</param>
@@ -68,5 +68,13 @@ namespace RentItService.Interfaces
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
         [OperationContract]
         IEnumerable<Movie> Search(string token, string search);
+
+        /// <summary>
+        /// Finds all the movies in the database and returns them.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>All the active movies in the database.</returns>
+        [OperationContract]
+        IEnumerable<Movie> GetAllMovies(string token);
     }
 }
