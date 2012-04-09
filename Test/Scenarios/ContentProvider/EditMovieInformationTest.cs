@@ -86,11 +86,11 @@ namespace RentIt.Tests.Scenarios.ContentService
         ///        the ID from "testMovie1".
         ///     3. Call EditMovieInformation with the with the 
         ///        token from the user and the new movie.
-        ///     4. Assert that an InsufficientAccessLevelException
+        ///     4. Assert that an InsufficientRightsException
         ///        is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void InvalidUserTypeEditMovieInformationTest()
         {
             Service service = new Service();

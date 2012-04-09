@@ -71,10 +71,10 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         /// Steps:
         ///     1. Assert that pre-conditions hold.
         ///     2. Call GetUsers with the token from the user.
-        ///     3. Assert that an InsufficientAccessLevelException is thrown.
+        ///     3. Assert that an InsufficientRightsException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void InvalidUserTypeTest()
         {
             Service service = new Service();

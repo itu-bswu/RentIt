@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ContentService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -8,12 +8,10 @@ namespace RentItService.Services
 {
     using System;
     using System.Diagnostics.Contracts;
-
-    using Entities;
-    using Enums;
-    using Interfaces;
-
+    using RentItService.Entities;
+    using RentItService.Enums;
     using RentItService.Exceptions;
+    using RentItService.Interfaces;
 
     /// <summary>
     /// Service for the content providers.
@@ -33,7 +31,7 @@ namespace RentItService.Services
             Contract.Requires(movieObject.ImagePath != null);
             Contract.Requires(movieObject.Title != null);
             Contract.Requires(movieObject.Genre != null);
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type != UserType.User);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type != UserType.User);
 
             using (var db = new RentItContext())
             {
@@ -69,7 +67,7 @@ namespace RentItService.Services
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(movieObject != null);
 
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             Movie.DeleteMovie(token, movieObject);
         }

@@ -68,10 +68,10 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// Steps:
         ///     1. Make sure pre-conditions hold.
         ///     2. Try to delete the movie as the user.
-        ///     3. Verify that InsufficientAccessLevelException is thrown.
+        ///     3. Verify that InsufficientRightsException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void InsufficientAccessDeleteMovieTest()
         {
             TestHelper.SetUpTestUsers();
