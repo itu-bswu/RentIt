@@ -266,6 +266,16 @@ namespace RentItService.Entities
             }
         }
 
+        /// <summary>
+        /// Gets the uses rental history.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>the users rental history.</returns>
+        public static IEnumerable<Rental> GetRentalHistory(string token)
+        {
+            return User.GetByToken(token).Rentals;
+        }
+
         #endregion Static methods
     }
 }

@@ -46,8 +46,9 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMostDownloaded(string token)
         {
-            // TODO: Implement GetMostDownloaded
-            throw new NotImplementedException();
+            Contract.Requires<ArgumentNullException>(token != null);
+
+            return Movie.MostDownloaded(token);
         }
 
         /// <summary>

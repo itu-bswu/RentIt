@@ -16,6 +16,7 @@ namespace RentItService.Entities
 
     using RentItService.Enums;
     using RentItService.Exceptions;
+    using RentItService.Library;
 
     using Tools;
 
@@ -167,6 +168,28 @@ namespace RentItService.Entities
                 var movies = db.Movies.OrderByDescending(m => m.ID).ToList(); // TODO: Add release date to movies.
 
                 return limit > 0 ? movies.Take(limit) : movies;
+            }
+        }
+
+        public static IEnumerable<Movie> MostDownloaded(string token)
+        {
+            using (var db = new RentItContext())
+            {
+                List<MovieDownload> md = new List<MovieDownload>();
+                foreach (Movie m in db.Movies)
+                {
+                    md.Add(new MovieDownload(m, m.Rentals.Count));
+                }
+
+                List<Movie> movies = new List<Movie>();
+                for (int i = 0; i < 10; i++)
+                {
+                    MovieDownload m = md.Max();
+                    md.Remove(m);
+                    movies.Add(m.Movie);
+                }
+
+                return movies;
             }
         }
     }
