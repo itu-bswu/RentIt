@@ -11,11 +11,9 @@ namespace RentItService.Entities
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
-
-    using RentItService.Enums;
-    using RentItService.Exceptions;
-    using RentItService.Library;
-
+    using Enums;
+    using Exceptions;
+    using Library;
     using Tools;
 
     /// <summary>
@@ -76,6 +74,15 @@ namespace RentItService.Entities
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
 
+        public IEnumerable<string> Genres
+        {
+            get
+            {
+                return Genre.Split('/');
+            }
+            
+        }
+
         /// <summary>
         /// Deletes a movie from the service. 
         /// The movie is identified by the ID in the instance of the Movie class. 
@@ -133,7 +140,7 @@ namespace RentItService.Entities
                 var searchTitle = search.ToLower();
                 var components = searchTitle.Split(' ');
 
-                return (from movie in db.Movies
+                return (from movie in db.Movies.ToList()
                         let title = movie.Title.ToLower()
                         let titleComponents = title.Split(' ')
                         where titleComponents.Any(components.Contains)
@@ -146,27 +153,41 @@ namespace RentItService.Entities
         /// <summary>
         /// Filters the list of movies into a particular genre.
         /// </summary>
-        /// <param name="token">The session token.</param>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        public static IEnumerable<Movie> ByGenre(string token, string genre)
+        public static IEnumerable<Movie> ByGenre(string genre)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(genre != null);
-            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            List<Movie> result;
 
             using (var db = new RentItContext())
             {
-                var result = db.Movies.Where(movie => movie.Genre.Equals(genre)).ToList();
-
-                if (!result.Any())
-                {
-                    throw new UnknownGenreException();
-                }
-
-                return result;
+                result = db.Movies.ToList().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
             }
+
+            if (!result.Any())
+            {
+                throw new UnknownGenreException();
+            }
+
+            return result;
         }
+
+        /// <summary>
+        /// Returns all genres in the database
+        /// </summary>
+        /// <returns>An IEnumerable containing all genres as strings</returns>
+        public static IEnumerable<string> GetAllGenres()
+        {
+            using (var db = new RentItContext())
+            {
+                return (from movie in db.Movies.ToList()
+                        let genres = movie.Genres
+                        from genre in genres
+                        select genre).Distinct().ToList();
+            }
+        } 
 
         /// <summary>
         /// Returns the newest added movies.

@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTest.cs" />
-    <Compile Include="Scenarios\User\Browsing\BrowseByGenreScenario.cs" />
+    <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios\User\Browsing\BrowseNewestScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\SearchScenarioTest.cs" />
@@ -150,6 +150,7 @@
     <Compile Include="TestBase.cs" />
     <Compile Include="Utils\DataSet.cs" />
     <Compile Include="Utils\DataUtil.cs" />
+    <Compile Include="Utils\TestUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
