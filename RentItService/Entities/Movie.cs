@@ -8,6 +8,7 @@ namespace RentItService.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
@@ -165,6 +166,26 @@ namespace RentItService.Entities
                 var movies = db.Movies.OrderByDescending(m => m.ID); // TODO: Add release date to movies.
 
                 return limit > 0 ? movies.Take(limit) : movies;
+            }
+        }
+
+        /// <summary>
+        /// Gets all the movies in the database.
+        /// </summary>
+        /// <param name="token">
+        /// The session token.
+        /// </param>
+        /// <returns>
+        /// All the movie entries in the database.
+        /// </returns>
+        public static IEnumerable<Movie> GetAllMovies(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+
+            using (var db = new RentItContext())
+            {
+                return db.Movies.ToList();
             }
         }
     }
