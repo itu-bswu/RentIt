@@ -10,6 +10,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using RentIt.Tests.Utils;
+
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
@@ -41,15 +43,15 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         {
             using (var db = new RentItContext())
             {
-                User testUser = db.Users.First(u => u.Username == "Smith");
-                int numberOfMoviesFromDb = db.Movies.Count();
-                int numberOfMoviesFromMethod = Movie.GetAllMovies(testUser.Token).Count();
+                var testUser = User.Login(TestUser.User.Username, TestUser.User.Password);
+                var numberOfMoviesFromDb = db.Movies.Count();
+                var numberOfMoviesFromMethod = Movie.GetAllMovies(testUser.Token).Count();
 
                 Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the GetAllMovies method.");
 
                 var allMovies = db.Movies;
 
-                foreach (Movie m in Movie.GetAllMovies(testUser.Token))
+                foreach (var m in Movie.GetAllMovies(testUser.Token))
                 {
                     Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the GetAllMovies method.");
                 }
@@ -73,7 +75,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
                 allMovies = db.Movies;
 
-                foreach (Movie m in Movie.GetAllMovies(testUser.Token))
+                foreach (var m in Movie.GetAllMovies(testUser.Token))
                 {
                     Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the GetAllMovies method.");
                 }

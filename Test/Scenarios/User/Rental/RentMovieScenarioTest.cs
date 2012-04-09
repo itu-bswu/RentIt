@@ -11,6 +11,8 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using RentIt.Tests.Utils;
+
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
@@ -47,8 +49,8 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "Smith");
-                Movie movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+                var movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
 
                 testToken = user.Token;
                 testID = movie.ID;
@@ -89,11 +91,11 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "Universal");
-                Movie movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+                var movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
 
-                string testToken = user.Token;
-                int testID = movie.ID;
+                var testToken = user.Token;
+                var testID = movie.ID;
 
                 User.RentMovie(testToken, testID);
             }
@@ -118,7 +120,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             using (var db = new RentItContext())
             {
-                Movie movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
 
                 int testID = movie.ID;
 

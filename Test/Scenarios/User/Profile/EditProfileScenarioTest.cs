@@ -11,6 +11,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using RentIt.Tests.Utils;
+
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
@@ -43,49 +45,41 @@ namespace RentIt.Tests.Scenarios.User.Profile
         public void EditProfileTest()
         {
             // Arrange
-            string oldPassword;
-            string oldName;
-            string oldEmail;
-            int oldID;
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            using (var db = new RentItContext())
+            Assert.AreEqual("userPassword", user.Password, "The password did not match pre-condition 2.");
+            Assert.AreEqual("James Smith", user.FullName, "The full name did not match pre-condition 3.");
+            Assert.AreEqual("smith@matrix.org", user.Email, "The email did not match pre-condition 4.");
+
+            var oldPassword = user.Password;
+            var oldName = user.FullName;
+            var oldEmail = user.Email;
+            var oldID = user.ID;
+
+            var user2 = new User
             {
-                var user = db.Users.First(u => u.Username == "Smith");
+                Email = user.Email.ToUpper(),
+                FullName = user.FullName.ToUpper(),
+                ID = user.ID,
+                Password = user.Password.ToUpper(),
+                Rentals = user.Rentals,
+                Token = user.Token,
+                Type = user.Type,
+                TypeValue = user.TypeValue,
+                Username = user.Username
+            };
 
-                Assert.AreEqual("userPassword", user.Password, "The password did not match pre-condition 2.");
-                Assert.AreEqual("James Smith", user.FullName, "The full name did not match pre-condition 3.");
-                Assert.AreEqual("smith@matrix.org", user.Email, "The email did not match pre-condition 4.");
-
-                oldPassword = user.Password;
-                oldName = user.FullName;
-                oldEmail = user.Email;
-                oldID = user.ID;
-
-                var user2 = new User
-                {
-                    Email = user.Email.ToUpper(),
-                    FullName = user.FullName.ToUpper(),
-                    ID = user.ID,
-                    Password = user.Password.ToUpper(),
-                    Rentals = user.Rentals,
-                    Token = user.Token,
-                    Type = user.Type,
-                    TypeValue = user.TypeValue,
-                    Username = user.Username
-                };
-
-                // Call edit profile
-                User.EditProfile(user2.Token, user2);
-            }
+            // Call edit profile
+            User.EditProfile(user2.Token, user2);
 
             // Assert and clean
             using (var db = new RentItContext())
             {
-                var user = db.Users.First(u => u.Username == "Smith");
+                var user3 = db.Users.First(u => u.Username == "Smith");
 
-                Assert.AreEqual(oldID, User.Login(user.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
-                Assert.AreEqual(oldName.ToUpper(), user.FullName, "The name was not changed as expected.");
-                Assert.AreEqual(oldEmail.ToUpper(), user.Email, "The email was not changed as expected.");
+                Assert.AreEqual(oldID, User.Login(user3.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
+                Assert.AreEqual(oldName.ToUpper(), user3.FullName, "The name was not changed as expected.");
+                Assert.AreEqual(oldEmail.ToUpper(), user3.Email, "The email was not changed as expected.");
                 db.SaveChanges();
             }
         }
@@ -109,28 +103,23 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [ExpectedException(typeof(InsufficientAccessLevelException))]
         public void InsufficientAccessEditProfileTest()
         {
-            TestHelper.SetUpTestUsers();
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+            var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
-            using (var db = new RentItContext())
+            var user2 = new User
             {
-                var user = db.Users.First(u => u.Username == "Smith");
-                var user1 = db.Users.First(u => u.Username == "Universal");
+                Email = user.Email.ToUpper(),
+                FullName = user.FullName.ToUpper(),
+                ID = user.ID,
+                Password = user.Password.ToUpper(),
+                Rentals = user.Rentals,
+                Token = user.Token,
+                Type = user.Type,
+                TypeValue = user.TypeValue,
+                Username = user.Username
+            };
 
-                var user2 = new User
-                {
-                    Email = user.Email.ToUpper(),
-                    FullName = user.FullName.ToUpper(),
-                    ID = user.ID,
-                    Password = user.Password.ToUpper(),
-                    Rentals = user.Rentals,
-                    Token = user.Token,
-                    Type = user.Type,
-                    TypeValue = user.TypeValue,
-                    Username = user.Username
-                };
-
-                User.EditProfile(user1.Token, user2);
-            }
+            User.EditProfile(user1.Token, user2);
         }
 
         /// <summary>
@@ -151,25 +140,22 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [ExpectedException(typeof(ArgumentNullException))]
         public void InvalidInputEditProfileTest()
         {
-            using (var db = new RentItContext())
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+
+            var user2 = new User
             {
-                var user = db.Users.First(u => u.Username == "Smith");
+                Email = user.Email.ToUpper(),
+                FullName = null,
+                ID = user.ID,
+                Password = null,
+                Rentals = user.Rentals,
+                Token = user.Token,
+                Type = user.Type,
+                TypeValue = user.TypeValue,
+                Username = user.Username
+            };
 
-                var user2 = new User
-                {
-                    Email = user.Email.ToUpper(),
-                    FullName = null,
-                    ID = user.ID,
-                    Password = null,
-                    Rentals = user.Rentals,
-                    Token = user.Token,
-                    Type = user.Type,
-                    TypeValue = user.TypeValue,
-                    Username = user.Username
-                };
-
-                User.EditProfile(user.Token, user2);
-            }
+            User.EditProfile(user.Token, user2);
         }
     }
 }

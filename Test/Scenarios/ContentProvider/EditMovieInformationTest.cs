@@ -4,12 +4,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace RentIt.Tests.Scenarios.ContentService
+namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System.Collections.ObjectModel;
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using RentIt.Tests.Utils;
 
     using RentItService;
     using RentItService.Entities;
@@ -26,30 +28,31 @@ namespace RentIt.Tests.Scenarios.ContentService
         /// Purpose: Verify that the method changes the values of the movie
         /// <para></para>
         /// Pre-condtions:
-        ///     1. The movie "testMovie1" must exist in teh database.
+        ///     1. A movie must exist in the database.
         ///     2. An admin must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Create a new movie with new values, but with 
-        ///        the ID from "testMovie1".
-        ///     3. Call EditMovieInformation with the with the 
+        ///     2. Find a movie in the databse.
+        ///     3. Login as the admin.
+        ///     4. Create a new movie with new values, but with 
+        ///        the ID from the found movie.
+        ///     5. Call EditMovieInformation with the with the 
         ///        token from the admin and the new movie.
-        ///     4. Assert that a movie with the name "Trolling 
+        ///     6. Assert that a movie with the name "Trolling 
         ///        for beginners" exists in the database.
         /// </summary>
         [TestMethod]
-        public void EditMovieInformationTest1()
+        public void EditMovieInformationValidTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestMovies();
-                TestHelper.SetUpTestUsers();
+                var testUser = TestUser.SystemAdmin;
+                var testMovie = db.Movies.First();
 
-                User testUser = db.Users.First(u => u.Username == "testAdmin");
-                Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
+                User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {
@@ -66,9 +69,9 @@ namespace RentIt.Tests.Scenarios.ContentService
 
                 Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
 
-                Assert.AreEqual("Trolling for beginners", foundMovie.Title);
-                Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description);
-                Assert.AreEqual("NoGenre", foundMovie.Genre);
+                Assert.AreEqual("Trolling for beginners", foundMovie.Title, "The titles doesn't match");
+                Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description, "The descriptions doesn't match");
+                Assert.AreEqual("NoGenre", foundMovie.Genre, "The genre doesn't match");
             }
         }
 
@@ -77,31 +80,32 @@ namespace RentIt.Tests.Scenarios.ContentService
         /// when called by an account with an insufficient user type
         /// <para></para>
         /// Pre-condtions:
-        ///     1. The movie "testMovie1" must exist in teh database.
-        ///     2. A normal user must exist in the database.
+        ///     1. A movie must exist in teh database.
+        ///     2. A user must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Create a new movie with new values, but with 
-        ///        the ID from "testMovie1".
-        ///     3. Call EditMovieInformation with the with the 
+        ///     2. Find a movie in the databse.
+        ///     3. Login as the user.
+        ///     4. Create a new movie with new values, but with 
+        ///        the ID from the found movie.
+        ///     5. Call EditMovieInformation with the with the 
         ///        token from the user and the new movie.
-        ///     4. Assert that an InsufficientAccessLevelException
+        ///     6. Assert that an InsufficientAccessLevelException
         ///        is thrown.
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientAccessLevelException))]
-        public void InvalidUserTypeEditMovieInformationTest()
+        public void EditMovieInformationInvalidUserTypeTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestMovies();
-                TestHelper.SetUpTestUsers();
+                var testUser = TestUser.User;
+                var testMovie = db.Movies.First();
 
-                User testUser = db.Users.First(u => u.Username == "testUser");
-                Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
+                User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {
@@ -123,13 +127,14 @@ namespace RentIt.Tests.Scenarios.ContentService
         /// when called by an account with an insufficient user type
         /// <para></para>
         /// Pre-condtions:
-        ///     1. The movie "testMovie1" must exist in teh database.
-        ///     2. An admin must exist in the database.
+        ///     1. An admin must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Create a new movie with new values, and a
-        ///        very high ID.
+        ///     2. Login as the admin.
+        ///     2. Create a new movie with new values, and an
+        ///        ID that doesn't corrospond to a movie in the 
+        ///        databse.
         ///     3. Call EditMovieInformation with the with the 
         ///        token from the admin and the new movie.
         ///     4. Assert that a NoMovieFoundException
@@ -137,16 +142,15 @@ namespace RentIt.Tests.Scenarios.ContentService
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NoMovieFoundException))]
-        public void InvalidMovieIdTypeEditMovieInformationTest()
+        public void EditMovieInformationInvalidMovieIdTypeTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestMovies();
-                TestHelper.SetUpTestUsers();
+                var testUser = TestUser.User;
 
-                User testUser = db.Users.First(u => u.Username == "testAdmin");
+                User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {

@@ -10,6 +10,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using RentIt.Tests.Utils;
+
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
@@ -26,35 +28,35 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// <para></para>
         /// Pre-condtions:
         ///     1. At least one user must exist in the database.
-        ///     2. A movie with the name "testMovie1" must exist in the 
-        ///        database.
+        ///     2. A movie must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Call GetMovieInformation with the token from the user and
-        ///        the ID from the "testMovie1".
-        ///     3. Assert that the data returned is the same as the data from
+        ///     2. Login in with the user
+        ///     3. Find a movie in the database.
+        ///     4. Call GetMovieInformation with the token from the user and
+        ///        the ID from the movie found.
+        ///     5. Assert that the data returned is the same as the data from
         ///        testMovie1.
         /// </summary>
         [TestMethod]
-        public void GetMovieInformationTest1()
+        public void GetMovieInformationValidTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestMovies();
-                TestHelper.SetUpTestUsers();
+                var testUser = TestUser.User;
+                var testMovie = db.Movies.First();
 
-                User testUser = db.Users.First(u => u.Username == "testUser");
-                Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
+                User.Login(testUser.Username, testUser.Password);
 
-                Movie foundMovie = service.GetMovieInformation(testUser.Token, testMovie.ID);
+                var foundMovie = service.GetMovieInformation(testUser.Token, testMovie.ID);
 
-                Assert.AreEqual(testMovie.ID, foundMovie.ID);
-                Assert.AreEqual(testMovie.Title, foundMovie.Title);
-                Assert.AreEqual(testMovie.Description, foundMovie.Description);
-                Assert.AreEqual(testMovie.Genre, foundMovie.Genre);
+                Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
+                Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
+                Assert.AreEqual(testMovie.Description, foundMovie.Description, "The description doesn't match");
+                Assert.AreEqual(testMovie.Genre, foundMovie.Genre, "The genre doesn't match");
             }
         }
 
@@ -63,29 +65,26 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// when calling it with an invalid token.
         /// <para></para>
         /// Pre-condtions:
-        ///     1. A movie with the name "testMovie1" must exist in the 
-        ///        database.
+        ///     1. A movie must exist in the databse
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Call GetMovieInformation with the test token and
-        ///        the ID from the "testMovie1".
-        ///     3. Assert that a UserNotFoundException is thrown
+        ///     2. Find a movie in the database.
+        ///     3. Call GetMovieInformation with the test token and
+        ///        the ID from the found movie.
+        ///     4. Assert that a UserNotFoundException is thrown
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
-        public void InvalidTokenGetMovieInformationTest()
+        public void GetMovieInformationInvalidTokenTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             string testToken = "Hello thar";
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestMovies();
-                TestHelper.SetUpTestUsers();
-
-                Movie testMovie = db.Movies.First(u => u.Title == "testMovie1");
+                var testMovie = db.Movies.First();
 
                 service.GetMovieInformation(testToken, testMovie.ID);
             }
@@ -102,23 +101,23 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Call GetMovieInformation with the user token and
+        ///     2. Login with the user.
+        ///     3. Call GetMovieInformation with the user token and
         ///        the test ID.
-        ///     3. Assert that the result is null
+        ///     4. Assert that the result is null.
         /// </summary>
         [TestMethod]
-        public void InvalidMovieIdGetMovieInformation()
+        public void GetMovieInformationInvalidMovieIdTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             int testID = 178915368;
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestMovies();
-                TestHelper.SetUpTestUsers();
+                var testUser = TestUser.User;
 
-                User testUser = db.Users.First(u => u.Username == "testUser");
+                User.Login(testUser.Username, testUser.Password);
 
                 Movie foundMovie = service.GetMovieInformation(testUser.Token, testID);
 

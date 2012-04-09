@@ -152,6 +152,7 @@
     <Compile Include="TestBase.cs" />
     <Compile Include="Utils\DataSet.cs" />
     <Compile Include="Utils\DataUtil.cs" />
+    <Compile Include="Utils\TestUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
