@@ -69,9 +69,9 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
                 Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
 
-                Assert.AreEqual("Trolling for beginners", foundMovie.Title);
-                Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description);
-                Assert.AreEqual("NoGenre", foundMovie.Genre);
+                Assert.AreEqual("Trolling for beginners", foundMovie.Title, "The titles doesn't match");
+                Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description, "The descriptions doesn't match");
+                Assert.AreEqual("NoGenre", foundMovie.Genre, "The genre doesn't match");
             }
         }
 

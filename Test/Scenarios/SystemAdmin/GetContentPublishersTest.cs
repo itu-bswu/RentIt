@@ -58,12 +58,12 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
                 var publisherList = service.GetContentPublishers(testAdmin.Token);
 
                 Assert.IsNotNull(publisherList);
-                Assert.AreEqual(amountOfPublishers, publisherList.Count());
+                Assert.AreEqual(amountOfPublishers, publisherList.Count(), "A 'wrong' number of Content Publishers is returned");
 
                 publisherList = service.GetContentPublishers(testAdmin.Token);
 
                 Assert.IsNotNull(publisherList);
-                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.Username == "Universal Pictures").ID);
+                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.Username == "Universal Pictures").ID, "The IDs doesn't match");
             }
         }
 

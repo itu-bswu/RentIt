@@ -7,6 +7,7 @@
 namespace RentIt.Tests.Utils
 {
     using RentItService.Entities;
+    using RentItService.Enums;
 
     /// <summary>
     /// TODO: Update summary.
@@ -20,7 +21,15 @@ namespace RentIt.Tests.Utils
         {
             get
             {
-                return new User { ID = 1, Username = "Smith", Password = "userPassword", FullName = "James Smith" };
+                return new User
+                    {
+                        ID = 1, 
+                        Username = "Smith", 
+                        Password = "userPassword", 
+                        Email = "smith@matrix.org",
+                        Type = UserType.User,
+                        FullName = "James Smith"
+                    };
             }
         }
 
@@ -31,7 +40,15 @@ namespace RentIt.Tests.Utils
         {
             get
             {
-                return new User { ID = 2, Username = "Universal", Password = "providerPassword", FullName = "Universal Pictures" };
+                return new User
+                    {
+                        ID = 2, 
+                        Username = "Universal", 
+                        Password = "providerPassword", 
+                        Email = "rentit@universalpictures.com",
+                        Type = UserType.ContentProvider,
+                        FullName = "Universal Pictures"
+                    };
             }
         }
 
@@ -42,7 +59,15 @@ namespace RentIt.Tests.Utils
         {
             get
             {
-                return new User { ID = 3, Username = "Anderson", Password = "adminPassword", FullName = "Thomas Anderson" };
+                return new User
+                    {
+                        ID = 3,
+                        Username = "Anderson",
+                        Password = "adminPassword",
+                        Email = "neo@matrix.org",
+                        Type = UserType.SystemAdmin,
+                        FullName = "Thomas Anderson"
+                    };
             }
         }
     }

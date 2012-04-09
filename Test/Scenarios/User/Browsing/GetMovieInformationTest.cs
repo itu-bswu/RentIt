@@ -53,10 +53,10 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
                 var foundMovie = service.GetMovieInformation(testUser.Token, testMovie.ID);
 
-                Assert.AreEqual(testMovie.ID, foundMovie.ID);
-                Assert.AreEqual(testMovie.Title, foundMovie.Title);
-                Assert.AreEqual(testMovie.Description, foundMovie.Description);
-                Assert.AreEqual(testMovie.Genre, foundMovie.Genre);
+                Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
+                Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
+                Assert.AreEqual(testMovie.Description, foundMovie.Description, "The description doesn't match");
+                Assert.AreEqual(testMovie.Genre, foundMovie.Genre, "The genre doesn't match");
             }
         }
 

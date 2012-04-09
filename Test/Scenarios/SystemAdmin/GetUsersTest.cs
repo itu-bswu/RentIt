@@ -54,12 +54,12 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
                 var userList = service.GetUsers(testAdmin.Token);
 
                 Assert.IsNotNull(userList);
-                Assert.AreEqual(amountOfUsers, userList.Count());
+                Assert.AreEqual(amountOfUsers, userList.Count(), "A 'wrong' number of users is returned");
 
                 userList = service.GetUsers(testAdmin.Token);
 
                 Assert.IsNotNull(userList);
-                Assert.AreEqual(testUser.ID, userList.First(u => u.Username == "James Smith").ID);
+                Assert.AreEqual(testUser.ID, userList.First(u => u.Username == "James Smith").ID, "The IDs doesn't match");
             }
         }
 
