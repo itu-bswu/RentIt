@@ -1,4 +1,4 @@
-//-------------------------------------------------------------------------------------------------
+?//-------------------------------------------------------------------------------------------------
 // <copyright file="DataTest.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -15,15 +15,32 @@ namespace RentIt.Tests
     /// empties it and load the data-set.
     /// </summary>
     [TestClass]
-    public abstract class DataTest : TestBase
+    public class DataTest : TestBase
     {
         /// <summary>
-        /// Loads or reloads the data before each test.
+        /// Initializes a new instance of the <see cref="DataTest"/> class. 
+        /// Loads or reloads the data.
+        /// </summary>
+        /*public DataTest()
+        {
+            using (var datautil = new DataUtil())
+            {
+                datautil.Load(DataSet.TestData);
+            }
+        }*/
+
+        /// <summary>
+        /// Loads data before each test.
+        /// TODO: Temporary fix
         /// </summary>
         [TestInitialize]
-        public void Initialize()
+        public void TestInit()
         {
-            DataUtil.Load(DataSet.TestData);
+            // TODO: Temporary fix
+            using (var datautil = new DataUtil())
+            {
+                datautil.Load(DataSet.TestData);
+            }
         }
     }
 }

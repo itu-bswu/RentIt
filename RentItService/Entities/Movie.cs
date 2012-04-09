@@ -4,6 +4,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
+using System.Collections.ObjectModel;
+
 namespace RentItService.Entities
 {
     using System;
@@ -110,21 +112,20 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(search != null);
-
-            User.GetByToken(token);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {
                 var searchTitle = search.ToLower();
                 var components = searchTitle.Split(' ');
 
-                return from movie in db.Movies
-                       let title = movie.Title.ToLower()
-                       let titleComponents = title.Split(' ')
-                       where titleComponents.Any(components.Contains)
-                       orderby title.Equals(searchTitle) descending
-                       orderby titleComponents.Count(components.Contains) descending
-                       select movie;
+                return (from movie in db.Movies
+                        let title = movie.Title.ToLower()
+                        let titleComponents = title.Split(' ')
+                        where titleComponents.Any(components.Contains)
+                        orderby title.Equals(searchTitle) descending
+                        orderby titleComponents.Count(components.Contains) descending
+                        select movie).ToList();
             }
         }
 
@@ -138,17 +139,18 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(genre != null);
-
-            User.GetByToken(token);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {
-                if (db.Movies.Count(movie => movie.Genre.Equals(genre)) == 0)
+                var result = db.Movies.Where(movie => movie.Genre.Equals(genre)).ToList();
+
+                if (!result.Any())
                 {
                     throw new UnknownGenreException();
                 }
 
-                return db.Movies.Where(movie => movie.Genre.Equals(genre));
+                return result;
             }
         }
 
@@ -163,7 +165,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                var movies = db.Movies.OrderByDescending(m => m.ID); // TODO: Add release date to movies.
+                var movies = db.Movies.OrderByDescending(m => m.ID).ToList(); // TODO: Add release date to movies.
 
                 return limit > 0 ? movies.Take(limit) : movies;
             }

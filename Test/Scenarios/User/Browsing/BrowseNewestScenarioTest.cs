@@ -77,6 +77,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void Limiting()
         {
+            TestHelper.SetUpTestMovies();
+
             // Step 1 + 2
             int initialAmount = Movie.Newest().Count();
 
@@ -84,7 +86,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var movies = Movie.Newest(initialAmount - 1);
 
             // Step 4
-            Assert.AreEqual(movies.Count(), initialAmount - 1, "Limit does not work!");
+            Assert.AreEqual(initialAmount - 1, movies.Count(), "Limit does not work!");
         }
     }
 }

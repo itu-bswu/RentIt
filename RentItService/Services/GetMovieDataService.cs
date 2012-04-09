@@ -59,6 +59,8 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the newest added movies.</returns>
         public IEnumerable<Movie> GetNewest(string token, int limit = 0)
         {
+            var user = User.GetByToken(token);
+
             return Movie.Newest(limit);
         }
 
