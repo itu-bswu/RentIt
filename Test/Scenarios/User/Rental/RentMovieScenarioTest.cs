@@ -23,33 +23,32 @@ namespace RentIt.Tests.Scenarios.User.Rental
     {
         /// <summary>
         /// Purpose: Verify that it is possible to rent a movie.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
-        ///     1. A user called "testUser" exists in the database.
-        ///     2. A movie called "testMovie1" exists in the database.
-        /// <para></para>
+        ///     1. A user called "Smith" exists in the database.
+        ///     2. A movie called "The Matrix" exists in the database.
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure the user and movie exists in the database.
         ///     2. Make sure the rental does not already exist.
         ///     3. Rent movie.
         ///     4. Make sure the new rental is in database.
         ///     5. Remove rental from database.
+        /// </para>
         /// </summary>
         [TestMethod]
         public void RentMovieTest()
         {
             // Arrange
-            TestHelper.SetUpTestUsers();
-            TestHelper.SetUpTestMovies();
-
             string testToken;
             int testID;
             int testTokenID;
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUser");
-                Movie movie = db.Movies.First(m => m.Description.Equals("testMovie1"));
+                User user = db.Users.First(u => u.Username == "Smith");
+                Movie movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
 
                 testToken = user.Token;
                 testID = movie.ID;
@@ -72,27 +71,26 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
         /// <summary>
         /// Purpose: Verify that only users can rent movies.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
-        ///     1. A user with user name "testContentProvider" must exist in the database.
-        ///     2. A movie with the title "testMovie1" must exist in the database.
-        /// <para></para>
+        ///     1. A user with user name "Universal" must exist in the database.
+        ///     2. A movie with the title "The Matrix" must exist in the database.
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure the movie and the user exist in the database.
         ///     2. Attempt to rent the movie.
         ///     3. Catch the expected NotAUserException.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(NotAUserException))]
         public void NotAUserRentMovieTest()
         {
-            TestHelper.SetUpTestUsers();
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testContentProvider");
-                Movie movie = db.Movies.First(m => m.Description.Equals("testMovie1"));
+                User user = db.Users.First(u => u.Username == "Universal");
+                Movie movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
 
                 string testToken = user.Token;
                 int testID = movie.ID;
@@ -103,24 +101,24 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
         /// <summary>
         /// Purpose: Verify that null values are not valid.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
-        ///     1. A movie with the title "testMovie1" must exist in the database.
-        /// <para></para>
+        ///     1. A movie with the title "The Matrix" must exist in the database.
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure the database contains the required movie.
         ///     2. Attempt to rent movie with a null user.
         ///     3. Catch argument null exception.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void InvalidInputRentMovieTest()
         {
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                Movie movie = db.Movies.First(m => m.Description.Equals("testMovie1"));
+                Movie movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
 
                 int testID = movie.ID;
 

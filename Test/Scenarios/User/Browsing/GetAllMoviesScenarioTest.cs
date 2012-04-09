@@ -4,7 +4,7 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-namespace RentIt.Tests.Scenarios.User.Rental
+namespace RentIt.Tests.Scenarios.User.Browsing
 {
     using System.Linq;
 
@@ -24,11 +24,12 @@ namespace RentIt.Tests.Scenarios.User.Rental
         /// Purpose: Verify that GetAllMovies work as intended.
         /// <para>
         /// Pre-condtions:
-        ///     1. A movie with the title "testMovie1" must exist in the database.
+        ///     1. A movie with the title "The Matrix" must exist in the database.
+        ///     2. 
         /// </para>
         /// <para>
         /// Steps:
-        ///     1. Make sure the database contains the required movie.
+        ///     1. Make sure the pre-conditions hold.
         ///     2. Get a user from the database who can access the method.
         ///     3. Verify that the database values and the GetAllMovies method return the same result.
         ///     4. Add a movie to the database.
@@ -38,12 +39,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void GetAllMovies()
         {
-            TestHelper.SetUpTestMovies();
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                User testUser = db.Users.First(u => u.Username == "testUser");
+                User testUser = db.Users.First(u => u.Username == "Smith");
                 int numberOfMoviesFromDb = db.Movies.Count();
                 int numberOfMoviesFromMethod = Movie.GetAllMovies(testUser.Token).Count();
 
@@ -56,7 +54,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
                     Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the GetAllMovies method.");
                 }
 
-                Movie movie2 = new Movie
+                var movie2 = new Movie
                     {
                         Description = "testMovieForGetAllMovies",
                         FilePath = "EmptyEmptyEmpty",

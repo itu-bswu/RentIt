@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace RentIt.Tests.Scenarios.GetMovieDataService
+namespace RentIt.Tests.Scenarios.User.Browsing
 {
     using System.Linq;
 
