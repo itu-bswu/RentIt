@@ -8,13 +8,13 @@ namespace RentItService.Entities
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
 
     using RentItService.Enums;
     using RentItService.Exceptions;
+    using RentItService.Library;
 
     using Tools;
 
@@ -88,7 +88,8 @@ namespace RentItService.Entities
                     db.Rentals.Remove(r);
                 }
 
-                var filePath = Constants.UploadDownloadFileFolder + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
+                var filePath = Constants.UploadDownloadFileFolder
+                               + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
 
                 db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
                 db.SaveChanges();
@@ -110,21 +111,20 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(search != null);
-
-            User.GetByToken(token);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {
                 var searchTitle = search.ToLower();
                 var components = searchTitle.Split(' ');
 
-                return from movie in db.Movies
-                       let title = movie.Title.ToLower()
-                       let titleComponents = title.Split(' ')
-                       where titleComponents.Any(components.Contains)
-                       orderby title.Equals(searchTitle) descending
-                       orderby titleComponents.Count(components.Contains) descending
-                       select movie;
+                return (from movie in db.Movies
+                        let title = movie.Title.ToLower()
+                        let titleComponents = title.Split(' ')
+                        where titleComponents.Any(components.Contains)
+                        orderby title.Equals(searchTitle) descending
+                        orderby titleComponents.Count(components.Contains) descending
+                        select movie).ToList();
             }
         }
 
@@ -138,17 +138,18 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(genre != null);
-
-            User.GetByToken(token);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {
-                if (db.Movies.Count(movie => movie.Genre.Equals(genre)) == 0)
+                var result = db.Movies.Where(movie => movie.Genre.Equals(genre)).ToList();
+
+                if (!result.Any())
                 {
                     throw new UnknownGenreException();
                 }
 
-                return db.Movies.Where(movie => movie.Genre.Equals(genre));
+                return result;
             }
         }
 
@@ -163,7 +164,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                var movies = db.Movies.OrderByDescending(m => m.ID); // TODO: Add release date to movies.
+                var movies = db.Movies.OrderByDescending(m => m.ID).ToList(); // TODO: Add release date to movies.
 
                 return limit > 0 ? movies.Take(limit) : movies;
             }
@@ -186,6 +187,28 @@ namespace RentItService.Entities
             using (var db = new RentItContext())
             {
                 return db.Movies.ToList();
+            }
+        }
+
+        public static IEnumerable<Movie> MostDownloaded(string token)
+        {
+            using (var db = new RentItContext())
+            {
+                List<MovieDownload> md = new List<MovieDownload>();
+                foreach (Movie m in db.Movies)
+                {
+                    md.Add(new MovieDownload(m, m.Rentals.Count));
+                }
+
+                List<Movie> movies = new List<Movie>();
+                for (int i = 0; i < 10; i++)
+                {
+                    MovieDownload m = md.Max();
+                    md.Remove(m);
+                    movies.Add(m.Movie);
+                }
+
+                return movies;
             }
         }
     }

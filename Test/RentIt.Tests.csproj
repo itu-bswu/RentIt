@@ -117,6 +117,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,7 @@
     <Compile Include="Scenarios\SystemAdmin\GetUsersTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Profile\RentalHistoryScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\GetAllMoviesScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />

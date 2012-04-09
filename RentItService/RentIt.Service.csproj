@@ -134,6 +134,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DummyData.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Interfaces\IUploadService.cs" />
     <Compile Include="Interfaces\IUserInformation.cs" />
     <Compile Include="Library\FileRequest.cs" />
+    <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Mapping\MovieMap.cs" />
     <Compile Include="Mapping\RentalMap.cs" />
@@ -192,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

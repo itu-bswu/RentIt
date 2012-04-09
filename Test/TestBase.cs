@@ -1,4 +1,4 @@
-﻿//-------------------------------------------------------------------------------------------------
+﻿﻿//-------------------------------------------------------------------------------------------------
 // <copyright file="TestBase.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -6,8 +6,9 @@
 
 namespace RentIt.Tests
 {
+    using System.Transactions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Utils;
+    using RentIt.Tests.Utils;
 
     /// <summary>
     /// Base test class. 
@@ -15,15 +16,48 @@ namespace RentIt.Tests
     /// and empties it. Will not load any data-set.
     /// </summary>
     [TestClass]
-    public abstract class TestBase
+    public class TestBase
     {
         /// <summary>
-        /// Empty the database before each test.
+        /// Transaction scope.
+        /// </summary>
+        //private TransactionScope scope;
+        // TODO: Look into transactions to speed up test running.
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestBase"/> class. 
+        /// Empties the database.
+        /// </summary>
+        /*public TestBase()
+        {
+            using (var datautil = new DataUtil())
+            {
+                datautil.Empty();
+            }
+        }*/
+
+        /// <summary>
+        /// Initializes a new transaction for each test.
         /// </summary>
         [TestInitialize]
         public void TestInitialize()
         {
-            DataUtil.Empty();
+            //this.scope = new TransactionScope();
+
+            // TODO: Temporary fix
+            using (var datautil = new DataUtil())
+            {
+                datautil.Empty();
+            }
+        }
+
+        /// <summary>
+        /// Dispose the transaction after a test is run.
+        /// </summary>
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            //this.scope.Dispose();
         }
     }
 }

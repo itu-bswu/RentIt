@@ -117,7 +117,7 @@ namespace RentItService.Entities
             user.ID = 0;
             user.Type = UserType.User;
             user.Token = string.Empty;
-            user.Password = Hash.Sha384(user.Password + Salt);
+            user.Password = Hash.Sha512(user.Password + Salt);
 
             using (var db = new RentItContext())
             {
@@ -150,7 +150,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                password = Hash.Sha384(password + Salt);
+                password = Hash.Sha512(password + Salt);
 
                 if (!db.Users.Any(u => u.Username == username && u.Password == password))
                 {
@@ -258,12 +258,22 @@ namespace RentItService.Entities
 
                 user.Email = userObject.Email;
                 user.FullName = userObject.FullName;
-                user.Password = Hash.Sha384(user.Password + Salt);
+                user.Password = Hash.Sha512(user.Password + Salt);
 
                 db.SaveChanges();
                 user = db.Users.Find(userObject.ID);
                 return user;
             }
+        }
+
+        /// <summary>
+        /// Gets the uses rental history.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>the users rental history.</returns>
+        public static IEnumerable<Rental> GetRentalHistory(string token)
+        {
+            return User.GetByToken(token).Rentals;
         }
 
         #endregion Static methods

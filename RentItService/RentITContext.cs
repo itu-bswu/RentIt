@@ -8,6 +8,7 @@ namespace RentItService
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+
     using Entities;
     using Mapping;
 

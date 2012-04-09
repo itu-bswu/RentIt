@@ -76,8 +76,10 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented</exception>
         public IEnumerable<Rental> GetRentalHistory(string token)
         {
-            // TODO: Implement GetRentalHistory
-            throw new NotImplementedException();
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<NotAUserException>(User.GetByToken(token).Type == UserType.User);
+
+            return User.GetRentalHistory(token);
         }
 
         /// <summary>

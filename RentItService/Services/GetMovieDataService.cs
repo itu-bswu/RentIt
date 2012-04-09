@@ -46,8 +46,9 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<Movie> GetMostDownloaded(string token)
         {
-            // TODO: Implement GetMostDownloaded
-            throw new NotImplementedException();
+            Contract.Requires<ArgumentNullException>(token != null);
+
+            return Movie.MostDownloaded(token);
         }
 
         /// <summary>
@@ -58,6 +59,8 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the newest added movies.</returns>
         public IEnumerable<Movie> GetNewest(string token, int limit = 0)
         {
+            var user = User.GetByToken(token);
+
             return Movie.Newest(limit);
         }
 

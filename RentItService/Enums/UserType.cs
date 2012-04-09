@@ -15,18 +15,18 @@ namespace RentItService.Enums
         /// Normal user. 
         /// Can rent movies.
         /// </summary>
-        User,
+        User = 1,
 
         /// <summary>
         /// Content provider. 
         /// Can upload new movies.
         /// </summary>
-        ContentProvider,
+        ContentProvider = 2,
 
         /// <summary>
         /// System administrator. 
         /// Can manage users and content providers.
         /// </summary>
-        SystemAdmin
+        SystemAdmin = 3
     }
 }
