@@ -100,8 +100,9 @@ namespace RentItService.Entities
             using (var db = new RentItContext())
             {
                 var movie = db.Movies.First(m => m.ID == movieObject.ID);
+                var user = User.GetByToken(token);
 
-                if (movie.OwnerID != User.GetByToken(token).ID)
+                if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
                 {
                     throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
                 }

@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EditMovieInformationTest.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -11,6 +11,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;
     using RentItService.Entities;
+    using RentItService.Enums;
     using RentItService.Exceptions;
     using RentItService.Services;
     using Utils;
@@ -158,6 +159,52 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 };
 
             service.EditMovieInformation(testUser.Token, newMovie);
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is not possible to edit a movie 
+        /// uploaded by another content publisher.
+        /// 
+        /// Pre-condition:
+        ///     1. A movie uploaded by some publisher exists in the database.
+        /// 
+        /// Steps:
+        ///     1. Get a movie created by some user in the database.
+        ///     2. Create a new content publisher.
+        ///     3. Login as the new user.
+        ///     4. Edit movie from step 1 with publisher from step 2.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InsufficientRightsException))]
+        public void EditMovieFromOtherProvider()
+        {
+            using (var db = new RentItContext())
+            {
+                const string Username = "SomeContentPublisher";
+                const string Password = "12345";
+
+                var service = new Service();
+
+                // Step 1
+                var movie = db.Movies.First();
+
+                // Step 2
+                User.SignUp(new User
+                {
+                    Username = Username,
+                    Password = Password,
+                    Email = "publisher@somecompany.org"
+                });
+
+                db.Users.First(u => u.Username == Username).Type = UserType.ContentProvider;
+                db.SaveChanges();
+
+                // Step 3
+                var user = User.Login(Username, Password);
+
+                // Step 4
+                service.EditMovieInformation(user.Token, movie);
+            }
         }
     }
 }

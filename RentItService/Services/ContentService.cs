@@ -26,11 +26,9 @@ namespace RentItService.Services
         public void EditMovieInformation(string token, Movie movieObject)
         {
             Contract.Requires(token != null);
-            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-            Contract.Requires(movieObject.Description != null);
-            Contract.Requires(movieObject.ImagePath != null);
             Contract.Requires(movieObject.Title != null);
-            Contract.Requires(movieObject.Genre != null);
+            Contract.Requires(movieObject.FilePath != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type != UserType.User);
 
             using (var db = new RentItContext())
@@ -41,6 +39,12 @@ namespace RentItService.Services
                 }
 
                 var movie = db.Movies.Find(movieObject.ID);
+                var user = User.GetByToken(token);
+
+                if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+                {
+                    throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
+                }
 
                 movie.Description = movieObject.Description;
                 movie.ImagePath = movieObject.ImagePath;
