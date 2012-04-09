@@ -74,7 +74,7 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<string> GetAllGenres(string token)
         {
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             return Movie.GetAllGenres();
         }
@@ -87,7 +87,7 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the filtered movies.</returns>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             return Movie.ByGenre(genre);
         }
