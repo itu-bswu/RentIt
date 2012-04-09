@@ -376,17 +376,27 @@ namespace RentIt.Tests
                 superman = db.Movies.First(m => m.Title == "Superman1337");
                 spiderman = db.Movies.First(m => m.Title == "Spiderman1337");
 
-                Rental rentOne = new Rental { Movie = batman, User = testUser2, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
+                Rental rentOne = new Rental
+                                     {Movie = batman, User = testUser2, Time = new DateTime(2012, 3, 15, 10, 55, 23),};
 
-                Rental rentTwo = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 20, 5, 55, 23), };
+                Rental rentTwo = new Rental
+                                     {Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 20, 5, 55, 23),};
 
-                Rental rentThree = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 2, 20, 5, 55, 23), };
+                Rental rentThree = new Rental
+                                       {
+                                           Movie = superman,
+                                           User = testUser3,
+                                           Time = new DateTime(2012, 2, 20, 5, 55, 23),
+                                       };
 
-                Rental rentFour = new Rental { Movie = batman, User = testUser3, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
+                Rental rentFour = new Rental
+                                      {Movie = batman, User = testUser3, Time = new DateTime(2012, 3, 15, 10, 55, 23),};
 
-                Rental rentFive = new Rental {Movie = spiderman, User = testUser4, Time = new DateTime(2012, 5,  20, 5, 55, 23)};
+                Rental rentFive = new Rental
+                                      {Movie = spiderman, User = testUser4, Time = new DateTime(2012, 5, 20, 5, 55, 23)};
 
-                Rental rentSix = new Rental {Movie = batman, User = testUser4, Time = new DateTime(2012, 4, 15, 10, 55, 23)};
+                Rental rentSix = new Rental
+                                     {Movie = batman, User = testUser4, Time = new DateTime(2012, 4, 15, 10, 55, 23)};
 
                 db.Rentals.Add(rentOne);
                 db.Rentals.Add(rentTwo);
@@ -397,5 +407,6 @@ namespace RentIt.Tests
 
                 return rentals;
             }
+        }
     }
 }
