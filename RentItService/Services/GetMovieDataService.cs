@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using RentItService.Enums;
+
 namespace RentItService.Services
 {
     using System;
@@ -72,8 +74,9 @@ namespace RentItService.Services
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         public IEnumerable<string> GetAllGenres(string token)
         {
-            // TODO: Implement GetAllGenres
-            throw new NotImplementedException();
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            return Movie.GetAllGenres();
         }
 
         /// <summary>
@@ -84,7 +87,9 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the filtered movies.</returns>
         public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
         {
-            return Movie.ByGenre(token, genre);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            return Movie.ByGenre(genre);
         }
 
         /// <summary>
