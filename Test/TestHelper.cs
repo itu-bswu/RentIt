@@ -10,6 +10,7 @@ namespace RentIt.Tests
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+
     using RentItService;
     using RentItService.Entities;
     using RentItService.Enums;
@@ -196,7 +197,7 @@ namespace RentIt.Tests
                 }
                 else
                 {
-                    var user = db.Users.First(a => a.Username == "testUser2");
+                    var user = db.Users.First(a => a.Username == "testUserRent2");
                     user.Password = "test.dk";
                     user.FullName = "Test1 User";
                     user.Email = "testUser1@testing.dk";
@@ -234,14 +235,14 @@ namespace RentIt.Tests
                 if (!db.Users.Any(a => a.Username == "testUserRent4"))
                 {
                     User u = new User
-                    {
-                        Email = "testUser1@testing.dk",
-                        FullName = "Test1 User",
-                        Password = "test.dk",
-                        Type = UserType.User,
-                        Token = "testUserToken",
-                        Username = "testUserRent4"
-                    };
+                        {
+                            Email = "testUser1@testing.dk",
+                            FullName = "Test1 User",
+                            Password = "test.dk",
+                            Type = UserType.User,
+                            Token = "testUserToken",
+                            Username = "testUserRent4"
+                        };
                     db.Users.Add(u);
                     db.SaveChanges();
                     users.Add(u);
@@ -272,89 +273,56 @@ namespace RentIt.Tests
             using (var db = new RentItContext())
             {
                 Movie batman = new Movie
-                {
-                    Description = "BatmanTest1337",
-                    FilePath = "no file location",
-                    Genre = "testGenre",
-                    ImagePath = "no image location",
-                    Rentals = new Collection<Rental>(),
-                    Title = "Batman1337"
-                };
+                    {
+                        Description = "BatmanTest1337",
+                        FilePath = "no file location1",
+                        Genre = "testGenre1",
+                        ImagePath = "no image location1",
+                        Rentals = new Collection<Rental>(),
+                        Title = "Batman1337"
+                    };
+
+                movies.Add(batman);
+                db.Movies.Add(batman);
+                db.SaveChanges();
+
                 Movie superman = new Movie
                     {
                         Description = "SupermanTest1337",
-                        FilePath = "no file location",
-                        Genre = "testGenre",
-                        ImagePath = "no image location",
+                        FilePath = "no file location2",
+                        Genre = "testGenre2",
+                        ImagePath = "no image location2",
                         Rentals = new Collection<Rental>(),
                         Title = "Superman1337"
                     };
 
+                movies.Add(superman);
+                db.Movies.Add(superman);
+                db.SaveChanges();
+
                 Movie spiderman = new Movie
                     {
                         Description = "SpidermanTest1337",
-                        FilePath = "no file location",
-                        Genre = "testGenre",
-                        ImagePath = "no image location",
+                        FilePath = "no file location3",
+                        Genre = "testGenre3",
+                        ImagePath = "no image location3",
                         Rentals = new Collection<Rental>(),
                         Title = "Spiderman1337"
                     };
 
-                movies.Add(batman);
-                movies.Add(superman);
                 movies.Add(spiderman);
-                db.Movies.Add(batman);
-                db.Movies.Add(superman);
                 db.Movies.Add(spiderman);
+                db.SaveChanges();
             }
             return movies;
         }
-        public static IEnumerable<Rental> SetUpTestRentals()
-        {
-            SetUpRentalTestUsers();
-            SetUpMoviesForRentalTest();
 
-            User testUser1;
-            User testUser2;
-            User testUser3;
-
-            Movie batman;
-            Movie superman;
-
-            List<Rental> rentals = new List<Rental>();
-
-            using (var db = new RentItContext())
-            {
-                testUser1 = db.Users.First(u => u.Username == "testUserRent1");
-                testUser2 = db.Users.First(u => u.Username == "testUserRent2");
-                testUser3 = db.Users.First(u => u.Username == "testUserRent3");
-
-                batman = db.Movies.First(m => m.Title == "Batman1337");
-                superman = db.Movies.First(m => m.Title == "Superman1337");
-
-                Rental rentOne = new Rental { Movie = batman, User = testUser2, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
-
-                Rental rentTwo = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 20, 5, 55, 23), };
-
-                Rental rentThree = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 2, 20, 5, 55, 23), };
-
-                Rental rentFour = new Rental { Movie = batman, User = testUser3, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
-
-                db.Rentals.Add(rentOne);
-                db.Rentals.Add(rentTwo);
-                db.Rentals.Add(rentThree);
-                db.Rentals.Add(rentFour);
-
-                return rentals;
-            }
-        }
 
         public static IEnumerable<Rental> TestRentalsMostDownloaded()
         {
             SetUpRentalTestUsers();
             SetUpMoviesForRentalTest();
 
-            User testUser1;
             User testUser2;
             User testUser3;
             User testUser4;
@@ -367,7 +335,6 @@ namespace RentIt.Tests
 
             using (var db = new RentItContext())
             {
-                testUser1 = db.Users.First(u => u.Username == "testUserRent1");
                 testUser2 = db.Users.First(u => u.Username == "testUserRent2");
                 testUser3 = db.Users.First(u => u.Username == "testUserRent3");
                 testUser4 = db.Users.First(u => u.Username == "testUserRent4");
@@ -378,15 +345,15 @@ namespace RentIt.Tests
 
                 Rental rentOne = new Rental { Movie = batman, User = testUser2, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
 
-                Rental rentTwo = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 20, 5, 55, 23), };
+                Rental rentTwo = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 21, 5, 55, 23), };
 
                 Rental rentThree = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 2, 20, 5, 55, 23), };
 
                 Rental rentFour = new Rental { Movie = batman, User = testUser3, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
 
-                Rental rentFive = new Rental {Movie = spiderman, User = testUser4, Time = new DateTime(2012, 5,  20, 5, 55, 23)};
+                Rental rentFive = new Rental { Movie = spiderman, User = testUser4, Time = new DateTime(2012, 5, 20, 5, 55, 23) };
 
-                Rental rentSix = new Rental {Movie = batman, User = testUser4, Time = new DateTime(2012, 4, 15, 10, 55, 23)};
+                Rental rentSix = new Rental { Movie = batman, User = testUser4, Time = new DateTime(2012, 4, 15, 10, 55, 23) };
 
                 db.Rentals.Add(rentOne);
                 db.Rentals.Add(rentTwo);
@@ -394,8 +361,10 @@ namespace RentIt.Tests
                 db.Rentals.Add(rentFour);
                 db.Rentals.Add(rentFive);
                 db.Rentals.Add(rentSix);
+                db.SaveChanges();
 
                 return rentals;
             }
+        }
     }
 }

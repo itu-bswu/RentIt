@@ -4,8 +4,6 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-using System.Collections.ObjectModel;
-
 namespace RentItService.Entities
 {
     using System;
@@ -171,6 +169,11 @@ namespace RentItService.Entities
             }
         }
 
+        /// <summary>
+        /// Returns a list of the 10 most rented movies.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>A list of movie objects.</returns>
         public static IEnumerable<Movie> MostDownloaded(string token)
         {
             using (var db = new RentItContext())
