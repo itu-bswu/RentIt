@@ -1,14 +1,16 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GetUsersTest.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace RentIt.Tests.Scenarios.UserInformationService
+namespace RentIt.Tests.Scenarios.SystemAdmin
 {
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using RentIt.Tests.Utils;
 
     using RentItService;
     using RentItService.Entities;
@@ -37,27 +39,27 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         ///        and that the test content publisher is among them.
         /// </summary>
         [TestMethod]
-        public void GetUsersTest1()
+        public void GetUsersValidTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
-                TestHelper.SetUpTestUsers();
+                var testAdmin = TestUser.SystemAdmin;
+                var testUser = TestUser.User;
 
-                User testAdmin = db.Users.First(u => u.Username == "testAdmin");
-                User testUser = db.Users.First(u => u.Username == "testUser");
+                var loggedinUser = User.Login(testAdmin.Username, testAdmin.Password);
 
                 var amountOfUsers = Enumerable.Count(db.Users, user => user.Type == UserType.User);
-                var userList = service.GetUsers(testAdmin.Token);
+                var userList = service.GetUsers(loggedinUser.Token);
 
                 Assert.IsNotNull(userList);
-                Assert.AreEqual(amountOfUsers, userList.Count());
+                Assert.AreEqual(amountOfUsers, userList.Count(), "A 'wrong' number of users is returned");
 
-                userList = service.GetUsers(testAdmin.Token);
+                userList = service.GetUsers(loggedinUser.Token);
 
                 Assert.IsNotNull(userList);
-                Assert.AreEqual(testUser.ID, userList.First(u => u.Username == "testUser").ID);
+                Assert.AreEqual(testUser.ID, userList.First(u => u.FullName == "James Smith").ID, "The IDs doesn't match");
             }
         }
 
@@ -70,23 +72,20 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         /// <para></para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
-        ///     2. Call GetUsers with the token from the user.
-        ///     3. Assert that an InsufficientAccessLevelException is thrown.
+        ///     2. Login as the user.
+        ///     3. Call GetUsers with the token from the user.
+        ///     4. Assert that an InsufficientAccessLevelException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
-        public void InvalidUserTypeTest()
+        [ExpectedException(typeof(InsufficientRightsException))]
+        public void GetUsersInvalidUserTypeTest()
         {
-            Service service = new Service();
+            var service = new Service();
+            var testUser = TestUser.User;
 
-            using (var db = new RentItContext())
-            {
-                TestHelper.SetUpTestUsers();
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                User testUser = db.Users.First(u => u.Username == "testUser");
-                
-                service.GetUsers(testUser.Token);
-            }
+            service.GetUsers(loggedinUser.Token);
         }
 
         /// <summary>
@@ -103,22 +102,13 @@ namespace RentIt.Tests.Scenarios.UserInformationService
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
-        public void InvalidTokenTest()
+        public void GetUsersInvalidTokenTest()
         {
-            Service service = new Service();
+            const string Token = "vneriupahv894p3n8uv92iun";
 
-            string token = "vneriupahv894p3n8uv92iun";
+            var service = new Service();
 
-// ReSharper disable UnusedVariable
-            // Disabled because we've been told to use this
-            // piece of code for the time being
-            using (var db = new RentItContext())
-// ReSharper restore UnusedVariable
-            {
-                TestHelper.SetUpTestUsers();
-
-                service.GetUsers(token);
-            }
+            service.GetUsers(Token);
         }
     }
 }

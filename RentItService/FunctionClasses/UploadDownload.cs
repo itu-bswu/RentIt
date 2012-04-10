@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="UploadDownload.cs" company="RentIt">
 // TODO: Update copyright text.
 // </copyright>
@@ -44,7 +44,7 @@ namespace RentItService.FunctionClasses
                                                       movieObject.Genre != null &
                                                       movieObject.Title != null);
 
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             // TODO: Figure out safer way to determine temporary filepath.
             string temporaryFilePath = DateTime.Now.ToString(CultureInfo.InvariantCulture) + movieObject.Title;
@@ -57,7 +57,8 @@ namespace RentItService.FunctionClasses
                     Description = movieObject.Description,
                     Genre = movieObject.Genre,
                     Title = movieObject.Title,
-                    FilePath = temporaryFilePath
+                    FilePath = temporaryFilePath,
+                    Owner = User.GetByToken(token)
                 };
                 db.Movies.Add(newMovie);
                 db.SaveChanges();
@@ -124,7 +125,7 @@ namespace RentItService.FunctionClasses
                 User user = User.GetByToken(token);
                 if (!(user.Rentals.Any(x => x.MovieID == downloadRequest.ID & x.UserID == user.ID)))
                 {
-                    throw new InsufficientAccessLevelException();
+                    throw new InsufficientRightsException();
                 }
 
                 string filePath;

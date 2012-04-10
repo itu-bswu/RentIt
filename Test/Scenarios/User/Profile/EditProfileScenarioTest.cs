@@ -105,10 +105,10 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     1. Make sure pre-condtions hold.
         ///     2. Create a new user object as a copy of the "testUser" user.
         ///     3. Call edit profile with "testContentProvider" token and the "testUser" copy object.
-        ///     4. Verify that InsufficientAccessLevelException is thrown.
+        ///     4. Verify that InsufficientRightsException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void InsufficientAccessEditProfileTest()
         {
             TestHelper.SetUpTestUsers();
