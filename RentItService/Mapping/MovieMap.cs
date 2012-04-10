@@ -45,7 +45,7 @@ namespace RentItService.Mapping
             this.Property(t => t.ImagePath).HasColumnName("image_path");
             this.Property(t => t.FilePath).HasColumnName("file_path");
             this.Property(t => t.Genre).HasColumnName("genre");
-            this.Property(t => t.OwnerID).HasColumnName("owner_id"); // TODO: Added to DB
+            this.Property(t => t.OwnerID).HasColumnName("owner_id");
 
             // Relationships
             this.HasRequired(t => t.Owner)
