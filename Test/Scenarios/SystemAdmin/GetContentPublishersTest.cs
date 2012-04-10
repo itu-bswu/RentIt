@@ -50,20 +50,20 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
                 var testAdmin = TestUser.SystemAdmin;
                 var testProvider = TestUser.ContentProvider;
 
-                User.Login(testAdmin.Username, testAdmin.Password);
+                var loggedinUser = User.Login(testAdmin.Username, testAdmin.Password);
 
                 Assert.IsNotNull(testProvider);
 
                 var amountOfPublishers = Enumerable.Count(db.Users, user => user.Type == UserType.ContentProvider);
-                var publisherList = service.GetContentPublishers(testAdmin.Token);
+                var publisherList = service.GetContentPublishers(loggedinUser.Token);
 
                 Assert.IsNotNull(publisherList);
                 Assert.AreEqual(amountOfPublishers, publisherList.Count(), "A 'wrong' number of Content Publishers is returned");
 
-                publisherList = service.GetContentPublishers(testAdmin.Token);
+                publisherList = service.GetContentPublishers(loggedinUser.Token);
 
                 Assert.IsNotNull(publisherList);
-                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.Username == "Universal Pictures").ID, "The IDs doesn't match");
+                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.FullName == "Universal Pictures").ID, "The IDs doesn't match");
             }
         }
 
@@ -86,9 +86,9 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
             var service = new Service();
             var testUser = TestUser.User;
 
-            User.Login(testUser.Username, testUser.Password);
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            service.GetContentPublishers(testUser.Token);
+            service.GetContentPublishers(loggedinUser.Token);
         }
 
         /// <summary>

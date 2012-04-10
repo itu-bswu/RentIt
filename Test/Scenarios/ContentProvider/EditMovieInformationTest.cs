@@ -50,7 +50,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var testUser = TestUser.SystemAdmin;
                 var testMovie = db.Movies.First();
 
-                User.Login(testUser.Username, testUser.Password);
+                var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {
@@ -63,7 +63,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         Title = "Trolling for beginners"
                     };
 
-                service.EditMovieInformation(testUser.Token, newMovie);
+                service.EditMovieInformation(loggedinUser.Token, newMovie);
 
                 Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
 
@@ -103,7 +103,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var testUser = TestUser.User;
                 var testMovie = db.Movies.First();
 
-                User.Login(testUser.Username, testUser.Password);
+                var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {
@@ -116,7 +116,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         Title = "Trolling for beginners"
                     };
 
-                service.EditMovieInformation(testUser.Token, newMovie);
+                service.EditMovieInformation(loggedinUser.Token, newMovie);
             }
         }
 
@@ -143,9 +143,9 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         public void EditMovieInformationInvalidMovieIdTypeTest()
         {
             var service = new Service();
-            var testUser = TestUser.User;
+            var testUser = TestUser.ContentProvider;
 
-            User.Login(testUser.Username, testUser.Password);
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
             var newMovie = new Movie
                 {
@@ -158,7 +158,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     Title = "Trolling for beginners"
                 };
 
-            service.EditMovieInformation(testUser.Token, newMovie);
+            service.EditMovieInformation(loggedinUser.Token, newMovie);
         }
 
         /// <summary>

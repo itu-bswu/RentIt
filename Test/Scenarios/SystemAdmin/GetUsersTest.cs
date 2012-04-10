@@ -48,18 +48,18 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
                 var testAdmin = TestUser.SystemAdmin;
                 var testUser = TestUser.User;
 
-                User.Login(testAdmin.Username, testAdmin.Password);
+                var loggedinUser = User.Login(testAdmin.Username, testAdmin.Password);
 
                 var amountOfUsers = Enumerable.Count(db.Users, user => user.Type == UserType.User);
-                var userList = service.GetUsers(testAdmin.Token);
+                var userList = service.GetUsers(loggedinUser.Token);
 
                 Assert.IsNotNull(userList);
                 Assert.AreEqual(amountOfUsers, userList.Count(), "A 'wrong' number of users is returned");
 
-                userList = service.GetUsers(testAdmin.Token);
+                userList = service.GetUsers(loggedinUser.Token);
 
                 Assert.IsNotNull(userList);
-                Assert.AreEqual(testUser.ID, userList.First(u => u.Username == "James Smith").ID, "The IDs doesn't match");
+                Assert.AreEqual(testUser.ID, userList.First(u => u.FullName == "James Smith").ID, "The IDs doesn't match");
             }
         }
 
@@ -83,9 +83,9 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
             var service = new Service();
             var testUser = TestUser.User;
 
-            User.Login(testUser.Username, testUser.Password);
-                
-            service.GetUsers(testUser.Token);
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
+
+            service.GetUsers(loggedinUser.Token);
         }
 
         /// <summary>
