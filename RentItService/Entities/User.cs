@@ -96,6 +96,12 @@ namespace RentItService.Entities
         public string Token { get; set; }
 
         /// <summary>
+        /// Gets or sets a list of the movies that the user has added to the system. 
+        /// (Only content providers).
+        /// </summary>
+        public virtual ICollection<Movie> UploadedMovies { get; set; } 
+
+        /// <summary>
         /// Gets or sets a list of the user's rentals.
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
@@ -252,7 +258,7 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentException>(userObject.Email != string.Empty & userObject.Email.Contains("@"));
             Contract.Requires<ArgumentException>(userObject.Password != string.Empty);
 
-            Contract.Requires<InsufficientAccessLevelException>(GetByToken(token).ID == userObject.ID);
+            Contract.Requires<InsufficientRightsException>(GetByToken(token).ID == userObject.ID);
 
             using (var db = new RentItContext())
             {

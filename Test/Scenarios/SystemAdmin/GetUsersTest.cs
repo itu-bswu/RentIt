@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GetUsersTest.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -41,25 +41,25 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
         [TestMethod]
         public void GetUsersValidTest()
         {
-            Service service = new Service();
+            var service = new Service();
 
             using (var db = new RentItContext())
             {
                 var testAdmin = TestUser.SystemAdmin;
                 var testUser = TestUser.User;
 
-                User.Login(testAdmin.Username, testAdmin.Password);
+                var loggedinUser = User.Login(testAdmin.Username, testAdmin.Password);
 
                 var amountOfUsers = Enumerable.Count(db.Users, user => user.Type == UserType.User);
-                var userList = service.GetUsers(testAdmin.Token);
+                var userList = service.GetUsers(loggedinUser.Token);
 
                 Assert.IsNotNull(userList);
                 Assert.AreEqual(amountOfUsers, userList.Count(), "A 'wrong' number of users is returned");
 
-                userList = service.GetUsers(testAdmin.Token);
+                userList = service.GetUsers(loggedinUser.Token);
 
                 Assert.IsNotNull(userList);
-                Assert.AreEqual(testUser.ID, userList.First(u => u.Username == "James Smith").ID, "The IDs doesn't match");
+                Assert.AreEqual(testUser.ID, userList.First(u => u.FullName == "James Smith").ID, "The IDs doesn't match");
             }
         }
 
@@ -77,19 +77,15 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
         ///     4. Assert that an InsufficientAccessLevelException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void GetUsersInvalidUserTypeTest()
         {
             var service = new Service();
+            var testUser = TestUser.User;
 
-            using (var db = new RentItContext())
-            {
-                var testUser = TestUser.User;
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                User.Login(testUser.Username, testUser.Password);
-                
-                service.GetUsers(testUser.Token);
-            }
+            service.GetUsers(loggedinUser.Token);
         }
 
         /// <summary>
@@ -108,14 +104,11 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
         [ExpectedException(typeof(UserNotFoundException))]
         public void GetUsersInvalidTokenTest()
         {
+            const string Token = "vneriupahv894p3n8uv92iun";
+
             var service = new Service();
 
-            string token = "vneriupahv894p3n8uv92iun";
-
-            using (var db = new RentItContext())
-            {
-                service.GetUsers(token);
-            }
+            service.GetUsers(Token);
         }
     }
 }

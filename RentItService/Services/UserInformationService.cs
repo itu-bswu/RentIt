@@ -62,7 +62,7 @@ namespace RentItService.Services
             Contract.Requires<ArgumentNullException>(userObject.Email != null);
             Contract.Requires<ArgumentNullException>(userObject.Password != null);
 
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).ID == userObject.ID);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).ID == userObject.ID);
 
             return User.EditProfile(token, userObject);
         }
@@ -118,7 +118,7 @@ namespace RentItService.Services
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {
@@ -146,7 +146,7 @@ namespace RentItService.Services
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {

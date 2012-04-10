@@ -11,11 +11,9 @@ namespace RentItService.Entities
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
-
-    using RentItService.Enums;
-    using RentItService.Exceptions;
-    using RentItService.Library;
-
+    using Enums;
+    using Exceptions;
+    using Library;
     using Tools;
 
     /// <summary>
@@ -62,17 +60,29 @@ namespace RentItService.Entities
         public string Genre { get; set; }
 
         /// <summary>
+        /// Gets or sets the owner ID.
+        /// </summary>
+        public int OwnerID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the owner of the movie.
+        /// </summary>
+        public virtual User Owner { get; set; }
+
+        /// <summary>
         /// Gets or sets a list of rentals of the movie.
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
 
+        /// <summary>
+        /// Gets Genres.
+        /// </summary>
         public IEnumerable<string> Genres
         {
             get
             {
-                return Genre.Split('/');
+                return this.Genre.Split('/');
             }
-            
         }
 
         /// <summary>
@@ -87,20 +97,26 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(movieObject != null);
-
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             using (var db = new RentItContext())
             {
-                foreach (var r in db.Rentals.Where(r => r.MovieID == movieObject.ID))
+                var movie = db.Movies.First(m => m.ID == movieObject.ID);
+                var user = User.GetByToken(token);
+
+                if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+                {
+                    throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
+                }
+
+                foreach (var r in db.Rentals.Where(r => r.MovieID == movie.ID))
                 {
                     db.Rentals.Remove(r);
                 }
 
-                var filePath = Constants.UploadDownloadFileFolder
-                               + db.Movies.First(m => m.ID == movieObject.ID).FilePath;
+                var filePath = Constants.UploadDownloadFileFolder + movie.FilePath;
 
-                db.Movies.Remove(db.Movies.First(m => m.ID == movieObject.ID));
+                db.Movies.Remove(movie);
                 db.SaveChanges();
 
                 if (File.Exists(filePath))
@@ -120,7 +136,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(search != null);
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
             using (var db = new RentItContext())
             {
@@ -174,7 +190,7 @@ namespace RentItService.Entities
                         from genre in genres
                         select genre).Distinct().ToList();
             }
-        } 
+        }
 
         /// <summary>
         /// Returns the newest added movies.

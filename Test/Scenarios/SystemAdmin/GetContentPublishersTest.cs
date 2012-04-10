@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GetContentPublishersTest.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -50,20 +50,20 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
                 var testAdmin = TestUser.SystemAdmin;
                 var testProvider = TestUser.ContentProvider;
 
-                User.Login(testAdmin.Username, testAdmin.Password);
+                var loggedinUser = User.Login(testAdmin.Username, testAdmin.Password);
 
                 Assert.IsNotNull(testProvider);
 
                 var amountOfPublishers = Enumerable.Count(db.Users, user => user.Type == UserType.ContentProvider);
-                var publisherList = service.GetContentPublishers(testAdmin.Token);
+                var publisherList = service.GetContentPublishers(loggedinUser.Token);
 
                 Assert.IsNotNull(publisherList);
                 Assert.AreEqual(amountOfPublishers, publisherList.Count(), "A 'wrong' number of Content Publishers is returned");
 
-                publisherList = service.GetContentPublishers(testAdmin.Token);
+                publisherList = service.GetContentPublishers(loggedinUser.Token);
 
                 Assert.IsNotNull(publisherList);
-                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.Username == "Universal Pictures").ID, "The IDs doesn't match");
+                Assert.AreEqual(testProvider.ID, publisherList.First(u => u.FullName == "Universal Pictures").ID, "The IDs doesn't match");
             }
         }
 
@@ -77,22 +77,18 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
         /// Steps:
         ///     1. Assert that pre-conditions hold.
         ///     2. Call GetContentPublishers with the token from the user.
-        ///     3. Assert that an InsufficientAccessLevelException is thrown.
+        ///     3. Assert that an InsufficientRightsException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void GetContentPublishersInvalidUserTypeTest()
         {
             var service = new Service();
+            var testUser = TestUser.User;
 
-            using (var db = new RentItContext())
-            {
-                var testUser = TestUser.User;
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                User.Login(testUser.Username, testUser.Password);
-
-                service.GetContentPublishers(testUser.Token);
-            }
+            service.GetContentPublishers(loggedinUser.Token);
         }
 
         /// <summary>
@@ -111,14 +107,11 @@ namespace RentIt.Tests.Scenarios.SystemAdmin
         [ExpectedException(typeof(UserNotFoundException))]
         public void GetContentPublishersInvalidTokenTest()
         {
+            const string Token = "bneiuwnvu9p28h3ny84o28uyh43892";
+
             var service = new Service();
-
-            string token = "bneiuwnvu9p28h3ny84o28uyh43892";
-
-            using (var db = new RentItContext())
-            {
-                service.GetContentPublishers(token);
-            }
+            
+            service.GetContentPublishers(Token);
         }
     }
 }

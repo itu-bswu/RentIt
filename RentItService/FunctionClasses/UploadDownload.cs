@@ -1,8 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UploadDownload.cs" company="RentIt">
-// TODO: Update copyright text.
-// </copyright>
 // -----------------------------------------------------------------------
+// <copyright file="UploadDownload.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
 
 namespace RentItService.FunctionClasses
 {
@@ -44,7 +44,7 @@ namespace RentItService.FunctionClasses
                                                       movieObject.Genre != null &
                                                       movieObject.Title != null);
 
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             // TODO: Figure out safer way to determine temporary filepath.
             string temporaryFilePath = DateTime.Now.ToString(CultureInfo.InvariantCulture) + movieObject.Title;
@@ -57,7 +57,8 @@ namespace RentItService.FunctionClasses
                     Description = movieObject.Description,
                     Genre = movieObject.Genre,
                     Title = movieObject.Title,
-                    FilePath = temporaryFilePath
+                    FilePath = temporaryFilePath,
+                    Owner = User.GetByToken(token)
                 };
                 db.Movies.Add(newMovie);
                 db.SaveChanges();
@@ -124,11 +125,13 @@ namespace RentItService.FunctionClasses
                 User user = User.GetByToken(token);
                 if (!(user.Rentals.Any(x => x.MovieID == downloadRequest.ID & x.UserID == user.ID)))
                 {
-                    throw new InsufficientAccessLevelException();
+                    throw new InsufficientRightsException();
                 }
 
+                string filePath;
+
                 var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
-                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
+                filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
 
                 var fileInfo = new FileInfo(filePath);
 

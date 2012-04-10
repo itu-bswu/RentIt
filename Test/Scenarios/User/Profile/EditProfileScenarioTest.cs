@@ -96,12 +96,12 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     1. Make sure pre-condtions hold.
         ///     2. Create a new user object as a copy of the "Smith" user.
         ///     3. Call edit profile with "Universal" token and the "Smith" copy object.
-        ///     4. Verify that InsufficientAccessLevelException is thrown.
+        ///     4. Verify that InsufficientRightsException is thrown.
         /// </para>
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
-        public void InsufficientAccessEditProfileTest()
+        [ExpectedException(typeof(InsufficientRightsException))]
+        public void InsufficientRightsEditProfileTest()
         {
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
             var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
