@@ -127,28 +127,29 @@ namespace RentItService.Entities
         /// <summary>
         /// Searches the database for a specific movie title.
         /// </summary>
-        /// <param name="token">The session token.</param>
         /// <param name="search">The search string.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        public static IEnumerable<Movie> Search(string token, string search)
+        public static IEnumerable<Movie> Search(string search)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(search != null);
-            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            var searchTitle = search.ToLower();
+            var components = searchTitle.Split(' ');
+
+            IEnumerable<Movie> movies;
 
             using (var db = new RentItContext())
             {
-                var searchTitle = search.ToLower();
-                var components = searchTitle.Split(' ');
-
-                return (from movie in db.Movies.ToList()
-                        let title = movie.Title.ToLower()
-                        let titleComponents = title.Split(' ')
-                        where titleComponents.Any(components.Contains)
-                        orderby title.Equals(searchTitle) descending
-                        orderby titleComponents.Count(components.Contains) descending
-                        select movie).ToList();
+                movies = db.Movies.ToList();
             }
+
+            return from movie in movies
+                   let title = movie.Title.ToLower()
+                   let titleComponents = title.Split(' ')
+                   where titleComponents.Any(str => components.Any(str.Contains))
+                   orderby title.Equals(searchTitle) descending
+                   orderby titleComponents.Count(str => components.Any(str.Contains)) descending
+                   select movie;
         }
 
         /// <summary>
@@ -207,6 +208,11 @@ namespace RentItService.Entities
             }
         }
 
+        /// <summary>
+        /// Returns a list of the 10 most rented movies.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>A list of movie objects.</returns>
         public static IEnumerable<Movie> MostDownloaded(string token)
         {
             using (var db = new RentItContext())

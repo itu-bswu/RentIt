@@ -100,7 +100,9 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
         public IEnumerable<Movie> Search(string token, string search)
         {
-            return Movie.Search(token, search);
+            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.User);
+
+            return Movie.Search(search);
         }
     }
 }
