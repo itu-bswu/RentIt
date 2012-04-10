@@ -8,11 +8,10 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using RentItService;
     using RentItService.Entities;
+    using RentItService.Enums;
     using RentItService.Exceptions;
 
     /// <summary>
@@ -68,10 +67,10 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// Steps:
         ///     1. Make sure pre-conditions hold.
         ///     2. Try to delete the movie as the user.
-        ///     3. Verify that InsufficientAccessLevelException is thrown.
+        ///     3. Verify that InsufficientRightsException is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void InsufficientAccessDeleteMovieTest()
         {
             TestHelper.SetUpTestUsers();
@@ -111,6 +110,50 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var user1 = db.Users.First(u => u.Username == "testContentProvider");
 
                 Movie.DeleteMovie(user1.Token, null);
+            }
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is not possible to delete a movie 
+        /// that belongs to another content publisher
+        /// 
+        /// Pre-condition:
+        ///     1. A movie uploaded by some publisher exists in the database.
+        /// 
+        /// Steps:
+        ///     1. Get a movie created by some user in the database.
+        ///     2. Create a new content publisher.
+        ///     3. Login as the new user.
+        ///     4. Delete movie from step 1 with publisher from step 2.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InsufficientRightsException))]
+        public void DeleteMovieFromOtherProvider()
+        {
+            using (var db = new RentItContext())
+            {
+                const string Username = "SomeContentPublisher";
+                const string Password = "12345";
+
+                // Step 1
+                var movie = db.Movies.First();
+
+                // Step 2
+                User.SignUp(new User
+                {
+                    Username = Username,
+                    Password = Password,
+                    Email = "publisher@somecompany.org"
+                });
+
+                db.Users.First(u => u.Username == Username).Type = UserType.ContentProvider;
+                db.SaveChanges();
+
+                // Step 3
+                var user = User.Login(Username, Password);
+
+                // Step 4
+                Movie.DeleteMovie(user.Token, movie);
             }
         }
     }

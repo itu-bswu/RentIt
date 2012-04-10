@@ -46,7 +46,7 @@ namespace RentItService.Services
             Contract.Requires<ArgumentNullException>(
                 movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
 
-            Contract.Requires<InsufficientAccessLevelException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             return UploadDownload.UploadFile(token, uploadRequest, movieObject);
         }

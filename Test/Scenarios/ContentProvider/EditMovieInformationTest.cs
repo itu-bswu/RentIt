@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EditMovieInformationTest.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -8,15 +8,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System.Collections.ObjectModel;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using RentIt.Tests.Utils;
-
     using RentItService;
     using RentItService.Entities;
+    using RentItService.Enums;
     using RentItService.Exceptions;
     using RentItService.Services;
+    using Utils;
 
     /// <summary>
     /// Class for testing the EditMovieInformation method
@@ -52,7 +50,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var testUser = TestUser.SystemAdmin;
                 var testMovie = db.Movies.First();
 
-                User.Login(testUser.Username, testUser.Password);
+                var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {
@@ -65,7 +63,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         Title = "Trolling for beginners"
                     };
 
-                service.EditMovieInformation(testUser.Token, newMovie);
+                service.EditMovieInformation(loggedinUser.Token, newMovie);
 
                 Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
 
@@ -95,7 +93,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         ///        is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InsufficientAccessLevelException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieInformationInvalidUserTypeTest()
         {
             var service = new Service();
@@ -105,7 +103,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var testUser = TestUser.User;
                 var testMovie = db.Movies.First();
 
-                User.Login(testUser.Username, testUser.Password);
+                var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
                 var newMovie = new Movie
                     {
@@ -118,7 +116,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         Title = "Trolling for beginners"
                     };
 
-                service.EditMovieInformation(testUser.Token, newMovie);
+                service.EditMovieInformation(loggedinUser.Token, newMovie);
             }
         }
 
@@ -145,25 +143,67 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         public void EditMovieInformationInvalidMovieIdTypeTest()
         {
             var service = new Service();
+            var testUser = TestUser.ContentProvider;
 
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
+
+            var newMovie = new Movie
+                {
+                    ID = 89485618,
+                    Description = "How to troll, for people new to the art",
+                    FilePath = "You no take file location!",
+                    Genre = "NoGenre",
+                    ImagePath = "N/A",
+                    Rentals = new Collection<Rental>(),
+                    Title = "Trolling for beginners"
+                };
+
+            service.EditMovieInformation(loggedinUser.Token, newMovie);
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is not possible to edit a movie 
+        /// uploaded by another content publisher.
+        /// 
+        /// Pre-condition:
+        ///     1. A movie uploaded by some publisher exists in the database.
+        /// 
+        /// Steps:
+        ///     1. Get a movie created by some user in the database.
+        ///     2. Create a new content publisher.
+        ///     3. Login as the new user.
+        ///     4. Edit movie from step 1 with publisher from step 2.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InsufficientRightsException))]
+        public void EditMovieFromOtherProvider()
+        {
             using (var db = new RentItContext())
             {
-                var testUser = TestUser.User;
+                const string Username = "SomeContentPublisher";
+                const string Password = "12345";
 
-                User.Login(testUser.Username, testUser.Password);
+                var service = new Service();
 
-                var newMovie = new Movie
-                    {
-                        ID = 89485618,
-                        Description = "How to troll, for people new to the art",
-                        FilePath = "You no take file location!",
-                        Genre = "NoGenre",
-                        ImagePath = "N/A",
-                        Rentals = new Collection<Rental>(),
-                        Title = "Trolling for beginners"
-                    };
+                // Step 1
+                var movie = db.Movies.First();
 
-                service.EditMovieInformation(testUser.Token, newMovie);
+                // Step 2
+                User.SignUp(new User
+                {
+                    Username = Username,
+                    Password = Password,
+                    Email = "publisher@somecompany.org"
+                });
+
+                db.Users.First(u => u.Username == Username).Type = UserType.ContentProvider;
+                db.SaveChanges();
+
+                // Step 3
+                var user = User.Login(Username, Password);
+
+                // Step 4
+                service.EditMovieInformation(user.Token, movie);
             }
         }
     }
