@@ -49,9 +49,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 var testUser = TestUser.User;
                 var testMovie = db.Movies.First();
 
-                User.Login(testUser.Username, testUser.Password);
+                var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                var foundMovie = service.GetMovieInformation(testUser.Token, testMovie.ID);
+                var foundMovie = service.GetMovieInformation(loggedinUser.Token, testMovie.ID);
 
                 Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
                 Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
@@ -117,9 +117,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 var testUser = TestUser.User;
 
-                User.Login(testUser.Username, testUser.Password);
+                var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                Movie foundMovie = service.GetMovieInformation(testUser.Token, testID);
+                Movie foundMovie = service.GetMovieInformation(loggedinUser.Token, testID);
 
                 Assert.IsNull(foundMovie);
             }
