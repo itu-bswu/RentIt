@@ -28,9 +28,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
         /// <para>
         /// Pre-condtions:
         ///     1. A user with user name "Smith" must exist in the database.
-        ///     2. "Smith" must have the password 'userPassword'.
-        ///     3. "Smith" must have the FullName 'James Smith'.
-        ///     4. "Smith" must have the email 'smith@matrix.org'.
+        ///     2. "Smith" must have the FullName 'James Smith'.
+        ///     3. "Smith" must have the email 'smith@matrix.org'.
         /// </para>
         /// <para>
         /// Steps:
@@ -47,11 +46,10 @@ namespace RentIt.Tests.Scenarios.User.Profile
             // Arrange
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            Assert.AreEqual("userPassword", user.Password, "The password did not match pre-condition 2.");
-            Assert.AreEqual("James Smith", user.FullName, "The full name did not match pre-condition 3.");
-            Assert.AreEqual("smith@matrix.org", user.Email, "The email did not match pre-condition 4.");
+            Assert.AreEqual("James Smith", user.FullName, "The full name did not match pre-condition 2.");
+            Assert.AreEqual("smith@matrix.org", user.Email, "The email did not match pre-condition 3.");
 
-            var oldPassword = user.Password;
+            var oldPassword = "userPassword";
             var oldName = user.FullName;
             var oldEmail = user.Email;
             var oldID = user.ID;
@@ -61,7 +59,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Email = user.Email.ToUpper(),
                 FullName = user.FullName.ToUpper(),
                 ID = user.ID,
-                Password = user.Password.ToUpper(),
+                Password = oldPassword.ToUpper(),
                 Rentals = user.Rentals,
                 Token = user.Token,
                 Type = user.Type,

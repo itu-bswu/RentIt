@@ -223,6 +223,7 @@
   <ItemGroup>
     <Content Include="Utils\Dataset\Create.sql" />
     <Content Include="Utils\Dataset\Data.sql" />
+    <Content Include="Utils\Dataset\DropTables.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

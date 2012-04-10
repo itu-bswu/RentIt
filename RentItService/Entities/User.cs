@@ -99,7 +99,7 @@ namespace RentItService.Entities
         /// Gets or sets a list of the movies that the user has added to the system. 
         /// (Only content providers).
         /// </summary>
-        public virtual ICollection<Movie> UploadedMovies { get; set; } 
+        public virtual ICollection<Movie> UploadedMovies { get; set; }
 
         /// <summary>
         /// Gets or sets a list of the user's rentals.
@@ -299,7 +299,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                return db.Rentals.Where(r => r.UserID == user.ID & r.Time > newTime);
+                return db.Rentals.Where(r => r.UserID == user.ID & r.Time > newTime).ToList();
             }
         }
 

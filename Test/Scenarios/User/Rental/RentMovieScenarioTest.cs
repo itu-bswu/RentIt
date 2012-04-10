@@ -50,7 +50,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             using (var db = new RentItContext())
             {
                 var user = User.Login(TestUser.User.Username, TestUser.User.Password);
-                var movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var movie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
                 testToken = user.Token;
                 testID = movie.ID;
@@ -92,7 +92,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             using (var db = new RentItContext())
             {
                 var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-                var movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var movie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
                 var testToken = user.Token;
                 var testID = movie.ID;
@@ -120,7 +120,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             using (var db = new RentItContext())
             {
-                var movie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var movie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
                 int testID = movie.ID;
 

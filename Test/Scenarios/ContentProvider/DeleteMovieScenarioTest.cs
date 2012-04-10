@@ -43,9 +43,9 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("The Matrix")), "Pre-condition 1 does not hold.");
+                Assert.IsTrue(db.Movies.Any(m => m.Title.Equals("The Matrix")), "Pre-condition 1 does not hold.");
 
-                var testMovie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var testMovie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
                 var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
@@ -56,7 +56,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             using (var db = new RentItContext())
             {
-                Assert.IsFalse(db.Movies.Any(m => m.Description.Equals("The Matrix")), "Movie is still in the database.");
+                Assert.IsFalse(db.Movies.Any(m => m.Title.Equals("The Matrix")), "Movie is still in the database.");
             }
 
             Assert.IsFalse(fi.Exists, "The file still exists in the file system.");
@@ -66,7 +66,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// Purpose: Verify that only Content Providers can delete movies.
         /// <para></para>
         /// Pre-condtions:
-        ///     1. A movie with the description "The Matrix" must exist in the database.
+        ///     1. A movie with the title "The Matrix" must exist in the database.
         ///     2. A user with the user name "Smith" must exist in the database.
         /// <para></para>
         /// Steps:
@@ -80,9 +80,9 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         {
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("The Matrix")), "Pre-condition 1 does not hold.");
+                Assert.IsTrue(db.Movies.Any(m => m.Title.Equals("The Matrix")), "Pre-condition 1 does not hold.");
 
-                var testMovie = db.Movies.First(m => m.Description.Equals("The Matrix"));
+                var testMovie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
                 var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
 
