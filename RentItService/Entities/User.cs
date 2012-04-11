@@ -295,11 +295,11 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
 
             var user = User.GetByToken(token);
-            var newTime = DateTime.Now.AddDays(Constants.DaysToRent);
+            var limitRentalTime = DateTime.Now.AddDays(-Constants.DaysToRent);
 
             using (var db = new RentItContext())
             {
-                return db.Rentals.Where(r => r.UserID == user.ID & r.Time > newTime).ToList();
+                return db.Rentals.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
             }
         }
 

@@ -40,7 +40,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         ///     6. Verify that the current rentals are all current.
         /// </para>
         /// </summary>
-        [TestMethod]
+        [TestMethod] // TODO: Add test of limits
         public void GetCurrentRentalsTest()
         {
             var smith = User.Login(TestUser.User.Username, TestUser.User.Password);
