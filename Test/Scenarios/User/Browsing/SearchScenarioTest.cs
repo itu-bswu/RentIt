@@ -27,23 +27,18 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// 
         /// Steps:
         ///     1. Perform a search for the title of a movie in the database
-        ///     2. Verify that the movie was returned
+        ///     2. Verify that the movie was returned as the first one
         /// </summary>
         [TestMethod]
         public void SearchExcactTitle()
         {
-            TestHelper.SetUpTestUsers();
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                var user = db.Users.First(u => u.Username == "testUser");
-
                 // Step 1
-                var movies = Movie.Search(user.Token, "testMovie1");
+                var movies = Movie.Search("The Matrix");
 
                 // Step 2
-                Assert.IsTrue(movies.Single().Title.Equals("testMovie1"));
+                Assert.IsTrue(movies.First().Title.Equals("The Matrix"));
             }
         }
 
@@ -52,24 +47,20 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// a part of the title
         /// 
         /// Steps:
-        ///     1. Perform a search for a partly title of a movie in the database
-        ///     2. Verify that the movie was returned
+        ///     1. Perform a search for a partly title of some movies in the database
+        ///     2. Verify that the movies was returned
         /// </summary>
         [TestMethod]
         public void SearchPartlyTitle()
         {
-            TestHelper.SetUpTestUsers();
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                var user = db.Users.First(u => u.Username == "testUser");
-
                 // Step 1
-                var movies = Movie.Search(user.Token, "Movie");
+                var movies = Movie.Search("ing").ToList();
 
                 // Step 2
-                Assert.IsTrue(movies.Single().Title.Equals("testMovie1"));
+                Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Fellowship of the Ring")));
+                Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Return of the King")));
             }
         }
 
@@ -84,15 +75,11 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchDifferenceCase()
         {
-            TestHelper.SetUpTestUsers();
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                var user = db.Users.First(u => u.Username == "testUser");
-                var movies = Movie.Search(user.Token, "TESTmOVIE1");
+                var movies = Movie.Search("tHE mATRIX");
 
-                Assert.IsTrue(movies.Single().Title.Equals("testMovie1"));
+                Assert.IsTrue(movies.First().Title.Equals("The Matrix"));
             }
         }
 
@@ -101,24 +88,26 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// for a title not in the database
         /// 
         /// Steps:
-        ///     1. Perform a search for a movie title that doesn't exists in the database
-        ///     2. Verify that an empty collection was returned
+        ///     1. Generate a string that doesn't exist in any title in the database
+        ///     2. Verify that an empty collection is returned from a search
         /// </summary>
         [TestMethod]
         public void SearchWithoutResult()
         {
-            TestHelper.SetUpTestUsers();
+            string randString;
+            var rand = new Random();
 
+            // Step 1
             using (var db = new RentItContext())
             {
-                var user = db.Users.First(u => u.Username == "testUser");
-
-                // Step 1
-                var movies = Movie.Search(user.Token, "movie");
-
-                // Step 2
-                Assert.IsFalse(movies.Any());
+                do
+                {
+                    randString = rand.NextDouble().ToString("0.00");
+                } while (db.Movies.ToList().Any(movie => movie.Title.Contains(randString)));
             }
+
+            // Step 2
+            Assert.IsFalse(Movie.Search(randString).Any());
         }
     }
 }
