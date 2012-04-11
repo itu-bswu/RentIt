@@ -266,7 +266,7 @@ namespace RentItService.Entities
 
                 user.Email = userObject.Email;
                 user.FullName = userObject.FullName;
-                user.Password = Hash.Sha512(user.Password + Salt);
+                user.Password = Hash.Sha512(userObject.Password + Salt);
 
                 db.SaveChanges();
                 user = db.Users.Find(userObject.ID);

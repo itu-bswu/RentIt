@@ -32,7 +32,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         /// </para>
         /// <para>
         /// Steps:
-        ///     1. Verify that the current rentals are current.
+        ///     1. Verify that the current rentals are current and belong to 'Smith'.
         ///     2. Check the number of rentals 'Smith' has.
         ///     3. Check the number of current rentals 'Smith' has.
         ///     4. Add a current rental and a non-current rental to 'Smith'.
@@ -48,6 +48,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             using (var db = new RentItContext())
             {
                 Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+                Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
 
                 var rentalsCount = db.Users.First(u => u.ID == smith.ID).Rentals.Count;
                 var currentRentalsCount =
@@ -64,7 +65,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
                     {
                         UserID = smith.ID,
                         MovieID = db.Movies.First(m => m.Title == "Die Hard").ID,
-                        Time = new DateTime(666, 5, 15, 0, 0, 0)
+                        Time = new DateTime(1753, 5, 15, 0, 0, 0)
                     };
 
                 db.Rentals.Add(rent1);
@@ -83,45 +84,18 @@ namespace RentIt.Tests.Scenarios.User.Rental
         }
 
         /// <summary>
-        /// Purpose: 
-        /// <para>
-        /// Pre-condtions:
-        ///     1. 
-        /// </para>
+        /// Purpose: Verify that it is not possible to call the method with a null value.
         /// <para>
         /// Steps:
-        ///     1. 
-        ///     2. 
-        ///     3. 
-        ///     4. 
-        ///     5. 
+        ///     1. Attempt to call Get Current Users with a null value.
+        ///     2. Verify that ArgumentNullExpception is thrown.
         /// </para>
         /// </summary>
         [TestMethod]
-        public void DifferentUserGetCurrentRentalsTest()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void InvalidInputGetCurrentRentalsTest()
         {
-
+            User.GetCurrentRentals(null);
         }
-
-        /*
-        /// <summary>
-        /// Purpose: 
-        /// <para>
-        /// Pre-condtions:
-        ///     1. 
-        ///     2. 
-        /// </para>
-        /// <para>
-        /// Steps:
-        ///     1. 
-        ///     2. 
-        ///     3. 
-        ///     4. 
-        ///     5. 
-        /// </para>
-        /// </summary>
-        [TestMethod]
-        public void TODO: Test here!
-        */
     }
 }

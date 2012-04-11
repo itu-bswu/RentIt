@@ -2,7 +2,7 @@
 // <copyright file="GetAllMoviesScenarioTest.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
 
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
@@ -62,7 +62,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                         FilePath = "EmptyEmptyEmpty",
                         Genre = "testGenre",
                         ImagePath = "EmptyEmptyEmpty",
-                        Title = "testMovieGAM"
+                        Title = "testMovieGAM",
+                        OwnerID = 2
                     };
 
                 db.Movies.Add(movie2);

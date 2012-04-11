@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
         {
             TestHelper.SetUpRentalTestUsers();
             TestHelper.SetUpMoviesForRentalTest();
-            TestHelper.SetUpTestRentals();
+            TestHelper.TestRentalsMostDownloaded();
             TestHelper.SetUpTestUsers();
 
             using (var db = new RentItContext())
