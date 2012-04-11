@@ -79,8 +79,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void Limiting()
         {
-            TestHelper.SetUpTestMovies();
-
             // Step 1 + 2
             int initialAmount = Movie.Newest().Count();
 
