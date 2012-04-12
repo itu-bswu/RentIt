@@ -109,9 +109,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testContentProvider");
-
-                Assert.AreEqual(0, user.Rentals.Count, "contentprovider shouldn't have a rental");
+                Assert.IsFalse(db.Users.Any(u => u.Username == "testContentProvider"), "contentprovider shouldn't have any rentals!");
             }
         }
 

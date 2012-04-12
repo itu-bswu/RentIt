@@ -1,8 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="TestData.cs" company="">
-// TODO: Update copyright text.
+﻿// ------------------------------------------------------------------------------------------------
+// <copyright file="TestUser.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.Utils
 {
@@ -23,9 +23,9 @@ namespace RentIt.Tests.Utils
             {
                 return new User
                     {
-                        ID = 1, 
-                        Username = "Smith", 
-                        Password = "userPassword", 
+                        ID = 1,
+                        Username = "Smith",
+                        Password = "userPassword",
                         Email = "smith@matrix.org",
                         Type = UserType.User,
                         FullName = "James Smith"
@@ -42,9 +42,9 @@ namespace RentIt.Tests.Utils
             {
                 return new User
                     {
-                        ID = 2, 
-                        Username = "Universal", 
-                        Password = "providerPassword", 
+                        ID = 2,
+                        Username = "Universal",
+                        Password = "providerPassword",
                         Email = "rentit@universalpictures.com",
                         Type = UserType.ContentProvider,
                         FullName = "Universal Pictures"

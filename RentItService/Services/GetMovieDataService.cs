@@ -1,8 +1,8 @@
-﻿﻿// --------------------------------------------------------------------------------------------------------------------
+﻿//-------------------------------------------------------------------------------------------------
 // <copyright file="GetMovieDataService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 using RentItService.Enums;
 
@@ -100,7 +100,22 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
         public IEnumerable<Movie> Search(string token, string search)
         {
-            return Movie.Search(token, search);
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.User);
+
+            return Movie.Search(search);
+        }
+
+        /// <summary>
+        /// Finds all the movies in the database and returns them.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>All the active movies in the database.</returns>
+        public IEnumerable<Movie> GetAllMovies(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+
+            return Movie.GetAllMovies(token);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using RentIt.Tests.Utils;
+
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
@@ -23,155 +25,134 @@ namespace RentIt.Tests.Scenarios.User.Profile
     {
         /// <summary>
         /// Purpose: Verify that it is possible to edit a user profile.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
-        ///     1. A user with user name "testUser" must exist in the database.
-        ///     2. "testUser" must have the password 'test.dk'.
-        ///     3. "testUser" must have the FullName 'Test User'.
-        ///     4. "testUser" must have the email 'testUser@testing.dk'.
-        /// <para></para>
+        ///     1. A user with user name "Smith" must exist in the database.
+        ///     2. "Smith" must have the FullName 'James Smith'.
+        ///     3. "Smith" must have the email 'smith@matrix.org'.
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Assert that pre-conditions hold.
         ///     2. Copy password, full name and email into local variables.
         ///     3. Create new user with changed informaton.
         ///     4. Call editprofile with the new user.
         ///     5. Assert that the user information has changed.
+        /// </para>
         /// </summary>
         [TestMethod]
         public void EditProfileTest()
         {
             // Arrange
-            TestHelper.SetUpTestUsers();
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            string oldPassword;
-            string oldName;
-            string oldEmail;
-            int oldID;
+            Assert.AreEqual("James Smith", user.FullName, "The full name did not match pre-condition 2.");
+            Assert.AreEqual("smith@matrix.org", user.Email, "The email did not match pre-condition 3.");
 
-            using (var db = new RentItContext())
+            var oldPassword = "userPassword";
+            var oldName = user.FullName;
+            var oldEmail = user.Email;
+            var oldID = user.ID;
+
+            var user2 = new User
             {
-                var user = db.Users.First(u => u.Username == "testUser");
+                Email = user.Email.ToUpper(),
+                FullName = user.FullName.ToUpper(),
+                ID = user.ID,
+                Password = oldPassword.ToUpper(),
+                Rentals = user.Rentals,
+                Token = user.Token,
+                Type = user.Type,
+                TypeValue = user.TypeValue,
+                Username = user.Username
+            };
 
-                Assert.AreEqual("test.dk", user.Password, "The password did not match pre-condition 2.");
-                Assert.AreEqual("Test User", user.FullName, "The full name did not match pre-condition 3.");
-                Assert.AreEqual("testUser@testing.dk", user.Email, "The email did not match pre-condition 4.");
-
-                oldPassword = user.Password;
-                oldName = user.FullName;
-                oldEmail = user.Email;
-                oldID = user.ID;
-
-                var user2 = new User
-                {
-                    Email = user.Email.ToUpper(),
-                    FullName = user.FullName.ToUpper(),
-                    ID = user.ID,
-                    Password = user.Password.ToUpper(),
-                    Rentals = user.Rentals,
-                    Token = user.Token,
-                    Type = user.Type,
-                    TypeValue = user.TypeValue,
-                    Username = user.Username
-                };
-
-                // Call edit profile
-                User.EditProfile(user2.Token, user2);
-            }
+            // Call edit profile
+            User.EditProfile(user2.Token, user2);
 
             // Assert and clean
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUser");
+                var user3 = db.Users.First(u => u.Username == "Smith");
 
-                Assert.AreEqual(oldID, User.Login(user.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
-                Assert.AreEqual(oldName.ToUpper(), user.FullName, "The name was not changed as expected.");
-                Assert.AreEqual(oldEmail.ToUpper(), user.Email, "The email was not changed as expected.");
-
-                user.Password = "test.dk";
-                user.FullName = "Test User";
-                user.Email = "testUser@testing.dk";
-                db.SaveChanges();
+                Assert.AreEqual(oldID, User.Login(user3.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
+                Assert.AreEqual(oldName.ToUpper(), user3.FullName, "The name was not changed as expected.");
+                Assert.AreEqual(oldEmail.ToUpper(), user3.Email, "The email was not changed as expected.");
             }
         }
 
         /// <summary>
         /// Purpose: Verify that a different user cannot edit a users information.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
-        ///     1. A user with user name "testUser" must exist in the database.
-        ///     2. A user with user name "testContentProvider" must exist in the database.
-        /// <para></para>
+        ///     1. A user with user name "Smith" must exist in the database.
+        ///     2. A user with user name "Universal" must exist in the database.
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure pre-condtions hold.
-        ///     2. Create a new user object as a copy of the "testUser" user.
-        ///     3. Call edit profile with "testContentProvider" token and the "testUser" copy object.
+        ///     2. Create a new user object as a copy of the "Smith" user.
+        ///     3. Call edit profile with "Universal" token and the "Smith" copy object.
         ///     4. Verify that InsufficientRightsException is thrown.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientRightsException))]
-        public void InsufficientAccessEditProfileTest()
+        public void InsufficientRightsEditProfileTest()
         {
-            TestHelper.SetUpTestUsers();
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+            var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
-            using (var db = new RentItContext())
+            var user2 = new User
             {
-                var user = db.Users.First(u => u.Username == "testUser");
-                var user1 = db.Users.First(u => u.Username == "testContentProvider");
+                Email = user.Email.ToUpper(),
+                FullName = user.FullName.ToUpper(),
+                ID = user.ID,
+                Password = user.Password.ToUpper(),
+                Rentals = user.Rentals,
+                Token = user.Token,
+                Type = user.Type,
+                TypeValue = user.TypeValue,
+                Username = user.Username
+            };
 
-                var user2 = new User
-                {
-                    Email = user.Email.ToUpper(),
-                    FullName = user.FullName.ToUpper(),
-                    ID = user.ID,
-                    Password = user.Password.ToUpper(),
-                    Rentals = user.Rentals,
-                    Token = user.Token,
-                    Type = user.Type,
-                    TypeValue = user.TypeValue,
-                    Username = user.Username
-                };
-
-                User.EditProfile(user1.Token, user2);
-            }
+            User.EditProfile(user1.Token, user2);
         }
 
         /// <summary>
         /// Purpose: Verify that values in the userObject parameter cannot be null values.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
-        ///     1. A user called "testUser" must exist in the database.
-        /// <para></para>
+        ///     1. A user called "Smith" must exist in the database.
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
         ///     2. Create a new user object with invalid information.
         ///     3. Call edit profile with the new user object.
         ///     4. Verify that "ArgumentNullException" is thrown.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void InvalidInputEditProfileTest()
         {
-            TestHelper.SetUpTestUsers();
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            using (var db = new RentItContext())
+            var user2 = new User
             {
-                var user = db.Users.First(u => u.Username == "testUser");
+                Email = user.Email.ToUpper(),
+                FullName = null,
+                ID = user.ID,
+                Password = null,
+                Rentals = user.Rentals,
+                Token = user.Token,
+                Type = user.Type,
+                TypeValue = user.TypeValue,
+                Username = user.Username
+            };
 
-                var user2 = new User
-                {
-                    Email = user.Email.ToUpper(),
-                    FullName = null,
-                    ID = user.ID,
-                    Password = null,
-                    Rentals = user.Rentals,
-                    Token = user.Token,
-                    Type = user.Type,
-                    TypeValue = user.TypeValue,
-                    Username = user.Username
-                };
-
-                User.EditProfile(user.Token, user2);
-            }
+            User.EditProfile(user.Token, user2);
         }
     }
 }

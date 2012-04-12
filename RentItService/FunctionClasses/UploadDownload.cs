@@ -1,8 +1,8 @@
 // -----------------------------------------------------------------------
 // <copyright file="UploadDownload.cs" company="RentIt">
-// TODO: Update copyright text.
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 namespace RentItService.FunctionClasses
 {
@@ -114,11 +114,8 @@ namespace RentItService.FunctionClasses
         public static RemoteFileStream DownloadFile(string token, Movie downloadRequest)
         {
             Contract.Requires<ArgumentNullException>(token != null);
-
             Contract.Requires<ArgumentNullException>(downloadRequest != null);
-            Contract.Requires(downloadRequest.Genre != null &
-                              downloadRequest.Description != null &
-                              downloadRequest.Title != null);
+            Contract.Requires<ArgumentException>(downloadRequest.ID > 0);
 
             using (var db = new RentItContext())
             {
@@ -128,11 +125,9 @@ namespace RentItService.FunctionClasses
                     throw new InsufficientRightsException();
                 }
 
-                string filePath;
-
                 var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
-                filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
 
+                string filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
                 var fileInfo = new FileInfo(filePath);
 
                 // Check to see if file exists.

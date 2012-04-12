@@ -48,7 +48,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 var testUser = TestUser.User;
                 var testMovie = db.Movies.First();
-
                 var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
                 var foundMovie = service.GetMovieInformation(loggedinUser.Token, testMovie.ID);
@@ -116,7 +115,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 var testUser = TestUser.User;
-
                 var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
                 Movie foundMovie = service.GetMovieInformation(loggedinUser.Token, testID);

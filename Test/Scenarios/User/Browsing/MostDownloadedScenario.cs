@@ -1,4 +1,10 @@
-﻿namespace RentIt.Tests
+﻿// -----------------------------------------------------------------------
+// <copyright file="MostDownloadedScenario.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
+namespace RentIt.Tests.Scenarios.User.Browsing
 {
     using System.Linq;
 

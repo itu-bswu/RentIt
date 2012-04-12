@@ -7,8 +7,11 @@
 namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System;
+    using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using RentIt.Tests.Utils;
     using RentItService;
     using RentItService.Entities;
     using RentItService.Enums;
@@ -24,7 +27,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// Purpose: Verify that deletion of a movie is possible.
         /// <para></para>
         /// Pre-condtions:
-        ///     1. A movie with the description "testMovie1" must exist in the database.
+        ///     1. A movie with the description "The Matrix" must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
@@ -36,33 +39,35 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void DeleteMovieTest()
         {
-            TestHelper.SetUpTestMovies();
+            FileInfo fi;
 
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("testMovie1")));
+                Assert.IsTrue(db.Movies.Any(m => m.Title.Equals("The Matrix")), "Pre-condition 1 does not hold.");
 
-                var testMovie = db.Movies.First(m => m.Description.Equals("testMovie1"));
+                var testMovie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
-                var user1 = db.Users.First(u => u.Username == "testContentProvider");
+                var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+
+                fi = new FileInfo(testMovie.FilePath);
 
                 Movie.DeleteMovie(user1.Token, testMovie);
             }
 
             using (var db = new RentItContext())
             {
-                Assert.IsFalse(db.Movies.Any(m => m.Description.Equals("testMovie1")));
+                Assert.IsFalse(db.Movies.Any(m => m.Title.Equals("The Matrix")), "Movie is still in the database.");
             }
 
-            TestHelper.SetUpTestMovies();
+            Assert.IsFalse(fi.Exists, "The file still exists in the file system.");
         }
 
         /// <summary>
         /// Purpose: Verify that only Content Providers can delete movies.
         /// <para></para>
         /// Pre-condtions:
-        ///     1. A movie with the description "testMovie1" must exist in the database.
-        ///     2. A user with the user name "testUser" must exist in the database.
+        ///     1. A movie with the title "The Matrix" must exist in the database.
+        ///     2. A user with the user name "Smith" must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
@@ -73,16 +78,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void InsufficientAccessDeleteMovieTest()
         {
-            TestHelper.SetUpTestUsers();
-            TestHelper.SetUpTestMovies();
-
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Movies.Any(m => m.Description.Equals("testMovie1")));
+                Assert.IsTrue(db.Movies.Any(m => m.Title.Equals("The Matrix")), "Pre-condition 1 does not hold.");
 
-                var testMovie = db.Movies.First(m => m.Description.Equals("testMovie1"));
+                var testMovie = db.Movies.First(m => m.Title.Equals("The Matrix"));
 
-                var user1 = db.Users.First(u => u.Username == "testUser");
+                var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
 
                 Movie.DeleteMovie(user1.Token, testMovie);
             }
@@ -92,7 +94,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// Purpose: Verify that it is not possible to delete a null movie.
         /// <para></para>
         /// Pre-condtions:
-        ///     1. A user with the user name "testContentProvider" must exist in the database.
+        ///     1. A user with the user name "Universal" must exist in the database.
         /// <para></para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
@@ -105,12 +107,9 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         {
             TestHelper.SetUpTestUsers();
 
-            using (var db = new RentItContext())
-            {
-                var user1 = db.Users.First(u => u.Username == "testContentProvider");
+            var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
-                Movie.DeleteMovie(user1.Token, null);
-            }
+            Movie.DeleteMovie(user1.Token, null);
         }
 
         /// <summary>

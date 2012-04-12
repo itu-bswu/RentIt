@@ -12,6 +12,8 @@ namespace RentItService.Entities
     using System.Linq;
     using Enums;
     using Exceptions;
+
+    using Tools;
     using Tools.Encryption;
 
     /// <summary>
@@ -97,7 +99,7 @@ namespace RentItService.Entities
         /// Gets or sets a list of the movies that the user has added to the system. 
         /// (Only content providers).
         /// </summary>
-        public virtual ICollection<Movie> UploadedMovies { get; set; } 
+        public virtual ICollection<Movie> UploadedMovies { get; set; }
 
         /// <summary>
         /// Gets or sets a list of the user's rentals.
@@ -264,7 +266,7 @@ namespace RentItService.Entities
 
                 user.Email = userObject.Email;
                 user.FullName = userObject.FullName;
-                user.Password = Hash.Sha512(user.Password + Salt);
+                user.Password = Hash.Sha512(userObject.Password + Salt);
 
                 db.SaveChanges();
                 user = db.Users.Find(userObject.ID);
@@ -276,10 +278,29 @@ namespace RentItService.Entities
         /// Gets the uses rental history.
         /// </summary>
         /// <param name="token">The session token.</param>
-        /// <returns>the users rental history.</returns>
+        /// <returns>The users rental history.</returns>
         public static IEnumerable<Rental> GetRentalHistory(string token)
         {
             return User.GetByToken(token).Rentals;
+        }
+
+        /// <summary>
+        /// Gets the current rentals of the user.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <returns>The current rentals of the user.</returns>
+        public static IEnumerable<Rental> GetCurrentRentals(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+
+            var user = User.GetByToken(token);
+            var limitRentalTime = DateTime.Now.AddDays(-Constants.DaysToRent);
+
+            using (var db = new RentItContext())
+            {
+                return db.Rentals.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
+            }
         }
 
         #endregion Static methods

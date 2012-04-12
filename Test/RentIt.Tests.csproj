@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Test</Configuration>
@@ -130,6 +130,7 @@
     <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios\User\Browsing\BrowseNewestScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Browsing\MostDownloadedScenario.cs" />
     <Compile Include="Scenarios\User\Browsing\SearchScenarioTest.cs" />
     <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
     <Compile Include="Scenarios\ContentProvider\EditMovieInformationTest.cs" />
@@ -139,8 +140,10 @@
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Rental\RentalHistoryScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Browsing\GetAllMoviesScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Rental\GetCurrentRentalsScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Rental\RentalHistoryScenarioTest.cs" />
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -221,6 +224,7 @@
   <ItemGroup>
     <Content Include="Utils\Dataset\Create.sql" />
     <Content Include="Utils\Dataset\Data.sql" />
+    <Content Include="Utils\Dataset\DropTables.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -74,13 +74,15 @@ namespace RentItService.Entities
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
 
+        /// <summary>
+        /// Gets Genres.
+        /// </summary>
         public IEnumerable<string> Genres
         {
             get
             {
-                return Genre.Split('/');
+                return this.Genre.Split('/');
             }
-            
         }
 
         /// <summary>
@@ -127,28 +129,29 @@ namespace RentItService.Entities
         /// <summary>
         /// Searches the database for a specific movie title.
         /// </summary>
-        /// <param name="token">The session token.</param>
         /// <param name="search">The search string.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        public static IEnumerable<Movie> Search(string token, string search)
+        public static IEnumerable<Movie> Search(string search)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(search != null);
-            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
+
+            var searchTitle = search.ToLower();
+            var components = searchTitle.Split(' ');
+
+            IEnumerable<Movie> movies;
 
             using (var db = new RentItContext())
             {
-                var searchTitle = search.ToLower();
-                var components = searchTitle.Split(' ');
-
-                return (from movie in db.Movies.ToList()
-                        let title = movie.Title.ToLower()
-                        let titleComponents = title.Split(' ')
-                        where titleComponents.Any(components.Contains)
-                        orderby title.Equals(searchTitle) descending
-                        orderby titleComponents.Count(components.Contains) descending
-                        select movie).ToList();
+                movies = db.Movies.ToList();
             }
+
+            return from movie in movies
+                   let title = movie.Title.ToLower()
+                   let titleComponents = title.Split(' ')
+                   where titleComponents.Any(str => components.Any(str.Contains))
+                   orderby title.Equals(searchTitle) descending
+                   orderby titleComponents.Count(str => components.Any(str.Contains)) descending
+                   select movie;
         }
 
         /// <summary>
@@ -188,7 +191,7 @@ namespace RentItService.Entities
                         from genre in genres
                         select genre).Distinct().ToList();
             }
-        } 
+        }
 
         /// <summary>
         /// Returns the newest added movies.
@@ -204,6 +207,26 @@ namespace RentItService.Entities
                 var movies = db.Movies.OrderByDescending(m => m.ID).ToList(); // TODO: Add release date to movies.
 
                 return limit > 0 ? movies.Take(limit) : movies;
+            }
+        }
+
+        /// <summary>
+        /// Gets all the movies in the database.
+        /// </summary>
+        /// <param name="token">
+        /// The session token.
+        /// </param>
+        /// <returns>
+        /// All the movie entries in the database.
+        /// </returns>
+        public static IEnumerable<Movie> GetAllMovies(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+
+            using (var db = new RentItContext())
+            {
+                return db.Movies.ToList();
             }
         }
 

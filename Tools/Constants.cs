@@ -15,5 +15,10 @@ namespace Tools
         /// The folder used for uploads and downloads.
         /// </summary>
         public const string UploadDownloadFileFolder = @"c:\UploadDownloadTest";
+
+        /// <summary>
+        /// How many days a rental period.
+        /// </summary>
+        public const int DaysToRent = 7;
     }
 }
