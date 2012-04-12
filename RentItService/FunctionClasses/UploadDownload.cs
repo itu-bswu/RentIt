@@ -2,13 +2,12 @@
 // <copyright file="UploadDownload.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
 
 namespace RentItService.FunctionClasses
 {
     using System;
     using System.Diagnostics.Contracts;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
 
@@ -31,7 +30,7 @@ namespace RentItService.FunctionClasses
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
         /// <param name="movieObject">The movie object with the movie information.</param>
         /// <returns>True if upload was successful, false if not.</returns>
-        public static bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
+        public static bool UploadMovieFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
             Contract.Requires<ArgumentNullException>(token != null);
 
@@ -46,33 +45,49 @@ namespace RentItService.FunctionClasses
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-            // TODO: Figure out safer way to determine temporary filepath.
-            string temporaryFilePath = DateTime.Now.ToString(CultureInfo.InvariantCulture) + movieObject.Title;
+            Movie.RegisterMovie(token, movieObject);
+            bool state = UploadFile(token, uploadRequest, movieObject.ID);
+            if (state == false)
+            {
+                Movie.DeleteMovie(token, movieObject);
+            }
+
+            return state;
+        }
+
+        /// <summary>
+        /// Uploads a file to the database.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="uploadRequest">The upload request.</param>
+        /// <param name="movieID">ID of the media this file belongs to.</param>
+        /// <returns>True if the upload succeeded, false if it failed. </returns>
+        public static bool UploadFile(string token, RemoteFileStream uploadRequest, int movieID)
+        {
+            Contract.Requires<ArgumentNullException>(uploadRequest != null);
+            Contract.Requires<ArgumentNullException>(uploadRequest.FileByteStream != null &
+                                                      uploadRequest.FileName != null);
+
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             using (var db = new RentItContext())
             {
-                // Creates the new movie in the database.
-                var newMovie = new Movie
+                var tempMovie = db.Movies.Find(movieID);
+                if (tempMovie == null)
                 {
-                    Description = movieObject.Description,
-                    Genre = movieObject.Genre,
-                    Title = movieObject.Title,
-                    FilePath = temporaryFilePath,
-                    Owner = User.GetByToken(token)
-                };
-                db.Movies.Add(newMovie);
-                db.SaveChanges();
+                    throw new NoMovieFoundException("Movie was not found in the database.");
+                }
 
-                // Sets the new filepath.
-                var tempMovie = db.Movies.First(m => m.FilePath == temporaryFilePath);
-                tempMovie.FilePath = temporaryFilePath + "_" + Path.GetExtension(uploadRequest.FileName);
-                db.SaveChanges();
+                if (tempMovie.OwnerID != db.Movies.Find(movieID).OwnerID)
+                {
+                    throw new InsufficientRightsException("This user was not the one who registered the movie.");
+                }
 
-                // Attempts to upload the file to the server.
+                var movieFilePath = tempMovie.ID + "_" + tempMovie.Title + Path.GetExtension(uploadRequest.FileName);
+
                 try
                 {
-                    string filePath = Path.Combine(Constants.UploadDownloadFileFolder, tempMovie.FilePath);
-
+                    var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movieFilePath);
                     FileStream targetStream;
                     var sourceStream = uploadRequest.FileByteStream;
                     using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -88,19 +103,16 @@ namespace RentItService.FunctionClasses
                         targetStream.Close();
                         sourceStream.Close();
                     }
-
-                    return true;
                 }
                 catch
-                { // In case filestream fails, movie has to be deleted from database.
-
-                    var movie = db.Movies.First(m => m.FilePath == temporaryFilePath);
-                    db.Movies.Remove(movie);
-                    db.SaveChanges();
+                {
+                    return false;
                 }
-            }
 
-            return false;
+                tempMovie.FilePath = movieFilePath;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         /// <summary>
@@ -128,10 +140,8 @@ namespace RentItService.FunctionClasses
                     throw new InsufficientRightsException();
                 }
 
-                string filePath;
-
                 var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
-                filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
+                string filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
 
                 var fileInfo = new FileInfo(filePath);
 

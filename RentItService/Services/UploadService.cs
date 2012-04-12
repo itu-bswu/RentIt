@@ -48,7 +48,7 @@ namespace RentItService.Services
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-            return UploadDownload.UploadFile(token, uploadRequest, movieObject);
+            return UploadDownload.UploadMovieFile(token, uploadRequest, movieObject);
         }
     }
 }

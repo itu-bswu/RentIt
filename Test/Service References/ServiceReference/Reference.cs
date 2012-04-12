@@ -15,7 +15,7 @@ namespace RentIt.Tests.ServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IUploadService")]
     public interface IUploadService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUploadService/UploadFile", ReplyAction="http://tempuri.org/IUploadService/UploadFileResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUploadService/UploadMovieFile", ReplyAction="http://tempuri.org/IUploadService/UploadFileResponse")]
         void UploadFile(string token, RentItService.Library.RemoteFileStream uploadRequest, RentItService.Entities.Movie movieObject);
     }
     

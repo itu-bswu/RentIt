@@ -256,5 +256,33 @@ namespace RentItService.Entities
                 return movies;
             }
         }
+
+        /// <summary>
+        /// Registers a movie for later upload.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieObject">The movie object to be registered.</param>
+        public static void RegisterMovie(string token, Movie movieObject)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+
+            Contract.Requires<ArgumentNullException>(movieObject != null);
+            Contract.Requires<ArgumentNullException>(
+                movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
+
+            using (var db = new RentItContext())
+            {
+                var newMovie = new Movie
+                    {
+                        Description = movieObject.Description,
+                        Genre = movieObject.Genre,
+                        Title = movieObject.Title,
+                        FilePath = "emptyFilePath",
+                        OwnerID = User.GetByToken(token).ID
+                    };
+                db.Movies.Add(newMovie);
+                db.SaveChanges();
+            }
+        }
     }
 }
