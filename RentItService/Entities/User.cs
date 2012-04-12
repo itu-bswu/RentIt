@@ -174,6 +174,23 @@ namespace RentItService.Entities
         }
 
         /// <summary>
+        /// Logs the user out, clearing the session.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        public static void Logout(string token)
+        {
+            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
+
+            using (var db = new RentItContext())
+            {
+                var user = db.Users.First(u => u.Token == token);
+                user.Token = null;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// Generate a login token.
         /// </summary>
         /// <returns>Login token.</returns>

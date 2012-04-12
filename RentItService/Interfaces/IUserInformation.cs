@@ -37,6 +37,13 @@ namespace RentItService.Interfaces
         User LogIn(string userName, string password);
 
         /// <summary>
+        /// Logs the user out, clearing the session.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        [OperationContract]
+        void Logout(string token);
+
+        /// <summary>
         /// Updates a user profile.
         /// </summary>
         /// <param name="token">The session token.</param>
