@@ -49,16 +49,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         }
 
         /// <summary>
-        /// Purpose: Verify that the service returns the top most rented movies
-        ///          when there has been rented more than 10 unique movies.
-        /// </summary>
-        [TestMethod]
-        public void MostDownloadedWithMaxRentals()
-        {
-
-        }
-
-        /// <summary>
         /// Purpose: Verify that the service will return the same list to multiple users.
         /// 
         /// Steps:
