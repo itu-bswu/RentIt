@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 // Step 1
-                var movies = Movie.Search("The Matrix");
+                var movies = Movie.Search("The Matrix").ToList();
 
                 // Step 2
                 Assert.IsTrue(movies.First().Title.Equals("The Matrix"));
