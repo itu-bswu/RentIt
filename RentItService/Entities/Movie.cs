@@ -270,6 +270,8 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(
                 movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
 
+            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
+
             using (var db = new RentItContext())
             {
                 var newMovie = new Movie

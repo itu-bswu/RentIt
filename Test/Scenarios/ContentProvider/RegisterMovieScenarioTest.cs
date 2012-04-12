@@ -125,7 +125,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 FilePath = "noFilePath",
                 Genre = "testGenre",
                 ImagePath = "noImagePath",
-                Title = null,
+                Title = "testMovie1337",
                 OwnerID = user.ID
             };
 
@@ -151,7 +151,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 FilePath = "noFilePath",
                 Genre = "testGenre",
                 ImagePath = "noImagePath",
-                Title = null,
+                Title = "testMovie1337",
                 OwnerID = 10000
             };
 
