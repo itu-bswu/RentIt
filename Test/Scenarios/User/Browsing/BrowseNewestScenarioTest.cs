@@ -10,6 +10,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;
     using RentItService.Entities;
+    using Utils;
 
     /// <summary>
     /// Scenario tests for the browsing of newest movies.
@@ -44,6 +45,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 Title = "Some new movie with a unique name",
                 FilePath = "doesn't exist",
+                OwnerID = TestUser.ContentProvider.ID
             };
 
             using (var db = new RentItContext())
@@ -77,8 +79,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void Limiting()
         {
-            TestHelper.SetUpTestMovies();
-
             // Step 1 + 2
             int initialAmount = Movie.Newest().Count();
 

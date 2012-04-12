@@ -36,7 +36,6 @@ namespace RentIt.Tests.Scenarios.User.Rental
         ///     2. Make sure the rental does not already exist.
         ///     3. Rent movie.
         ///     4. Make sure the new rental is in database.
-        ///     5. Remove rental from database.
         /// </para>
         /// </summary>
         [TestMethod]
@@ -61,13 +60,10 @@ namespace RentIt.Tests.Scenarios.User.Rental
             // Act
             User.RentMovie(testToken, testID);
 
-            // Assert and clean up
+            // Assert
             using (var db = new RentItContext())
             {
                 Assert.IsTrue(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "The rental was not created.");
-
-                db.Rentals.Remove(db.Rentals.First(r => r.UserID == testTokenID & r.MovieID == testID));
-                db.SaveChanges();
             }
         }
 
