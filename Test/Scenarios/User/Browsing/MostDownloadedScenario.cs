@@ -36,11 +36,11 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUserRent3");
+                User user = db.Users.First(u => u.Username == "testContentRent");
                 var result = Movie.MostDownloaded(user.Token);
 
                 // Assert
-                Assert.AreEqual(result.First(a => a.Title == "batman"), "batman", "The first element of the list is not batman");
+                Assert.AreEqual(result.First(a => a.Title == "batman"), "batman", "The first element of the list is not the most rented");
             }
         }
 
@@ -75,7 +75,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 var result = Movie.MostDownloaded(user.Token);
 
                 // Assert
-                Assert.AreEqual(0, result, "The list is not empty");
+                Assert.AreEqual(null, result, "The list is not empty");
             }
         }
     }
