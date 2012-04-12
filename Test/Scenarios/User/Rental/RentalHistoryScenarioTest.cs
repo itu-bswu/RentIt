@@ -43,9 +43,11 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "testUserRent2");
 
-                var result = User.GetRentalHistory(user.Token);
+                var result = User.GetRentalHistory(user.Token).ToList();
 
-                Assert.AreEqual(user.Rentals, result, "The list is not filled with the same elements");
+                var rentals = user.Rentals.ToList();
+
+                Assert.AreEqual(rentals.Count, result.Count, "The list is not filled with the same amount of elements");
             }
         }
 
@@ -88,11 +90,13 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUserRent1");
+                User user = db.Users.First(u => u.Username == "testUserRent3");
 
-                var result = User.GetRentalHistory(user.Token);
+                var result = User.GetRentalHistory(user.Token).ToList();
 
-                Assert.AreEqual(user.Rentals, result, "The rental list is wrong");
+                var rentals = user.Rentals.ToList();
+
+                Assert.AreEqual(result.Count, rentals.Count, "The rental list dosn't contain the right amount of items.");
             }
         }
 

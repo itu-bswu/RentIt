@@ -6,7 +6,6 @@
 
 namespace RentIt.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -162,7 +161,7 @@ namespace RentIt.Tests
                             FullName = "Test1 User",
                             Password = "test.dk",
                             Type = UserType.ContentProvider,
-                            Token = "testUserToken",
+                            Token = "testUserToken1",
                             Username = "testUserRent1",
                         };
                     db.Users.Add(content);
@@ -188,7 +187,7 @@ namespace RentIt.Tests
                             FullName = "Test1 User",
                             Password = "test.dk",
                             Type = UserType.User,
-                            Token = "testUserToken",
+                            Token = "testUserToken2",
                             Username = "testUserRent2",
                         };
 
@@ -215,7 +214,7 @@ namespace RentIt.Tests
                             FullName = "Test1 User",
                             Password = "test.dk",
                             Type = UserType.User,
-                            Token = "testUserToken",
+                            Token = "testUserToken3",
                             Username = "testUserRent3"
                         };
                     db.Users.Add(u);
@@ -241,7 +240,7 @@ namespace RentIt.Tests
                             FullName = "Test1 User",
                             Password = "test.dk",
                             Type = UserType.User,
-                            Token = "testUserToken",
+                            Token = "testUserToken4",
                             Username = "testUserRent4"
                         };
                     db.Users.Add(u);
@@ -266,7 +265,7 @@ namespace RentIt.Tests
                         FullName = "Test1 User",
                         Password = "test.dk",
                         Type = UserType.ContentProvider,
-                        Token = "testUserToken",
+                        Token = "testUserToken5",
                         Username = "testContentRent",
                     };
                     db.Users.Add(u);
@@ -400,10 +399,15 @@ namespace RentIt.Tests
                 testUser3 = db.Users.First(u => u.Username == "testUserRent3");
                 testUser4 = db.Users.First(u => u.Username == "testUserRent4");
 
-                batman = db.Movies.First(m => m.Title == "batman");
-                superman = db.Movies.First(m => m.Title == "superman");
-                spiderman = db.Movies.First(m => m.Title == "spiderman");
 
+                User.RentMovie(testUser2.Token, 1);
+                User.RentMovie(testUser3.Token, 2);
+                User.RentMovie(testUser3.Token, 2);
+                User.RentMovie(testUser3.Token, 1);
+                User.RentMovie(testUser4.Token, 3);
+                User.RentMovie(testUser4.Token, 1);
+
+                /*
                 Rental rentOne = new Rental { Movie = batman, User = testUser2, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
 
                 Rental rentTwo = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 21, 5, 55, 23), };
@@ -423,7 +427,7 @@ namespace RentIt.Tests
                 db.Rentals.Add(rentFive);
                 db.Rentals.Add(rentSix);
                 db.SaveChanges();
-
+            */
                 return rentals;
             }
         }
