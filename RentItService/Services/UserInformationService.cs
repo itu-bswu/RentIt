@@ -50,6 +50,15 @@ namespace RentItService.Services
         }
 
         /// <summary>
+        /// Logs the user out, clearing the session.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        public void Logout(string token)
+        {
+            
+        }
+
+        /// <summary>
         /// Updates a user profile.
         /// </summary>
         /// <param name="token">The session token.</param>

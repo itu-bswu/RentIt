@@ -24,8 +24,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         /// 
         /// Steps:
         ///     1: Create instances of movies and fill with valid information (see TestHelper.SetupTestMovies).
-        ///     2: Create instaces of rentals and fill with valid information (see TestRentalMostDownloaded).
-        ///     3: Verify that the first element of the list is the top rented movie.
+        ///     2: Create instances of user and fill with valid information ( see TestHelper.SetupMoviesForRentalTest).
+        ///     3: Create instaces of rentals and fill with valid information (see TestRentalMostDownloaded).
+        ///     4: Verify that the first element of the list is the top rented movie.
         /// </summary>
         [TestMethod]
         public void MostDownloadedWithRentals()
@@ -37,45 +38,43 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 User user = db.Users.First(u => u.Username == "testContentRent");
+
                 var result = Movie.MostDownloaded(user.Token);
 
+                Assert.AreEqual(3, db.Rentals.Count(r => r.MovieID == 1));
+
                 // Assert
-                Assert.AreEqual(result.First(a => a.Title == "batman"), "batman", "The first element of the list is not the most rented");
+                Assert.AreEqual(1, result.First().ID, "The first element of the list is not the most rented");
             }
         }
 
         /// <summary>
-        /// Purpose: Verify that the service returns the top most rented movies
-        ///          when there has been rented more than 10 unique movies.
-        /// </summary>
-        [TestMethod]
-        public void MostDownloadedWithMaxRentals()
-        {
-
-        }
-
-        /// <summary>
-        /// Purpose: Verify that the service won't return a list of top most
-        ///          rented movies if there has been no rentals.
+        /// Purpose: Verify that the service will return the same list to multiple users.
         /// 
         /// Steps:
         ///     1: Create instances of movies and fill with valid information (see TestHelper.SetupTestMovies).
-        ///     2:Verify that the MostDownloaded movies list will be empty when there has been no rentals.
+        ///     2: Create instances of user and fill with valid information (see TestHelper.SetupRentalTestUsers).
+        ///     3:Verify that the MostDownloaded movies list will be same for multiple users.
         /// </summary>
         [TestMethod]
-        public void MostDownloadedWithoutRentals()
+        public void MostDownloadedWithTwoUsers()
         {
             TestHelper.SetUpRentalTestUsers();
             TestHelper.SetUpMoviesForRentalTest();
-            TestHelper.TestRentalsMostDownloaded();
+            //TestHelper.TestRentalsMostDownloaded();
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUserRent1");
-                var result = Movie.MostDownloaded(user.Token);
+                User user1 = db.Users.First(u => u.Username == "testUserRent1");
+
+                User user2 = db.Users.First(u => u.Username == "testUserRent2");
+
+                var result1 = Movie.MostDownloaded(user1.Token).ToList();
+
+                var result2 = Movie.MostDownloaded(user2.Token).ToList();
 
                 // Assert
-                Assert.AreEqual(null, result, "The list is not empty");
+                Assert.AreEqual(result1.Count, result2.Count, "The list is not the same for two diffrent users");
             }
         }
     }

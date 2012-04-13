@@ -140,6 +140,7 @@
     <Compile Include="Scenarios\SystemAdmin\GetUsersTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
+    <Compile Include="Scenarios\User\Profile\LogoutScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\GetAllMoviesScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\GetCurrentRentalsScenarioTest.cs" />
