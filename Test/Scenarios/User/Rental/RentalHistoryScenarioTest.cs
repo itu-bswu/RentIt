@@ -113,6 +113,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             using (var db = new RentItContext())
             {
+                // TODO: wtf is up with this test??????
                 Assert.IsFalse(db.Users.Any(u => u.Username == "testContentProvider"), "contentprovider shouldn't have any rentals!");
             }
         }

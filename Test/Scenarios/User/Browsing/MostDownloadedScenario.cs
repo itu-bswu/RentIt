@@ -61,7 +61,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         {
             TestHelper.SetUpRentalTestUsers();
             TestHelper.SetUpMoviesForRentalTest();
-            //TestHelper.TestRentalsMostDownloaded();
 
             using (var db = new RentItContext())
             {
