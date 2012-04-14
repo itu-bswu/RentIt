@@ -17,7 +17,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
     /// Scenario tests of the SignUp feature.
     /// </summary>
     [TestClass]
-    public class SignUpScenarioTest
+    public class SignUpScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: Verify that it is possible to sign up.

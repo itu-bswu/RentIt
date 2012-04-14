@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTest.cs" />
+    <Compile Include="Scenarios\ContentProvider\RegisterMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios\User\Browsing\BrowseNewestScenarioTest.cs" />

@@ -25,16 +25,18 @@ namespace RentIt.Tests.Scenarios.ContentProvider
     {
         /// <summary>
         /// Purpose: Verify that deletion of a movie is possible.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
         ///     1. A movie with the description "The Matrix" must exist in the database.
-        /// <para></para>
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
         ///     2. Get a content provider user.
         ///     3. Attempt to delete the movie.
         ///     4. Verify that the movie no longer exists in the database.
         ///     5. Add the movie back into the database.
+        /// </para>
         /// </summary>
         [TestMethod]
         public void DeleteMovieTest()
@@ -64,15 +66,17 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
         /// <summary>
         /// Purpose: Verify that only Content Providers can delete movies.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
         ///     1. A movie with the title "The Matrix" must exist in the database.
         ///     2. A user with the user name "Smith" must exist in the database.
-        /// <para></para>
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
         ///     2. Try to delete the movie as the user.
         ///     3. Verify that InsufficientRightsException is thrown.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientRightsException))]
@@ -92,14 +96,16 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
         /// <summary>
         /// Purpose: Verify that it is not possible to delete a null movie.
-        /// <para></para>
+        /// <para>
         /// Pre-condtions:
         ///     1. A user with the user name "Universal" must exist in the database.
-        /// <para></para>
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Make sure pre-conditions hold.
         ///     2. Try to delete a null movie.
         ///     3. Verify ArgumentNullException is thrown.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -115,15 +121,17 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// <summary>
         /// Purpose: Verify that it is not possible to delete a movie 
         /// that belongs to another content publisher
-        /// 
+        /// <para>
         /// Pre-condition:
         ///     1. A movie uploaded by some publisher exists in the database.
-        /// 
+        /// </para>
+        /// <para>
         /// Steps:
         ///     1. Get a movie created by some user in the database.
         ///     2. Create a new content publisher.
         ///     3. Login as the new user.
         ///     4. Delete movie from step 1 with publisher from step 2.
+        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InsufficientRightsException))]

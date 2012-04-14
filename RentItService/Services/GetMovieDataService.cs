@@ -4,8 +4,6 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-using RentItService.Enums;
-
 namespace RentItService.Services
 {
     using System;
@@ -14,10 +12,9 @@ namespace RentItService.Services
     using System.Linq;
 
     using Entities;
+    using Enums;
+    using Exceptions;
     using Interfaces;
-
-    using RentItService;
-    using RentItService.Exceptions;
 
     /// <summary>
     /// The movie information service.
@@ -61,7 +58,7 @@ namespace RentItService.Services
         /// <returns>An IEnumerable containing the newest added movies.</returns>
         public IEnumerable<Movie> GetNewest(string token, int limit = 0)
         {
-            var user = User.GetByToken(token);
+            User.GetByToken(token);
 
             return Movie.Newest(limit);
         }
