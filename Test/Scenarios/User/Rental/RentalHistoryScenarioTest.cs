@@ -29,7 +29,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         ///     1: Create an instance of user and fill it with valid information.
         ///     2: Create an instance of movie and fill it with valid information.
         ///     3: Create an instance of rental and fill it with valid information.
-        ///     4: Verify that the element in the users rental history is correct.
+        ///     4: Verify that the number of elements in the users rental history is correct.
         /// </summary>
         [TestMethod]
         public void RentalHistoryTest()
@@ -37,7 +37,6 @@ namespace RentIt.Tests.Scenarios.User.Rental
             TestHelper.SetUpRentalTestUsers();
             TestHelper.SetUpMoviesForRentalTest();
             TestHelper.TestRentalsMostDownloaded();
-            TestHelper.SetUpTestUsers();
 
             using (var db = new RentItContext())
             {
@@ -47,18 +46,17 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
                 var rentals = user.Rentals.ToList();
 
-                Assert.AreEqual(rentals.Count, result.Count, "The list is not filled with the same amount of elements");
+                Assert.AreEqual(result.Count, rentals.Count, "The list is not filled with the same amount of elements");
             }
         }
 
         /// <summary>
-        /// Purpose: Verify that you will get a empty list using user with no rental history.
+        /// Purpose: Verify that you will get a empty list from a user with no rental history.
         /// 
         /// Steps:
         ///     1: Create an instance of user and fill it with valid information.
         ///     2: Create an instance of movie and fill it with valid information.
-        ///     3: Create an empty rental list to compare with.
-        ///     4: Verify that list is null.
+        ///     4: Verify that the list is empty.
         /// </summary>
         [TestMethod]
         public void RentalHistoryNoRentals()
@@ -81,7 +79,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         ///     1: Create an instance of user and fill it with valid information.
         ///     2: Create an instance of movie and fill it with valid information.
         ///     3: Create an instance of rental and fill it with valid information.
-        ///     4: Verify that the list contains the same elements.
+        ///     4: Verify that the list contains the same amount of elements.
         /// </summary>
         [TestMethod]
         public void MultipleRentalHistory()
@@ -106,15 +104,16 @@ namespace RentIt.Tests.Scenarios.User.Rental
         /// Steps:
         ///     1: Create an instance of user and fill it with valid information.
         ///     2: Create an instance of movie and fill it with valid information.
-        ///     3: Verify that the rental history is null.
+        ///     3: Verify that the rental history is empty.
         /// </summary>
         [TestMethod]
         public void ContentproviderRentalHistory()
         {
             using (var db = new RentItContext())
             {
-                // TODO: wtf is up with this test??????
-                Assert.IsFalse(db.Users.Any(u => u.Username == "testContentProvider"), "contentprovider shouldn't have any rentals!");
+                User user = db.Users.First(u => u.Username == "Universal");
+
+                Assert.AreEqual(0, user.Rentals.Count, "Admin shouldn't have a rental history");
             }
         }
 
@@ -124,14 +123,14 @@ namespace RentIt.Tests.Scenarios.User.Rental
         /// Steps:
         ///     1: Create an instance of user and fill it with valid information.
         ///     2: Create an instance of movie and fill it with valid information.
-        ///     3: Verify that the rental history is null.
+        ///     3: Verify that the rental history is empty.
         /// </summary>
         [TestMethod]
         public void AdminRentalHistory()
         {
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testAdmin");
+                User user = db.Users.First(u => u.Username == "Anderson");
 
                 Assert.AreEqual(0, user.Rentals.Count, "Admin shouldn't have a rental history");
             }
