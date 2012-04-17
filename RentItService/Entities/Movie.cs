@@ -55,11 +55,6 @@ namespace RentItService.Entities
         public string FilePath { get; set; }
 
         /// <summary>
-        /// Gets or sets the genre of the movie.
-        /// </summary>
-        public string Genre { get; set; }
-
-        /// <summary>
         /// Gets or sets the owner ID.
         /// </summary>
         public int OwnerID { get; set; }
