@@ -38,6 +38,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service References\RentItService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\UserViewModels\ExampleViewModel.cs" />
     <Page Include="GUI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,10 +77,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic\AccessLogic.cs" />
-    <Compile Include="Logic\ContentProviderLogic.cs" />
-    <Compile Include="Logic\SystemAdminLogic.cs" />
-    <Compile Include="Logic\UserLogic.cs" />
+    <Compile Include="Models\AccessModel.cs" />
+    <Compile Include="Models\AdministrationModel.cs" />
+    <Compile Include="Models\MovieInformationModel.cs" />
+    <Compile Include="Models\UserInformationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -90,13 +98,73 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\RentItService\RentItClient.RentItService.Movie.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RentItService\RentItClient.RentItService.RemoteFileStream.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RentItService\RentItClient.RentItService.Rental.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RentItService\RentItClient.RentItService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RentItService\Service.wsdl" />
+    <None Include="Service References\RentItService\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service7.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\AdminViewModels\" />
+    <Folder Include="ViewModels\MasterViewModels\" />
+    <Folder Include="ViewModels\ProviderViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RentItService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RentItService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RentItService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RentItService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

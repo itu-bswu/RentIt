@@ -1,16 +1,16 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="AccessLogic.cs" company="RentIt">
+// <copyright file="AccessModel.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------
-namespace RentItClient.Logic
+namespace RentItClient.Models
 {
-    using RentItService;
+    using RentItClient.RentItService;
 
     /// <summary>
     /// Contains the logic for signing up, logging into and logging out of the RentIt service.
     /// </summary>
-    public class AccessLogic
+    public class AccessModel
     {
         /// <summary>
         /// The service connection used to access user information.
@@ -18,9 +18,9 @@ namespace RentItClient.Logic
         private readonly UserInformationClient uic;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccessLogic"/> class.
+        /// Initializes a new instance of the <see cref="AccessModel"/> class. 
         /// </summary>
-        public AccessLogic()
+        public AccessModel()
         {
             this.uic = new UserInformationClient();
         }

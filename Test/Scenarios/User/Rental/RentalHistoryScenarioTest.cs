@@ -2,9 +2,6 @@
 // <copyright file="RentalHistoryScenarioTest.cs" company="Hewlett-Packard">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// <summary>
-//   
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.Scenarios.User.Rental
@@ -113,7 +110,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "Universal");
 
-                Assert.AreEqual(0, user.Rentals.Count, "Admin shouldn't have a rental history");
+                Assert.AreEqual(0, user.Rentals.Count, "Content Provider shouldn't have a rental history");
             }
         }
 

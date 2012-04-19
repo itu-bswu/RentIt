@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="CpTGwclirHZjKRK0HL6K84RMhAc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="LEOQmaYyb0FtLGtlMVX/QbjQvd8=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IContentService">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IContentService1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IContentService</serializedValue>
+          <serializedValue>BasicHttpBinding_IContentService1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>00:01:00</serializedValue>
@@ -110,10 +110,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IDownloadService">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IDownloadService1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IDownloadService</serializedValue>
+          <serializedValue>BasicHttpBinding_IDownloadService1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>00:01:00</serializedValue>
@@ -219,10 +219,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IGetMovieData">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IGetMovieData1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IGetMovieData</serializedValue>
+          <serializedValue>BasicHttpBinding_IGetMovieData1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>00:01:00</serializedValue>
@@ -328,10 +328,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IUploadService">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IUploadService1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUploadService</serializedValue>
+          <serializedValue>BasicHttpBinding_IUploadService1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>00:01:00</serializedValue>
@@ -437,10 +437,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IUserInformation">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IUserInformation1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUserInformation</serializedValue>
+          <serializedValue>BasicHttpBinding_IUserInformation1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>00:01:00</serializedValue>
@@ -548,7 +548,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IContentService" contract="RentItService.IContentService" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentService" bindingConfiguration="BasicHttpBinding_IContentService">
+    <endpoint name="BasicHttpBinding_IContentService1" contract="RentItService.IContentService" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentService" bindingConfiguration="BasicHttpBinding_IContentService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentService</serializedValue>
@@ -560,7 +560,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IContentService</serializedValue>
+          <serializedValue>BasicHttpBinding_IContentService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>RentItService.IContentService</serializedValue>
@@ -623,7 +623,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IContentService</serializedValue>
+          <serializedValue>BasicHttpBinding_IContentService1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -633,7 +633,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IDownloadService" contract="RentItService.IDownloadService" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/Download" bindingConfiguration="BasicHttpBinding_IDownloadService">
+    <endpoint name="BasicHttpBinding_IDownloadService1" contract="RentItService.IDownloadService" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/Download" bindingConfiguration="BasicHttpBinding_IDownloadService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/Download</serializedValue>
@@ -645,7 +645,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IDownloadService</serializedValue>
+          <serializedValue>BasicHttpBinding_IDownloadService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>RentItService.IDownloadService</serializedValue>
@@ -708,7 +708,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IDownloadService</serializedValue>
+          <serializedValue>BasicHttpBinding_IDownloadService1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -718,7 +718,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IGetMovieData" contract="RentItService.IGetMovieData" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/GetMovieData" bindingConfiguration="BasicHttpBinding_IGetMovieData">
+    <endpoint name="BasicHttpBinding_IGetMovieData1" contract="RentItService.IGetMovieData" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/GetMovieData" bindingConfiguration="BasicHttpBinding_IGetMovieData1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/GetMovieData</serializedValue>
@@ -730,7 +730,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IGetMovieData</serializedValue>
+          <serializedValue>BasicHttpBinding_IGetMovieData1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>RentItService.IGetMovieData</serializedValue>
@@ -793,7 +793,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IGetMovieData</serializedValue>
+          <serializedValue>BasicHttpBinding_IGetMovieData1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -803,7 +803,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IUploadService" contract="RentItService.IUploadService" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/Upload" bindingConfiguration="BasicHttpBinding_IUploadService">
+    <endpoint name="BasicHttpBinding_IUploadService1" contract="RentItService.IUploadService" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/Upload" bindingConfiguration="BasicHttpBinding_IUploadService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/Upload</serializedValue>
@@ -815,7 +815,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUploadService</serializedValue>
+          <serializedValue>BasicHttpBinding_IUploadService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>RentItService.IUploadService</serializedValue>
@@ -878,7 +878,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUploadService</serializedValue>
+          <serializedValue>BasicHttpBinding_IUploadService1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -888,7 +888,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IUserInformation" contract="RentItService.IUserInformation" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/UserInformation" bindingConfiguration="BasicHttpBinding_IUserInformation">
+    <endpoint name="BasicHttpBinding_IUserInformation1" contract="RentItService.IUserInformation" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/UserInformation" bindingConfiguration="BasicHttpBinding_IUserInformation1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/UserInformation</serializedValue>
@@ -900,7 +900,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUserInformation</serializedValue>
+          <serializedValue>BasicHttpBinding_IUserInformation1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>RentItService.IUserInformation</serializedValue>
@@ -963,7 +963,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUserInformation</serializedValue>
+          <serializedValue>BasicHttpBinding_IUserInformation1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
