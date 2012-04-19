@@ -60,6 +60,11 @@ namespace RentItService.Entities
         public string Genre { get; set; }
 
         /// <summary>
+        /// Gets or sets the release date.
+        /// </summary>
+        public DateTime? Released { get; set; }
+
+        /// <summary>
         /// Gets or sets the owner ID.
         /// </summary>
         public int OwnerID { get; set; }
@@ -193,7 +198,7 @@ namespace RentItService.Entities
         }
 
         /// <summary>
-        /// Returns the newest added movies.
+        /// Returns the newest released movies.
         /// </summary>
         /// <param name="limit">The maximum amount of movies to return (0 = unlimited).</param>
         /// <returns>An IEnumerable of the newest movies.</returns>
@@ -203,7 +208,10 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                var movies = db.Movies.OrderByDescending(m => m.ID).ToList(); // TODO: Add release date to movies.
+                var movies = (from movie in db.Movies
+                              where movie.Released <= DateTime.Now
+                              orderby movie.Released descending
+                              select movie).ToList();
 
                 return limit > 0 ? movies.Take(limit) : movies;
             }

@@ -6,6 +6,7 @@
 
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
+    using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;
@@ -45,7 +46,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 Title = "Some new movie with a unique name",
                 FilePath = "doesn't exist",
-                OwnerID = TestUser.ContentProvider.ID
+                OwnerID = TestUser.ContentProvider.ID,
+                Released = DateTime.Now
             };
 
             using (var db = new RentItContext())

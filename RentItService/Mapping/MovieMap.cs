@@ -36,6 +36,9 @@ namespace RentItService.Mapping
 
             this.Property(t => t.Genre)
                 .HasMaxLength(50);
+
+            this.Property(t => t.Released)
+                .IsOptional();
                 
             // Table & Column Mappings
             this.ToTable("Movie");
@@ -45,6 +48,7 @@ namespace RentItService.Mapping
             this.Property(t => t.ImagePath).HasColumnName("image_path");
             this.Property(t => t.FilePath).HasColumnName("file_path");
             this.Property(t => t.Genre).HasColumnName("genre");
+            this.Property(t => t.Released).HasColumnName("release_date");
             this.Property(t => t.OwnerID).HasColumnName("owner_id");
 
             // Relationships
