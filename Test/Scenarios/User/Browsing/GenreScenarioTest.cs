@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         {
             using (var db = new RentItContext())
             {
-                var set = new HashSet<string>();
+                var set = new HashSet<Genre>();
                 
                 // Step 1
                 var genres = Movie.GetAllGenres().ToList();
@@ -87,34 +87,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             // Step 4
             Assert.AreEqual(movieCount, movies.Count());
-        }
-
-        /// <summary>
-        /// Pursose: verify that trying to get movies with an unknown genre
-        /// throws an exception
-        /// 
-        /// Steps:
-        ///     1. Generate a string that doesn't exist as a genre in the database
-        ///     2. Load all movies with a specific genre
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(UnknownGenreException))]
-        public void BrowseUnknownGenreTest()
-        {
-            string randString;
-            var rand = new Random();
-
-            // Step 1
-            using (var db = new RentItContext())
-            {
-                do
-                {
-                    randString = rand.NextDouble().ToString("0.00");
-                } while (db.Movies.ToList().Any(movie => movie.Genres.Any(genre => genre.Equals(randString))));
-            }
-
-            // Step 2
-            Movie.ByGenre(randString);
         }
     }
 }

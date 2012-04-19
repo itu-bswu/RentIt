@@ -49,7 +49,7 @@ namespace RentItService.Services
                 movie.Description = movieObject.Description;
                 movie.ImagePath = movieObject.ImagePath;
                 movie.Title = movieObject.Title;
-                movie.Genre = movieObject.Genre;
+                movie.Genres = movieObject.Genres;
 
                 db.Movies.Remove(db.Movies.Find(movieObject.ID));
                 db.SaveChanges();

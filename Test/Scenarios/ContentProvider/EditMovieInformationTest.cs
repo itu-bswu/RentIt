@@ -57,7 +57,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         ID = testMovie.ID,
                         Description = "How to troll, for people new to the art",
                         FilePath = "You no take file location!",
-                        Genre = "NoGenre",
                         ImagePath = "N/A",
                         Rentals = new Collection<Rental>(),
                         Title = "Trolling for beginners"
@@ -69,7 +68,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
                 Assert.AreEqual("Trolling for beginners", foundMovie.Title, "The titles doesn't match");
                 Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description, "The descriptions doesn't match");
-                Assert.AreEqual("NoGenre", foundMovie.Genre, "The genre doesn't match");
             }
         }
 
@@ -110,7 +108,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         ID = testMovie.ID,
                         Description = "How to troll, for people new to the art",
                         FilePath = "You no take file location!",
-                        Genre = "NoGenre",
                         ImagePath = "N/A",
                         Rentals = new Collection<Rental>(),
                         Title = "Trolling for beginners"
@@ -152,7 +149,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     ID = 89485618,
                     Description = "How to troll, for people new to the art",
                     FilePath = "You no take file location!",
-                    Genre = "NoGenre",
                     ImagePath = "N/A",
                     Rentals = new Collection<Rental>(),
                     Title = "Trolling for beginners"

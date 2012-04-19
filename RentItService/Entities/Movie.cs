@@ -27,6 +27,7 @@ namespace RentItService.Entities
         public Movie()
         {
             this.Rentals = new List<Rental>();
+            this.HasGenres = new List<HasGenre>();
         }
 
         /// <summary>
@@ -70,13 +71,64 @@ namespace RentItService.Entities
         public virtual ICollection<Rental> Rentals { get; set; }
 
         /// <summary>
+        /// Gets or sets a list of hasgenres
+        /// </summary>
+        public virtual ICollection<HasGenre> HasGenres { get; set; } 
+
+        /// <summary>
         /// Gets Genres.
         /// </summary>
-        public IEnumerable<string> Genres
+        public IList<Genre> Genres
         {
             get
             {
-                return this.Genre.Split('/');
+                return HasGenres.Select(hasGenre => hasGenre.Genre).ToList();
+            }
+
+            set
+            {
+                using (var db = new RentItContext())
+                {
+                    // remove old hasGenres
+                    foreach (var hg in db.HasGenres.Where(hg => hg.MovieId.Equals(ID)))
+                    {
+                        db.HasGenres.Remove(hg);
+                    }
+
+                    // add new hasGenres
+                    foreach (var hasGenreObj in value)
+                    {
+                        AddGenre(hasGenreObj);
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add a genre to the movie
+        /// </summary>
+        /// <param name="genre">The genre</param>
+        public void AddGenre(Genre genre)
+        {
+            using (var db = new RentItContext())
+            {
+                db.HasGenres.Add(new HasGenre(this, genre));
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Remove a genre from the movie
+        /// </summary>
+        /// <param name="genre">The Genre</param>
+        public void RemoveGenre(Genre genre)
+        {
+            using (var db = new RentItContext())
+            {
+                db.HasGenres.Remove(db.HasGenres.Single(hg => hg.Movie.Equals(this) && hg.Genre.Equals(genre)));
+                db.SaveChanges();
             }
         }
 
@@ -153,7 +205,7 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        public static IEnumerable<Movie> ByGenre(string genre)
+        public static IEnumerable<Movie> ByGenre(Genre genre)
         {
             Contract.Requires<ArgumentNullException>(genre != null);
 
@@ -176,14 +228,11 @@ namespace RentItService.Entities
         /// Returns all genres in the database
         /// </summary>
         /// <returns>An IEnumerable containing all genres as strings</returns>
-        public static IEnumerable<string> GetAllGenres()
+        public static IEnumerable<Genre> GetAllGenres()
         {
             using (var db = new RentItContext())
             {
-                return (from movie in db.Movies.ToList()
-                        let genres = movie.Genres
-                        from genre in genres
-                        select genre).Distinct().ToList();
+                return db.Genres;
             }
         }
 
@@ -262,7 +311,7 @@ namespace RentItService.Entities
 
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<ArgumentNullException>(
-                movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
+                movieObject.Description != null & movieObject.Title != null);
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
@@ -271,7 +320,6 @@ namespace RentItService.Entities
                 var newMovie = new Movie
                     {
                         Description = movieObject.Description,
-                        Genre = movieObject.Genre,
                         Title = movieObject.Title,
                         FilePath = "emptyFilePath",
                         OwnerID = User.GetByToken(token).ID

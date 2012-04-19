@@ -137,6 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DummyData.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Entities\HasGenre.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
@@ -155,6 +157,8 @@
     <Compile Include="Library\FileRequest.cs" />
     <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
+    <Compile Include="Mapping\GenreMap.cs" />
+    <Compile Include="Mapping\HasGenreMap.cs" />
     <Compile Include="Mapping\MovieMap.cs" />
     <Compile Include="Mapping\RentalMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />

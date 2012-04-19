@@ -1,4 +1,4 @@
-﻿///<author> Frederik Lysgaard </author>
+﻿/*///<author> Frederik Lysgaard </author>
 namespace RentItService
 {
     using RentItService.Entities;
@@ -35,4 +35,4 @@ namespace RentItService
             }
         }
     }
-}
+}*/
