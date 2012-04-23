@@ -1,20 +1,18 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="AdministrationModel.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="AdministrationModel.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//------------------------------------------------------------------------
 
 namespace RentItClient.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using RentItService;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Contains the logic for administrative users of the client.
     /// </summary>
     public class AdministrationModel
     {
+
     }
 }
