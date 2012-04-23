@@ -90,5 +90,76 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             // Step 4
             Assert.AreEqual(initialAmount - 1, movies.Count(), "Limit does not work!");
         }
+
+        /// <summary>
+        /// Purpose: Verify that movies with a release date in 
+        /// the future, will not appear in the newest movies.
+        /// 
+        /// Steps:
+        ///     1. Create a new movie with release date in the future.
+        ///     2. Get newest movies.
+        ///     3. Verify that the movie from step 1 is not present.
+        /// </summary>
+        [TestMethod]
+        public void AddOneInFuture()
+        {
+            Movie movie;
+
+            // Step 1
+            using (var db = new RentItContext())
+            {
+                movie = new Movie
+                {
+                    Title = "Some unique movie title",
+                    FilePath = "Not currently available",
+                    OwnerID = TestUser.ContentProvider.ID,
+                    Released = DateTime.Now.AddDays(14)
+                };
+
+                db.Movies.Add(movie);
+                db.SaveChanges();
+            }
+
+            // Step 2
+            var movies = Movie.Newest();
+
+            // Step 3
+            Assert.IsFalse(movies.Any(m => m.ID == movie.ID), "Movie should not appear in result!");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that movies without a release date, 
+        /// will not appear in the newest movies.
+        /// 
+        /// Steps:
+        ///     1. Create a new movie without a release date.
+        ///     2. Get newest movies.
+        ///     3. Verify that the movie from step 1 is not present.
+        /// </summary>
+        [TestMethod]
+        public void AddOneWithoutReleaseDate()
+        {
+            Movie movie;
+
+            // Step 1
+            using (var db = new RentItContext())
+            {
+                movie = new Movie
+                {
+                    Title = "Some unique movie title",
+                    FilePath = "Not currently available",
+                    OwnerID = TestUser.ContentProvider.ID
+                };
+
+                db.Movies.Add(movie);
+                db.SaveChanges();
+            }
+
+            // Step 2
+            var movies = Movie.Newest();
+
+            // Step 3
+            Assert.IsFalse(movies.Any(m => m.ID == movie.ID), "Movie should not appear in result!");
+        }
     }
 }
