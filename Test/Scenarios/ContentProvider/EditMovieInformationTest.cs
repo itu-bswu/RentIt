@@ -6,6 +6,7 @@
 
 namespace RentIt.Tests.Scenarios.ContentProvider
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,33 +44,41 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void EditMovieInformationValidTest()
         {
+            var testUser = TestUser.SystemAdmin;
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
+
             var service = new Service();
 
             using (var db = new RentItContext())
             {
-                var testUser = TestUser.SystemAdmin;
                 var testMovie = db.Movies.First();
 
-                var loggedinUser = User.Login(testUser.Username, testUser.Password);
+                var newTitle = "Trolling for beginners";
+                var newDescription = "How to troll, for people new to the art";
+                var newGenre = "NoGenre";
+                var newReleaseDate = testMovie.Released.HasValue
+                                         ? testMovie.Released.Value.AddDays(14)
+                                         : DateTime.Now.AddDays(14);
 
                 var newMovie = new Movie
-                    {
-                        ID = testMovie.ID,
-                        Description = "How to troll, for people new to the art",
-                        FilePath = "You no take file location!",
-                        Genre = "NoGenre",
-                        ImagePath = "N/A",
-                        Rentals = new Collection<Rental>(),
-                        Title = "Trolling for beginners"
-                    };
+                {
+                    ID = testMovie.ID,
+                    Description = newDescription,
+                    FilePath = "You no take file location!",
+                    Genre = newGenre,
+                    ImagePath = "N/A",
+                    Rentals = new Collection<Rental>(),
+                    Title = newTitle,
+                    Released = newReleaseDate
+                };
 
                 service.EditMovieInformation(loggedinUser.Token, newMovie);
 
-                Movie foundMovie = db.Movies.First(u => u.Title == "Trolling for beginners");
-
-                Assert.AreEqual("Trolling for beginners", foundMovie.Title, "The titles doesn't match");
-                Assert.AreEqual("How to troll, for people new to the art", foundMovie.Description, "The descriptions doesn't match");
-                Assert.AreEqual("NoGenre", foundMovie.Genre, "The genre doesn't match");
+                var foundMovie = db.Movies.First(u => u.Title == newTitle);
+                Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
+                Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
+                Assert.AreEqual(newGenre, foundMovie.Genre, "The genre doesn't match");
+                Assert.AreEqual(newReleaseDate, foundMovie.Released, "Release date doesn't match");
             }
         }
 
