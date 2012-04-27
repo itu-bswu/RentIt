@@ -58,7 +58,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containing all the users rentals.</returns>
-        /// <author>TBD</author>
+        /// <author>Frederik Lysgaard</author>
         [OperationContract]
         IEnumerable<Rental> GetRentalHistory(string token);
 
@@ -67,7 +67,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containg the active rentals.</returns>
-        /// <author>TBD</author>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         IEnumerable<Rental> GetCurrentRentals(string token);
 

@@ -11,8 +11,8 @@ namespace RentItClient.Models
     /// <summary>
     /// Contains the logic for administrative users of the client.
     /// </summary>
-    public class AdministrationModel
+    public static class AdministrationModel
     {
-
+        private static readonly UserInformationClient Uic = new UserInformationClient();
     }
 }

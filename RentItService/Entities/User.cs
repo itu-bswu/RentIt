@@ -303,7 +303,7 @@ namespace RentItService.Entities
         /// <returns>The users rental history.</returns>
         public static IEnumerable<Rental> GetRentalHistory(string token)
         {
-            return User.GetByToken(token).Rentals;
+            return User.GetByToken(token).Rentals.ToList();
         }
 
         /// <summary>
