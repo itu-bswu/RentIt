@@ -282,13 +282,14 @@ namespace RentItService.Entities
             using (var db = new RentItContext())
             {
                 var newMovie = new Movie
-                    {
-                        Description = movieObject.Description,
-                        Genre = movieObject.Genre,
-                        Title = movieObject.Title,
-                        FilePath = "emptyFilePath",
-                        OwnerID = User.GetByToken(token).ID
-                    };
+                {
+                    Description = movieObject.Description,
+                    Genre = movieObject.Genre,
+                    Title = movieObject.Title,
+                    FilePath = "emptyFilePath",
+                    OwnerID = User.GetByToken(token).ID,
+                    Released = movieObject.Released
+                };
                 db.Movies.Add(newMovie);
                 db.SaveChanges();
             }
