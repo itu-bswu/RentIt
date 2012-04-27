@@ -1,0 +1,190 @@
+\chapter{Design}
+\label{Design}
+In this chapter we discuss our decisions on architecture, design patterns, user interface, error handling and more.
+
+\section{Graphical User Interface}
+\label{Design_GUI}
+\subsection{Usability testing}
+\label{Design_GUI_Usability}
+When the time came to start working on the client part of the project, we were hesitant with starting to code right away since all members of the group knows software, where a bad graphical user interface (GUI) had caused it to flunk. Because of this we decided to take a more planned approach on how to design our GUI - this involved making usability tests. The aim of performing usability tests is to observe people using our product to discover errors and areas that can be improved.
+
+\subsubsection{Making a usability test}
+\label{Design_GUI_Usability_HowTo}
+To be able to make a usability test in the first place, we need an interface for the user to test, so we sat down as a team and discused what functionality our client should have. Then we made a couple of paper mockups for users to test in the first usability test. Before we started the usability test, we prepared some usability goals, which, if met, would convince us that the current GUI design should be our final GUI design.
+
+List of usability goals:
+\begin{itemize}
+\item The user should be able to finish all given tasks within a time periode of 45 seconds.
+\item The user should be able to maneuver the client without need to ask the tester qustions.
+\item The user should be positive of the design.
+\item The user should be able to recommend the service to his or her friends.
+\end {itemize}
+
+\subsubsection{Usability scenarios}
+\label{Design_GUI_Usability_scenarios}
+For the usability test itself we created a couple of scenarios. These scenarios were designed so that the user would be forced to navigate through all the clients functionalities.
+
+List of usability scenarios:
+\begin{itemize}
+\item Your have heard of this new movie rental service and you would like to sign up for it.
+\item You would like to rent "Batman the Begining" from the service.
+\item You would like to see what movies are most popular at the moment.
+\item You have gotten a new email and would like to change your profile so it uses your new email.
+\item As a movie company employee, you would like to upload some movies to the service.
+\item You have uploaded a movie with the wrong title - change it
+\item As an admin for the service you've seen some companies upload explicit material to service, delete those companies from the service.
+\item You would like to see a list of all the users who are using the service.
+\end {itemize}
+
+\subsubsection[First Iteration]{Results of the first iteration of tests}
+\label{Design_GUI_Usability_FirstIteration}
+After the first round of tests we found that the user had many difficulties with navigating through the program, specifically when asked to do 
+the scenarios which involved saving and editing of information.\\ 
+The problem was that the user wasn't used to being able to edit in the fields without
+clicking on a editbutton of some kind first and then edit the desired fields, and then get the option to save those changes.
+The user simply lacked some confirmation on whether their changes was saved or not.
+
+This came as a surprise since we had made mockups of a client which we did not feel had a lot of redundent data and functionalities. This also includes a lack of pop-up windows or extra save/edit buttons, but appafrently the need for confirmation is so ingrained in todays average user that it can't be removed without the user missing it.
+
+We set out to solve the problems spotted by our testers throughout the first iteration of tests. These were solved by adding more save buttons and some pop-up notification boxes asking for the usual "Are you sure you want to edit the information?". When this was done, we began making the alpha version of the client so that we could make a usability test with a digital mock-up.
+
+\section{Database}
+\label{Design_Database}
+\emph{Since we are using Scrum, our database is constantly evolving. The database explained here is not the final database, and it is not the initial database either. It is a snapshot of how it looks at the time of writing.}
+
+We decided quite early on to focus on simplicity and feature completeness, instead of adding a lot of half-done features and/or untested functionality. That also meant a very simple data model, as we only added what was needed to do the job.
+
+\begin{figure}[h!]  
+  \caption{Initial datamodel}
+\label{fig:Design_Database_initial}
+  \centering
+    \includegraphics[width=0.75\textwidth]{Images/Datamodel_Initial}
+\end{figure}
+
+Figure \ref{fig:Design_Database_initial} on page \pageref{fig:Design_Database_initial} displays our simple initial data model. This captures the basic information about users, such as username, password, email address and the user's full name. We also have a field called type, representing whether a given user is a normal user, a content provider or a system administrator.
+
+To begin with we only wanted to capture the basic information about the movies - like title, description and the file path. To finish it off, we added a table for capturing movie rentals. This basically was a junction table with references to the user renting the movie, the movie being rented and the time of the rental.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.75\textwidth]{Images/Datamodel_Updated}
+  \caption{Updated datamodel}
+  \label{fig:Design_Database_updated}
+\end{figure}
+
+Figure \ref{fig:Design_Database_updated} on page \pageref{fig:Design_Database_updated} displays our current data model. Since we are using scrum and work in sprints, our data model is constantly evolving. We only add things to the code and the database when it is needed. At the time of writing, our data model has been updated to the one showed in figure \ref{fig:Design_Database_updated}. The most notable difference is the genres now being in its own table. Another difference is the addition of a token to the user, which is explained later on. A movie now also has an owner and a release date.
+
+\subsection{Tables}
+\label{Design_Database_Tables}
+
+\subsubsection{User}
+\label{Design_Database_Tables_User}
+
+\begin{description}
+\item[user\_id] The user's unique ID number.
+\item[username] The user's unique username - used for login.
+\item[password] The user's password - hashed and salted.
+\item[email] The user's email address.
+\item[full\_name] Full name of the user.
+\item[type] User, Content provider or System Administrator.
+\item[token] Unique session token generated at login and cleared at logout.
+\end{description}
+
+The User table contains data about our users. To provide some security to the passwords, we salt and hash (with the SHA512 algorithm) the passwords before putting it into the database. This means that if the database is hacked, then, unless they know the salt, they will still have a hard time figuring out the password of the users. The value in the password field will be useless to them, so they only find out the usernames and they will need to try and login to our service with all possible passwords in a bruteforce attack, to try and figuring the passwords of our users.
+The problem comes up if they get access to our codebase, as they will also get access to the salt. This will make them able to bruteforce the passwords locally (and not using the login feature on our service), which will be much faster.
+
+The ``type'' field is an integer (since SQL Server 2008 doesn't have enum support) between 1 and 3. 
+
+\begin{description}
+\item[type 1] A value of 1 means that a given user is ``just'' a normal user.
+\item[type 2] A value of 2 means that the user is a content provider.
+\item[type 3] A value of 3 indicates a system administrator.
+\end{description}
+
+The ``token'' field is a session token. We didn't look much into the different WCF bindings, but we found a binding with streaming support, but with no session support. So we created our own sessions, by generating a session key upon login. This session token is then stored in the ``token'' field, and is cleared upon logout. This session token has to be provided at every service call (that requires the user to be logged in).
+
+\subsubsection{Movie}
+\label{Design_Database_Tables_Movie}
+
+\begin{description}
+\item[movie\_id] The movie's unique ID number.
+\item[title] Title of the movie.
+\item[description] A more or less detailed description of the movie.
+\item[file\_path] File path to the video file.
+\item[owner\_id] Reference to the user creating the movie.
+\item[release\_date] The release date when the movie is available for rental.
+\end{description}
+
+The Movie table is quite straight forward. A movie has a title and a description to help identify the movie. The file path is a relative path, based from the movie root folder. Currently it is only a file name, but it is called ``file\_path'' if this was to be changed later on. The ``owner\_id'' is a reference to the User table, to a content provider that created that movie.
+
+The release date is quite important. We took a decision to display all movies (also the ones not yet released) to the user, but it is only possible to rent a movie that has been released, and a movie has only been released if the release date has been set and is a time and date before the current time and date.
+
+\subsubsection{Genre}
+\label{Design_Database_Tables_Genre}
+
+\begin{description}
+\item[genre\_id] The genre's unique ID number.
+\item[name] The name of the genre.
+\end{description}
+
+We changed this to be its own table, when we discovered that a movie very easily can be of several genres, and instead of putting all these together in one string with a delimiter in between, we decided to move it to its own table. It also makes it easier to re-use genres, which will make it easier when searching for a specific genre, as it is quite easy to misspell a genre. So when the most genres already have been added, and the system suggests genres for a given movie upon creation, genres are re-used, which makes it easier to browse genres.
+
+\subsubsection{HasGenre}
+\label{Design_Database_Tables_HasGenre}
+
+\begin{description}
+\item[hasgenre\_id] Unique ID.
+\item[movie\_id] Reference to a movie in the Movie table.
+\item[genre\_id] Reference to a genre in the Genre table.
+\end{description}
+
+Junction table used to associate genres with movies. The movie and genre combination is set as unique, so you cannot associate a given genre with a given movie twice. It wouldn't really matter much if we didn't make the combinations unique, but it would clutter the database and potentially slow it down.
+
+\subsubsection{Rental}
+\label{Design_Database_Tables_Rental}
+
+\begin{description}
+\item[rental\_id] The unique ID number of the rental.
+\item[user\_id] Reference to a user in the User table.
+\item[movie\_id] Reference to a movie in the Movie table.
+\item[time] Time of rental.
+\end{description}
+
+This is probably the most important database in a rental system: the tracking of rentals. This has been made quite simple. We capture the user renting the movie, the movie being rented and the time of rental. We currently have a hardcoded rental period, but we plan to make this more dynamic in the future.
+
+\subsection{Foreign keys}
+\label{Design_Database_Foreignkeys}
+To ensure integrity of fields referencing rows in other tables, we decided to add foreign keys. A foreign key is a check being run when deleting or updating rows in the database. We added those to everywhere we use IDs referencing other tables. These are:
+
+\begin{description}
+\item[Movie.user\_id] User reference for the owner of the movie.
+\item[Rental.user\_id] User reference to the user renting a given movie.
+\item[Rental.movie\_id] Movie reference to the movie being rented by the user.
+\item[HasGenre.movie\_id] Movie reference to a movie having a given genre.
+\item[HasGenre.genre\_id] Genre reference to the specific genre the movie has.
+\end{description}
+
+When defining foreign keys, it is possible to specify what the database should do if anything gets deleted or updated. We decided early on that we would never delete anything from the database. If we were to delete anything, we would add a ``flag'' to indicate whether or not a row is active or deleted. We do this for historic reasons, as we don't want to lose information about rentals or other actions, just because a user or a movie is deleted.
+We also decided to never change the unique ID number of a row (like User.user\_id). There is no need to update these anyway, as the user is never presented with this ID and is only a way to quickly identify users.
+
+We decided to specify these delete and update actions anyway. Most of the foreign keys is set to ``Cascade'', meaning that if I delete a user, all of his rentals will be deleted. If we were to delete a movie, all rentals for that movie would be deleted. It may seem that this conflicts with our previously mentioned decision (that we would never delete anything), but we still feel this is the right choice. If we were to delete anything, it is a special case and in those cases in wouldn't make much sense to keep these empty references. If we were to just set those references to null or don't do anything, we needed to do checks for this in our code, to make sure our code doesn't crash because of incorrect references.
+
+Due to SQL Server complaining about multiple cascade paths, we decided to not use cascade on Movie.owner\_id. We decided that if we delete a content provider, its movies will not be deleted, and will still be available for rental. The problem with ``Cascade'' in this situation, is that if you delete a content provider, and the movie is then deleted, then the rentals should of course be deleted. But should the content provider's rentals or the movie's rentals be deleted first?
+That is the downside to our current data model: All user types (users, content providers and system administrators) are gathered in one database table. For the database there isn't any difference between a user and a content provider. But in our code, it is not possible to rent a movie if you are a content provider or a system administrator. On the other hand, it is not possible to create a movie if you are not a content provider. So the problematic ``Cascade paths'' will actually never occur. But the database doesn't know that.
+
+\subsection{Entity Framework}
+\label{Design_Database_EntityFramework}
+We used Entity Framework version 4.1 as an ORM (Object-Relational Mapping), which is Microsoft's ORM to compete with NHibernate and the like. With Entity Framework it is possible to query data with LINQ (the so-called LINQ-to-Entities), but where Entity Framework really shines, is that it focuses on code over configuration. There isn't any need to do a lot of configuration to get it working.
+
+There is three or four different ways of getting started with Entity Framework:
+
+\begin{description}
+\item[Model-First] Drag and drop. You get a visual editor where you can create new boxes (which will end up as tables and entities) and put lines between them, to model how the different entities interact with each other. An XML-file is created automatically, and the database and entities are created from this.
+\item[Database-First] The other way round compared to Model-First. You start with creating the database, and then Entity Framework creates the XML file from the database. Then, just like Model-First, entities are created.
+\item[Code-First] With code-first you start out from the code. You create your own entities, which are a lot simpler than the generated entities in the two previous modes. These are called POCO-classes, which means ``Plain Old CLR Objects'', referring to the simplicity of these classes. When the POCO entities are created, you get Entity Framework to create the database for you.
+\item[Code-First] The final way of doing it is also called Code-First, but you start out with the database. Code-First doesn't refer to what component you start out with, but it means that you are ``code-centric''. Just like Database-First you start out with creating the database, and then use a simple tool for Visual Studio to generate the POCO entities from this database. This is also nicknamed ``Code-Second''.
+\end{description}
+
+We chose to use Code-Second, as we really wanted to get the simple POCO entities. The reason being that we wanted to send these entities back and forth over the service to transport data, but without any trace of Entity Framework. The reason we chose Code-Second over Code-First, is that we have more control over the database with Code-Second. Entity Framework doesn't add any indices or unique constraints by itself, so to get these, we had to create the database ourselves.
+
+This has proved to be a bit more difficult than first expected, as noone in our team had experience with SQL Server 2008, which is different from MySQL in certain areas. If we used Model-First, anyone in the team could have changed the data model, where as with Code-Second either the entire group had to read up on SQL Server and T-SQL or one team member should be responsible for the database part all by himself. We chose to pick one person as the database responsible, to make sure the rest of the group could continue working on the service in the meantime. This meant that only that person could alter the data model, but we did get complete control over our data model and database, which we felt was a big advantage.
