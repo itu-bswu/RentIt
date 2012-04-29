@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ServiceClients.cs" />
     <Compile Include="Service References\RentItService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -79,8 +80,8 @@
   <ItemGroup>
     <Compile Include="Models\AccessModel.cs" />
     <Compile Include="Models\AdministrationModel.cs" />
-    <Compile Include="Models\MovieInformationModel.cs" />
-    <Compile Include="Models\UserInformationModel.cs" />
+    <Compile Include="Models\GetMovieInformationModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

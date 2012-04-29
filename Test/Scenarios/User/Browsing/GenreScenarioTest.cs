@@ -18,7 +18,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     /// Scenario tests for browsing movies by genre
     /// </summary>
     [TestClass]
-    public class GenreScenarioTest
+    public class GenreScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: verify that all genres in the database gets
@@ -36,7 +36,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 var set = new HashSet<string>();
-                
+
                 // Step 1
                 var genres = Movie.GetAllGenres().ToList();
 

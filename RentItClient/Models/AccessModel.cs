@@ -10,20 +10,14 @@ namespace RentItClient.Models
     /// <summary>
     /// Contains the logic for signing up, logging into and logging out of the RentIt service.
     /// </summary>
-    public class AccessModel
+    /// <author>Jakob Melnyk</author>
+    public static class AccessModel
     {
         /// <summary>
-        /// The service connection used to access user information.
+        /// Gets the user that is LoggedIn.
         /// </summary>
-        private readonly UserInformationClient uic;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccessModel"/> class. 
-        /// </summary>
-        public AccessModel()
-        {
-            this.uic = new UserInformationClient();
-        }
+        /// <author>Jakob Melnyk</author>
+        public static User LoggedIn { get; private set; }
 
         /// <summary>Attempt to sign up a user on the service.</summary>
         /// <param name="email">The user email.</param>
@@ -31,7 +25,8 @@ namespace RentItClient.Models
         /// <param name="password">The password the user wants.</param>
         /// <param name="username">The username the user wants.</param>
         /// <returns>True if signup was successful, false if it failed.</returns>
-        public bool SignUp(string email, string fullName, string password, string username)
+        /// <author>Jakob Melnyk</author>
+        public static bool SignUp(string email, string fullName, string password, string username)
         {
             var user = new User
                 {
@@ -41,23 +36,27 @@ namespace RentItClient.Models
                     Username = username
                 };
 
-            return this.uic.SignUp(user);
+            return ServiceClients.Uic.SignUp(user);
         }
 
         /// <summary>Logs in the user and returns a User object containing a token that can be used to access the service.</summary>
         /// <param name="username">The users username.</param>
         /// <param name="password">The users password.</param>
         /// <returns>The user object related to the user.</returns>
-        public User Login(string username, string password)
+        /// <author>Jakob Melnyk</author>
+        public static User Login(string username, string password)
         {
-            return this.uic.LogIn(username, password);
+            LoggedIn = ServiceClients.Uic.LogIn(username, password);
+            return LoggedIn;
         }
 
         /// <summary>Logs the user out of the service by making his/her token invalid.</summary>
         /// <param name="user">The user to log out.</param>
-        public void LogOut(User user)
+        /// <author>Jakob Melnyk</author>
+        public static void LogOut(User user)
         {
-            this.uic.Logout(user.Token);
+            ServiceClients.Uic.Logout(user.Token);
+            LoggedIn = null;
         }
     }
 }

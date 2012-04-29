@@ -33,6 +33,7 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieObject">The movie to be deleted.</param>
+        /// <author>Jakob Melnyk</author>
         [OperationContract]
         void DeleteMovie(string token, Movie movieObject);
     }

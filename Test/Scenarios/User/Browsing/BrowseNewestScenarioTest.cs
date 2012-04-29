@@ -17,7 +17,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     /// Scenario tests for the browsing of newest movies.
     /// </summary>
     [TestClass]
-    public class BrowseNewestScenarioTest
+    public class BrowseNewestScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: Verify that if I add a new movie, the 
