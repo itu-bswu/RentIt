@@ -17,7 +17,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     /// Scenario tests for the mostdownloaded feature.
     /// </summary>
     [TestClass]
-    public class MostDownloadedScenario
+    public class MostDownloadedScenario : DataTest
     {
         /// <summary>
         /// Purpose: Verify that it is possible to get a list of rented movies

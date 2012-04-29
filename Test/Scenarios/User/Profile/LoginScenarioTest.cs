@@ -6,7 +6,6 @@
 
 namespace RentIt.Tests.Scenarios.User.Profile
 {
-    using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,7 +17,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
     /// Scenario tests of the Login feature.
     /// </summary>
     [TestClass]
-    public class LoginScenarioTest
+    public class LoginScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: Verify that login is possible when using the 
@@ -55,7 +54,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
             // Step 1
             var loggedIn = User.Login(username, Password);
-            
+
             // Step 2
             Assert.AreEqual(loggedIn.ID, userId, "Incorrect user logged in!");
         }

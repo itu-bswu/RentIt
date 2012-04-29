@@ -18,7 +18,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
     /// Scenario tests for the logout feature.
     /// </summary>
     [TestClass]
-    public class LogoutScenarioTest
+    public class LogoutScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: Verify that it is possible to logout, 
@@ -79,7 +79,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 }
                 while (db.Users.Any(u => u.Token == token));
             }
-            
+
             // Step 2
             User.Logout(token);
         }
