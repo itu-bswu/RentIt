@@ -21,7 +21,7 @@ namespace RentItService.Mapping
         {
             this.HasKey(t => t.ID);
 
-            this.ToTable("Genre");
+            this.ToTable("HasGenre");
             this.Property(t => t.ID).HasColumnName("hasgenre_id");
             this.Property(t => t.GenreId).HasColumnName("genre_id");
             this.Property(t => t.MovieId).HasColumnName("movie_id");
