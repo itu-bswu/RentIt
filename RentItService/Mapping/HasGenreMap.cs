@@ -26,13 +26,14 @@ namespace RentItService.Mapping
             this.Property(t => t.GenreId).HasColumnName("genre_id");
             this.Property(t => t.MovieId).HasColumnName("movie_id");
 
+            // Relationships
             this.HasRequired(t => t.Movie)
                 .WithMany(t => t.HasGenres)
-                .HasForeignKey(t => t.MovieId);
+                .HasForeignKey(d => d.MovieId);
 
             this.HasRequired(t => t.Genre)
                 .WithMany(t => t.AssociatedMovies)
-                .HasForeignKey(t => t.GenreId);
+                .HasForeignKey(d => d.GenreId);
         }
     }
 }

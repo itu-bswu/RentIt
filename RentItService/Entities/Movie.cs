@@ -161,6 +161,11 @@ namespace RentItService.Entities
                     db.Rentals.Remove(r);
                 }
 
+                foreach (var hg in db.HasGenres.Where(hg => hg.MovieId == movie.ID))
+                {
+                    db.HasGenres.Remove(hg);
+                }
+
                 var filePath = Constants.UploadDownloadFileFolder + movie.FilePath;
 
                 db.Movies.Remove(movie);
@@ -232,7 +237,7 @@ namespace RentItService.Entities
         {
             using (var db = new RentItContext())
             {
-                return db.Genres;
+                return db.Genres.ToList();
             }
         }
 

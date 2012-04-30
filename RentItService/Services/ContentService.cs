@@ -49,7 +49,6 @@ namespace RentItService.Services
                 movie.Description = movieObject.Description;
                 movie.ImagePath = movieObject.ImagePath;
                 movie.Title = movieObject.Title;
-                movie.Genres = movieObject.Genres;
 
                 db.Movies.Remove(db.Movies.Find(movieObject.ID));
                 db.SaveChanges();
