@@ -154,6 +154,7 @@ namespace RentItService.Entities
                    let title = movie.Title.ToLower()
                    let titleComponents = title.Split(' ')
                    where titleComponents.Any(str => components.Any(str.Contains))
+                   || titleComponents.Any(str => components.Any(str2 => str.DifferenceTo(str2) <= Math.Max(str.Length, str2.Length) / 4))
                    orderby title.Equals(searchTitle) descending, titleComponents.Count(str => components.Any(str.Equals)) descending
                    select movie;
         }

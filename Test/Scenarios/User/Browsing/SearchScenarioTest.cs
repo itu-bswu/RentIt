@@ -160,5 +160,20 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             Assert.IsTrue(index1 < index2, "Movie order incorrect.");
         }
+
+        /// <summary>
+        /// Purpose: verify that search results includes movies with spelling errors in the title
+        /// 
+        /// Steps:
+        ///     1. Search for a movie with title spelling errors
+        ///     2. Verify that the movie was returned
+        /// </summary>
+        [TestMethod]
+        public void SearchBadSpelling()
+        {
+            var movies = Movie.Search("how the grinsh stoe cistmas").ToList();
+
+            Assert.IsTrue(movies.Any(movie => movie.Title.Equals("How the Grinch Stole Christmas")));
+        }
     }
 }
