@@ -14,6 +14,8 @@ namespace RentItService.Entities
     /// </summary>
     public class Genre
     {
+        #region Constructor(s)
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="Genre"/> class.
         /// </summary>
@@ -25,11 +27,15 @@ namespace RentItService.Entities
         /// <summary>
         /// Initializes a new instance of the <see cref="Genre"/> class.
         /// </summary>
-        /// <param name="name">the genre name</param>
+        /// <param name="name">The genre name</param>
         public Genre(string name) : this()
         {
             this.Name = name;
         }
+
+        #endregion Constructor(s)
+
+        #region Properties
 
         /// <summary>
         /// Gets or sets the genres's ID.
@@ -45,6 +51,10 @@ namespace RentItService.Entities
         /// Gets or sets the associated movies through a junction entitiy.
         /// </summary>
         public virtual ICollection<HasGenre> AssociatedMovies { get; set; }
+
+        #endregion Properties
+
+        #region Helpers
 
         /// <summary>
         /// Returns the genre with the given name, creates it if it doesn't exist.
@@ -67,5 +77,47 @@ namespace RentItService.Entities
                 return genres.First();
             }
         }
+
+        #endregion Helpers
+
+        #region Overrides
+
+        /// <summary>
+        /// Determines whether or not two objects of type Genre are equal.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
+        /// <returns>True for equals; false otherwise.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            if (this == obj)
+            {
+                return true;
+            }
+
+            var other = obj as Genre;
+            if (other == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return (this.Name == other.Name);
+        }
+
+        /// <summary>
+        /// Generate hashcode for the genre.
+        /// </summary>
+        /// <returns>Hashcode based on genre name.</returns>
+        public override int GetHashCode()
+        {
+            return (this.Name != null ? this.Name.GetHashCode() : 0);
+        }
+
+        #endregion Overrides
     }
 }

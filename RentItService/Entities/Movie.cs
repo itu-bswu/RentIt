@@ -71,18 +71,18 @@ namespace RentItService.Entities
         public virtual ICollection<Rental> Rentals { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of hasgenres
+        /// Gets or sets a collection of HasGenres for the movie.
         /// </summary>
         public virtual ICollection<HasGenre> HasGenres { get; set; } 
 
         /// <summary>
-        /// Gets Genres.
+        /// Gets or sets the movie's genres.
         /// </summary>
         public IList<Genre> Genres
         {
             get
             {
-                return HasGenres.Select(hasGenre => hasGenre.Genre).ToList();
+                return this.HasGenres.Select(hasGenre => hasGenre.Genre).ToList();
             }
 
             set
@@ -90,7 +90,7 @@ namespace RentItService.Entities
                 using (var db = new RentItContext())
                 {
                     // remove old hasGenres
-                    foreach (var hg in db.HasGenres.Where(hg => hg.MovieId.Equals(ID)))
+                    foreach (var hg in db.HasGenres.Where(hg => hg.MovieId.Equals(this.ID)))
                     {
                         db.HasGenres.Remove(hg);
                     }
@@ -98,7 +98,7 @@ namespace RentItService.Entities
                     // add new hasGenres
                     foreach (var hasGenreObj in value)
                     {
-                        AddGenre(hasGenreObj);
+                        this.AddGenre(hasGenreObj);
                     }
 
                     db.SaveChanges();

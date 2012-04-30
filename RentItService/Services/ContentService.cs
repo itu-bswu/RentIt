@@ -20,39 +20,36 @@ namespace RentItService.Services
     {
         /// <summary>Operation used to update movie information.</summary>
         /// <param name="token">The user token.</param>
-        /// <param name="movieObject">The Movie object containing the ID of the movie to be changed and the updated information.</param>
+        /// <param name="updatedMovie">The Movie object containing the ID of the movie to be changed and the updated information.</param>
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
         /// <author>Jacob Grooss</author>
-        public void EditMovieInformation(string token, Movie movieObject)
+        public void EditMovieInformation(string token, Movie updatedMovie)
         {
             Contract.Requires(token != null);
-            Contract.Requires(movieObject.Title != null);
-            Contract.Requires(movieObject.FilePath != null);
+            Contract.Requires(updatedMovie.Title != null);
+            Contract.Requires(updatedMovie.FilePath != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type != UserType.User);
 
+            var user = User.GetByToken(token);
+
             using (var db = new RentItContext())
             {
-                if (db.Movies.Find(movieObject.ID) == null)
+                var referenceMovie = db.Movies.Find(updatedMovie.ID);
+                if (referenceMovie == null)
                 {
                     throw new NoMovieFoundException();
                 }
 
-                var movie = db.Movies.Find(movieObject.ID);
-                var user = User.GetByToken(token);
-
-                if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+                if (referenceMovie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
                 {
                     throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
                 }
 
-                movie.Description = movieObject.Description;
-                movie.ImagePath = movieObject.ImagePath;
-                movie.Title = movieObject.Title;
-
-                db.Movies.Remove(db.Movies.Find(movieObject.ID));
-                db.SaveChanges();
-                db.Movies.Add(movie);
+                referenceMovie.Title = updatedMovie.Title;
+                referenceMovie.Description = updatedMovie.Description;
+                referenceMovie.ImagePath = updatedMovie.ImagePath;
+                
                 db.SaveChanges();
             }
         }
