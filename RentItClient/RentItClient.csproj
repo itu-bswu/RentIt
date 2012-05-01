@@ -57,6 +57,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GUI\ContentProvider\CPEditMovie.xaml.cs">
+      <DependentUpon>CPEditMovie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ContentProvider\CPRegisterMovie.xaml.cs">
+      <DependentUpon>CPRegisterMovie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ContentProvider\CPUploadMovies.xaml.cs">
+      <DependentUpon>CPUploadMovies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ContentProvider\CPViewMovie.xaml.cs">
+      <DependentUpon>CPViewMovie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ContentProvider\CPYourMovies.xaml.cs">
+      <DependentUpon>CPYourMovies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\DownloadMoviePage.xaml.cs">
+      <DependentUpon>DownloadMoviePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\EditProfilePage.xaml.cs">
+      <DependentUpon>EditProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\MostRentedPage.xaml.cs">
+      <DependentUpon>MostRentedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\RentalHistory.xaml.cs">
+      <DependentUpon>RentalHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\ViewMoviePage.xaml.cs">
+      <DependentUpon>ViewMoviePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\User\ViewProfilePage.xaml.cs">
+      <DependentUpon>ViewProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ServiceClients.cs" />
     <Compile Include="Service References\RentItService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -64,6 +103,26 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UserViewModels\ExampleViewModel.cs" />
+    <Page Include="GUI\ContentProvider\CPEditMovie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\ContentProvider\CPRegisterMovie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\ContentProvider\CPUploadMovies.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\ContentProvider\CPViewMovie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\ContentProvider\CPYourMovies.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GUI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,6 +135,38 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="GUI\User\DownloadMoviePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\EditProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\MostRentedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\RegistrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\RentalHistory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\ViewMoviePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\ViewProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AccessModel.cs" />

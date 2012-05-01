@@ -47,6 +47,9 @@ namespace RentItClient.RentItService {
         private int OwnerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> ReleasedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private RentItClient.RentItService.Rental[] RentalsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -162,6 +165,19 @@ namespace RentItClient.RentItService {
                 if ((this.OwnerIDField.Equals(value) != true)) {
                     this.OwnerIDField = value;
                     this.RaisePropertyChanged("OwnerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> Released {
+            get {
+                return this.ReleasedField;
+            }
+            set {
+                if ((this.ReleasedField.Equals(value) != true)) {
+                    this.ReleasedField = value;
+                    this.RaisePropertyChanged("Released");
                 }
             }
         }

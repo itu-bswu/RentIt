@@ -7,6 +7,7 @@
 namespace RentItClient.Models
 {
     using System.Collections.Generic;
+
     using RentItService;
 
     /// <summary>

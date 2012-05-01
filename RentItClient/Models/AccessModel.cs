@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------
 namespace RentItClient.Models
 {
-    using RentItClient.RentItService;
+    using RentItService;
 
     /// <summary>
     /// Contains the logic for signing up, logging into and logging out of the RentIt service.

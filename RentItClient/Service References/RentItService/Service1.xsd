@@ -12,6 +12,7 @@
       <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="OwnerID" type="xs:int" />
+      <xs:element minOccurs="0" name="Released" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Rentals" nillable="true" type="tns:ArrayOfRental" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
     </xs:sequence>
