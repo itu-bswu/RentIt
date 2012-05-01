@@ -27,7 +27,7 @@ namespace RentItService.Entities
         public Movie()
         {
             this.Rentals = new List<Rental>();
-            this.HasGenres = new List<HasGenre>();
+            this.Genres = new List<Genre>();
         }
 
         /// <summary>
@@ -71,40 +71,9 @@ namespace RentItService.Entities
         public virtual ICollection<Rental> Rentals { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of HasGenres for the movie.
-        /// </summary>
-        public virtual ICollection<HasGenre> HasGenres { get; set; } 
-
-        /// <summary>
         /// Gets or sets the movie's genres.
         /// </summary>
-        public IList<Genre> Genres
-        {
-            get
-            {
-                return this.HasGenres.Select(hasGenre => hasGenre.Genre).ToList();
-            }
-
-            set
-            {
-                using (var db = new RentItContext())
-                {
-                    // remove old hasGenres
-                    foreach (var hg in db.HasGenres.Where(hg => hg.MovieId.Equals(this.ID)))
-                    {
-                        db.HasGenres.Remove(hg);
-                    }
-
-                    // add new hasGenres
-                    foreach (var hasGenreObj in value)
-                    {
-                        this.AddGenre(hasGenreObj);
-                    }
-
-                    db.SaveChanges();
-                }
-            }
-        }
+        public virtual ICollection<Genre> Genres { get; set; }
 
         /// <summary>
         /// Add a genre to the movie
@@ -112,11 +81,7 @@ namespace RentItService.Entities
         /// <param name="genre">The genre</param>
         public void AddGenre(Genre genre)
         {
-            using (var db = new RentItContext())
-            {
-                db.HasGenres.Add(new HasGenre(this, genre));
-                db.SaveChanges();
-            }
+            this.Genres.Add(genre);
         }
 
         /// <summary>
@@ -125,11 +90,7 @@ namespace RentItService.Entities
         /// <param name="genre">The Genre</param>
         public void RemoveGenre(Genre genre)
         {
-            using (var db = new RentItContext())
-            {
-                db.HasGenres.Remove(db.HasGenres.Single(hg => hg.Movie.Equals(this) && hg.Genre.Equals(genre)));
-                db.SaveChanges();
-            }
+            this.Genres.Remove(genre);
         }
 
         /// <summary>
@@ -159,11 +120,6 @@ namespace RentItService.Entities
                 foreach (var r in db.Rentals.Where(r => r.MovieID == movie.ID))
                 {
                     db.Rentals.Remove(r);
-                }
-
-                foreach (var hg in db.HasGenres.Where(hg => hg.MovieId == movie.ID))
-                {
-                    db.HasGenres.Remove(hg);
                 }
 
                 var filePath = Constants.UploadDownloadFileFolder + movie.FilePath;

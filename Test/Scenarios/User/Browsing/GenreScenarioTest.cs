@@ -36,14 +36,14 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             // Step 1
             var genres = Movie.GetAllGenres();
 
-            Assert.IsTrue(genres.Any(), "There is no genres in the data set.");
+            Assert.IsTrue(genres.Any(), "There are no genres in the data set.");
 
             var set = new HashSet<Genre>();
 
             using (var db = new RentItContext())
             {
                 // Step 2
-                foreach (var genre in db.Movies.ToList().SelectMany(movie => movie.Genres))
+                foreach (var genre in db.Genres.ToList())
                 {
                     set.Add(genre);
                 }

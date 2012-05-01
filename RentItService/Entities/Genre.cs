@@ -21,7 +21,7 @@ namespace RentItService.Entities
         /// </summary>
         public Genre()
         {
-            this.AssociatedMovies = new List<HasGenre>();
+            this.AssociatedMovies = new List<Movie>();
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace RentItService.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the associated movies through a junction entitiy.
+        /// Gets or sets the associated movies.
         /// </summary>
-        public virtual ICollection<HasGenre> AssociatedMovies { get; set; }
+        public virtual ICollection<Movie> AssociatedMovies { get; set; }
 
         #endregion Properties
 

@@ -60,11 +60,6 @@ namespace RentItService
         /// </summary>
         public DbSet<Genre> Genres { get; set; }
 
-        /// <summary>
-        /// Gets or sets a set of hasGenres in RentIt.
-        /// </summary>
-        public DbSet<HasGenre> HasGenres { get; set; }
-
         #endregion Entity collections
 
         #region Configuration
@@ -77,10 +72,19 @@ namespace RentItService
         {
             modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             modelBuilder.Configurations.Add(new GenreMap());
-            modelBuilder.Configurations.Add(new HasGenreMap());
             modelBuilder.Configurations.Add(new MovieMap());
             modelBuilder.Configurations.Add(new RentalMap());
             modelBuilder.Configurations.Add(new UserMap());
+
+            modelBuilder.Entity<Movie>()
+                .HasMany(x => x.Genres)
+                .WithMany(x => x.AssociatedMovies)
+                .Map(c =>
+                {
+                    c.ToTable("HasGenre")
+                        .MapLeftKey("movie_id")
+                        .MapRightKey("genre_id");
+                });
         }
 
         #endregion Configuration
