@@ -14,6 +14,13 @@ namespace RentItService.Entities
         /// <summary>
         /// Initializes a new instance of the <see cref="HasGenre"/> class.
         /// </summary>
+        public HasGenre()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HasGenre"/> class.
+        /// </summary>
         /// <param name="movie">The movie</param>
         /// <param name="genre">The genre</param>
         public HasGenre(Movie movie, Genre genre)

@@ -19,21 +19,24 @@ namespace RentItService.Mapping
         /// </summary>
         public HasGenreMap()
         {
+            // Primary Key
             this.HasKey(t => t.ID);
 
+            // Properties
+            // Table & Column Mappings
             this.ToTable("HasGenre");
             this.Property(t => t.ID).HasColumnName("hasgenre_id");
             this.Property(t => t.GenreId).HasColumnName("genre_id");
             this.Property(t => t.MovieId).HasColumnName("movie_id");
 
             // Relationships
-            this.HasRequired(t => t.Movie)
-                .WithMany(t => t.HasGenres)
-                .HasForeignKey(d => d.MovieId);
-
             this.HasRequired(t => t.Genre)
                 .WithMany(t => t.AssociatedMovies)
                 .HasForeignKey(d => d.GenreId);
+
+            this.HasRequired(t => t.Movie)
+                .WithMany(t => t.HasGenres)
+                .HasForeignKey(d => d.MovieId);
         }
     }
 }

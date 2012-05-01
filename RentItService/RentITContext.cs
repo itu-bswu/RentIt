@@ -76,11 +76,11 @@ namespace RentItService
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
+            modelBuilder.Configurations.Add(new GenreMap());
+            modelBuilder.Configurations.Add(new HasGenreMap());
             modelBuilder.Configurations.Add(new MovieMap());
             modelBuilder.Configurations.Add(new RentalMap());
             modelBuilder.Configurations.Add(new UserMap());
-            modelBuilder.Configurations.Add(new GenreMap());
-            modelBuilder.Configurations.Add(new HasGenreMap());
         }
 
         #endregion Configuration
