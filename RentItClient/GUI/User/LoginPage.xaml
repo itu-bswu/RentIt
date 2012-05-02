@@ -10,12 +10,12 @@
     <Grid Width="720">
 		<TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="LoginHeading" Text="Welcome:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
 		<TextBlock Height="26" HorizontalAlignment="Left" Margin="177,228,0,0" Name="textBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5">
-			If you are not yet a user then please take a minut to signup
+			If you are not yet a user, please take a minute to signup!
 		</TextBlock>
 
-		<TextBlock Height="23" HorizontalAlignment="Left" Margin="99,80,0,0" Name="textBlock1" Text="Email" VerticalAlignment="Top" Width="67" />
+		<TextBlock Height="23" HorizontalAlignment="Left" Margin="99,80,0,0" Name="textBlock1" Text="Username" VerticalAlignment="Top" Width="67" />
 		<TextBlock Height="23" HorizontalAlignment="Left" Margin="99,137,0,0" Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" />
-		<TextBox Height="23" HorizontalAlignment="Left" Margin="213,80,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="247" />
+		<TextBox Height="23" HorizontalAlignment="Left" Margin="213,80,0,0" Name="textBoxUsername" VerticalAlignment="Top" Width="247" />
 		<PasswordBox Height="23" HorizontalAlignment="Left" Margin="213,137,0,0" Name="passwordBox" VerticalAlignment="Top" Width="247" />
 		<Button Content="Login" Height="23" HorizontalAlignment="Left" Margin="282,185,0,0" Name="button1" VerticalAlignment="Top" Width="104" Click="LoginClick" />
 		<Button Content="Signup" Height="23" HorizontalAlignment="Left" Margin="282,290,0,0" Name="Signup" VerticalAlignment="Top" Width="104" Click="SignupClick" />

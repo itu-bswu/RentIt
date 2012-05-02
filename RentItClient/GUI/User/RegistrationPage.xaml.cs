@@ -3,6 +3,8 @@ using System.Windows.Controls;
 
 namespace RentItClient
 {
+    using RentItClient.ViewModels.UserViewModels;
+
     /// <summary>
     /// Interaction logic for RegistrationPage.xaml
     /// </summary>
@@ -15,16 +17,16 @@ namespace RentItClient
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            ResetAll();
+            this.ResetAll();
         }
 
-        public void ResetAll()
+        private void ResetAll()
         {
-            textBoxFirstName.Text = "";
-            textBoxLastName.Text = "";
-            textBoxEmail.Text = "";
-            passwordBox1.Password = "";
-            passwordBoxConfirm.Password = "";
+            textBoxFirstName.Text = string.Empty;
+            textBoxLastName.Text = string.Empty;
+            textBoxEmail.Text = string.Empty;
+            passwordBox1.Password = string.Empty;
+            passwordBoxConfirm.Password = string.Empty;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -34,9 +36,7 @@ namespace RentItClient
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: hente data fra textBoxFirstName, textBoxLastName, textBoxEmail, passwordBox1, passwordBoxConfirm
-
-            //TODO: Create user in database
+            //RegistrationViewModel.SignUp(textBoxEmail.Text, textBoxFirstName.Text + " " + textBoxLastName.Text, passwordBox1.Password, textBoxUsername) // TODO: Finish this
             this.NavigationService.Navigate(new LoginPage());
         }
     }
