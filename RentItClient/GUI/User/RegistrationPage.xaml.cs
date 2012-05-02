@@ -20,6 +20,7 @@ namespace RentItClient
 
         public void ResetAll()
         {
+            textBoxUsername.Text = string.Empty;
             textBoxFirstName.Text = "";
             textBoxLastName.Text = "";
             textBoxEmail.Text = "";
