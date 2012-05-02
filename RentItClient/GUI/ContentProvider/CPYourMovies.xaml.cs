@@ -21,6 +21,8 @@ namespace RentItClient
 
         private void yourMovies(object sender, RoutedEventArgs e)
         {
+            //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
+            //TODO: så Listboxen i CPYourMovies kan blive lavet med de elementer
             CPYourMovies yourMovies = new CPYourMovies();
             this.NavigationService.Navigate(yourMovies);
         }
@@ -33,11 +35,13 @@ namespace RentItClient
 
         private void logout(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new LoginPage());
+            //TODO: luk forbindelsen til servicen
         }
 
         private void ViewClick(object sender, RoutedEventArgs e)
         {
+            //TODO: Den skal på en eller anden måde give det element med der er selected i listboxen.
             this.NavigationService.Navigate(new CPViewMovie());
         }
     }

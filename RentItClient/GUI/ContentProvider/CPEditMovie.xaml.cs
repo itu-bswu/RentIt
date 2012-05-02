@@ -22,6 +22,8 @@ namespace RentItClient
 
         private void yourMovies(object sender, RoutedEventArgs e)
         {
+            //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
+            //TODO: så Listboxen i CPYourMovies kan blive lavet med de elementer
             CPYourMovies yourMovies = new CPYourMovies();
             this.NavigationService.Navigate(yourMovies);
         }
@@ -34,7 +36,8 @@ namespace RentItClient
 
         private void logout(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new LoginPage());
+            //TODO: luk forbindelsen til servicen
         }
 
         private void saveChangesClick(object sender, RoutedEventArgs e)
@@ -55,6 +58,7 @@ namespace RentItClient
                     CPYourMovies yourMovies = new CPYourMovies();
                     this.NavigationService.Navigate(yourMovies);
                     //TODO: save the changes made on the movie obejct to the database
+                    //TODO: Du skal hente info fra: TextBox: textBoxTitle, textBoxGenre og textBoxDescription
                     break;
                 case MessageBoxResult.No:
                     // User pressed No button

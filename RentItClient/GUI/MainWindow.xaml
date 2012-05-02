@@ -1,5 +1,5 @@
 ﻿<NavigationWindow x:Class="RentItClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="RentIt" Height="440" Width="740" Source="ContentProvider\CPYourMovies.xaml" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" OverridesDefaultStyle="False" ShowsNavigationUI="False" MinWidth="740" MinHeight="440" MaxWidth="740" MaxHeight="440">
+        Title="RentIt" Height="440" Width="740" Source="\GUI\User\LoginPage.xaml" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" OverridesDefaultStyle="False" ShowsNavigationUI="False" MinWidth="740" MinHeight="440" MaxWidth="740" MaxHeight="440">
 </NavigationWindow>

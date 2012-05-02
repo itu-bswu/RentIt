@@ -90,6 +90,9 @@
     <Compile Include="GUI\User\RentalHistory.xaml.cs">
       <DependentUpon>RentalHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\User\ViewMovieListPage.xaml.cs">
+      <DependentUpon>ViewMovieListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\User\ViewMoviePage.xaml.cs">
       <DependentUpon>ViewMoviePage.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
     <Page Include="GUI\User\RentalHistory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\ViewMovieListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\User\ViewMoviePage.xaml">
       <Generator>MSBuild:Compile</Generator>

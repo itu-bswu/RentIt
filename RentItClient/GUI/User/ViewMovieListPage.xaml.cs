@@ -1,17 +1,14 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
-namespace RentItClient
+namespace RentItClient.GUI.User
 {
-    using System.Windows;
-
-    using RentItClient.GUI.User;
-
     /// <summary>
-    /// Interaction logic for ViewMoviePage.xaml
+    /// Interaction logic for ViewMovieListPage.xaml
     /// </summary>
-    public partial class ViewMoviePage : Page
+    public partial class ViewMovieListPage : Page
     {
-        public ViewMoviePage()
+        public ViewMovieListPage()
         {
             InitializeComponent();
         }
@@ -46,10 +43,10 @@ namespace RentItClient
             this.NavigationService.Navigate(new LoginPage());
         }
 
-        private void rentMovieClick(object sender, System.Windows.RoutedEventArgs e)
+        private void ViewClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage det element som pagen er blevet oprettet med og tilføje det til brugerens liste og lejet film
-            this.NavigationService.Navigate(new DownloadMoviePage());
+            //TODO: skal tage det element der er selecet i listboxen og give det videre som parameter til ViewMoviePage
+            this.NavigationService.Navigate(new ViewMoviePage());
         }
     }
 }

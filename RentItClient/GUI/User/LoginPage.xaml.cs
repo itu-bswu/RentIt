@@ -17,9 +17,14 @@ namespace RentItClient
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
+            //TODO: skal hente info fra textBoxEmail og passwordBox
+
             //TODO: make call to service to verify user
-            MostRentedPage mostRentedPage = new MostRentedPage();
-            this.NavigationService.Navigate(mostRentedPage);
+            //TODO: tjek om det er en user eller en contentprovider
+            //hvis det er en user skal den gå til følgende:
+            this.NavigationService.Navigate(new MostRentedPage());
+            //hvis det er en contentprovider skal den gå til:
+            this.NavigationService.Navigate(new CPYourMovies());
         }
 
         private void SignupClick(object sender, RoutedEventArgs e)

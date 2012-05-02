@@ -23,6 +23,8 @@ namespace RentItClient
 
         private void yourMovies(object sender, RoutedEventArgs e)
         {
+            //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
+            //TODO: så Listboxen i CPYourMovies kan blive lavet med de elementer
             CPYourMovies yourMovies = new CPYourMovies();
             this.NavigationService.Navigate(yourMovies);
         }
@@ -41,6 +43,7 @@ namespace RentItClient
         private void uploadMovieClick(object sender, RoutedEventArgs e)
         {
             //TODO: Upload movie to database
+            //TODO: du skal hente data fra TextBox: textBoxTitle, textBoxGenre, textBoxDescription, textBoxFiletoUpload, textBoxCoverImage
         }
 
         private void browseClick(object sender, RoutedEventArgs e)
@@ -49,8 +52,8 @@ namespace RentItClient
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
             // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "Text documents (.txt)|*.txt";
+            dlg.DefaultExt = ".avi";
+            dlg.Filter = "movie files (.avi)|*.avi";
 
             // Display OpenFileDialog by calling ShowDialog method
             Nullable<bool> result = dlg.ShowDialog();
@@ -70,8 +73,8 @@ namespace RentItClient
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
             // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "Text documents (.txt)|*.txt";
+            dlg.DefaultExt = ".png, .jpg";
+            dlg.Filter = "Pictures (.png, .jpg)|*.png, .jpg";
 
             // Display OpenFileDialog by calling ShowDialog method
             Nullable<bool> result = dlg.ShowDialog();

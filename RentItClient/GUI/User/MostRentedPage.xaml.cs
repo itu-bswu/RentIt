@@ -3,6 +3,8 @@ using System.Windows.Controls;
 
 namespace RentItClient
 {
+    using RentItClient.GUI.User;
+
     /// <summary>
     /// Interaction logic for UserMostRented.xaml
     /// </summary>
@@ -12,37 +14,40 @@ namespace RentItClient
         {
             InitializeComponent();
         }
-
-        private void Logout_click(object sender, RoutedEventArgs e)
+        private void mostRented(object sender, RoutedEventArgs e)
         {
+            //TODO: skal hente en liste over mest downloadet film og give den videre som parameter
+            this.NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        private void viewProfile(object sender, RoutedEventArgs e)
         {
-
+            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
+            this.NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void yourRentals(object sender, RoutedEventArgs e)
         {
-
+            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
+            this.NavigationService.Navigate(new RentalHistory());
         }
 
-        private void mostRented(object sender, System.Windows.RoutedEventArgs e)
+        private void searchClick(object sender, RoutedEventArgs e)
         {
-            MostRentedPage mostRentedPage = new MostRentedPage();
-            this.NavigationService.Navigate(mostRentedPage);
+            //TODO: skal tage informationen fra textBoxSearch og så giv det videre til servicen så der kan sendes en liste af resultater til ViewMovieListPage
+            this.NavigationService.Navigate(new ViewMovieListPage());
         }
 
-        private void viewProfile(object sender, System.Windows.RoutedEventArgs e)
+        private void logoutClick(object sender, RoutedEventArgs e)
         {
-            ViewProfilePage viewProfilePage = new ViewProfilePage();
-            this.NavigationService.Navigate(viewProfilePage);
+            //TODO: skal lukke connectionen til servicen ned
+            this.NavigationService.Navigate(new LoginPage());
         }
 
-        private void yourRentals(object sender, System.Windows.RoutedEventArgs e)
+        private void viewMovieClick(object sender, RoutedEventArgs e)
         {
-            RentalHistory rentalHistory = new RentalHistory();
-            this.NavigationService.Navigate(rentalHistory);
+            //TODO: skal tage det element der er selecet i listboxen og give det videre som parameter til ViewMoviePage
+            this.NavigationService.Navigate(new ViewMoviePage());
         }
     }
 }

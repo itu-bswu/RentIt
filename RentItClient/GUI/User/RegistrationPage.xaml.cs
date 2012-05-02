@@ -29,13 +29,15 @@ namespace RentItClient
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
+            this.NavigationService.Navigate(new LoginPage());
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
+            //TODO: hente data fra textBoxFirstName, textBoxLastName, textBoxEmail, passwordBox1, passwordBoxConfirm
+
             //TODO: Create user in database
-            LoginPage loginPage = new LoginPage();
-            this.NavigationService.Navigate(loginPage);
+            this.NavigationService.Navigate(new LoginPage());
         }
     }
 }

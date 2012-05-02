@@ -11,11 +11,12 @@
         <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="mostRented"/>
         <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="viewProfile" />
         <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="yourRentals" />
-        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logout" VerticalAlignment="Top" Width="59" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="168" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="logoutClick" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="searchClick" />
 
-        <TextBlock Height="23"  Margin="56,114,583,263" Name="textBlock0" Text="Firstname: "  Width="61"/>
-        <TextBlock Height="23"  Margin="56,162,583,214" Name="textBlock1" Text="Lastname: "  Width="61" />
+        <TextBlock Height="23"  Margin="56,114,583,263" Name="textBlock0" Text="First Name: "  Width="61"/>
+        <TextBlock Height="23"  Margin="56,162,583,214" Name="textBlock1" Text="Last Name: "  Width="61" />
         <TextBlock Height="23"  Margin="56,210,583,167" Name="textBlock2" Text="Username: " Width="61" />
         <TextBlock Height="23"  Margin="56,255,583,122" Name="textBlock3" Text="Email: "  Width="61" />
         <TextBlock Height="23"  Margin="56,304,583,73" Name="textBlock4" Text="Password: "  Width="61" />
@@ -26,6 +27,6 @@
         <TextBox Height="23" Margin="175,114,365,263" Name="textBoxFirstName" Width="160" />
         <TextBox Height="23" Margin="175,304,365,73" Name="textBoxPassWord" Width="160" />
 
-        <Button Content="Save changes" Height="24" HorizontalAlignment="Left" Margin="56,354,0,0" Name="button4" VerticalAlignment="Top" Width="141" />
+        <Button Content="Save changes" Height="24" HorizontalAlignment="Left" Margin="56,354,0,0" Name="button4" VerticalAlignment="Top" Width="141" Click="saveChangesClick" />
     </Grid>
 </Page>

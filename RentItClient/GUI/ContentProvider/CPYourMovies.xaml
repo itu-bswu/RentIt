@@ -12,10 +12,8 @@
         <Button Content="Upload Movies" Height="24" HorizontalAlignment="Left" Margin="332,42,0,0" Name="uploadMoviebutton" VerticalAlignment="Top" Width="141" Click="uploadMovie" />
         <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="registerMovie" />
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="logout" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="168" />
-
+        
         <ListBox Name="MovieListBox" Margin="21,97,34,66">
-            <ListBoxItem >The Avengers</ListBoxItem>
         </ListBox>
 
         <Button Content="View Movie" Height="24" Margin="523,340,34,36" Name="View" Width="141" Click="ViewClick"/>

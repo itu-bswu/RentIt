@@ -11,8 +11,9 @@
         <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="mostRented"/>
         <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="viewProfile" />
         <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="yourRentals" />
-        <Button Content="Logout" Height="22" HorizontalAlignment="Right" Name="logout" VerticalAlignment="Top" Width="59" Margin="0,5,10,0" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="168" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Right" Name="logout" VerticalAlignment="Top" Width="59" Margin="0,5,10,0" Click="logoutClick" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="searchClick" />
 
         <TextBlock Height="23"  Margin="56,114,583,263" Name="textBlock0" Text="First name: " Width="61"/>
         <TextBlock Height="23"  Margin="56,162,583,214" Name="textBlock1" Text="Last name: "  Width="61" />
@@ -26,6 +27,6 @@
         <TextBox IsReadOnly="True" Height="23" Margin="175,114,365,263" Name="textBoxFirstName" Width="160" />
         <TextBox IsReadOnly="True" Height="23" Margin="175,304,365,73" Name="textBoxPassWord" Width="160" />
         
-        <Button Content="Edit information" Height="24" HorizontalAlignment="Right" Margin="0,346,12,0" Name="button4" VerticalAlignment="Top" Width="141" />
+        <Button Content="Edit information" Height="24" HorizontalAlignment="Right" Margin="0,346,12,0" Name="button4" VerticalAlignment="Top" Width="141" Click="editProfileClick" />
     </Grid>
 </Page>
