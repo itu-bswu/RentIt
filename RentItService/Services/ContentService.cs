@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Linq;
+
 namespace RentItService.Services
 {
     using System;
@@ -36,6 +38,7 @@ namespace RentItService.Services
             using (var db = new RentItContext())
             {
                 var referenceMovie = db.Movies.Find(updatedMovie.ID);
+
                 if (referenceMovie == null)
                 {
                     throw new NoMovieFoundException();
@@ -49,7 +52,18 @@ namespace RentItService.Services
                 referenceMovie.Title = updatedMovie.Title;
                 referenceMovie.Description = updatedMovie.Description;
                 referenceMovie.ImagePath = updatedMovie.ImagePath;
+                referenceMovie.Released = updatedMovie.Released;
+
+                foreach (var genre in referenceMovie.Genres.Where(genre => updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))))
+                {
+                    referenceMovie.RemoveGenre(genre);
+                }
                 
+                foreach (var newgenre in updatedMovie.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))
+                {
+                    referenceMovie.AddGenre(newgenre);
+                }
+
                 db.SaveChanges();
             }
         }

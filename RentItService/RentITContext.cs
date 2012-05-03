@@ -34,6 +34,8 @@ namespace RentItService
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
+
+            
         }
 
         #endregion Constructor(s)
@@ -77,14 +79,15 @@ namespace RentItService
             modelBuilder.Configurations.Add(new UserMap());
 
             modelBuilder.Entity<Movie>()
-                .HasMany(x => x.Genres)
-                .WithMany(x => x.AssociatedMovies)
+                .HasMany<Genre>(x => x.Genres)
+                .WithMany(a => a.AssociatedMovies)
                 .Map(c =>
-                {
-                    c.ToTable("HasGenre")
-                        .MapLeftKey("movie_id")
-                        .MapRightKey("genre_id");
-                });
+                         {
+                             c.MapLeftKey("movie_id");
+                             c.MapRightKey("genre_id");
+                             c.ToTable("HasGenre");
+                         });
+
         }
 
         #endregion Configuration

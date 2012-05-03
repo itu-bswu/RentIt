@@ -86,7 +86,12 @@ namespace RentItService.Entities
         /// <param name="genre">The genre</param>
         public void AddGenre(Genre genre)
         {
-            this.Genres.Add(genre);
+            Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 1);
+
+            if (!Genres.Contains(genre))
+            {
+                Genres.Add(genre);
+            }
         }
 
         /// <summary>
@@ -95,7 +100,12 @@ namespace RentItService.Entities
         /// <param name="genre">The Genre</param>
         public void RemoveGenre(Genre genre)
         {
-            this.Genres.Remove(genre);
+            Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 0);
+
+            if (Genres.Contains(genre))
+            {
+                Genres.Remove(genre);
+            }
         }
 
         /// <summary>
@@ -120,11 +130,6 @@ namespace RentItService.Entities
                 if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
                 {
                     throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
-                }
-
-                foreach (var r in db.Rentals.Where(r => r.MovieID == movie.ID))
-                {
-                    db.Rentals.Remove(r);
                 }
 
                 var filePath = Constants.UploadDownloadFileFolder + movie.FilePath;
@@ -179,7 +184,8 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                result = db.Movies.ToList().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
+                // Warning: ugly fix
+                result = db.Movies.Include("Genres").ToList().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
             }
 
             if (!result.Any())
@@ -287,12 +293,18 @@ namespace RentItService.Entities
             using (var db = new RentItContext())
             {
                 var newMovie = new Movie
-                    {
-                        Description = movieObject.Description,
-                        Title = movieObject.Title,
-                        FilePath = "emptyFilePath",
-                        OwnerID = User.GetByToken(token).ID
-                    };
+                {
+                    Description = movieObject.Description,
+                    Title = movieObject.Title,
+                    FilePath = "emptyFilePath",
+                    OwnerID = User.GetByToken(token).ID
+                };
+
+                foreach (var genre in movieObject.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))
+                {
+                    newMovie.AddGenre(genre);
+                }
+
                 db.Movies.Add(newMovie);
                 db.SaveChanges();
             }

@@ -73,7 +73,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             using (var db = new RentItContext())
             {
-                dbmovies = db.Movies.ToList();
+                // Warning: ugly fix
+                dbmovies = db.Movies.Include("Genres").ToList();
             }
 
             Assert.IsTrue(dbmovies.First().Genres.Any(), "First move has no genres.");
