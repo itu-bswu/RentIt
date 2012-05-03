@@ -9,13 +9,17 @@ namespace RentItClient
     /// </summary>
     public partial class DownloadMoviePage : Page
     {
-        public DownloadMoviePage()
+        private DownloadMoviePage()
         {
             InitializeComponent();
+        }
+
+        public DownloadMoviePage(int movieId)
+            : this()
+        {
             //TODO textBlockTitle skal indholde den givne films title
             //TODO textBlockRelease skal indholde den givne films release date
             //TODO textBoxDescription skal indholde den givne films description
-
         }
 
         private void mostRented(object sender, System.Windows.RoutedEventArgs e)

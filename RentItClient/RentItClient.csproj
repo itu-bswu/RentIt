@@ -105,7 +105,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\UserViewModels\ExampleViewModel.cs" />
+    <Compile Include="Types\User.cs" />
+    <Compile Include="Types\UserType.cs" />
+    <Compile Include="ViewModels\AdminViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MasterViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\MostRentedViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\RentalHistoryViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\ViewProfileViewModel.cs" />
     <Page Include="GUI\ContentProvider\CPEditMovie.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -242,8 +249,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\AdminViewModels\" />
-    <Folder Include="ViewModels\MasterViewModels\" />
     <Folder Include="ViewModels\ProviderViewModels\" />
   </ItemGroup>
   <ItemGroup>

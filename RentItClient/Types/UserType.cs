@@ -7,22 +7,22 @@
 namespace RentItClient.Types
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// The different types of users.
     /// </summary>
     public enum UserType
     {
         /// <summary>
-        /// TODO: Update summary
+        /// User of the system.
         /// </summary>
         User,
 
         /// <summary>
-        /// TODO: Update summary
+        /// A content provider for the system.
         /// </summary>
         ContentProvider,
 
         /// <summary>
-        /// TODO: Update summary
+        /// Administrator of the system.
         /// </summary>
         Admin
     }

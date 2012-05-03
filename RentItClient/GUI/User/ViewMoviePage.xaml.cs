@@ -5,15 +5,22 @@ namespace RentItClient
     using System.Windows;
 
     using RentItClient.GUI.User;
+    using RentItClient.ViewModels;
 
     /// <summary>
     /// Interaction logic for ViewMoviePage.xaml
     /// </summary>
     public partial class ViewMoviePage : Page
     {
-        public ViewMoviePage()
+        private ViewMoviePage()
         {
             InitializeComponent();
+        }
+
+        public ViewMoviePage(int movieId)
+            : this()
+        {
+
         }
 
         private void mostRented(object sender, RoutedEventArgs e)
@@ -24,13 +31,11 @@ namespace RentItClient
 
         private void viewProfile(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
             this.NavigationService.Navigate(new ViewProfilePage());
         }
 
         private void yourRentals(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
             this.NavigationService.Navigate(new RentalHistory());
         }
 
@@ -42,7 +47,7 @@ namespace RentItClient
 
         private void logoutClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal lukke connectionen til servicen ned
+            MasterViewModel.LogOut();
             this.NavigationService.Navigate(new LoginPage());
         }
 

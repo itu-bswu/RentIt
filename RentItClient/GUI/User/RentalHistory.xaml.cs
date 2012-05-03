@@ -3,16 +3,39 @@ using System.Windows.Controls;
 
 namespace RentItClient
 {
+    using System;
+    using System.Collections.Generic;
+
     using RentItClient.GUI.User;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for RentalHistory.xaml
     /// </summary>
     public partial class RentalHistory : Page
     {
+        private List<Tuple<string, int, bool>> movies;
+
         public RentalHistory()
         {
             InitializeComponent();
+            this.movies = RentalHistoryViewModel.GetRentals();
+            foreach (var t in movies)
+            {
+                MovieListBox.Items.Add(t.Item1);
+            }
+        }
+
+        private void ViewClick(object sender, RoutedEventArgs e)
+        {
+            if (this.movies[MovieListBox.SelectedIndex].Item3)
+            {
+                this.NavigationService.Navigate(new DownloadMoviePage(this.movies[MovieListBox.SelectedIndex].Item2));
+            }
+            else
+            {
+                this.NavigationService.Navigate(new ViewMoviePage(this.movies[MovieListBox.SelectedIndex].Item2));
+            }
         }
 
         private void mostRented(object sender, RoutedEventArgs e)
@@ -43,15 +66,6 @@ namespace RentItClient
         {
             //TODO: skal lukke connectionen til servicen ned
             this.NavigationService.Navigate(new LoginPage());
-        }
-
-        private void ViewClick(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal tage det element der er selecet i listboxen og give det videre som parameter til DownloadMoviePage hvis dens leje periode ikke er udløbe
-            this.NavigationService.Navigate(new DownloadMoviePage());
-
-            //TODO: skal tage det element der er select i listboxen og give det videre som parameter til ViewMoviePage hvis dens leje periode er udløbet
-            this.NavigationService.Navigate(new ViewMoviePage());
         }
     }
 }

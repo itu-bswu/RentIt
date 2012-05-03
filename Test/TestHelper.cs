@@ -1,22 +1,19 @@
-﻿﻿// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="TestHelper.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
-
 namespace RentIt.Tests
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-
-
     using RentItService;
     using RentItService.Entities;
     using RentItService.Enums;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Class used for some tests.
     /// </summary>
     public class TestHelper
     {
@@ -26,14 +23,14 @@ namespace RentIt.Tests
         /// <returns>The users that have been set up.</returns>
         public static IEnumerable<User> SetUpTestUsers()
         {
-            List<User> users = new List<User>();
+            var users = new List<User>();
 
             using (var db = new RentItContext())
             {
                 // User setup
                 if (!db.Users.Any(a => a.Username == "testUser"))
                 {
-                    User u = new User
+                    var u = new User
                         {
                             Email = "testUser@testing.dk",
                             FullName = "Test User",
@@ -59,7 +56,7 @@ namespace RentIt.Tests
                 // ContentProvider setup
                 if (!db.Users.Any(a => a.Username == "testContentProvider"))
                 {
-                    User u = new User
+                    var u = new User
                         {
                             Email = "testContentProvider@testing.dk",
                             FullName = "Test ContentProvider",
@@ -85,7 +82,7 @@ namespace RentIt.Tests
                 // Admin setup
                 if (!db.Users.Any(a => a.Username == "testAdmin"))
                 {
-                    User u = new User
+                    var u = new User
                         {
                             Email = "testAdmin@testing.dk",
                             FullName = "Test Admin",
@@ -121,7 +118,7 @@ namespace RentIt.Tests
             {
                 if (!db.Movies.Any(m => m.Description.Equals("testMovie1")))
                 {
-                    Movie movie = new Movie
+                    var movie = new Movie
                         {
                             Description = "testMovie1",
                             FilePath = "no file location",
@@ -146,16 +143,16 @@ namespace RentIt.Tests
         /// <summary>
         /// Sets up testusers for testing of the rentalhistory.
         /// </summary>
+        /// <returns>The test rental users.</returns>
         public static IEnumerable<User> SetUpRentalTestUsers()
         {
-            List<User> users = new List<User>();
+            var users = new List<User>();
 
             using (var db = new RentItContext())
             {
-
                 if (!db.Users.Any(a => a.Username == "testUserRent1"))
                 {
-                    User content = new User
+                    var content = new User
                         {
                             Email = "testUser1@testing.dk",
                             FullName = "Test1 User",
@@ -178,10 +175,9 @@ namespace RentIt.Tests
                     users.Add(user);
                 }
 
-
                 if (!db.Users.Any(a => a.Username == "testUserRent2"))
                 {
-                    User u = new User
+                    var u = new User
                         {
                             Email = "testUser1@testing.dk",
                             FullName = "Test1 User",
@@ -205,10 +201,9 @@ namespace RentIt.Tests
                     users.Add(user);
                 }
 
-
                 if (!db.Users.Any(a => a.Username == "testUserRent3"))
                 {
-                    User u = new User
+                    var u = new User
                         {
                             Email = "testUser1@testing.dk",
                             FullName = "Test1 User",
@@ -231,10 +226,9 @@ namespace RentIt.Tests
                     users.Add(user);
                 }
 
-
                 if (!db.Users.Any(a => a.Username == "testUserRent4"))
                 {
-                    User u = new User
+                    var u = new User
                         {
                             Email = "testUser1@testing.dk",
                             FullName = "Test1 User",
@@ -259,7 +253,7 @@ namespace RentIt.Tests
 
                 if (!db.Users.Any(a => a.Username == "testContentRent"))
                 {
-                    User u = new User
+                    var u = new User
                     {
                         Email = "testUser1@testing.dk",
                         FullName = "Test1 User",
@@ -289,16 +283,13 @@ namespace RentIt.Tests
         /// <summary>
         /// Sets up test movies for testing of the rentalhistory
         /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<Movie> SetUpMoviesForRentalTest()
+        public static void SetUpMoviesForRentalTest()
         {
-            List<Movie> movies = new List<Movie>();
-
             int oID;
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testContentRent");
+                var user = db.Users.First(u => u.Username == "testContentRent");
                 oID = user.ID;
             }
 
@@ -306,7 +297,7 @@ namespace RentIt.Tests
             {
                 if (!db.Movies.Any(m => m.Description.Equals("batman")))
                 {
-                    Movie movie = new Movie
+                    var movie = new Movie
                         {
                             Description = "batman",
                             FilePath = "no file location1",
@@ -329,7 +320,7 @@ namespace RentIt.Tests
 
                 if (!db.Movies.Any(m => m.Description.Equals("superman")))
                 {
-                    Movie movie = new Movie
+                    var movie = new Movie
                         {
                             Description = "superman",
                             FilePath = "no file location2",
@@ -352,7 +343,7 @@ namespace RentIt.Tests
 
                 if (!db.Movies.Any(m => m.Description.Equals("spiderman")))
                 {
-                    Movie movie = new Movie
+                    var movie = new Movie
                         {
                             Description = "spiderman",
                             FilePath = "no file location3",
@@ -372,33 +363,22 @@ namespace RentIt.Tests
                     db.Movies.First(m => m.Description == "spiderman").FilePath = "no file location3";
                     db.Movies.First(m => m.Description == "spiderman").OwnerID = oID;
                 }
-
             }
-            return movies;
         }
 
-
-        public static IEnumerable<Rental> TestRentalsMostDownloaded()
+        /// <summary>
+        /// Sets up rentals for the most downloaded test.
+        /// </summary>
+        public static void TestRentalsMostDownloaded()
         {
             SetUpRentalTestUsers();
             SetUpMoviesForRentalTest();
 
-            User testUser2;
-            User testUser3;
-            User testUser4;
-
-            Movie batman;
-            Movie superman;
-            Movie spiderman;
-
-            List<Rental> rentals = new List<Rental>();
-
             using (var db = new RentItContext())
             {
-                testUser2 = db.Users.First(u => u.Username == "testUserRent2");
-                testUser3 = db.Users.First(u => u.Username == "testUserRent3");
-                testUser4 = db.Users.First(u => u.Username == "testUserRent4");
-
+                var testUser2 = db.Users.First(u => u.Username == "testUserRent2");
+                var testUser3 = db.Users.First(u => u.Username == "testUserRent3");
+                var testUser4 = db.Users.First(u => u.Username == "testUserRent4");
 
                 User.RentMovie(testUser2.Token, 1);
                 User.RentMovie(testUser3.Token, 2);
@@ -406,29 +386,6 @@ namespace RentIt.Tests
                 User.RentMovie(testUser3.Token, 1);
                 User.RentMovie(testUser4.Token, 3);
                 User.RentMovie(testUser4.Token, 1);
-
-                /*
-                Rental rentOne = new Rental { Movie = batman, User = testUser2, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
-
-                Rental rentTwo = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 4, 21, 5, 55, 23), };
-
-                Rental rentThree = new Rental { Movie = superman, User = testUser3, Time = new DateTime(2012, 2, 20, 5, 55, 23), };
-
-                Rental rentFour = new Rental { Movie = batman, User = testUser3, Time = new DateTime(2012, 3, 15, 10, 55, 23), };
-
-                Rental rentFive = new Rental { Movie = spiderman, User = testUser4, Time = new DateTime(2012, 5, 20, 5, 55, 23) };
-
-                Rental rentSix = new Rental { Movie = batman, User = testUser4, Time = new DateTime(2012, 4, 15, 10, 55, 23) };
-
-                db.Rentals.Add(rentOne);
-                db.Rentals.Add(rentTwo);
-                db.Rentals.Add(rentThree);
-                db.Rentals.Add(rentFour);
-                db.Rentals.Add(rentFive);
-                db.Rentals.Add(rentSix);
-                db.SaveChanges();
-            */
-                return rentals;
             }
         }
     }

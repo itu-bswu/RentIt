@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace RentItClient
 {
-    using RentItClient.ViewModels.UserViewModels;
+    using RentItClient.ViewModels.AdminViewModels;
 
     /// <summary>
     /// Interaction logic for RegistrationPage.xaml
@@ -27,6 +27,7 @@ namespace RentItClient
             textBoxEmail.Text = string.Empty;
             passwordBox1.Password = string.Empty;
             passwordBoxConfirm.Password = string.Empty;
+            textBoxUsername.Text = string.Empty;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -36,7 +37,11 @@ namespace RentItClient
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            //RegistrationViewModel.SignUp(textBoxEmail.Text, textBoxFirstName.Text + " " + textBoxLastName.Text, passwordBox1.Password, textBoxUsername) // TODO: Finish this
+            RegistrationViewModel.SignUp(
+                textBoxEmail.Text,
+                textBoxFirstName.Text + " " + textBoxLastName.Text,
+                passwordBox1.Password,
+                textBoxUsername.Text);
             this.NavigationService.Navigate(new LoginPage());
         }
     }

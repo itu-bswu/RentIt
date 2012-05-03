@@ -5,6 +5,8 @@ namespace RentItClient
     using System.Windows;
 
     using RentItClient.GUI.User;
+    using RentItClient.Types;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for ViewProfilePage.xaml
@@ -14,23 +16,24 @@ namespace RentItClient
         public ViewProfilePage()
         {
             InitializeComponent();
+            var u = ViewProfileViewModel.GetCurrentUserInfo();
+            textBoxEmail.Text = u.Email;
+            // TODO: Full name issue
+            textBoxUserName.Text = u.Username;
         }
 
         private void mostRented(object sender, RoutedEventArgs e)
         {
-            //TODO: skal hente en liste over mest downloadet film og give den videre som parameter
             this.NavigationService.Navigate(new MostRentedPage());
         }
 
         private void viewProfile(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
             this.NavigationService.Navigate(new ViewProfilePage());
         }
 
         private void yourRentals(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
             this.NavigationService.Navigate(new RentalHistory());
         }
 

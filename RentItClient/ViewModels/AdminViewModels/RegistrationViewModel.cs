@@ -3,8 +3,7 @@
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------
-
-namespace RentItClient.ViewModels.UserViewModels
+namespace RentItClient.ViewModels.AdminViewModels
 {
     using RentItClient.Models;
     using RentItClient.RentItService;
