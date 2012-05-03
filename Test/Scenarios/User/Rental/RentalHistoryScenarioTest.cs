@@ -12,6 +12,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
     using RentItService;
     using RentItService.Entities;
+    using RentIt.Tests.Utils;
 
     /// <summary>
     /// Scenario tests of the rentalhistory feature.
@@ -106,12 +107,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void ContentproviderRentalHistory()
         {
-            using (var db = new RentItContext())
-            {
-                User user = db.Users.First(u => u.Username == "Universal");
+            var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
-                Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Content Provider shouldn't have a rental history");
-            }
+            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Content Provider shouldn't have a rental history");
         }
 
         /// <summary>
@@ -125,12 +123,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void AdminRentalHistory()
         {
-            using (var db = new RentItContext())
-            {
-                User user = db.Users.First(u => u.Username == "Anderson");
+            var user = User.Login(TestUser.SystemAdmin.Username, TestUser.SystemAdmin.Password);
 
-                Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Admin shouldn't have a rental history");
-            }
+            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Admin shouldn't have a rental history");
         }
     }
 }
