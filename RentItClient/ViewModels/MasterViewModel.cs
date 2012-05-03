@@ -7,6 +7,7 @@ namespace RentItClient.ViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using RentItClient.Models;
 
@@ -28,10 +29,22 @@ namespace RentItClient.ViewModels
         /// </summary>
         /// <param name="searchString">The search string.</param>
         /// <returns>List of tuples containing movie titles and ids.</returns>
-        public static List<Tuple<string, int>> Search(string searchString)
+        public static List<Tuple<string, int, bool>> Search(string searchString)
         {
-            var movies = GetMovieInformationModel.Search(searchString);
-            List<Tuple<string, int>> result = new List<Tuple<string, int>>();
+            var current = UserModel.CurrentRentals().ToList();
+            var search = GetMovieInformationModel.Search(searchString).ToList();
+
+            var result = new List<Tuple<string, int, bool>>();
+
+            foreach (var s in search)
+            {
+                var mId = s.ID;
+                var title = GetMovieInformationModel.GetMovieInfo(s.ID).Title;
+                result.Add(
+                    current.All(a => a.MovieID != mId)
+                        ? Tuple.Create(title, mId, false)
+                        : Tuple.Create(title, mId, true));
+            }
 
             return result;
         }

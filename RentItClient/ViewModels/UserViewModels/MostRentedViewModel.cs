@@ -11,7 +11,6 @@ namespace RentItClient.ViewModels.UserViewModels
     using System.Linq;
 
     using RentItClient.Models;
-    using RentItClient.RentItService;
 
     /// <summary>
     /// Viewmodel for the most rented user page.

@@ -8,6 +8,7 @@ namespace RentItClient.ViewModels.UserViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using RentItClient.Models;
 
@@ -38,7 +39,7 @@ namespace RentItClient.ViewModels.UserViewModels
             {
                 var mId = r.MovieID;
                 var title = GetMovieInformationModel.GetMovieInfo(r.MovieID).Title;
-                if (!result.Exists(t => t.Item2 == mId))
+                if (result.All(t => t.Item2 != mId))
                 {
                     result.Add(Tuple.Create(title, mId, false));
                 }
