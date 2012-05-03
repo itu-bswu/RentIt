@@ -48,7 +48,7 @@ namespace RentItClient
 
         private void saveChangesClick(object sender, RoutedEventArgs e)
         {
-            //TODO: hent information fra TextBox: textBoxFirstName, textBoxLastName, textBoxUserName, textBoxEmail, textBoxPassWord
+            //TODO: hent information fra TextBox: textBoxFullName, textBoxUserName, textBoxEmail,
             //TODO: og erstat så service felterne med informationen.
 
             string messageBoxText = "Do you want to save changes?";

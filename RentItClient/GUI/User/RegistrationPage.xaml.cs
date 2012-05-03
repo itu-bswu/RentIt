@@ -10,6 +10,9 @@ namespace RentItClient
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegistrationPage"/> class.
+        /// </summary>
         public RegistrationPage()
         {
             InitializeComponent();
@@ -17,32 +20,34 @@ namespace RentItClient
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            this.ResetAll();
+            ResetAll();
         }
 
+        /// <summary>
+        /// Sets all the text boxes to empty strings.
+        /// </summary>
         private void ResetAll()
         {
-            textBoxFirstName.Text = string.Empty;
-            textBoxLastName.Text = string.Empty;
             textBoxEmail.Text = string.Empty;
             passwordBox1.Password = string.Empty;
             passwordBoxConfirm.Password = string.Empty;
             textBoxUsername.Text = string.Empty;
+            textBoxFullName.Text = string.Empty;
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void CancelClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new LoginPage());
+            NavigationService.Navigate(new LoginPage());
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void SubmitClick(object sender, RoutedEventArgs e)
         {
             RegistrationViewModel.SignUp(
                 textBoxEmail.Text,
-                textBoxFirstName.Text + " " + textBoxLastName.Text,
+                textBoxFullName.Text,
                 passwordBox1.Password,
                 textBoxUsername.Text);
-            this.NavigationService.Navigate(new LoginPage());
+            NavigationService.Navigate(new LoginPage());
         }
     }
 }

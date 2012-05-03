@@ -14,42 +14,45 @@ namespace RentItClient
     /// </summary>
     public partial class ViewProfilePage : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewProfilePage"/> class.
+        /// </summary>
         public ViewProfilePage()
         {
             InitializeComponent();
             var u = ViewProfileViewModel.GetCurrentUserInfo();
             textBoxEmail.Text = u.Email;
-            // TODO: Full name issue
+            textBoxFullName.Text = u.FullName;
             textBoxUserName.Text = u.Username;
         }
 
-        private void mostRented(object sender, RoutedEventArgs e)
+        private void MostRented(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void viewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfile(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void yourRentals(object sender, RoutedEventArgs e)
+        private void YourRentals(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RentalHistory());
         }
 
-        private void searchClick(object sender, RoutedEventArgs e)
+        private void SearchClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
-        private void logoutClick(object sender, RoutedEventArgs e)
+        private void LogoutClick(object sender, RoutedEventArgs e)
         {
             MasterViewModel.LogOut();
             NavigationService.Navigate(new LoginPage());
         }
 
-        private void editProfileClick(object sender, System.Windows.RoutedEventArgs e)
+        private void EditProfileClick(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService.Navigate(new EditProfilePage());
         }
