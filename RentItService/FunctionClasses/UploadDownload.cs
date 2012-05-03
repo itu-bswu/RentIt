@@ -30,6 +30,7 @@ namespace RentItService.FunctionClasses
         /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
         /// <param name="movieObject">The movie object with the movie information.</param>
         /// <returns>True if upload was successful, false if not.</returns>
+        /// <author>Jakob Melnyk</author>
         public static bool UploadMovieFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
         {
             Contract.Requires<ArgumentNullException>(token != null);
@@ -62,6 +63,7 @@ namespace RentItService.FunctionClasses
         /// <param name="uploadRequest">The upload request.</param>
         /// <param name="movieID">ID of the media this file belongs to.</param>
         /// <returns>True if the upload succeeded, false if it failed. </returns>
+        /// <author>Jakob Melnyk</author>
         public static bool UploadFile(string token, RemoteFileStream uploadRequest, int movieID)
         {
             Contract.Requires<ArgumentNullException>(uploadRequest != null);
@@ -131,7 +133,7 @@ namespace RentItService.FunctionClasses
 
             using (var db = new RentItContext())
             {
-                User user = User.GetByToken(token);
+                var user = User.GetByToken(token);
                 if (!(user.Rentals.Any(x => x.MovieID == downloadRequest.ID & x.UserID == user.ID)))
                 {
                     throw new InsufficientRightsException();
@@ -139,7 +141,7 @@ namespace RentItService.FunctionClasses
 
                 var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
 
-                string filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
+                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
                 var fileInfo = new FileInfo(filePath);
 
                 // Check to see if file exists.

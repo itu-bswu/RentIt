@@ -1,0 +1,127 @@
+\chapter{Database}
+\label{database}
+To write something here
+\emph{Since we are using scrum, our database is constantly evolving. The database explained here is not the final database, and it is not the initial database either. It is a snapshot of how it looks right now.}
+
+\section{Design}
+\label{database_design}
+We decided quite early on to focus on simplicity and feature completeness, instead of adding a lot of half-done features and/or untested functionality. That also meant a very simple data model, as we only added what was needed to do the job.
+
+% Image - initial data model
+
+Figure X displays our simple initial data model. This captures the basic information about users, such as username, password, email address and the user's full name. We also have a field called type, representing whether a given user is a normal user, a content provider or a system administrator.
+
+To begin with we also only wanted to capture the basic information about the movies, like title, description and the file path. To finish it off, we added a tables for capturing movie rentals. This basically was a junction table, with references to the user renting the movie, the movie being rented and the time of the rental.
+
+% Image - new data model
+
+Figure Y displays our current data model. Since we are using scrum and work in sprints, our data model is constantly evolving. We only add things to the code and the database when it is needed. At the current of the project, our data model has been updated to the one showed in figure Y. The most notable difference is the genres now being in its own table. Another difference is the addition of a token to the user, which is explained later on. A movie now also has an owner and a release date.
+
+\subsection{Tables}
+\label{database_design_tables}
+
+\subsubsection{User}
+\label{database_design_tables_user}
+
+\begin{description}
+\item[user_id] The user's unique ID number.
+\item[username] The user's unique username - used for login.
+\item[password] The user's password - hashed and salted.
+\item[email] The user's email address.
+\item[full_name] Full name of the user.
+\item[type] User, Content provider or System Administrator.
+\item[token] Unique session token generated at login and cleared at logout.
+\end{description}
+
+The User table contains data about our users. To provide some security to our users' passwords, we salt and hash (with the SHA512 algorithm) the users' passwords before putting it into the database. This means that if the database is hacked, then unless they know the salt, they will still have a hard time figuring out the password of the users. The value in the password field will be useless to them, so they only find out the usernames and they will need to try and login to our service with all possible passwords in a bruteforce attack, to try and figuring the passwords of our users.
+The problem arrises if they get access to our codebase, as they will also get access to the salt and then they can bruteforce the passwords locally (and not using the login feature on our service), which will be much faster.
+
+The ``Type'' field is an integer (since SQL Server 2008 doesn't have enum support) between 1 and 3. A value of 1 means that a given user is ``just'' a normal user, where a value of 2 means that the user is a content provider. A value of 3 indicates a system administrator.
+
+The ``Token'' field is a session token. We didn't look much into the different WCF bindings, but we found a binding with streaming support, but with no session support. So we created our own sessions, by generating a session key upon login. This session token is then stored in the ``Token'' field, and is cleared upon logout. This session token has to be provided at every service call (that requires the user to be logged in).
+
+\subsubsection{Movie}
+\label{database_design_tables_movie}
+
+\begin{description}
+\item[movie_{id}] The movie's unique ID number.
+\item[title] Title of the movie.
+\item[description] A more or less detailed description of the movie.
+\item[file_path] File path to the video file.
+\item[owner_id] Reference to the user creating the movie.
+\item[release_date] The release date when the movie is available for rental.
+\end{description}
+
+The Movie table is quite straight forward. A movie has a title and a description to help identity the movie. The file path is a relative path, based from the movie root folder. Initially it is only a file name, but it is called ``file_path'' if this was to be changed later on. The ``owner_id'' is a reference to the User table, to a content provider that created that movie.
+
+The release date is quite important. We took a decision to view all movies (also the ones not yet released) to the user, but it is only possible to rent a movie that has been released, and a movie has only been released if the release date has been set and is a time and date before the current time and date.
+
+\subsubsection{Genre}
+\label{database_design_tables_genre}
+
+\begin{description}
+\item[genre_id] The genre's unique ID number.
+\item[name] The name of the genre.
+\end{description}
+
+We changed this to be its own table, when we discovered that a movie very easily can belong to several genres, and instead of putting all these together in one string with a delimiter in between, we decided to move it to its own table. It also makes it easier to re-use genres, which will make it easier when searching for a specific genre, as it is quite easy to misspell a genre. So when the most genres already have been added, and the system suggests genres for a given movie upon creation, genres are re-used, which makes it easier to search for genres.
+
+\subsubsection{HasGenre}
+\label{database_design_tables_hasgenre}
+
+\begin{description}
+\item[hasgenre_id] Unique ID.
+\item[movie_id] Reference to a movie in the Movie table.
+\item[genre_id] Reference to a genre in the Genre table.
+\end{description}
+
+Junction table used to associate genres with movies. The movie and genre combination is set as unique, so you cannot associate a given genre with a given movie twice. It wouldn't really matter much if we didn't make the combinations unique, but it would clutter the database and potentially slow it down.
+
+\subsubsection{Rental}
+\label{database_design_tables_rental}
+
+\begin{description}
+\item[rental_id] The unique ID number of the rental.
+\item[user_id] Reference to a user in the User table.
+\item[movie_id] Reference to a movie in the Movie table.
+\item[time] Time of rental.
+\end{description}
+
+This is probably the most important database in a rental system: the tracking of rentals. This has been made quite simple. We capture the user renting the movie, the movie being rented and the time of rental. We currently have a hardcoded rental period, but we plan to make this more dynamic in the future.
+
+\subsection{Foreign keys}
+\label{database_design_foreignkeys}
+To ensure integrity of fields referencing rows in other tables, we decided to add foreign keys. A foreign key is a check being run when deleting or updating rows in the database. We added those to everywhere we use IDs referencing other tables. These are:
+
+\begin{description}
+\item[Movie.user_id] User reference for the owner of the movie.
+\item[Rental.user_id] User reference to the user renting a given movie.
+\item[Rental.movie_id] Movie reference to the movie being rented by the user.
+\item[HasGenre.movie_id] Movie reference to a movie having a given genre.
+\item[HasGenre.genre_id] Genre reference to the specific genre the movie has.
+\end{description}
+
+When defining foreign keys, it is possible to specify what the database should do if anything gets deleted or updated. We early on decided that we would never delete anything from the database. If we were to delete anything, we would add a ``flag'' to indicate whether or not a row is active or deleted. We do this for historic reasons, as we don't want to lose information about rentals or other actions, just because a user or a movie is deleted.
+We also decided to never change the unique ID number of a row (like User.user_id). There is no need to update these anyway, as the user is never presented with this ID and is only a way to quickly identify users.
+
+We decided to specify these delete and update actions anyway. Most of the foreign keys is set to ``Cascade'', meaning that if I delete a user, all of his rentals will be deleted. If we were to delete a movie, all rentals for that movie would be deleted. It may seem that this conflicts with our decision mentioned earlier, that we would never delete anything, but that we still stand by. BUT if we were to delete anything, it is a special case and in those cases in wouldn't make much sense to keep these empty references. If we were to just set those references to null or don't do anything, we needed to do checks for this in our code, to make sure our code doesn't crash because of incorrect references.
+
+Due to SQL Server complaining about multiple cascade paths, we decided to not use cascade on Movie.owner_id. We decided that if we delete a content provider, its movies will not be deleted, and will still be available for rental. The problem with ``Cascade'' in this situation, is that if you delete a content provider, and the movie is then deleted, then the rentals should of course be deleted. But should the content provider's rentals or the movie's rentals be deleted first?
+That is the downside to our current data model: All user types (users, content providers and system administrators) are gathered in one database table. For the database there isn't any difference between a user and a content provider. But in our code, it is not possible to rent a movie if you are a content provider or a system administrator. On the other hand, it is not possible to create a movie if you are not a content provider. So the problematic ``Cascade paths'' will actually never occur. But the database doesn't know that.
+
+\section{Entity Framework}
+\label{database_entityframework}
+We used Entity Frame version 4.1 as an ORM (Object-Relational Mapping), which is Microsoft's ORM to compete with NHibernate and the like. With Entity Framework it is possible to query data with LINQ (the so-called LINQ-to-Entities), but where Entity Framework really shines, is that it focuses on code over configuration. There isn't any need to do a lot of configuration to get it working.
+
+There is three or four different ways of getting started with Entity Framework:
+
+\begin{description}
+\item[Model-First] Drag and drop. You get a visual editor where you can create new boxes (which will end up as tables and entities) and put lines between them, to model how the different entities interact with each other. An XML-file is created automatically, and the database and entities are created from this.
+\item[Database-First] The other way round compared to Model-First. You start with creating the database, and then Entity Framework creates the XML file from the database. Then, just like Model-First, entities are created.
+\item[Code-First] With code-first you start out from the code. You create your own entities, which are a lot simpler than the generated entities in the two previous modes. These are called POCO-classes, which means ``Plain Old CLR Objects'', referring to the simplicity of these classes. When the POCO entities are created, you get Entity Framework to create the database for you.
+\item[Code-First] The final way of doing it is also called Code-First, but you start out with the database. Code-First doesn't refer to what component you start out with, but it means that you are ``code-centric''. Just like Database-First you start out with creating the database, and then use a simple tool for Visual Studio to generate the POCO entities from this database. This is also nicknamed ``Code-Second''.
+\end{description}
+
+We chose to use Code-Second, as we really wanted to get the simple POCO entities. The reason being that we wanted to send these entities back and forth over the service to transport data, but without any trace of Entity Framework. The reason we chose Code-Second over Code-First, is that we have more control over the database with Code-Second. Entity Framework doesn't add any indices or unique constraints by itself, so to get these, we had to create the database ourselves.
+
+This has proved to be quite difficult to work with, as most of the group isn't that experienced in SQL and database management. If we used Model-First, anyone could have extended the data model, where as with Code-Second only those with SQL experience could do just that. But we did get complete control over our data model and database, which we felt was a big advantage.

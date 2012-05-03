@@ -18,7 +18,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     /// Scenario tests for browsing movies by genre
     /// </summary>
     [TestClass]
-    public class GenreScenarioTest
+    public class GenreScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: verify that all genres in the database gets

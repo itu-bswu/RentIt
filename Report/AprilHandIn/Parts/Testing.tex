@@ -1,0 +1,75 @@
+\chapter{Testing}
+\label{testing}
+In this chapter we discuss our testing strategy, our results using said strategy and what we feel we could have done to improve our testing overall. 
+
+\section{Strategy}
+\label{testing_strategy}
+Our testing strategy consists of different kinds of tests and a tight integration with how our user stories work in a Scrum development strategy. We have three different kinds of tests: Scenario tests, Service tests and Graphical User Interface (GUI) tests. 
+
+Almost all functionality in our RentIt system is implemented by user stories. A user story is not accepted until tests of the functionality pass and the tests have been reviewed by the team member responsible for QA. The team member responsible for QA is Jakob Melnyk. If he is the one who created the test, a different teammember takes care of the QA for that test.
+
+To us, this ensures an acceptable level of peer review during development of the system. Between the feature freeze and code freeze dates, everyone reviews both the code and the tests, so that we get a more thorough peer review.
+
+\subsection{Test types}
+\label{testing_strategy_types}
+We have different testing categories for testing different levels of the system. The different levels we have defined are scenario, service and end-user levels. This section describes the different levels we use for testing. We originally had method/unit testing as well, but we decided the way we have structured our systems do not make it easy to do.
+
+\begin{description}
+\item[Scenario-level]Mainly tests designed to cover a specific user story.
+\item[Service-level]Mainly consist of testing the connection to the service and the different service contracts.
+\item[End-User-level]Test functionality of the GUI for the end-user.
+\end{description}
+
+\subsubsection{Scenario-level tests}
+\label{testing_strategy_types_scenario}
+We have used scenario tests to test features in our project. Features such as editing a user profile or renting a movie are tested on the classes containing the logic for editing the database, creating filestreams and filtering information. This is done to seperate the logic from the Service class itself, such that the service can be exchanged without affecting the logic much (if at all). This also enables us to test the logic seperately from the service itself.
+
+Most of our tests are scenario tests. We have chosen to put our focus on scenario tests, because scenarios are integral to the way we have designed our service. Most features are implemented by making one or two methods to cover the necessary implementation of the feature \footnote{Design and architecture is more thoroughly covered in chapter \ref{Design} \nameref{Design}.}.
+
+\subsubsection{Service-level tests}
+\label{testing_strategy_types_service}
+Our service levels tests do not cover as much of the API as our scenario tests and are not as thorough in testing the functionality. They are mostly intended to test for connection problems, bindings\footnote{Covered briefly in chapter \ref{Design} \nameref{Design}.} issues, data contracts and error handling. 
+
+\subsubsection{Graphical interface tests}
+\label{testing_strategy_types_enduser}
+We use a framework to automate tests for workflows in our GUI. Our strategy is to design them in such a way that they do not depend (much, if at all) on results from the ViewModel\footnote{Discussed in chapter \ref{Design} \nameref{Design}.}, but instead test if it is possible to achieve a set of different workflows in the GUI.
+
+\subsection{Regression tests}
+\label{testing_strategy_regression}
+Every time we run in to an error or a bug in the system, our strategy is to create a test that covers the scenario the error presented itself in. The test is intended to fail the first time it is run (to verify the bug exists), then when the issue has been fixed, the test passes. These tests are only meant to cover the specific bug they were designed to, but because they are already designed (to check if the bug has been fixed), they are kept as regression tests to ensure the bug or error is not reintroduced later.
+
+\subsection{Code coverage}
+\label{testing_strategy_coverage}
+It is rarely an effective strategy to cover every combination of paths through the code, because it is very time-consuming (both in creating tests and actually running those tests). Instead it is important to test enough to cover a lot of your code and functionaliy without crossing the line of where it is redundant to do so\cite{The Way of Testivus}. With that in mind, we have decided to use twofold approach to our tests. We write tests to cover different inputs and scenarios for our features, then assess our code coverage. If the coverage has not reached our goal, we think up new tests to increase the coverage procentages.
+
+Our requirements for code coverage are as follows:
+\begin{itemize}
+\item Minimum overall coverage is 50\% across solution.
+\item Goal is to have 85\% overall coverage of client and service.
+\item Minimum coverage of critical sections is 90\%.
+\end{itemize}
+
+\paragraph{Minimum overall}
+While a 50\% code coverage may seem like a low number, we use this number because the critical parts of our system do not take up a big percentage of the code. This is due to the GUI elements, the Model-View-ViewModel architecture of the client and some elements in the service. In addition, the 50\% requirement is only an absolute minimum and not necessarily a number we will be close to in the end.
+
+\paragraph{Overall goal}
+The overall coverage percentage goal is quite different from our minimum requirement. This is because, in an optimal scenario, we will be able to test the MVVM architecture and the GUI parts (and run code coverage) on the tests we write for those parts. The best code coverage percentage is of course 100\%. However, seeing as our system is not "mission critical"\footnote{Mission critical in this case refers to loss of life and/or loss of money.} as we have not (yet) implemented actual payment options, we feel that 85\% is a good number based on previous experiences.
+
+\paragraph{Critical sections}
+Even though we do not have any "mission critical", we have features in our system that are critical to both the concept of the system (renting movies) and to make the service work. When it comes to testing these features, we aim to have at least a 90\% code coverage. Optimally we would aim to have 100\% code coverage, but as mentioned in The Way of Testivitus\cite{The Way of Testivus} the benefit of each test created has diminishing returns on the amount of certainty that no errors and/or bugs exist.
+
+The sections we feel are critical are all on the service side of the system.
+\begin{itemize}
+\item Logging in/out and signing up.
+\item Renting and download of movies.
+\item Upload and editing of movie information
+\end{itemize}
+
+Why we feel these parts of the code are critical (and why we feel the rest is not as critical) is explained in greater detail in our Design chapter.
+
+\section{Test results}
+\label{testing_results}
+\subsection{Code coverage}
+\label{testing_results_coverage}
+\section{Reflection on test strategy}
+\label{testing_reflection}

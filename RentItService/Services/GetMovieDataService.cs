@@ -51,11 +51,11 @@ namespace RentItService.Services
         }
 
         /// <summary>
-        /// Gets the newest movies.
+        /// Gets the newest released movies.
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="limit">Amount of results to get (0 for unlimited).</param>
-        /// <returns>An IEnumerable containing the newest added movies.</returns>
+        /// <returns>An IEnumerable containing the newest released movies.</returns>
         public IEnumerable<Movie> GetNewest(string token, int limit = 0)
         {
             User.GetByToken(token);

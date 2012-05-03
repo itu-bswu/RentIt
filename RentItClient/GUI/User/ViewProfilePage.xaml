@@ -1,0 +1,32 @@
+﻿<Page x:Class="RentItClient.ViewProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="425" d:DesignWidth="720"
+	Title="ViewProfilePage">
+
+    <Grid Width="720">
+        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="mostRented"/>
+        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="viewProfile" />
+        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="yourRentals" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Right" Name="logout" VerticalAlignment="Top" Width="59" Margin="0,5,10,0" Click="logoutClick" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="searchClick" />
+
+        <TextBlock Height="23"  Margin="56,114,583,263" Name="textBlock0" Text="First name: " Width="61"/>
+        <TextBlock Height="23"  Margin="56,162,583,214" Name="textBlock1" Text="Last name: "  Width="61" />
+        <TextBlock Height="23"  Margin="56,210,583,167" Name="textBlock2" Text="Username: " Width="61" />
+        <TextBlock Height="23"  Margin="56,255,583,122" Name="textBlock3" Text="Email: "  Width="61" />
+        <TextBlock Height="23"  Margin="56,304,583,73" Name="textBlock4" Text="Password: "  Width="61" />
+        
+        <TextBox IsReadOnly="True" Height="23" Margin="175,207,365,167" Name="textBoxUserName" Width="160" />
+        <TextBox IsReadOnly="True" Height="23" Margin="175,255,365,122" Name="textBoxEmail" Width="160" />
+        <TextBox IsReadOnly="True" Height="23" Margin="175,163,365,214" Name="textBoxLastName" Width="160" />
+        <TextBox IsReadOnly="True" Height="23" Margin="175,114,365,263" Name="textBoxFirstName" Width="160" />
+        <TextBox IsReadOnly="True" Height="23" Margin="175,304,365,73" Name="textBoxPassWord" Width="160" />
+        
+        <Button Content="Edit information" Height="24" HorizontalAlignment="Right" Margin="0,346,12,0" Name="button4" VerticalAlignment="Top" Width="141" Click="editProfileClick" />
+    </Grid>
+</Page>

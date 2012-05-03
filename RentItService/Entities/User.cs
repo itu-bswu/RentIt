@@ -254,6 +254,11 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
+                if (!db.Movies.Any(m => m.ID == movieId && m.Released != null && m.Released <= DateTime.Now))
+                {
+                    throw new NoMovieFoundException("No released movies found with the given ID.");
+                }
+
                 db.Rentals.Add(new Rental { MovieID = movieId, UserID = user.ID, Time = DateTime.Now });
                 db.SaveChanges();
             }
@@ -298,7 +303,7 @@ namespace RentItService.Entities
         /// <returns>The users rental history.</returns>
         public static IEnumerable<Rental> GetRentalHistory(string token)
         {
-            return User.GetByToken(token).Rentals;
+            return User.GetByToken(token).Rentals.ToList();
         }
 
         /// <summary>

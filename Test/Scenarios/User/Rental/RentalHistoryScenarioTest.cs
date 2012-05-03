@@ -2,9 +2,6 @@
 // <copyright file="RentalHistoryScenarioTest.cs" company="Hewlett-Packard">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// <summary>
-//   
-// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.Scenarios.User.Rental
@@ -20,7 +17,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
     /// Scenario tests of the rentalhistory feature.
     /// </summary>
     [TestClass]
-    public class RentalHistoryScenarioTest
+    public class RentalHistoryScenarioTest : DataTest
     {
         /// <summary>
         /// Purpose: Verify that it is possible to retreive list of the user rental history.
@@ -42,11 +39,11 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "testUserRent2");
 
-                var result = User.GetRentalHistory(user.Token).ToList();
+                var result = User.GetRentalHistory(user.Token);
 
                 var rentals = user.Rentals.ToList();
 
-                Assert.AreEqual(result.Count, rentals.Count, "The list is not filled with the same amount of elements");
+                Assert.AreEqual(rentals.Count, result.Count(), "The list is not filled with the same amount of elements");
             }
         }
 
@@ -67,7 +64,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "testUserRent1");
 
-                Assert.AreEqual(0, user.Rentals.Count, "The list is not empty");
+                Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");
             }
         }
 
@@ -90,11 +87,11 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "testUserRent3");
 
-                var result = User.GetRentalHistory(user.Token).ToList();
+                var result = User.GetRentalHistory(user.Token);
 
                 var rentals = user.Rentals.ToList();
 
-                Assert.AreEqual(result.Count, rentals.Count, "The rental list dosn't contain the right amount of items.");
+                Assert.AreEqual(rentals.Count, result.Count(), "The rental list dosn't contain the right amount of items.");
             }
         }
 
@@ -113,7 +110,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "Universal");
 
-                Assert.AreEqual(0, user.Rentals.Count, "Admin shouldn't have a rental history");
+                Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Content Provider shouldn't have a rental history");
             }
         }
 
@@ -132,7 +129,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             {
                 User user = db.Users.First(u => u.Username == "Anderson");
 
-                Assert.AreEqual(0, user.Rentals.Count, "Admin shouldn't have a rental history");
+                Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Admin shouldn't have a rental history");
             }
         }
     }

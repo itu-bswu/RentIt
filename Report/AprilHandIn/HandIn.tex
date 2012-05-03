@@ -1,5 +1,5 @@
-\documentclass[12pt,a4paper,notitlepage]{article}
-\usepackage[latin1]{inputenc}
+\documentclass{report}
+\usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{fullpage}
@@ -17,31 +17,45 @@
     urlcolor=black
 }
 
+\setlength{\headheight}{15.2pt}
+\setlength{\topskip}{20pt}
 \pagestyle{fancy}
-\fancyhead{}
-\cfoot{\thepage\ of ??}
-\renewcommand{\headrulewidth}{0.0pt}
+\cfoot{\thepage\ of 14}
 \fancypagestyle{plain}{
 \fancyhf{}
-\cfoot{\thepage\ of ??}
+\cfoot{\thepage\ of 14}
 }
-
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1.8ex plus 0.5ex minus 0.2ex}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
 
 \title{\huge{Rent It}\\
-\large{Second-year project}
+\large{\textit{\\Second-Year Project,\\ Bachelor in Software Development, \\IT
+University of Copenhagen}}
 }
 \author{
+Group 12\\
 Jakob Melnyk, jmel@itu.dk\\
 Frederik Lysgaard, frly@itu.dk\\
+Ulrik Flænø Damm, ulfd@itu.dk\\
+Niklas Hansen, nikl@itu.dk\\
+Jacob Claudius Grooss, jcgr@itu.dk
 }
+
 \date{April 26th, 2012}
 \begin{document}
 \maketitle
-\vfill
-\section*{Abstract}
-
-\clearpage
 \tableofcontents
 \pagebreak
+\include{parts/Preface}
+\pagebreak
+\include{parts/Requirements}
+\pagebreak
+\include{parts/Design}
+\pagebreak
+\include{parts/Testing}
+\begin{thebibliography}{9}
+\bibitem{The Way of Testivus} Blog: http://www.artima.com/weblogs/viewpost.jsp?thread=203994 (22nd of April, 2012)
+\end{thebibliography}
+\pagestyle{plain}
+\end{document}

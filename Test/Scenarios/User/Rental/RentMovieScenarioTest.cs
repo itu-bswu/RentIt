@@ -123,5 +123,80 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 User.RentMovie(null, testID);
             }
         }
+
+        /// <summary>
+        /// Purpose: Verify it is not possible to rent a movie 
+        /// with a release date in the future.
+        /// 
+        /// Steps:
+        ///     1. Create a movie with a release date in the future.
+        ///     2. Log in as a user.
+        ///     3. Try to rent the movie from step 1 with user from step 2.
+        ///     4. Verify it is not possible.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NoMovieFoundException))]
+        public void RentalOfMovieWithFutureRelease()
+        {
+            Movie movie;
+
+            // Step 1
+            using (var db = new RentItContext())
+            {
+                movie = new Movie
+                {
+                    Title = "Some unique movie title",
+                    FilePath = "Not currently available",
+                    OwnerID = TestUser.ContentProvider.ID,
+                    Released = DateTime.Now.AddDays(14)
+                };
+
+                db.Movies.Add(movie);
+                db.SaveChanges();
+            }
+
+            // Step 2
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+
+            // Step 3
+            User.RentMovie(user.Token, movie.ID);
+        }
+
+        /// <summary>
+        /// Purpose: Verify it is not possible to rent a movie 
+        /// without a release date.
+        /// 
+        /// Steps:
+        ///     1. Create a movie without a release date.
+        ///     2. Log in as a user.
+        ///     3. Try to rent the movie from step 1 with user from step 2.
+        ///     4. Verify it is not possible.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(NoMovieFoundException))]
+        public void RentalOfMovieWithoutReleaseDate()
+        {
+            Movie movie;
+
+            // Step 1
+            using (var db = new RentItContext())
+            {
+                movie = new Movie
+                {
+                    Title = "Some unique movie title",
+                    FilePath = "Not currently available",
+                    OwnerID = TestUser.ContentProvider.ID
+                };
+
+                db.Movies.Add(movie);
+                db.SaveChanges();
+            }
+
+            // Step 2
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+
+            // Step 3
+            User.RentMovie(user.Token, movie.ID);
+        }
     }
 }

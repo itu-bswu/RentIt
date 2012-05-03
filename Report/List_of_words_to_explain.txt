@@ -1,0 +1,7 @@
+BugJail
+Feature Freeze
+Code Freeze
+Reference Pex
+explain citations(latex)
+Link to github and PivotalTracker and Wiki
+Mention upload/download implementation source
