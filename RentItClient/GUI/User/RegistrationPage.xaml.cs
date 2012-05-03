@@ -21,8 +21,7 @@ namespace RentItClient
         public void ResetAll()
         {
             textBoxUsername.Text = string.Empty;
-            textBoxFirstName.Text = "";
-            textBoxLastName.Text = "";
+            textBoxFullName.Text = "";
             textBoxEmail.Text = "";
             passwordBox1.Password = "";
             passwordBoxConfirm.Password = "";

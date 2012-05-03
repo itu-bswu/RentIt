@@ -15,18 +15,12 @@
         <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
         <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="searchClick" />
 
-        <TextBlock Height="23"  Margin="56,114,583,263" Name="textBlock0" Text="First Name: "  Width="61"/>
-        <TextBlock Height="23"  Margin="56,162,583,214" Name="textBlock1" Text="Last Name: "  Width="61" />
-        <TextBlock Height="23"  Margin="56,210,583,167" Name="textBlock2" Text="Username: " Width="61" />
-        <TextBlock Height="23"  Margin="56,255,583,122" Name="textBlock3" Text="Email: "  Width="61" />
-        <TextBlock Height="23"  Margin="56,304,583,73" Name="textBlock4" Text="Password: "  Width="61" />
-
-        <TextBox Margin="175,207,365,167" Name="textBoxUserName" Width="160" />
-        <TextBox Height="23" Margin="175,255,365,122" Name="textBoxEmail" Width="160" />
-        <TextBox Height="23" Margin="175,163,365,214" Name="textBoxLastName" Width="160" />
-        <TextBox Height="23" Margin="175,114,365,263" Name="textBoxFirstName" Width="160" />
-        <TextBox Height="23" Margin="175,304,365,73" Name="textBoxPassWord" Width="160" />
-
+        <TextBlock Height="23"  Margin="56,114,583,263" Name="textBlock0" Text="Full Name: "  Width="61"/>
+        <TextBlock Height="23"  Margin="66,168,593,209" Name="textBlock2" Text="Username: " Width="61" />
+        <TextBlock Height="23"  Margin="66,222,593,155" Name="textBlock3" Text="Email: "  Width="61" />
+        <TextBox Margin="185,165,375,209" Name="textBoxUserName" Width="160" />
+        <TextBox Height="23" Margin="185,219,375,158" Name="textBoxEmail" Width="160" />
+        <TextBox Height="23" Margin="175,114,365,263" Name="textBoxFullName" Width="160" />
         <Button Content="Save changes" Height="24" HorizontalAlignment="Left" Margin="56,354,0,0" Name="button4" VerticalAlignment="Top" Width="141" Click="saveChangesClick" />
     </Grid>
 </Page>
