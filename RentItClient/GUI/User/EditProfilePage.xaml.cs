@@ -64,16 +64,16 @@ namespace RentItClient
             {
                 case MessageBoxResult.Yes:
                     // User pressed Yes button
-                    this.NavigationService.Navigate(new RentalHistory());
+                    this.NavigationService.Navigate(new ViewProfilePage());
                     //TODO: save the changes made on the user obejct to the database
                     break;
                 case MessageBoxResult.No:
                     // User pressed No button
-                    this.NavigationService.Navigate(new RentalHistory());
+                    this.NavigationService.Navigate(new ViewProfilePage());
                     break;
                 case MessageBoxResult.Cancel:
                     // User pressed Cancel button
-                    this.NavigationService.Navigate(new RentalHistory());
+                    this.NavigationService.Navigate(new EditProfilePage());
                     break;
             }
         }
