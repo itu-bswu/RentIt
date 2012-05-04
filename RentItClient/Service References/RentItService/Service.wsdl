@@ -5,11 +5,10 @@
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" />
+      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
+      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IContentService_EditMovieInformation_InputMessage">

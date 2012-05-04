@@ -25,6 +25,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Production|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -215,6 +218,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\RentItService\RentItClient.RentItService.Genre.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RentItService\RentItClient.RentItService.Movie.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -244,9 +250,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RentItService\Service5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItService\Service6.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RentItService\Service7.xsd">

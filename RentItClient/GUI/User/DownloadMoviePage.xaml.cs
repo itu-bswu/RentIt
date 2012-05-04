@@ -20,7 +20,7 @@
         /// <summary>
         /// The text to dispaly if movie is not yet released.
         /// </summary>
-        private readonly const string NotYetReleased = "Not yet released";
+        private const string NotYetReleased = "Not yet released";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DownloadMoviePage"/> class.

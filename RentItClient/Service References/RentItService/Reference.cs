@@ -7,64 +7,62 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace RentItClient.RentItService
 {
+    using System.Runtime.Serialization;
     using System;
+
 
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name = "Movie", Namespace = "http://schemas.datacontract.org/2004/07/RentItService.Entities")]
-    [SerializableAttribute()]
-    public class Movie : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+    [System.SerializableAttribute()]
+    public partial class Movie : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
     {
 
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string descriptionField;
+        private string DescriptionField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string filePathField;
+        private string FilePathField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string genreField;
+        private RentItClient.RentItService.Genre[] GenresField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] genresField;
+        private int IDField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idField;
+        private string ImagePathField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string imagePathField;
+        private RentItClient.RentItService.User OwnerField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private User ownerField;
+        private int OwnerIDField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ownerIDField;
+        private System.Nullable<System.DateTime> ReleasedField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DateTime? releasedField;
+        private RentItClient.RentItService.Rental[] RentalsField;
 
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Rental[] rentalsField;
+        private string TitleField;
 
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string titleField;
-
-        [System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
             {
-                return extensionDataField;
+                return this.extensionDataField;
             }
             set
             {
-                extensionDataField = value;
+                this.extensionDataField = value;
             }
         }
 
@@ -73,14 +71,14 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return descriptionField;
+                return this.DescriptionField;
             }
             set
             {
-                if ((ReferenceEquals(descriptionField, value) != true))
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true))
                 {
-                    descriptionField = value;
-                    RaisePropertyChanged("Description");
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
                 }
             }
         }
@@ -90,47 +88,30 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return filePathField;
+                return this.FilePathField;
             }
             set
             {
-                if ((ReferenceEquals(filePathField, value) != true))
+                if ((object.ReferenceEquals(this.FilePathField, value) != true))
                 {
-                    filePathField = value;
-                    RaisePropertyChanged("FilePath");
+                    this.FilePathField = value;
+                    this.RaisePropertyChanged("FilePath");
                 }
             }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Genre
+        public RentItClient.RentItService.Genre[] Genres
         {
             get
             {
-                return this.genreField;
+                return this.GenresField;
             }
             set
             {
-                if ((object.ReferenceEquals(this.genreField, value) != true))
+                if ((object.ReferenceEquals(this.GenresField, value) != true))
                 {
-                    this.genreField = value;
-                    this.RaisePropertyChanged("Genre");
-                }
-            }
-        }
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Genres
-        {
-            get
-            {
-                return this.genresField;
-            }
-            set
-            {
-                if ((object.ReferenceEquals(this.genresField, value) != true))
-                {
-                    this.genresField = value;
+                    this.GenresField = value;
                     this.RaisePropertyChanged("Genres");
                 }
             }
@@ -141,13 +122,13 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return this.idField;
+                return this.IDField;
             }
             set
             {
-                if ((this.idField.Equals(value) != true))
+                if ((this.IDField.Equals(value) != true))
                 {
-                    this.idField = value;
+                    this.IDField = value;
                     this.RaisePropertyChanged("ID");
                 }
             }
@@ -158,13 +139,13 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return this.imagePathField;
+                return this.ImagePathField;
             }
             set
             {
-                if ((object.ReferenceEquals(this.imagePathField, value) != true))
+                if ((object.ReferenceEquals(this.ImagePathField, value) != true))
                 {
-                    this.imagePathField = value;
+                    this.ImagePathField = value;
                     this.RaisePropertyChanged("ImagePath");
                 }
             }
@@ -175,13 +156,13 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return this.ownerField;
+                return this.OwnerField;
             }
             set
             {
-                if ((object.ReferenceEquals(this.ownerField, value) != true))
+                if ((object.ReferenceEquals(this.OwnerField, value) != true))
                 {
-                    this.ownerField = value;
+                    this.OwnerField = value;
                     this.RaisePropertyChanged("Owner");
                 }
             }
@@ -192,31 +173,31 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return this.ownerIDField;
+                return this.OwnerIDField;
             }
             set
             {
-                if ((this.ownerIDField.Equals(value) != true))
+                if ((this.OwnerIDField.Equals(value) != true))
                 {
-                    this.ownerIDField = value;
+                    this.OwnerIDField = value;
                     this.RaisePropertyChanged("OwnerID");
                 }
             }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DateTime? Released
+        public System.Nullable<System.DateTime> Released
         {
             get
             {
-                return releasedField;
+                return this.ReleasedField;
             }
             set
             {
-                if ((releasedField.Equals(value) != true))
+                if ((this.ReleasedField.Equals(value) != true))
                 {
-                    releasedField = value;
-                    RaisePropertyChanged("Released");
+                    this.ReleasedField = value;
+                    this.RaisePropertyChanged("Released");
                 }
             }
         }
@@ -226,13 +207,13 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return this.rentalsField;
+                return this.RentalsField;
             }
             set
             {
-                if ((object.ReferenceEquals(this.rentalsField, value) != true))
+                if ((object.ReferenceEquals(this.RentalsField, value) != true))
                 {
-                    this.rentalsField = value;
+                    this.RentalsField = value;
                     this.RaisePropertyChanged("Rentals");
                 }
             }
@@ -243,13 +224,13 @@ namespace RentItClient.RentItService
         {
             get
             {
-                return this.titleField;
+                return this.TitleField;
             }
             set
             {
-                if ((object.ReferenceEquals(this.titleField, value) != true))
+                if ((object.ReferenceEquals(this.TitleField, value) != true))
                 {
-                    this.titleField = value;
+                    this.TitleField = value;
                     this.RaisePropertyChanged("Title");
                 }
             }
@@ -486,6 +467,101 @@ namespace RentItClient.RentItService
                 {
                     this.UsernameField = value;
                     this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null))
+            {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "Genre", Namespace = "http://schemas.datacontract.org/2004/07/RentItService.Entities")]
+    [System.SerializableAttribute()]
+    public partial class Genre : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged
+    {
+
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RentItClient.RentItService.Movie[] AssociatedMoviesField;
+
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RentItClient.RentItService.Movie[] AssociatedMovies
+        {
+            get
+            {
+                return this.AssociatedMoviesField;
+            }
+            set
+            {
+                if ((object.ReferenceEquals(this.AssociatedMoviesField, value) != true))
+                {
+                    this.AssociatedMoviesField = value;
+                    this.RaisePropertyChanged("AssociatedMovies");
+                }
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID
+        {
+            get
+            {
+                return this.IDField;
+            }
+            set
+            {
+                if ((this.IDField.Equals(value) != true))
+                {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                if ((object.ReferenceEquals(this.NameField, value) != true))
+                {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -773,7 +849,7 @@ namespace RentItClient.RentItService
     {
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IContentService/EditMovieInformation", ReplyAction = "http://tempuri.org/IContentService/EditMovieInformationResponse")]
-        void EditMovieInformation(string token, RentItClient.RentItService.Movie movieObject);
+        void EditMovieInformation(string token, RentItClient.RentItService.Movie updatedMovie);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IContentService/DeleteMovie", ReplyAction = "http://tempuri.org/IContentService/DeleteMovieResponse")]
         void DeleteMovie(string token, RentItClient.RentItService.Movie movieObject);
@@ -813,9 +889,9 @@ namespace RentItClient.RentItService
         {
         }
 
-        public void EditMovieInformation(string token, RentItClient.RentItService.Movie movieObject)
+        public void EditMovieInformation(string token, RentItClient.RentItService.Movie updatedMovie)
         {
-            base.Channel.EditMovieInformation(token, movieObject);
+            base.Channel.EditMovieInformation(token, updatedMovie);
         }
 
         public void DeleteMovie(string token, RentItClient.RentItService.Movie movieObject)
@@ -888,10 +964,10 @@ namespace RentItClient.RentItService
         RentItClient.RentItService.Movie[] GetNewest(string token, int limit);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IGetMovieData/GetAllGenres", ReplyAction = "http://tempuri.org/IGetMovieData/GetAllGenresResponse")]
-        string[] GetAllGenres(string token);
+        RentItClient.RentItService.Genre[] GetAllGenres(string token);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IGetMovieData/GetMoviesByGenre", ReplyAction = "http://tempuri.org/IGetMovieData/GetMoviesByGenreResponse")]
-        RentItClient.RentItService.Movie[] GetMoviesByGenre(string token, string genre);
+        RentItClient.RentItService.Movie[] GetMoviesByGenre(string token, RentItClient.RentItService.Genre genre);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IGetMovieData/Search", ReplyAction = "http://tempuri.org/IGetMovieData/SearchResponse")]
         RentItClient.RentItService.Movie[] Search(string token, [System.ServiceModel.MessageParameterAttribute(Name = "search")] string search1);
@@ -949,12 +1025,12 @@ namespace RentItClient.RentItService
             return base.Channel.GetNewest(token, limit);
         }
 
-        public string[] GetAllGenres(string token)
+        public RentItClient.RentItService.Genre[] GetAllGenres(string token)
         {
             return base.Channel.GetAllGenres(token);
         }
 
-        public RentItClient.RentItService.Movie[] GetMoviesByGenre(string token, string genre)
+        public RentItClient.RentItService.Movie[] GetMoviesByGenre(string token, RentItClient.RentItService.Genre genre)
         {
             return base.Channel.GetMoviesByGenre(token, genre);
         }
@@ -1086,47 +1162,47 @@ namespace RentItClient.RentItService
         {
         }
 
-        public bool SignUp(User userObject)
+        public bool SignUp(RentItClient.RentItService.User userObject)
         {
-            return Channel.SignUp(userObject);
+            return base.Channel.SignUp(userObject);
         }
 
-        public User LogIn(string userName, string password)
+        public RentItClient.RentItService.User LogIn(string userName, string password)
         {
-            return Channel.LogIn(userName, password);
+            return base.Channel.LogIn(userName, password);
         }
 
         public void Logout(string token)
         {
-            Channel.Logout(token);
+            base.Channel.Logout(token);
         }
 
-        public User EditProfile(string token, RentItClient.RentItService.User userObject)
+        public RentItClient.RentItService.User EditProfile(string token, RentItClient.RentItService.User userObject)
         {
-            return Channel.EditProfile(token, userObject);
+            return base.Channel.EditProfile(token, userObject);
         }
 
-        public Rental[] GetRentalHistory(string token)
+        public RentItClient.RentItService.Rental[] GetRentalHistory(string token)
         {
-            return Channel.GetRentalHistory(token);
+            return base.Channel.GetRentalHistory(token);
         }
 
-        public Rental[] GetCurrentRentals(string token)
+        public RentItClient.RentItService.Rental[] GetCurrentRentals(string token)
         {
-            return Channel.GetCurrentRentals(token);
+            return base.Channel.GetCurrentRentals(token);
         }
 
         public void RentMovie(string token, int movieId)
         {
-            Channel.RentMovie(token, movieId);
+            base.Channel.RentMovie(token, movieId);
         }
 
-        public User[] GetUsers(string token)
+        public RentItClient.RentItService.User[] GetUsers(string token)
         {
             return base.Channel.GetUsers(token);
         }
 
-        public User[] GetContentPublishers(string token)
+        public RentItClient.RentItService.User[] GetContentPublishers(string token)
         {
             return base.Channel.GetContentPublishers(token);
         }
