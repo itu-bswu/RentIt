@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
+    using System.Windows.Controls;
 
-    using RentItClient.GUI.User;
     using RentItClient.ViewModels;
     using RentItClient.ViewModels.UserViewModels;
 
@@ -13,13 +11,16 @@ namespace RentItClient
     /// </summary>
     public partial class EditProfilePage : Page
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditProfilePage"/> class.
+        /// </summary>
         public EditProfilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             var u = ViewProfileViewModel.GetCurrentUserInfo();
             textBoxEmail.Text = u.Email;
             textBoxFullName.Text = u.FullName;
-            //password ting
+            textBoxPassword.Text = u.Password;
         }
 
         private void MostRented(object sender, RoutedEventArgs e)
@@ -39,7 +40,7 @@ namespace RentItClient
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(this.textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
@@ -50,35 +51,29 @@ namespace RentItClient
 
         private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
-            //TODO: hent information fra TextBox: textBoxFullName, textBoxUserName, textBoxEmail,
-            //TODO: og erstat så service felterne med informationen.
-
             const string MessageBoxText = "Do you want to save changes?";
             const string Caption = "Save Changes?";
             const MessageBoxButton Button = MessageBoxButton.YesNoCancel;
             const MessageBoxImage Icon = MessageBoxImage.Warning;
-            MessageBox.Show(MessageBoxText, Caption, Button, Icon);
 
-            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+            var result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
 
             // Process message box results
             switch (result)
             {
                 case MessageBoxResult.Yes:
                     // User pressed Yes button
-                    //TODO: save the changes made on the user obejct to the database
-                    NavigationService.Navigate(new RentalHistory());
+                    EditProfileViewModel.EditUserProfile(this.textBoxEmail.Text, this.textBoxFullName.Text, this.textBoxPassword.Text);
+                    NavigationService.Navigate(new ViewProfilePage());
                     break;
                 case MessageBoxResult.No:
                     // User pressed No button
-                    NavigationService.Navigate(new RentalHistory());
+                    NavigationService.Navigate(new ViewProfilePage());
                     break;
                 case MessageBoxResult.Cancel:
                     // User pressed Cancel button
-                    NavigationService.Navigate(new RentalHistory());
                     break;
             }
         }
-
     }
 }

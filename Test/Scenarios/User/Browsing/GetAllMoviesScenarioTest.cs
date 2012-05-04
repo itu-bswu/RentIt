@@ -60,7 +60,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                     {
                         Description = "testMovieForGetAllMovies",
                         FilePath = "EmptyEmptyEmpty",
-                        Genre = "testGenre",
                         ImagePath = "EmptyEmptyEmpty",
                         Title = "testMovieGAM",
                         OwnerID = 2

@@ -27,6 +27,7 @@ namespace RentItService.Entities
         public Movie()
         {
             this.Rentals = new List<Rental>();
+            this.Genres = new List<Genre>();
         }
 
         /// <summary>
@@ -55,11 +56,6 @@ namespace RentItService.Entities
         public string FilePath { get; set; }
 
         /// <summary>
-        /// Gets or sets the genre of the movie.
-        /// </summary>
-        public string Genre { get; set; }
-
-        /// <summary>
         /// Gets or sets the release date.
         /// </summary>
         public DateTime? Released { get; set; }
@@ -80,13 +76,35 @@ namespace RentItService.Entities
         public virtual ICollection<Rental> Rentals { get; set; }
 
         /// <summary>
-        /// Gets Genres.
+        /// Gets or sets the movie's genres.
         /// </summary>
-        public IEnumerable<string> Genres
+        public virtual ICollection<Genre> Genres { get; set; }
+
+        /// <summary>
+        /// Add a genre to the movie
+        /// </summary>
+        /// <param name="genre">The genre</param>
+        public void AddGenre(Genre genre)
         {
-            get
+            Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 1);
+
+            if (!Genres.Contains(genre))
             {
-                return this.Genre.Split('/');
+                Genres.Add(genre);
+            }
+        }
+
+        /// <summary>
+        /// Remove a genre from the movie
+        /// </summary>
+        /// <param name="genre">The Genre</param>
+        public void RemoveGenre(Genre genre)
+        {
+            Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 0);
+
+            if (Genres.Contains(genre))
+            {
+                Genres.Remove(genre);
             }
         }
 
@@ -112,11 +130,6 @@ namespace RentItService.Entities
                 if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
                 {
                     throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
-                }
-
-                foreach (var r in db.Rentals.Where(r => r.MovieID == movie.ID))
-                {
-                    db.Rentals.Remove(r);
                 }
 
                 var filePath = Constants.UploadDownloadFileFolder + movie.FilePath;
@@ -163,7 +176,7 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        public static IEnumerable<Movie> ByGenre(string genre)
+        public static IEnumerable<Movie> ByGenre(Genre genre)
         {
             Contract.Requires<ArgumentNullException>(genre != null);
 
@@ -171,7 +184,8 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                result = db.Movies.ToList().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
+                // Warning: ugly fix
+                result = db.Movies.Include("Genres").ToList().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
             }
 
             if (!result.Any())
@@ -186,14 +200,11 @@ namespace RentItService.Entities
         /// Returns all genres in the database
         /// </summary>
         /// <returns>An IEnumerable containing all genres as strings</returns>
-        public static IEnumerable<string> GetAllGenres()
+        public static IEnumerable<Genre> GetAllGenres()
         {
             using (var db = new RentItContext())
             {
-                return (from movie in db.Movies.ToList()
-                        let genres = movie.Genres
-                        from genre in genres
-                        select genre).Distinct().ToList();
+                return db.Genres.ToList();
             }
         }
 
@@ -275,7 +286,7 @@ namespace RentItService.Entities
 
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<ArgumentNullException>(
-                movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
+                movieObject.Description != null & movieObject.Title != null);
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
@@ -284,12 +295,16 @@ namespace RentItService.Entities
                 var newMovie = new Movie
                 {
                     Description = movieObject.Description,
-                    Genre = movieObject.Genre,
                     Title = movieObject.Title,
                     FilePath = "emptyFilePath",
-                    OwnerID = User.GetByToken(token).ID,
-                    Released = movieObject.Released
+                    OwnerID = User.GetByToken(token).ID
                 };
+
+                foreach (var genre in movieObject.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))
+                {
+                    newMovie.AddGenre(genre);
+                }
+
                 db.Movies.Add(newMovie);
                 db.SaveChanges();
             }

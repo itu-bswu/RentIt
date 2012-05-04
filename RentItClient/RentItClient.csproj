@@ -111,10 +111,10 @@
     <Compile Include="ViewModels\AdministrationViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\DownloadMovieViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\EditProfileViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\MostRentedViewModel.cs" />
     <Compile Include="ViewModels\AdministrationViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\RentalHistoryViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModels\RentMovieViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\ViewMovieViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\ViewProfileViewModel.cs" />
     <Page Include="GUI\ContentProvider\CPEditMovie.xaml">

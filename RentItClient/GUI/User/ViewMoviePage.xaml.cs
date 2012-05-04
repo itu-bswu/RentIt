@@ -1,8 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient
 {
     using System.Windows;
+    using System.Windows.Controls;
 
     using RentItClient.GUI.User;
     using RentItClient.Types;

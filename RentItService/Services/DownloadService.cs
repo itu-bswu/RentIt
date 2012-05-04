@@ -12,6 +12,7 @@ namespace RentItService.Services
     using FunctionClasses;
     using Interfaces;
     using Library;
+    using System.Linq;
 
     /// <summary>
     /// The download service class.
@@ -32,7 +33,7 @@ namespace RentItService.Services
             Contract.Requires<ArgumentNullException>(token != null);
 
             Contract.Requires<ArgumentNullException>(downloadRequest != null);
-            Contract.Requires(downloadRequest.Genre != null &
+            Contract.Requires(downloadRequest.Genres.Any() &
                               downloadRequest.Description != null &
                               downloadRequest.Title != null);
 

@@ -33,25 +33,27 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetAllGenresTest()
         {
+            // Step 1
+            var genres = Movie.GetAllGenres();
+
+            Assert.IsTrue(genres.Any(), "There are no genres in the data set.");
+
+            var set = new HashSet<Genre>();
+
             using (var db = new RentItContext())
             {
-                var set = new HashSet<string>();
-
-                // Step 1
-                var genres = Movie.GetAllGenres().ToList();
-
                 // Step 2
-                foreach (var genre in db.Movies.ToList().SelectMany(movie => movie.Genres))
+                foreach (var genre in db.Genres.ToList())
                 {
                     set.Add(genre);
                 }
-
-                // Step 3
-                Assert.AreEqual(set.Count(), genres.Count());
-
-                // Step 4
-                Assert.IsTrue(genres.All(set.Contains));
             }
+
+            // Step 3
+            Assert.AreEqual(set.Count(), genres.Count(), "Not the same number of genres returned");
+
+            // Step 4
+            Assert.IsTrue(genres.All(set.Contains), "Not the same genres returned");
         }
 
         /// <summary>
@@ -67,12 +69,15 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void BrowseKnownGenreTest()
         {
-            List<Movie> dbmovies;
+            ICollection<Movie> dbmovies;
 
             using (var db = new RentItContext())
             {
-                dbmovies = db.Movies.ToList();
+                // Warning: ugly fix
+                dbmovies = db.Movies.Include("Genres").ToList();
             }
+
+            Assert.IsTrue(dbmovies.First().Genres.Any(), "First move has no genres.");
 
             var testGenre = dbmovies.First().Genres.First();
 
@@ -80,41 +85,13 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var movies = Movie.ByGenre(testGenre).ToList();
 
             // Step 2
-            Assert.IsTrue(movies.All(movie => movie.Genres.Contains(testGenre)));
+            Assert.IsTrue(movies.All(movie => movie.Genres.Contains(testGenre)), "A movie doesn't have the genre.");
 
             // Step 3
             var movieCount = dbmovies.Count(movie => movie.Genres.Contains(testGenre));
 
             // Step 4
-            Assert.AreEqual(movieCount, movies.Count());
-        }
-
-        /// <summary>
-        /// Pursose: verify that trying to get movies with an unknown genre
-        /// throws an exception
-        /// 
-        /// Steps:
-        ///     1. Generate a string that doesn't exist as a genre in the database
-        ///     2. Load all movies with a specific genre
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(UnknownGenreException))]
-        public void BrowseUnknownGenreTest()
-        {
-            string randString;
-            var rand = new Random();
-
-            // Step 1
-            using (var db = new RentItContext())
-            {
-                do
-                {
-                    randString = rand.NextDouble().ToString("0.00");
-                } while (db.Movies.ToList().Any(movie => movie.Genres.Any(genre => genre.Equals(randString))));
-            }
-
-            // Step 2
-            Movie.ByGenre(randString);
+            Assert.AreEqual(movieCount, movies.Count(), "Not the same number of movies returned.");
         }
     }
 }

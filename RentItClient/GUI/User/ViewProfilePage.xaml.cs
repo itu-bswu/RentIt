@@ -18,40 +18,40 @@
         {
             this.InitializeComponent();
             var u = ViewProfileViewModel.GetCurrentUserInfo();
-            this.textBoxEmail.Text = u.Email;
-            this.textBoxFullName.Text = u.FullName;
-            this.textBoxUserName.Text = u.Username;
+            textBoxEmail.Text = u.Email;
+            textBoxFullName.Text = u.FullName;
+            textBoxUserName.Text = u.Username;
         }
 
         private void MostRented(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MostRentedPage());
+            NavigationService.Navigate(new MostRentedPage());
         }
 
         private void ViewProfile(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new ViewProfilePage());
+            NavigationService.Navigate(new ViewProfilePage());
         }
 
         private void YourRentals(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RentalHistory());
+            NavigationService.Navigate(new RentalHistory());
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(this.textBoxSearch.Text)));
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(this.textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             MasterViewModel.LogOut();
-            this.NavigationService.Navigate(new LoginPage());
+            NavigationService.Navigate(new LoginPage());
         }
 
-        private void EditProfileClick(object sender, System.Windows.RoutedEventArgs e)
+        private void EditProfileClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new EditProfilePage());
+            NavigationService.Navigate(new EditProfilePage());
         }
     }
 }
