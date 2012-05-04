@@ -75,11 +75,8 @@ namespace RentItClient
         {
             if (!textBlockRelease.Text.Equals(NotYetReleased))
             {
-                //TODO: skal tage det object siden er blevet startet om med og hente dets fil.
-            }
-            else
-            {
-
+                string someFolder = ""; // TODO: Finish implementation of downloadmovieclick.
+                DownloadMovieViewModel.DownloadMovie(movie.ID, someFolder);
             }
         }
     }
