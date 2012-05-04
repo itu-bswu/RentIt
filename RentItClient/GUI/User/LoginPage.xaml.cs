@@ -1,16 +1,19 @@
-﻿namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
-    using System.Windows.Controls;
 
+    using RentItClient.GUI.ContentProvider;
     using RentItClient.Types;
-    using RentItClient.ViewModels.UserViewModels;
+    using RentItClient.ViewModels.AdministrationViewModels;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary> 
-    public partial class LoginPage : Page
+    public partial class LoginPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginPage"/> class.
+        /// </summary>
         public LoginPage()
         {
             InitializeComponent();
@@ -22,21 +25,21 @@
 
             if (LoginViewModel.LoggedInUser == UserType.User)
             {
-                this.NavigationService.Navigate(new MostRentedPage());
+                NavigationService.Navigate(new MostRentedPage());
             }
             else if (LoginViewModel.LoggedInUser == UserType.ContentProvider)
             {
-                this.NavigationService.Navigate(new CPYourMovies());
+                NavigationService.Navigate(new CPYourMovies());
             }
             else
             {
-                this.NavigationService.Navigate(new LoginPage());
+                NavigationService.Navigate(new LoginPage());
             }
         }
 
         private void SignupClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RegistrationPage());
+            NavigationService.Navigate(new RegistrationPage());
         }
     }
 }

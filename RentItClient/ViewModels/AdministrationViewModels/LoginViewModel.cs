@@ -4,10 +4,11 @@
 // </copyright>
 //------------------------------------------------------------------------
 
-namespace RentItClient.ViewModels.UserViewModels
+namespace RentItClient.ViewModels.AdministrationViewModels
 {
     using System;
-    using Models;
+
+    using RentItClient.Models;
 
     /// <summary>
     /// Viewmodel for the login page.

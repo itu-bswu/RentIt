@@ -1,4 +1,4 @@
-﻿<Page x:Class="RentItClient.CPRegisterMovie"
+﻿<Page x:Class="RentItClient.GUI.ContentProvider.CPRegisterMovie"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,10 +8,10 @@
 	Title="CPRegisterMovie">
 
     <Grid Width="698">
-        <Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="173,42,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="141" Click="yourMovies" />
-        <Button Content="Upload Movies" Height="24" HorizontalAlignment="Left" Margin="332,42,0,0" Name="uploadMoviebutton" VerticalAlignment="Top" Width="141" Click="uploadMovie" />
-        <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="registerMovie" />
-        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="logout" />
+        <Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="173,42,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="141" Click="YourMovies" />
+        <Button Content="Upload Movies" Height="24" HorizontalAlignment="Left" Margin="332,42,0,0" Name="uploadMoviebutton" VerticalAlignment="Top" Width="141" Click="UploadMovie" />
+        <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="RegisterMovie" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="Logout" />
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,111,0,0" Name="textTitle" Text="Title:* " VerticalAlignment="Top" Width="110"/>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,163,0,0" Name="textGenre" Text="Genre:* " VerticalAlignment="Top" Width="110" />
@@ -23,6 +23,6 @@
         <TextBox Height="195" HorizontalAlignment="Left" Margin="307,125,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="359" />
         <DatePicker Height="26" HorizontalAlignment="Left" Margin="43,227,0,0" Name="DatePickerReleaseDate" VerticalAlignment="Top" Width="223" />
 
-        <Button Content="Register movie" Height="25" HorizontalAlignment="Left" Margin="450,337,0,0" Name="registermovie" VerticalAlignment="Top" Width="216" Click="registerMovieClick"/>
+        <Button Content="Register movie" Height="25" HorizontalAlignment="Left" Margin="450,337,0,0" Name="registermovie" VerticalAlignment="Top" Width="216" Click="RegisterMovieClick"/>
     </Grid>
 </Page>

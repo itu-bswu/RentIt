@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
+    using System.Windows.Forms;
 
-    using RentItClient.GUI.User;
     using RentItClient.Types;
     using RentItClient.ViewModels;
     using RentItClient.ViewModels.UserViewModels;
@@ -12,7 +10,7 @@ namespace RentItClient
     /// <summary>
     /// Interaction logic for DownloadMoviePage.xaml
     /// </summary>
-    public partial class DownloadMoviePage : Page
+    public partial class DownloadMoviePage
     {
         /// <summary>
         /// The movie being displayed.
@@ -62,7 +60,7 @@ namespace RentItClient
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(this.textBoxSearch.Text)));
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
@@ -75,8 +73,19 @@ namespace RentItClient
         {
             if (!textBlockRelease.Text.Equals(NotYetReleased))
             {
-                string someFolder = ""; // TODO: Finish implementation of downloadmovieclick.
-                DownloadMovieViewModel.DownloadMovie(movie.ID, someFolder);
+                string path;
+                var dialog = new FolderBrowserDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    path = dialog.SelectedPath;
+                }
+                else
+                {
+                    return;
+                }
+
+                DownloadMovieViewModel.DownloadMovie(movie.ID, path);
+                NavigationService.Navigate(new RentalHistory());
             }
         }
     }

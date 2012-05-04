@@ -1,26 +1,25 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Windows;
 
-    using RentItClient.GUI.User;
     using RentItClient.ViewModels;
     using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for UserMostRented.xaml
     /// </summary>
-    public partial class MostRentedPage : Page
+    public partial class MostRentedPage
     {
         /// <summary>
         /// The movies in the listbox.
         /// </summary>
         private readonly List<Tuple<string, int>> movies;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MostRentedPage"/> class.
+        /// </summary>
         public MostRentedPage()
         {
             InitializeComponent();
@@ -31,32 +30,32 @@ namespace RentItClient
             }
         }
 
-        private void viewMovieClick(object sender, RoutedEventArgs e)
+        private void ViewMovieClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMoviePage(this.movies[MovieListBox.SelectedIndex].Item2));
+            NavigationService.Navigate(new ViewMoviePage(movies[MovieListBox.SelectedIndex].Item2));
         }
 
-        private void mostRented(object sender, RoutedEventArgs e)
+        private void MostRented(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void viewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfile(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void yourRentals(object sender, RoutedEventArgs e)
+        private void YourRentals(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RentalHistory());
         }
 
-        private void searchClick(object sender, RoutedEventArgs e)
+        private void SearchClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
-        private void logoutClick(object sender, RoutedEventArgs e)
+        private void LogoutClick(object sender, RoutedEventArgs e)
         {
 
             NavigationService.Navigate(new LoginPage());

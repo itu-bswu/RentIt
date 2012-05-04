@@ -1,14 +1,13 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
-    using RentItClient.ViewModels.AdminViewModels;
+    using System.Windows;
+
+    using RentItClient.ViewModels.AdministrationViewModels;
 
     /// <summary>
     /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class RegistrationPage : Page
+    public partial class RegistrationPage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RegistrationPage"/> class.
@@ -18,7 +17,7 @@ namespace RentItClient
             InitializeComponent();
         }
 
-        private void Reset_Click(object sender, RoutedEventArgs e)
+        private void ResetClick(object sender, RoutedEventArgs e)
         {
             ResetAll();
         }

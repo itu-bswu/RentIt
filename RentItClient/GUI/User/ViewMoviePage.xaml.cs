@@ -1,9 +1,7 @@
-﻿namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
-    using System.Windows.Controls;
 
-    using RentItClient.GUI.User;
     using RentItClient.Types;
     using RentItClient.ViewModels;
     using RentItClient.ViewModels.UserViewModels;
@@ -11,7 +9,7 @@
     /// <summary>
     /// Interaction logic for ViewMoviePage.xaml
     /// </summary>
-    public partial class ViewMoviePage : Page
+    public partial class ViewMoviePage
     {
         /// <summary>
         /// The movie the page is showing.

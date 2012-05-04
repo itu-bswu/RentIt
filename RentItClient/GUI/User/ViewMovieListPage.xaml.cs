@@ -3,14 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Windows;
-    using System.Windows.Controls;
 
     using RentItClient.ViewModels;
 
     /// <summary>
     /// Interaction logic for ViewMovieListPage.xaml
     /// </summary>
-    public partial class ViewMovieListPage : Page
+    public partial class ViewMovieListPage
     {
         /// <summary>
         /// The movies in the listbox.
@@ -41,27 +40,27 @@
             InitializeComponent();
         }
 
-        private void mostRented(object sender, RoutedEventArgs e)
+        private void MostRented(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void viewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfile(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void yourRentals(object sender, RoutedEventArgs e)
+        private void YourRentals(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RentalHistory());
         }
 
-        private void searchClick(object sender, RoutedEventArgs e)
+        private void SearchClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
-        private void logoutClick(object sender, RoutedEventArgs e)
+        private void LogoutClick(object sender, RoutedEventArgs e)
         {
             MasterViewModel.LogOut();
             NavigationService.Navigate(new LoginPage());

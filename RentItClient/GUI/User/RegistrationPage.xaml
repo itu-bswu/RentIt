@@ -1,4 +1,4 @@
-﻿<Page x:Class="RentItClient.RegistrationPage"
+﻿<Page x:Class="RentItClient.GUI.User.RegistrationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,7 +21,7 @@
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="226,241,0,0" Name="passwordBoxConfirm" VerticalAlignment="Top" Width="222" />
 
         <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="88,332,0,0" Name="Submit" VerticalAlignment="Top" Width="116" Click="SubmitClick" />
-        <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="266,332,0,0" Name="Reset" VerticalAlignment="Top" Width="116" Click="Reset_Click" />
+        <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="266,332,0,0" Name="Reset" VerticalAlignment="Top" Width="116" Click="ResetClick" />
         <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,332,160,0" Name="Cancel" VerticalAlignment="Top" Width="116" Click="CancelClick" />
     </Grid>
 </Page>

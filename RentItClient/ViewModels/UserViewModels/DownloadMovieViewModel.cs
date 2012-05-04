@@ -6,8 +6,6 @@
 
 namespace RentItClient.ViewModels.UserViewModels
 {
-    using System.IO;
-
     using RentItClient.Models;
     using RentItClient.Types;
 

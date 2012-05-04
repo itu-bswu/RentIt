@@ -1,4 +1,4 @@
-﻿<Page x:Class="RentItClient.ViewMoviePage"
+﻿<Page x:Class="RentItClient.GUI.User.ViewMoviePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

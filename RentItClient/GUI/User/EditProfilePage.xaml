@@ -21,8 +21,8 @@
         <TextBlock Height="23" Name="textBlockPassWordConfirm" Text="Confirm Password: " Margin="66,264,541,113" />
         <TextBox Height="23" Margin="185,163,375,214" Name="textBoxEmail" Width="160" />
         <TextBox Height="23" Margin="175,114,365,263" Name="textBoxFullName" Width="160" />
-        <TextBox Height="23" Width="160" Name="textBoxPassword" Margin="185,211,375,165" />
-        <TextBox Height="23" Width="160" Name="textBoxConfirmPassword" Margin="185,261,375,116" />
         <Button Content="Save changes" Height="24" HorizontalAlignment="Left" Margin="56,354,0,0" Name="button4" VerticalAlignment="Top" Width="141" Click="SaveChangesClick" />
+        <PasswordBox Height="23" Width="160" Name="passwordBoxPassword" Margin="185,211,375,165" />
+        <PasswordBox Height="23" Width="160" Name="passwordBoxConfirmPassword" Margin="185,261,375,116" />
     </Grid>
 </Page>
