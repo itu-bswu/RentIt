@@ -24,7 +24,7 @@ namespace RentItClient
             //hvis det er en user skal den gå til følgende:
             this.NavigationService.Navigate(new MostRentedPage());
             //hvis det er en contentprovider skal den gå til:
-            this.NavigationService.Navigate(new CPYourMovies());
+            //this.NavigationService.Navigate(new CPYourMovies());
         }
 
         private void SignupClick(object sender, RoutedEventArgs e)

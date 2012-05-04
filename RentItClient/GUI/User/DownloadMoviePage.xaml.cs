@@ -2,6 +2,8 @@
 
 namespace RentItClient
 {
+    using System.Windows.Forms;
+
     using RentItClient.GUI.User;
 
     /// <summary>
@@ -51,6 +53,9 @@ namespace RentItClient
         private void downloadMovieClick(object sender, System.Windows.RoutedEventArgs e)
         {
             //TODO: skal tage det object siden er blevet startet om med og hente dets fil.
+
+            var dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK) { string path = dialog.SelectedPath; }
             this.NavigationService.Navigate(new RentalHistory());
         }
     }
