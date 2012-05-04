@@ -39,11 +39,15 @@ namespace RentItClient.ViewModels
             foreach (var s in search)
             {
                 var mId = s.ID;
-                var title = GetMovieInformationModel.GetMovieInfo(s.ID).Title;
-                result.Add(
-                    current.All(a => a.MovieID != mId)
-                        ? Tuple.Create(title, mId, false)
-                        : Tuple.Create(title, mId, true));
+                var movie = GetMovieInformationModel.GetMovieInfo(s.ID);
+                var title = movie.Title;
+                if (movie.Released < DateTime.Now)
+                {
+                    result.Add(
+                        current.All(a => a.MovieID != mId)
+                            ? Tuple.Create(title, mId, false)
+                            : Tuple.Create(title, mId, true));
+                }
             }
 
             return result;

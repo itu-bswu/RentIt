@@ -1,13 +1,11 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient.GUI.User
+﻿namespace RentItClient.GUI.User
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Controls;
 
     using RentItClient.ViewModels;
-    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for ViewMovieListPage.xaml

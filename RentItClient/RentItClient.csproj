@@ -105,14 +105,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Types\Movie.cs" />
     <Compile Include="Types\User.cs" />
     <Compile Include="Types\UserType.cs" />
-    <Compile Include="ViewModels\AdminViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\AdministrationViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModels\MasterUserViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\DownloadMovieViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\MostRentedViewModel.cs" />
-    <Compile Include="ViewModels\AdminViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\AdministrationViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\RentalHistoryViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\RentMovieViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\ViewMovieViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\ViewProfileViewModel.cs" />
     <Page Include="GUI\ContentProvider\CPEditMovie.xaml">
       <Generator>MSBuild:Compile</Generator>

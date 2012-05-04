@@ -5,7 +5,9 @@ namespace RentItClient
     using System.Windows;
 
     using RentItClient.GUI.User;
+    using RentItClient.Types;
     using RentItClient.ViewModels;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for ViewMoviePage.xaml
@@ -13,9 +15,9 @@ namespace RentItClient
     public partial class ViewMoviePage : Page
     {
         /// <summary>
-        /// The id of the movie being displayed.
+        /// The movie the page is showing.
         /// </summary>
-        private int movieId;
+        private readonly Movie movie;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewMoviePage"/> class.
@@ -26,7 +28,10 @@ namespace RentItClient
         public ViewMoviePage(int mId)
             : this()
         {
-            movieId = mId;
+            movie = ViewMovieViewModel.GetMovieInfo(mId);
+            textBoxDescription.Text = movie.Description;
+            textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : "Not yet released";
+            textBlockTitle.Text = movie.Title;
         }
 
         /// <summary>
@@ -63,10 +68,10 @@ namespace RentItClient
             NavigationService.Navigate(new LoginPage());
         }
 
-        private void RentMovieClick(object sender, System.Windows.RoutedEventArgs e)
+        private void RentMovieClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage det element som pagen er blevet oprettet med og tilføje det til brugerens liste og lejet film
-            NavigationService.Navigate(new DownloadMoviePage(movieId));
+            ViewMovieViewModel.RentMovie(movie.ID);
+            NavigationService.Navigate(new DownloadMoviePage(movie.ID));
         }
     }
 }

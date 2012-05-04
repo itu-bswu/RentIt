@@ -5,6 +5,7 @@
 //------------------------------------------------------------------------
 namespace RentItClient.Models
 {
+    using System;
     using RentItService;
 
     /// <summary>
@@ -14,16 +15,34 @@ namespace RentItClient.Models
     public static class AccessModel
     {
         /// <summary>
+        /// The user that is logged in.
+        /// </summary>
+        private static User loggedIn;
+
+        /// <summary>
         /// Gets the user that is LoggedIn.
         /// </summary>
         /// <author>Jakob Melnyk</author>
-        public static User LoggedIn { get; private set; }
+        public static User LoggedIn
+        {
+            get
+            {
+                if (loggedIn != null)
+                {
+                    return loggedIn;
+                }
+
+                throw new NullReferenceException(); // TODO: Needs some graphical error message.
+            }
+
+            private set
+            {
+                loggedIn = value;
+            }
+        }
 
         /// <summary>Attempt to sign up a user on the service.</summary>
-        /// <param name="email">The user email.</param>
-        /// <param name="fullName">The users full name.</param>
-        /// <param name="password">The password the user wants.</param>
-        /// <param name="username">The username the user wants.</param>
+        /// <param name="user">The user to sign up.</param>
         /// <returns>True if signup was successful, false if it failed.</returns>
         /// <author>Jakob Melnyk</author>
         public static bool SignUp(User user)
@@ -39,6 +58,7 @@ namespace RentItClient.Models
         public static User Login(string username, string password)
         {
             LoggedIn = ServiceClients.Uic.LogIn(username, password);
+            LoggedIn.Password = password;
             return LoggedIn;
         }
 

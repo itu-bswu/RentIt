@@ -1,11 +1,8 @@
-﻿using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
+    using System.Windows.Controls;
 
-    using RentItClient.GUI.User;
-    using RentItClient.Types;
     using RentItClient.ViewModels;
     using RentItClient.ViewModels.UserViewModels;
 
@@ -19,42 +16,42 @@ namespace RentItClient
         /// </summary>
         public ViewProfilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             var u = ViewProfileViewModel.GetCurrentUserInfo();
-            textBoxEmail.Text = u.Email;
-            textBoxFullName.Text = u.FullName;
-            textBoxUserName.Text = u.Username;
+            this.textBoxEmail.Text = u.Email;
+            this.textBoxFullName.Text = u.FullName;
+            this.textBoxUserName.Text = u.Username;
         }
 
         private void MostRented(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MostRentedPage());
+            this.NavigationService.Navigate(new MostRentedPage());
         }
 
         private void ViewProfile(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewProfilePage());
+            this.NavigationService.Navigate(new ViewProfilePage());
         }
 
         private void YourRentals(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RentalHistory());
+            this.NavigationService.Navigate(new RentalHistory());
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+            this.NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(this.textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             MasterViewModel.LogOut();
-            NavigationService.Navigate(new LoginPage());
+            this.NavigationService.Navigate(new LoginPage());
         }
 
         private void EditProfileClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(new EditProfilePage());
+            this.NavigationService.Navigate(new EditProfilePage());
         }
     }
 }
