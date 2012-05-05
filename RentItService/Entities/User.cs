@@ -276,6 +276,7 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(userObject.Username != null);
             Contract.Requires<ArgumentNullException>(userObject.Email != null);
             Contract.Requires<ArgumentNullException>(userObject.Password != null);
+            Contract.Requires<ArgumentNullException>(userObject.FullName != null);
 
             Contract.Requires<ArgumentException>(userObject.Email != string.Empty & userObject.Email.Contains("@"));
             Contract.Requires<ArgumentException>(userObject.Password != string.Empty);

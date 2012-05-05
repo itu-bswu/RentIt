@@ -56,7 +56,7 @@
     <CodeContractsBaseLineFile />
     <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
-    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
     <PublishDatabaseSettings>
     </PublishDatabaseSettings>
@@ -108,6 +108,7 @@
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
@@ -136,7 +137,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DummyData.cs" />
+    <Compile Include="Entities\Genre.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Library\StringDifference.cs" />
+    <Compile Include="Mapping\GenreMap.cs" />
     <Compile Include="Mapping\MovieMap.cs" />
     <Compile Include="Mapping\RentalMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />

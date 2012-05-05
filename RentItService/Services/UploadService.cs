@@ -44,7 +44,7 @@ namespace RentItService.Services
 
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<ArgumentNullException>(
-                movieObject.Description != null & movieObject.Genre != null & movieObject.Title != null);
+                movieObject.Description != null & movieObject.Genres.Any() & movieObject.Title != null);
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 

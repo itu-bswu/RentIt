@@ -7,6 +7,7 @@
 namespace RentItClient.Models
 {
     using System.Collections.Generic;
+
     using RentItService;
 
     /// <summary>
@@ -31,7 +32,7 @@ namespace RentItClient.Models
         /// </summary>
         /// <returns>All the genres.</returns>
         /// <author>Jakob Melnyk</author>
-        public static IEnumerable<string> AllGenres()
+        public static IEnumerable<Genre> AllGenres()
         {
             return ServiceClients.Gmdc.GetAllGenres(AccessModel.LoggedIn.Token);
         }
@@ -62,7 +63,7 @@ namespace RentItClient.Models
         /// <param name="genre">The genre to be filtered by.</param>
         /// <returns>The movies with the genre.</returns>
         /// <author>Jakob Melnyk</author>
-        public static IEnumerable<Movie> MoviesByGenre(string genre)
+        public static IEnumerable<Movie> MoviesByGenre(Genre genre)
         {
             return ServiceClients.Gmdc.GetMoviesByGenre(AccessModel.LoggedIn.Token, genre);
         }

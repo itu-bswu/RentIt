@@ -69,7 +69,7 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containing all the genres in the database.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
-        public IEnumerable<string> GetAllGenres(string token)
+        public IEnumerable<Genre> GetAllGenres(string token)
         {
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 
@@ -82,7 +82,7 @@ namespace RentItService.Services
         /// <param name="token">The session token.</param>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        public IEnumerable<Movie> GetMoviesByGenre(string token, string genre)
+        public IEnumerable<Movie> GetMoviesByGenre(string token, Genre genre)
         {
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.SystemAdmin);
 

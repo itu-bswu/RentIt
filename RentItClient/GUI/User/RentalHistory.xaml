@@ -1,0 +1,24 @@
+﻿<Page x:Class="RentItClient.GUI.User.RentalHistory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+	Title="RentalHistory">
+
+    <Grid Width="720">
+        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="MostRented"/>
+        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="ViewProfile" />
+        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="YourRentals" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="SearchClick" />
+
+        <ListBox Name="MovieListBox" Margin="21,97,34,66">
+        </ListBox>
+
+        <Button Content="View Movie" Height="24" Margin="525,340,34,36" Name="View" Width="141" Click="ViewClick"/>
+
+    </Grid>
+</Page>

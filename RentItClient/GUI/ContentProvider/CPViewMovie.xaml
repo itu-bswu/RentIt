@@ -1,0 +1,31 @@
+﻿<Page x:Class="RentItClient.GUI.ContentProvider.CPViewMovie"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+	Title="CPViewMovie">
+
+    <Grid Width="698">
+        <Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="173,42,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="141" Click="YourMovies" />
+        <Button Content="Upload Movies" Height="24" HorizontalAlignment="Left" Margin="332,42,0,0" Name="uploadMoviebutton" VerticalAlignment="Top" Width="141" Click="UploadMovie" />
+        <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="RegisterMovie" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="Logout" />
+
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,111,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,157,0,0" Name="textGenre" Text="Genre: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="307,111,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,218,0,0" Name="textFiletoUpload" Text="file to upload: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,279,0,0" Name="textCoverImage" Text="CoverImage: " VerticalAlignment="Top" Width="110" />
+
+        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,125,0,0" Name="textBoxTitle" VerticalAlignment="Top" Width="223" />
+        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,172,0,0" Name="textBoxGenre" VerticalAlignment="Top" Width="223" />
+        <TextBox IsReadOnly="True" Height="195" HorizontalAlignment="Left" Margin="307,125,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="359" />
+        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,234,0,0" Name="textBoxFiletoUpload" VerticalAlignment="Top" Width="223" />
+        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,294,0,0" Name="textBoxCoverImage" VerticalAlignment="Top" Width="223" />
+
+        <Button Content="Edit information" Height="25" HorizontalAlignment="Left" Margin="370,344,0,0" Name="editinfo" VerticalAlignment="Top" Width="145" Click="EditInformationClick" />
+        <Button Content="Delete movie" Height="25" HorizontalAlignment="Left" Margin="521,344,0,0" Name="deletemovie" VerticalAlignment="Top" Width="145" Click="DeleteMovieClick" />
+    </Grid>
+</Page>

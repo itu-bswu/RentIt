@@ -55,7 +55,13 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
                 Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
                 Assert.AreEqual(testMovie.Description, foundMovie.Description, "The description doesn't match");
-                Assert.AreEqual(testMovie.Genre, foundMovie.Genre, "The genre doesn't match");
+
+                Assert.AreEqual(testMovie.Genres.Count(), foundMovie.Genres.Count(), "The amount of genres doesn't match");
+
+                foreach (var genre in testMovie.Genres)
+                {
+                    Assert.IsTrue(foundMovie.Genres.Contains(genre), "The genres doesn't match");
+                }
             }
         }
 

@@ -49,36 +49,49 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             var service = new Service();
 
+            Movie testMovie;
+
             using (var db = new RentItContext())
             {
-                var testMovie = db.Movies.First();
+                testMovie = db.Movies.First();
+            }
 
-                var newTitle = "Trolling for beginners";
-                var newDescription = "How to troll, for people new to the art";
-                var newGenre = "NoGenre";
-                var newReleaseDate = testMovie.Released.HasValue
-                                         ? testMovie.Released.Value.AddDays(14)
-                                         : DateTime.Now.AddDays(14);
+            var newTitle = "Trolling for beginners";
+            var newDescription = "How to troll, for people new to the art";
+            var newReleaseDate = testMovie.Released.HasValue
+                                        ? testMovie.Released.Value.AddDays(14)
+                                        : DateTime.Now.AddDays(14);
+            var newGenres = new Collection<Genre> { Genre.GetOrCreateGenre("Action") };
 
-                var newMovie = new Movie
-                {
-                    ID = testMovie.ID,
-                    Description = newDescription,
-                    FilePath = "You no take file location!",
-                    Genre = newGenre,
-                    ImagePath = "N/A",
-                    Rentals = new Collection<Rental>(),
-                    Title = newTitle,
-                    Released = newReleaseDate
-                };
+            var newMovie = new Movie
+            {
+                ID = testMovie.ID,
+                Description = newDescription,
+                FilePath = "You no take file location!",
+                ImagePath = "N/A",
+                Rentals = new Collection<Rental>(),
+                Title = newTitle,
+                Released = newReleaseDate,
+                Genres = newGenres,
+            };
 
-                service.EditMovieInformation(loggedinUser.Token, newMovie);
+            service.EditMovieInformation(loggedinUser.Token, newMovie);
 
-                var foundMovie = db.Movies.First(u => u.Title == newTitle);
-                Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
-                Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
-                Assert.AreEqual(newGenre, foundMovie.Genre, "The genre doesn't match");
-                Assert.AreEqual(newReleaseDate, foundMovie.Released, "Release date doesn't match");
+            Movie foundMovie;
+
+            using (var db = new RentItContext())
+            {
+                foundMovie = db.Movies.First(m => m.ID == testMovie.ID);
+            }
+
+            Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
+            Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
+            Assert.AreEqual(newReleaseDate, foundMovie.Released, "Release date doesn't match");
+            Assert.AreEqual(newGenres.Count(), foundMovie.Genres.Count(), "Number of genres doesn't match");
+
+            foreach (var genre in foundMovie.Genres)
+            {
+                Assert.IsTrue(newGenres.Contains(genre), "The genres doesn't match");
             }
         }
 
@@ -119,7 +132,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         ID = testMovie.ID,
                         Description = "How to troll, for people new to the art",
                         FilePath = "You no take file location!",
-                        Genre = "NoGenre",
                         ImagePath = "N/A",
                         Rentals = new Collection<Rental>(),
                         Title = "Trolling for beginners"
@@ -161,7 +173,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     ID = 89485618,
                     Description = "How to troll, for people new to the art",
                     FilePath = "You no take file location!",
-                    Genre = "NoGenre",
                     ImagePath = "N/A",
                     Rentals = new Collection<Rental>(),
                     Title = "Trolling for beginners"

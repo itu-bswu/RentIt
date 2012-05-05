@@ -49,7 +49,7 @@ namespace RentItService.Interfaces
         /// <param name="token">The session token.</param>
         /// <returns>An IEnumerable containing all the genres in the database.</returns>
         [OperationContract]
-        IEnumerable<string> GetAllGenres(string token);
+        IEnumerable<Genre> GetAllGenres(string token);
 
         /// <summary>
         /// Filters the list of movies into a particular genre.
@@ -58,7 +58,7 @@ namespace RentItService.Interfaces
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
         [OperationContract]
-        IEnumerable<Movie> GetMoviesByGenre(string token, string genre);
+        IEnumerable<Movie> GetMoviesByGenre(string token, Genre genre);
 
         /// <summary>
         /// Searches the database for a specific movie title.
