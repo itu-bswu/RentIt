@@ -1,15 +1,19 @@
-﻿
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
-    using System.Windows.Controls;
+
+    using RentItClient.GUI.ContentProvider;
+    using RentItClient.Types;
+    using RentItClient.ViewModels.AdministrationViewModels;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary> 
-
-    public partial class LoginPage : Page
+    public partial class LoginPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginPage"/> class.
+        /// </summary>
         public LoginPage()
         {
             InitializeComponent();
@@ -17,20 +21,25 @@ namespace RentItClient
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal hente info fra textBoxEmail og passwordBox
+            LoginViewModel.Login(textBoxUsername.Text, passwordBox.Password);
 
-            //TODO: make call to service to verify user
-            //TODO: tjek om det er en user eller en contentprovider
-            //hvis det er en user skal den gå til følgende:
-            this.NavigationService.Navigate(new MostRentedPage());
-            //hvis det er en contentprovider skal den gå til:
-            this.NavigationService.Navigate(new CPYourMovies());
+            if (LoginViewModel.LoggedInUser == UserType.User)
+            {
+                NavigationService.Navigate(new MostRentedPage());
+            }
+            else if (LoginViewModel.LoggedInUser == UserType.ContentProvider)
+            {
+                NavigationService.Navigate(new CPYourMovies());
+            }
+            else
+            {
+                NavigationService.Navigate(new LoginPage());
+            }
         }
 
         private void SignupClick(object sender, RoutedEventArgs e)
         {
-            RegistrationPage registrationPage = new RegistrationPage();
-            this.NavigationService.Navigate(registrationPage);
+            NavigationService.Navigate(new RegistrationPage());
         }
     }
 }

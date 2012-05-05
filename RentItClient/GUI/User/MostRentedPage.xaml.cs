@@ -1,53 +1,64 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
-    using RentItClient.GUI.User;
+    using System;
+    using System.Collections.Generic;
+    using System.Windows;
+
+    using RentItClient.ViewModels;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for UserMostRented.xaml
     /// </summary>
-    public partial class MostRentedPage : Page
+    public partial class MostRentedPage
     {
+        /// <summary>
+        /// The movies in the listbox.
+        /// </summary>
+        private readonly List<Tuple<string, int>> movies;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MostRentedPage"/> class.
+        /// </summary>
         public MostRentedPage()
         {
             InitializeComponent();
-        }
-        private void mostRented(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal hente en liste over mest downloadet film og give den videre som parameter
-            this.NavigationService.Navigate(new MostRentedPage());
-        }
-
-        private void viewProfile(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
-            this.NavigationService.Navigate(new ViewProfilePage());
+            movies = MostRentedViewModel.MostRentedMovies();
+            foreach (var t in movies)
+            {
+                MovieListBox.Items.Add(t.Item1);
+            }
         }
 
-        private void yourRentals(object sender, RoutedEventArgs e)
+        private void ViewMovieClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
-            this.NavigationService.Navigate(new RentalHistory());
+            NavigationService.Navigate(new ViewMoviePage(movies[MovieListBox.SelectedIndex].Item2));
         }
 
-        private void searchClick(object sender, RoutedEventArgs e)
+        private void MostRented(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage informationen fra textBoxSearch og så giv det videre til servicen så der kan sendes en liste af resultater til ViewMovieListPage
-            this.NavigationService.Navigate(new ViewMovieListPage());
+            NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void logoutClick(object sender, RoutedEventArgs e)
+        private void ViewProfile(object sender, RoutedEventArgs e)
         {
-            //TODO: skal lukke connectionen til servicen ned
-            this.NavigationService.Navigate(new LoginPage());
+            NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void viewMovieClick(object sender, RoutedEventArgs e)
+        private void YourRentals(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage det element der er selecet i listboxen og give det videre som parameter til ViewMoviePage
-            this.NavigationService.Navigate(new ViewMoviePage());
+            NavigationService.Navigate(new RentalHistory());
+        }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+        }
+
+        private void LogoutClick(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService.Navigate(new LoginPage());
         }
     }
 }

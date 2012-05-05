@@ -65,7 +65,7 @@ namespace RentItService
         #endregion Entity collections
 
         #region Configuration
-        
+
         /// <summary>
         /// Model configuration.
         /// </summary>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Test</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -16,7 +16,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -25,8 +25,11 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Production|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -40,6 +43,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,7 +109,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\UserViewModels\ExampleViewModel.cs" />
+    <Compile Include="Types\Movie.cs" />
+    <Compile Include="Types\User.cs" />
+    <Compile Include="Types\UserType.cs" />
+    <Compile Include="ViewModels\AdministrationViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MasterViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\DownloadMovieViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\EditProfileViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\MostRentedViewModel.cs" />
+    <Compile Include="ViewModels\AdministrationViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\RentalHistoryViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\ViewMovieViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\ViewProfileViewModel.cs" />
     <Page Include="GUI\ContentProvider\CPEditMovie.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,6 +218,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\RentItService\RentItClient.RentItService.Genre.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RentItService\RentItClient.RentItService.Movie.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -234,16 +252,11 @@
     <None Include="Service References\RentItService\Service5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItService\Service6.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\RentItService\Service7.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\AdminViewModels\" />
-    <Folder Include="ViewModels\MasterViewModels\" />
     <Folder Include="ViewModels\ProviderViewModels\" />
   </ItemGroup>
   <ItemGroup>

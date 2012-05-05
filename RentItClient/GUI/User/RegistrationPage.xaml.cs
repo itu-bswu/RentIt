@@ -1,43 +1,52 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
+    using System.Windows;
+
+    using RentItClient.ViewModels.AdministrationViewModels;
+
     /// <summary>
     /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class RegistrationPage : Page
+    public partial class RegistrationPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegistrationPage"/> class.
+        /// </summary>
         public RegistrationPage()
         {
             InitializeComponent();
         }
 
-        private void Reset_Click(object sender, RoutedEventArgs e)
+        private void ResetClick(object sender, RoutedEventArgs e)
         {
             ResetAll();
         }
 
-        public void ResetAll()
+        /// <summary>
+        /// Sets all the text boxes to empty strings.
+        /// </summary>
+        private void ResetAll()
         {
+            textBoxEmail.Text = string.Empty;
+            passwordBox1.Password = string.Empty;
+            passwordBoxConfirm.Password = string.Empty;
             textBoxUsername.Text = string.Empty;
-            textBoxFullName.Text = "";
-            textBoxEmail.Text = "";
-            passwordBox1.Password = "";
-            passwordBoxConfirm.Password = "";
+            textBoxFullName.Text = string.Empty;
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void CancelClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new LoginPage());
+            NavigationService.Navigate(new LoginPage());
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void SubmitClick(object sender, RoutedEventArgs e)
         {
-            //TODO: hente data fra textBoxFirstName, textBoxLastName, textBoxEmail, passwordBox1, passwordBoxConfirm
-
-            //TODO: Create user in database
-            this.NavigationService.Navigate(new LoginPage());
+            RegistrationViewModel.SignUp(
+                textBoxEmail.Text,
+                textBoxFullName.Text,
+                passwordBox1.Password,
+                textBoxUsername.Text);
+            NavigationService.Navigate(new LoginPage());
         }
     }
 }

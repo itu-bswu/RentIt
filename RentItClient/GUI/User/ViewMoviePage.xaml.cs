@@ -1,55 +1,74 @@
-﻿using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
     using System.Windows;
 
-    using RentItClient.GUI.User;
+    using RentItClient.Types;
+    using RentItClient.ViewModels;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for ViewMoviePage.xaml
     /// </summary>
-    public partial class ViewMoviePage : Page
+    public partial class ViewMoviePage
     {
-        public ViewMoviePage()
+        /// <summary>
+        /// The movie the page is showing.
+        /// </summary>
+        private readonly Movie movie;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewMoviePage"/> class.
+        /// </summary>
+        /// <param name="mId">
+        /// The id of the movie to display.
+        /// </param>
+        public ViewMoviePage(int mId)
+            : this()
+        {
+            movie = ViewMovieViewModel.GetMovieInfo(mId);
+            textBoxDescription.Text = movie.Description;
+            textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : "Not yet released";
+            textBlockTitle.Text = movie.Title;
+        }
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="ViewMoviePage"/> class from being created.
+        /// </summary>
+        private ViewMoviePage()
         {
             InitializeComponent();
         }
 
-        private void mostRented(object sender, RoutedEventArgs e)
+        private void MostRented(object sender, RoutedEventArgs e)
         {
-            //TODO: skal hente en liste over mest downloadet film og give den videre som parameter
-            this.NavigationService.Navigate(new MostRentedPage());
+            NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void viewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfile(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
-            this.NavigationService.Navigate(new ViewProfilePage());
+            NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void yourRentals(object sender, RoutedEventArgs e)
+        private void YourRentals(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
-            this.NavigationService.Navigate(new RentalHistory());
+            NavigationService.Navigate(new RentalHistory());
         }
 
-        private void searchClick(object sender, RoutedEventArgs e)
+        private void SearchClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage informationen fra textBoxSearch og så giv det videre til servicen så der kan sendes en liste af resultater til ViewMovieListPage
-            this.NavigationService.Navigate(new ViewMovieListPage());
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
-        private void logoutClick(object sender, RoutedEventArgs e)
+        private void LogoutClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal lukke connectionen til servicen ned
-            this.NavigationService.Navigate(new LoginPage());
+            MasterViewModel.LogOut();
+            NavigationService.Navigate(new LoginPage());
         }
 
-        private void rentMovieClick(object sender, System.Windows.RoutedEventArgs e)
+        private void RentMovieClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage det element som pagen er blevet oprettet med og tilføje det til brugerens liste og lejet film
-            this.NavigationService.Navigate(new DownloadMoviePage());
+            ViewMovieViewModel.RentMovie(movie.ID);
+            NavigationService.Navigate(new DownloadMoviePage(movie.ID));
         }
     }
 }

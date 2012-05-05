@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" />
-  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
-  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
   <xs:element name="EditMovieInformation">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="movieObject" nillable="true" type="q1:Movie" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="updatedMovie" nillable="true" type="q1:Movie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -98,7 +97,7 @@
   <xs:element name="GetAllGenresResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllGenresResult" nillable="true" type="q8:ArrayOfstring" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetAllGenresResult" nillable="true" type="q8:ArrayOfGenre" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -106,14 +105,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="genre" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="genre" nillable="true" type="q9:Genre" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMoviesByGenreResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetMoviesByGenreResult" nillable="true" type="q9:ArrayOfMovie" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetMoviesByGenreResult" nillable="true" type="q10:ArrayOfMovie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -128,7 +127,7 @@
   <xs:element name="SearchResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="SearchResult" nillable="true" type="q10:ArrayOfMovie" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="SearchResult" nillable="true" type="q11:ArrayOfMovie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -142,7 +141,7 @@
   <xs:element name="GetAllMoviesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetAllMoviesResult" nillable="true" type="q11:ArrayOfMovie" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetAllMoviesResult" nillable="true" type="q12:ArrayOfMovie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -150,8 +149,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentItService.Library" minOccurs="0" name="uploadRequest" nillable="true" type="q12:RemoteFileStream" />
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="movieObject" nillable="true" type="q13:Movie" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RentItService.Library" minOccurs="0" name="uploadRequest" nillable="true" type="q13:RemoteFileStream" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="movieObject" nillable="true" type="q14:Movie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -165,7 +164,7 @@
   <xs:element name="SignUp">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="userObject" nillable="true" type="q14:User" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="userObject" nillable="true" type="q15:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -187,7 +186,7 @@
   <xs:element name="LogInResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="LogInResult" nillable="true" type="q15:User" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="LogInResult" nillable="true" type="q16:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -207,14 +206,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="userObject" nillable="true" type="q16:User" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="userObject" nillable="true" type="q17:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditProfileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="EditProfileResult" nillable="true" type="q17:User" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="EditProfileResult" nillable="true" type="q18:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -228,7 +227,7 @@
   <xs:element name="GetRentalHistoryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetRentalHistoryResult" nillable="true" type="q18:ArrayOfRental" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetRentalHistoryResult" nillable="true" type="q19:ArrayOfRental" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -242,7 +241,7 @@
   <xs:element name="GetCurrentRentalsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetCurrentRentalsResult" nillable="true" type="q19:ArrayOfRental" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetCurrentRentalsResult" nillable="true" type="q20:ArrayOfRental" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -269,7 +268,7 @@
   <xs:element name="GetUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetUsersResult" nillable="true" type="q20:ArrayOfUser" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetUsersResult" nillable="true" type="q21:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -283,7 +282,7 @@
   <xs:element name="GetContentPublishersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetContentPublishersResult" nillable="true" type="q21:ArrayOfUser" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetContentPublishersResult" nillable="true" type="q22:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

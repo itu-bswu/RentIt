@@ -1,26 +1,28 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.ContentProvider
 {
+    using System.Windows;
+
+    using RentItClient.GUI.User;
 
     /// <summary>
     /// Interaction logic for CPEditMovie.xaml
     /// </summary>
-    public partial class CPEditMovie : Page
+    public partial class CPEditMovie
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CPEditMovie"/> class.
+        /// </summary>
         public CPEditMovie()
         {
             InitializeComponent();
         }
 
-        private void uploadMovie(object sender, RoutedEventArgs e)
+        private void UploadMovie(object sender, RoutedEventArgs e)
         {
-            CPUploadMovies uploadMovies = new CPUploadMovies();
-            this.NavigationService.Navigate(uploadMovies);
+            NavigationService.Navigate(new CPUploadMovies());
         }
 
-        private void yourMovies(object sender, RoutedEventArgs e)
+        private void YourMovies(object sender, RoutedEventArgs e)
         {
             //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
             //TODO: så Listboxen i CPYourMovies kan blive lavet med de elementer
@@ -28,27 +30,27 @@ namespace RentItClient
             this.NavigationService.Navigate(yourMovies);
         }
 
-        private void registerMovie(object sender, RoutedEventArgs e)
+        private void RegisterMovie(object sender, RoutedEventArgs e)
         {
             CPRegisterMovie registerMovie = new CPRegisterMovie();
             this.NavigationService.Navigate(registerMovie);
         }
 
-        private void logout(object sender, RoutedEventArgs e)
+        private void Logout(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new LoginPage());
             //TODO: luk forbindelsen til servicen
         }
 
-        private void saveChangesClick(object sender, RoutedEventArgs e)
+        private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = "Do you want to save changes?";
-            string caption = "Save Changes?";
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBox.Show(messageBoxText, caption, button, icon);
+            const string MessageBoxText = "Do you want to save changes?";
+            const string Caption = "Save Changes?";
+            const MessageBoxButton Button = MessageBoxButton.YesNoCancel;
+            const MessageBoxImage Icon = MessageBoxImage.Warning;
+            MessageBox.Show(MessageBoxText, Caption, Button, Icon);
 
-            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
 
             // Process message box results
             switch (result)
