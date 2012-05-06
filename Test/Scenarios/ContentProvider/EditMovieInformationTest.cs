@@ -56,8 +56,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 testMovie = db.Movies.First();
             }
 
-            var newTitle = "Trolling for beginners";
-            var newDescription = "How to troll, for people new to the art";
+            const string NewTitle = "Trolling for beginners";
+            const string NewDescription = "How to troll, for people new to the art";
             var newReleaseDate = testMovie.Released.HasValue
                                         ? testMovie.Released.Value.AddDays(14)
                                         : DateTime.Now.AddDays(14);
@@ -66,11 +66,11 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var newMovie = new Movie
             {
                 ID = testMovie.ID,
-                Description = newDescription,
+                Description = NewDescription,
                 FilePath = "You no take file location!",
                 ImagePath = "N/A",
                 Rentals = new Collection<Rental>(),
-                Title = newTitle,
+                Title = NewTitle,
                 Released = newReleaseDate,
                 Genres = newGenres,
             };
@@ -84,8 +84,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 foundMovie = db.Movies.First(m => m.ID == testMovie.ID);
             }
 
-            Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
-            Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
+            Assert.AreEqual(NewTitle, foundMovie.Title, "The titles doesn't match");
+            Assert.AreEqual(NewDescription, foundMovie.Description, "The descriptions doesn't match");
             Assert.AreEqual(newReleaseDate, foundMovie.Released, "Release date doesn't match");
             Assert.AreEqual(newGenres.Count(), foundMovie.Genres.Count(), "Number of genres doesn't match");
 
