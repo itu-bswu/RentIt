@@ -12,7 +12,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using RentItService;
-    using RentItService.Services;
     using RentItService.Entities;
 
     /// <summary>
@@ -32,14 +31,11 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchExcactTitle()
         {
-            using (var db = new RentItContext())
-            {
-                // Step 1
-                var movies = Movie.Search("The Matrix").ToList();
+            // Step 1
+            var movies = Movie.Search("The Matrix").ToList();
 
-                // Step 2
-                Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
-            }
+            // Step 2
+            Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
         }
 
         /// <summary>
@@ -53,15 +49,12 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchPartlyTitle()
         {
-            using (var db = new RentItContext())
-            {
-                // Step 1
-                var movies = Movie.Search("ing").ToList();
+            // Step 1
+            var movies = Movie.Search("ing").ToList();
 
-                // Step 2
-                Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Fellowship of the Ring")), "First movie was not found.");
-                Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Return of the King")), "Second movie was not found.");
-            }
+            // Step 2
+            Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Fellowship of the Ring")), "First movie was not found.");
+            Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Return of the King")), "Second movie was not found.");
         }
 
         /// <summary>
@@ -75,12 +68,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchDifferenceCase()
         {
-            using (var db = new RentItContext())
-            {
-                var movies = Movie.Search("tHE mATRIX");
+            var movies = Movie.Search("tHE mATRIX");
 
-                Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
-            }
+            Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
         }
 
         /// <summary>
@@ -103,7 +93,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 do
                 {
                     randString = rand.NextDouble().ToString("0.00");
-                } while (db.Movies.ToList().Any(movie => movie.Title.Contains(randString)));
+                }
+                while (db.Movies.ToList().Any(movie => movie.Title.Contains(randString)));
             }
 
             // Step 2
