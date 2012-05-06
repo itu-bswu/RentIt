@@ -30,15 +30,16 @@ namespace RentItService.Interfaces
         /// Gets the most downloaded movies.
         /// </summary>
         /// <param name="token">The session token.</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>An IEnumerable containing the most downloaded movies.</returns>
         [OperationContract]
-        IEnumerable<Movie> GetMostDownloaded(string token);
+        IEnumerable<Movie> GetMostDownloaded(string token, int limit = 0);
 
         /// <summary>
         /// Gets the newest movies.
         /// </summary>
         /// <param name="token">The session token.</param>
-        /// <param name="limit">Amount of results to get (0 for unlimited).</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>An IEnumerable containing the newest added movies.</returns>
         [OperationContract]
         IEnumerable<Movie> GetNewest(string token, int limit = 0);
@@ -65,9 +66,10 @@ namespace RentItService.Interfaces
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="search">The search string.</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
         [OperationContract]
-        IEnumerable<Movie> Search(string token, string search);
+        IEnumerable<Movie> Search(string token, string search, int limit = 0);
 
         /// <summary>
         /// Finds all the movies in the database and returns them.

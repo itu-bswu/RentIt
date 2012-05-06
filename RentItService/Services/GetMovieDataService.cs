@@ -41,13 +41,14 @@ namespace RentItService.Services
         /// Gets the most downloaded movies.
         /// </summary>
         /// <param name="token">The session token.</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>An IEnumerable containing the most downloaded movies.</returns>
         /// <exception cref="NotImplementedException">Not Yet Implemented.</exception>
-        public IEnumerable<Movie> GetMostDownloaded(string token)
+        public IEnumerable<Movie> GetMostDownloaded(string token, int limit = 0)
         {
             Contract.Requires<ArgumentNullException>(token != null);
 
-            return Movie.MostDownloaded(token);
+            return Movie.MostDownloaded(token, limit);
         }
 
         /// <summary>
@@ -94,12 +95,13 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="search">The search string.</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        public IEnumerable<Movie> Search(string token, string search)
+        public IEnumerable<Movie> Search(string token, string search, int limit = 0)
         {
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.User);
 
-            return Movie.Search(search);
+            return Movie.Search(search, limit);
         }
 
         /// <summary>

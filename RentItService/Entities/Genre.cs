@@ -74,7 +74,7 @@ namespace RentItService.Entities
                     return genreObj;
                 }
 
-                return genres.First();
+                return genres.Single();
             }
         }
 
