@@ -1,0 +1,73 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{fancyhdr}
+\usepackage[final]{pdfpages}
+\usepackage[font=sl]{caption}
+\usepackage{listings}
+\usepackage{appendix}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\usepackage{tocvsec2}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+
+\setlength{\headheight}{15.2pt}
+\setlength{\topskip}{20pt}
+\pagestyle{fancy}
+\cfoot{\thepage\ of ??}
+\fancypagestyle{plain}{
+\fancyhf{}
+\cfoot{\thepage\ of ??}
+}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.8ex plus 0.5ex minus 0.2ex}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+
+\title{\huge{Rent It}\\
+\large{\textit{\\Second-Year Project,\\ Bachelor in Software Development, \\IT
+University of Copenhagen}}
+}
+\author{
+Group 12\\
+Jakob Melnyk, jmel@itu.dk\\
+Frederik Lysgaard, frly@itu.dk\\
+Ulrik Flænø Damm, ulfd@itu.dk\\
+Niklas Hansen, nikl@itu.dk\\
+Jacob Claudius Grooss, jcgr@itu.dk
+}
+
+\date{April 26th, 2012}
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\input{Parts/1Preface.tex}
+\pagebreak
+\input{Parts/2Introduction.tex}
+\pagebreak
+\input{Parts/3Cooperation.tex}
+\pagebreak
+\input{Parts/4Design.tex}
+\pagebreak
+\input{Parts/5Implementation.tex}
+\pagebreak
+\input{Parts/6Manual.tex}
+\pagebreak
+\input{Parts/7Testing.tex}
+\pagebreak
+\input{Parts/8Conclusion.tex}
+\pagebreak
+\begin{thebibliography}{9}
+\bibitem{The Way of Testivus} Blog: http://www.artima.com/weblogs/viewpost.jsp?thread=203994 (22nd of April, 2012)
+\end{thebibliography}
+\pagestyle{plain}
+\input{Parts/9Appendix.tex}
+\end{document}

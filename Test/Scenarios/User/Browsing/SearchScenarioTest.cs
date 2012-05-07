@@ -12,7 +12,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using RentItService;
-    using RentItService.Services;
     using RentItService.Entities;
 
     /// <summary>
@@ -32,14 +31,11 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchExcactTitle()
         {
-            using (var db = new RentItContext())
-            {
-                // Step 1
-                var movies = Movie.Search("The Matrix").ToList();
+            // Step 1
+            var movies = Movie.Search("The Matrix").ToList();
 
-                // Step 2
-                Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
-            }
+            // Step 2
+            Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
         }
 
         /// <summary>
@@ -53,15 +49,12 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchPartlyTitle()
         {
-            using (var db = new RentItContext())
-            {
-                // Step 1
-                var movies = Movie.Search("ing").ToList();
+            // Step 1
+            var movies = Movie.Search("ing").ToList();
 
-                // Step 2
-                Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Fellowship of the Ring")), "First movie was not found.");
-                Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Return of the King")), "Second movie was not found.");
-            }
+            // Step 2
+            Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Fellowship of the Ring")), "First movie was not found.");
+            Assert.IsTrue(movies.Any(movie => movie.Title.Equals("The Lord of the Rings: The Return of the King")), "Second movie was not found.");
         }
 
         /// <summary>
@@ -75,12 +68,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchDifferenceCase()
         {
-            using (var db = new RentItContext())
-            {
-                var movies = Movie.Search("tHE mATRIX");
+            var movies = Movie.Search("tHE mATRIX");
 
-                Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
-            }
+            Assert.IsTrue(movies.First().Title.Equals("The Matrix"), "Movie was not found.");
         }
 
         /// <summary>
@@ -103,7 +93,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 do
                 {
                     randString = rand.NextDouble().ToString("0.00");
-                } while (db.Movies.ToList().Any(movie => movie.Title.Contains(randString)));
+                }
+                while (db.Movies.ToList().Any(movie => movie.Title.Contains(randString)));
             }
 
             // Step 2
@@ -159,6 +150,56 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var index2 = movies.FindIndex(movie => movie.Title.Equals("American Pie"));
 
             Assert.IsTrue(index1 < index2, "Movie order incorrect.");
+        }
+
+        /// <summary>
+        /// Purpose: verify that search results includes movies with spelling errors in the title
+        /// 
+        /// Steps:
+        ///     1. Search for a movie with title spelling errors
+        ///     2. Verify that the movie was returned
+        /// </summary>
+        [TestMethod]
+        public void SearchBadSpelling()
+        {
+            var movies = Movie.Search("grinsh stoe cistmas").ToList();
+
+            Assert.IsTrue(movies.Any(movie => movie.Title.Equals("How the Grinch Stole Christmas")));
+        }
+
+        /// <summary>
+        /// Purpose: verify that the search result does not include words that are too badly spelled
+        /// 
+        /// Steps:
+        ///     1. Search for a very bad misspelling of a movie title
+        ///     2. Verify that the movie was not returned
+        /// </summary>
+        [TestMethod]
+        public void SearchVeryBadSpelling()
+        {
+            var movies = Movie.Search("graounz spove sismast").ToList();
+
+            Assert.IsFalse(movies.Any(movie => movie.Title.Equals("How the Grinch Stole Christmas")));
+        }
+
+        /// <summary>
+        /// Purpose: verify that putting a limit on the search results actually limits the number of returned movies
+        /// 
+        /// Steps:
+        ///     1. Perform a search and note the number of movies returned
+        ///     2. Perform the search again with a limit on the number found in step 1 subtracted by one
+        ///     3. Verify that the number of movies returned matches the limit
+        /// </summary>
+        [TestMethod]
+        public void SearchLimit()
+        {
+            const string search_string = "the";
+
+            var movie_count = Movie.Search(search_string).Count();
+
+            var search_limit = movie_count - 1;
+
+            Assert.AreEqual(search_limit, Movie.Search(search_string, search_limit).Count());
         }
     }
 }

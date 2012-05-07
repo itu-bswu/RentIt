@@ -7,7 +7,8 @@
 namespace RentIt.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ServiceReference;
+
+    using RentIt.Tests.RentItServiceReference;
 
     /// <summary>
     /// Base class for all service-level tests. 
@@ -19,7 +20,7 @@ namespace RentIt.Tests
     public abstract class ServiceTest : DataTest
     {
         #region Constructor(s)
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceTest"/> class. 
         /// Establishes connection to the service.

@@ -1,62 +1,92 @@
-﻿using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
+    using System.Windows;
     using System.Windows.Forms;
 
-    using RentItClient.GUI.User;
+    using RentItClient.Types;
+    using RentItClient.ViewModels;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for DownloadMoviePage.xaml
     /// </summary>
-    public partial class DownloadMoviePage : Page
+    public partial class DownloadMoviePage
     {
-        public DownloadMoviePage()
+        /// <summary>
+        /// The movie being displayed.
+        /// </summary>
+        private readonly Movie movie;
+
+        /// <summary>
+        /// The text to dispaly if movie is not yet released.
+        /// </summary>
+        private const string NotYetReleased = "Not yet released";
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DownloadMoviePage"/> class.
+        /// </summary>
+        /// <param name="movieId">The id of the movie to show.</param>
+        public DownloadMoviePage(int movieId)
+            : this()
+        {
+            movie = ViewMovieViewModel.GetMovieInfo(movieId);
+            textBoxDescription.Text = movie.Description;
+            textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : NotYetReleased;
+            textBlockTitle.Text = movie.Title;
+        }
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="DownloadMoviePage"/> class from being created.
+        /// </summary>
+        private DownloadMoviePage()
         {
             InitializeComponent();
-            //TODO textBlockTitle skal indholde den givne films title
-            //TODO textBlockRelease skal indholde den givne films release date
-            //TODO textBoxDescription skal indholde den givne films description
-
         }
 
-        private void mostRented(object sender, System.Windows.RoutedEventArgs e)
+        private void MostRented(object sender, RoutedEventArgs e)
         {
-            //TODO: skal hente en liste over mest downloadet film og give den videre som parameter
-            this.NavigationService.Navigate(new MostRentedPage());
+            NavigationService.Navigate(new MostRentedPage());
         }
 
-        private void viewProfile(object sender, System.Windows.RoutedEventArgs e)
+        private void ViewProfile(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
-            this.NavigationService.Navigate(new ViewProfilePage());
+            NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void yourRentals(object sender, System.Windows.RoutedEventArgs e)
+        private void YourRentals(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
-            this.NavigationService.Navigate(new RentalHistory());
+            NavigationService.Navigate(new RentalHistory());
         }
 
-        private void searchClick(object sender, System.Windows.RoutedEventArgs e)
+        private void SearchClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage informationen fra textBoxSearch og så giv det videre til servicen så der kan sendes en liste af resultater til ViewMovieListPage
-            this.NavigationService.Navigate(new ViewMovieListPage());
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
-        private void logoutClick(object sender, System.Windows.RoutedEventArgs e)
+        private void LogoutClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal lukke connectionen til servicen ned
-            this.NavigationService.Navigate(new LoginPage());
+            MasterViewModel.LogOut();
+            NavigationService.Navigate(new LoginPage());
         }
 
-        private void downloadMovieClick(object sender, System.Windows.RoutedEventArgs e)
+        private void DownloadMovieClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage det object siden er blevet startet om med og hente dets fil.
+            if (!textBlockRelease.Text.Equals(NotYetReleased))
+            {
+                string path;
+                var dialog = new FolderBrowserDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    path = dialog.SelectedPath;
+                }
+                else
+                {
+                    return;
+                }
 
-            var dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK) { string path = dialog.SelectedPath; }
-            this.NavigationService.Navigate(new RentalHistory());
+                DownloadMovieViewModel.DownloadMovie(movie.ID, path);
+                NavigationService.Navigate(new RentalHistory());
+            }
         }
     }
 }

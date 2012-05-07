@@ -1,57 +1,74 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace RentItClient
+﻿namespace RentItClient.GUI.User
 {
-    using RentItClient.GUI.User;
+    using System.Windows;
+    using System;
+    using System.Collections.Generic;
+
+    using RentItClient.ViewModels;
+    using RentItClient.ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for RentalHistory.xaml
     /// </summary>
-    public partial class RentalHistory : Page
+    public partial class RentalHistory
     {
+        /// <summary>
+        /// The movies in the listbox.
+        /// </summary>
+        private readonly List<Tuple<string, int, bool>> movies;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RentalHistory"/> class.
+        /// </summary>
         public RentalHistory()
         {
             InitializeComponent();
-        }
-
-        private void mostRented(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal hente en liste over mest downloadet film og give den videre som parameter
-            this.NavigationService.Navigate(new MostRentedPage());
-        }
-
-        private void viewProfile(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes personlige oplysninger med som parameter
-            this.NavigationService.Navigate(new ViewProfilePage());
-        }
-
-        private void yourRentals(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal tjekke hvilken bruger der logget ind og så give vedkommendes list af rentals med som parameter
-            this.NavigationService.Navigate(new RentalHistory());
-        }
-
-        private void searchClick(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal tage informationen fra textBoxSearch og så giv det videre til servicen så der kan sendes en liste af resultater til ViewMovieListPage
-            this.NavigationService.Navigate(new ViewMovieListPage());
-        }
-
-        private void logoutClick(object sender, RoutedEventArgs e)
-        {
-            //TODO: skal lukke connectionen til servicen ned
-            this.NavigationService.Navigate(new LoginPage());
+            movies = RentalHistoryViewModel.GetRentals();
+            foreach (var t in movies)
+            {
+                MovieListBox.Items.Add(t.Item1);
+            }
         }
 
         private void ViewClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage det element der er selecet i listboxen og give det videre som parameter til DownloadMoviePage hvis dens leje periode ikke er udløbe
-            this.NavigationService.Navigate(new DownloadMoviePage());
+            if (MovieListBox.SelectedIndex != -1)
+            {
+                if (movies[MovieListBox.SelectedIndex].Item3)
+                {
+                    NavigationService.Navigate(new DownloadMoviePage(movies[MovieListBox.SelectedIndex].Item2));
+                }
+                else
+                {
+                    NavigationService.Navigate(new ViewMoviePage(movies[MovieListBox.SelectedIndex].Item2));
+                }
+            }
+        }
 
-            //TODO: skal tage det element der er select i listboxen og give det videre som parameter til ViewMoviePage hvis dens leje periode er udløbet
-            this.NavigationService.Navigate(new ViewMoviePage());
+        private void MostRented(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MostRentedPage());
+        }
+
+        private void ViewProfile(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewProfilePage());
+        }
+
+        private void YourRentals(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RentalHistory());
+        }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+        }
+
+        private void LogoutClick(object sender, RoutedEventArgs e)
+        {
+            MasterViewModel.LogOut();
+            NavigationService.Navigate(new LoginPage());
         }
     }
 }

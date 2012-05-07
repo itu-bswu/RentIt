@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RentItService.Services
@@ -35,9 +36,14 @@ namespace RentItService.Services
 
             var user = User.GetByToken(token);
 
+            foreach (var genre in updatedMovie.Genres)
+            {
+                Genre.GetOrCreateGenre(genre.Name);
+            }
+
             using (var db = new RentItContext())
             {
-                var referenceMovie = db.Movies.Find(updatedMovie.ID);
+                var referenceMovie = db.Movies.Include("Genres").FirstOrDefault(movie => movie.ID == updatedMovie.ID);
 
                 if (referenceMovie == null)
                 {
@@ -54,14 +60,18 @@ namespace RentItService.Services
                 referenceMovie.ImagePath = updatedMovie.ImagePath;
                 referenceMovie.Released = updatedMovie.Released;
 
-                foreach (var genre in referenceMovie.Genres.Where(genre => updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))))
+                var removeGenres = from genre in referenceMovie.Genres
+                                   where updatedMovie.Genres.Count(g => g.Name.Equals(genre.Name)) == 0
+                                   select db.Genres.Single(g => g.Name.Equals(genre.Name));
+
+                foreach (var genre in removeGenres.ToList())
                 {
                     referenceMovie.RemoveGenre(genre);
                 }
                 
-                foreach (var newgenre in updatedMovie.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))
+                foreach (var genre in updatedMovie.Genres)
                 {
-                    referenceMovie.AddGenre(newgenre);
+                    referenceMovie.AddGenre(db.Genres.Single(g => g.Name.Equals(genre.Name)));
                 }
 
                 db.SaveChanges();
