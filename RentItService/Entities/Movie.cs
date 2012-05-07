@@ -88,7 +88,7 @@ namespace RentItService.Entities
         {
             Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 1);
 
-            if (!Genres.Contains(genre))
+            if (!Genres.Any(g => g.Name == genre.Name))
             {
                 Genres.Add(genre);
             }
@@ -102,7 +102,7 @@ namespace RentItService.Entities
         {
             Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 0);
 
-            if (Genres.Contains(genre))
+            if (Genres.Any(g => g.Name == genre.Name))
             {
                 Genres.Remove(genre);
             }
@@ -282,22 +282,6 @@ namespace RentItService.Entities
             }
 
             return movies.Take(limit);
-
-            /*List<MovieDownload> md = new List<MovieDownload>();
-            foreach (Movie m in db.Movies)
-            {
-                md.Add(new MovieDownload(m, m.Rentals.Count));
-            }
-
-            List<Movie> movies = new List<Movie>();
-            for (int i = 0; i < 10; i++)
-            {
-                MovieDownload m = md.Max();
-                md.Remove(m);
-                movies.Add(m.Movie);
-            }
-
-            return movies;*/
         }
 
         /// <summary>

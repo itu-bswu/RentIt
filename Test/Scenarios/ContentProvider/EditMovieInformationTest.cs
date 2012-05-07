@@ -61,7 +61,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var newReleaseDate = testMovie.Released.HasValue
                                         ? testMovie.Released.Value.AddDays(14)
                                         : DateTime.Now.AddDays(14);
-            var newGenres = new Collection<Genre> { Genre.GetOrCreateGenre("Action") };
+            var newGenres = new Collection<Genre> { Genre.GetOrCreateGenre("new genre") };
 
             var newMovie = new Movie
             {
@@ -81,7 +81,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             using (var db = new RentItContext())
             {
-                foundMovie = db.Movies.First(m => m.ID == testMovie.ID);
+                foundMovie = db.Movies.Include("Genres").First(m => m.ID == testMovie.ID);
             }
 
             Assert.AreEqual(NewTitle, foundMovie.Title, "The titles doesn't match");
@@ -92,6 +92,77 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             foreach (var genre in foundMovie.Genres)
             {
                 Assert.IsTrue(newGenres.Contains(genre), "The genres doesn't match");
+            }
+        }
+
+        /// <summary>
+        /// Purpose: verify that you can add a genre to a movie
+        /// 
+        /// Steps:
+        ///     Step 1: get a movie and a genre from the database
+        ///     Step 2: add the genre to the movie
+        ///     Step 3: get the movie from the database
+        ///     Step 4: verify that the genre was added
+        /// </summary>
+        [TestMethod]
+        public void AddGenreTest()
+        {
+            using (var db = new RentItContext())
+            {
+                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+                Genre genre;
+
+                using (var db2 = new RentItContext())
+                {
+                    genre = db2.Genres.Single(g => g.Name.Equals("Sci-Fi"));
+                }
+
+                Assert.IsTrue(genre != null);
+                Assert.IsTrue(movie != null);
+
+                movie.AddGenre(db.Genres.Single(g => g.Name.Equals(genre.Name)));
+
+                db.SaveChanges();
+            }
+            
+            using (var db = new RentItContext())
+            {
+                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+
+                Assert.IsTrue(movie.Genres.Any(g => g.Name.Equals("Sci-Fi")));
+            }
+        }
+
+        /// <summary>
+        /// Purpose: verify that you can remove a genre from a movie
+        /// 
+        /// Steps:
+        ///     Step 1: get a movie and a genre from the database
+        ///     Step 2: add the genre to the movie
+        ///     Step 3: get the movie from the database
+        ///     Step 4: verify that the genre was added
+        /// </summary>
+        [TestMethod]
+        public void RemoveGenreTest()
+        {
+            using (var db = new RentItContext())
+            {
+                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+                var genre = Genre.GetOrCreateGenre("Action");
+
+                Assert.IsTrue(genre != null);
+                Assert.IsTrue(movie != null);
+
+                movie.RemoveGenre(genre);
+
+                db.SaveChanges();
+            }
+
+            using (var db = new RentItContext())
+            {
+                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+
+                Assert.IsFalse(movie.Genres.Any(g => g.Name.Equals("Action")));
             }
         }
 

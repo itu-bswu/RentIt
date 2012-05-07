@@ -11,6 +11,7 @@ namespace RentItService
 
     using Entities;
     using Mapping;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Database context (Entity Framework).
@@ -34,8 +35,6 @@ namespace RentItService
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
-
-            
         }
 
         #endregion Constructor(s)
@@ -51,6 +50,11 @@ namespace RentItService
         /// Gets or sets all movies in RentIt.
         /// </summary>
         public DbSet<Movie> Movies { get; set; }
+
+        /// <summary>
+        /// Gets or sets all movies in RentIt with the genre collection;
+        /// </summary>
+//        public IEnumerable<Movie> MoviesWithGenres { get { return Movies.Include("Genres"); } }
 
         /// <summary>
         /// Gets or sets a set of rentals in RentIt.

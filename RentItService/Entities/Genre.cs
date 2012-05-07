@@ -4,6 +4,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace RentItService.Entities
 {
     using System.Collections.Generic;
@@ -70,7 +72,10 @@ namespace RentItService.Entities
                 if (!genres.Any())
                 {
                     var genreObj = new Genre(name);
+
                     db.Genres.Add(genreObj);
+                    db.SaveChanges();
+
                     return genreObj;
                 }
 
