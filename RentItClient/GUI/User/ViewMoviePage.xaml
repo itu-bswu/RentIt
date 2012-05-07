@@ -17,7 +17,6 @@
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,103,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,132,0,0" Name="textRelease" Text="Release date: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="107,132,0,0" Name="textBlockRelease" Text="" VerticalAlignment="Top" Width="110"/>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="62,103,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="110" />
         <TextBox  IsReadOnly="True" Height="227" HorizontalAlignment="Left" Margin="21,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="437" />
         <Button Content="Rent movie" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="rentmovie" VerticalAlignment="Top" Width="216" Click="rentMovieClick" />

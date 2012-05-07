@@ -106,6 +106,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Types\GenreChecked.cs" />
+    <Compile Include="Types\GenreCheckList.cs" />
     <Compile Include="ViewModels\UserViewModels\ExampleViewModel.cs" />
     <Page Include="GUI\ContentProvider\CPEditMovie.xaml">
       <Generator>MSBuild:Compile</Generator>

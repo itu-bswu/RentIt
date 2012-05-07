@@ -13,12 +13,6 @@ namespace RentItClient
             InitializeComponent();
         }
 
-        private void uploadMovie(object sender, RoutedEventArgs e)
-        {
-            CPUploadMovies uploadMovies = new CPUploadMovies();
-            this.NavigationService.Navigate(uploadMovies);
-        }
-
         private void yourMovies(object sender, RoutedEventArgs e)
         {
             //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
@@ -39,6 +33,12 @@ namespace RentItClient
             //TODO: luk forbindelsen til servicen
         }
 
+        private void UploadMovieClick(object sender, RoutedEventArgs e)
+        {
+            //TODO: Upload movie
+            this.NavigationService.Navigate(new CPYourMovies());
+        }
+
         private void editInformationClick(object sender, RoutedEventArgs e)
         {
             CPEditMovie editMovie = new CPEditMovie();
@@ -51,7 +51,6 @@ namespace RentItClient
             string caption1 = "Delete Movie?";
             MessageBoxButton button1 = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon1 = MessageBoxImage.Warning;
-            MessageBox.Show(messageBoxText1, caption1, button1, icon1);
 
             MessageBoxResult result = MessageBox.Show(messageBoxText1, caption1, button1, icon1);
 

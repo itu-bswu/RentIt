@@ -15,12 +15,6 @@ namespace RentItClient
             InitializeComponent();
         }
 
-        private void uploadMovie(object sender, RoutedEventArgs e)
-        {
-            CPUploadMovies uploadMovies = new CPUploadMovies();
-            this.NavigationService.Navigate(uploadMovies);
-        }
-
         private void yourMovies(object sender, RoutedEventArgs e)
         {
             //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket

@@ -9,7 +9,6 @@
 
     <Grid Width="698">
         <Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="173,42,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="141" Click="yourMovies" />
-        <Button Content="Upload Movies" Height="24" HorizontalAlignment="Left" Margin="332,42,0,0" Name="uploadMoviebutton" VerticalAlignment="Top" Width="141" Click="uploadMovie" />
         <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="registerMovie" />
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="logout" />
 

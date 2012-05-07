@@ -14,12 +14,6 @@ namespace RentItClient
             InitializeComponent();
         }
 
-        private void uploadMovie(object sender, RoutedEventArgs e)
-        {
-            CPUploadMovies uploadMovies = new CPUploadMovies();
-            this.NavigationService.Navigate(uploadMovies);
-        }
-
         private void yourMovies(object sender, RoutedEventArgs e)
         {
             //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
@@ -46,7 +40,6 @@ namespace RentItClient
             string caption = "Save Changes?";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBox.Show(messageBoxText, caption, button, icon);
 
             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
 

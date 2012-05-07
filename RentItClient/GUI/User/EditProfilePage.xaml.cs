@@ -55,7 +55,6 @@ namespace RentItClient
             string caption = "Save Changes?";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBox.Show(messageBoxText, caption, button, icon);
 
             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
 
