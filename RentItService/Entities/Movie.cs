@@ -148,8 +148,9 @@ namespace RentItService.Entities
         /// Searches the database for a specific movie title.
         /// </summary>
         /// <param name="search">The search string.</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        public static IEnumerable<Movie> Search(string search)
+        public static IEnumerable<Movie> Search(string search, int limit = 0)
         {
             Contract.Requires<ArgumentNullException>(search != null);
 
@@ -163,13 +164,20 @@ namespace RentItService.Entities
                 movies = db.Movies.ToList();
             }
 
-            return from movie in movies
-                   let title = movie.Title.ToLower()
-                   let titleComponents = title.Split(' ')
-                   where titleComponents.Any(str => components.Any(str.Contains))
-                   || titleComponents.Any(str => components.Any(str2 => str.DifferenceTo(str2) <= Math.Max(str.Length, str2.Length) / 4))
-                   orderby title.Equals(searchTitle) descending, titleComponents.Count(str => components.Any(str.Equals)) descending
-                   select movie;
+            var result = from movie in movies
+                         let title = movie.Title.ToLower()
+                         let titleComponents = title.Split(' ')
+                         where titleComponents.Any(str => components.Any(str.Contains))
+                         || titleComponents.Any(str => components.Any(str2 => str.DifferenceTo(str2) <= Math.Max(str.Length, str2.Length) / 4))
+                         orderby title.Equals(searchTitle) descending, titleComponents.Count(str => components.Any(str.Equals)) descending
+                         select movie;
+
+            if (limit == 0)
+            {
+                return result;
+            }
+
+            return result.Take(limit);
         }
 
         /// <summary>
@@ -250,30 +258,46 @@ namespace RentItService.Entities
         }
 
         /// <summary>
-        /// Returns a list of the 10 most rented movies.
+        /// Returns a list of the most rented movies.
         /// </summary>
         /// <param name="token">The session token.</param>
+        /// <param name="limit">The maximum number of entries to return.</param>
         /// <returns>A list of movie objects.</returns>
-        public static IEnumerable<Movie> MostDownloaded(string token)
+        public static IEnumerable<Movie> MostDownloaded(string token, int limit = 0)
         {
+            IList<Movie> movies;
+
             using (var db = new RentItContext())
             {
-                List<MovieDownload> md = new List<MovieDownload>();
-                foreach (Movie m in db.Movies)
-                {
-                    md.Add(new MovieDownload(m, m.Rentals.Count));
-                }
+                var result = from movie in db.Movies
+                             orderby movie.Rentals.Count() descending 
+                             select movie;
 
-                List<Movie> movies = new List<Movie>();
-                for (int i = 0; i < 10; i++)
-                {
-                    MovieDownload m = md.Max();
-                    md.Remove(m);
-                    movies.Add(m.Movie);
-                }
+                movies = result.ToList();
+            }
 
+            if (limit == 0)
+            {
                 return movies;
             }
+
+            return movies.Take(limit);
+
+            /*List<MovieDownload> md = new List<MovieDownload>();
+            foreach (Movie m in db.Movies)
+            {
+                md.Add(new MovieDownload(m, m.Rentals.Count));
+            }
+
+            List<Movie> movies = new List<Movie>();
+            for (int i = 0; i < 10; i++)
+            {
+                MovieDownload m = md.Max();
+                md.Remove(m);
+                movies.Add(m.Movie);
+            }
+
+            return movies;*/
         }
 
         /// <summary>

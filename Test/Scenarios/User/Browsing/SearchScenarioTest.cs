@@ -162,9 +162,44 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchBadSpelling()
         {
-            var movies = Movie.Search("how the grinsh stoe cistmas").ToList();
+            var movies = Movie.Search("grinsh stoe cistmas").ToList();
 
             Assert.IsTrue(movies.Any(movie => movie.Title.Equals("How the Grinch Stole Christmas")));
+        }
+
+        /// <summary>
+        /// Purpose: verify that the search result does not include words that are too badly spelled
+        /// 
+        /// Steps:
+        ///     1. Search for a very bad misspelling of a movie title
+        ///     2. Verify that the movie was not returned
+        /// </summary>
+        [TestMethod]
+        public void SearchVeryBadSpelling()
+        {
+            var movies = Movie.Search("graounz spove sismast").ToList();
+
+            Assert.IsFalse(movies.Any(movie => movie.Title.Equals("How the Grinch Stole Christmas")));
+        }
+
+        /// <summary>
+        /// Purpose: verify that putting a limit on the search results actually limits the number of returned movies
+        /// 
+        /// Steps:
+        ///     1. Perform a search and note the number of movies returned
+        ///     2. Perform the search again with a limit on the number found in step 1 subtracted by one
+        ///     3. Verify that the number of movies returned matches the limit
+        /// </summary>
+        [TestMethod]
+        public void SearchLimit()
+        {
+            const string search_string = "the";
+
+            var movie_count = Movie.Search(search_string).Count();
+
+            var search_limit = movie_count - 1;
+
+            Assert.AreEqual(search_limit, Movie.Search(search_string, search_limit).Count());
         }
     }
 }

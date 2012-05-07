@@ -37,7 +37,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testContentRent");
+                var user = db.Users.First(u => u.Username == "testContentRent");
 
                 var result = Movie.MostDownloaded(user.Token);
 
