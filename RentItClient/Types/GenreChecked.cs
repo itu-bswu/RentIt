@@ -14,5 +14,11 @@ namespace RentItClient.Types
         public string GenreName { get; set; }
 
         public bool Checked { get; set; }
+
+        public GenreChecked(string name, bool isChecked)
+        {
+            GenreName = name;
+            Checked = isChecked;
+        }
     }
 }

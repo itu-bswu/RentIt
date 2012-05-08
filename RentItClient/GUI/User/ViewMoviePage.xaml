@@ -8,17 +8,22 @@
 	Title="ViewMoviePage">
 
     <Grid Width="720">
-        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="MostRented"/>
-        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="ViewProfile" />
-        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="YourRentals" />
-        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
-        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="SearchClick" />
+        <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
+        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="MostRented"/>
+        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="137,12,0,0" Name="button2" VerticalAlignment="Top" Width="128" Click="ViewProfile" />
+        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="271,13,0,0" Name="button3" VerticalAlignment="Top" Width="124" Click="YourRentals" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="416,12,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133" />
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,103,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,132,0,0" Name="textRelease" Text="Release date: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="62,103,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,144,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="61,103,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="171" />
         <TextBox  IsReadOnly="True" Height="227" HorizontalAlignment="Left" Margin="21,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="437" />
-        <Button Content="Rent movie" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="rentmovie" VerticalAlignment="Top" Width="216" Click="RentMovieClick" />
+        <Button Content="Select edition" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="selectEdition" VerticalAlignment="Top" Width="216" Click="SelectEditionClick" />
+        <TextBlock Height="23" Width="170" Name="textBlockEdition" Text="Select edition to rent" Margin="472,144,78,232" />
+        <ListBox Margin="472,161,32,51">
+
+        </ListBox>
     </Grid>
 </Page>

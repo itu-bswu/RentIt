@@ -8,12 +8,13 @@
 	Title="MostRented">
 
     <Grid Width="720">
-        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="MostRented"/>
-        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="ViewProfile" />
-        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="YourRentals" />
-        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="498,43,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133"/>
-        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,42,25,0" Click="SearchClick" />
+        <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
+        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="MostRented"/>
+        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="137,12,0,0" Name="button2" VerticalAlignment="Top" Width="128" Click="ViewProfile" />
+        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="271,13,0,0" Name="button3" VerticalAlignment="Top" Width="124" Click="YourRentals" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="416,12,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133" />
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
 
         <ListBox Name="MovieListBox" Margin="21,97,34,66">
         </ListBox>

@@ -1,21 +1,16 @@
 ﻿namespace RentItClient.GUI.ContentProvider
 {
+    using System;
     using System.Windows;
-    using System.Windows.Controls;
-
-    using RentItClient.GUI.User;
 
     /// <summary>
-    /// Interaction logic for CPEditMovie.xaml
+    /// Interaction logic for CPUploadMovies.xaml
     /// </summary>
-    public partial class CPEditMovie
+    public partial class CPUploadMovies
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CPEditMovie"/> class.
-        /// </summary>
-        public CPEditMovie()
+        public CPUploadMovies()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void YourMovies(object sender, RoutedEventArgs e)
@@ -66,45 +61,33 @@
 
         private void Logout(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new LoginPage());
-            //TODO: luk forbindelsen til servicen
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
-        {
 
         }
 
-        private void SaveChangesClick(object sender, RoutedEventArgs e)
+        private void UploadEditionClick(object sender, RoutedEventArgs e)
         {
-            const string MessageBoxText = "Do you want to save changes?";
-            const string Caption = "Save Changes?";
-            const MessageBoxButton Button = MessageBoxButton.YesNoCancel;
-            const MessageBoxImage Icon = MessageBoxImage.Warning;
-            MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+            //TODO: Upload edition to database
+            //TODO: du skal hente data fra TextBox: textBoxTitle, textBoxGenre, textBoxDescription, textBoxFiletoUpload, textBoxCoverImage
+        }
 
-            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+        private void BrowseClick(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-            // Process message box results
-            switch (result)
+            // Set filter for file extension and default file extension
+            dlg.DefaultExt = ".avi";
+            dlg.Filter = "movie files (.avi)|*.avi";
+
+            // Display OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox
+            if (result == true)
             {
-                case MessageBoxResult.Yes:
-                    // User pressed Yes button
-                    CPYourMovies yourMovies = new CPYourMovies();
-                    this.NavigationService.Navigate(yourMovies);
-                    //TODO: save the changes made on the movie obejct to the database
-                    //TODO: Du skal hente info fra: TextBox: textBoxTitle, textBoxGenre og textBoxDescription
-                    break;
-                case MessageBoxResult.No:
-                    // User pressed No button
-                    CPYourMovies yourMovies1 = new CPYourMovies();
-                    this.NavigationService.Navigate(yourMovies1);
-                    break;
-                case MessageBoxResult.Cancel:
-                    // User pressed Cancel button
-                    CPYourMovies yourMovies2 = new CPYourMovies();
-                    this.NavigationService.Navigate(yourMovies2);
-                    break;
+                // Open document
+                string filename = dlg.FileName;
+                this.textBoxFiletoUpload.Text = filename;
             }
         }
     }

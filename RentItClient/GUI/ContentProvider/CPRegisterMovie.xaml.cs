@@ -16,27 +16,31 @@
         public CPRegisterMovie()
         {
             this.InitializeComponent();
-        }
 
-        private void UploadMovie(object sender, RoutedEventArgs e)
-        {
-            CPUploadMovies uploadMovies = new CPUploadMovies();
-            this.NavigationService.Navigate(uploadMovies);
         }
 
         private void YourMovies(object sender, RoutedEventArgs e)
         {
+            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
+            const string Caption = "Change window?";
+            const MessageBoxButton Button = MessageBoxButton.YesNo;
+            const MessageBoxImage Icon = MessageBoxImage.Warning;
 
+            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+
+            // Process message box results
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    // User pressed Yes button
+                    this.NavigationService.Navigate(new CPYourMovies());
+                    break;
+                case MessageBoxResult.No:
+                    // User pressed No button
+                    break;
+            }
             //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
             //TODO: så Listboxen i CPYourMovies kan blive lavet med de elementer
-            CPYourMovies yourMovies = new CPYourMovies();
-            this.NavigationService.Navigate(yourMovies);
-        }
-
-        private void RegisterMovie(object sender, RoutedEventArgs e)
-        {
-            CPRegisterMovie registerMovie = new CPRegisterMovie();
-            this.NavigationService.Navigate(registerMovie);
         }
 
         private void Logout(object sender, RoutedEventArgs e)
@@ -48,8 +52,8 @@
         private void RegisterMovieClick(object sender, RoutedEventArgs e)
         {
             //TODO: Register movie in database
-            string messageBoxText = "You are about to register a movie, would you like to upload it right away aswell?";
-            string caption = "Upload movie?";
+            string messageBoxText = "You are about to register a movie, would you like to upload an edition right away aswell?";
+            string caption = "Upload edition?";
             MessageBoxButton button = MessageBoxButton.YesNo;
             MessageBoxImage icon = MessageBoxImage.Warning;
 
