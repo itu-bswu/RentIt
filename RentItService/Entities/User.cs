@@ -236,7 +236,7 @@ namespace RentItService.Entities
                     throw new UserNotFoundException("No user with the given token was found!");
                 }
 
-                return db.Users.First(u => u.Token == token);
+                return db.Users.Include("Rentals").First(u => u.Token == token);
             }
         }
 
@@ -244,8 +244,8 @@ namespace RentItService.Entities
         /// Creates a rental entry in the database.
         /// </summary>
         /// <param name="token">The session token.</param>
-        /// <param name="movieId">The ID of the movie to be rented.</param>
-        public static void RentMovie(string token, int movieId)
+        /// <param name="movieEditionId">The ID of the movie edition to be rented.</param>
+        public static void RentMovie(string token, int movieEditionId)
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<NotAUserException>(GetByToken(token).Type == UserType.User);
@@ -254,12 +254,12 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                if (!db.Movies.Any(m => m.ID == movieId && m.Released != null && m.Released <= DateTime.Now))
+                if (!db.Movies.Any(m => m.Editions.Any(e => e.ID == movieEditionId) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
                 {
                     throw new NoMovieFoundException("No released movies found with the given ID.");
                 }
 
-                db.Rentals.Add(new Rental { MovieID = movieId, UserID = user.ID, Time = DateTime.Now });
+                db.Rentals.Add(new Rental { EditionID = movieEditionId, UserID = user.ID, Time = DateTime.Now });
                 db.SaveChanges();
             }
         }

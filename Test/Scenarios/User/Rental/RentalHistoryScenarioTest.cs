@@ -38,7 +38,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.First(u => u.Username == "testUserRent2");
+                User user = db.Users.Include("Rentals").First(u => u.Username == "testUserRent2");
 
                 var result = User.GetRentalHistory(user.Token);
 

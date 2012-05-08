@@ -139,6 +139,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Edition.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Library\StringDifference.cs" />
+    <Compile Include="Mapping\EditionMap.cs" />
     <Compile Include="Mapping\GenreMap.cs" />
     <Compile Include="Mapping\MovieMap.cs" />
     <Compile Include="Mapping\RentalMap.cs" />

@@ -27,6 +27,6 @@ namespace RentItService.Interfaces
         /// <param name="downloadRequest">The movie to download.</param>
         /// <returns>The stream information necessary for download.</returns>
         [OperationContract]
-        RemoteFileStream DownloadFile(string token, Movie downloadRequest);
+        RemoteFileStream DownloadFile(string token, Edition downloadRequest);
     }
 }

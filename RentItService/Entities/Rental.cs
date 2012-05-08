@@ -29,7 +29,7 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the ID of the movie getting rented out.
         /// </summary>
-        public int MovieID { get; set; }
+        public int EditionID { get; set; }
 
         /// <summary>
         /// Gets or sets the time of rental.
@@ -37,13 +37,24 @@ namespace RentItService.Entities
         public DateTime Time { get; set; }
 
         /// <summary>
-        /// Gets or sets the associated Movie entity.
-        /// </summary>
-        public virtual Movie Movie { get; set; }
-
-        /// <summary>
         /// Gets or sets the associated User entity.
         /// </summary>
         public virtual User User { get; set; }
+
+        /// <summary>
+        /// Gets or sets the associated movie edition.
+        /// </summary>
+        public virtual Edition Edition { get; set; }
+
+        /// <summary>
+        /// Gets the associated Movie entity.
+        /// </summary>
+        public Movie Movie
+        {
+            get
+            {
+                return Edition.Movie;
+            }
+        }
     }
 }

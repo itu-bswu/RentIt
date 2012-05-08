@@ -46,7 +46,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var movie = new Movie
                 {
                     Description = "testMovie",
-                    FilePath = "noFilePath",
                     ImagePath = "noImagePath",
                     Title = "testMovieTitle1337",
                     OwnerID = user.ID
@@ -88,7 +87,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var movie = new Movie
             {
                 Description = "testMovie",
-                FilePath = "noFilePath",
                 ImagePath = "noImagePath",
                 Title = null,
                 OwnerID = user.ID
@@ -120,7 +118,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var movie = new Movie
             {
                 Description = "testMovie",
-                FilePath = "noFilePath",
                 ImagePath = "noImagePath",
                 Title = "testMovie1337",
                 OwnerID = user.ID
@@ -145,7 +142,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var movie = new Movie
             {
                 Description = "testMovie",
-                FilePath = "noFilePath",
                 ImagePath = "noImagePath",
                 Title = "testMovie1337",
                 OwnerID = 10000
