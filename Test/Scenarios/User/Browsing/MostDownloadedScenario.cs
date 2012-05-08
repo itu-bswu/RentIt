@@ -7,11 +7,9 @@
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using RentItService;
     using RentItService.Entities;
+    using Utils;
 
     /// <summary>
     /// Scenario tests for the mostdownloaded feature.
@@ -20,61 +18,97 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     public class MostDownloadedScenario : DataTest
     {
         /// <summary>
-        /// Purpose: Verify that it is possible to get a list of rented movies
+        /// Purpose: Verify that when trying to get the most downloaded 
+        ///          movies, the right movies are returned in the right order.
+        /// 
+        /// Pre-conditions:
+        ///     1. A user is logged in.
+        ///     2. Rentals are added for some movies.
         /// 
         /// Steps:
-        ///     1: Create instances of movies and fill with valid information (see TestHelper.SetupTestMovies).
-        ///     2: Create instances of user and fill with valid information ( see TestHelper.SetupMoviesForRentalTest).
-        ///     3: Create instaces of rentals and fill with valid information (see TestRentalMostDownloaded).
-        ///     4: Verify that the first element of the list is the top rented movie.
+        ///     1. Get most downloaded movies.
+        ///     2. Verify that the most downloaded movie is the one with the most rentals.
         /// </summary>
         [TestMethod]
         public void MostDownloadedWithRentals()
         {
-            TestHelper.SetUpRentalTestUsers();
-            TestHelper.SetUpMoviesForRentalTest();
-            TestHelper.TestRentalsMostDownloaded();
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            using (var db = new RentItContext())
-            {
-                var user = db.Users.First(u => u.Username == "testContentRent");
+            // Get movie editions
+            var movieList = Movie.GetAllMovies(user.Token);
+            var movie1Edition = movieList.ElementAt(0).Editions.First();
+            var movie2Edition = movieList.ElementAt(1).Editions.First();
+            var movie3Edition = movieList.ElementAt(2).Editions.First();
+            
+            // Setup rentals
+            User.RentMovie(user.Token, movie1Edition.ID);
+            User.RentMovie(user.Token, movie1Edition.ID);
+            User.RentMovie(user.Token, movie1Edition.ID);
+            User.RentMovie(user.Token, movie2Edition.ID);
+            User.RentMovie(user.Token, movie2Edition.ID);
+            User.RentMovie(user.Token, movie3Edition.ID);
+            
+            // Step 1
+            var movies = Movie.MostDownloaded(user.Token);
+            var mostDownloaded = movies.First();
 
-                var result = Movie.MostDownloaded(user.Token);
-
-                Assert.AreEqual(3, db.Rentals.Count(r => r.MovieID == 1));
-
-                // Assert
-                Assert.AreEqual(1, result.First().ID, "The first element of the list is not the most rented");
-            }
+            // Step 2
+            movie1Edition = Movie.Get(user.Token, movie1Edition.MovieID).Editions.First();
+            Assert.AreEqual(movie1Edition.Rentals.Count, mostDownloaded.Rentals.Count(), "Amount of rentals do not match!");
+            Assert.AreEqual(movie1Edition.MovieID, mostDownloaded.ID, "The first element of the list is not the most rented!");
         }
 
         /// <summary>
-        /// Purpose: Verify that the service will return the same list to multiple users.
+        /// Purpose: Verify that even though the rentals are split between 
+        ///          multiple editions, the right movies in the right order 
+        ///          is still returned.
+        /// 
+        /// Pre-conditions:
+        ///     1. A user is logged in.
+        ///     2. A movie with several editions exists in the database.
+        ///     3. A movie with only one edition exists in the database.
         /// 
         /// Steps:
-        ///     1: Create instances of movies and fill with valid information (see TestHelper.SetupTestMovies).
-        ///     2: Create instances of user and fill with valid information (see TestHelper.SetupRentalTestUsers).
-        ///     3:Verify that the MostDownloaded movies list will be same for multiple users.
+        ///     1. Create multiple rentals for different editions for movie in pre-condition 2.
+        ///     2. Create rentals for another movie (less rentals than the total amount in step 1, 
+        ///        but more rentals than for one single edition in step 1).
+        ///     3. Get most downloaded movies.
+        ///     4. Verify the movie from pre-condition 2 is first in the list.
         /// </summary>
         [TestMethod]
-        public void MostDownloadedWithTwoUsers()
+        public void MostDownloadedMultipleEditions()
         {
-            TestHelper.SetUpRentalTestUsers();
-            TestHelper.SetUpMoviesForRentalTest();
+            // Pre-condition 1
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            using (var db = new RentItContext())
-            {
-                User user1 = db.Users.First(u => u.Username == "testUserRent1");
+            // Pre-condition 2 + 3
+            var movies = Movie.GetAllMovies(user.Token);
+            var movieMultipleEditions = movies.First(m => m.Editions.Count > 1);
+            var movieSingleEdition = movies.First(m => m.Editions.Count == 1);
 
-                User user2 = db.Users.First(u => u.Username == "testUserRent2");
+            // Step 1
+            var firstEdition = movieMultipleEditions.Editions.First();
+            var secondEdition = movieMultipleEditions.Editions.Last();
 
-                var result1 = Movie.MostDownloaded(user1.Token).ToList();
+            User.RentMovie(user.Token, firstEdition.ID);
+            User.RentMovie(user.Token, firstEdition.ID);
+            User.RentMovie(user.Token, firstEdition.ID);
+            User.RentMovie(user.Token, secondEdition.ID);
+            User.RentMovie(user.Token, secondEdition.ID);
 
-                var result2 = Movie.MostDownloaded(user2.Token).ToList();
+            // Step 2
+            firstEdition = movieSingleEdition.Editions.First();
 
-                // Assert
-                Assert.AreEqual(result1.Count, result2.Count, "The list is not the same for two diffrent users");
-            }
+            User.RentMovie(user.Token, firstEdition.ID);
+            User.RentMovie(user.Token, firstEdition.ID);
+            User.RentMovie(user.Token, firstEdition.ID);
+            User.RentMovie(user.Token, firstEdition.ID);
+
+            // Step 3
+            movies = Movie.MostDownloaded(user.Token);
+
+            // Step 4
+            Assert.AreEqual(movieMultipleEditions.ID, movies.First().ID, "Wrong movie with most rentals!");
         }
     }
 }

@@ -45,9 +45,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var movie = new Movie
             {
                 Title = "Some new movie with a unique name",
-                FilePath = "doesn't exist",
                 OwnerID = TestUser.ContentProvider.ID,
-                Released = DateTime.Now
+                ReleaseDate = DateTime.Now
             };
 
             using (var db = new RentItContext())
@@ -111,9 +110,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 movie = new Movie
                 {
                     Title = "Some unique movie title",
-                    FilePath = "Not currently available",
                     OwnerID = TestUser.ContentProvider.ID,
-                    Released = DateTime.Now.AddDays(14)
+                    ReleaseDate = DateTime.Now.AddDays(14)
                 };
 
                 db.Movies.Add(movie);
@@ -147,7 +145,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 movie = new Movie
                 {
                     Title = "Some unique movie title",
-                    FilePath = "Not currently available",
                     OwnerID = TestUser.ContentProvider.ID
                 };
 

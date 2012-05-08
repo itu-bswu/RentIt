@@ -26,8 +26,8 @@ namespace RentItService.Entities
         /// </summary>
         public Movie()
         {
-            this.Rentals = new List<Rental>();
             this.Genres = new List<Genre>();
+            this.Editions = new List<Edition>();
         }
 
         /// <summary>
@@ -51,14 +51,20 @@ namespace RentItService.Entities
         public string ImagePath { get; set; }
 
         /// <summary>
-        /// Gets or sets the file path.
-        /// </summary>
-        public string FilePath { get; set; }
-
-        /// <summary>
         /// Gets or sets the release date.
         /// </summary>
-        public DateTime? Released { get; set; }
+        public DateTime? ReleaseDate { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether or not a movie has been released.
+        /// </summary>
+        public bool Released
+        {
+            get
+            {
+                return (this.ReleaseDate != null && this.ReleaseDate <= DateTime.Now);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the owner ID.
@@ -71,9 +77,20 @@ namespace RentItService.Entities
         public virtual User Owner { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of rentals of the movie.
+        /// Gets or sets a list of movie editions.
         /// </summary>
-        public virtual ICollection<Rental> Rentals { get; set; }
+        public virtual ICollection<Edition> Editions { get; set; } 
+
+        /// <summary>
+        /// Gets an enumerable of rentals of the movie.
+        /// </summary>
+        public IEnumerable<Rental> Rentals
+        {
+            get
+            {
+                return this.Editions.SelectMany(edition => edition.Rentals);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the movie's genres.
@@ -109,6 +126,31 @@ namespace RentItService.Entities
         }
 
         /// <summary>
+        /// Get movie information for movie with given ID.
+        /// </summary>
+        /// <param name="token">The session token.</param>
+        /// <param name="movieId">Movie to get information about.</param>
+        /// <returns>Movie with given ID; null if not found.</returns>
+        public static Movie Get(string token, int movieId)
+        {
+            Contract.Requires(token != null);
+            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
+
+            using (var db = new RentItContext())
+            {
+                var user = User.GetByToken(token);
+                var movie = Enumerable.FirstOrDefault(db.Movies.Include("Editions").Include("Editions.Rentals"), m => m.ID == movieId);
+
+                if (movie != null && !movie.Released && movie.OwnerID != user.ID)
+                {
+                    movie.Editions = new List<Edition>();
+                }
+
+                return movie;
+            }
+        }
+
+        /// <summary>
         /// Deletes a movie from the service. 
         /// The movie is identified by the ID in the instance of the Movie class. 
         /// The other properties in the Movie instance are ignored.
@@ -124,7 +166,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                var movie = db.Movies.First(m => m.ID == movieObject.ID);
+                var movie = db.Movies.Include("Editions").First(m => m.ID == movieObject.ID);
                 var user = User.GetByToken(token);
 
                 if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
@@ -132,12 +174,12 @@ namespace RentItService.Entities
                     throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
                 }
 
-                var filePath = Constants.UploadDownloadFileFolder + movie.FilePath;
+                var files = movie.Editions.Select(edition => edition.FilePath).ToList();
 
                 db.Movies.Remove(movie);
                 db.SaveChanges();
 
-                if (File.Exists(filePath))
+                foreach (var filePath in files.Select(file => Constants.UploadDownloadFileFolder + file).Where(File.Exists))
                 {
                     File.Delete(filePath);
                 }
@@ -229,8 +271,8 @@ namespace RentItService.Entities
             using (var db = new RentItContext())
             {
                 var movies = (from movie in db.Movies
-                              where movie.Released <= DateTime.Now
-                              orderby movie.Released descending
+                              where movie.ReleaseDate <= DateTime.Now
+                              orderby movie.ReleaseDate descending
                               select movie).ToList();
 
                 return limit > 0 ? movies.Take(limit) : movies;
@@ -240,12 +282,8 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets all the movies in the database.
         /// </summary>
-        /// <param name="token">
-        /// The session token.
-        /// </param>
-        /// <returns>
-        /// All the movie entries in the database.
-        /// </returns>
+        /// <param name="token">The session token.</param>
+        /// <returns>All the movie entries in the database.</returns>
         public static IEnumerable<Movie> GetAllMovies(string token)
         {
             Contract.Requires<ArgumentNullException>(token != null);
@@ -253,7 +291,7 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                return db.Movies.ToList();
+                return db.Movies.Include("Editions").ToList();
             }
         }
 
@@ -261,7 +299,7 @@ namespace RentItService.Entities
         /// Returns a list of the most rented movies.
         /// </summary>
         /// <param name="token">The session token.</param>
-        /// <param name="limit">The maximum number of entries to return.</param>
+        /// <param name="limit">The maximum number of entries to return (0 = unlimited).</param>
         /// <returns>A list of movie objects.</returns>
         public static IEnumerable<Movie> MostDownloaded(string token, int limit = 0)
         {
@@ -269,19 +307,14 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                var result = from movie in db.Movies
-                             orderby movie.Rentals.Count() descending 
+                var result = from movie in db.Movies.Include("Editions").Include("Editions.Rentals")
+                             orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
                              select movie;
 
                 movies = result.ToList();
             }
 
-            if (limit == 0)
-            {
-                return movies;
-            }
-
-            return movies.Take(limit);
+            return limit > 0 ? movies.Take(limit) : movies;
         }
 
         /// <summary>
@@ -305,8 +338,8 @@ namespace RentItService.Entities
                 {
                     Description = movieObject.Description,
                     Title = movieObject.Title,
-                    FilePath = "emptyFilePath",
-                    OwnerID = User.GetByToken(token).ID
+                    OwnerID = User.GetByToken(token).ID,
+                    ReleaseDate = movieObject.ReleaseDate
                 };
 
                 foreach (var genre in movieObject.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))

@@ -44,43 +44,43 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void GetCurrentRentalsTest()
         {
             var smith = User.Login(TestUser.User.Username, TestUser.User.Password);
+            var movies = Movie.GetAllMovies(smith.Token);
+
+            int rentalsCount = smith.Rentals.Count;
+            int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
 
             using (var db = new RentItContext())
             {
                 Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
                 Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
 
-                var rentalsCount = db.Users.First(u => u.ID == smith.ID).Rentals.Count;
-                var currentRentalsCount =
-                    db.Users.First(u => u.ID == smith.ID).Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
-
                 var rent1 = new Rental
                     {
                         UserID = smith.ID,
-                        MovieID = db.Movies.First(m => m.Title == "The Matrix").ID,
+                        EditionID = movies.First(m => m.Title == "The Matrix").Editions.First().ID,
                         Time = DateTime.Now
                     };
 
                 var rent2 = new Rental
                     {
                         UserID = smith.ID,
-                        MovieID = db.Movies.First(m => m.Title == "Die Hard").ID,
+                        EditionID = movies.First(m => m.Title == "Die Hard").Editions.First().ID,
                         Time = new DateTime(1753, 5, 15, 0, 0, 0)
                     };
 
                 db.Rentals.Add(rent1);
                 db.Rentals.Add(rent2);
-                db.SaveChanges();
-
-                var rentalsCount1 = db.Users.First(u => u.ID == smith.ID).Rentals.Count;
-                var currentRentalsCount1 =
-                    db.Users.First(u => u.ID == smith.ID).Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
-
-                Assert.AreEqual(rentalsCount + 2, rentalsCount1, "The amount of rentals did not increase by 2.");
-                Assert.AreEqual(currentRentalsCount + 1, currentRentalsCount1, "The current rentals did not increase by 1.");
-
-                Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+                db.SaveChanges();  
             }
+
+            smith = User.GetByToken(smith.Token);
+            var rentalsCount1 = smith.Rentals.Count;
+            var currentRentalsCount1 = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
+
+            Assert.AreEqual(rentalsCount + 2, rentalsCount1, "The amount of rentals did not increase by 2.");
+            Assert.AreEqual(currentRentalsCount + 1, currentRentalsCount1, "The current rentals did not increase by 1.");
+
+            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
         }
 
         /// <summary>

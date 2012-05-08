@@ -4,17 +4,15 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace RentItService.Services
 {
     using System;
     using System.Diagnostics.Contracts;
-    using RentItService.Entities;
-    using RentItService.Enums;
-    using RentItService.Exceptions;
-    using RentItService.Interfaces;
+    using System.Linq;
+    using Entities;
+    using Enums;
+    using Exceptions;
+    using Interfaces;
 
     /// <summary>
     /// Service for the content providers.
@@ -30,7 +28,6 @@ namespace RentItService.Services
         {
             Contract.Requires(token != null);
             Contract.Requires(updatedMovie.Title != null);
-            Contract.Requires(updatedMovie.FilePath != null);
             Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type != UserType.User);
 
@@ -58,7 +55,7 @@ namespace RentItService.Services
                 referenceMovie.Title = updatedMovie.Title;
                 referenceMovie.Description = updatedMovie.Description;
                 referenceMovie.ImagePath = updatedMovie.ImagePath;
-                referenceMovie.Released = updatedMovie.Released;
+                referenceMovie.ReleaseDate = updatedMovie.ReleaseDate;
 
                 var removeGenres = from genre in referenceMovie.Genres
                                    where updatedMovie.Genres.Count(g => g.Name.Equals(genre.Name)) == 0

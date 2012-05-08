@@ -6,7 +6,6 @@
 namespace RentIt.Tests
 {
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using RentItService;
     using RentItService.Entities;
@@ -121,9 +120,7 @@ namespace RentIt.Tests
                     var movie = new Movie
                         {
                             Description = "testMovie1",
-                            FilePath = "no file location",
                             ImagePath = "no image location",
-                            Rentals = new Collection<Rental>(),
                             Title = "testMovie1"
                         };
                     db.Movies.Add(movie);
@@ -133,7 +130,6 @@ namespace RentIt.Tests
                 {
                     db.Movies.First(m => m.Description == "testMovie1").ImagePath = "no image location";
                     db.Movies.First(m => m.Description == "testMovie1").Title = "testMovie1";
-                    db.Movies.First(m => m.Description == "testMovie1").FilePath = "no file location";
                 }
             }
         }
@@ -298,7 +294,6 @@ namespace RentIt.Tests
                     var movie = new Movie
                         {
                             Description = "batman",
-                            FilePath = "no file location1",
                             ImagePath = "no image location1",
                             Title = "batman",
                             OwnerID = oID
@@ -310,7 +305,6 @@ namespace RentIt.Tests
                 {
                     db.Movies.First(m => m.Description == "batman").ImagePath = "no image location1";
                     db.Movies.First(m => m.Description == "batman").Title = "batman";
-                    db.Movies.First(m => m.Description == "batman").FilePath = "no file location1";
                     db.Movies.First(m => m.Description == "batman").OwnerID = oID;
                 }
 
@@ -319,7 +313,6 @@ namespace RentIt.Tests
                     var movie = new Movie
                         {
                             Description = "superman",
-                            FilePath = "no file location2",
                             ImagePath = "no image location2",
                             Title = "superman",
                             OwnerID = oID
@@ -331,7 +324,6 @@ namespace RentIt.Tests
                 {
                     db.Movies.First(m => m.Description == "superman").ImagePath = "no image location2";
                     db.Movies.First(m => m.Description == "superman").Title = "superman";
-                    db.Movies.First(m => m.Description == "superman").FilePath = "no file location2";
                     db.Movies.First(m => m.Description == "superman").OwnerID = oID;
                 }
 
@@ -340,7 +332,6 @@ namespace RentIt.Tests
                     var movie = new Movie
                         {
                             Description = "spiderman",
-                            FilePath = "no file location3",
                             ImagePath = "no image location3",
                             Title = "spiderman",
                             OwnerID = oID
@@ -352,7 +343,6 @@ namespace RentIt.Tests
                 {
                     db.Movies.First(m => m.Description == "spiderman").ImagePath = "no image location3";
                     db.Movies.First(m => m.Description == "spiderman").Title = "spiderman";
-                    db.Movies.First(m => m.Description == "spiderman").FilePath = "no file location3";
                     db.Movies.First(m => m.Description == "spiderman").OwnerID = oID;
                 }
             }

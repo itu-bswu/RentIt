@@ -8,10 +8,8 @@ namespace RentItService
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
     using Entities;
     using Mapping;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Database context (Entity Framework).
@@ -52,9 +50,9 @@ namespace RentItService
         public DbSet<Movie> Movies { get; set; }
 
         /// <summary>
-        /// Gets or sets all movies in RentIt with the genre collection;
+        /// Gets or sets all movie editions in RentIt.
         /// </summary>
-//        public IEnumerable<Movie> MoviesWithGenres { get { return Movies.Include("Genres"); } }
+        public DbSet<Edition> Editions { get; set; }
 
         /// <summary>
         /// Gets or sets a set of rentals in RentIt.
@@ -79,6 +77,7 @@ namespace RentItService
             modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             modelBuilder.Configurations.Add(new GenreMap());
             modelBuilder.Configurations.Add(new MovieMap());
+            modelBuilder.Configurations.Add(new EditionMap());
             modelBuilder.Configurations.Add(new RentalMap());
             modelBuilder.Configurations.Add(new UserMap());
 
@@ -91,7 +90,6 @@ namespace RentItService
                              c.MapRightKey("genre_id");
                              c.ToTable("HasGenre");
                          });
-
         }
 
         #endregion Configuration

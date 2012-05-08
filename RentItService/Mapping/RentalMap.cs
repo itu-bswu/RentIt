@@ -27,13 +27,13 @@ namespace RentItService.Mapping
             this.ToTable("Rental");
             this.Property(t => t.ID).HasColumnName("rental_id");
             this.Property(t => t.UserID).HasColumnName("user_id");
-            this.Property(t => t.MovieID).HasColumnName("movie_id");
+            this.Property(t => t.EditionID).HasColumnName("edition_id");
             this.Property(t => t.Time).HasColumnName("time");
 
             // Relationships
-            this.HasRequired(t => t.Movie)
+            this.HasRequired(t => t.Edition)
                 .WithMany(t => t.Rentals)
-                .HasForeignKey(d => d.MovieID);
+                .HasForeignKey(d => d.EditionID);
                 
             this.HasRequired(t => t.User)
                 .WithMany(t => t.Rentals)
