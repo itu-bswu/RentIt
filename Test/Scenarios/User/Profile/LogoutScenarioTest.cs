@@ -52,7 +52,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             }
 
             // Step 5
-            User.EditProfile(token, user);
+            User.Edit(token, user);
         }
 
         /// <summary>

@@ -173,7 +173,7 @@
     <Compile Include="Services\UploadService.cs" />
     <Compile Include="Services\ContentService.cs" />
     <Compile Include="Services\GetMovieDataService.cs" />
-    <Compile Include="Services\UserInformationService.cs" />
+    <Compile Include="Services\UserManagementService.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>

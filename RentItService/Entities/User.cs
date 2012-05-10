@@ -122,6 +122,9 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentException>(user.Email != null);
             Contract.Requires<ArgumentException>(user.Password != null);
 
+            Contract.Requires<ArgumentException>(user.Username != string.Empty);
+            Contract.Requires<ArgumentException>(user.Email != string.Empty && Validator.ValidateEmail(user.Email));
+            
             user.ID = 0;
             user.Type = UserType.User;
             user.Token = string.Empty;
@@ -176,16 +179,13 @@ namespace RentItService.Entities
         /// <summary>
         /// Logs the user out, clearing the session.
         /// </summary>
-        /// <param name="token">The session token.</param>
-        public static void Logout(string token)
+        /// <param name="user">The user to log out.</param>
+        public static void Logout(User user)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-
             using (var db = new RentItContext())
             {
-                var user = db.Users.First(u => u.Token == token);
-                user.Token = null;
+                var u = db.Users.Find(user.ID);
+                u.Token = null;
                 db.SaveChanges();
             }
         }
@@ -267,33 +267,28 @@ namespace RentItService.Entities
         /// <summary>
         /// Updates a user profile.
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="userObject">The updated user object.</param>
+        /// <param name="user">The editing user.</param>
+        /// <param name="editedUser">The updated user object.</param>
         /// <returns>The edited user profile.</returns>
-        public static User EditProfile(string token, User userObject)
+        public static User Edit(User user, User editedUser)
         {
-            Contract.Requires<ArgumentNullException>(token != null & userObject != null);
-            Contract.Requires<ArgumentNullException>(userObject.Username != null);
-            Contract.Requires<ArgumentNullException>(userObject.Email != null);
-            Contract.Requires<ArgumentNullException>(userObject.Password != null);
-            Contract.Requires<ArgumentNullException>(userObject.FullName != null);
+            Contract.Requires<ArgumentNullException>(user != null & editedUser != null);
+            Contract.Requires<ArgumentNullException>(editedUser.Email != null);
+            Contract.Requires<ArgumentNullException>(editedUser.Password != null);
+            Contract.Requires<ArgumentException>(Validator.ValidateEmail(editedUser.Email));
 
-            Contract.Requires<ArgumentException>(userObject.Email != string.Empty & userObject.Email.Contains("@"));
-            Contract.Requires<ArgumentException>(userObject.Password != string.Empty);
-
-            Contract.Requires<InsufficientRightsException>(GetByToken(token).ID == userObject.ID);
+            Contract.Requires<InsufficientRightsException>(user.ID == editedUser.ID);
 
             using (var db = new RentItContext())
             {
-                User user = db.Users.Find(userObject.ID);
+                var u = db.Users.Find(editedUser.ID);
 
-                user.Email = userObject.Email;
-                user.FullName = userObject.FullName;
-                user.Password = Hash.Sha512(userObject.Password + Salt);
+                u.Email = editedUser.Email;
+                u.FullName = editedUser.FullName;
+                u.Password = Hash.Sha512(editedUser.Password + Salt);
 
                 db.SaveChanges();
-                user = db.Users.Find(userObject.ID);
-                return user;
+                return u;
             }
         }
 
