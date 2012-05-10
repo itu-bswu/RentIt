@@ -163,7 +163,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 var movie = Movie
-                    .GetAllMovies(user.Token)
+                    .All(user.Token)
                     .OrderByDescending(m => m.ID)
                     .First();
 
@@ -221,7 +221,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 var movie = Movie
-                    .GetAllMovies(user.Token)
+                    .All(user.Token)
                     .OrderByDescending(m => m.ID)
                     .First();
 

@@ -83,6 +83,18 @@ namespace RentItService.Entities
             }
         }
 
+        /// <summary>
+        /// Returns all genres
+        /// </summary>
+        /// <returns>All genres</returns>
+        public static IEnumerable<Genre> All()
+        {
+            using (var db = new RentItContext())
+            {
+                return db.Genres;
+            }
+        } 
+
         #endregion Helpers
 
         #region Overrides

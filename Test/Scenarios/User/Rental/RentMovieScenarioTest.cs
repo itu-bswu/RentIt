@@ -79,7 +79,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void NotAUserRentMovieTest()
         {
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-            var movie = Movie.GetAllMovies(user.Token).First(m => m.Editions.Count > 0);
+            var movie = Movie.All(user.Token).First(m => m.Editions.Count > 0);
 
             User.RentMovie(user.Token, movie.Editions.First().ID);
         }

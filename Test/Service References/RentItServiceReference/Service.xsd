@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" />
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
@@ -133,17 +133,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllMovies">
+  <xs:element name="All">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllMoviesResponse">
+  <xs:element name="AllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="GetAllMoviesResult" nillable="true" type="q12:ArrayOfMovie" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="AllResult" nillable="true" type="q12:ArrayOfMovie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

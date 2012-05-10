@@ -101,13 +101,13 @@ namespace RentItService.Entities
         /// Add a genre to the movie
         /// </summary>
         /// <param name="genre">The genre</param>
-        public void AddGenre(Genre genre)
+        public void AddGenre(string genre)
         {
             Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 1);
 
-            if (!Genres.Any(g => g.Name == genre.Name))
+            if (Genres.Any(g => g.Name.Equals(genre)))
             {
-                Genres.Add(genre);
+                Genres.Add(Genre.GetOrCreateGenre(genre));
             }
         }
 
@@ -115,14 +115,24 @@ namespace RentItService.Entities
         /// Remove a genre from the movie
         /// </summary>
         /// <param name="genre">The Genre</param>
-        public void RemoveGenre(Genre genre)
+        public void RemoveGenre(string genre)
         {
             Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 0);
 
-            if (Genres.Any(g => g.Name == genre.Name))
+            if (Genres.Any(g => g.Name.Equals(genre)))
             {
-                Genres.Remove(genre);
+                Genres.Remove(Genres.Single(g => g.Name.Equals(genre.Name)));
             }
+        }
+
+        /// <summary>
+        /// Checks if the movie has a genre
+        /// </summary>
+        /// <param name="genre">The genre</param>
+        /// <returns>True if the movie has the genre</returns>
+        public bool HasGenre(string genre)
+        {
+            return Genres.Count(genre.Equals) == 1;
         }
 
         /// <summary>
@@ -227,36 +237,13 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="genre">The genre to filter by.</param>
         /// <returns>An IEnumerable containing the filtered movies.</returns>
-        public static IEnumerable<Movie> ByGenre(Genre genre)
+        public static IEnumerable<Movie> ByGenre(string genre)
         {
             Contract.Requires<ArgumentNullException>(genre != null);
 
-            List<Movie> result;
-
-            using (var db = new RentItContext())
-            {
-                // Warning: ugly fix
-                result = db.Movies.Include("Genres").ToList().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
-            }
-
-            if (!result.Any())
-            {
-                throw new UnknownGenreException();
-            }
+            List<Movie> result = All().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
 
             return result;
-        }
-
-        /// <summary>
-        /// Returns all genres in the database
-        /// </summary>
-        /// <returns>An IEnumerable containing all genres as strings</returns>
-        public static IEnumerable<Genre> GetAllGenres()
-        {
-            using (var db = new RentItContext())
-            {
-                return db.Genres.ToList();
-            }
         }
 
         /// <summary>
@@ -284,14 +271,13 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>All the movie entries in the database.</returns>
-        public static IEnumerable<Movie> GetAllMovies(string token)
+        public static IEnumerable<Movie> All(int limit = 0)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+            Contract.Requires<ArgumentException>(limit >= 0);
 
             using (var db = new RentItContext())
             {
-                return db.Movies.Include("Editions").ToList();
+                return db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres").Take(limit).ToList();
             }
         }
 
@@ -301,25 +287,18 @@ namespace RentItService.Entities
         /// <param name="token">The session token.</param>
         /// <param name="limit">The maximum number of entries to return (0 = unlimited).</param>
         /// <returns>A list of movie objects.</returns>
-        public static IEnumerable<Movie> MostDownloaded(string token, int limit = 0)
+        public static IEnumerable<Movie> MostDownloaded(int limit = 0)
         {
-            IList<Movie> movies;
-
-            using (var db = new RentItContext())
-            {
-                var result = from movie in db.Movies.Include("Editions").Include("Editions.Rentals")
-                             orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
-                             select movie;
-
-                movies = result.ToList();
-            }
+            var movies = (from movie in Movie.All().Include("Editions").Include("Editions.Rentals")
+                          orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
+                          select movie).ToList();
 
             return limit > 0 ? movies.Take(limit) : movies;
         }
 
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(token): sorting == MovieSorting.Newest? Newest(limit): GetAllMovies(token));
+            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(token): sorting == MovieSorting.Newest? Newest(limit): All(token));
 
             if (genre != null)
             {

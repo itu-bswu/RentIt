@@ -120,7 +120,7 @@ namespace RentIt.Tests.RentItServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/Search", ReplyAction="http://tempuri.org/IContentBrowsing/SearchResponse")]
         RentItService.Entities.Movie[] Search(string token, [System.ServiceModel.MessageParameterAttribute(Name="search")] string search1, int limit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetAllMovies", ReplyAction="http://tempuri.org/IContentBrowsing/GetAllMoviesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/All", ReplyAction="http://tempuri.org/IContentBrowsing/GetAllMoviesResponse")]
         RentItService.Entities.Movie[] GetAllMovies(string token);
     }
     
