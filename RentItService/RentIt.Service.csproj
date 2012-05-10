@@ -173,9 +173,8 @@
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\RentalManagement.cs" />
-    <Compile Include="Services\UploadService.cs" />
-    <Compile Include="Services\ContentService.cs" />
-    <Compile Include="Services\UserManagementService.cs" />
+    <Compile Include="Services\ContentManagement.cs" />
+    <Compile Include="Services\UserManagement.cs" />
     <Compile Include="Services\ContentBrowsing.cs" />
   </ItemGroup>
   <ItemGroup>
