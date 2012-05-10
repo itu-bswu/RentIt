@@ -159,19 +159,18 @@ namespace RentItService.Entities
         /// The movie is identified by the ID in the instance of the Movie class. 
         /// The other properties in the Movie instance are ignored.
         /// </summary>
-        /// <param name="token">The session token.</param>
+        /// <param name="token">The user deleting the movie.</param>
         /// <param name="movieObject">The movie to be deleted.</param>
         /// <author>Jakob Melnyk</author>
-        public static void DeleteMovie(string token, Movie movieObject)
+        public static void Delete(User user, Movie movieObject)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
+            Contract.Requires<ArgumentNullException>(user != null);
             Contract.Requires<ArgumentNullException>(movieObject != null);
-            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
             using (var db = new RentItContext())
             {
                 var movie = db.Movies.Include("Editions").First(m => m.ID == movieObject.ID);
-                var user = User.GetByToken(token);
 
                 if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
                 {
