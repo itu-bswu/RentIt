@@ -141,6 +141,8 @@
   <ItemGroup>
     <Compile Include="Entities\Edition.cs" />
     <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Enums\MovieSorting.cs" />
+    <Compile Include="Enums\RentalScope.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
@@ -169,10 +171,10 @@
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\DownloadService.cs" />
+    <Compile Include="Services\RentalManagement.cs" />
     <Compile Include="Services\UploadService.cs" />
     <Compile Include="Services\ContentService.cs" />
-    <Compile Include="Services\GetMovieDataService.cs" />
+    <Compile Include="Services\ContentBrowsing.cs" />
     <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
   </ItemGroup>

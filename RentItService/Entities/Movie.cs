@@ -317,6 +317,18 @@ namespace RentItService.Entities
             return limit > 0 ? movies.Take(limit) : movies;
         }
 
+        public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
+        {
+            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(token): sorting == MovieSorting.Newest? Newest(limit): GetAllMovies(token));
+
+            if (genre != null)
+            {
+                movies = movies.Where(movie => movie.Genres.Contains(Genre.GetOrCreateGenre(genre)));
+            }
+
+            return movies;
+        }
+
         /// <summary>
         /// Registers a movie for later upload.
         /// </summary>

@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using RentItService.Enums;
+
 namespace RentItService.Interfaces
 {
     using System.Collections.Generic;
@@ -26,7 +28,7 @@ namespace RentItService.Interfaces
         /// <param name="limit">The maximum number of movies to return</param>
         /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        bool GetMovies(string token, out IEnumerable<Movie> movies, MovieSorting sorting = MovieSortingNone, string genre = null, int limit = 0);
+        bool GetMovies(string token, out IEnumerable<Movie> movies, MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0);
 
         /// <summary>
         /// Get all genres.
