@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------------------
-// <copyright file="UserType.cs" company="RentIt">
+// <copyright file="MovieSorting.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
@@ -7,26 +7,23 @@
 namespace RentItService.Enums
 {
     /// <summary>
-    /// Enum representing user types and rights.
+    /// Enum representing methods for sorting movies
     /// </summary>
-    public enum UserType
+    public enum MovieSorting
     {
         /// <summary>
-        /// Normal user. 
-        /// Can rent movies.
+        /// Default sort, a.k.a. don't care
         /// </summary>
-        User = 1,
+        Default,
 
         /// <summary>
-        /// Content provider. 
-        /// Can upload new movies.
+        /// Newest movies first
         /// </summary>
-        ContentProvider = 2,
+        Newest,
 
         /// <summary>
-        /// System administrator. 
-        /// Can manage users and content providers.
+        /// Most downloaded first
         /// </summary>
-        SystemAdmin = 3,
+        MostDownloaded,
     }
 }
