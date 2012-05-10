@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Get movie editions
-            var movieList = Movie.GetAllMovies(user.Token);
+            var movieList = Movie.All(user.Token);
             var movie1Edition = movieList.ElementAt(0).Editions.First();
             var movie2Edition = movieList.ElementAt(1).Editions.First();
             var movie3Edition = movieList.ElementAt(2).Editions.First();
@@ -82,7 +82,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Pre-condition 2 + 3
-            var movies = Movie.GetAllMovies(user.Token);
+            var movies = Movie.All(user.Token);
             var movieMultipleEditions = movies.First(m => m.Editions.Count > 1);
             var movieSingleEdition = movies.First(m => m.Editions.Count == 1);
 

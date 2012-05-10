@@ -44,7 +44,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            var movie = Movie.GetAllMovies(user.Token).First(m => m.Editions.Count > 0);
+            var movie = Movie.All(user.Token).First(m => m.Editions.Count > 0);
             var files = movie.Editions.Select(edition => edition.FilePath).ToList();
 
             // Step 2

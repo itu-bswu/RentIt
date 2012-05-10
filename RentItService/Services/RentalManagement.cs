@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------------------
-// <copyright file="IRentalManagement.cs" company="RentIt">
+// <copyright file="DownloadService.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
@@ -7,19 +7,20 @@
 using System.Collections.Generic;
 using RentItService.Enums;
 
-namespace RentItService.Interfaces
+namespace RentItService.Services
 {
     using System;
     using System.Diagnostics.Contracts;
-    using System.ServiceModel;
     using Entities;
+    using FunctionClasses;
+    using Interfaces;
     using Library;
 
     /// <summary>
-    /// Interface for rental management.
+    /// The download service class.
     /// </summary>
-    [ServiceContract]
-    public interface IRentalManagement
+    /// <author>Jakob Melnyk</author>
+    public partial class Service : IRentalManagement
     {
         /// <summary>
         /// Get the current user's rentals
@@ -28,8 +29,18 @@ namespace RentItService.Interfaces
         /// <param name="scope">The scope of rentals to get</param>
         /// <param name="rentals">The found rentals</param>
         /// <returns>Wether the request succeeded or not</returns>
-        [OperationContract]
-        bool GetRentals(string token, RentalScope scope, out IEnumerable<Rental> rentals);
+        public bool GetRentals(string token, RentalScope scope, out IEnumerable<Rental> rentals)
+        {
+            if (token == null || User.GetByToken(token) == null)
+            {
+                rentals = null;
+                return false;
+            }
+
+            rentals = (scope == RentalScope.Current ? User.GetCurrentRentals(token) : User.GetRentalHistory(token));
+
+            return true;
+        }
 
         /// <summary>
         /// Rents a movie
@@ -37,8 +48,17 @@ namespace RentItService.Interfaces
         /// <param name="token">The user token</param>
         /// <param name="edition">The edition to rent</param>
         /// <returns>Wether the request succeeded or not</returns>
-        [OperationContract]
-        bool RentMovie(string token, Edition edition);
+        public bool RentMovie(string token, Edition edition)
+        {
+            if (token == null || User.GetByToken(token) == null)
+            {
+                return false;
+            }
+
+            User.RentMovie(token, edition.ID);
+
+            return true;
+        }
 
         /// <summary>
         /// Downloads a rented movie file.
@@ -47,7 +67,17 @@ namespace RentItService.Interfaces
         /// <param name="edition">The edition to download</param>
         /// <param name="stream">A filestream for downloading the movie</param>
         /// <returns>Wether the request succeeded or not</returns>
-        [OperationContract]
-        bool DownloadFile(string token, Edition edition, out RemoteFileStream stream);
+        public bool DownloadFile(string token, Edition edition, out RemoteFileStream stream)
+        {
+            if (token == null || User.GetByToken(token) == null)
+            {
+                stream = null;
+                return false;
+            }
+
+            stream = UploadDownload.DownloadFile(token, edition);
+
+            return true;
+        }
     }
 }

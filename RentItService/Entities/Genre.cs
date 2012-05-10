@@ -83,6 +83,18 @@ namespace RentItService.Entities
             }
         }
 
+        /// <summary>
+        /// Returns all genres
+        /// </summary>
+        /// <returns>All genres</returns>
+        public static IEnumerable<string> All()
+        {
+            using (var db = new RentItContext())
+            {
+                return db.Genres.Select(genre => genre.Name);
+            }
+        } 
+
         #endregion Helpers
 
         #region Overrides
@@ -123,6 +135,32 @@ namespace RentItService.Entities
             return (this.Name != null ? this.Name.GetHashCode() : 0);
         }
 
+        /// <summary>
+        /// Allows implicit casting to string
+        /// </summary>
+        /// <param name="genre">The genre to cast</param>
+        /// <returns>The genre's name</returns>
+        public static implicit operator string(Genre genre)
+        {
+            return genre.Name;
+        }
+
         #endregion Overrides
+    }
+
+    /// <summary>
+    /// Extension methods
+    /// </summary>
+    public static class GenreExtensions
+    {
+        /// <summary>
+        /// Converts a string to a genre object
+        /// </summary>
+        /// <param name="str">The string</param>
+        /// <returns>The genre</returns>
+        public static Genre ToGenre(this string str)
+        {
+            return Genre.GetOrCreateGenre(str);
+        }
     }
 }

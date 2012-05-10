@@ -141,6 +141,8 @@
   <ItemGroup>
     <Compile Include="Entities\Edition.cs" />
     <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Enums\MovieSorting.cs" />
+    <Compile Include="Enums\RentalScope.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Entities\Movie.cs" />
     <Compile Include="Entities\Rental.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Exceptions\NotAUserException.cs" />
     <Compile Include="Exceptions\UnknownGenreException.cs" />
     <Compile Include="Exceptions\UsernameInUseException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="FunctionClasses\UploadDownload.cs" />
     <Compile Include="Interfaces\IRentalManagement.cs" />
     <Compile Include="Interfaces\IContentBrowsing.cs" />
@@ -169,12 +172,11 @@
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
-    <Compile Include="Services\DownloadService.cs" />
+    <Compile Include="Services\RentalManagement.cs" />
     <Compile Include="Services\UploadService.cs" />
     <Compile Include="Services\ContentService.cs" />
-    <Compile Include="Services\GetMovieDataService.cs" />
     <Compile Include="Services\UserManagementService.cs" />
-    <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Services\ContentBrowsing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -183,6 +185,10 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RentItClient\RentItClient.csproj">
+      <Project>{DA3090A3-9D54-49D4-A607-BE59B3CE0023}</Project>
+      <Name>RentItClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{ECE3AAC9-455E-4FAD-B8BA-6BFD42F787A8}</Project>
       <Name>Tools</Name>

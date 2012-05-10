@@ -12,7 +12,6 @@ namespace RentItService.Services
     using Entities;
     using Enums;
     using Exceptions;
-    using Interfaces;
 
     /// <summary>
     /// Service for the content providers.
