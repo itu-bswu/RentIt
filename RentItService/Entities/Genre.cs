@@ -87,11 +87,11 @@ namespace RentItService.Entities
         /// Returns all genres
         /// </summary>
         /// <returns>All genres</returns>
-        public static IEnumerable<Genre> All()
+        public static IEnumerable<string> All()
         {
             using (var db = new RentItContext())
             {
-                return db.Genres;
+                return db.Genres.Select(genre => genre.Name);
             }
         } 
 
@@ -154,11 +154,11 @@ namespace RentItService.Entities
     public static class GenreExtensions
     {
         /// <summary>
-        /// Allows implicit casting to Genre
+        /// Converts a string to a genre object
         /// </summary>
-        /// <param name="str">The string to cast</param>
-        /// <returns>The genre matching the string</returns>
-        public static implicit operator Genre(this string str)
+        /// <param name="str">The string</param>
+        /// <returns>The genre</returns>
+        public static Genre ToGenre(this string str)
         {
             return Genre.GetOrCreateGenre(str);
         }

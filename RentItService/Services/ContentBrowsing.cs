@@ -32,7 +32,7 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool GetMovies(string token, out IEnumerable<Movie> movies, MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null || limit < 0)
             {
                 movies = null;
                 return false;
@@ -51,13 +51,13 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool GetGenres(string token, out IEnumerable<string> genres)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null)
             {
                 genres = null;
                 return false;
             }
 
-            genres = Movie.GetAllGenres().Select(genre => genre.Name);
+            genres = Genre.All();
 
             return true;
         }
@@ -71,7 +71,7 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool Search(string token, string query, out IEnumerable<Movie> movies)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null)
             {
                 movies = null;
                 return false;
@@ -90,12 +90,12 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool GetMovieInformation(string token, ref Movie movie)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null)
             {
                 return false;
             }
 
-            movie = Movie.Get(token, movie.ID);
+            movie = Movie.Get(movie.ID);
 
             return true;
         }

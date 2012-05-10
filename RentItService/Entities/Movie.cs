@@ -141,23 +141,17 @@ namespace RentItService.Entities
         /// <param name="token">The session token.</param>
         /// <param name="movieId">Movie to get information about.</param>
         /// <returns>Movie with given ID; null if not found.</returns>
-        public static Movie Get(string token, int movieId)
+        public static Movie Get(int movieId)
         {
-            Contract.Requires(token != null);
-            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
+            var user = User.GetByToken(token);
+            var movie = Enumerable.FirstOrDefault(All(), m => m.ID == movieId);
 
-            using (var db = new RentItContext())
+            if (movie != null && !movie.Released && movie.OwnerID != user.ID)
             {
-                var user = User.GetByToken(token);
-                var movie = Enumerable.FirstOrDefault(db.Movies.Include("Editions").Include("Editions.Rentals"), m => m.ID == movieId);
-
-                if (movie != null && !movie.Released && movie.OwnerID != user.ID)
-                {
-                    movie.Editions = new List<Edition>();
-                }
-
-                return movie;
+                movie.Editions = new List<Edition>();
             }
+
+            return movie;
         }
 
         /// <summary>

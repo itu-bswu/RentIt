@@ -163,7 +163,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 var movie = Movie
-                    .All(user.Token)
+                    .All()
                     .OrderByDescending(m => m.ID)
                     .First();
 
@@ -181,7 +181,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             }
 
             // Step 1
-            var movieInfo = Movie.Get(user.Token, movieId);
+            var movieInfo = Movie.Get(movieId);
 
             // Step 2
             Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");
@@ -221,7 +221,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             using (var db = new RentItContext())
             {
                 var movie = Movie
-                    .All(user.Token)
+                    .All()
                     .OrderByDescending(m => m.ID)
                     .First();
 
@@ -239,7 +239,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             }
 
             // Step 1
-            var movieInfo = Movie.Get(user.Token, movieId);
+            var movieInfo = Movie.Get(movieId);
 
             // Step 2
             Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");

@@ -31,7 +31,7 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool GetRentals(string token, RentalScope scope, out IEnumerable<Rental> rentals)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null)
             {
                 rentals = null;
                 return false;
@@ -50,7 +50,7 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool RentMovie(string token, Edition edition)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null)
             {
                 return false;
             }
@@ -69,7 +69,7 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool DownloadFile(string token, Edition edition, out RemoteFileStream stream)
         {
-            if (User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null)
             {
                 stream = null;
                 return false;
