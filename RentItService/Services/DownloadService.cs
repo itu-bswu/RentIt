@@ -17,7 +17,7 @@ namespace RentItService.Services
     /// The download service class.
     /// </summary>
     /// <author>Jakob Melnyk</author>
-    public partial class Service : IDownloadService
+    public partial class Service : IRentalManagement
     {
         /// <summary>
         /// Creates a stream for downloading a file from the server. 

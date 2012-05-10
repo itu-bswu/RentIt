@@ -19,7 +19,7 @@ namespace RentItService.Services
     /// <summary>
     /// The movie information service.
     /// </summary>
-    public partial class Service : IGetMovieData
+    public partial class Service : IContentBrowsing
     {
         /// <summary>Gets information about a specific movie.</summary>
         /// <param name="token">The session token.</param>

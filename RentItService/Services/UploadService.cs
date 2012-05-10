@@ -25,7 +25,7 @@ namespace RentItService.Services
     /// The RentIt service class.
     /// </summary>
     /// <author>Jakob Melnyk</author>
-    public partial class Service : IUploadService
+    public partial class Service : IContentManagement
     {
         /// <summary>
         /// Upload a new media file, and add a new movie with that file.

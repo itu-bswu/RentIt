@@ -59,10 +59,10 @@ namespace RentIt.Tests.RentItServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IDownloadService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IRentalManagement")]
     public interface IDownloadService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDownloadService/DownloadFile", ReplyAction="http://tempuri.org/IDownloadService/DownloadFileResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentalManagement/DownloadFile", ReplyAction="http://tempuri.org/IRentalManagement/DownloadFileResponse")]
         RentItService.Library.RemoteFileStream DownloadFile(string token, RentItService.Entities.Movie downloadRequest);
     }
     
@@ -99,28 +99,28 @@ namespace RentIt.Tests.RentItServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IGetMovieData")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IContentBrowsing")]
     public interface IGetMovieData {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/GetMovieInformation", ReplyAction="http://tempuri.org/IGetMovieData/GetMovieInformationResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetMovieInformation", ReplyAction="http://tempuri.org/IContentBrowsing/GetMovieInformationResponse")]
         RentItService.Entities.Movie GetMovieInformation(string token, int movieId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/GetMostDownloaded", ReplyAction="http://tempuri.org/IGetMovieData/GetMostDownloadedResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetMostDownloaded", ReplyAction="http://tempuri.org/IContentBrowsing/GetMostDownloadedResponse")]
         RentItService.Entities.Movie[] GetMostDownloaded(string token, int limit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/GetNewest", ReplyAction="http://tempuri.org/IGetMovieData/GetNewestResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetNewest", ReplyAction="http://tempuri.org/IContentBrowsing/GetNewestResponse")]
         RentItService.Entities.Movie[] GetNewest(string token, int limit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/GetAllGenres", ReplyAction="http://tempuri.org/IGetMovieData/GetAllGenresResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetAllGenres", ReplyAction="http://tempuri.org/IContentBrowsing/GetAllGenresResponse")]
         RentItService.Entities.Genre[] GetAllGenres(string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/GetMoviesByGenre", ReplyAction="http://tempuri.org/IGetMovieData/GetMoviesByGenreResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetMoviesByGenre", ReplyAction="http://tempuri.org/IContentBrowsing/GetMoviesByGenreResponse")]
         RentItService.Entities.Movie[] GetMoviesByGenre(string token, RentItService.Entities.Genre genre);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/Search", ReplyAction="http://tempuri.org/IGetMovieData/SearchResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/Search", ReplyAction="http://tempuri.org/IContentBrowsing/SearchResponse")]
         RentItService.Entities.Movie[] Search(string token, [System.ServiceModel.MessageParameterAttribute(Name="search")] string search1, int limit);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetMovieData/GetAllMovies", ReplyAction="http://tempuri.org/IGetMovieData/GetAllMoviesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentBrowsing/GetAllMovies", ReplyAction="http://tempuri.org/IContentBrowsing/GetAllMoviesResponse")]
         RentItService.Entities.Movie[] GetAllMovies(string token);
     }
     
@@ -181,10 +181,10 @@ namespace RentIt.Tests.RentItServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IUploadService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IContentManagement")]
     public interface IUploadService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUploadService/UploadFile", ReplyAction="http://tempuri.org/IUploadService/UploadFileResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentManagement/UploadFile", ReplyAction="http://tempuri.org/IContentManagement/UploadFileResponse")]
         bool UploadFile(string token, RentItService.Library.RemoteFileStream uploadRequest, RentItService.Entities.Movie movieObject);
     }
     
@@ -221,34 +221,34 @@ namespace RentIt.Tests.RentItServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IUserInformation")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RentItServiceReference.IUserManagement")]
     public interface IUserInformation {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/SignUp", ReplyAction="http://tempuri.org/IUserInformation/SignUpResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/SignUp", ReplyAction="http://tempuri.org/IUserManagement/SignUpResponse")]
         bool SignUp(RentItService.Entities.User userObject);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/LogIn", ReplyAction="http://tempuri.org/IUserInformation/LogInResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/LogIn", ReplyAction="http://tempuri.org/IUserManagement/LogInResponse")]
         RentItService.Entities.User LogIn(string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/Logout", ReplyAction="http://tempuri.org/IUserInformation/LogoutResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/Logout", ReplyAction="http://tempuri.org/IUserManagement/LogoutResponse")]
         void Logout(string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/EditProfile", ReplyAction="http://tempuri.org/IUserInformation/EditProfileResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/EditProfile", ReplyAction="http://tempuri.org/IUserManagement/EditProfileResponse")]
         RentItService.Entities.User EditProfile(string token, RentItService.Entities.User userObject);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/GetRentalHistory", ReplyAction="http://tempuri.org/IUserInformation/GetRentalHistoryResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/GetRentalHistory", ReplyAction="http://tempuri.org/IUserManagement/GetRentalHistoryResponse")]
         RentItService.Entities.Rental[] GetRentalHistory(string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/GetCurrentRentals", ReplyAction="http://tempuri.org/IUserInformation/GetCurrentRentalsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/GetCurrentRentals", ReplyAction="http://tempuri.org/IUserManagement/GetCurrentRentalsResponse")]
         RentItService.Entities.Rental[] GetCurrentRentals(string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/RentMovie", ReplyAction="http://tempuri.org/IUserInformation/RentMovieResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/RentMovie", ReplyAction="http://tempuri.org/IUserManagement/RentMovieResponse")]
         void RentMovie(string token, int movieId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/GetUsers", ReplyAction="http://tempuri.org/IUserInformation/GetUsersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/GetUsers", ReplyAction="http://tempuri.org/IUserManagement/GetUsersResponse")]
         RentItService.Entities.User[] GetUsers(string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserInformation/GetContentPublishers", ReplyAction="http://tempuri.org/IUserInformation/GetContentPublishersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserManagement/GetContentPublishers", ReplyAction="http://tempuri.org/IUserManagement/GetContentPublishersResponse")]
         RentItService.Entities.User[] GetContentPublishers(string token);
     }
     
