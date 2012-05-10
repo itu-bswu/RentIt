@@ -151,7 +151,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            Movie.RegisterMovie(user.Token, new Movie
+            Movie.Register(user.Token, new Movie
             {
                 Title = title,
                 Description = desc,
@@ -210,7 +210,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            Movie.RegisterMovie(user.Token, new Movie
+            Movie.Register(user.Token, new Movie
             {
                 Title = title,
                 Description = desc,

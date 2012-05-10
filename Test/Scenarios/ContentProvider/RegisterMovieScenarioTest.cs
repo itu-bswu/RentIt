@@ -34,7 +34,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         ///     1. Get a token for the "Universal" user.
         ///     2. Create a new Movie object.
         ///     3. Verify that the movie does not already exist in the database.
-        ///     4. Register it in the database with the RegisterMovie method.
+        ///     4. Register it in the database with the Register method.
         ///     5. Verify that it exists in the database.
         /// </para>
         /// </summary>
@@ -56,7 +56,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 Assert.IsFalse(db.Movies.Any(m => m.Title == movie.Title), "Movie already exists in the database.");
             }
 
-            Movie.RegisterMovie(user.Token, movie);
+            Movie.Register(user.Token, movie);
 
             using (var db = new RentItContext())
             {
@@ -92,7 +92,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 OwnerID = user.ID
             };
 
-            Movie.RegisterMovie(user.Token, movie);
+            Movie.Register(user.Token, movie);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// Steps:
         ///     1. Get a token for the "Smith" user.
         ///     2. Create a new Movie object.
-        ///     3. Attempt to register it in the database with the RegisterMovie method.
+        ///     3. Attempt to register it in the database with the Register method.
         ///     4. Verify that a InsufficientRightsException is thrown.
         /// </para>
         /// </summary>
@@ -123,7 +123,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 OwnerID = user.ID
             };
 
-            Movie.RegisterMovie(user.Token, movie);
+            Movie.Register(user.Token, movie);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         /// <para>
         /// Steps:
         ///     1. Create a new Movie object.
-        ///     2. Attempt to register it in the database with the RegisterMovie method using a null token.
+        ///     2. Attempt to register it in the database with the Register method using a null token.
         ///     3. Verify that a ArgumentNullException is thrown.
         /// </para>
         /// </summary>
@@ -147,7 +147,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 OwnerID = 10000
             };
 
-            Movie.RegisterMovie(null, movie);
+            Movie.Register(null, movie);
         }
     }
 }

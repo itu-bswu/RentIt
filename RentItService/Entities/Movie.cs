@@ -307,7 +307,7 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieObject">The movie object to be registered.</param>
-        public static void RegisterMovie(string token, Movie movieObject)
+        public static void Register(string token, Movie movieObject)
         {
             Contract.Requires<ArgumentNullException>(token != null);
 

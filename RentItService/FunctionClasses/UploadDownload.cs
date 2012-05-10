@@ -46,7 +46,7 @@ namespace RentItService.FunctionClasses
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-            Movie.RegisterMovie(token, movieObject);
+            Movie.Register(token, movieObject);
             bool state = UploadFile(token, movieObject.Title, uploadRequest, movieObject.ID); // TODO: Fix proper editions
             if (state == false)
             {
