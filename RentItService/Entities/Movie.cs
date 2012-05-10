@@ -305,17 +305,16 @@ namespace RentItService.Entities
         /// <summary>
         /// Registers a movie for later upload.
         /// </summary>
-        /// <param name="token">The session token.</param>
+        /// <param name="user">The user registering the movie.</param>
         /// <param name="movieObject">The movie object to be registered.</param>
-        public static void Register(string token, Movie movieObject)
+        /// <returns>Instance of Movie entity</returns>
+        public static Movie Register(User user, Movie movieObject)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
-
+            Contract.Requires<ArgumentNullException>(user != null);
             Contract.Requires<ArgumentNullException>(movieObject != null);
-            Contract.Requires<ArgumentNullException>(
-                movieObject.Description != null & movieObject.Title != null);
-
-            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
+            Contract.Requires<ArgumentException>(movieObject.Title != null);
+            Contract.Requires<ArgumentException>(movieObject.Title != string.Empty);
+            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
             using (var db = new RentItContext())
             {
@@ -323,7 +322,7 @@ namespace RentItService.Entities
                 {
                     Description = movieObject.Description,
                     Title = movieObject.Title,
-                    OwnerID = User.GetByToken(token).ID,
+                    OwnerID = user.ID,
                     ReleaseDate = movieObject.ReleaseDate
                 };
 
@@ -334,6 +333,8 @@ namespace RentItService.Entities
 
                 db.Movies.Add(newMovie);
                 db.SaveChanges();
+
+                return newMovie;
             }
         }
     }
