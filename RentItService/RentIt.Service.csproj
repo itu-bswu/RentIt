@@ -151,11 +151,10 @@
     <Compile Include="Exceptions\UnknownGenreException.cs" />
     <Compile Include="Exceptions\UsernameInUseException.cs" />
     <Compile Include="FunctionClasses\UploadDownload.cs" />
-    <Compile Include="Interfaces\IContentService.cs" />
-    <Compile Include="Interfaces\IDownloadService.cs" />
-    <Compile Include="Interfaces\IGetMovieData.cs" />
-    <Compile Include="Interfaces\IUploadService.cs" />
-    <Compile Include="Interfaces\IUserInformation.cs" />
+    <Compile Include="Interfaces\IRentalManagement.cs" />
+    <Compile Include="Interfaces\IContentBrowsing.cs" />
+    <Compile Include="Interfaces\IContentManagement.cs" />
+    <Compile Include="Interfaces\IUserManagement.cs" />
     <Compile Include="Library\FileRequest.cs" />
     <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
