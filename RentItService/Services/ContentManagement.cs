@@ -36,7 +36,19 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool RegisterMovie(string token, ref Movie movie)
         {
-            //
+            if (token == null || movie == null || string.IsNullOrEmpty(movie.Title))
+            {
+                return false;
+            }
+
+            var user = User.GetByToken(token);
+            if (user == null || user.Type != UserType.ContentProvider)
+            {
+                return false;
+            }
+
+            movie = Movie.Register(user, movie);
+            return true;
         }
 
         /// <summary>
@@ -50,7 +62,21 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool EditMovie(string token, ref Movie movie)
         {
-            //
+            if (token == null || movie == null || string.IsNullOrEmpty(movie.Title))
+            {
+                return false;
+            }
+
+            var user = User.GetByToken(token);
+            if (user == null || 
+                user.Type != UserType.ContentProvider || 
+                Movie.Get(movie.ID).OwnerID != user.ID)
+            {
+                return false;
+            }
+
+            movie = Movie.Edit(user, movie);
+            return true;
         }
 
         /// <summary>
@@ -63,7 +89,21 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool DeleteMovie(string token, Movie movie)
         {
-            //
+            if (token == null || movie == null)
+            {
+                return false;
+            }
+
+            var user = User.GetByToken(token);
+            if (user == null ||
+                user.Type != UserType.ContentProvider ||
+                Movie.Get(movie.ID).OwnerID != user.ID)
+            {
+                return false;
+            }
+
+            Movie.Delete(user, movie);
+            return true;
         }
 
         /// <summary>
@@ -82,7 +122,22 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool UploadEdition(string token, RemoteFileStream stream, ref Edition edition)
         {
-            //
+            /*if (token == null || movie == null)
+            {
+                return false;
+            }
+
+            var user = User.GetByToken(token);
+            if (user == null ||
+                user.Type != UserType.ContentProvider ||
+                Movie.Get(movie.ID).OwnerID != user.ID)
+            {
+                return false;
+            }
+
+            UploadDownload.UploadFile(token, edition.Name, stream, edition.MovieID);
+            return true;*/
+            return false;
         }
 
         /// <summary>
@@ -95,7 +150,7 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool DeleteEdition(string token, Edition edition)
         {
-            //
+            return false;
         }
     }
 }
