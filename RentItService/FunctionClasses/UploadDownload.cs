@@ -50,7 +50,7 @@ namespace RentItService.FunctionClasses
             bool state = UploadFile(token, movieObject.Title, uploadRequest, movieObject.ID); // TODO: Fix proper editions
             if (state == false)
             {
-                Movie.DeleteMovie(token, movieObject);
+                Movie.Delete(token, movieObject);
             }
 
             return state;
