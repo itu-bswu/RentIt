@@ -337,5 +337,64 @@ namespace RentItService.Entities
                 return newMovie;
             }
         }
+
+        /// <summary>
+        /// Edit a movie's information. Title, Description, ImagePath, ReleaseDate 
+        /// and Genres will be updated. Movie will be identified by the ID in the 
+        /// Movie instance passed to the method. The user editing (identified by 
+        /// the token) must be the owner of the movie.
+        /// </summary>
+        /// <param name="user">User editing the movie. Must be the owner of the movie.</param>
+        /// <param name="updatedMovie">Updated movie information. ID is used for identifying movie to be updated.</param>
+        /// <returns>The updated movie.</returns>
+        public static Movie Edit(User user, Movie updatedMovie)
+        {
+            Contract.Requires<ArgumentNullException>(user != null && updatedMovie != null);
+            Contract.Requires<ArgumentException>(!string.IsNullOrEmpty(updatedMovie.Title));
+            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
+
+            foreach (var genre in updatedMovie.Genres)
+            {
+                Genre.GetOrCreateGenre(genre.Name);
+            }
+
+            using (var db = new RentItContext())
+            {
+                var referenceMovie = db.Movies.Include("Genres").FirstOrDefault(movie => movie.ID == updatedMovie.ID);
+
+                if (referenceMovie == null)
+                {
+                    throw new NoMovieFoundException();
+                }
+
+                if (referenceMovie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+                {
+                    throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
+                }
+
+                referenceMovie.Title = updatedMovie.Title;
+                referenceMovie.Description = updatedMovie.Description;
+                referenceMovie.ImagePath = updatedMovie.ImagePath;
+                referenceMovie.ReleaseDate = updatedMovie.ReleaseDate;
+
+                var removeGenres = from genre in referenceMovie.Genres
+                                   where updatedMovie.Genres.Count(g => g.Name.Equals(genre.Name)) == 0
+                                   select db.Genres.Single(g => g.Name.Equals(genre.Name));
+
+                foreach (var genre in removeGenres.ToList())
+                {
+                    referenceMovie.RemoveGenre(genre);
+                }
+
+                foreach (var genre in updatedMovie.Genres)
+                {
+                    referenceMovie.AddGenre(db.Genres.Single(g => g.Name.Equals(genre.Name)));
+                }
+
+                db.SaveChanges();
+
+                return referenceMovie;
+            }
+        }
     }
 }
