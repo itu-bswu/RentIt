@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------------------------------------
-// <copyright file="IUploadService.cs" company="RentIt">
+// <copyright file="IContentManagement.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
@@ -11,20 +11,55 @@ namespace RentItService.Interfaces
     using Library;
 
     /// <summary>
-    /// Contract for the upload service.
+    /// Interface for content management.
     /// </summary>
-    /// <author>Jakob Melnyk</author>
     [ServiceContract]
-    public interface IUploadService
+    public interface IContentManagement
     {
         /// <summary>
-        /// Upload a new media file, and add a new movie with that file.
+        /// Registers a new movie
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
-        /// <param name="movieObject">The movie object with the movie information.</param>
-        /// <returns>True if upload was successful, false if not.</returns>
+        /// <param name="token">The user token</param>
+        /// <param name="movie">The movie to register. Should have a title</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        bool UploadFile(string token, RemoteFileStream uploadRequest, Movie movieObject);
+        bool RegisterMovie(string token, ref Movie movie);
+
+        /// <summary>
+        /// Edits a movie
+        /// </summary>
+        /// <param name="token">The user token</param>
+        /// <param name="movie">The movie to edit. Should at least have an ID</param>
+        /// <returns>Wether the request succeeded or not</returns>
+        [OperationContract]
+        bool EditMovie(string token, ref Movie movie);
+
+        /// <summary>
+        /// Deletes a movie
+        /// </summary>
+        /// <param name="token">The user token</param>
+        /// <param name="movie">The movie to delete</param>
+        /// <returns>Wether the request succeeded or not</returns>
+        [OperationContract]
+        bool DeleteMovie(string token, Movie movie);
+
+        /// <summary>
+        /// Uploads a movie edition
+        /// </summary>
+        /// <param name="token">The user token</param>
+        /// <param name="stream">The file stream</param>
+        /// <param name="edition">The edition. Should have title and movie</param>
+        /// <returns>Wether the request succeeded or not</returns>
+        [OperationContract]
+        bool UploadEdition(string token, RemoteFileStream stream, ref Edition edition);
+
+        /// <summary>
+        /// Deletes a movie edition
+        /// </summary>
+        /// <param name="token">The user token</param>
+        /// <param name="edition">The edition to delete</param>
+        /// <returns>Wether the request succeeded or not</returns>
+        [OperationContract]
+        bool DeleteEdition(string token, Edition edition);
     }
 }

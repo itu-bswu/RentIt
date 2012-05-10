@@ -1,8 +1,10 @@
 ﻿//-------------------------------------------------------------------------------------------------
-// <copyright file="IDownloadService.cs" company="RentIt">
+// <copyright file="IRentalManagement.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
 
 namespace RentItService.Interfaces
 {
@@ -13,20 +15,38 @@ namespace RentItService.Interfaces
     using Library;
 
     /// <summary>
-    /// Interface of the download service.
+    /// Interface for rental management.
     /// </summary>
-    /// <author>Jakob Melnyk</author>
     [ServiceContract]
-    public interface IDownloadService
+    public interface IRentalManagement
     {
         /// <summary>
-        /// Creates a stream for downloading a file from the server. 
-        /// The movie is identified by the ID in the instance of the Movie class.
+        /// Get the current user's rentals
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="downloadRequest">The movie to download.</param>
-        /// <returns>The stream information necessary for download.</returns>
+        /// <param name="token">The user token</param>
+        /// <param name="scope">The scope of rentals to get</param>
+        /// <param name="rentals">The found rentals</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        RemoteFileStream DownloadFile(string token, Edition downloadRequest);
+        bool GetRentals(string token, RentalScope scope, out IEnumerable<Rental> rentals);
+
+        /// <summary>
+        /// Rents a movie
+        /// </summary>
+        /// <param name="token">The user token</param>
+        /// <param name="edition">The edition to rent</param>
+        /// <returns>Wether the request succeeded or not</returns>
+        [OperationContract]
+        bool RentMovie(string token, Edition edition);
+
+        /// <summary>
+        /// Downloads a rented movie file.
+        /// </summary>
+        /// <param name="token">The user token</param>
+        /// <param name="edition">The edition to download</param>
+        /// <param name="stream">A filestream for downloading the movie</param>
+        /// <returns>Wether the request succeeded or not</returns>
+        [OperationContract]
+        bool DownloadFile(string token, Edition edition, out RemoteFileStream stream);
     }
 }

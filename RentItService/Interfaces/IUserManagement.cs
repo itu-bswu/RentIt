@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IUserInformation.cs" company="">
+// <copyright file="IUserManagement.cs" company="">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -11,91 +11,44 @@ namespace RentItService.Interfaces
     using Entities;
 
     /// <summary>
-    /// Service contract for user information.
+    /// Interface for user management.
     /// </summary>
-    /// <author>Jakob Melnyk</author>
     [ServiceContract]
-    public interface IUserInformation
+    public interface IUserManagement
     {
         /// <summary>
-        /// Creates a new user in the database.
+        /// Sign up for the service
         /// </summary>
-        /// <param name="userObject">The user object containg the user information.</param>
-        /// <returns>True for success; false otherwise.</returns>
-        /// <author>Niklas Hansen</author>
+        /// <param name="user">The user object. Should have username and password</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        bool SignUp(User userObject);
+        bool SignUp(ref User user);
 
         /// <summary>
-        /// Logs the user in returning user information (and a session token).
+        /// Log in to the system.
         /// </summary>
-        /// <param name="userName">The user name used in the signup.</param>
-        /// <param name="password">The user password.</param>
-        /// <returns>The session token.</returns>
-        /// <author>Niklas Hansen</author>
+        /// <param name="username">The username</param>
+        /// <param name="password">The password</param>
+        /// <param name="user">The user's object</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        User LogIn(string userName, string password);
+        bool Login(string username, string password, out User user);
 
         /// <summary>
-        /// Logs the user out, clearing the session.
+        /// Log out of the system.
         /// </summary>
-        /// <param name="token">The session token.</param>
+        /// <param name="token">The user token</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        void Logout(string token);
+        bool Logout(string token);
 
         /// <summary>
-        /// Updates a user profile.
+        /// Edits a user.
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="userObject">The updated user object.</param>
-        /// <returns>The resulting user object.</returns>
-        /// <author>Jakob Melnyk</author>
+        /// <param name="token">The user token</param>
+        /// <param name="user">The user to edit. Should at least have ID.</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        User EditProfile(string token, User userObject);
-
-        /// <summary>
-        /// Gets all of the previous and current rentals of the user.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <returns>An IEnumerable containing all the users rentals.</returns>
-        /// <author>Frederik Lysgaard</author>
-        [OperationContract]
-        IEnumerable<Rental> GetRentalHistory(string token);
-
-        /// <summary>
-        /// Gets all of the current rentals.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <returns>An IEnumerable containg the active rentals.</returns>
-        /// <author>Jakob Melnyk</author>
-        [OperationContract]
-        IEnumerable<Rental> GetCurrentRentals(string token);
-
-        /// <summary>
-        /// Creates a rental entry in the database.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="movieId">The ID of the movie to be rented.</param>
-        /// <author>Jakob Melnyk</author>
-        [OperationContract]
-        void RentMovie(string token, int movieId);
-
-        /// <summary>
-        /// Returns a list of all the users.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <author>Jacob Grooss</author>
-        /// <returns>The list of users.</returns>
-        [OperationContract]
-        IEnumerable<User> GetUsers(string token);
-
-        /// <summary>
-        /// Returns a list of all the content publishers.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <author>Jacob Grooss</author>
-        /// <returns>The list of content publishers.</returns>
-        [OperationContract]
-        IEnumerable<User> GetContentPublishers(string token);
+        bool EditUser(string token, ref User user);
     }
 }

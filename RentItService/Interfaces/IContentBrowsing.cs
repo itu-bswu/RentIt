@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="IGetMovieData.cs" company="RentIt">
+// <copyright file="IContentBrowsing.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -11,72 +11,49 @@ namespace RentItService.Interfaces
     using Entities;
 
     /// <summary>
-    /// Service contract used to get information about movies.
+    /// Interface for content browsing.
     /// </summary>
     [ServiceContract]
-    public interface IGetMovieData
+    public interface IContentBrowsing
     {
         /// <summary>
-        /// Gets information about a specific movie.
+        /// Get all movies.
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="movieId">The ID of the movie to get the information of.</param>
-        /// <returns>A movie object equivalent to the entry in the database.</returns>
-        /// <author>Jacob Grooss</author>
+        /// <param name="token">The user token</param>
+        /// <param name="movies">The found movies</param>
+        /// <param name="sorting">How to sort the movies</param>
+        /// <param name="genre">Which genres to filter</param>
+        /// <param name="limit">The maximum number of movies to return</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        Movie GetMovieInformation(string token, int movieId);
+        bool GetMovies(string token, out IEnumerable<Movie> movies, MovieSorting sorting = MovieSortingNone, string genre = null, int limit = 0);
 
         /// <summary>
-        /// Gets the most downloaded movies.
+        /// Get all genres.
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="limit">The maximum number of entries to return.</param>
-        /// <returns>An IEnumerable containing the most downloaded movies.</returns>
+        /// <param name="token">The user token</param>
+        /// <param name="genres">The found genres</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        IEnumerable<Movie> GetMostDownloaded(string token, int limit = 0);
+        bool GetGenres(string token, out IEnumerable<string> genres);
 
         /// <summary>
-        /// Gets the newest movies.
+        /// Searches for movies
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="limit">The maximum number of entries to return.</param>
-        /// <returns>An IEnumerable containing the newest added movies.</returns>
+        /// <param name="token">The user token</param>
+        /// <param name="query">The string to search for</param>
+        /// <param name="movies">The found movies</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        IEnumerable<Movie> GetNewest(string token, int limit = 0);
+        bool Search(string token, string query, out IEnumerable<Movie> movies);
 
         /// <summary>
-        /// Gets all the genres currently applied to the movies in the database.
+        /// Get information abouta movie
         /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <returns>An IEnumerable containing all the genres in the database.</returns>
+        /// <param name="token">The user token</param>
+        /// <param name="movie">The movie to find information about. Should have an ID.</param>
+        /// <returns>Wether the request succeeded or not</returns>
         [OperationContract]
-        IEnumerable<Genre> GetAllGenres(string token);
-
-        /// <summary>
-        /// Filters the list of movies into a particular genre.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="genre">The genre to filter by.</param>
-        /// <returns>An IEnumerable containing the filtered movies.</returns>
-        [OperationContract]
-        IEnumerable<Movie> GetMoviesByGenre(string token, Genre genre);
-
-        /// <summary>
-        /// Searches the database for a specific movie title.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <param name="search">The search string.</param>
-        /// <param name="limit">The maximum number of entries to return.</param>
-        /// <returns>An IEnumerable containing the movies fitting the search.</returns>
-        [OperationContract]
-        IEnumerable<Movie> Search(string token, string search, int limit = 0);
-
-        /// <summary>
-        /// Finds all the movies in the database and returns them.
-        /// </summary>
-        /// <param name="token">The session token.</param>
-        /// <returns>All the active movies in the database.</returns>
-        [OperationContract]
-        IEnumerable<Movie> GetAllMovies(string token);
+        bool GetMovieInformation(string token, ref Movie movie);
     }
 }
