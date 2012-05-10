@@ -24,39 +24,6 @@ namespace RentItService.FunctionClasses
     public class UploadDownload
     {
         /// <summary>
-        /// Upload a new media file, and add a new movie with that file.
-        /// </summary>
-        /// <param name="token">The user token.</param>
-        /// <param name="uploadRequest">The RemoteFileStream to upload.</param>
-        /// <param name="movieObject">The movie object with the movie information.</param>
-        /// <returns>True if upload was successful, false if not.</returns>
-        /// <author>Jakob Melnyk</author>
-        public static bool UploadMovieFile(string token, RemoteFileStream uploadRequest, Movie movieObject)
-        {
-            Contract.Requires<ArgumentNullException>(token != null);
-
-            Contract.Requires<ArgumentNullException>(uploadRequest != null);
-            Contract.Requires<ArgumentNullException>(uploadRequest.FileByteStream != null &
-                                                      uploadRequest.FileName != null);
-
-            Contract.Requires<ArgumentNullException>(movieObject != null);
-            Contract.Requires<ArgumentNullException>(movieObject.Description != null &
-                                                      movieObject.Genres.Any() &
-                                                      movieObject.Title != null);
-
-            Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
-
-            Movie.Register(token, movieObject);
-            bool state = UploadFile(token, movieObject.Title, uploadRequest, movieObject.ID); // TODO: Fix proper editions
-            if (state == false)
-            {
-                Movie.Delete(token, movieObject);
-            }
-
-            return state;
-        }
-
-        /// <summary>
         /// Uploads a file to the database.
         /// </summary>
         /// <param name="token">The session token.</param>
