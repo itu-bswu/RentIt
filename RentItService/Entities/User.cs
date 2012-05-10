@@ -227,13 +227,12 @@ namespace RentItService.Entities
         public static User GetByToken(string token)
         {
             Contract.Requires<UserNotFoundException>(token != null);
-            Contract.Ensures(Contract.Result<User>() != null);
 
             using (var db = new RentItContext())
             {
                 if (!db.Users.Any(u => u.Token == token))
                 {
-                    throw new UserNotFoundException("No user with the given token was found!");
+                    return null;
                 }
 
                 return db.Users.Include("Rentals").First(u => u.Token == token);
