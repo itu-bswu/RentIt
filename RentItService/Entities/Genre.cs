@@ -135,6 +135,32 @@ namespace RentItService.Entities
             return (this.Name != null ? this.Name.GetHashCode() : 0);
         }
 
+        /// <summary>
+        /// Allows implicit casting to string
+        /// </summary>
+        /// <param name="genre">The genre to cast</param>
+        /// <returns>The genre's name</returns>
+        public static implicit operator string(Genre genre)
+        {
+            return genre.Name;
+        }
+
         #endregion Overrides
+    }
+
+    /// <summary>
+    /// Extension methods
+    /// </summary>
+    public static class GenreExtensions
+    {
+        /// <summary>
+        /// Allows implicit casting to Genre
+        /// </summary>
+        /// <param name="str">The string to cast</param>
+        /// <returns>The genre matching the string</returns>
+        public static implicit operator Genre(this string str)
+        {
+            return Genre.GetOrCreateGenre(str);
+        }
     }
 }
