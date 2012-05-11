@@ -47,7 +47,7 @@ namespace RentItService.FunctionClasses
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
             Movie.RegisterMovie(token, movieObject);
-            bool state = UploadFile(token, uploadRequest, movieObject.ID);
+            bool state = UploadFile(token, movieObject.Title, uploadRequest, movieObject.ID); // TODO: Fix proper editions
             if (state == false)
             {
                 Movie.DeleteMovie(token, movieObject);
@@ -60,11 +60,12 @@ namespace RentItService.FunctionClasses
         /// Uploads a file to the database.
         /// </summary>
         /// <param name="token">The session token.</param>
+        /// <param name="editionName">Edition name.</param>
         /// <param name="uploadRequest">The upload request.</param>
         /// <param name="movieID">ID of the media this file belongs to.</param>
         /// <returns>True if the upload succeeded, false if it failed. </returns>
         /// <author>Jakob Melnyk</author>
-        public static bool UploadFile(string token, RemoteFileStream uploadRequest, int movieID)
+        public static bool UploadFile(string token, string editionName, RemoteFileStream uploadRequest, int movieID)
         {
             Contract.Requires<ArgumentNullException>(uploadRequest != null);
             Contract.Requires<ArgumentNullException>(uploadRequest.FileByteStream != null &
@@ -111,8 +112,13 @@ namespace RentItService.FunctionClasses
                     return false;
                 }
 
-                tempMovie.FilePath = movieFilePath;
+                tempMovie.Editions.Add(new Edition
+                {
+                    FilePath = movieFilePath,
+                    Name = editionName
+                });
                 db.SaveChanges();
+
                 return true;
             }
         }
@@ -125,7 +131,7 @@ namespace RentItService.FunctionClasses
         /// <param name="downloadRequest">The movie to download.</param>
         /// <returns>The stream information necessary for download.</returns>
         /// <author>Jakob Melnyk</author>
-        public static RemoteFileStream DownloadFile(string token, Movie downloadRequest)
+        public static RemoteFileStream DownloadFile(string token, Edition downloadRequest)
         {
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentNullException>(downloadRequest != null);
@@ -134,14 +140,14 @@ namespace RentItService.FunctionClasses
             using (var db = new RentItContext())
             {
                 var user = User.GetByToken(token);
-                if (!(user.Rentals.Any(x => x.MovieID == downloadRequest.ID & x.UserID == user.ID)))
+                if (!(user.Rentals.Any(x => x.EditionID == downloadRequest.ID & x.UserID == user.ID)))
                 {
                     throw new InsufficientRightsException();
                 }
 
-                var movie = db.Movies.First(m => m.ID == downloadRequest.ID);
+                var edition = db.Editions.First(m => m.ID == downloadRequest.ID);
 
-                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movie.FilePath);
+                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, edition.FilePath);
                 var fileInfo = new FileInfo(filePath);
 
                 // Check to see if file exists.
@@ -154,7 +160,7 @@ namespace RentItService.FunctionClasses
                 var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
 
                 // Set up rfs
-                return new RemoteFileStream(movie.FilePath, fileInfo.Length, stream);
+                return new RemoteFileStream(edition.FilePath, fileInfo.Length, stream);
             }
         }
     }

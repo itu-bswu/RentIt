@@ -8,14 +8,11 @@ namespace RentIt.Tests.Scenarios.User.Rental
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using RentIt.Tests.Utils;
-
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
+    using Utils;
 
     /// <summary>
     /// Scenario test for the Rent Movie functionality.
@@ -25,46 +22,42 @@ namespace RentIt.Tests.Scenarios.User.Rental
     {
         /// <summary>
         /// Purpose: Verify that it is possible to rent a movie.
-        /// <para>
-        /// Pre-condtions:
-        ///     1. A user called "Smith" exists in the database.
-        ///     2. A movie called "The Matrix" exists in the database.
-        /// </para>
-        /// <para>
+        /// 
         /// Steps:
-        ///     1. Make sure the user and movie exists in the database.
-        ///     2. Make sure the rental does not already exist.
-        ///     3. Rent movie.
-        ///     4. Make sure the new rental is in database.
-        /// </para>
+        ///     1. Log in with a test user.
+        ///     2. Rent movie.
+        ///     3. Make sure the new rental is in the database.
         /// </summary>
         [TestMethod]
         public void RentMovieTest()
         {
             // Arrange
-            string testToken;
-            int testID;
-            int testTokenID;
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+            Movie movie;
+            Edition edition;
 
             using (var db = new RentItContext())
             {
-                var user = User.Login(TestUser.User.Username, TestUser.User.Password);
-                var movie = db.Movies.First(m => m.Title.Equals("The Matrix"));
+                movie = db.Movies.Include("Editions").First(m => m.Editions.Count >= 1);
+                edition = movie.Editions.First();
 
-                testToken = user.Token;
-                testID = movie.ID;
-                testTokenID = User.GetByToken(testToken).ID;
-                Assert.IsFalse(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "Rental exists before call of RentMovie.");
+                Assert.IsFalse(db.Rentals.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
             }
 
             // Act
-            User.RentMovie(testToken, testID);
+            User.RentMovie(user.Token, edition.ID);
 
             // Assert
             using (var db = new RentItContext())
             {
-                Assert.IsTrue(db.Rentals.Any(r => r.UserID == testTokenID & r.MovieID == testID), "The rental was not created.");
+                Assert.IsTrue(db.Rentals.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "The rental was not created.");
             }
+
+            movie = Movie.Get(user.Token, movie.ID);
+            Assert.IsTrue(movie.Rentals.Any(), "No rentals found for the movie.");
+
+            user = User.GetByToken(user.Token);
+            Assert.IsTrue(user.Rentals.Any(), "No rentals found for the user.");
         }
 
         /// <summary>
@@ -85,30 +78,22 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [ExpectedException(typeof(NotAUserException))]
         public void NotAUserRentMovieTest()
         {
-            using (var db = new RentItContext())
-            {
-                var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-                var movie = db.Movies.First(m => m.Title.Equals("The Matrix"));
+            var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+            var movie = Movie.GetAllMovies(user.Token).First(m => m.Editions.Count > 0);
 
-                var testToken = user.Token;
-                var testID = movie.ID;
-
-                User.RentMovie(testToken, testID);
-            }
+            User.RentMovie(user.Token, movie.Editions.First().ID);
         }
 
         /// <summary>
         /// Purpose: Verify that null values are not valid.
-        /// <para>
+        /// 
         /// Pre-condtions:
         ///     1. A movie with the title "The Matrix" must exist in the database.
-        /// </para>
-        /// <para>
+        /// 
         /// Steps:
         ///     1. Make sure the database contains the required movie.
         ///     2. Attempt to rent movie with a null user.
         ///     3. Catch argument null exception.
-        /// </para>
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -116,11 +101,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             using (var db = new RentItContext())
             {
-                var movie = db.Movies.First(m => m.Title.Equals("The Matrix"));
+                var movie = db.Movies.Include("Editions").First(m => m.Editions.Count > 0);
 
-                int testID = movie.ID;
-
-                User.RentMovie(null, testID);
+                User.RentMovie(null, movie.Editions.First().ID);
             }
         }
 
@@ -146,12 +129,17 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 movie = new Movie
                 {
                     Title = "Some unique movie title",
-                    FilePath = "Not currently available",
                     OwnerID = TestUser.ContentProvider.ID,
-                    Released = DateTime.Now.AddDays(14)
+                    ReleaseDate = DateTime.Now.AddDays(14)
                 };
-
                 db.Movies.Add(movie);
+
+                movie.Editions.Add(new Edition
+                {
+                    Name = "HD 1080p Ultra Hi-Res Retina edition",
+                    FilePath = "This/Doesnt/Exist.exe"
+                });
+
                 db.SaveChanges();
             }
 
@@ -159,7 +147,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Step 3
-            User.RentMovie(user.Token, movie.ID);
+            User.RentMovie(user.Token, movie.Editions.First().ID);
         }
 
         /// <summary>
@@ -184,11 +172,16 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 movie = new Movie
                 {
                     Title = "Some unique movie title",
-                    FilePath = "Not currently available",
                     OwnerID = TestUser.ContentProvider.ID
                 };
-
                 db.Movies.Add(movie);
+
+                movie.Editions.Add(new Edition
+                {
+                    Name = "HD 1080p Ultra Hi-Res Retina edition",
+                    FilePath = "This/Doesnt/Exist.exe"
+                });
+
                 db.SaveChanges();
             }
 
@@ -196,7 +189,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Step 3
-            User.RentMovie(user.Token, movie.ID);
+            User.RentMovie(user.Token, movie.Editions.First().ID);
         }
     }
 }

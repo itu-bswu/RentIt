@@ -6,12 +6,10 @@
 
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
+    using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using RentIt.Tests.Utils;
-
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
@@ -127,6 +125,124 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
                 Assert.IsNull(foundMovie);
             }
+        }
+
+        /// <summary>
+        /// Purpose: Verify that even though editions have been added 
+        ///          to a movie, they will not appear / be passed to 
+        ///          the clients, if the movie is not released.
+        /// 
+        /// Pre-condition:
+        ///     1. A movie with a release date in the future exists in the database.
+        ///     2. Movie from pre-condition 1 has one or more editions.
+        /// 
+        /// Steps:
+        ///     1. Get movie information about movie from pre-condition 1.
+        ///     2. Verify that no editions appears.
+        /// </summary>
+        [TestMethod]
+        public void GetUnreleasedMovieInfoFutureRelease()
+        {
+            int movieId;
+            var title = "Some movie";
+            var desc = "Movie for testing purposes";
+            var releaseDate = DateTime.Now.AddDays(14);
+
+            var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+
+            // Pre-condition 1
+            Movie.RegisterMovie(user.Token, new Movie
+            {
+                Title = title,
+                Description = desc,
+                OwnerID = user.ID,
+                ReleaseDate = releaseDate
+            });
+
+            // Pre-condition 2
+            using (var db = new RentItContext())
+            {
+                var movie = Movie
+                    .GetAllMovies(user.Token)
+                    .OrderByDescending(m => m.ID)
+                    .First();
+
+                Assert.AreEqual(title, movie.Title, "Wrong movie found.");
+                Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
+                movieId = movie.ID;
+
+                movie.Editions.Add(new Edition
+                {
+                    Name = "Super Hi-Res Retina Edition",
+                    FilePath = "Does/Not/Exist.avi"
+                });
+
+                db.SaveChanges();
+            }
+
+            // Step 1
+            var movieInfo = Movie.Get(user.Token, movieId);
+
+            // Step 2
+            Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that even though editions have been added 
+        ///          to a movie, they will not appear / be passed to 
+        ///          the clients, if the movie is not released.
+        /// 
+        /// Pre-condition:
+        ///     1. A movie with no release date exists in the database.
+        ///     2. Movie from pre-condition 1 has one or more editions.
+        /// 
+        /// Steps:
+        ///     1. Get movie information about movie from pre-condition 1.
+        ///     2. Verify that no editions appears.
+        /// </summary>
+        [TestMethod]
+        public void GetUnreleasedMovieInfoNoReleaseDate()
+        {
+            int movieId;
+            var title = "Some movie";
+            var desc = "Movie for testing purposes";
+
+            var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+
+            // Pre-condition 1
+            Movie.RegisterMovie(user.Token, new Movie
+            {
+                Title = title,
+                Description = desc,
+                OwnerID = user.ID
+            });
+
+            // Pre-condition 2
+            using (var db = new RentItContext())
+            {
+                var movie = Movie
+                    .GetAllMovies(user.Token)
+                    .OrderByDescending(m => m.ID)
+                    .First();
+
+                Assert.AreEqual(title, movie.Title, "Wrong movie found.");
+                Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
+                movieId = movie.ID;
+
+                movie.Editions.Add(new Edition
+                {
+                    Name = "Super Hi-Res Retina Edition",
+                    FilePath = "Does/Not/Exist.avi"
+                });
+
+                db.SaveChanges();
+            }
+
+            // Step 1
+            var movieInfo = Movie.Get(user.Token, movieId);
+
+            // Step 2
+            Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");
         }
     }
 }

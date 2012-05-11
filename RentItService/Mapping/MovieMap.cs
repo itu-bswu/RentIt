@@ -29,12 +29,8 @@ namespace RentItService.Mapping
                 
             this.Property(t => t.ImagePath)
                 .HasMaxLength(100);
-                
-            this.Property(t => t.FilePath)
-                .IsRequired()
-                .HasMaxLength(100);
 
-            this.Property(t => t.Released)
+            this.Property(t => t.ReleaseDate)
                 .IsOptional();
                 
             // Table & Column Mappings
@@ -43,8 +39,7 @@ namespace RentItService.Mapping
             this.Property(t => t.Title).HasColumnName("title");
             this.Property(t => t.Description).HasColumnName("description");
             this.Property(t => t.ImagePath).HasColumnName("image_path");
-            this.Property(t => t.FilePath).HasColumnName("file_path");
-            this.Property(t => t.Released).HasColumnName("release_date");
+            this.Property(t => t.ReleaseDate).HasColumnName("release_date");
             this.Property(t => t.OwnerID).HasColumnName("owner_id");
 
             // Relationships

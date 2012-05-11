@@ -12,7 +12,6 @@ namespace RentItService.Services
     using FunctionClasses;
     using Interfaces;
     using Library;
-    using System.Linq;
 
     /// <summary>
     /// The download service class.
@@ -28,14 +27,10 @@ namespace RentItService.Services
         /// <param name="downloadRequest">The movie to download.</param>
         /// <returns>The stream information necessary for download.</returns>
         /// <author>Jakob Melnyk</author>
-        public RemoteFileStream DownloadFile(string token, Movie downloadRequest)
+        public RemoteFileStream DownloadFile(string token, Edition downloadRequest)
         {
             Contract.Requires<ArgumentNullException>(token != null);
-
             Contract.Requires<ArgumentNullException>(downloadRequest != null);
-            Contract.Requires(downloadRequest.Genres.Any() &
-                              downloadRequest.Description != null &
-                              downloadRequest.Title != null);
 
             return UploadDownload.DownloadFile(token, downloadRequest);
         }

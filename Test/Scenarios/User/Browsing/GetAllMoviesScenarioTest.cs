@@ -59,7 +59,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 var movie2 = new Movie
                     {
                         Description = "testMovieForGetAllMovies",
-                        FilePath = "EmptyEmptyEmpty",
                         ImagePath = "EmptyEmptyEmpty",
                         Title = "testMovieGAM",
                         OwnerID = 2

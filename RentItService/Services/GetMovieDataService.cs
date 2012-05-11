@@ -28,13 +28,7 @@ namespace RentItService.Services
         /// <author>Jacob Grooss</author>
         public Movie GetMovieInformation(string token, int movieId)
         {
-            Contract.Requires(token != null);
-            Contract.Requires<UserNotFoundException>(User.GetByToken(token) != null);
-
-            using (var db = new RentItContext())
-            {
-                return Enumerable.FirstOrDefault(db.Movies, movie => movie.ID == movieId);
-            }
+            return Movie.Get(token, movieId);
         }
 
         /// <summary>
