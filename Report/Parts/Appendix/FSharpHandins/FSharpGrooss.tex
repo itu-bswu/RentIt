@@ -3,8 +3,100 @@
 
 \subsection{HandIn 1}
 \label{Appendix_FSharp_Grooss_1}
+\begin{lstlisting}
+module HandIn1
+//Exercise 1
+let sqr x = x * x
+
+//Exercise 2
+let pow x n = System.Math.Pow(x, n)
+
+//Exercise 3
+let dup (s:string) = s + s
+
+//Exercise 4
+let rec dupn (s:string, x) = if x = 0 then s else s + dupn(s, x - 1)
+
+//Exercise 5
+let timediff (hh1, mm1)(hh2, mm2) = (hh2 * 60 + mm2) - (hh1 * 60 + mm1)
+
+//Exercise 6
+let minutes (hh, mm) = timediff (00,00)(hh,mm)
+\end{lstlisting}
 \subsection{HandIn 2}
 \label{Appendix_FSharp_Grooss_2}
+\begin{lstlisting}
+//Exercise 7
+let rec downTo n = if n < 1 then [] else n :: downTo(n - 1)
+
+let rec downTo2 n = 
+    match n with
+		| n when n < 1 -> []
+        | 1 -> [1]
+        | _ -> n :: downTo(n-1)
+
+//Exercise 8
+let rec removeEven (xs: int list) =
+    match xs with
+        | [] -> []
+        | [xs] -> [xs]
+        | xs :: xy :: rs -> xs :: removeEven(rs)
+
+//Exercise 9
+let rec combinePair (xs: int list) =
+    match xs with
+        | [] -> []
+        | [xs] -> []
+        | xs :: xy :: rs -> xs :: combinePair(rs)
+
+//Exercise 10
+let explode (s:string) =
+    s.ToCharArray() |> List.ofArray
+
+let rec explode2 (s:string) =
+    match s with
+        | s when s.Length < 1 -> []
+        | _ -> s.[0] :: explode2 (s.Substring 1)
+
+//Exercise 11
+let implode (s:char list) =
+    List.foldBack (fun str ch -> string(str) + string(ch)) s ""
+    
+let implodeRev (s:char list) =
+    List.fold (fun str ch -> string(ch) + string(str)) "" s
+
+//Exercise 12
+let toUpper (s:string) =
+    implode (List.map (fun x -> System.Char.ToUpper x) (explode s))
+
+let toUpper1 (s:string) =
+    explode >> (List.map (System.Char.ToUpper)) >> implode
+
+let toUpper2 (s:string) =
+    explode s |> (implode << List.map System.Char.ToUpper)
+
+//Exercise 13
+let palindrome (s:string) =
+    (explode s |> implodeRev |> toUpper) = toUpper s
+
+//Exercise 14
+let rec ack (m, n) =
+    match (m, n) with
+        | (m, n) when m < 0 || n < 0 -> failwith "The Ackermann function 
+				is defined for non negative numbers only."
+        | (m, n) when m = 0 -> n + 1
+        | (m, n) when n = 0 -> ack (m - 1, 1)
+        | (m, n) -> ack (m-1, ack(m, n-1))
+
+//Exercise 15
+let time f =
+    let start = System.DateTime.Now in
+    let res = f () in
+    let finish = System.DateTime.Now in
+    (res, finish - start);
+
+let timeArg1 f a = time(fun () -> f(a))
+\end{lstlisting}
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Grooss_3}
 \subsection{HandIn 4 \& 5}
