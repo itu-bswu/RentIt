@@ -34,7 +34,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         public void GetAllGenresTest()
         {
             // Step 1
-            var genres = Movie.GetAllGenres();
+            var genres = Genre.All();
 
             Assert.IsTrue(genres.Any(), "There are no genres in the data set.");
 
@@ -53,7 +53,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             Assert.AreEqual(set.Count(), genres.Count(), "Not the same number of genres returned");
 
             // Step 4
-            Assert.IsTrue(genres.All(set.Contains), "Not the same genres returned");
+            Assert.IsTrue(genres.All(g => set.Count(s => s.Name == g) == 1), "Not the same genres returned");
         }
 
         /// <summary>

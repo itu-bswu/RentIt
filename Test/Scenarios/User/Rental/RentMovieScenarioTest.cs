@@ -53,7 +53,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
                 Assert.IsTrue(db.Rentals.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "The rental was not created.");
             }
 
-            movie = Movie.Get(user.Token, movie.ID);
+            movie = Movie.Get(user, movie.ID);
             Assert.IsTrue(movie.Rentals.Any(), "No rentals found for the movie.");
 
             user = User.GetByToken(user.Token);
@@ -79,7 +79,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void NotAUserRentMovieTest()
         {
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-            var movie = Movie.All(user.Token).First(m => m.Editions.Count > 0);
+            var movie = Movie.All().First(m => m.Editions.Count > 0);
 
             User.RentMovie(user.Token, movie.Editions.First().ID);
         }

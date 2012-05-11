@@ -103,7 +103,7 @@ namespace RentItService.Entities
         /// <param name="genre">The genre</param>
         public void AddGenre(string genre)
         {
-            Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 1);
+            Contract.Ensures(Genres.Count(g => g.Name == genre) == 1);
 
             if (Genres.Any(g => g.Name.Equals(genre)))
             {
@@ -117,11 +117,11 @@ namespace RentItService.Entities
         /// <param name="genre">The Genre</param>
         public void RemoveGenre(string genre)
         {
-            Contract.Ensures(Genres.Count(g => g.Name.Equals(genre.Name)) == 0);
+            Contract.Ensures(Genres.Count(g => g.Name == genre) == 0);
 
             if (Genres.Any(g => g.Name.Equals(genre)))
             {
-                Genres.Remove(Genres.Single(g => g.Name.Equals(genre.Name)));
+                Genres.Remove(Genres.Single(g => g.Name == genre));
             }
         }
 
@@ -132,20 +132,20 @@ namespace RentItService.Entities
         /// <returns>True if the movie has the genre</returns>
         public bool HasGenre(string genre)
         {
-            return Genres.Count(genre.Equals) == 1;
+            return this.Genres.Count(g => g.Name == genre) >= 1;
         }
 
         /// <summary>
         /// Get movie information for movie with given ID.
         /// </summary>
-        /// <param name="token">The session token.</param>
+        /// <param name="user">The user getting the movie information.</param>
         /// <param name="movieId">Movie to get information about.</param>
         /// <returns>Movie with given ID; null if not found.</returns>
-        public static Movie Get(int movieId)
+        public static Movie Get(User user, int movieId)
         {
-            var user = User.GetByToken(token);
-            var movie = Enumerable.FirstOrDefault(All(), m => m.ID == movieId);
+            Contract.Requires<ArgumentNullException>(user != null);
 
+            var movie = All().FirstOrDefault(m => m.ID == movieId);
             if (movie != null && !movie.Released && movie.OwnerID != user.ID)
             {
                 movie.Editions = new List<Edition>();
@@ -282,7 +282,7 @@ namespace RentItService.Entities
         /// <returns>A list of movie objects.</returns>
         public static IEnumerable<Movie> MostDownloaded(int limit = 0)
         {
-            var movies = (from movie in Movie.All().Include("Editions").Include("Editions.Rentals")
+            var movies = (from movie in Movie.All()
                           orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
                           select movie).ToList();
 
@@ -291,7 +291,7 @@ namespace RentItService.Entities
 
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(token): sorting == MovieSorting.Newest? Newest(limit): All(token));
+            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(): sorting == MovieSorting.Newest? Newest(limit): All());
 
             if (genre != null)
             {

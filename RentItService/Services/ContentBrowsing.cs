@@ -90,13 +90,18 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool GetMovieInformation(string token, ref Movie movie)
         {
-            if (token == null || User.GetByToken(token) == null)
+            if (token == null || movie == null)
             {
                 return false;
             }
 
-            movie = Movie.Get(movie.ID);
+            var user = User.GetByToken(token);
+            if (user == null)
+            {
+                return false;
+            }
 
+            movie = Movie.Get(user, movie.ID);
             return true;
         }
     }

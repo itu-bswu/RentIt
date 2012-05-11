@@ -70,7 +70,7 @@ namespace RentItService.Services
             var user = User.GetByToken(token);
             if (user == null || 
                 user.Type != UserType.ContentProvider || 
-                Movie.Get(movie.ID).OwnerID != user.ID)
+                Movie.Get(user, movie.ID).OwnerID != user.ID)
             {
                 return false;
             }
@@ -97,7 +97,7 @@ namespace RentItService.Services
             var user = User.GetByToken(token);
             if (user == null ||
                 user.Type != UserType.ContentProvider ||
-                Movie.Get(movie.ID).OwnerID != user.ID)
+                Movie.Get(user, movie.ID).OwnerID != user.ID)
             {
                 return false;
             }

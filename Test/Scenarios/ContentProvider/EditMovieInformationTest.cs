@@ -47,8 +47,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var testUser = TestUser.SystemAdmin;
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            var service = new Service();
-
             Movie testMovie;
 
             using (var db = new RentItContext())
@@ -73,7 +71,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 Genres = newGenres,
             };
 
-            service.EditMovieInformation(loggedinUser.Token, newMovie);
+            Movie.Edit(loggedinUser, newMovie);
 
             Movie foundMovie;
 
@@ -187,8 +185,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieInformationInvalidUserTypeTest()
         {
-            var service = new Service();
-
             using (var db = new RentItContext())
             {
                 var testUser = TestUser.User;
@@ -204,7 +200,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                         Title = "Trolling for beginners"
                     };
 
-                service.EditMovieInformation(loggedinUser.Token, newMovie);
+                Movie.Edit(loggedinUser, newMovie);
             }
         }
 
@@ -230,7 +226,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(NoMovieFoundException))]
         public void EditMovieInformationInvalidMovieIdTypeTest()
         {
-            var service = new Service();
             var testUser = TestUser.ContentProvider;
 
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
@@ -243,7 +238,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     Title = "Trolling for beginners"
                 };
 
-            service.EditMovieInformation(loggedinUser.Token, newMovie);
+            Movie.Edit(loggedinUser, newMovie);
         }
 
         /// <summary>
@@ -268,8 +263,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 const string Username = "SomeContentPublisher";
                 const string Password = "12345";
 
-                var service = new Service();
-
                 // Step 1
                 var movie = db.Movies.First();
 
@@ -288,7 +281,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var user = User.Login(Username, Password);
 
                 // Step 4
-                service.EditMovieInformation(user.Token, movie);
+                Movie.Edit(user, movie);
             }
         }
     }

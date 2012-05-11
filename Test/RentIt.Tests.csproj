@@ -140,8 +140,6 @@
     <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
     <Compile Include="Scenarios\ContentProvider\EditMovieInformationTest.cs" />
     <Compile Include="Scenarios\User\Browsing\GetMovieInformationTest.cs" />
-    <Compile Include="Scenarios\SystemAdmin\GetContentPublishersTest.cs" />
-    <Compile Include="Scenarios\SystemAdmin\GetUsersTest.cs" />
     <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
     <Compile Include="Scenarios\User\Profile\LogoutScenarioTest.cs" />
@@ -221,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\RentItServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scenarios\SystemAdmin\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -44,7 +44,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void GetCurrentRentalsTest()
         {
             var smith = User.Login(TestUser.User.Username, TestUser.User.Password);
-            var movies = Movie.All(smith.Token);
+            var movies = Movie.All();
 
             int rentalsCount = smith.Rentals.Count;
             int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);

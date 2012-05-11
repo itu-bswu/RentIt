@@ -40,15 +40,13 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetMovieInformationValidTest()
         {
-            var service = new Service();
-
             using (var db = new RentItContext())
             {
                 var testUser = TestUser.User;
                 var testMovie = db.Movies.First();
                 var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                var foundMovie = service.GetMovieInformation(loggedinUser.Token, testMovie.ID);
+                var foundMovie = Movie.Get(loggedinUser, testMovie.ID);
 
                 Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
                 Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
@@ -81,15 +79,14 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [ExpectedException(typeof(UserNotFoundException))]
         public void GetMovieInformationInvalidTokenTest()
         {
-            var service = new Service();
-
             string testToken = "Hello thar";
 
             using (var db = new RentItContext())
             {
                 var testMovie = db.Movies.First();
 
-                service.GetMovieInformation(testToken, testMovie.ID);
+                //Movie.Get(testToken, testMovie.ID);
+                Assert.IsTrue(false, "Take another look at this test");
             }
         }
 
@@ -112,19 +109,14 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetMovieInformationInvalidMovieIdTest()
         {
-            var service = new Service();
-
             int testID = 178915368;
 
-            using (var db = new RentItContext())
-            {
-                var testUser = TestUser.User;
-                var loggedinUser = User.Login(testUser.Username, testUser.Password);
+            var testUser = TestUser.User;
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                Movie foundMovie = service.GetMovieInformation(loggedinUser.Token, testID);
+            Movie foundMovie = Movie.Get(loggedinUser, testID);
 
-                Assert.IsNull(foundMovie);
-            }
+            Assert.IsNull(foundMovie);
         }
 
         /// <summary>
@@ -151,7 +143,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            Movie.Register(user.Token, new Movie
+            Movie.Register(user, new Movie
             {
                 Title = title,
                 Description = desc,
@@ -181,7 +173,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             }
 
             // Step 1
-            var movieInfo = Movie.Get(movieId);
+            var movieInfo = Movie.Get(user, movieId);
 
             // Step 2
             Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");
@@ -210,7 +202,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            Movie.Register(user.Token, new Movie
+            Movie.Register(user, new Movie
             {
                 Title = title,
                 Description = desc,
@@ -239,7 +231,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             }
 
             // Step 1
-            var movieInfo = Movie.Get(movieId);
+            var movieInfo = Movie.Get(user, movieId);
 
             // Step 2
             Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");

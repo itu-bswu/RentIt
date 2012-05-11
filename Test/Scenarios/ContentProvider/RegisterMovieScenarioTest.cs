@@ -56,7 +56,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 Assert.IsFalse(db.Movies.Any(m => m.Title == movie.Title), "Movie already exists in the database.");
             }
 
-            Movie.Register(user.Token, movie);
+            Movie.Register(user, movie);
 
             using (var db = new RentItContext())
             {
@@ -92,7 +92,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 OwnerID = user.ID
             };
 
-            Movie.Register(user.Token, movie);
+            Movie.Register(user, movie);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 OwnerID = user.ID
             };
 
-            Movie.Register(user.Token, movie);
+            Movie.Register(user, movie);
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Get movie editions
-            var movieList = Movie.All(user.Token);
+            var movieList = Movie.All();
             var movie1Edition = movieList.ElementAt(0).Editions.First();
             var movie2Edition = movieList.ElementAt(1).Editions.First();
             var movie3Edition = movieList.ElementAt(2).Editions.First();
@@ -49,11 +49,11 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             User.RentMovie(user.Token, movie3Edition.ID);
             
             // Step 1
-            var movies = Movie.MostDownloaded(user.Token);
+            var movies = Movie.MostDownloaded();
             var mostDownloaded = movies.First();
 
             // Step 2
-            movie1Edition = Movie.Get(user.Token, movie1Edition.MovieID).Editions.First();
+            movie1Edition = Movie.Get(user, movie1Edition.MovieID).Editions.First();
             Assert.AreEqual(movie1Edition.Rentals.Count, mostDownloaded.Rentals.Count(), "Amount of rentals do not match!");
             Assert.AreEqual(movie1Edition.MovieID, mostDownloaded.ID, "The first element of the list is not the most rented!");
         }
@@ -82,7 +82,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Pre-condition 2 + 3
-            var movies = Movie.All(user.Token);
+            var movies = Movie.All();
             var movieMultipleEditions = movies.First(m => m.Editions.Count > 1);
             var movieSingleEdition = movies.First(m => m.Editions.Count == 1);
 
@@ -105,7 +105,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             User.RentMovie(user.Token, firstEdition.ID);
 
             // Step 3
-            movies = Movie.MostDownloaded(user.Token);
+            movies = Movie.MostDownloaded();
 
             // Step 4
             Assert.AreEqual(movieMultipleEditions.ID, movies.First().ID, "Wrong movie with most rentals!");

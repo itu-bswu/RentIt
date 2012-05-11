@@ -44,11 +44,11 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            var movie = Movie.All(user.Token).First(m => m.Editions.Count > 0);
+            var movie = Movie.All().First(m => m.Editions.Count > 0);
             var files = movie.Editions.Select(edition => edition.FilePath).ToList();
 
             // Step 2
-            Movie.Delete(user.Token, movie);
+            Movie.Delete(user, movie);
 
             using (var db = new RentItContext())
             {
@@ -83,7 +83,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
                 
                 // Step 2
-                Movie.Delete(user1.Token, testMovie);
+                Movie.Delete(user1, testMovie);
             }
         }
 
@@ -103,7 +103,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Step 2
-            Movie.Delete(user1.Token, null);
+            Movie.Delete(user1, null);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 var user = User.Login(Username, Password);
 
                 // Step 4
-                Movie.Delete(user.Token, movie);
+                Movie.Delete(user, movie);
             }
         }
     }

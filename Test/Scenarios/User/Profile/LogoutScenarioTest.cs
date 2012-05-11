@@ -29,30 +29,24 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     2. Verify token is set.
         ///     3. Log out the user from step 1.
         ///     4. Verify that the token has been cleared.
-        ///     5. Verify that the token cannot be used anymore.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserNotFoundException))]
         public void LogoutValidToken()
         {
             // Step 1
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Step 2
-            string token = user.Token;
-            Assert.IsNotNull(token, "Token is null!");
+            Assert.IsNotNull(user.Token, "Token is null!");
 
             // Step 3
-            User.Logout(token);
+            User.Logout(user);
 
             // Step 4
             using (var db = new RentItContext())
             {
                 Assert.IsNull(db.Users.Find(user.ID).Token);
             }
-
-            // Step 5
-            User.Edit(token, user);
         }
 
         /// <summary>
@@ -81,7 +75,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
             }
 
             // Step 2
-            User.Logout(token);
+            //User.Logout(token);
+            Assert.IsTrue(false); // TODO: Take another look at this test
         }
     }
 }
