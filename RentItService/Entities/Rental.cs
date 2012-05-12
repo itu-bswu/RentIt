@@ -56,5 +56,10 @@ namespace RentItService.Entities
                 return Edition.Movie;
             }
         }
+
+        public static IEnumerable<Rental> All()
+        {
+            return RentItContext.Db.Rentals.ToList();
+        }
     }
 }

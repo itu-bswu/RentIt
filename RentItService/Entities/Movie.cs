@@ -107,14 +107,11 @@ namespace RentItService.Entities
 
             if (!Genres.Any(g => g.Name.Equals(name)))
             {
-                using (var db = new RentItContext())
-                {
-                    Genre genre = (Genre.HasGenre(name) ? db.Genres.Single(g => g.Name.Equals(name)) : new Genre(name));
+                Genre genre = (Genre.HasGenre(name) ? RentItContext.Db.Genres.Single(g => g.Name.Equals(name)) : new Genre(name));
 
-                    Genres.Add(genre);
+                Genres.Add(genre);
 
-                    db.SaveChanges();
-                }
+                RentItContext.Db.SaveChanges();
             }
         }
 
@@ -175,24 +172,21 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
-            using (var db = new RentItContext())
+            var movie = RentItContext.Db.Movies.Include("Editions").First(m => m.ID == movieObject.ID);
+
+            if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
             {
-                var movie = db.Movies.Include("Editions").First(m => m.ID == movieObject.ID);
+                throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
+            }
 
-                if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
-                {
-                    throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
-                }
+            var files = movie.Editions.Select(edition => edition.FilePath).ToList();
 
-                var files = movie.Editions.Select(edition => edition.FilePath).ToList();
+            RentItContext.Db.Movies.Remove(movie);
+            RentItContext.Db.SaveChanges();
 
-                db.Movies.Remove(movie);
-                db.SaveChanges();
-
-                foreach (var filePath in files.Select(file => Constants.UploadDownloadFileFolder + file).Where(File.Exists))
-                {
-                    File.Delete(filePath);
-                }
+            foreach (var filePath in files.Select(file => Constants.UploadDownloadFileFolder + file).Where(File.Exists))
+            {
+                File.Delete(filePath);
             }
         }
 
@@ -209,14 +203,7 @@ namespace RentItService.Entities
             var searchTitle = search.ToLower();
             var components = searchTitle.Split(' ');
 
-            IEnumerable<Movie> movies;
-
-            using (var db = new RentItContext())
-            {
-                movies = db.Movies.ToList();
-            }
-
-            var result = from movie in movies
+            var result = from movie in Movie.All()
                          let title = movie.Title.ToLower()
                          let titleComponents = title.Split(' ')
                          where titleComponents.Any(str => components.Any(str.Contains))
@@ -224,12 +211,7 @@ namespace RentItService.Entities
                          orderby title.Equals(searchTitle) descending, titleComponents.Count(str => components.Any(str.Equals)) descending
                          select movie;
 
-            if (limit == 0)
-            {
-                return result;
-            }
-
-            return result.Take(limit);
+            return (limit == 0? result: result.Take(limit));
         }
 
         /// <summary>
@@ -241,9 +223,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(genre != null);
 
-            List<Movie> result = All().Where(movie => movie.Genres.Any(dbgenre => dbgenre.Equals(genre))).ToList();
-
-            return result;
+            return All().Where(movie => movie.Genres.Any(g => g.Name.Equals(genre))).ToList();
         }
 
         /// <summary>
@@ -255,15 +235,12 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentException>(limit >= 0);
 
-            using (var db = new RentItContext())
-            {
-                var movies = (from movie in db.Movies
-                              where movie.ReleaseDate <= DateTime.Now
-                              orderby movie.ReleaseDate descending
-                              select movie).ToList();
+            var movies = (from movie in Movie.All()
+                          where movie.ReleaseDate <= DateTime.Now
+                          orderby movie.ReleaseDate descending
+                          select movie).ToList();
 
-                return limit > 0 ? movies.Take(limit) : movies;
-            }
+            return (limit > 0 ? movies.Take(limit) : movies);
         }
 
         /// <summary>
@@ -275,12 +252,9 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentException>(limit >= 0);
 
-            using (var db = new RentItContext())
-            {
-                var movies = db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
+            var movies = RentItContext.Db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
 
-                return (limit == 0? movies: movies.Take(limit)).ToList();
-            }
+            return (limit == 0? movies: movies.Take(limit)).ToList();
         }
 
         /// <summary>
@@ -320,30 +294,27 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(user != null);
             Contract.Requires<ArgumentNullException>(movieObject != null);
-            Contract.Requires<ArgumentException>(movieObject.Title != null);
+            Contract.Requires<ArgumentNullException>(movieObject.Title != null);
             Contract.Requires<ArgumentException>(movieObject.Title != string.Empty);
             Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
-            using (var db = new RentItContext())
+            var newMovie = new Movie
             {
-                var newMovie = new Movie
-                {
-                    Description = movieObject.Description,
-                    Title = movieObject.Title,
-                    OwnerID = user.ID,
-                    ReleaseDate = movieObject.ReleaseDate
-                };
+                Description = movieObject.Description,
+                Title = movieObject.Title,
+                OwnerID = user.ID,
+                ReleaseDate = movieObject.ReleaseDate
+            };
 
-                foreach (var genre in movieObject.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))
-                {
-                    newMovie.AddGenre(genre);
-                }
-
-                db.Movies.Add(newMovie);
-                db.SaveChanges();
-
-                return newMovie;
+            foreach (var genre in movieObject.Genres.Select(genre => Genre.GetOrCreateGenre(genre.Name)))
+            {
+                newMovie.AddGenre(genre);
             }
+
+            RentItContext.Db.Movies.Add(newMovie);
+            RentItContext.Db.SaveChanges();
+
+            return newMovie;
         }
 
         /// <summary>
@@ -359,50 +330,47 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(user != null && updatedMovie != null);
             Contract.Requires<ArgumentException>(!string.IsNullOrEmpty(updatedMovie.Title));
-            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider || user.Type == UserType.SystemAdmin);
 
             foreach (var genre in updatedMovie.Genres)
             {
                 Genre.GetOrCreateGenre(genre.Name);
             }
 
-            using (var db = new RentItContext())
+            var referenceMovie = RentItContext.Db.Movies.Include("Genres").FirstOrDefault(movie => movie.ID == updatedMovie.ID);
+
+            if (referenceMovie == null)
             {
-                var referenceMovie = db.Movies.Include("Genres").FirstOrDefault(movie => movie.ID == updatedMovie.ID);
-
-                if (referenceMovie == null)
-                {
-                    throw new NoMovieFoundException();
-                }
-
-                if (referenceMovie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
-                {
-                    throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
-                }
-
-                referenceMovie.Title = updatedMovie.Title;
-                referenceMovie.Description = updatedMovie.Description;
-                referenceMovie.ImagePath = updatedMovie.ImagePath;
-                referenceMovie.ReleaseDate = updatedMovie.ReleaseDate;
-
-                var removeGenres = from genre in referenceMovie.Genres
-                                   where updatedMovie.Genres.Count(g => g.Name.Equals(genre.Name)) == 0
-                                   select db.Genres.Single(g => g.Name.Equals(genre.Name));
-
-                foreach (var genre in removeGenres.ToList())
-                {
-                    referenceMovie.RemoveGenre(genre);
-                }
-
-                foreach (var genre in updatedMovie.Genres)
-                {
-                    referenceMovie.AddGenre(db.Genres.Single(g => g.Name.Equals(genre.Name)));
-                }
-
-                db.SaveChanges();
-
-                return referenceMovie;
+                throw new NoMovieFoundException();
             }
+
+            if (referenceMovie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+            {
+                throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
+            }
+
+            referenceMovie.Title = updatedMovie.Title;
+            referenceMovie.Description = updatedMovie.Description;
+            referenceMovie.ImagePath = updatedMovie.ImagePath;
+            referenceMovie.ReleaseDate = updatedMovie.ReleaseDate;
+
+            var removeGenres = from genre in referenceMovie.Genres
+                               where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
+                               select Genre.All().Single(genre.Name.Equals);
+
+            foreach (var genre in removeGenres.ToList())
+            {
+                referenceMovie.RemoveGenre(genre);
+            }
+
+            foreach (var genre in updatedMovie.Genres)
+            {
+                referenceMovie.AddGenre(Genre.All().Single(genre.Equals));
+            }
+
+            RentItContext.Db.SaveChanges();
+
+            return referenceMovie;
         }
     }
 }

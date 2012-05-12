@@ -130,21 +130,14 @@ namespace RentItService.Entities
             user.Token = string.Empty;
             user.Password = Hash.Sha512(user.Password + Salt);
 
-            using (var db = new RentItContext())
+            if (All().Any(u => u.Username == user.Username))
             {
-                if (db.Users.Any(u => u.Username == user.Username))
-                {
-                    throw new UsernameInUseException("Username is already in use!");
-                }
-
-                db.Users.Add(user);
-                if (db.SaveChanges() > 0)
-                {
-                    return user;
-                }
+                throw new UsernameInUseException("Username is already in use!");
             }
 
-            return null;
+            RentItContext.Db.Users.Add(user);
+
+            return RentItContext.Db.SaveChanges() > 0 ? user : null;
         }
 
         /// <summary>
@@ -159,21 +152,18 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(password != null);
             Contract.Ensures(Contract.Result<User>() != null);
 
-            using (var db = new RentItContext())
+            password = Hash.Sha512(password + Salt);
+
+            if (!All().ToList().Any(u => u.Username == username && u.Password == password))
             {
-                password = Hash.Sha512(password + Salt);
-
-                if (!db.Users.Any(u => u.Username == username && u.Password == password))
-                {
-                    throw new UserNotFoundException("No user with the given login information was found!");
-                }
-
-                var user = db.Users.First(u => u.Username == username && u.Password == password);
-                user.Token = GenerateToken();
-                db.SaveChanges();
-
-                return user;
+                throw new UserNotFoundException("No user with the given login information was found!");
             }
+
+            var user = All().ToList().First(u => u.Username == username && u.Password == password);
+            user.Token = GenerateToken();
+            RentItContext.Db.SaveChanges();
+
+            return user;
         }
 
         /// <summary>
@@ -182,12 +172,9 @@ namespace RentItService.Entities
         /// <param name="user">The user to log out.</param>
         public static void Logout(User user)
         {
-            using (var db = new RentItContext())
-            {
-                var u = db.Users.Find(user.ID);
-                u.Token = null;
-                db.SaveChanges();
-            }
+            var foundUser = All().First(u => u.ID.Equals(user.ID));
+            foundUser.Token = null;
+            RentItContext.Db.SaveChanges();
         }
 
         /// <summary>
@@ -198,25 +185,22 @@ namespace RentItService.Entities
         {
             Contract.Ensures(Contract.Result<string>() != null);
 
-            using (var db = new RentItContext())
+            string token;
+
+            do
             {
-                string token;
+                long i = 1;
 
-                do
+                foreach (byte b in Guid.NewGuid().ToByteArray())
                 {
-                    long i = 1;
-
-                    foreach (byte b in Guid.NewGuid().ToByteArray())
-                    {
-                        i *= (b + 1);
-                    }
-
-                    token = string.Format("{0:x}", i - DateTime.Now.Ticks);
+                    i *= (b + 1);
                 }
-                while (db.Users.Any(u => u.Token == token));
 
-                return token;
+                token = string.Format("{0:x}", i - DateTime.Now.Ticks);
             }
+            while (All().Any(u => u.Token == token));
+
+            return token;
         }
 
         /// <summary>
@@ -228,15 +212,12 @@ namespace RentItService.Entities
         {
             Contract.Requires<UserNotFoundException>(token != null);
 
-            using (var db = new RentItContext())
+            if (!All().Any(u => u.Token == token))
             {
-                if (!db.Users.Any(u => u.Token == token))
-                {
-                    return null;
-                }
-
-                return db.Users.Include("Rentals").First(u => u.Token == token);
+                return null;
             }
+
+            return RentItContext.Db.Users.Include("Rentals").First(u => u.Token == token);
         }
 
         /// <summary>
@@ -249,18 +230,15 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<NotAUserException>(GetByToken(token).Type == UserType.User);
 
-            User user = GetByToken(token);
+            var user = GetByToken(token);
 
-            using (var db = new RentItContext())
+            if (!Movie.All().Any(m => m.Editions.Any(e => e.ID == movieEditionId) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
             {
-                if (!db.Movies.Any(m => m.Editions.Any(e => e.ID == movieEditionId) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
-                {
-                    throw new NoMovieFoundException("No released movies found with the given ID.");
-                }
-
-                db.Rentals.Add(new Rental { EditionID = movieEditionId, UserID = user.ID, Time = DateTime.Now });
-                db.SaveChanges();
+                throw new NoMovieFoundException("No released movies found with the given ID.");
             }
+
+            RentItContext.Db.Rentals.Add(new Rental { EditionID = movieEditionId, UserID = user.ID, Time = DateTime.Now });
+            RentItContext.Db.SaveChanges();
         }
 
         /// <summary>
@@ -278,17 +256,15 @@ namespace RentItService.Entities
 
             Contract.Requires<InsufficientRightsException>(user.ID == editedUser.ID);
 
-            using (var db = new RentItContext())
-            {
-                var u = db.Users.Find(editedUser.ID);
+            var foundUser = User.All().First(u => u.ID.Equals(editedUser.ID));
 
-                u.Email = editedUser.Email;
-                u.FullName = editedUser.FullName;
-                u.Password = Hash.Sha512(editedUser.Password + Salt);
+            foundUser.Email = editedUser.Email;
+            foundUser.FullName = editedUser.FullName;
+            foundUser.Password = Hash.Sha512(editedUser.Password + Salt);
 
-                db.SaveChanges();
-                return u;
-            }
+            RentItContext.Db.SaveChanges();
+
+            return foundUser;
         }
 
         /// <summary>
@@ -309,17 +285,19 @@ namespace RentItService.Entities
         public static IEnumerable<Rental> GetCurrentRentals(string token)
         {
             Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<ArgumentException>(User.GetByToken(token) != null);
+            Contract.Requires<ArgumentException>(GetByToken(token) != null);
 
-            var user = User.GetByToken(token);
+            var user = GetByToken(token);
             var limitRentalTime = DateTime.Now.AddDays(-Constants.DaysToRent);
 
-            using (var db = new RentItContext())
-            {
-                return db.Rentals.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
-            }
+            return Rental.All().Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
         }
 
         #endregion Static methods
+
+        public static IEnumerable<User> All()
+        {
+            return RentItContext.Db.Users.ToList();
+        }
     }
 }

@@ -50,11 +50,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             // Step 2
             Movie.Delete(user, movie);
 
-            using (var db = new RentItContext())
-            {
-                // Step 3
-                Assert.IsFalse(db.Movies.Any(m => m.ID == movie.ID), "Movie is still in the database.");
-            }
+            // Step 3
+            Assert.IsFalse(Movie.All().Any(m => m.ID == movie.ID), "Movie is still in the database.");
 
             // Step 4
             foreach (var filePath in files.Select(file => Constants.UploadDownloadFileFolder + file))
@@ -75,16 +72,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void InsufficientAccessDeleteMovieTest()
         {
-            using (var db = new RentItContext())
-            {
-                var testMovie = db.Movies.First();
+            var testMovie = Movie.All().First();
 
-                // Step 1
-                var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
+            // Step 1
+            var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
                 
-                // Step 2
-                Movie.Delete(user1, testMovie);
-            }
+            // Step 2
+            Movie.Delete(user1, testMovie);
         }
 
         /// <summary>
@@ -120,31 +114,28 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void DeleteMovieFromOtherProvider()
         {
-            using (var db = new RentItContext())
+            const string Username = "SomeContentPublisher";
+            const string Password = "12345";
+
+            // Step 1
+            var movie = Movie.All().First();
+
+            // Step 2
+            User.SignUp(new User
             {
-                const string Username = "SomeContentPublisher";
-                const string Password = "12345";
+                Username = Username,
+                Password = Password,
+                Email = "publisher@somecompany.org"
+            });
 
-                // Step 1
-                var movie = db.Movies.First();
+            User.All().First(u => u.Username == Username).Type = UserType.ContentProvider;
+            RentItContext.Db.SaveChanges();
 
-                // Step 2
-                User.SignUp(new User
-                {
-                    Username = Username,
-                    Password = Password,
-                    Email = "publisher@somecompany.org"
-                });
+            // Step 3
+            var user = User.Login(Username, Password);
 
-                db.Users.First(u => u.Username == Username).Type = UserType.ContentProvider;
-                db.SaveChanges();
-
-                // Step 3
-                var user = User.Login(Username, Password);
-
-                // Step 4
-                Movie.Delete(user, movie);
-            }
+            // Step 4
+            Movie.Delete(user, movie);
         }
     }
 }

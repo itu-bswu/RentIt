@@ -46,11 +46,9 @@ namespace RentIt.Tests.Scenarios.User.Profile
             };
 
             User.SignUp(user);
+            RentItContext.ReloadDb();
 
-            using (var db = new RentItContext())
-            {
-                userId = db.Users.First(u => u.Username == username).ID;
-            }
+            userId = User.All().First(u => u.Username == username).ID;
 
             // Step 1
             var loggedIn = User.Login(username, Password);
@@ -78,15 +76,12 @@ namespace RentIt.Tests.Scenarios.User.Profile
             string password;
 
             // Pre-condition
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
+                password = User.GenerateToken();
             }
+            while (User.All().Any(u => u.Username == username || u.Password == password));
 
             // Step 1
             User.Login(username, password);
@@ -112,15 +107,12 @@ namespace RentIt.Tests.Scenarios.User.Profile
             string password;
 
             // Pre-condition
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
+                password = User.GenerateToken();
             }
+            while (User.All().Any(u => u.Username == username || u.Password == password));
 
             var user = new User
             {
@@ -129,6 +121,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Email = "Very@unique.com"
             };
             User.SignUp(user);
+
+            RentItContext.ReloadDb();
 
             // Step 1
             User.Login(username, password);
@@ -154,15 +148,12 @@ namespace RentIt.Tests.Scenarios.User.Profile
             string password;
 
             // Pre-condition
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
+                password = User.GenerateToken();
             }
+            while (User.All().Any(u => u.Username == username || u.Password == password));
 
             var user = new User
             {
@@ -171,6 +162,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Email = "Very@unique.com"
             };
             User.SignUp(user);
+
+            RentItContext.ReloadDb();
 
             // Step 1
             User.Login(username, password);
@@ -197,15 +190,12 @@ namespace RentIt.Tests.Scenarios.User.Profile
             string username;
             string password;
 
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
+                password = User.GenerateToken();
             }
+            while (User.All().Any(u => u.Username == username || u.Password == password));
 
             // Pre-condition 1
             var user1 = new User
@@ -224,6 +214,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Email = "Very@unique.com"
             };
             User.SignUp(user2);
+
+            RentItContext.ReloadDb();
 
             // Step 1
             User.Login(username, password);

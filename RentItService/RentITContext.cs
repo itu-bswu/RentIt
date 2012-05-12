@@ -4,6 +4,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace RentItService
 {
     using System.Data.Entity;
@@ -22,6 +24,16 @@ namespace RentItService
         static RentItContext()
         {
             Database.SetInitializer<RentItContext>(null);
+        }
+
+        [ThreadStatic]
+        private static RentItContext db;
+
+        public static RentItContext Db { get { return (db ?? (db = new RentItContext())); } }
+
+        public static void ReloadDb()
+        {
+            db = null;
         }
 
         #region Constructor(s)

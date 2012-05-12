@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         public void AddOne()
         {
             // Step 1
-            var movies = Movie.Newest();
+            var movies = Movie.Newest().ToList();
 
             // Step 2
             int initialAmount = movies.Count();
@@ -49,14 +49,12 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 ReleaseDate = DateTime.Now
             };
 
-            using (var db = new RentItContext())
-            {
-                db.Movies.Add(movie);
-                db.SaveChanges();
-            }
+            RentItContext.Db.Movies.Add(movie);
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             // Step 4
-            movies = Movie.Newest();
+            movies = Movie.Newest().ToList();
 
             // Step 5
             Assert.AreEqual(movies.Count(), initialAmount + 1, "Movie was not added!");
@@ -105,18 +103,16 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             Movie movie;
 
             // Step 1
-            using (var db = new RentItContext())
+            movie = new Movie
             {
-                movie = new Movie
-                {
-                    Title = "Some unique movie title",
-                    OwnerID = TestUser.ContentProvider.ID,
-                    ReleaseDate = DateTime.Now.AddDays(14)
-                };
+                Title = "Some unique movie title",
+                OwnerID = TestUser.ContentProvider.ID,
+                ReleaseDate = DateTime.Now.AddDays(14)
+            };
 
-                db.Movies.Add(movie);
-                db.SaveChanges();
-            }
+            RentItContext.Db.Movies.Add(movie);
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             // Step 2
             var movies = Movie.Newest();
@@ -137,20 +133,16 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void AddOneWithoutReleaseDate()
         {
-            Movie movie;
-
             // Step 1
-            using (var db = new RentItContext())
+            var movie = new Movie
             {
-                movie = new Movie
-                {
-                    Title = "Some unique movie title",
-                    OwnerID = TestUser.ContentProvider.ID
-                };
+                Title = "Some unique movie title",
+                OwnerID = TestUser.ContentProvider.ID
+            };
 
-                db.Movies.Add(movie);
-                db.SaveChanges();
-            }
+            RentItContext.Db.Movies.Add(movie);
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             // Step 2
             var movies = Movie.Newest();

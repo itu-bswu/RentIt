@@ -44,34 +44,31 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void GetCurrentRentalsTest()
         {
             var smith = User.Login(TestUser.User.Username, TestUser.User.Password);
-            var movies = Movie.All();
 
             int rentalsCount = smith.Rentals.Count;
             int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
 
-            using (var db = new RentItContext())
-            {
-                Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
-                Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
+            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
 
-                var rent1 = new Rental
-                    {
-                        UserID = smith.ID,
-                        EditionID = movies.First(m => m.Title == "The Matrix").Editions.First().ID,
-                        Time = DateTime.Now
-                    };
+            var rent1 = new Rental
+                {
+                    UserID = smith.ID,
+                    EditionID = Movie.All().First(m => m.Title == "The Matrix").Editions.First().ID,
+                    Time = DateTime.Now
+                };
 
-                var rent2 = new Rental
-                    {
-                        UserID = smith.ID,
-                        EditionID = movies.First(m => m.Title == "Die Hard").Editions.First().ID,
-                        Time = new DateTime(1753, 5, 15, 0, 0, 0)
-                    };
+            var rent2 = new Rental
+                {
+                    UserID = smith.ID,
+                    EditionID = Movie.All().First(m => m.Title == "Die Hard").Editions.First().ID,
+                    Time = new DateTime(1753, 5, 15, 0, 0, 0)
+                };
 
-                db.Rentals.Add(rent1);
-                db.Rentals.Add(rent2);
-                db.SaveChanges();  
-            }
+            RentItContext.Db.Rentals.Add(rent1);
+            RentItContext.Db.Rentals.Add(rent2);
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             smith = User.GetByToken(smith.Token);
             var rentalsCount1 = smith.Rentals.Count;

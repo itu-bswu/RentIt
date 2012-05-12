@@ -14,7 +14,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Class used for some tests.
     /// </summary>
-    public class TestHelper
+    /*public class TestHelper
     {
         /// <summary>
         /// Sets up a test user, test content provider and a test admin
@@ -370,5 +370,5 @@ namespace RentIt.Tests
                 User.RentMovie(testUser4.Token, 1);
             }
         }
-    }
+    }*/
 }
