@@ -59,6 +59,16 @@ namespace RentItService.Entities
         #region Helpers
 
         /// <summary>
+        /// Gets wether a genre exists in the database or not
+        /// </summary>
+        /// <param name="name">The genre name</param>
+        /// <returns>true if it exists, false otherwise</returns>
+        public static bool HasGenre(string name)
+        {
+            return Genre.All().Any(g => g.Equals(name));
+        }
+
+        /// <summary>
         /// Returns the genre with the given name, creates it if it doesn't exist.
         /// </summary>
         /// <param name="name">Genre name</param>
@@ -91,7 +101,7 @@ namespace RentItService.Entities
         {
             using (var db = new RentItContext())
             {
-                return db.Genres.Select(genre => genre.Name);
+                return db.Genres.Select(genre => genre.Name).ToList();
             }
         } 
 

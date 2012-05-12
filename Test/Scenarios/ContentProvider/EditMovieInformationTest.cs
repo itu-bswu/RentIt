@@ -103,30 +103,14 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void AddGenreTest()
         {
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
-                Genre genre;
+            var movie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
+            var genre = "Sci-Fi2";
 
-                using (var db2 = new RentItContext())
-                {
-                    genre = db2.Genres.Single(g => g.Name.Equals("Sci-Fi"));
-                }
-
-                Assert.IsTrue(genre != null);
-                Assert.IsTrue(movie != null);
-
-                movie.AddGenre(db.Genres.Single(g => g.Name.Equals(genre.Name)));
-
-                db.SaveChanges();
-            }
+            movie.AddGenre(genre);
             
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+            var foundMovie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
 
-                Assert.IsTrue(movie.Genres.Any(g => g.Name.Equals("Sci-Fi")));
-            }
+            Assert.IsTrue(foundMovie.HasGenre(genre));
         }
 
         /// <summary>
