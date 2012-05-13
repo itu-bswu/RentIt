@@ -101,13 +101,20 @@ namespace RentItService.Entities
         /// Add a genre to the movie
         /// </summary>
         /// <param name="genre">The genre</param>
-        public void AddGenre(string genre)
+        public void AddGenre(string name)
         {
-            Contract.Ensures(Genres.Count(g => g.Name == genre) == 1);
+            Contract.Ensures(Genres.Count(g => g.Name.Equals(name)) == 1);
 
-            if (Genres.Any(g => g.Name.Equals(genre)))
+            if (!Genres.Any(g => g.Name.Equals(name)))
             {
-                Genres.Add(Genre.GetOrCreateGenre(genre));
+                using (var db = new RentItContext())
+                {
+                    Genre genre = (Genre.HasGenre(name) ? db.Genres.Single(g => g.Name.Equals(name)) : new Genre(name));
+
+                    Genres.Add(genre);
+
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -132,7 +139,7 @@ namespace RentItService.Entities
         /// <returns>True if the movie has the genre</returns>
         public bool HasGenre(string genre)
         {
-            return this.Genres.Count(g => g.Name == genre) >= 1;
+            return Genres.Count(g => g.Name == genre) == 1;
         }
 
         /// <summary>
@@ -270,7 +277,9 @@ namespace RentItService.Entities
 
             using (var db = new RentItContext())
             {
-                return db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres").Take(limit).ToList();
+                var movies = db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
+
+                return (limit == 0? movies: movies.Take(limit)).ToList();
             }
         }
 
