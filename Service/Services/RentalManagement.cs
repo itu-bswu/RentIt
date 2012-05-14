@@ -52,7 +52,7 @@ namespace RentItService.Services
                 return false;
             }
 
-            User.RentMovie(token, edition.ID);
+            User.GetByToken(token).RentMovie(edition);
 
             return true;
         }

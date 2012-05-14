@@ -40,7 +40,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             Assert.IsFalse(Rental.All().Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
 
             // Act
-            User.RentMovie(user.Token, edition.ID);
+            user.RentMovie(edition);
 
             RentItContext.ReloadDb();
 
@@ -75,27 +75,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
             var movie = Movie.All().First(m => m.Editions.Count > 0);
 
-            User.RentMovie(user.Token, movie.Editions.First().ID);
-        }
-
-        /// <summary>
-        /// Purpose: Verify that null values are not valid.
-        /// 
-        /// Pre-condtions:
-        ///     1. A movie with the title "The Matrix" must exist in the database.
-        /// 
-        /// Steps:
-        ///     1. Make sure the database contains the required movie.
-        ///     2. Attempt to rent movie with a null user.
-        ///     3. Catch argument null exception.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InvalidInputRentMovieTest()
-        {
-            var movie = Movie.All().First(m => m.Editions.Count > 0);
-
-            User.RentMovie(null, movie.Editions.First().ID);
+            user.RentMovie(movie.Editions.First());
         }
 
         /// <summary>
@@ -135,7 +115,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             RentItContext.ReloadDb();
 
             // Step 3
-            User.RentMovie(user.Token, movie.Editions.First().ID);
+            user.RentMovie(movie.Editions.First());
         }
 
         /// <summary>
@@ -175,7 +155,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             RentItContext.ReloadDb();
 
             // Step 3
-            User.RentMovie(user.Token, movie.Editions.First().ID);
+            user.RentMovie(movie.Editions.First());
         }
     }
 }

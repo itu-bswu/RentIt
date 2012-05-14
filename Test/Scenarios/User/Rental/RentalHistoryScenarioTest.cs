@@ -21,43 +21,37 @@ namespace RentIt.Tests.Scenarios.User.Rental
         /// Purpose: Verify that it is possible to retreive list of the user rental history.
         /// 
         /// Steps:
-        ///     1: Create an instance of user and fill it with valid information.
-        ///     2: Create an instance of movie and fill it with valid information.
-        ///     3: Create an instance of rental and fill it with valid information.
-        ///     4: Verify that the number of elements in the users rental history is correct.
+        ///     1: Rent a movie.
+        ///     2: Verify that the number of elements in the users rental history is correct.
         /// </summary>
         [TestMethod]
         public void RentalHistoryTest()
         {
-            /*
+            var user = TestUser.User;
+            var movieEdition = Movie.All().First().Editions.First();
 
-            var user = User.All().First(u => u.Username == "testUserRent2");
+            user.RentMovie(movieEdition);
 
             var result = User.GetRentalHistory(user.Token);
 
             var rentals = user.Rentals.ToList();
 
-            Assert.AreEqual(rentals.Count, result.Count(), "The list is not filled with the same amount of elements");*/
+            Assert.AreEqual(rentals.Count, result.Count(), "The list is not filled with the same amount of elements");
         }
 
         /// <summary>
         /// Purpose: Verify that you will get a empty list from a user with no rental history.
         /// 
         /// Steps:
-        ///     1: Create an instance of user and fill it with valid information.
-        ///     2: Create an instance of movie and fill it with valid information.
-        ///     4: Verify that the list is empty.
+        ///     1: Get the test user instance.
+        ///     2: Vertify that it has no rentals.
         /// </summary>
         [TestMethod]
         public void RentalHistoryNoRentals()
         {
-            //TODO: setup test rentals
+            var user = TestUser.User;
 
-            /*TestHelper.SetUpRentalTestUsers();
-
-            var user = User.All().First(u => u.Username == "testUserRent1");
-
-            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");*/
+            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");
         }
 
         /// <summary>
@@ -73,17 +67,19 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void MultipleRentalHistory()
         {
-            //TODO: setup test rentals
+            var user = TestUser.User;
+            var movies = Movie.All().Take(2);
 
-            /*TestHelper.SetUpRentalTestUsers();
-
-            var user = User.All().First(u => u.Username == "testUserRent3");
+            foreach (var movie in movies)
+            {
+                user.RentMovie(movie.Editions.First());
+            }
 
             var result = User.GetRentalHistory(user.Token);
 
             var rentals = user.Rentals.ToList();
 
-            Assert.AreEqual(rentals.Count, result.Count(), "The rental list dosn't contain the right amount of items.");*/
+            Assert.AreEqual(rentals.Count, result.Count(), "The rental list dosn't contain the right amount of items.");
         }
 
         /// <summary>
