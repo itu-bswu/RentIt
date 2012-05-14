@@ -35,7 +35,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Get movie editions
-            var movieList = Movie.All();
+            var movieList = Movie.All().ToList();
             var movie1Edition = movieList.ElementAt(0).Editions.First();
             var movie2Edition = movieList.ElementAt(1).Editions.First();
             var movie3Edition = movieList.ElementAt(2).Editions.First();

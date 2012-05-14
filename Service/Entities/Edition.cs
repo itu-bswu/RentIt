@@ -4,11 +4,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-using System.Linq;
-
 namespace RentItService.Entities
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Movie edition entity (Entity Framework POCO class).
