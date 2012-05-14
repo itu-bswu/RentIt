@@ -67,7 +67,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void MultipleRentalHistory()
         {
-            var user = TestUser.User;
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
             var movies = Movie.All().Take(2);
 
             foreach (var movie in movies)
