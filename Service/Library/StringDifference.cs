@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="StringDifference.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
 
 namespace RentItService.Library
 {
+    using System;
+
+    /// <summary>
+    /// Static class for finding differences in strings
+    /// </summary>
     static class StringDifference
     {
+        /// <summary>
+        /// Extension method on string for finding the difference between two strings.
+        /// </summary>
+        /// <param name="word1">The first string</param>
+        /// <param name="word2">The second string</param>
+        /// <returns>The difference in character-level operations</returns>
         public static int DifferenceTo(this string word1, string word2)
         {
             var len1 = word1.Length;

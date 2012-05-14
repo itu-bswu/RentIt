@@ -272,6 +272,13 @@ namespace RentItService.Entities
             return limit > 0 ? movies.Take(limit) : movies;
         }
 
+        /// <summary>
+        /// Get movies with specific parameters
+        /// </summary>
+        /// <param name="sorting">How to sort the returned movies</param>
+        /// <param name="genre">What genre to limit to</param>
+        /// <param name="limit">The maximum number of elements to return (0 = no limit)</param>
+        /// <returns>The found movies</returns>
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
             var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(): sorting == MovieSorting.Newest? Newest(limit): All());
