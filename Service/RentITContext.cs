@@ -1,13 +1,12 @@
 //-------------------------------------------------------------------------------------------------
-// <copyright file="RentITContext.cs" company="RentIt">
+// <copyright file="RentItContext.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace RentItService
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using Entities;

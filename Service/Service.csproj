@@ -6,24 +6,25 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3A28E740-8FE4-48F5-8623-FE25F60D7F04}</ProjectGuid>
+    <ProjectGuid>{DD96396C-97BF-4DD1-BE3C-7E4D9D1A3B88}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RentIt.Tests</RootNamespace>
-    <AssemblyName>RentIt.Tests</AssemblyName>
+    <RootNamespace>RentItService</RootNamespace>
+    <AssemblyName>RentItService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UseIISExpress>false</UseIISExpress>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
     <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
     <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
@@ -57,15 +58,15 @@
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <PublishDatabaseSettings>
+    </PublishDatabaseSettings>
     <DocumentationFile>
     </DocumentationFile>
-    <NoWarn>
-    </NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Production|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -104,123 +105,126 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="RentItService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\RentItService\bin\RentItService.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
-      <Visible>False</Visible>
-    </CodeAnalysisDependentAssemblyPaths>
+    <Content Include="Service.Publish.xml" />
+    <Content Include="Services\Service.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTest.cs" />
-    <Compile Include="Scenarios\ContentProvider\RegisterMovieScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
+    <Compile Include="Entities\Edition.cs" />
+    <Compile Include="Entities\Genre.cs" />
+    <Compile Include="Enums\MovieSorting.cs" />
+    <Compile Include="Enums\RentalScope.cs" />
+    <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Entities\Movie.cs" />
+    <Compile Include="Entities\Rental.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Exceptions\InsufficientRightsException.cs" />
+    <Compile Include="Exceptions\NoMovieFoundException.cs" />
+    <Compile Include="Exceptions\NotAUserException.cs" />
+    <Compile Include="Exceptions\UnknownGenreException.cs" />
+    <Compile Include="Exceptions\UsernameInUseException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="FunctionClasses\UploadDownload.cs" />
+    <Compile Include="Interfaces\IRentalManagement.cs" />
+    <Compile Include="Interfaces\IContentBrowsing.cs" />
+    <Compile Include="Interfaces\IContentManagement.cs" />
+    <Compile Include="Interfaces\IUserManagement.cs" />
+    <Compile Include="Library\FileRequest.cs" />
+    <Compile Include="Library\MovieDownload.cs" />
+    <Compile Include="Library\RemoteFileStream.cs" />
+    <Compile Include="Library\StringDifference.cs" />
+    <Compile Include="Mapping\EditionMap.cs" />
+    <Compile Include="Mapping\GenreMap.cs" />
+    <Compile Include="Mapping\MovieMap.cs" />
+    <Compile Include="Mapping\RentalMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="RentItContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenarios\User\Browsing\BrowseNewestScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Browsing\MostDownloadedScenario.cs" />
-    <Compile Include="Scenarios\User\Browsing\SearchScenarioTest.cs" />
-    <Compile Include="Scenarios\ContentProvider\DeleteMovieScenarioTest.cs" />
-    <Compile Include="Scenarios\ContentProvider\EditMovieInformationTest.cs" />
-    <Compile Include="Scenarios\User\Browsing\GetMovieInformationTest.cs" />
-    <Compile Include="Scenarios\User\Profile\EditProfileScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Profile\LoginScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Profile\LogoutScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Profile\SignUpScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Browsing\GetAllMoviesScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Rental\GetCurrentRentalsScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
-    <Compile Include="Scenarios\User\Rental\RentalHistoryScenarioTest.cs" />
-    <Compile Include="Service References\RentItServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <Compile Include="Services\Service.svc.cs">
+      <DependentUpon>Service.svc</DependentUpon>
     </Compile>
-    <Compile Include="ServiceTest.cs" />
-    <Compile Include="TestBase.cs" />
-    <Compile Include="Utils\DataSet.cs" />
-    <Compile Include="Utils\DataUtil.cs" />
-    <Compile Include="Utils\TestUser.cs" />
+    <Compile Include="Services\RentalManagement.cs" />
+    <Compile Include="Services\ContentManagement.cs" />
+    <Compile Include="Services\UserManagement.cs" />
+    <Compile Include="Services\ContentBrowsing.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\DataSources\RentItService.Entities.Movie.datasource" />
-    <None Include="Properties\DataSources\RentItService.Entities.Rental.datasource" />
-    <None Include="Properties\DataSources\RentItService.Entities.User.datasource" />
-    <None Include="Properties\DataSources\RentItService.Library.RemoteFileStream.datasource" />
-    <None Include="Service References\RentItServiceReference\Service.wsdl" />
-    <None Include="Service References\RentItServiceReference\Service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItServiceReference\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItServiceReference\Service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItServiceReference\Service3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItServiceReference\Service4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItServiceReference\Service5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RentItServiceReference\Service6.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RentItService\RentIt.Service.csproj">
-      <Project>{DD96396C-97BF-4DD1-BE3C-7E4D9D1A3B88}</Project>
-      <Name>RentIt.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{ECE3AAC9-455E-4FAD-B8BA-6BFD42F787A8}</Project>
       <Name>Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RentItServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\RentItServiceReference\configuration.svcinfo" />
-    <None Include="Service References\RentItServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <Content Include="Utils\Dataset\Create.sql" />
-    <Content Include="Utils\Dataset\Data.sql" />
-    <Content Include="Utils\Dataset\DropTables.sql" />
+    <Content Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\RentItServiceReference\" />
+    <Content Include="Web.Production.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scenarios\SystemAdmin\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2564</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
