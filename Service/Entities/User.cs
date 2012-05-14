@@ -208,6 +208,7 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="token">Token of the user</param>
         /// <returns>The user with the given token</returns>
+        [Pure]
         public static User GetByToken(string token)
         {
             Contract.Requires<UserNotFoundException>(token != null);

@@ -7,9 +7,11 @@
 namespace RentIt.Tests.Scenarios.User.Profile
 {
     using System;
+    using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService.Entities;
     using RentItService.Enums;
+    using RentItService.Exceptions;
 
     /// <summary>
     /// Scenario tests of the SignUp feature.
