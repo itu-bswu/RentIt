@@ -49,7 +49,11 @@ namespace RentItService
         /// </summary>
         public static void ReloadDb()
         {
-            db.Dispose();
+            if (db != null)
+            {
+                db.Dispose();
+            }
+            
             db = null;
         }
 
