@@ -127,7 +127,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetUnreleasedMovieInfoFutureRelease()
         {
-            int movieId;
             var title = "Some movie";
             var desc = "Movie for testing purposes";
             var releaseDate = DateTime.Now.AddDays(14);
@@ -154,7 +153,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             Assert.AreEqual(title, movie.Title, "Wrong movie found.");
             Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
-            movieId = movie.ID;
+            var movieId = movie.ID;
 
             movie.Editions.Add(new Edition
             {
@@ -188,7 +187,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetUnreleasedMovieInfoNoReleaseDate()
         {
-            int movieId;
             var title = "Some movie";
             var desc = "Movie for testing purposes";
 
@@ -213,7 +211,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             Assert.AreEqual(title, movie.Title, "Wrong movie found.");
             Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
-            movieId = movie.ID;
+            var movieId = movie.ID;
 
             movie.Editions.Add(new Edition
             {
