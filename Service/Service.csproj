@@ -132,7 +132,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RentIt.Service.Publish.xml" />
+    <Content Include="Service.Publish.xml" />
     <Content Include="Services\Service.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -167,7 +167,7 @@
     <Compile Include="Mapping\MovieMap.cs" />
     <Compile Include="Mapping\RentalMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
-    <Compile Include="RentITContext.cs" />
+    <Compile Include="RentItContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
