@@ -86,14 +86,11 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var rand = new Random();
 
             // Step 1
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    randString = rand.NextDouble().ToString("0.00");
-                }
-                while (db.Movies.ToList().Any(movie => movie.Title.Contains(randString)));
+                randString = rand.NextDouble().ToString("0.00");
             }
+            while (Movie.All().Any(movie => movie.Title.Contains(randString)));
 
             // Step 2
             Assert.IsFalse(Movie.Search(randString).Any(), "One or more movies was returned, should not return any.");

@@ -35,42 +35,40 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetAllMovies()
         {
-            using (var db = new RentItContext())
+            var numberOfMoviesFromDb = RentItContext.Db.Movies.Count();
+            var numberOfMoviesFromMethod = Movie.All().Count();
+
+            Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
+
+            var allMovies = RentItContext.Db.Movies;
+
+            foreach (var m in Movie.All())
             {
-                var numberOfMoviesFromDb = db.Movies.Count();
-                var numberOfMoviesFromMethod = Movie.All().Count();
+                Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the All method.");
+            }
 
-                Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
+            var movie2 = new Movie
+            {
+                Description = "testMovieForGetAllMovies",
+                ImagePath = "EmptyEmptyEmpty",
+                Title = "testMovieGAM",
+                OwnerID = 2
+            };
 
-                var allMovies = db.Movies;
+            RentItContext.Db.Movies.Add(movie2);
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
-                foreach (var m in Movie.All())
-                {
-                    Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the All method.");
-                }
+            numberOfMoviesFromDb = RentItContext.Db.Movies.Count();
+            numberOfMoviesFromMethod = Movie.All().Count();
 
-                var movie2 = new Movie
-                {
-                    Description = "testMovieForGetAllMovies",
-                    ImagePath = "EmptyEmptyEmpty",
-                    Title = "testMovieGAM",
-                    OwnerID = 2
-                };
+            Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
 
-                db.Movies.Add(movie2);
-                db.SaveChanges();
+            allMovies = RentItContext.Db.Movies;
 
-                numberOfMoviesFromDb = db.Movies.Count();
-                numberOfMoviesFromMethod = Movie.All().Count();
-
-                Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
-
-                allMovies = db.Movies;
-
-                foreach (var m in Movie.All())
-                {
-                    Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the All method.");
-                }
+            foreach (var m in Movie.All())
+            {
+                Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the All method.");
             }
         }
     }

@@ -69,16 +69,14 @@ namespace RentIt.Tests.Scenarios.User.Profile
 
             // Call edit profile
             User.Edit(user2, user2);
+            RentItContext.ReloadDb();
 
             // Assert and clean
-            using (var db = new RentItContext())
-            {
-                var user3 = db.Users.First(u => u.Username == "Smith");
+            var user3 = User.All().First(u => u.Username == "Smith");
 
-                Assert.AreEqual(oldID, User.Login(user3.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
-                Assert.AreEqual(oldName.ToUpper(), user3.FullName, "The name was not changed as expected.");
-                Assert.AreEqual(oldEmail.ToUpper(), user3.Email, "The email was not changed as expected.");
-            }
+            Assert.AreEqual(oldID, User.Login(user3.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
+            Assert.AreEqual(oldName.ToUpper(), user3.FullName, "The name was not changed as expected.");
+            Assert.AreEqual(oldEmail.ToUpper(), user3.Email, "The email was not changed as expected.");
         }
 
         /// <summary>

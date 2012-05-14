@@ -32,20 +32,15 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryTest()
         {
-            TestHelper.SetUpRentalTestUsers();
-            TestHelper.SetUpMoviesForRentalTest();
-            TestHelper.TestRentalsMostDownloaded();
+            /*
 
-            using (var db = new RentItContext())
-            {
-                User user = db.Users.Include("Rentals").First(u => u.Username == "testUserRent2");
+            var user = User.All().First(u => u.Username == "testUserRent2");
 
-                var result = User.GetRentalHistory(user.Token);
+            var result = User.GetRentalHistory(user.Token);
 
-                var rentals = user.Rentals.ToList();
+            var rentals = user.Rentals.ToList();
 
-                Assert.AreEqual(rentals.Count, result.Count(), "The list is not filled with the same amount of elements");
-            }
+            Assert.AreEqual(rentals.Count, result.Count(), "The list is not filled with the same amount of elements");*/
         }
 
         /// <summary>
@@ -59,14 +54,13 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryNoRentals()
         {
-            TestHelper.SetUpRentalTestUsers();
+            //TODO: setup test rentals
 
-            using (var db = new RentItContext())
-            {
-                User user = db.Users.First(u => u.Username == "testUserRent1");
+            /*TestHelper.SetUpRentalTestUsers();
 
-                Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");
-            }
+            var user = User.All().First(u => u.Username == "testUserRent1");
+
+            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");*/
         }
 
         /// <summary>
@@ -82,18 +76,17 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void MultipleRentalHistory()
         {
-            TestHelper.SetUpRentalTestUsers();
+            //TODO: setup test rentals
 
-            using (var db = new RentItContext())
-            {
-                User user = db.Users.First(u => u.Username == "testUserRent3");
+            /*TestHelper.SetUpRentalTestUsers();
 
-                var result = User.GetRentalHistory(user.Token);
+            var user = User.All().First(u => u.Username == "testUserRent3");
 
-                var rentals = user.Rentals.ToList();
+            var result = User.GetRentalHistory(user.Token);
 
-                Assert.AreEqual(rentals.Count, result.Count(), "The rental list dosn't contain the right amount of items.");
-            }
+            var rentals = user.Rentals.ToList();
+
+            Assert.AreEqual(rentals.Count, result.Count(), "The rental list dosn't contain the right amount of items.");*/
         }
 
         /// <summary>

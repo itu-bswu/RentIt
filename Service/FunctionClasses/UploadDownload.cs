@@ -40,54 +40,53 @@ namespace RentItService.FunctionClasses
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-            using (var db = new RentItContext())
+            var tempMovie = Movie.All().First(m => m.ID.Equals(movieID));
+
+            if (tempMovie == null)
             {
-                var tempMovie = db.Movies.Find(movieID);
-                if (tempMovie == null)
-                {
-                    throw new NoMovieFoundException("Movie was not found in the database.");
-                }
-
-                if (tempMovie.OwnerID != db.Movies.Find(movieID).OwnerID)
-                {
-                    throw new InsufficientRightsException("This user was not the one who registered the movie.");
-                }
-
-                var movieFilePath = tempMovie.ID + "_" + tempMovie.Title + Path.GetExtension(uploadRequest.FileName);
-
-                try
-                {
-                    var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movieFilePath);
-                    FileStream targetStream;
-                    var sourceStream = uploadRequest.FileByteStream;
-                    using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        const int BufferLength = 8192;
-                        var buffer = new byte[BufferLength];
-                        int count;
-                        while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
-                        {
-                            targetStream.Write(buffer, 0, count);
-                        }
-
-                        targetStream.Close();
-                        sourceStream.Close();
-                    }
-                }
-                catch
-                {
-                    return false;
-                }
-
-                tempMovie.Editions.Add(new Edition
-                {
-                    FilePath = movieFilePath,
-                    Name = editionName
-                });
-                db.SaveChanges();
-
-                return true;
+                throw new NoMovieFoundException("Movie was not found in the database.");
             }
+
+            if (tempMovie.OwnerID != Movie.All().First(m => m.ID.Equals(movieID)).OwnerID)
+            {
+                throw new InsufficientRightsException("This user was not the one who registered the movie.");
+            }
+
+            var movieFilePath = tempMovie.ID + "_" + tempMovie.Title + Path.GetExtension(uploadRequest.FileName);
+
+            try
+            {
+                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movieFilePath);
+                FileStream targetStream;
+                var sourceStream = uploadRequest.FileByteStream;
+                using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    const int BufferLength = 8192;
+                    var buffer = new byte[BufferLength];
+                    int count;
+                    while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
+                    {
+                        targetStream.Write(buffer, 0, count);
+                    }
+
+                    targetStream.Close();
+                    sourceStream.Close();
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            tempMovie.Editions.Add(new Edition
+            {
+                FilePath = movieFilePath,
+                Name = editionName
+            });
+
+            RentItContext.Db.SaveChanges();
+
+            return true;
         }
 
         /// <summary>
@@ -104,31 +103,28 @@ namespace RentItService.FunctionClasses
             Contract.Requires<ArgumentNullException>(downloadRequest != null);
             Contract.Requires<ArgumentException>(downloadRequest.ID > 0);
 
-            using (var db = new RentItContext())
+            var user = User.GetByToken(token);
+            if (!(user.Rentals.Any(x => x.EditionID == downloadRequest.ID & x.UserID == user.ID)))
             {
-                var user = User.GetByToken(token);
-                if (!(user.Rentals.Any(x => x.EditionID == downloadRequest.ID & x.UserID == user.ID)))
-                {
-                    throw new InsufficientRightsException();
-                }
-
-                var edition = db.Editions.First(m => m.ID == downloadRequest.ID);
-
-                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, edition.FilePath);
-                var fileInfo = new FileInfo(filePath);
-
-                // Check to see if file exists.
-                if (!fileInfo.Exists)
-                {
-                    throw new FileNotFoundException("File not found", fileInfo.Name);
-                }
-
-                // Open stream
-                var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
-
-                // Set up rfs
-                return new RemoteFileStream(edition.FilePath, fileInfo.Length, stream);
+                throw new InsufficientRightsException();
             }
+
+            var edition = Edition.All().First(m => m.ID == downloadRequest.ID);
+
+            var filePath = Path.Combine(Constants.UploadDownloadFileFolder, edition.FilePath);
+            var fileInfo = new FileInfo(filePath);
+
+            // Check to see if file exists.
+            if (!fileInfo.Exists)
+            {
+                throw new FileNotFoundException("File not found", fileInfo.Name);
+            }
+
+            // Open stream
+            var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+
+            // Set up rfs
+            return new RemoteFileStream(edition.FilePath, fileInfo.Length, stream);
         }
     }
 }

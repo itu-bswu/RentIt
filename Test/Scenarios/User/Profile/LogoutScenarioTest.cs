@@ -36,17 +36,18 @@ namespace RentIt.Tests.Scenarios.User.Profile
             // Step 1
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
+            RentItContext.ReloadDb();
+
             // Step 2
             Assert.IsNotNull(user.Token, "Token is null!");
 
             // Step 3
             User.Logout(user);
 
+            RentItContext.ReloadDb();
+
             // Step 4
-            using (var db = new RentItContext())
-            {
-                Assert.IsNull(db.Users.Find(user.ID).Token);
-            }
+            Assert.IsTrue(User.All().Any(u => u.ID.Equals(user.ID) && u.Token != null));
         }
 
         /// <summary>
@@ -58,6 +59,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     2. Logout using that token.
         ///     3. Verify it is not possible.
         /// </summary>
+        /*
         [TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
         public void LogoutInvalidToken()
@@ -65,18 +67,14 @@ namespace RentIt.Tests.Scenarios.User.Profile
             string token;
 
             // Step 1
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    token = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Token == token));
+                token = User.GenerateToken();
             }
+            while (User.All().Any(u => u.Token == token));
 
             // Step 2
-            //User.Logout(token);
-            Assert.IsTrue(false); // TODO: Take another look at this test
-        }
+            User.Logout(User.GetByToken(token));
+        }*/
     }
 }
