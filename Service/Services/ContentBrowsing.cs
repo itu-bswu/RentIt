@@ -1,19 +1,14 @@
 ﻿//-------------------------------------------------------------------------------------------------
-// <copyright file="GetMovieDataService.cs" company="RentIt">
+// <copyright file="ContentBrowsing.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
 namespace RentItService.Services
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
-    using System.Linq;
-
     using Entities;
     using Enums;
-    using Exceptions;
     using Interfaces;
 
     /// <summary>

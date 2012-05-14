@@ -217,7 +217,7 @@ namespace RentItService.Entities
                 return null;
             }
 
-            return User.All().First(u => u.Token == token);
+            return All().First(u => u.Token == token);
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace RentItService.Entities
         /// <returns>The users rental history.</returns>
         public static IEnumerable<Rental> GetRentalHistory(string token)
         {
-            return User.GetByToken(token).Rentals.ToList();
+            return GetByToken(token).Rentals.ToList();
         }
 
         /// <summary>

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 
 namespace RentItService.Library
 {
+    using System;
+
     static class StringDifference
     {
         public static int DifferenceTo(this string word1, string word2)

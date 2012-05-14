@@ -9,10 +9,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentIt.Tests.Utils;
-
     using RentItService;
     using RentItService.Entities;
-    using RentItService.Exceptions;
 
     /// <summary>
     /// Scenario tests for the logout feature.

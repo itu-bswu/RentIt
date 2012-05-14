@@ -12,8 +12,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     using RentIt.Tests.Utils;
     using RentItService;
     using RentItService.Entities;
-    using RentItService.Exceptions;
-    using RentItService.Services;
 
     /// <summary>
     /// Class for testing the GetMovieInformation method

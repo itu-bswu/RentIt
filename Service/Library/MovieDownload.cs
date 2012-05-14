@@ -1,10 +1,16 @@
-﻿namespace RentItService.Library
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="MovieDownload.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentItService.Library
 {
     using System;
-
     using RentItService.Entities;
 
     /// <summary>
+    /// MovieDownload class
     /// </summary>
     public class MovieDownload : IComparable
     {
@@ -43,14 +49,13 @@
             }
 
             var otherMovieDownload = obj as MovieDownload;
-            if (otherMovieDownload != null)
-            {
-                return this.NumberOfDownloads.CompareTo(otherMovieDownload.NumberOfDownloads);
-            }
-            else
+            if (otherMovieDownload == null)
             {
                 throw new ArgumentException("Object is not a MovieDownload combination.");
+                
             }
+
+            return this.NumberOfDownloads.CompareTo(otherMovieDownload.NumberOfDownloads);
         }
     }
 }

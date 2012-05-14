@@ -6,13 +6,10 @@
 
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
-    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService;
     using RentItService.Entities;
-    using RentItService.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Scenario tests for browsing movies by genre

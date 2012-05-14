@@ -172,7 +172,7 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
-            var movie = Movie.All().First(m => m.ID == movieObject.ID);
+            var movie = All().First(m => m.ID == movieObject.ID);
 
             if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
             {
@@ -203,7 +203,7 @@ namespace RentItService.Entities
             var searchTitle = search.ToLower();
             var components = searchTitle.Split(' ');
 
-            var result = from movie in Movie.All()
+            var result = from movie in All()
                          let title = movie.Title.ToLower()
                          let titleComponents = title.Split(' ')
                          where titleComponents.Any(str => components.Any(str.Contains))
@@ -235,7 +235,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentException>(limit >= 0);
 
-            var movies = (from movie in Movie.All()
+            var movies = (from movie in All()
                           where movie.ReleaseDate <= DateTime.Now
                           orderby movie.ReleaseDate descending
                           select movie).ToList();
@@ -265,7 +265,7 @@ namespace RentItService.Entities
         /// <returns>A list of movie objects.</returns>
         public static IEnumerable<Movie> MostDownloaded(int limit = 0)
         {
-            var movies = (from movie in Movie.All()
+            var movies = (from movie in All()
                           orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
                           select movie).ToList();
 
@@ -337,7 +337,7 @@ namespace RentItService.Entities
                 Genre.GetOrCreateGenre(genre.Name);
             }
 
-            var referenceMovie = Movie.All().FirstOrDefault(movie => movie.ID == updatedMovie.ID);
+            var referenceMovie = All().FirstOrDefault(movie => movie.ID == updatedMovie.ID);
 
             if (referenceMovie == null)
             {
