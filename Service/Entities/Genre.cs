@@ -149,20 +149,4 @@ namespace RentItService.Entities
 
         #endregion Overrides
     }
-
-    /// <summary>
-    /// Extension methods
-    /// </summary>
-    public static class GenreExtensions
-    {
-        /// <summary>
-        /// Converts a string to a genre object
-        /// </summary>
-        /// <param name="str">The string</param>
-        /// <returns>The genre</returns>
-        public static Genre ToGenre(this string str)
-        {
-            return Genre.GetOrCreateGenre(str);
-        }
-    }
 }
