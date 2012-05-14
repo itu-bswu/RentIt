@@ -172,7 +172,7 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
-            var movie = RentItContext.Db.Movies.Include("Editions").First(m => m.ID == movieObject.ID);
+            var movie = Movie.All().First(m => m.ID == movieObject.ID);
 
             if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
             {
@@ -337,7 +337,7 @@ namespace RentItService.Entities
                 Genre.GetOrCreateGenre(genre.Name);
             }
 
-            var referenceMovie = RentItContext.Db.Movies.Include("Genres").FirstOrDefault(movie => movie.ID == updatedMovie.ID);
+            var referenceMovie = Movie.All().FirstOrDefault(movie => movie.ID == updatedMovie.ID);
 
             if (referenceMovie == null)
             {

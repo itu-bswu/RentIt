@@ -66,11 +66,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void BrowseKnownGenreTest()
         {
-            ICollection<Movie> dbmovies = RentItContext.Db.Movies.Include("Genres").ToList();
+            Assert.IsTrue(Movie.All().First().Genres.Any(), "First move has no genres.");
 
-            Assert.IsTrue(dbmovies.First().Genres.Any(), "First move has no genres.");
-
-            var testGenre = dbmovies.First().Genres.First().Name;
+            var testGenre = Movie.All().First().Genres.First().Name;
 
             // Step 1
             var movies = Movie.ByGenre(testGenre).ToList();
@@ -79,7 +77,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             Assert.IsTrue(movies.All(movie => movie.HasGenre(testGenre)), "A movie doesn't have the genre.");
 
             // Step 3
-            var movieCount = dbmovies.Count(movie => movie.HasGenre(testGenre));
+            var movieCount = Movie.All().Count(movie => movie.HasGenre(testGenre));
 
             // Step 4
             Assert.AreEqual(movieCount, movies.Count(), "Not the same number of movies returned.");

@@ -34,7 +34,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             // Arrange
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            var movie = RentItContext.Db.Movies.Include("Editions").First(m => m.Editions.Count >= 1);
+            var movie = Movie.All().First(m => m.Editions.Count >= 1);
             var edition = movie.Editions.First();
 
             Assert.IsFalse(Rental.All().Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
@@ -93,7 +93,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [ExpectedException(typeof(ArgumentNullException))]
         public void InvalidInputRentMovieTest()
         {
-            var movie = RentItContext.Db.Movies.Include("Editions").First(m => m.Editions.Count > 0);
+            var movie = Movie.All().First(m => m.Editions.Count > 0);
 
             User.RentMovie(null, movie.Editions.First().ID);
         }

@@ -32,13 +32,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryTest()
         {
-            // TODO: setup test rentals
+            /*
 
-            /*TestHelper.SetUpRentalTestUsers();
-            TestHelper.SetUpMoviesForRentalTest();
-            TestHelper.TestRentalsMostDownloaded();
-
-            var user = RentItContext.Db.Users.Include("Rentals").First(u => u.Username == "testUserRent2");
+            var user = User.All().First(u => u.Username == "testUserRent2");
 
             var result = User.GetRentalHistory(user.Token);
 

@@ -68,7 +68,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             Movie.Edit(loggedinUser, newMovie);
 
-            Movie foundMovie = RentItContext.Db.Movies.Include("Genres").First(m => m.ID == testMovie.ID);
+            Movie foundMovie = Movie.All().First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
             Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");

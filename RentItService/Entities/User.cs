@@ -217,7 +217,7 @@ namespace RentItService.Entities
                 return null;
             }
 
-            return RentItContext.Db.Users.Include("Rentals").First(u => u.Token == token);
+            return User.All().First(u => u.Token == token);
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace RentItService.Entities
 
             Contract.Requires<InsufficientRightsException>(user.ID == editedUser.ID);
 
-            var foundUser = User.All().First(u => u.ID.Equals(editedUser.ID));
+            var foundUser = All().First(u => u.ID.Equals(editedUser.ID));
 
             foundUser.Email = editedUser.Email;
             foundUser.FullName = editedUser.FullName;
@@ -297,7 +297,7 @@ namespace RentItService.Entities
 
         public static IEnumerable<User> All()
         {
-            return RentItContext.Db.Users.ToList();
+            return RentItContext.Db.Users.Include("Rentals").ToList();
         }
     }
 }
