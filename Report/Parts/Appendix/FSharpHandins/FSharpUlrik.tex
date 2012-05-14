@@ -3,9 +3,113 @@
 
 \subsection{HandIn 1}
 \label{Appendix_FSharp_Ulrik_1}
+\begin{lstlisting}
+KF 02
+Handin 1
+Ulrik Damm (ulfd@itu.dk)
+
+let sqr x = x * x;;
+
+let pow x n = System.Math.Pow (x, n);;
+
+let dup s = s + s;;
+
+let rec dupn s n =
+	match n with
+	| 0 -> ""
+	| 1 -> s
+	| n -> s + dupn s (n-1)
+	;;
+
+let timediff (time11, time12) (time21, time22) = (time21 - time11) * 60 + 
+(time22 - time12);
+
+let minutes (time1, time2) = timediff (0, 0) (time1, time2);
+
+let Main =
+	printfn "%i" (sqr 2);
+	printfn "%f" (pow 2.0 3.0);
+	printfn "%s" (dup "Hi ");
+	printfn "%s" (dupn "Hi " 3);
+	printfn "%i" (timediff (12,34) (11,35));
+	printfn "%i" (timediff (12,34) (13,35));
+	printfn "%i" (minutes (14,24));
+	printfn "%i" (minutes (23,1));
+\end{lstlisting}
 \subsection{HandIn 2}
 \label{Appendix_FSharp_Ulrik_2}
+\begin{lstlisting}
+let rec downTo n =
+    if n < 2
+    then raise (new System.Exception("Invalid value"))
+    else if n = 1
+    then [1]
+    else n :: downTo (n-1);;
+
+let rec downTo2 = function
+    | n when n < 1 -> raise (new System.Exception("Invalid value"))
+    | 1 -> [1]
+    | n -> n :: downTo2 (n-1);;
+
+let rec removeEven = function
+    | [] -> []
+    | [n] -> [n]
+    | [n; _] -> [n]
+    | n :: m :: tl -> removeEven [n; m] @ removeEven tl;;
+
+let rec combinePair = function
+    | [] -> []
+    | [n] -> []
+    | [n; m] -> [n, m]
+    | n :: m :: tl -> combinePair [n; m] @ combinePair tl;;
+
+let explode (str : string) = List.ofArray(str.ToCharArray());;
+
+let rec explode2 (str : string) =
+	if str.Length = 0 then []
+	else if str.Length = 1 then [str.Chars(0)]
+	else str.Chars(0) :: explode2 (str.Remove(0, 1));;
+	
+let implode str = List.foldBack (fun x y -> sprintf "%c%s" x y) str "";;
+
+let implodeRev str = List.fold (fun x y -> sprintf "%c%s" y x) "" str;;
+
+let toUpper str = 
+     implode (List.map (fun x -> System.Char.ToUpper x) (explode str));;
+
+let toUpper1 str = 
+     (explode >> (List.map (fun x -> System.Char.ToUpper x)) >> implode) str;;
+
+let toUpper2 str = 
+     (implode << ((fun x -> System.Char.ToUpper x) |> List.map) << explode) str;;
+
+let rec palindrome (str : string) =
+    if str.Length <= 1 then true
+    else if str.Chars(0) = str.Chars(str.Length - 1)
+	 then palindrome (str.Substring(1, str.Length - 2))
+    else false;;
+
+let rec ack = function
+    | (0, n) -> n + 1
+    | (m, 0) -> ack (m - 1, 1)
+    | (m, n) -> ack (m - 1, ack (m, n - 1));;
+
+let time f =
+    let start = System.DateTime.Now in
+    let res = f () in
+    let finish = System.DateTime.Now in
+    (res, finish - start);
+
+let timeArg1 f a = time (fun x -> f a);;
+
+let Main = printfn "lol";;
+
+\end{lstlisting}
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Ulrik_3}
+\begin{lstlisting}
+\end{lstlisting}
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Ulrik_4and5}
+\begin{lstlisting}
+\end{lstlisting}

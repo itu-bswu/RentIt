@@ -1,32 +1,147 @@
 \chapter{Requirements}
 \label{Requirements}
 This chapter describes the requirements (and optional features) for our system and project. We have translated the required features and some of the optional features into use cases. We create tests\footnote{Further described in our \nameref{Testing} chapter on page \pageref{Testing}.} and workflows for our system from the use cases, so that we can document and make sure that our system fulfills our requirements. The use cases are described on page \pageref{Requirements_UC}.
+
 \section{Required system features}
 \label{Requirements_Rfeatures}
-These required features
+The project descriptions lists a number of requirements for the design and implementation of the service and client.
 \begin{my_itemize}
-\item 
+\item The service must use a SQL server database.
+\item The system must run in multi-user environments.
+\item The service must be implemented in c\# using Windows Communication Foundation(WCF).
+\item The client must enable users to access, administrate, upload and download medias.
+\item The graphical user interface of the client must be implemented in c\# using Windows Forms, ASP or Windows Presentation Foundation(WPF).
 \end{my_itemize}
+
+\paragraph{Core Features}
+The features listed below are the core features of our system. For us to deliver an acceptable system, we feel these features must be implemented, both on the service and the client, and must be thoroughly tested. 
+\begin{my_itemize}
+	\item User
+	\begin{my_itemize}
+		\item Create a new user account.
+		\item Login.
+		\item Rent media.
+		\item Edit profile.
+		\item Download media.
+		\item View a list of all movies.
+	\end{my_itemize}
+	\item Content provider
+	\begin{my_itemize}
+		\item Login
+		\item Upload media.
+		\item Edit uploaded media.
+		\item Delete media.
+	\end{my_itemize}
+\end{my_itemize}
+
 \section{Optional system features}
 \label{Requirements_Ofeatures}
+Section \ref{Requirements_Rfeatures} described the core features of our system. We consider those features the "bare bones" of our system. In addition to the core features, we have a number of optional features. 
+\\Some of these features are involve bigger design decisions than others. This means we may decide not to pick up a "High priority" feature before a "Medium" priority feature, due to time constraints or other other reasons.
+\\The optional features we have decided to implement are in \textbf{bold}.
+\begin{my_itemize}
+	\item High priority
+	\begin{my_itemize}
+		\item \textbf{Searching for movies}.
+		\item \textbf{View movielists with different sorting}.
+		\item \textbf{Movie release dates}.
+		\item \textbf{Logout}.
+	\end{my_itemize}
+	\item Medium priority
+	\begin{my_itemize}
+		\item \textbf{Movie editions (SD, HD, Director's Cut, etc.)}.
+		\item Implement cost for rentals.
+		\item Let users rate/review media.
+		\item \textbf{Store information (Service-end) for analytical and statistical work}\footnote{We have implemented a distinction between a users current rentals and rental history.}.
+	\end{my_itemize}
+	\item Low priority
+	\begin{my_itemize}
+		\item Stream media from the browser (no download necessary).
+		\item Social network integration.
+		\item Allow users to buy products instead of renting them.
+		\item Instructions and/or tooltips.
+	\end{my_itemize}
+\end{my_itemize}
+
+\paragraph{High}
+Our high priority features are largely quality of life, yet almost core features. Users are used to being able to search for what they want, so we feel this should be one of the first things we do beyond the core. 
+\\Additionally we feel that release dates gives the user more information and more ways to sort the movie lists.
+
+\paragraph{Medium}
+The medium priority features are expansions of our core features. 
+\\The implementation of rental costs is the most interesting one, yet also what we feel is the most advanced of the options. Because we want our system to handle paid media rental\footnote{Discussed in section \ref{Overview_assumptions_stype} on page \pageref{Overview_assumptions_stype}.}, rental costs should be a priority. 
+\\On the other hand, we feel that if we go for implementing rental costs, we should also design payment options, GUI for the payment and more.
+\\In contrast, the other options are much on the same scale, but do not necessarily have the same amount of extra design time.
+
+\paragraph{Low}
+Low priority features are nice to have but not necessary. 
+\\Integrating social networks and streaming media in the browser are cool features, but we risk taking development time away from the core features to add optional features that do not really add much to the system as a whole.
+\\Instructions, manuals, online help and tooltips are nice usability features and they may improve the product as a whole, but if we take development time away from the core features to create these usability features, we may end up with a manual for buggy/non-functional software.
 
 \section{Additional project requirements}
+\label{Requirements_Additional}
+In addition to our required and optional features, we have a number of project requirements to make sure we deliver a good product. 
+\begin{my_itemize}
+	\item Collaboration 
+	\begin{my_itemize}
+		\item Use a version control system.
+		\item Document design decisions.
+		\item Use an iterative development strategy.
+	\end{my_itemize}
+	\item Quality Assurance (QA)
+	\begin{my_itemize}
+		\item Use cases must be covered by tests\footnote{Functionality must be tested on both the service and the client if possible.}.
+		\item Test code coverage must be thorough\footnote{See chapter \ref{Testing} \nameref{Testing} for reasoning behind	numbers.}.
+		\begin{my_itemize}
+			\item Minimum overall coverage of the service: 50\%
+			\item Goal for overall coverage of service: 85\%
+			\item Critical sections of service: 80\%
+		\end{my_itemize}
+		\item All code must be documented\footnote{XML headers for classes, fields, constructors and methods. Additional comments if deemed necessary.}.
+		\item User interface must be usability tested.
+	\end{my_itemize}
+\end{my_itemize}
+
+\paragraph{Collaboration}
+% Figure out what to do with this bit
+Not sure if this needs to be here or if it even should?
+
+\paragraph{QA}
+% Figure out what to do with this bit
+Not sure if this needs to be here or if it even should?
 
 \section{Use cases for the system}
 \label{Requirements_UC}
+These are the use cases for our system. The use cases only include requirements that we have managed
 \paragraph{User management}
 \begin{my_itemize}
-\item 
+	\item A user wants to create a new account.
+	\item A user wants to login.
+	\item A user wants to edit his profile.
+	\item A user wants to logout.
 \end{my_itemize}
+
 \paragraph{Browsing media}
 \begin{my_itemize}
-\item 
+	\item A user wants to view a list of all offered movies.
+	\item A user wants to browse movies by their release date.
+	\item A user wants to search for a specific movie title.
+	\item A user wants to view all movies of a specific genre.
 \end{my_itemize}
+
 \paragraph{Media rental}
 \begin{my_itemize}
-\item 
+	\item A user wants to rent a specific movie edition.
+	\item A user wants to view all of his previous rentals.
+	\item A user wants to view his current rentals.
+	\item A user wants to download a current rental,
 \end{my_itemize}
+
 \paragraph{Content management}
 \begin{my_itemize}
-\item 
+	\item A content provider wants to register and upload a movie.
+	\item A content provider wants to register a movie.
+	\item A content provider wants to upload an edition to an already registered movie.
+	\item A content provider wants to edit information about a movie.
+	\item A content provider wants to delete a movie.
 \end{my_itemize}
