@@ -211,7 +211,7 @@ namespace RentItService.Entities
                          orderby title.Equals(searchTitle) descending, titleComponents.Count(str => components.Any(str.Equals)) descending
                          select movie;
 
-            return (limit == 0? result: result.Take(limit));
+            return (limit == 0 ? result : result.Take(limit));
         }
 
         /// <summary>

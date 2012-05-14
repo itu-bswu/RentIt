@@ -224,18 +224,17 @@ namespace RentItService.Entities
         /// <summary>
         /// Creates a rental entry in the database.
         /// </summary>
-        /// <param name="token">The session token.</param>
         /// <param name="movieEdition">The movie edition to be rented. Only ID is used.</param>
         public void RentMovie(Edition movieEdition)
         {
-            Contract.Requires<NotAUserException>(Type == UserType.User);
+            Contract.Requires<NotAUserException>(this.Type == UserType.User);
 
             if (!Movie.All().Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
             {
                 throw new NoMovieFoundException("No released movies found with the given ID.");
             }
 
-            RentItContext.Db.Rentals.Add(new Rental { EditionID = movieEdition.ID, UserID = ID, Time = DateTime.Now });
+            RentItContext.Db.Rentals.Add(new Rental { EditionID = movieEdition.ID, UserID = this.ID, Time = DateTime.Now });
             RentItContext.Db.SaveChanges();
         }
 

@@ -52,6 +52,11 @@ namespace RentItService.Entities
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
 
+        /// <summary>
+        /// Get all editions.
+        /// TODO: Consider static property?
+        /// </summary>
+        /// <returns>All editions</returns>
         public static IEnumerable<Edition> All()
         {
             return RentItContext.Db.Editions.ToList();

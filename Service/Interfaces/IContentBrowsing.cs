@@ -4,13 +4,12 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using RentItService.Enums;
-
 namespace RentItService.Interfaces
 {
     using System.Collections.Generic;
     using System.ServiceModel;
     using Entities;
+    using Enums;
 
     /// <summary>
     /// Interface for content browsing.
