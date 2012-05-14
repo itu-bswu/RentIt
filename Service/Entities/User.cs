@@ -225,19 +225,16 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <param name="movieEdition">The movie edition to be rented. Only ID is used.</param>
-        public static void RentMovie(string token, Edition movieEdition)
+        public void RentMovie(Edition movieEdition)
         {
-            Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<NotAUserException>(GetByToken(token).Type == UserType.User);
-
-            var user = GetByToken(token);
+            Contract.Requires<NotAUserException>(Type == UserType.User);
 
             if (!Movie.All().Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
             {
                 throw new NoMovieFoundException("No released movies found with the given ID.");
             }
 
-            RentItContext.Db.Rentals.Add(new Rental { EditionID = movieEdition.ID, UserID = user.ID, Time = DateTime.Now });
+            RentItContext.Db.Rentals.Add(new Rental { EditionID = movieEdition.ID, UserID = ID, Time = DateTime.Now });
             RentItContext.Db.SaveChanges();
         }
 

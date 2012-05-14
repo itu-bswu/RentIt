@@ -35,18 +35,18 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Get movie editions
-            var movieList = Movie.All();
+            var movieList = Movie.All().ToList();
             var movie1Edition = movieList.ElementAt(0).Editions.First();
             var movie2Edition = movieList.ElementAt(1).Editions.First();
             var movie3Edition = movieList.ElementAt(2).Editions.First();
             
             // Setup rentals
-            User.RentMovie(user.Token, movie1Edition.ID);
-            User.RentMovie(user.Token, movie1Edition.ID);
-            User.RentMovie(user.Token, movie1Edition.ID);
-            User.RentMovie(user.Token, movie2Edition.ID);
-            User.RentMovie(user.Token, movie2Edition.ID);
-            User.RentMovie(user.Token, movie3Edition.ID);
+            user.RentMovie(movie1Edition);
+            user.RentMovie(movie1Edition);
+            user.RentMovie(movie1Edition);
+            user.RentMovie(movie2Edition);
+            user.RentMovie(movie2Edition);
+            user.RentMovie(movie3Edition);
             
             // Step 1
             var movies = Movie.MostDownloaded();
@@ -90,19 +90,19 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var firstEdition = movieMultipleEditions.Editions.First();
             var secondEdition = movieMultipleEditions.Editions.Last();
 
-            User.RentMovie(user.Token, firstEdition.ID);
-            User.RentMovie(user.Token, firstEdition.ID);
-            User.RentMovie(user.Token, firstEdition.ID);
-            User.RentMovie(user.Token, secondEdition.ID);
-            User.RentMovie(user.Token, secondEdition.ID);
+            user.RentMovie(firstEdition);
+            user.RentMovie(firstEdition);
+            user.RentMovie(firstEdition);
+            user.RentMovie(secondEdition);
+            user.RentMovie(secondEdition);
 
             // Step 2
             firstEdition = movieSingleEdition.Editions.First();
 
-            User.RentMovie(user.Token, firstEdition.ID);
-            User.RentMovie(user.Token, firstEdition.ID);
-            User.RentMovie(user.Token, firstEdition.ID);
-            User.RentMovie(user.Token, firstEdition.ID);
+            user.RentMovie(firstEdition);
+            user.RentMovie(firstEdition);
+            user.RentMovie(firstEdition);
+            user.RentMovie(firstEdition);
 
             // Step 3
             movies = Movie.MostDownloaded();
