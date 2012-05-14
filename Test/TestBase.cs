@@ -57,6 +57,7 @@ namespace RentIt.Tests
         [TestCleanup]
         public void TestCleanup()
         {
+            RentItService.RentItContext.ReloadDb();
             //this.scope.Dispose();
         }
     }

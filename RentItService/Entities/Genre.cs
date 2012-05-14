@@ -75,22 +75,19 @@ namespace RentItService.Entities
         /// <returns>The Genre</returns>
         public static Genre GetOrCreateGenre(string name)
         {
-            using (var db = new RentItContext())
+            var genres = RentItContext.Db.Genres.Where(g => g.Name.Equals(name));
+
+            if (!genres.Any())
             {
-                var genres = db.Genres.Where(g => g.Name.Equals(name));
+                var genreObj = new Genre(name);
 
-                if (!genres.Any())
-                {
-                    var genreObj = new Genre(name);
+                RentItContext.Db.Genres.Add(genreObj);
+                RentItContext.Db.SaveChanges();
 
-                    db.Genres.Add(genreObj);
-                    db.SaveChanges();
-
-                    return genreObj;
-                }
-
-                return genres.Single();
+                return genreObj;
             }
+
+            return genres.Single();
         }
 
         /// <summary>
@@ -99,10 +96,7 @@ namespace RentItService.Entities
         /// <returns>All genres</returns>
         public static IEnumerable<string> All()
         {
-            using (var db = new RentItContext())
-            {
-                return db.Genres.Select(genre => genre.Name).ToList();
-            }
+            return RentItContext.Db.Genres.Select(genre => genre.Name).ToList();
         } 
 
         #endregion Helpers

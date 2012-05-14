@@ -47,12 +47,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var testUser = TestUser.SystemAdmin;
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            Movie testMovie;
-
-            using (var db = new RentItContext())
-            {
-                testMovie = db.Movies.First();
-            }
+            Movie testMovie = Movie.All().First();
 
             var newTitle = "Trolling for beginners";
             var newDescription = "How to troll, for people new to the art";
@@ -73,12 +68,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             Movie.Edit(loggedinUser, newMovie);
 
-            Movie foundMovie;
-
-            using (var db = new RentItContext())
-            {
-                foundMovie = db.Movies.Include("Genres").First(m => m.ID == testMovie.ID);
-            }
+            Movie foundMovie = Movie.All().First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
             Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
@@ -107,6 +97,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var genre = "Sci-Fi2";
 
             movie.AddGenre(genre);
+
+            RentItContext.ReloadDb();
             
             var foundMovie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
 
@@ -125,25 +117,20 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void RemoveGenreTest()
         {
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
-                var genre = Genre.GetOrCreateGenre("Action");
+            var movie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
+            var genre = Genre.GetOrCreateGenre("Action");
 
-                Assert.IsTrue(genre != null);
-                Assert.IsTrue(movie != null);
+            Assert.IsTrue(genre != null);
+            Assert.IsTrue(movie != null);
 
-                movie.RemoveGenre(genre);
+            movie.RemoveGenre(genre);
 
-                db.SaveChanges();
-            }
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+            var foundMovie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
 
-                Assert.IsFalse(movie.Genres.Any(g => g.Name.Equals("Action")));
-            }
+            Assert.IsFalse(foundMovie.Genres.Any(g => g.Name.Equals("Action")));
         }
 
         /// <summary>
@@ -169,23 +156,20 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieInformationInvalidUserTypeTest()
         {
-            using (var db = new RentItContext())
-            {
-                var testUser = TestUser.User;
-                var testMovie = db.Movies.First();
+            var testUser = TestUser.User;
+            var testMovie = Movie.All().First();
 
-                var loggedinUser = User.Login(testUser.Username, testUser.Password);
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                var newMovie = new Movie
-                    {
-                        ID = testMovie.ID,
-                        Description = "How to troll, for people new to the art",
-                        ImagePath = "N/A",
-                        Title = "Trolling for beginners"
-                    };
+            var newMovie = new Movie
+                {
+                    ID = testMovie.ID,
+                    Description = "How to troll, for people new to the art",
+                    ImagePath = "N/A",
+                    Title = "Trolling for beginners"
+                };
 
-                Movie.Edit(loggedinUser, newMovie);
-            }
+            Movie.Edit(loggedinUser, newMovie);
         }
 
         /// <summary>
@@ -242,31 +226,28 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieFromOtherProvider()
         {
-            using (var db = new RentItContext())
+            const string Username = "SomeContentPublisher";
+            const string Password = "12345";
+
+            // Step 1
+            var movie = Movie.All().First();
+
+            // Step 2
+            User.SignUp(new User
             {
-                const string Username = "SomeContentPublisher";
-                const string Password = "12345";
+                Username = Username,
+                Password = Password,
+                Email = "publisher@somecompany.org"
+            });
 
-                // Step 1
-                var movie = db.Movies.First();
+            User.All().First(u => u.Username == Username).Type = UserType.ContentProvider;
+            RentItContext.Db.SaveChanges();
 
-                // Step 2
-                User.SignUp(new User
-                {
-                    Username = Username,
-                    Password = Password,
-                    Email = "publisher@somecompany.org"
-                });
+            // Step 3
+            var user = User.Login(Username, Password);
 
-                db.Users.First(u => u.Username == Username).Type = UserType.ContentProvider;
-                db.SaveChanges();
-
-                // Step 3
-                var user = User.Login(Username, Password);
-
-                // Step 4
-                Movie.Edit(user, movie);
-            }
+            // Step 4
+            Movie.Edit(user, movie);
         }
     }
 }

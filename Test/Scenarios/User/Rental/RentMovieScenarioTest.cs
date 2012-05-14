@@ -33,25 +33,19 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             // Arrange
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
-            Movie movie;
-            Edition edition;
 
-            using (var db = new RentItContext())
-            {
-                movie = db.Movies.Include("Editions").First(m => m.Editions.Count >= 1);
-                edition = movie.Editions.First();
+            var movie = Movie.All().First(m => m.Editions.Count >= 1);
+            var edition = movie.Editions.First();
 
-                Assert.IsFalse(db.Rentals.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
-            }
+            Assert.IsFalse(Rental.All().Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
 
             // Act
             User.RentMovie(user.Token, edition.ID);
 
+            RentItContext.ReloadDb();
+
             // Assert
-            using (var db = new RentItContext())
-            {
-                Assert.IsTrue(db.Rentals.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "The rental was not created.");
-            }
+            Assert.IsTrue(Rental.All().Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "The rental was not created.");
 
             movie = Movie.Get(user, movie.ID);
             Assert.IsTrue(movie.Rentals.Any(), "No rentals found for the movie.");
@@ -99,12 +93,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [ExpectedException(typeof(ArgumentNullException))]
         public void InvalidInputRentMovieTest()
         {
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Editions").First(m => m.Editions.Count > 0);
+            var movie = Movie.All().First(m => m.Editions.Count > 0);
 
-                User.RentMovie(null, movie.Editions.First().ID);
-            }
+            User.RentMovie(null, movie.Editions.First().ID);
         }
 
         /// <summary>
@@ -121,30 +112,27 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [ExpectedException(typeof(NoMovieFoundException))]
         public void RentalOfMovieWithFutureRelease()
         {
-            Movie movie;
-
             // Step 1
-            using (var db = new RentItContext())
+            var movie = new Movie
             {
-                movie = new Movie
-                {
-                    Title = "Some unique movie title",
-                    OwnerID = TestUser.ContentProvider.ID,
-                    ReleaseDate = DateTime.Now.AddDays(14)
-                };
-                db.Movies.Add(movie);
+                Title = "Some unique movie title",
+                OwnerID = TestUser.ContentProvider.ID,
+                ReleaseDate = DateTime.Now.AddDays(14)
+            };
 
-                movie.Editions.Add(new Edition
-                {
-                    Name = "HD 1080p Ultra Hi-Res Retina edition",
-                    FilePath = "This/Doesnt/Exist.exe"
-                });
+            RentItContext.Db.Movies.Add(movie);
 
-                db.SaveChanges();
-            }
+            movie.Editions.Add(new Edition
+            {
+                Name = "HD 1080p Ultra Hi-Res Retina edition",
+                FilePath = "This/Doesnt/Exist.exe"
+            });
+
+            RentItContext.Db.SaveChanges();
 
             // Step 2
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+            RentItContext.ReloadDb();
 
             // Step 3
             User.RentMovie(user.Token, movie.Editions.First().ID);
@@ -164,29 +152,27 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [ExpectedException(typeof(NoMovieFoundException))]
         public void RentalOfMovieWithoutReleaseDate()
         {
-            Movie movie;
-
             // Step 1
-            using (var db = new RentItContext())
+            var movie = new Movie
             {
-                movie = new Movie
-                {
-                    Title = "Some unique movie title",
-                    OwnerID = TestUser.ContentProvider.ID
-                };
-                db.Movies.Add(movie);
+                Title = "Some unique movie title",
+                OwnerID = TestUser.ContentProvider.ID
+            };
 
-                movie.Editions.Add(new Edition
-                {
-                    Name = "HD 1080p Ultra Hi-Res Retina edition",
-                    FilePath = "This/Doesnt/Exist.exe"
-                });
+            RentItContext.Db.Movies.Add(movie);
 
-                db.SaveChanges();
-            }
+            movie.Editions.Add(new Edition
+            {
+                Name = "HD 1080p Ultra Hi-Res Retina edition",
+                FilePath = "This/Doesnt/Exist.exe"
+            });
+
+            RentItContext.Db.SaveChanges();
 
             // Step 2
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+
+            RentItContext.ReloadDb();
 
             // Step 3
             User.RentMovie(user.Token, movie.Editions.First().ID);

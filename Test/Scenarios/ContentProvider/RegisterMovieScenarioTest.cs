@@ -51,17 +51,12 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     OwnerID = user.ID
                 };
 
-            using (var db = new RentItContext())
-            {
-                Assert.IsFalse(db.Movies.Any(m => m.Title == movie.Title), "Movie already exists in the database.");
-            }
+            Assert.IsFalse(Movie.All().Any(m => m.Title == movie.Title), "Movie already exists in the database.");
 
             Movie.Register(user, movie);
+            RentItContext.ReloadDb();
 
-            using (var db = new RentItContext())
-            {
-                Assert.IsTrue(db.Movies.Any(m => m.Title == movie.Title), "Movie does not exist in database!");
-            }
+            Assert.IsTrue(Movie.All().Any(m => m.Title == movie.Title), "Movie does not exist in database!");
         }
 
         /// <summary>

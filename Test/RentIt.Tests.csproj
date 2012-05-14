@@ -194,9 +194,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\RentItService\RentIt.Service.csproj">
       <Project>{DD96396C-97BF-4DD1-BE3C-7E4D9D1A3B88}</Project>
       <Name>RentIt.Service</Name>

@@ -4,6 +4,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
+using System.Linq;
+
 namespace RentItService.Entities
 {
     using System.Collections.Generic;
@@ -50,5 +52,10 @@ namespace RentItService.Entities
         /// Gets or sets a list of rentals for this movie edition.
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
+
+        public static IEnumerable<Edition> All()
+        {
+            return RentItContext.Db.Editions.ToList();
+        }
     }
 }
