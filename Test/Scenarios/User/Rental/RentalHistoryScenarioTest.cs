@@ -27,7 +27,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryTest()
         {
-            var user = TestUser.User;
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
             var movieEdition = Movie.All().First().Editions.First();
 
             user.RentMovie(movieEdition);
@@ -49,7 +49,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryNoRentals()
         {
-            var user = TestUser.User;
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");
         }
