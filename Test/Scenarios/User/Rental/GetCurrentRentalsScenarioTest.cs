@@ -44,8 +44,8 @@ namespace RentIt.Tests.Scenarios.User.Rental
             int rentalsCount = smith.Rentals.Count;
             int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(daysToRent) > DateTime.Now);
 
-            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
-            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
+            Assert.IsTrue(smith.GetCurrentRentals().All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+            Assert.IsTrue(smith.GetCurrentRentals().All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
 
             var rent1 = new Rental
                 {
@@ -73,22 +73,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             Assert.AreEqual(rentalsCount + 2, rentalsCount1, "The amount of rentals did not increase by 2.");
             Assert.AreEqual(currentRentalsCount + 1, currentRentalsCount1, "The current rentals did not increase by 1.");
 
-            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
-        }
-
-        /// <summary>
-        /// Purpose: Verify that it is not possible to call the method with a null value.
-        /// <para>
-        /// Steps:
-        ///     1. Attempt to call Get Current Users with a null value.
-        ///     2. Verify that ArgumentNullExpception is thrown.
-        /// </para>
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InvalidInputGetCurrentRentalsTest()
-        {
-            User.GetCurrentRentals(null);
+            Assert.IsTrue(smith.GetCurrentRentals().All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
         }
     }
 }

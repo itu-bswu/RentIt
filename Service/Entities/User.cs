@@ -46,6 +46,17 @@ namespace RentItService.Entities
         #region Properties
 
         /// <summary>
+        /// Gets all users.
+        /// </summary>
+        public static IEnumerable<User> All
+        {
+            get
+            {
+                return RentItContext.Db.Users.Include("Rentals").ToList();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the user's ID.
         /// </summary>
         public int ID { get; set; }
@@ -169,6 +180,19 @@ namespace RentItService.Entities
         }
 
         /// <summary>
+        /// Logs the user in, and assigns a new token.
+        /// </summary>
+        /// <param name="user">The user to login (with Username and Password)</param>
+        /// <returns>User object, containing the user's token</returns>
+        public static User Login(User user)
+        {
+            Contract.Requires<ArgumentNullException>(user.Username != null);
+            Contract.Requires<ArgumentNullException>(user.Password != null);
+
+            return Login(user.Username, user.Password);
+        }
+
+        /// <summary>
         /// Logs the user out, clearing the session.
         /// </summary>
         /// <param name="user">The user to log out.</param>
@@ -223,6 +247,10 @@ namespace RentItService.Entities
             return User.All.First(u => u.Token == token);
         }
 
+        #endregion Static methods
+
+        #region Methods
+
         /// <summary>
         /// Creates a rental entry in the database.
         /// </summary>
@@ -243,65 +271,44 @@ namespace RentItService.Entities
         /// <summary>
         /// Updates a user profile.
         /// </summary>
-        /// <param name="user">The editing user.</param>
-        /// <param name="editedUser">The updated user object.</param>
-        /// <returns>The edited user profile.</returns>
-        public static User Edit(User user, User editedUser)
+        /// <param name="editedUser">User object with updated info.</param>
+        public void Edit(User editedUser)
         {
-            Contract.Requires<ArgumentNullException>(user != null & editedUser != null);
+            Contract.Requires<ArgumentNullException>(editedUser != null);
             Contract.Requires<ArgumentNullException>(editedUser.Email != null);
             Contract.Requires<ArgumentNullException>(editedUser.Password != null);
             Contract.Requires<ArgumentException>(Validator.ValidateEmail(editedUser.Email));
 
-            Contract.Requires<InsufficientRightsException>(user.ID == editedUser.ID);
+            Contract.Requires<InsufficientRightsException>(this.ID == editedUser.ID);
 
-            var foundUser = All.First(u => u.ID.Equals(editedUser.ID));
-
-            foundUser.Email = editedUser.Email;
-            foundUser.FullName = editedUser.FullName;
-            foundUser.Password = Hash.Sha512(editedUser.Password + Salt);
+            this.Email = editedUser.Email;
+            this.FullName = editedUser.FullName;
+            this.Password = Hash.Sha512(editedUser.Password + Salt);
 
             RentItContext.Db.SaveChanges();
-
-            return foundUser;
         }
 
         /// <summary>
         /// Gets the uses rental history.
         /// </summary>
-        /// <param name="token">The session token.</param>
         /// <returns>The users rental history.</returns>
-        public static IEnumerable<Rental> GetRentalHistory(string token)
+        public IEnumerable<Rental> GetRentalHistory()
         {
-            return GetByToken(token).Rentals.ToList();
+            return this.Rentals;
         }
 
         /// <summary>
         /// Gets the current rentals of the user.
         /// </summary>
-        /// <param name="token">The session token.</param>
         /// <returns>The current rentals of the user.</returns>
-        public static IEnumerable<Rental> GetCurrentRentals(string token)
+        public IEnumerable<Rental> GetCurrentRentals()
         {
-            Contract.Requires<ArgumentNullException>(token != null);
-            Contract.Requires<ArgumentException>(GetByToken(token) != null);
-
-            var user = GetByToken(token);
-
             var daysToRent = int.Parse(ConfigurationManager.AppSettings["RentalDays"]);
             var limitRentalTime = DateTime.Now.AddDays(-daysToRent);
 
-            return Rental.All.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
+            return Rental.All.Where(r => r.UserID == this.ID & r.Time > limitRentalTime);
         }
 
-        #endregion Static methods
-
-        public static IEnumerable<User> All
-        {
-            get
-            {
-                return RentItContext.Db.Users.Include("Rentals").ToList();
-            }
-        }
+        #endregion Methods
     }
 }

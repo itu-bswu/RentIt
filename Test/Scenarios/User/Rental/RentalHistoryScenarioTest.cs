@@ -27,15 +27,15 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryTest()
         {
-            var user = TestUser.User;
+            var user = User.Login(TestUser.User);
             var movieEdition = Movie.All.First().Editions.First();
 
+            // Step 1
             user.RentMovie(movieEdition);
 
-            var result = User.GetRentalHistory(user.Token);
-
+            // Step 2
+            var result = user.GetRentalHistory();
             var rentals = user.Rentals.ToList();
-
             Assert.AreEqual(rentals.Count, result.Count(), "The list is not filled with the same amount of elements");
         }
 
@@ -49,9 +49,9 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryNoRentals()
         {
-            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
+            var user = User.Login(TestUser.User);
 
-            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");
+            Assert.AreEqual(0, user.GetRentalHistory().Count(), "The list is not empty");
         }
 
         /// <summary>
@@ -59,26 +59,29 @@ namespace RentIt.Tests.Scenarios.User.Rental
         ///          with multiple instance of the same movie will return the correct list.
         /// 
         /// Steps:
-        ///     1: Create an instance of user and fill it with valid information.
-        ///     2: Create an instance of movie and fill it with valid information.
-        ///     3: Create an instance of rental and fill it with valid information.
-        ///     4: Verify that the list contains the same amount of elements.
+        ///     1. Login as a user.
+        ///     2. Pick two movies for the test.
+        ///     3. Make the user rent the two movies from step 2.
+        ///     4. Verify that GetRentalHistory() contains the correct amount of elements.
         /// </summary>
         [TestMethod]
         public void MultipleRentalHistory()
         {
-            var user = TestUser.User;
+            // Step 1
+            var user = User.Login(TestUser.User);
+
+            // Step 2
             var movies = Movie.All.Take(2);
 
+            // Step 3
             foreach (var movie in movies)
             {
                 user.RentMovie(movie.Editions.First());
             }
 
-            var result = User.GetRentalHistory(user.Token);
-
+            // Step 4
+            var result = user.GetRentalHistory();
             var rentals = user.Rentals.ToList();
-
             Assert.AreEqual(rentals.Count, result.Count(), "The rental list dosn't contain the right amount of items.");
         }
 
@@ -93,25 +96,24 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void ContentproviderRentalHistory()
         {
-            var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+            var user = User.Login(TestUser.ContentProvider);
 
-            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Content Provider shouldn't have a rental history");
+            Assert.AreEqual(0, user.GetRentalHistory().Count(), "Content Provider shouldn't have a rental history");
         }
 
         /// <summary>
-        /// Purpose: Verify that a  admin has no rental history.
+        /// Purpose: Verify that a admin has no rental history.
         /// 
         /// Steps:
-        ///     1: Create an instance of user and fill it with valid information.
-        ///     2: Create an instance of movie and fill it with valid information.
+        ///     1: Login as a system admin.
         ///     3: Verify that the rental history is empty.
         /// </summary>
         [TestMethod]
         public void AdminRentalHistory()
         {
-            var user = User.Login(TestUser.SystemAdmin.Username, TestUser.SystemAdmin.Password);
+            var user = User.Login(TestUser.SystemAdmin);
 
-            Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "Admin shouldn't have a rental history");
+            Assert.AreEqual(0, user.GetRentalHistory().Count(), "Admin shouldn't have a rental history");
         }
     }
 }

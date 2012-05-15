@@ -102,7 +102,8 @@ namespace RentItService.Services
                 return false;
             }
 
-            user = User.Edit(editingUser, user);
+            editingUser.Edit(user);
+            user = editingUser;
             return true;
         }
     }

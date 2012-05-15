@@ -34,7 +34,8 @@ namespace RentItService.Services
                 return false;
             }
 
-            rentals = (scope == RentalScope.Current ? User.GetCurrentRentals(token) : User.GetRentalHistory(token));
+            var user = User.GetByToken(token);
+            rentals = (scope == RentalScope.Current ? user.GetCurrentRentals() : user.GetRentalHistory());
 
             return true;
         }

@@ -68,7 +68,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             };
 
             // Call edit profile
-            User.Edit(user2, user2);
+            user.Edit(user2);
             RentItContext.ReloadDb();
 
             // Assert and clean
@@ -114,7 +114,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Username = user.Username
             };
 
-            User.Edit(user1, user2);
+            user1.Edit(user2);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Username = user.Username
             };
 
-            User.Edit(user, user2);
+            user.Edit(user2);
         }
     }
 }
