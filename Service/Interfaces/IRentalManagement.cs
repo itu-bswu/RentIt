@@ -4,16 +4,13 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using RentItService.Enums;
-
 namespace RentItService.Interfaces
 {
-    using System;
-    using System.Diagnostics.Contracts;
+    using System.Collections.Generic;
     using System.ServiceModel;
     using Entities;
     using Library;
+    using RentItService.Enums;
 
     /// <summary>
     /// Interface for rental management.

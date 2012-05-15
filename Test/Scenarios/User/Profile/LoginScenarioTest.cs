@@ -33,9 +33,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [TestMethod]
         public void LoginWithExistingUser()
         {
-            string username = User.GenerateToken(); // Should be unique enough.
+            var username = User.GenerateToken(); // Should be unique enough.
             const string Password = "VeryUniquePassword";
-            int userId;
 
             // Pre-condition
             var user = new User
@@ -48,7 +47,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             User.SignUp(user);
             RentItContext.ReloadDb();
 
-            userId = User.All.First(u => u.Username == username).ID;
+            var userId = User.All.First(u => u.Username == username).ID;
 
             // Step 1
             var loggedIn = User.Login(username, Password);

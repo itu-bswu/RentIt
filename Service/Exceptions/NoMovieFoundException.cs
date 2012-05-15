@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NoMovieFoundException.cs" company="">
-//   
+// <copyright file="NoMovieFoundException.cs" company="RentIt">
+//   Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // <summary>
 //   Exception thrown when the requested movie wasn't found

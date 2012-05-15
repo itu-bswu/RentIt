@@ -1,4 +1,4 @@
-﻿//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // <copyright file="StringDifference.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -11,7 +11,7 @@ namespace RentItService.Library
     /// <summary>
     /// Static class for finding differences in strings
     /// </summary>
-    static class StringDifference
+    public static class StringDifference
     {
         /// <summary>
         /// Extension method on string for finding the difference between two strings.

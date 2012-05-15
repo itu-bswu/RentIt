@@ -7,12 +7,9 @@
 namespace RentIt.Tests.Scenarios.User.Rental
 {
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using RentItService;
-    using RentItService.Entities;
     using RentIt.Tests.Utils;
+    using RentItService.Entities;
 
     /// <summary>
     /// Scenario tests of the rentalhistory feature.
@@ -52,7 +49,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         [TestMethod]
         public void RentalHistoryNoRentals()
         {
-            var user = TestUser.User;
+            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             Assert.AreEqual(0, User.GetRentalHistory(user.Token).Count(), "The list is not empty");
         }

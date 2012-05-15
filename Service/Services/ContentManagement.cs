@@ -6,20 +6,10 @@
 
 namespace RentItService.Services
 {
-    using System;
-    using System.Diagnostics.Contracts;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
     using Entities;
     using Enums;
     using Interfaces;
     using Library;
-
-    using RentItService.Exceptions;
-    using RentItService.FunctionClasses;
-
-    using Tools;
 
     /// <summary>
     /// The RentIt service class.

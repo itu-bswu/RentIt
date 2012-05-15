@@ -6,6 +6,7 @@
 
 namespace Tools
 {
+    using System.Diagnostics.Contracts;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -18,6 +19,7 @@ namespace Tools
         /// </summary>
         /// <param name="email">Email to verify.</param>
         /// <returns>True for valid email; false otherwise.</returns>
+        [Pure]
         public static bool ValidateEmail(string email)
         {
             if (email == null)

@@ -6,7 +6,6 @@
 
 namespace RentIt.Tests
 {
-    using System.Transactions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentIt.Tests.Utils;
 

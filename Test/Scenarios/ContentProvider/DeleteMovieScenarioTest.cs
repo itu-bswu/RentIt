@@ -7,11 +7,9 @@
 namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using RentIt.Tests.Utils;
     using RentItService;
     using RentItService.Entities;

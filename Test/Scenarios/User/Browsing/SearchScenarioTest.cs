@@ -9,7 +9,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     using System;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService;
     using RentItService.Entities;
 
     /// <summary>
@@ -188,13 +187,12 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void SearchLimit()
         {
-            const string search_string = "the";
+            const string SearchString = "the";
 
-            var movie_count = Movie.Search(search_string).Count();
+            var movieCount = Movie.Search(SearchString).Count();
+            var searchLimit = movieCount - 1;
 
-            var search_limit = movie_count - 1;
-
-            Assert.AreEqual(search_limit, Movie.Search(search_string, search_limit).Count());
+            Assert.AreEqual(searchLimit, Movie.Search(SearchString, searchLimit).Count());
         }
     }
 }

@@ -14,7 +14,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
     using RentItService.Entities;
     using RentItService.Enums;
     using RentItService.Exceptions;
-    using RentItService.Services;
     using Utils;
 
     /// <summary>

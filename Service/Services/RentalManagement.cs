@@ -1,20 +1,17 @@
 ﻿//-------------------------------------------------------------------------------------------------
-// <copyright file="DownloadService.cs" company="RentIt">
+// <copyright file="RentalManagement.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using RentItService.Enums;
-
 namespace RentItService.Services
 {
-    using System;
-    using System.Diagnostics.Contracts;
+    using System.Collections.Generic;
     using Entities;
     using FunctionClasses;
     using Interfaces;
     using Library;
+    using RentItService.Enums;
 
     /// <summary>
     /// The download service class.

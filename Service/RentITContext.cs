@@ -34,16 +34,26 @@ namespace RentItService
         private static RentItContext db;
 
         /// <summary>
-        /// Getter for the context. Lazy loads context object
+        /// Gets the DbContext. Lazy loads context object
         /// </summary>
-        public static RentItContext Db { get { return (db ?? (db = new RentItContext())); } }
+        public static RentItContext Db
+        {
+            get
+            {
+                return (db ?? (db = new RentItContext()));
+            }
+        }
 
         /// <summary>
         /// Reloads the context;
         /// </summary>
         public static void ReloadDb()
         {
-            db.Dispose();
+            if (db != null)
+            {
+                db.Dispose();
+            }
+            
             db = null;
         }
 

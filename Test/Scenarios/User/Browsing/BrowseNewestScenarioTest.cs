@@ -100,10 +100,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void AddOneInFuture()
         {
-            Movie movie;
-
             // Step 1
-            movie = new Movie
+            var movie = new Movie
             {
                 Title = "Some unique movie title",
                 OwnerID = TestUser.ContentProvider.ID,
