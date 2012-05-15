@@ -288,7 +288,7 @@ namespace RentItService.Entities
 
             var user = GetByToken(token);
 
-            var daysToRent = int.Parse(ConfigurationSettings.AppSettings["RentalDays"]);
+            var daysToRent = int.Parse(ConfigurationManager.AppSettings["RentalDays"]);
             var limitRentalTime = DateTime.Now.AddDays(-daysToRent);
 
             return Rental.All.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();

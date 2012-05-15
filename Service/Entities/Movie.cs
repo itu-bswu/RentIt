@@ -184,7 +184,7 @@ namespace RentItService.Entities
             RentItContext.Db.Movies.Remove(movie);
             RentItContext.Db.SaveChanges();
 
-            foreach (var filePath in files.Select(file => ConfigurationSettings.AppSettings["BaseFilePath"] + file).Where(File.Exists))
+            foreach (var filePath in files.Select(file => ConfigurationManager.AppSettings["BaseFilePath"] + file).Where(File.Exists))
             {
                 File.Delete(filePath);
             }

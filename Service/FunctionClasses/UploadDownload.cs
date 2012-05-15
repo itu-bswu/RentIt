@@ -54,7 +54,7 @@ namespace RentItService.FunctionClasses
 
             try
             {
-                var filePath = Path.Combine(ConfigurationSettings.AppSettings["BaseFilePath"], movieFilePath);
+                var filePath = Path.Combine(ConfigurationManager.AppSettings["BaseFilePath"], movieFilePath);
                 FileStream targetStream;
                 var sourceStream = uploadRequest.FileByteStream;
                 using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -109,7 +109,7 @@ namespace RentItService.FunctionClasses
 
             var edition = Edition.All.First(m => m.ID == downloadRequest.ID);
 
-            var filePath = Path.Combine(ConfigurationSettings.AppSettings["BaseFilePath"], edition.FilePath);
+            var filePath = Path.Combine(ConfigurationManager.AppSettings["BaseFilePath"], edition.FilePath);
             var fileInfo = new FileInfo(filePath);
 
             // Check to see if file exists.

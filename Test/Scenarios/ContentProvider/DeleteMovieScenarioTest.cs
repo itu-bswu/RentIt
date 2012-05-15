@@ -7,8 +7,6 @@
 namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System;
-    using System.Configuration;
-    using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentIt.Tests.Utils;
@@ -33,7 +31,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         ///     1. Login as a content provider.
         ///     2. Attempt to delete the movie.
         ///     3. Verify that the movie no longer exists in the database.
-        ///     4. Verify that the files has been deleted.
         /// </summary>
         [TestMethod]
         public void DeleteMovieTest()
@@ -43,19 +40,12 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             // Pre-condition 1
             var movie = Movie.All.First(m => m.Editions.Count > 0);
-            var files = movie.Editions.Select(edition => edition.FilePath).ToList();
 
             // Step 2
             Movie.Delete(user, movie);
 
             // Step 3
             Assert.IsFalse(Movie.All.Any(m => m.ID == movie.ID), "Movie is still in the database.");
-
-            // Step 4
-            foreach (var filePath in files.Select(file => ConfigurationSettings.AppSettings["BaseFilePath"] + file))
-            {
-                Assert.IsFalse(File.Exists(filePath), "File has not been deleted.");
-            }
         }
 
         /// <summary>
