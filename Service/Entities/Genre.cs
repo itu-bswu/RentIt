@@ -38,6 +38,17 @@ namespace RentItService.Entities
         #region Properties
 
         /// <summary>
+        /// Gets all genres.
+        /// </summary>
+        public static IEnumerable<string> All
+        {
+            get
+            {
+                return RentItContext.Db.Genres.Select(genre => genre.Name);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the genres's ID.
         /// </summary>
         public int ID { get; set; }
@@ -88,21 +99,19 @@ namespace RentItService.Entities
             return genres.Single();
         }
 
-        /// <summary>
-        /// Returns all genres
-        /// </summary>
-        /// <returns>All genres</returns>
-        public static IEnumerable<string> All
-        {
-            get
-            {
-                return RentItContext.Db.Genres.Select(genre => genre.Name);
-            }
-        } 
-
         #endregion Helpers
 
         #region Overrides
+
+        /// <summary>
+        /// Allows implicit casting to string
+        /// </summary>
+        /// <param name="genre">The genre to cast</param>
+        /// <returns>The genre's name</returns>
+        public static implicit operator string(Genre genre)
+        {
+            return genre.Name;
+        }
 
         /// <summary>
         /// Determines whether or not two objects of type Genre are equal.
@@ -138,16 +147,6 @@ namespace RentItService.Entities
         public override int GetHashCode()
         {
             return (this.Name != null ? this.Name.GetHashCode() : 0);
-        }
-
-        /// <summary>
-        /// Allows implicit casting to string
-        /// </summary>
-        /// <param name="genre">The genre to cast</param>
-        /// <returns>The genre's name</returns>
-        public static implicit operator string(Genre genre)
-        {
-            return genre.Name;
         }
 
         #endregion Overrides
