@@ -279,7 +279,7 @@ namespace RentItService.Entities
         /// <returns>The found movies.</returns>
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(): sorting == MovieSorting.Newest? Newest(limit): All);
+            var movies = (sorting == MovieSorting.MostDownloaded ? MostDownloaded() : sorting == MovieSorting.Newest ? Newest(limit) : All);
 
             if (genre != null)
             {

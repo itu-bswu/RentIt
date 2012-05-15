@@ -14,7 +14,6 @@ namespace RentItService.Library
     /// </summary>
     public class MovieDownload : IComparable
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MovieDownload"/> class.
         /// </summary>
@@ -52,7 +51,6 @@ namespace RentItService.Library
             if (otherMovieDownload == null)
             {
                 throw new ArgumentException("Object is not a MovieDownload combination.");
-                
             }
 
             return this.NumberOfDownloads.CompareTo(otherMovieDownload.NumberOfDownloads);

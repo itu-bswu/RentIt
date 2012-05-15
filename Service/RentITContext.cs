@@ -17,6 +17,18 @@ namespace RentItService
     /// </summary>
     public class RentItContext : DbContext
     {
+        #region Fields
+
+        /// <summary>
+        /// Thead local context
+        /// </summary>
+        [ThreadStatic]
+        private static RentItContext db;
+
+        #endregion Fields
+
+        #region Constructor(s)
+
         /// <summary>
         /// Initializes static members of the <see cref="RentItContext"/> class.
         /// </summary>
@@ -25,13 +37,18 @@ namespace RentItService
             Database.SetInitializer<RentItContext>(null);
         }
 
-        #region Static getter
-
         /// <summary>
-        /// Thead local context
+        /// Initializes a new instance of the <see cref="RentItContext"/> class.
         /// </summary>
-        [ThreadStatic]
-        private static RentItContext db;
+        public RentItContext()
+        {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+        }
+
+        #endregion Constructor(s)
+
+        #region Context getter and reloader
 
         /// <summary>
         /// Gets the DbContext. Lazy loads context object
@@ -44,33 +61,7 @@ namespace RentItService
             }
         }
 
-        /// <summary>
-        /// Reloads the context;
-        /// </summary>
-        public static void ReloadDb()
-        {
-            if (db != null)
-            {
-                db.Dispose();
-            }
-            
-            db = null;
-        }
-
         #endregion
-
-        #region Constructor(s)
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RentItContext"/> class.
-        /// </summary>
-        public RentItContext()
-        {
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
-        }
-
-        #endregion Constructor(s)
 
         #region Entity collections
 
@@ -100,6 +91,23 @@ namespace RentItService
         public DbSet<Genre> Genres { get; set; }
 
         #endregion Entity collections
+
+        #region Context reloader
+
+        /// <summary>
+        /// Reloads the context;
+        /// </summary>
+        public static void ReloadDb()
+        {
+            if (db != null)
+            {
+                db.Dispose();
+            }
+
+            db = null;
+        }
+
+        #endregion Context reloader
 
         #region Configuration
 
