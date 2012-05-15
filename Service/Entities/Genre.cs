@@ -74,7 +74,7 @@ namespace RentItService.Entities
         /// <returns>true if it exists, false otherwise</returns>
         public static bool HasGenre(string name)
         {
-            return Genre.All.Any(g => g.Equals(name));
+            return All.Any(g => g.Equals(name));
         }
 
         /// <summary>

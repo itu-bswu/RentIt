@@ -244,7 +244,7 @@ namespace RentItService.Entities
                 return null;
             }
 
-            return User.All.First(u => u.Token == token);
+            return All.First(u => u.Token == token);
         }
 
         #endregion Static methods
