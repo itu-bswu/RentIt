@@ -7,16 +7,14 @@
 namespace RentItService.FunctionClasses
 {
     using System;
+    using System.Configuration;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
-
     using Entities;
     using Enums;
     using Exceptions;
     using Library;
-
-    using Tools;
 
     /// <summary>
     /// Functionality for upload and download.
@@ -56,7 +54,7 @@ namespace RentItService.FunctionClasses
 
             try
             {
-                var filePath = Path.Combine(Constants.UploadDownloadFileFolder, movieFilePath);
+                var filePath = Path.Combine(ConfigurationSettings.AppSettings["BaseFilePath"], movieFilePath);
                 FileStream targetStream;
                 var sourceStream = uploadRequest.FileByteStream;
                 using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -111,7 +109,7 @@ namespace RentItService.FunctionClasses
 
             var edition = Edition.All.First(m => m.ID == downloadRequest.ID);
 
-            var filePath = Path.Combine(Constants.UploadDownloadFileFolder, edition.FilePath);
+            var filePath = Path.Combine(ConfigurationSettings.AppSettings["BaseFilePath"], edition.FilePath);
             var fileInfo = new FileInfo(filePath);
 
             // Check to see if file exists.

@@ -7,6 +7,7 @@
 namespace RentIt.Tests.Scenarios.ContentProvider
 {
     using System;
+    using System.Configuration;
     using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,7 +16,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
     using RentItService.Entities;
     using RentItService.Enums;
     using RentItService.Exceptions;
-    using Tools;
 
     /// <summary>
     /// Scenario tests for the delete movie functionality.
@@ -52,7 +52,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             Assert.IsFalse(Movie.All.Any(m => m.ID == movie.ID), "Movie is still in the database.");
 
             // Step 4
-            foreach (var filePath in files.Select(file => Constants.UploadDownloadFileFolder + file))
+            foreach (var filePath in files.Select(file => ConfigurationSettings.AppSettings["BaseFilePath"] + file))
             {
                 Assert.IsFalse(File.Exists(filePath), "File has not been deleted.");
             }

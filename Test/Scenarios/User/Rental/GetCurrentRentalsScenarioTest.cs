@@ -8,15 +8,10 @@ namespace RentIt.Tests.Scenarios.User.Rental
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using RentIt.Tests.Utils;
-
     using RentItService;
     using RentItService.Entities;
-
-    using Tools;
 
     /// <summary>
     /// Scenario tests for the Get Current Rentals 
@@ -45,10 +40,11 @@ namespace RentIt.Tests.Scenarios.User.Rental
         {
             var smith = User.Login(TestUser.User.Username, TestUser.User.Password);
 
+            int daysToRent = 7;
             int rentalsCount = smith.Rentals.Count;
-            int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
+            int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(daysToRent) > DateTime.Now);
 
-            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
             Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
 
             var rent1 = new Rental
@@ -72,12 +68,12 @@ namespace RentIt.Tests.Scenarios.User.Rental
 
             smith = User.GetByToken(smith.Token);
             var rentalsCount1 = smith.Rentals.Count;
-            var currentRentalsCount1 = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
+            var currentRentalsCount1 = smith.Rentals.Count(r => r.Time.AddDays(daysToRent) > DateTime.Now);
 
             Assert.AreEqual(rentalsCount + 2, rentalsCount1, "The amount of rentals did not increase by 2.");
             Assert.AreEqual(currentRentalsCount + 1, currentRentalsCount1, "The current rentals did not increase by 1.");
 
-            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
         }
 
         /// <summary>

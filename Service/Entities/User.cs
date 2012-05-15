@@ -8,6 +8,7 @@ namespace RentItService.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Diagnostics.Contracts;
     using System.Linq;
     using Enums;
@@ -286,7 +287,9 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentException>(GetByToken(token) != null);
 
             var user = GetByToken(token);
-            var limitRentalTime = DateTime.Now.AddDays(-Constants.DaysToRent);
+
+            var daysToRent = int.Parse(ConfigurationSettings.AppSettings["RentalDays"]);
+            var limitRentalTime = DateTime.Now.AddDays(-daysToRent);
 
             return Rental.All.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
         }
