@@ -16,6 +16,17 @@ namespace RentItService.Entities
     public class Rental
     {
         /// <summary>
+        /// Gets all rentals.
+        /// </summary>
+        public static IEnumerable<Rental> All
+        {
+            get
+            {
+                return RentItContext.Db.Rentals;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the rental ID.
         /// </summary>
         public int ID { get; set; }
@@ -53,14 +64,6 @@ namespace RentItService.Entities
             get
             {
                 return Edition.Movie;
-            }
-        }
-
-        public static IEnumerable<Rental> All
-        {
-            get
-            {
-                return RentItContext.Db.Rentals;
             }
         }
     }
