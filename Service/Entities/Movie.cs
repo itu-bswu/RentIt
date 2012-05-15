@@ -21,6 +21,8 @@ namespace RentItService.Entities
     /// </summary>
     public class Movie
     {
+        #region Constructor(s)
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="Movie"/> class.
         /// </summary>
@@ -28,6 +30,23 @@ namespace RentItService.Entities
         {
             this.Genres = new List<Genre>();
             this.Editions = new List<Edition>();
+        }
+
+        #endregion Constructor(s)
+
+        #region Properties
+
+        /// <summary>
+        /// Gets all the movies in the database.
+        /// </summary>
+        /// <param name="limit">The maximum amount of elements to get (0 = unlimited).</param>
+        /// <returns>All the movie entries in the database.</returns>
+        public static IEnumerable<Movie> All
+        {
+            get
+            {
+                return RentItContext.Db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
+            }
         }
 
         /// <summary>
@@ -97,47 +116,9 @@ namespace RentItService.Entities
         /// </summary>
         public virtual ICollection<Genre> Genres { get; set; }
 
-        /// <summary>
-        /// Add a genre to the movie.
-        /// </summary>
-        /// <param name="name">The genre to add.</param>
-        public void AddGenre(string name)
-        {
-            Contract.Ensures(this.Genres.Count(g => g.Name.Equals(name)) == 1);
+        #endregion Properties
 
-            if (!this.Genres.Any(g => g.Name.Equals(name)))
-            {
-                var genre = (Genre.HasGenre(name) ? RentItContext.Db.Genres.Single(g => g.Name.Equals(name)) : new Genre(name));
-
-                this.Genres.Add(genre);
-
-                RentItContext.Db.SaveChanges();
-            }
-        }
-
-        /// <summary>
-        /// Remove a genre from the movie
-        /// </summary>
-        /// <param name="genre">The Genre</param>
-        public void RemoveGenre(string genre)
-        {
-            Contract.Ensures(Genres.Count(g => g.Name == genre) == 0);
-
-            if (Genres.Any(g => g.Name.Equals(genre)))
-            {
-                Genres.Remove(Genres.Single(g => g.Name == genre));
-            }
-        }
-
-        /// <summary>
-        /// Checks if the movie has a genre
-        /// </summary>
-        /// <param name="genre">The genre</param>
-        /// <returns>True if the movie has the genre</returns>
-        public bool HasGenre(string genre)
-        {
-            return Genres.Count(g => g.Name == genre) == 1;
-        }
+        #region Static Methods
 
         /// <summary>
         /// Get movie information for movie with given ID.
@@ -241,19 +222,6 @@ namespace RentItService.Entities
                           select movie).ToList();
 
             return (limit > 0 ? movies.Take(limit) : movies);
-        }
-
-        /// <summary>
-        /// Gets all the movies in the database.
-        /// </summary>
-        /// <param name="limit">The maximum amount of elements to get (0 = unlimited).</param>
-        /// <returns>All the movie entries in the database.</returns>
-        public static IEnumerable<Movie> All
-        {
-            get
-            {
-                return RentItContext.Db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
-            }
         }
 
         /// <summary>
@@ -377,5 +345,53 @@ namespace RentItService.Entities
 
             return referenceMovie;
         }
+
+        #endregion Static Methods
+
+        #region Methods
+        
+        /// <summary>
+        /// Add a genre to the movie.
+        /// </summary>
+        /// <param name="name">The genre to add.</param>
+        public void AddGenre(string name)
+        {
+            Contract.Ensures(this.Genres.Count(g => g.Name.Equals(name)) == 1);
+
+            if (!this.Genres.Any(g => g.Name.Equals(name)))
+            {
+                var genre = (Genre.HasGenre(name) ? RentItContext.Db.Genres.Single(g => g.Name.Equals(name)) : new Genre(name));
+
+                this.Genres.Add(genre);
+
+                RentItContext.Db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Remove a genre from the movie
+        /// </summary>
+        /// <param name="genre">The Genre</param>
+        public void RemoveGenre(string genre)
+        {
+            Contract.Ensures(this.Genres.Count(g => g.Name == genre) == 0);
+
+            if (this.Genres.Any(g => g.Name.Equals(genre)))
+            {
+                this.Genres.Remove(this.Genres.Single(g => g.Name == genre));
+            }
+        }
+
+        /// <summary>
+        /// Checks if the movie has a genre
+        /// </summary>
+        /// <param name="genre">The genre</param>
+        /// <returns>True if the movie has the genre</returns>
+        public bool HasGenre(string genre)
+        {
+            return this.Genres.Count(g => g.Name == genre) == 1;
+        }
+
+        #endregion Methods
     }
 }
