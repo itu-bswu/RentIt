@@ -112,7 +112,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -138,7 +140,7 @@
     <Compile Include="Scenarios\User\Rental\GetCurrentRentalsScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Rental\RentalHistoryScenarioTest.cs" />
-    <Compile Include="Service References\RentItServiceReference\Reference.cs">
+    <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -160,26 +162,29 @@
     <None Include="Properties\DataSources\RentItService.Entities.Rental.datasource" />
     <None Include="Properties\DataSources\RentItService.Entities.User.datasource" />
     <None Include="Properties\DataSources\RentItService.Library.RemoteFileStream.datasource" />
-    <None Include="Service References\RentItServiceReference\Service.wsdl" />
-    <None Include="Service References\RentItServiceReference\Service.xsd">
+    <None Include="Service References\ServiceReference\Service.wsdl" />
+    <None Include="Service References\ServiceReference\Service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItServiceReference\Service1.xsd">
+    <None Include="Service References\ServiceReference\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItServiceReference\Service2.xsd">
+    <None Include="Service References\ServiceReference\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItServiceReference\Service3.xsd">
+    <None Include="Service References\ServiceReference\Service3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItServiceReference\Service4.xsd">
+    <None Include="Service References\ServiceReference\Service4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItServiceReference\Service5.xsd">
+    <None Include="Service References\ServiceReference\Service5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RentItServiceReference\Service6.xsd">
+    <None Include="Service References\ServiceReference\Service6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference\Service7.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -194,9 +199,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RentItServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\RentItServiceReference\configuration.svcinfo" />
-    <None Include="Service References\RentItServiceReference\Reference.svcmap">
+    <None Include="Service References\ServiceReference\Service.disco" />
+    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -205,10 +211,10 @@
     <Content Include="Utils\Dataset\DropTables.sql" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\RentItServiceReference\" />
+    <Folder Include="Scenarios\SystemAdmin\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scenarios\SystemAdmin\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
