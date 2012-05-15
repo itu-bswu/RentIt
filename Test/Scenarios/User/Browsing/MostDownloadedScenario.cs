@@ -7,6 +7,7 @@
 namespace RentIt.Tests.Scenarios.User.Browsing
 {
     using System.Linq;
+    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService.Entities;
     using Utils;
@@ -82,7 +83,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Pre-condition 2 + 3
-            var movies = Movie.All;
+            IEnumerable<Movie> movies = Movie.All.ToList();
             var movieMultipleEditions = movies.First(m => m.Editions.Count > 1);
             var movieSingleEdition = movies.First(m => m.Editions.Count == 1);
 
