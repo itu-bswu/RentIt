@@ -34,14 +34,14 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         public void GetAllGenresTest()
         {
             // Step 1
-            var genres = Genre.All().ToList();
+            var genres = Genre.All.ToList();
 
             Assert.IsTrue(genres.Any(), "There are no genres in the data set.");
 
             var set = new HashSet<string>();
 
             // Step 2
-            foreach (var genre in Genre.All())
+            foreach (var genre in Genre.All)
             {
                 set.Add(genre);
             }
@@ -66,9 +66,9 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void BrowseKnownGenreTest()
         {
-            Assert.IsTrue(Movie.All().First().Genres.Any(), "First move has no genres.");
+            Assert.IsTrue(Movie.All.First().Genres.Any(), "First move has no genres.");
 
-            var testGenre = Movie.All().First().Genres.First().Name;
+            var testGenre = Movie.All.First().Genres.First().Name;
 
             // Step 1
             var movies = Movie.ByGenre(testGenre).ToList();
@@ -77,7 +77,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             Assert.IsTrue(movies.All(movie => movie.HasGenre(testGenre)), "A movie doesn't have the genre.");
 
             // Step 3
-            var movieCount = Movie.All().Count(movie => movie.HasGenre(testGenre));
+            var movieCount = Movie.All.Count(movie => movie.HasGenre(testGenre));
 
             // Step 4
             Assert.AreEqual(movieCount, movies.Count(), "Not the same number of movies returned.");

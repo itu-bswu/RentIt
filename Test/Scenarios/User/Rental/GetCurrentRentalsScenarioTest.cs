@@ -54,14 +54,14 @@ namespace RentIt.Tests.Scenarios.User.Rental
             var rent1 = new Rental
                 {
                     UserID = smith.ID,
-                    EditionID = Movie.All().First(m => m.Title == "The Matrix").Editions.First().ID,
+                    EditionID = Movie.All.First(m => m.Title == "The Matrix").Editions.First().ID,
                     Time = DateTime.Now
                 };
 
             var rent2 = new Rental
                 {
                     UserID = smith.ID,
-                    EditionID = Movie.All().First(m => m.Title == "Die Hard").Editions.First().ID,
+                    EditionID = Movie.All.First(m => m.Title == "Die Hard").Editions.First().ID,
                     Time = new DateTime(1753, 5, 15, 0, 0, 0)
                 };
 

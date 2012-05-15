@@ -34,10 +34,10 @@ namespace RentIt.Tests.Scenarios.User.Rental
             // Arrange
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            var movie = Movie.All().First(m => m.Editions.Count >= 1);
+            var movie = Movie.All.First(m => m.Editions.Count >= 1);
             var edition = movie.Editions.First();
 
-            Assert.IsFalse(Rental.All().Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
+            Assert.IsFalse(Rental.All.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "Rental exists before call of RentMovie.");
 
             // Act
             user.RentMovie(edition);
@@ -45,7 +45,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
             RentItContext.ReloadDb();
 
             // Assert
-            Assert.IsTrue(Rental.All().Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "The rental was not created.");
+            Assert.IsTrue(Rental.All.Any(r => r.UserID == user.ID & r.EditionID == edition.ID), "The rental was not created.");
 
             movie = Movie.Get(user, movie.ID);
             Assert.IsTrue(movie.Rentals.Any(), "No rentals found for the movie.");
@@ -73,7 +73,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void NotAUserRentMovieTest()
         {
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-            var movie = Movie.All().First(m => m.Editions.Count > 0);
+            var movie = Movie.All.First(m => m.Editions.Count > 0);
 
             user.RentMovie(movie.Editions.First());
         }

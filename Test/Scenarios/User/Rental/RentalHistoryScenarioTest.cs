@@ -31,7 +31,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void RentalHistoryTest()
         {
             var user = TestUser.User;
-            var movieEdition = Movie.All().First().Editions.First();
+            var movieEdition = Movie.All.First().Editions.First();
 
             user.RentMovie(movieEdition);
 
@@ -71,7 +71,7 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void MultipleRentalHistory()
         {
             var user = TestUser.User;
-            var movies = Movie.All().Take(2);
+            var movies = Movie.All.Take(2);
 
             foreach (var movie in movies)
             {

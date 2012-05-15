@@ -149,7 +149,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(user != null);
 
-            var movie = All().FirstOrDefault(m => m.ID == movieId);
+            var movie = All.FirstOrDefault(m => m.ID == movieId);
             if (movie != null && !movie.Released && movie.OwnerID != user.ID)
             {
                 movie.Editions = new List<Edition>();
@@ -172,7 +172,7 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
-            var movie = Movie.All().First(m => m.ID == movieObject.ID);
+            var movie = Movie.All.First(m => m.ID == movieObject.ID);
 
             if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
             {
@@ -203,7 +203,7 @@ namespace RentItService.Entities
             var searchTitle = search.ToLower();
             var components = searchTitle.Split(' ');
 
-            var result = from movie in Movie.All()
+            var result = from movie in Movie.All
                          let title = movie.Title.ToLower()
                          let titleComponents = title.Split(' ')
                          where titleComponents.Any(str => components.Any(str.Contains))
@@ -223,7 +223,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(genre != null);
 
-            return All().Where(movie => movie.Genres.Any(g => g.Name.Equals(genre))).ToList();
+            return All.Where(movie => movie.Genres.Any(g => g.Name.Equals(genre))).ToList();
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentException>(limit >= 0);
 
-            var movies = (from movie in Movie.All()
+            var movies = (from movie in Movie.All
                           where movie.ReleaseDate <= DateTime.Now
                           orderby movie.ReleaseDate descending
                           select movie).ToList();
@@ -248,13 +248,12 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="token">The session token.</param>
         /// <returns>All the movie entries in the database.</returns>
-        public static IEnumerable<Movie> All(int limit = 0)
+        public static IEnumerable<Movie> All
         {
-            Contract.Requires<ArgumentException>(limit >= 0);
-
-            var movies = RentItContext.Db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
-
-            return (limit == 0? movies: movies.Take(limit)).ToList();
+            get
+            {
+                return RentItContext.Db.Movies.Include("Editions").Include("Editions.Rentals").Include("Genres");
+            }
         }
 
         /// <summary>
@@ -265,7 +264,7 @@ namespace RentItService.Entities
         /// <returns>A list of movie objects.</returns>
         public static IEnumerable<Movie> MostDownloaded(int limit = 0)
         {
-            var movies = (from movie in Movie.All()
+            var movies = (from movie in Movie.All
                           orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
                           select movie).ToList();
 
@@ -281,7 +280,7 @@ namespace RentItService.Entities
         /// <returns>The found movies</returns>
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(): sorting == MovieSorting.Newest? Newest(limit): All());
+            var movies = (sorting == MovieSorting.MostDownloaded? MostDownloaded(): sorting == MovieSorting.Newest? Newest(limit): All);
 
             if (genre != null)
             {
@@ -344,7 +343,7 @@ namespace RentItService.Entities
                 Genre.GetOrCreateGenre(genre.Name);
             }
 
-            var referenceMovie = Movie.All().FirstOrDefault(movie => movie.ID == updatedMovie.ID);
+            var referenceMovie = Movie.All.FirstOrDefault(movie => movie.ID == updatedMovie.ID);
 
             if (referenceMovie == null)
             {
@@ -363,7 +362,7 @@ namespace RentItService.Entities
 
             var removeGenres = from genre in referenceMovie.Genres
                                where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
-                               select Genre.All().Single(genre.Name.Equals);
+                               select Genre.All.Single(genre.Name.Equals);
 
             foreach (var genre in removeGenres.ToList())
             {
@@ -372,7 +371,7 @@ namespace RentItService.Entities
 
             foreach (var genre in updatedMovie.Genres)
             {
-                referenceMovie.AddGenre(Genre.All().Single(genre.Equals));
+                referenceMovie.AddGenre(Genre.All.Single(genre.Equals));
             }
 
             RentItContext.Db.SaveChanges();

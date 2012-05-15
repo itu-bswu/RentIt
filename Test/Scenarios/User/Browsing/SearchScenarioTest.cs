@@ -90,7 +90,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 randString = rand.NextDouble().ToString("0.00");
             }
-            while (Movie.All().Any(movie => movie.Title.Contains(randString)));
+            while (Movie.All.Any(movie => movie.Title.Contains(randString)));
 
             // Step 2
             Assert.IsFalse(Movie.Search(randString).Any(), "One or more movies was returned, should not return any.");

@@ -57,9 +57,12 @@ namespace RentItService.Entities
             }
         }
 
-        public static IEnumerable<Rental> All()
+        public static IEnumerable<Rental> All
         {
-            return RentItContext.Db.Rentals.ToList();
+            get
+            {
+                return RentItContext.Db.Rentals;
+            }
         }
     }
 }

@@ -36,13 +36,13 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         public void GetAllMovies()
         {
             var numberOfMoviesFromDb = RentItContext.Db.Movies.Count();
-            var numberOfMoviesFromMethod = Movie.All().Count();
+            var numberOfMoviesFromMethod = Movie.All.Count();
 
             Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
 
             var allMovies = RentItContext.Db.Movies;
 
-            foreach (var m in Movie.All())
+            foreach (var m in Movie.All)
             {
                 Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the All method.");
             }
@@ -60,13 +60,13 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             RentItContext.ReloadDb();
 
             numberOfMoviesFromDb = RentItContext.Db.Movies.Count();
-            numberOfMoviesFromMethod = Movie.All().Count();
+            numberOfMoviesFromMethod = Movie.All.Count();
 
             Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
 
             allMovies = RentItContext.Db.Movies;
 
-            foreach (var m in Movie.All())
+            foreach (var m in Movie.All)
             {
                 Assert.IsTrue(allMovies.Any(q => q.ID == m.ID), "The database does not contain a movie that is returned by the All method.");
             }

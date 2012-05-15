@@ -47,7 +47,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             RentItContext.ReloadDb();
 
             // Step 4
-            Assert.IsTrue(User.All().Any(u => u.ID.Equals(user.ID) && u.Token != null));
+            Assert.IsTrue(User.All.Any(u => u.ID.Equals(user.ID) && u.Token != null));
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             {
                 token = User.GenerateToken();
             }
-            while (User.All().Any(u => u.Token == token));
+            while (User.All.Any(u => u.Token == token));
 
             // Step 2
             User.Logout(User.GetByToken(token));

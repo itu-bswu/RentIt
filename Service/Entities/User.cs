@@ -130,7 +130,7 @@ namespace RentItService.Entities
             user.Token = string.Empty;
             user.Password = Hash.Sha512(user.Password + Salt);
 
-            if (All().Any(u => u.Username == user.Username))
+            if (All.Any(u => u.Username == user.Username))
             {
                 throw new UsernameInUseException("Username is already in use!");
             }
@@ -154,12 +154,12 @@ namespace RentItService.Entities
 
             password = Hash.Sha512(password + Salt);
 
-            if (!All().ToList().Any(u => u.Username == username && u.Password == password))
+            if (!All.ToList().Any(u => u.Username == username && u.Password == password))
             {
                 throw new UserNotFoundException("No user with the given login information was found!");
             }
 
-            var user = All().ToList().First(u => u.Username == username && u.Password == password);
+            var user = All.ToList().First(u => u.Username == username && u.Password == password);
             user.Token = GenerateToken();
             RentItContext.Db.SaveChanges();
 
@@ -172,7 +172,7 @@ namespace RentItService.Entities
         /// <param name="user">The user to log out.</param>
         public static void Logout(User user)
         {
-            var foundUser = All().First(u => u.ID.Equals(user.ID));
+            var foundUser = All.First(u => u.ID.Equals(user.ID));
             foundUser.Token = null;
             RentItContext.Db.SaveChanges();
         }
@@ -198,7 +198,7 @@ namespace RentItService.Entities
 
                 token = string.Format("{0:x}", i - DateTime.Now.Ticks);
             }
-            while (All().Any(u => u.Token == token));
+            while (All.Any(u => u.Token == token));
 
             return token;
         }
@@ -212,12 +212,12 @@ namespace RentItService.Entities
         {
             Contract.Requires<UserNotFoundException>(token != null);
 
-            if (!All().Any(u => u.Token == token))
+            if (!All.Any(u => u.Token == token))
             {
                 return null;
             }
 
-            return User.All().First(u => u.Token == token);
+            return User.All.First(u => u.Token == token);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<NotAUserException>(Type == UserType.User);
 
-            if (!Movie.All().Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
+            if (!Movie.All.Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
             {
                 throw new NoMovieFoundException("No released movies found with the given ID.");
             }
@@ -253,7 +253,7 @@ namespace RentItService.Entities
 
             Contract.Requires<InsufficientRightsException>(user.ID == editedUser.ID);
 
-            var foundUser = All().First(u => u.ID.Equals(editedUser.ID));
+            var foundUser = All.First(u => u.ID.Equals(editedUser.ID));
 
             foundUser.Email = editedUser.Email;
             foundUser.FullName = editedUser.FullName;
@@ -287,14 +287,17 @@ namespace RentItService.Entities
             var user = GetByToken(token);
             var limitRentalTime = DateTime.Now.AddDays(-Constants.DaysToRent);
 
-            return Rental.All().Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
+            return Rental.All.Where(r => r.UserID == user.ID & r.Time > limitRentalTime).ToList();
         }
 
         #endregion Static methods
 
-        public static IEnumerable<User> All()
+        public static IEnumerable<User> All
         {
-            return RentItContext.Db.Users.Include("Rentals").ToList();
+            get
+            {
+                return RentItContext.Db.Users.Include("Rentals").ToList();
+            }
         }
     }
 }

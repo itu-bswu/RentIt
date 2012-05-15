@@ -53,9 +53,12 @@ namespace RentItService.Entities
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
 
-        public static IEnumerable<Edition> All()
+        public static IEnumerable<Edition> All
         {
-            return RentItContext.Db.Editions.ToList();
+            get
+            {
+                return RentItContext.Db.Editions;
+            }
         }
     }
 }

@@ -41,7 +41,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         public void GetMovieInformationValidTest()
         {
             var testUser = TestUser.User;
-            var testMovie = Movie.All().First();
+            var testMovie = Movie.All.First();
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
             var foundMovie = Movie.Get(loggedinUser, testMovie.ID);
@@ -78,7 +78,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         {
             string testToken = "Hello thar";
 
-            var testMovie = Movie.All().First();
+            var testMovie = Movie.All.First();
 
             //Movie.Get(testToken, testMovie.ID);
             Assert.IsTrue(false, "Take another look at this test");
@@ -150,7 +150,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             // Pre-condition 2
             var movie = Movie
-                .All()
+                .All
                 .OrderByDescending(m => m.ID)
                 .First();
 
@@ -209,7 +209,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             // Pre-condition 2
             var movie = Movie
-                .All()
+                .All
                 .OrderByDescending(m => m.ID)
                 .First();
 

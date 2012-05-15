@@ -186,7 +186,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [ExpectedException(typeof(UsernameInUseException))]
         public void SignUpWithExistingUsername()
         {
-            var existingUser = User.All().First();
+            var existingUser = User.All.First();
 
             var user = new User
             {

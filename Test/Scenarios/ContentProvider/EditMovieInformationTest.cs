@@ -47,7 +47,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var testUser = TestUser.SystemAdmin;
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            Movie testMovie = Movie.All().First();
+            Movie testMovie = Movie.All.First();
 
             var newTitle = "Trolling for beginners";
             var newDescription = "How to troll, for people new to the art";
@@ -68,7 +68,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             Movie.Edit(loggedinUser, newMovie);
 
-            Movie foundMovie = Movie.All().First(m => m.ID == testMovie.ID);
+            Movie foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
             Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
@@ -93,14 +93,14 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void AddGenreTest()
         {
-            var movie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
+            var movie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
             var genre = "Sci-Fi2";
 
             movie.AddGenre(genre);
 
             RentItContext.ReloadDb();
             
-            var foundMovie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
+            var foundMovie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
 
             Assert.IsTrue(foundMovie.HasGenre(genre));
         }
@@ -117,7 +117,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void RemoveGenreTest()
         {
-            var movie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
+            var movie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
             var genre = Genre.GetOrCreateGenre("Action");
 
             Assert.IsTrue(genre != null);
@@ -128,7 +128,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             RentItContext.Db.SaveChanges();
             RentItContext.ReloadDb();
 
-            var foundMovie = Movie.All().Single(m => m.Title.Equals("Die Hard"));
+            var foundMovie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
 
             Assert.IsFalse(foundMovie.Genres.Any(g => g.Name.Equals("Action")));
         }
@@ -157,7 +157,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         public void EditMovieInformationInvalidUserTypeTest()
         {
             var testUser = TestUser.User;
-            var testMovie = Movie.All().First();
+            var testMovie = Movie.All.First();
 
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
@@ -230,7 +230,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             const string Password = "12345";
 
             // Step 1
-            var movie = Movie.All().First();
+            var movie = Movie.All.First();
 
             // Step 2
             User.SignUp(new User
@@ -240,7 +240,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 Email = "publisher@somecompany.org"
             });
 
-            User.All().First(u => u.Username == Username).Type = UserType.ContentProvider;
+            User.All.First(u => u.Username == Username).Type = UserType.ContentProvider;
             RentItContext.Db.SaveChanges();
 
             // Step 3

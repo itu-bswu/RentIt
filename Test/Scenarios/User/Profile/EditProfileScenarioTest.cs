@@ -72,7 +72,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             RentItContext.ReloadDb();
 
             // Assert and clean
-            var user3 = User.All().First(u => u.Username == "Smith");
+            var user3 = User.All.First(u => u.Username == "Smith");
 
             Assert.AreEqual(oldID, User.Login(user3.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
             Assert.AreEqual(oldName.ToUpper(), user3.FullName, "The name was not changed as expected.");

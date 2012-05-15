@@ -44,14 +44,14 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             // Pre-condition 1
-            var movie = Movie.All().First(m => m.Editions.Count > 0);
+            var movie = Movie.All.First(m => m.Editions.Count > 0);
             var files = movie.Editions.Select(edition => edition.FilePath).ToList();
 
             // Step 2
             Movie.Delete(user, movie);
 
             // Step 3
-            Assert.IsFalse(Movie.All().Any(m => m.ID == movie.ID), "Movie is still in the database.");
+            Assert.IsFalse(Movie.All.Any(m => m.ID == movie.ID), "Movie is still in the database.");
 
             // Step 4
             foreach (var filePath in files.Select(file => Constants.UploadDownloadFileFolder + file))
@@ -72,7 +72,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void InsufficientAccessDeleteMovieTest()
         {
-            var testMovie = Movie.All().First();
+            var testMovie = Movie.All.First();
 
             // Step 1
             var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
@@ -118,7 +118,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             const string Password = "12345";
 
             // Step 1
-            var movie = Movie.All().First();
+            var movie = Movie.All.First();
 
             // Step 2
             User.SignUp(new User
@@ -128,7 +128,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 Email = "publisher@somecompany.org"
             });
 
-            User.All().First(u => u.Username == Username).Type = UserType.ContentProvider;
+            User.All.First(u => u.Username == Username).Type = UserType.ContentProvider;
             RentItContext.Db.SaveChanges();
 
             // Step 3

@@ -57,7 +57,7 @@ namespace RentItService.Services
                 return false;
             }
 
-            genres = Genre.All();
+            genres = Genre.All;
 
             return true;
         }

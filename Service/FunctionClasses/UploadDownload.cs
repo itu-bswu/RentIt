@@ -40,14 +40,14 @@ namespace RentItService.FunctionClasses
 
             Contract.Requires<InsufficientRightsException>(User.GetByToken(token).Type == UserType.ContentProvider);
 
-            var tempMovie = Movie.All().First(m => m.ID.Equals(movieID));
+            var tempMovie = Movie.All.First(m => m.ID.Equals(movieID));
 
             if (tempMovie == null)
             {
                 throw new NoMovieFoundException("Movie was not found in the database.");
             }
 
-            if (tempMovie.OwnerID != Movie.All().First(m => m.ID.Equals(movieID)).OwnerID)
+            if (tempMovie.OwnerID != Movie.All.First(m => m.ID.Equals(movieID)).OwnerID)
             {
                 throw new InsufficientRightsException("This user was not the one who registered the movie.");
             }
@@ -109,7 +109,7 @@ namespace RentItService.FunctionClasses
                 throw new InsufficientRightsException();
             }
 
-            var edition = Edition.All().First(m => m.ID == downloadRequest.ID);
+            var edition = Edition.All.First(m => m.ID == downloadRequest.ID);
 
             var filePath = Path.Combine(Constants.UploadDownloadFileFolder, edition.FilePath);
             var fileInfo = new FileInfo(filePath);

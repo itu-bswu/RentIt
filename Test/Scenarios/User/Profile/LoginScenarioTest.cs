@@ -48,7 +48,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             User.SignUp(user);
             RentItContext.ReloadDb();
 
-            userId = User.All().First(u => u.Username == username).ID;
+            userId = User.All.First(u => u.Username == username).ID;
 
             // Step 1
             var loggedIn = User.Login(username, Password);
@@ -81,7 +81,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 username = User.GenerateToken();
                 password = User.GenerateToken();
             }
-            while (User.All().Any(u => u.Username == username || u.Password == password));
+            while (User.All.Any(u => u.Username == username || u.Password == password));
 
             // Step 1
             User.Login(username, password);
@@ -112,7 +112,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 username = User.GenerateToken();
                 password = User.GenerateToken();
             }
-            while (User.All().Any(u => u.Username == username || u.Password == password));
+            while (User.All.Any(u => u.Username == username || u.Password == password));
 
             var user = new User
             {
@@ -153,7 +153,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 username = User.GenerateToken();
                 password = User.GenerateToken();
             }
-            while (User.All().Any(u => u.Username == username || u.Password == password));
+            while (User.All.Any(u => u.Username == username || u.Password == password));
 
             var user = new User
             {
@@ -195,7 +195,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 username = User.GenerateToken();
                 password = User.GenerateToken();
             }
-            while (User.All().Any(u => u.Username == username || u.Password == password));
+            while (User.All.Any(u => u.Username == username || u.Password == password));
 
             // Pre-condition 1
             var user1 = new User

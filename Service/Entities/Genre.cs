@@ -65,7 +65,7 @@ namespace RentItService.Entities
         /// <returns>true if it exists, false otherwise</returns>
         public static bool HasGenre(string name)
         {
-            return Genre.All().Any(g => g.Equals(name));
+            return Genre.All.Any(g => g.Equals(name));
         }
 
         /// <summary>
@@ -94,9 +94,12 @@ namespace RentItService.Entities
         /// Returns all genres
         /// </summary>
         /// <returns>All genres</returns>
-        public static IEnumerable<string> All()
+        public static IEnumerable<string> All
         {
-            return RentItContext.Db.Genres.Select(genre => genre.Name).ToList();
+            get
+            {
+                return RentItContext.Db.Genres.Select(genre => genre.Name);
+            }
         } 
 
         #endregion Helpers
