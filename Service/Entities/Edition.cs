@@ -14,12 +14,29 @@ namespace RentItService.Entities
     /// </summary>
     public class Edition
     {
+        #region Constructor(s)
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Edition"/> class.
         /// </summary>
         public Edition()
         {
             this.Rentals = new List<Rental>();
+        }
+
+        #endregion Constructor(s)
+
+        #region Properties
+        
+        /// <summary>
+        /// Gets all editions.
+        /// </summary>
+        public static IEnumerable<Edition> All
+        {
+            get
+            {
+                return RentItContext.Db.Editions;
+            }
         }
 
         /// <summary>
@@ -52,15 +69,6 @@ namespace RentItService.Entities
         /// </summary>
         public virtual ICollection<Rental> Rentals { get; set; }
 
-        /// <summary>
-        /// Returns all editions
-        /// </summary>
-        public static IEnumerable<Edition> All
-        {
-            get
-            {
-                return RentItContext.Db.Editions;
-            }
-        }
+        #endregion Properties
     }
 }
