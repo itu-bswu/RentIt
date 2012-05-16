@@ -145,6 +145,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service-level\ContentBrowsing\AllGenresServiceTest.cs" />
+    <Compile Include="Service-level\ContentBrowsing\GetMovieInformationServiceTest.cs" />
+    <Compile Include="Service-level\ContentBrowsing\GetMoviesServiceTest.cs" />
+    <Compile Include="Service-level\ContentBrowsing\SearchServiceTest.cs" />
+    <Compile Include="Service-level\ContentManagement\DeleteEditionServiceTest.cs" />
+    <Compile Include="Service-level\ContentManagement\DeleteMovieServiceTest.cs" />
+    <Compile Include="Service-level\ContentManagement\EditMovieServiceTest.cs" />
+    <Compile Include="Service-level\ContentManagement\RegisterMovieServiceTest.cs" />
+    <Compile Include="Service-level\RentalManagement\GetRentalsServiceTest.cs" />
+    <Compile Include="Service-level\RentalManagement\RentMovieServiceTest.cs" />
+    <Compile Include="Service-level\UserManagement\EditUserServiceTest.cs" />
+    <Compile Include="Service-level\UserManagement\LoginServiceTest.cs" />
+    <Compile Include="Service-level\UserManagement\LogoutServiceTest.cs" />
+    <Compile Include="Service-level\UserManagement\SignupServiceTest.cs" />
     <Compile Include="ServiceTest.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Utils\DataSet.cs" />

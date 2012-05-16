@@ -66,7 +66,7 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool Search(string token, string query, out IEnumerable<Movie> movies)
         {
-            if (token == null || User.GetByToken(token) == null)
+            if (token == null || User.GetByToken(token) == null || query == null)
             {
                 movies = null;
                 return false;
