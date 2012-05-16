@@ -45,7 +45,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             RentItContext.ReloadDb();
 
             // Step 4
-            Assert.IsTrue(User.All.Any(u => u.ID.Equals(user.ID) && u.Token == null));
+            Assert.IsTrue(User.All.Any(u => u.ID == user.ID && u.Token == null));
         }
 
         /// <summary>
