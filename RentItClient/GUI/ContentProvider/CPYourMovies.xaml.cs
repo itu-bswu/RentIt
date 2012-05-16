@@ -14,20 +14,6 @@
             this.InitializeComponent();
         }
 
-        private void UploadMovie(object sender, RoutedEventArgs e)
-        {
-            CPUploadMovies uploadMovies = new CPUploadMovies();
-            this.NavigationService.Navigate(uploadMovies);
-        }
-
-        private void YourMovies(object sender, RoutedEventArgs e)
-        {
-            //TODO: metoden skal give en CPs liste af oploaded film med hver gang den her knap bliver trykket
-            //TODO: så Listboxen i CPYourMovies kan blive lavet med de elementer
-            CPYourMovies yourMovies = new CPYourMovies();
-            this.NavigationService.Navigate(yourMovies);
-        }
-
         private void RegisterMovie(object sender, RoutedEventArgs e)
         {
             CPRegisterMovie registerMovie = new CPRegisterMovie();

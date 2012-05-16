@@ -1,11 +1,11 @@
-﻿<Page x:Class="RentItClient.GUI.User.DownloadMoviePage"
+﻿<Page x:Class="RentItClient.GUI.User.RentMoviePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="700"
-	Title="DownloadMoviePage">
+	Title="RentMoviePage">
 
     <Grid Width="720">
         <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
@@ -15,15 +15,16 @@
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="416,12,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133" />
         <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="487,161,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="487,190,0,0" Name="textRelease" Text="Release date: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="562,190,0,0" Name="textBlockRelease" Text="" VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="521,161,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="110" />
+
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="484,161,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="484,201,0,0" Name="textRelease" Text="Release date: " VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="578,201,0,0" Name="textBlockRelease" Text="" VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="578,161,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="110" />
         <TextBox IsReadOnly="True" Height="227" HorizontalAlignment="Left" Margin="21,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="437" />
         <!--Image Source="C:\Users\N3d0r\Desktop\The-Avengers-Poster.jpg" Margin="493,103,34,43"/> -->
-        <Button Content="Download movie" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="downloadmovie" VerticalAlignment="Top" Width="216" Click="DownloadMovieClick" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="534,219,0,0" Name="editionBlock" Text="" VerticalAlignment="Top" Width="99" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="487,219,0,0" Name="textEdition" Text="Edition: " VerticalAlignment="Top" Width="99" />
+        <Button Content="Rent movie" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="rentmovie" VerticalAlignment="Top" Width="216" Click="RentMovieClick" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="484,241,0,0" Name="textBlockChoosenEdition" Text="Choosen edition: " VerticalAlignment="Top" Width="110" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,145,0,0" Name="textBlockDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="578,241,0,0" Name="textBlockEdition" Text="" VerticalAlignment="Top" Width="110" />
     </Grid>
 </Page>

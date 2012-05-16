@@ -67,8 +67,8 @@
     <Compile Include="GUI\ContentProvider\CPRegisterMovie.xaml.cs">
       <DependentUpon>CPRegisterMovie.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ContentProvider\CPUploadMovies.xaml.cs">
-      <DependentUpon>CPUploadMovies.xaml</DependentUpon>
+    <Compile Include="GUI\ContentProvider\CPUploadEdition.xaml.cs">
+      <DependentUpon>CPUploadEdition.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\ContentProvider\CPViewMovie.xaml.cs">
       <DependentUpon>CPViewMovie.xaml</DependentUpon>
@@ -94,6 +94,9 @@
     <Compile Include="GUI\User\RentalHistory.xaml.cs">
       <DependentUpon>RentalHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\User\RentMoviePage.xaml.cs">
+      <DependentUpon>RentMoviePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\User\ViewMovieListPage.xaml.cs">
       <DependentUpon>ViewMovieListPage.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Types\GenreChecked.cs" />
+    <Compile Include="Types\GenreCheckList.cs" />
     <Compile Include="Types\Movie.cs" />
     <Compile Include="Types\User.cs" />
     <Compile Include="Types\UserType.cs" />
@@ -129,7 +134,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\ContentProvider\CPUploadMovies.xaml">
+    <Page Include="GUI\ContentProvider\CPUploadEdition.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -176,6 +181,10 @@
     <Page Include="GUI\User\RentalHistory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\User\RentMoviePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\User\ViewMovieListPage.xaml">
       <SubType>Designer</SubType>
