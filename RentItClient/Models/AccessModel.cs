@@ -4,10 +4,9 @@
 // </copyright>
 //------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-
 namespace RentItClient.Models
 {
+    using System.Diagnostics.Contracts;
     using System.Windows;
     using RentItService;
 

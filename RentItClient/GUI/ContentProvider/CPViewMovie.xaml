@@ -8,24 +8,24 @@
 	Title="CPViewMovie">
 
     <Grid Width="698">
-        <Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="173,42,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="141" Click="YourMovies" />
-        <Button Content="Upload Movies" Height="24" HorizontalAlignment="Left" Margin="332,42,0,0" Name="uploadMoviebutton" VerticalAlignment="Top" Width="141" Click="UploadMovie" />
-        <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="RegisterMovie" />
+        <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
+        <Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="159,12,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="141" Click="YourMovies" />
+        <Button Content="Register Movie" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="registerMoviebutton" VerticalAlignment="Top" Width="141" Click="RegisterMovie" />
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="Logout" />
 
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,111,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,157,0,0" Name="textGenre" Text="Genre: " VerticalAlignment="Top" Width="110" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="307,111,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,218,0,0" Name="textFiletoUpload" Text="file to upload: " VerticalAlignment="Top" Width="110" />
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,279,0,0" Name="textCoverImage" Text="CoverImage: " VerticalAlignment="Top" Width="110" />
-
-        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,125,0,0" Name="textBoxTitle" VerticalAlignment="Top" Width="223" />
-        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,172,0,0" Name="textBoxGenre" VerticalAlignment="Top" Width="223" />
-        <TextBox IsReadOnly="True" Height="195" HorizontalAlignment="Left" Margin="307,125,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="359" />
-        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,234,0,0" Name="textBoxFiletoUpload" VerticalAlignment="Top" Width="223" />
-        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,294,0,0" Name="textBoxCoverImage" VerticalAlignment="Top" Width="223" />
-
-        <Button Content="Edit information" Height="25" HorizontalAlignment="Left" Margin="370,344,0,0" Name="editinfo" VerticalAlignment="Top" Width="145" Click="EditInformationClick" />
-        <Button Content="Delete movie" Height="25" HorizontalAlignment="Left" Margin="521,344,0,0" Name="deletemovie" VerticalAlignment="Top" Width="145" Click="DeleteMovieClick" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,73,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,120,0,0" Name="textGenre" Text="Genre: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="43,168,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
+        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,88,0,0" Name="textBoxTitle" VerticalAlignment="Top" Width="223" />
+        <TextBox IsReadOnly="True" Height="26" HorizontalAlignment="Left" Margin="43,136,0,0" Name="textBoxGenre" VerticalAlignment="Top" Width="223" />
+        <TextBox IsReadOnly="True" Height="135" HorizontalAlignment="Left" Margin="43,183,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="359" />
+        <Button Content="Edit information" Height="25" HorizontalAlignment="Left" Margin="432,344,0,0" Name="editinfo" VerticalAlignment="Top" Width="116" Click="EditInformationClick" />
+        <Button Content="Delete movie" Height="25" HorizontalAlignment="Left" Margin="554,344,0,0" Name="deletemovie" VerticalAlignment="Top" Width="116" Click="DeleteMovieClick" />
+        
+        <ListBox Margin="420,73,69,113">
+            
+        </ListBox>
+        <Button Content="Delete edition" Height="25" HorizontalAlignment="Left" Margin="420,293,0,0" Name="deleteedition" VerticalAlignment="Top" Width="101" Click="DeleteEditionClick" />
+        <Button Content="Upload new edition" Height="25" HorizontalAlignment="Left" Margin="310,344,0,0" Name="uploadedition" VerticalAlignment="Top" Width="116" Click="UploadEditionClick" />
     </Grid>
 </Page>

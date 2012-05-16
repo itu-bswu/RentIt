@@ -85,8 +85,8 @@
     <Compile Include="GUI\User\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\User\MostRentedPage.xaml.cs">
-      <DependentUpon>MostRentedPage.xaml</DependentUpon>
+    <Compile Include="GUI\User\ListMoviesPage.xaml.cs">
+      <DependentUpon>ListMoviesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\User\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
@@ -116,7 +116,7 @@
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\DownloadMovieViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\EditProfileViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModels\MostRentedViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModels\ListMovieViewModel.cs" />
     <Compile Include="ViewModels\AdministrationViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\RentalHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\ViewMovieViewModel.cs" />
@@ -165,7 +165,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\User\MostRentedPage.xaml">
+    <Page Include="GUI\User\ListMoviesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

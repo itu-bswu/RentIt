@@ -25,17 +25,68 @@
 
         private void MostRented(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ListMoviesPage());
+            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
+            const string Caption = "Change window?";
+            const MessageBoxButton Button = MessageBoxButton.YesNo;
+            const MessageBoxImage Icon = MessageBoxImage.Warning;
+
+            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+
+            // Process message box results
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    // User pressed Yes button
+                    NavigationService.Navigate(new ListMoviesPage());
+                    break;
+                case MessageBoxResult.No:
+                    // User pressed No button
+                    break;
+            }
         }
 
         private void ViewProfile(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewProfilePage());
+            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
+            const string Caption = "Change window?";
+            const MessageBoxButton Button = MessageBoxButton.YesNo;
+            const MessageBoxImage Icon = MessageBoxImage.Warning;
+
+            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+
+            // Process message box results
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    // User pressed Yes button
+                    this.NavigationService.Navigate(new ViewProfilePage());
+                    break;
+                case MessageBoxResult.No:
+                    // User pressed No button
+                    break;
+            }
         }
 
         private void YourRentals(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RentalHistory());
+            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
+            const string Caption = "Change window?";
+            const MessageBoxButton Button = MessageBoxButton.YesNo;
+            const MessageBoxImage Icon = MessageBoxImage.Warning;
+
+            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+
+            // Process message box results
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    // User pressed Yes button
+                    this.NavigationService.Navigate(new RentalHistory());
+                    break;
+                case MessageBoxResult.No:
+                    // User pressed No button
+                    break;
+            }
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)

@@ -27,8 +27,9 @@
         {
             movie = ViewMovieViewModel.GetMovieInfo(mId);
             textBoxDescription.Text = movie.Description;
-            textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : "Not yet released";
-            textBlockTitle.Text = movie.Title;
+
+            // textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : "Not yet released"; TODO: use this elsewhere
+            textBoxTitle.Text = movie.Title;
         }
 
         /// <summary>
@@ -65,10 +66,12 @@
             NavigationService.Navigate(new LoginPage());
         }
 
-        private void RentMovieClick(object sender, RoutedEventArgs e)
+        private void SelectEditionClick(object sender, RoutedEventArgs e)
         {
+            //TODO: skal tage den valgte edition i listboxen og giver det videre
             ViewMovieViewModel.RentMovie(movie.ID);
-            NavigationService.Navigate(new DownloadMoviePage(movie.ID));
+            //TODO: skal rettes så den tage de korrekte parameter
+            //NavigationService.Navigate(new RentMoviePage(movie.ID));
         }
     }
 }
