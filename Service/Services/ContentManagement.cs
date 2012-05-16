@@ -113,7 +113,8 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool UploadEdition(string token, RemoteFileStream stream, ref Edition edition)
         {
-            if (token == null || stream == null || edition == null)
+            if (token == null || stream == null || edition == null ||
+                stream.FileByteStream == null || stream.FileName == null)
             {
                 return false;
             }
@@ -129,7 +130,7 @@ namespace RentItService.Services
                 return false;
             }
 
-            UploadDownload.UploadFile(token, edition.Name, stream, edition.MovieID);
+            edition = movie.UploadEdition(user, edition.Name, stream);
             return true;
         }
 

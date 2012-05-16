@@ -10,10 +10,11 @@ namespace RentItService.Entities
     using System.Collections.Generic;
     using System.Configuration;
     using System.Diagnostics.Contracts;
-    using System.Linq;
     using System.IO;
-    using RentItService.Enums;
-    using RentItService.Exceptions;
+    using System.Linq;
+    using Enums;
+    using Exceptions;
+    using Library;
 
     /// <summary>
     /// Movie edition entity (Entity Framework POCO class).
