@@ -140,7 +140,22 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool DeleteEdition(string token, Edition edition)
         {
-            return false;
+            if (token == null || edition == null)
+            {
+                return false;
+            }
+
+            var user = User.GetByToken(token);
+            var realEdition = Edition.Get(user, edition.ID);
+            if (user == null ||
+                realEdition == null ||
+                realEdition.Movie.OwnerID != user.ID)
+            {
+                return false;
+            }
+
+            realEdition.Delete(user);
+            return true;
         }
     }
 }

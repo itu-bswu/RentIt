@@ -125,5 +125,75 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             // Step 4
             Movie.Delete(user, movie);
         }
+
+        /// <summary>
+        /// Purpose: Verify that it is possible to delete a movie edition.
+        /// 
+        /// Pre-conditions:
+        ///     1. A content provider exists in the database.
+        ///     2. One or more movies are uploaded by the content provider from step 1.
+        ///     3. One or more editions exists for the movie in step 2.
+        /// 
+        /// Steps:
+        ///     1. Login as the content provider from pre-condition 1.
+        ///     2. Delete edition from pre-condition 3.
+        /// </summary>
+        [TestMethod]
+        public void DeleteMovieEdition()
+        {
+            // Pre-condition 1 / Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Pre-condition 2
+            var movie = user.UploadedMovies.First();
+
+            // Pre-cdontion 3
+            var edition = movie.Editions.First();
+
+            // Step 2
+            edition.Delete(user);
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is not possible to delete a movie edition, from 
+        ///          from another content provider.
+        /// 
+        /// Pre-conditions:
+        ///     1. A content provider exists in the database.
+        ///     2. One or more movies are uploaded by the content provider from pre-condition 1.
+        ///     3. One or more editions exists for the movie in pre-condition 2.
+        /// 
+        /// Steps:
+        ///     1. Create a new content provider.
+        ///     2. Login as the content provider from step 1.
+        ///     3. Delete edition from pre-condition 3.
+        ///     4. Verify it is not possible.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(InsufficientRightsException))]
+        public void DeleteMovieEditionFromOtherProvider()
+        {
+            string username = "NewProvider", password = "SomePasswordForNewProvider";
+
+            // Pre-condition 2
+            var movie = Movie.All.First();
+
+            // Pre-cdontion 3
+            var edition = movie.Editions.First();
+
+            // Step 1
+            User.SignUp(new User
+            {
+                Username = username,
+                Password = password,
+                Email = "careless@password.org"
+            });
+
+            // Step 2
+            var user = User.Login(username, password);
+
+            // Step 3
+            edition.Delete(user);
+        }
     }
 }
