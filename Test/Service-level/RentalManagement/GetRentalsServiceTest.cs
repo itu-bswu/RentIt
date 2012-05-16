@@ -36,5 +36,21 @@
             Assert.IsNotNull(rentals, "rentals is null");
             Assert.IsTrue(rentals.Any(), "received no rentals");
         }
+
+        /// <summary>
+        /// Purpose: Verify that GetRentals fail without a user token
+        /// 
+        /// Steps:
+        ///     1. Get rentals from a null user
+        ///     2. Verify that the method failed
+        /// </summary>
+        [TestMethod]
+        public void GetRentalsNullTest()
+        {
+            Rental[] rentals;
+            var result = RentalManagement.GetRentals(out rentals, null, RentalScope.All);
+
+            Assert.IsFalse(result, "GetRentals didn't fail");
+        }
     }
 }

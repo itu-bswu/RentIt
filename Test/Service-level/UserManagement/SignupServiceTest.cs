@@ -27,5 +27,15 @@
             Assert.IsTrue(result, "Signup failed");
             Assert.IsNotNull(user.ID, "User has not been assigned an id");
         }
+
+        [TestMethod]
+        public void SignupMissingInfoTest()
+        {
+            User user = new User();
+            var result = UserManagement.SignUp(ref user);
+
+            Assert.IsFalse(result, "Signup didn't fail");
+            Assert.IsNull(user.ID, "User has been assigned an id");
+        }
     }
 }

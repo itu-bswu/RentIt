@@ -39,5 +39,24 @@
             Assert.IsTrue(result, "EditUser failed");
             Assert.AreEqual(name, targetUser.FullName);
         }
+
+        /// <summary>
+        /// Purpose: Verify that EditUser fails on invalid input
+        /// 
+        /// Steps:
+        ///     1. Edit a null user
+        ///     2. Verify that the method failed
+        /// </summary>
+        [TestMethod]
+        public void EditUserNullTest()
+        {
+            User user;
+            UserManagement.Login(out user, TestUser.SystemAdmin.Username, TestUser.SystemAdmin.Password);
+
+            User targetUser = null;
+            var result = UserManagement.EditUser(user.Token, ref targetUser);
+
+            Assert.IsFalse(result, "EditUser didn't fail");
+        }
     }
 }
