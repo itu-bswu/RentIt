@@ -8,6 +8,7 @@ namespace RentItService.Services
 {
     using Entities;
     using Enums;
+    using FunctionClasses;
     using Interfaces;
     using Library;
 
@@ -108,26 +109,28 @@ namespace RentItService.Services
         /// </summary>
         /// <param name="token">The user's session token.</param>
         /// <param name="stream">The file stream</param>
-        /// <param name="edition">The edition. Should have title and movie</param>
+        /// <param name="edition">The edition. Should have title and movie id.</param>
         /// <returns>True on success; false otherwise.</returns>
         public bool UploadEdition(string token, RemoteFileStream stream, ref Edition edition)
         {
-            /*if (token == null || movie == null)
+            if (token == null || stream == null || edition == null)
             {
                 return false;
             }
 
             var user = User.GetByToken(token);
+            var movie = Movie.Get(user, edition.MovieID);
+
             if (user == null ||
+                movie == null ||
                 user.Type != UserType.ContentProvider ||
-                Movie.Get(movie.ID).OwnerID != user.ID)
+                movie.OwnerID != user.ID)
             {
                 return false;
             }
 
             UploadDownload.UploadFile(token, edition.Name, stream, edition.MovieID);
-            return true;*/
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -140,7 +143,22 @@ namespace RentItService.Services
         /// <returns>True on success; false otherwise.</returns>
         public bool DeleteEdition(string token, Edition edition)
         {
-            return false;
+            if (token == null || edition == null)
+            {
+                return false;
+            }
+
+            var user = User.GetByToken(token);
+            var realEdition = Edition.Get(user, edition.ID);
+            if (user == null ||
+                realEdition == null ||
+                realEdition.Movie.OwnerID != user.ID)
+            {
+                return false;
+            }
+
+            realEdition.Delete(user);
+            return true;
         }
     }
 }
