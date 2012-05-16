@@ -18,12 +18,14 @@
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,103,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,144,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="61,103,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="171" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="61,103,0,0" Name="textBoxTitle" Text="" VerticalAlignment="Top" Width="171" />
         <TextBox  IsReadOnly="True" Height="227" HorizontalAlignment="Left" Margin="21,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="437" />
         <Button Content="Select edition" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="selectEdition" VerticalAlignment="Top" Width="216" Click="SelectEditionClick" />
         <TextBlock Height="23" Width="170" Name="textBlockEdition" Text="Select edition to rent" Margin="472,144,78,232" />
         <ListBox Margin="472,161,32,51">
 
         </ListBox>
+        <TextBox IsReadOnly="True"  Height="23" HorizontalAlignment="Right" Margin="0,106,114,0" Name="textBoxGenre" Text="" VerticalAlignment="Top" Width="314" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="248,106,0,0" Name="textBlockGenre" Text="Genre: " VerticalAlignment="Top" Width="110" />
     </Grid>
 </Page>

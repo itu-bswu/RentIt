@@ -29,7 +29,7 @@
             textBoxDescription.Text = movie.Description;
 
             // textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : "Not yet released"; TODO: use this elsewhere
-            textBlockTitle.Text = movie.Title;
+            textBoxTitle.Text = movie.Title;
         }
 
         /// <summary>
