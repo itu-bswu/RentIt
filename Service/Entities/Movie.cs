@@ -391,6 +391,65 @@ namespace RentItService.Entities
             return this.Genres.Count(g => g.Name == genre) == 1;
         }
 
+        /// <summary>
+        /// Creates a new movie edition with the information specified. 
+        /// Uploading user and edition name must be set. RemoteFileStream must be 
+        /// non-null and must contain FileByteStream and FileName. The uploading 
+        /// user must be a content provider, and must be the owner of the movie.
+        /// </summary>
+        /// <param name="uploadingUser">The user uploading the file.</param>
+        /// <param name="editionName">The name of the edition to be created.</param>
+        /// <param name="uploadRequest">The upload remote file stream.</param>
+        /// <returns>An instance of Edition entity containing all information about the new edition created.</returns>
+        public Edition UploadEdition(User uploadingUser, string editionName, RemoteFileStream uploadRequest)
+        {
+            Contract.Requires<ArgumentNullException>(uploadingUser != null);
+            Contract.Requires<ArgumentNullException>(editionName != null);
+            Contract.Requires<ArgumentNullException>(uploadRequest != null);
+            Contract.Requires<ArgumentNullException>(uploadRequest.FileByteStream != null);
+            Contract.Requires<ArgumentNullException>(uploadRequest.FileName != null);
+            Contract.Requires<InsufficientRightsException>(uploadingUser.Type == UserType.ContentProvider);
+            Contract.Requires<InsufficientRightsException>(this.OwnerID == uploadingUser.ID);
+
+            var movieFilePath = this.ID + "_" + this.Title + Path.GetExtension(uploadRequest.FileName);
+
+            try
+            {
+                var filePath = Path.Combine(ConfigurationManager.AppSettings["BaseFilePath"], movieFilePath);
+                FileStream targetStream;
+                var sourceStream = uploadRequest.FileByteStream;
+                using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    const int BufferLength = 8192;
+                    var buffer = new byte[BufferLength];
+                    int count;
+                    while ((count = sourceStream.Read(buffer, 0, BufferLength)) > 0)
+                    {
+                        targetStream.Write(buffer, 0, count);
+                    }
+
+                    targetStream.Close();
+                    sourceStream.Close();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            var edition = new Edition
+            {
+                FilePath = movieFilePath,
+                Name = editionName,
+                MovieID = this.ID
+            };
+
+            this.Editions.Add(edition);
+            RentItContext.Db.SaveChanges();
+
+            return edition;
+        }
+
         #endregion Methods
     }
 }
