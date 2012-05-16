@@ -13,7 +13,7 @@ When the time came to start working on the client part of the project, we were h
 To be able to make a usability test in the first place, we need an interface for the user to test, so we sat down as a team and discused what functionality our client should have. Then we made a couple of paper mockups for users to test in the first usability test. Before we started the usability test, we prepared some usability goals, which, if met, would convince us that the current GUI design should be our final GUI design.
 
 List of usability goals:
-\begin{itemize}
+\begin{itemize}\addtolength{\itemsep}{-5pt}
 \item The user should be able to finish all given tasks within a time periode of 45 seconds.
 \item The user should be able to maneuver the client without need to ask the tester qustions.
 \item The user should be positive of the design.
@@ -25,7 +25,7 @@ List of usability goals:
 For the usability test itself we created a couple of scenarios. These scenarios were designed so that the user would be forced to navigate through all the clients functionalities.
 
 List of usability scenarios:
-\begin{itemize}
+\begin{itemize}\addtolength{\itemsep}{-5pt}
 \item Your have heard of this new movie rental service and you would like to sign up for it.
 \item You would like to rent "Batman the Begining" from the service.
 \item You would like to see what movies are most popular at the moment.
@@ -80,7 +80,7 @@ Figure \ref{fig:Design_Database_updated} on page \pageref{fig:Design_Database_up
 \subsubsection{User}
 \label{Design_Database_Tables_User}
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[user\_id] The user's unique ID number.
 \item[username] The user's unique username - used for login.
 \item[password] The user's password - hashed and salted.
@@ -95,7 +95,7 @@ The problem comes up if they get access to our codebase, as they will also get a
 
 The ``type'' field is an integer (since SQL Server 2008 doesn't have enum support) between 1 and 3. 
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[type 1] A value of 1 means that a given user is ``just'' a normal user.
 \item[type 2] A value of 2 means that the user is a content provider.
 \item[type 3] A value of 3 indicates a system administrator.
@@ -106,7 +106,7 @@ The ``token'' field is a session token. We didn't look much into the different W
 \subsubsection{Movie}
 \label{Design_Database_Tables_Movie}
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[movie\_id] The movie's unique ID number.
 \item[title] Title of the movie.
 \item[description] A more or less detailed description of the movie.
@@ -122,7 +122,7 @@ The release date is quite important. We took a decision to display all movies (a
 \subsubsection{Genre}
 \label{Design_Database_Tables_Genre}
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[genre\_id] The genre's unique ID number.
 \item[name] The name of the genre.
 \end{description}
@@ -132,7 +132,7 @@ We changed this to be its own table, when we discovered that a movie very easily
 \subsubsection{HasGenre}
 \label{Design_Database_Tables_HasGenre}
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[hasgenre\_id] Unique ID.
 \item[movie\_id] Reference to a movie in the Movie table.
 \item[genre\_id] Reference to a genre in the Genre table.
@@ -143,7 +143,7 @@ Junction table used to associate genres with movies. The movie and genre combina
 \subsubsection{Rental}
 \label{Design_Database_Tables_Rental}
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[rental\_id] The unique ID number of the rental.
 \item[user\_id] Reference to a user in the User table.
 \item[movie\_id] Reference to a movie in the Movie table.
@@ -156,7 +156,7 @@ This is probably the most important database in a rental system: the tracking of
 \label{Design_Database_Foreignkeys}
 To ensure integrity of fields referencing rows in other tables, we decided to add foreign keys. A foreign key is a check being run when deleting or updating rows in the database. We added those to everywhere we use IDs referencing other tables. These are:
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[Movie.user\_id] User reference for the owner of the movie.
 \item[Rental.user\_id] User reference to the user renting a given movie.
 \item[Rental.movie\_id] Movie reference to the movie being rented by the user.
@@ -178,7 +178,7 @@ We used Entity Framework version 4.1 as an ORM (Object-Relational Mapping), whic
 
 There is three or four different ways of getting started with Entity Framework:
 
-\begin{description}
+\begin{description}\addtolength{\itemsep}{-7pt}
 \item[Model-First] Drag and drop. You get a visual editor where you can create new boxes (which will end up as tables and entities) and put lines between them, to model how the different entities interact with each other. An XML-file is created automatically, and the database and entities are created from this.
 \item[Database-First] The other way round compared to Model-First. You start with creating the database, and then Entity Framework creates the XML file from the database. Then, just like Model-First, entities are created.
 \item[Code-First] With code-first you start out from the code. You create your own entities, which are a lot simpler than the generated entities in the two previous modes. These are called POCO-classes, which means ``Plain Old CLR Objects'', referring to the simplicity of these classes. When the POCO entities are created, you get Entity Framework to create the database for you.

@@ -3,9 +3,184 @@
 
 \subsection{HandIn 1}
 \label{Appendix_FSharp_Niklas_1}
+\begin{lstlisting}
+// Author: Niklas Hansen <nikl@itu.dk>
+module Handin1
+
+// Exercise 1
+let sqr (x:int) =
+    x * x
+
+// Exercise 2
+let pow (x:float) (y:float) =
+    x ** y
+
+// Exercise 3
+let dup (s:string) =
+    s + s
+
+// Exercise 4 - v1
+let rec dupn (s:string) (n:int) =
+    match n with
+    | 0 -> ""
+    | _ -> s + dupn s (n-1)
+
+// Exercise 4 - v2
+//let rec dupn (s:string) = function
+//    | 0 -> ""
+//    | n -> s + dupn s (n-1)
+
+// Exercise 5
+let timediff (h1:int, m1:int) (h2:int, m2:int) = 
+    ((h2 * 60) + m2) - ((h1 * 60) + m1)
+
+// Exercise 6
+let minutes (hh:int, mm:int) =
+    timediff (00, 00) (hh, mm)
+
+
+printfn "1. Sqr 3: %i" (sqr 3)
+printfn "2. pow 3 2: %f" (pow 3.0 2.0)
+printfn "3: dup \"Hi \": %s" (dup "Hi ")
+printfn "4. dupn \"Hi \" 3: %s" (dupn "Hi " 3)
+
+printfn "5a. timediff (12, 34) (11, 35): %i" (timediff (12, 34) (11, 35))
+printfn "5b. timediff (12, 34) (13, 35): %i" (timediff (12, 34) (13, 35))
+
+printfn "6a. minutes (14, 24): %i" (minutes (14, 24))
+printfn "6b. minutes (23, 1):  %i" (minutes (23, 1))
+\end{lstlisting}
 \subsection{HandIn 2}
 \label{Appendix_FSharp_Niklas_2}
+\begin{lstlisting}
+// Author: Niklas Hansen <nikl@itu.dk>
+module Handin2
+
+// Exercise 7a
+let rec downTo (n:int) =
+    if n > 0
+        then n :: downTo (n-1)
+        else []
+
+// Exercise 7b
+let rec downTo2 (n:int) =
+    match n with
+    | n when n <= 0 -> []
+    | _ -> n :: downTo2 (n-1)
+
+// Exercise 7b v2
+//let rec downTo2 = function
+//    | n when n <= 0 -> []
+//    | n -> n :: downTo2 (n-1)
+
+// Exercise 8
+let rec removeEven = function
+    | [] -> []
+    | [n] -> [n]
+    | n :: m :: tl -> n :: removeEven tl
+
+// Exercise 9
+let rec combinePair = function
+    | []-> []
+    | [n] -> []
+    | n :: m :: tl -> (n, m) :: combinePair tl
+
+// Exercise 10a
+let explode (s:string) =
+    let chars = s.ToCharArray()
+    List.ofArray(chars)
+
+// Exercise 10b
+let rec explode2 (s:string) =
+    match s with
+    | "" -> []
+    | _ -> s.Chars 0 :: explode2 (s.Remove(0, 1))
+
+// Exercise 11a
+let implode (c:char list) =
+    List.foldBack (fun x y -> sprintf "%c%s" x y) c ""
+
+// Exercise 11b
+let implodeRev (c:char list) =
+    List.fold (fun x y -> sprintf "%c%s" y x) "" c
+
+// Exercise 12a
+let toUpper (s:string) =
+    implode (List.map (fun x -> System.Char.ToUpper(x)) (explode s))
+
+// Exercise 12b
+let toUpper1 (s:string) =
+    (explode >> List.map (fun x -> System.Char.ToUpper(x)) >> implode) s
+
+// Exercise 12c
+let toUpper2 (s:string) =
+    s |> (implode << List.map (fun x -> System.Char.ToUpper(x)) << explode)
+
+// Exercise 13
+let palindrome (s:string) =
+    let org = s.ToLower().Replace(" ", "")
+    let rev = new string (Array.rev (org.ToCharArray()))
+    org = rev
+
+// Exercise 14
+let rec ack (m:int, n:int) =
+    match m, n with
+    | (0, n) -> n + 1
+    | (m, 0) when m > 0 -> ack(m - 1, 1)
+    | (m, n) when m > 0 && n > 0 -> ack(m - 1, ack(m, n - 1))
+    | (m, n) -> failwith "Invalid input!"
+
+// Addon for Exercise 15
+let time f =
+    let start = System.DateTime.Now
+    let res = f ()
+    let finish = System.DateTime.Now
+    (res, finish - start)
+
+// Exercise 15
+let timeArg1 f a =
+    time (fun () -> f a)
+
+
+printfn "7a. downTo 5: %s" ((downTo 5).ToString())
+printfn "7a. downTo -3: %s" ((downTo -3).ToString())
+printfn "7b. downTo2 5: %s" ((downTo2 5).ToString())
+
+printfn "8. removeEven [1; 2; 3; 4; 5]: %s" ((removeEven [1; 2; 3; 4; 5]).ToString())
+printfn "8. removeEven []: %s" ((removeEven []).ToString())
+printfn "8. removeEven [1]: %s" ((removeEven [1]).ToString())
+
+printfn "9. combinePair [1; 2; 3; 4]: %s" ((combinePair [1; 2; 3; 4]).ToString())
+printfn "9. combinePair [1; 2; 3]: %s" ((combinePair [1; 2; 3]).ToString())
+printfn "9. combinePair [1; 2]: %s" ((combinePair [1; 2]).ToString())
+printfn "9. combinePair []: %s" ((combinePair []).ToString())
+printfn "9. combinePair [1]: %s" ((combinePair [1]).ToString())
+
+printfn "10a. explode \"star\": %s" ((explode "star").ToString())
+printfn "10b. explode2 \"star\": %s" ((explode2 "star").ToString())
+
+printfn "11a. implode ['a';'b';'c']: %s" (implode ['a';'b';'c'])
+printfn "11b. implodeRev ['a';'b';'c']: %s" (implodeRev ['a';'b';'c'])
+
+printfn "12a. toUpper \"Hej\": %s " (toUpper "Hej")
+printfn "12b. toUpper1 \"Hej\": %s " (toUpper1 "Hej")
+printfn "12c. toUpper2 \"Hej\": %s " (toUpper2 "Hej")
+
+printfn "13. palindrome \"Anna\": %s" ((palindrome "Anna").ToString())
+printfn "13. palindrome \"Ann\": %s" ((palindrome "Ann").ToString())
+
+printfn "14. ack(3, 11): %i" (ack(3, 11))
+
+printfn "Extra. time: %s" ((time (fun () -> ack (3,11))).ToString())
+printfn "15. timeArg1 ack (3, 11): %s" ((timeArg1 ack (3, 11)).ToString())
+
+System.Console.ReadKey(true)
+\end{lstlisting}
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Niklas_3}
+\begin{lstlisting}
+\end{lstlisting}
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Niklas_4and5}
+\begin{lstlisting}
+\end{lstlisting}

@@ -1,8 +1,37 @@
-\chapter{Introduction}
-\label{Introduction}
-
+\chapter{Project overview}
+\label{Overview}
+In this chapter we discuss our take on the project "Software Development in Large Teams with International Collaboration", what we feel are the important parts of the project, the must-haves of the final product and the assumptions we make going into our requirement specification.
 \section{Problem analysis}
-\label{Introduction_analysis}
+\label{Overview_analysis}
+Not too many years ago, media rental of physical media was a lucrative business to be in\footnote{Blockbuster LLC\cite{Block-wiki} is an example of a successful company in the media rental industry.}. The last couple of years have been hard on companies making their business in physical media rental\cite{Block-loss}. This is, at least partially, due to the increasing popularity of companies like Netflix\cite{Netflix-wiki} making it easier to rent media digitally, thus enabling users to do it from home and not spend time going to the actual shops.
 
-\section{Assumptions}
-\label{Introduction_assumptions}
+To create a media rental service that would be seen as interesting (if not competitive), it has to be:
+\begin{my_itemize}
+\item Easy to use\footnote{Piracy is a major concern, and if the service does not provide something that is (at least) just as easy to use, people would rather be inclined to download illegally rather than pay for content from a service\cite{GN-interview}.}
+\item Price competitive\footnote{Rarely a problem with piracy, but if one services provides the same amount of media, support and access, price is certainly a factor.}
+\item (Optionally) Offer an expanded array of services compared to other services.
+\end{my_itemize}
+
+A wide array of media rental services already exist for books, movies/films, music and other media, so there are many sources to draw inspiration from. In addition, media rental services do not necessarily have to be run by private companies. Some institutions (like libraries\footnote{Roskilde Bibliotek is an example of a danish library providing similar functionality\cite{rosbib}.}) offer similar services for citizens.\\
+A service does not necessarily have to focus on one kind of media (like Netflix), as evidenced by Apple's iTunes Store\cite{ITstore}. 
+
+In addition to subjects concerning normal users of the service, the project description also mentions administrators. Administrators can upload, delete and edit movie information on the service. Because these types of administrator users provide content, we have decided to refer to them as \class{Content Provider}s. We make this distinction because we have a user type we called \class{Admin}s\footnote{\class{Admin}s are explained in further detail in our \nameref{Design} chapter (page \pageref{Design}).}.
+\section{Assumptions and decisions}
+\label{Overview_assumptions}
+In order to narrow down the focus and requirements for our system, we make some assumptions and decisions in addition to the points raised in the problem analysis. 
+\subsection{Choosing a service type}
+\label{Overview_assumptions_stype}
+As described in the problem analysis, the existing types of media rental services can be narrowed down to a) free public library rental type and b) paid media rental. They can be very similar (depending on development choices) and both types present some security issues (user information, credit cards, etc.).
+
+We decided to develop a paid media rental system, as we felt it had more options (such as payment models) in terms of functionality that could be implemented.
+\subsection{Choosing a media type}
+\label{Overview_assumptions_mtype}
+At first we wanted to make a streaming service for TV shows. This could involve paying for a single episode of a TV show or for a full season. After doing some research on what streaming would involve (compared to just downloading and saving a file), we changed the way we let users access our content. Instead of doing the streaming version, we decided to just let users download movie files and store them on their system.
+
+We also changed our intended media type. While we felt it could have been more interesting to do TV shows (compared to other types of media), we decided to pick a slightly less complex system and instead focus on designing the service to offer movie rentals. Designing the service to handle movies instead of TV shows would not make them vastly different, so we decided to focus on movies.
+\subsection{Digital Rights Management}
+\label{Overview_assumptions_DRM}
+Digital Rights Management (DRM) is an issue we will most likely run into. While we may limit how long users have active rentals on the service, there is a technical challenge in making sure users cannot view the downloaded files after rentals have expired. We do not consider DRM functionality core in the service, but we do have it as an optional goal for our service.
+\subsection{Author rights}
+\label{Overview_assumptions_Author}
+Author rights is another concept to consider. When we give \class{Content Provider}s the rights to upload movie files, they may be able to abuse this by uploading files they do not have author rights to. We do not consider this a central focus point in our system, but in order to ensure a great quality service in a broader perspective, some sort of validation of uploaded material should  be considered.

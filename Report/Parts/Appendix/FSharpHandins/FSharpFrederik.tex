@@ -3,9 +3,111 @@
 
 \subsection{HandIn 1}
 \label{Appendix_FSharp_Frederik_1}
+\begin{lstlisting}
+(* Student name: Frederik Roden Lysgaard
+   Mail: Frly@itu.dk *)
+module Module1
+
+//Opgave 1
+let sqr x = x*x
+
+//Opgave 2
+let pow x n = System.Math.Pow(x, n)
+
+//Opgave 3
+let dup x : string = x+x
+
+//Opgave 4
+let rec dupn (s : string)  (x : int) = if x = 1 then s else s + dupn s (x-1)
+
+//Opgave 5
+let timediff (hh1, mm1) (hh2, mm2) = (hh2*60 + mm2) - (hh1*60 + mm1)
+
+//Opgave 6
+let minutes (hh, mm) = timediff (00, 00) (hh, mm) 
+\end{lstlisting}
 \subsection{HandIn 2}
 \label{Appendix_FSharp_Frederik_2}
+\begin{lstlisting}
+(* Student name: Frederik Roden Lysgaard
+   Mail: Frly@itu.dk *)
+module Handin2
+
+//Opgave 7
+let downTo (n : int) = if n < 1 then [] else [n .. -1 .. 1]
+
+let downTo2 (n :int) = 
+    match n with
+    | n when n < 1 -> []
+    | _ -> [n .. -1 .. 1]
+
+//Opgave 8
+let rec removeEven (list :int list) =
+    match list with
+    | [] -> []
+    | [x] -> [x]
+    | a :: b :: rest -> a :: removeEven rest
+
+
+//Opgave 9
+let rec combinePair (list :int list) : (int*int) list =
+    match list with
+    | [] -> []
+    | [x] -> []
+    | a :: b :: rest -> (a, b) :: combinePair rest
+
+//Opgave 10
+let explode (s :string) : char list = List.ofArray (s.ToCharArray())
+
+let rec explode2 (s :string) : char list =
+    match s with
+    | s when s.Length < 1 -> []
+    | _ -> [s.[0]] @ explode2 (s.Substring 1)
+
+//Opgave 11
+let implode (s :char list) : string = 
+	List.foldBack (fun elem acc -> string (elem) + string(acc)) s ""
+
+let implodeRev (s :char list) : string = 
+	List.fold (fun elem acc -> string (acc) + string(elem)) "" s
+
+//Opgave 12
+let toUpper s = 
+	implode (List.map System.Char.ToUpper (explode s))
+
+let toUpper1 = 
+	explode >> List.map System.Char.ToUpper >> implode
+
+let toUpper2 s :string = 
+	explode s |> (implode << List.map System.Char.ToUpper)
+
+//Opgave 13
+let palindrome (s :string) = 
+	(explode s |> List.map System.Char.ToUpper |> implodeRev) = toUpper s
+
+//Opgave 14
+let rec ack (m, n) =
+    match (m, n) with
+    | (m, n) when m < 0 || n < 0 -> failwith "The Ackermann 
+			function is defined for non-negativ numbers only"
+    | (m, n) when m = 0 -> n + 1
+    | (m, n) when n = 0 -> ack (m - 1, 1)
+    | _ -> ack (m - 1, ack (m, n - 1))
+
+//Opgave 15
+let time f =
+  let start = System.DateTime.Now in
+  let res = f () in
+  let finish = System.DateTime.Now in
+  (res, finish - start)
+
+let timeArg1 f a = time (fun () -> f a)
+\end{lstlisting}
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Frederik_3}
+\begin{lstlisting}
+\end{lstlisting}
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Frederik_4and5}
+\begin{lstlisting}
+\end{lstlisting}
