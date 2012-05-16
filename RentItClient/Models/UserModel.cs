@@ -6,7 +6,6 @@
 namespace RentItClient.Models
 {
     using System.Collections.Generic;
-
     using RentItService;
 
     /// <summary>
@@ -18,41 +17,60 @@ namespace RentItClient.Models
         /// <summary>
         /// Rents a movie on the service.
         /// </summary>
-        /// <param name="movieId">The id of the movie to rent.</param>
+        /// <param name="editionId">The id of the movie to rent.</param>
+        /// <returns>True if rent was succesful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static void RentMovie(int movieId)
+        public static bool RentMovie(int editionId)
         {
-            ServiceClients.Uic.RentMovie(AccessModel.LoggedIn.Token, movieId);
+            var edition = new Edition
+                        {
+                            ID = editionId
+                        };
+
+            return ServiceClients.RentalManagement.RentMovie(AccessModel.LoggedIn.Token, edition);
         }
 
         /// <summary>
         /// Edits the users own profile.
         /// </summary>
         /// <param name="user">The user object containing the edited user profile.</param>
+        /// <returns>True if edit was succesful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static void EditProfile(User user)
+        public static bool EditProfile(User user)
         {
-            ServiceClients.Uic.EditProfile(AccessModel.LoggedIn.Token, user);
+            var password = user.Password;
+            var ret = ServiceClients.UserManagement.EditUser(AccessModel.LoggedIn.Token, ref user);
+            user.Password = password;
+            AccessModel.UpdateLoggedInUser(user);
+            return ret;
         }
 
         /// <summary>
         /// Gets the current and previous rentals of the user.
         /// </summary>
-        /// <returns>All the current and previous rentals of the user.</returns>
+        /// <param name="rentalHistory">All the current and previous rentals of the user.</param>>
+        /// <returns>True if rental information was collected successfully, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static IEnumerable<Rental> RentalHistory()
+        public static bool RentalHistory(out IEnumerable<Rental> rentalHistory)
         {
-            return ServiceClients.Uic.GetRentalHistory(AccessModel.LoggedIn.Token);
+            Rental[] rentals;
+            var ret = ServiceClients.RentalManagement.GetRentals(out rentals, AccessModel.LoggedIn.Token, RentalScope.All);
+            rentalHistory = rentals;
+            return ret;
         }
 
         /// <summary>
         /// Gets the current rentals of the user.
         /// </summary>
-        /// <returns>The current rentals of the user.</returns>
+        /// <param name="currentRentals">The current rentals of the user.</param>
+        /// <returns>True if rental information was collected successfully, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static IEnumerable<Rental> CurrentRentals()
+        public static bool CurrentRentals(out IEnumerable<Rental> currentRentals)
         {
-            return ServiceClients.Uic.GetCurrentRentals(AccessModel.LoggedIn.Token);
+            Rental[] rentals;
+            var ret = ServiceClients.RentalManagement.GetRentals(out rentals, AccessModel.LoggedIn.Token, RentalScope.Current);
+            currentRentals = rentals;
+            return ret;
         }
     }
 }

@@ -193,7 +193,7 @@
   <ItemGroup>
     <Compile Include="Models\AccessModel.cs" />
     <Compile Include="Models\AdministrationModel.cs" />
-    <Compile Include="Models\GetMovieInformationModel.cs" />
+    <Compile Include="Models\MovieInformationModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -218,7 +218,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\RentItService\RentItClient.RentItService.Genre.datasource">
+    <None Include="Service References\RentItService\RentItClient.RentItService.Edition.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RentItService\RentItClient.RentItService.Movie.datasource">
@@ -250,6 +250,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RentItService\Service5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RentItService\Service6.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RentItService\Service7.xsd">

@@ -25,7 +25,7 @@
 
             if (LoginViewModel.LoggedInUser == UserType.User)
             {
-                NavigationService.Navigate(new MostRentedPage());
+                NavigationService.Navigate(new ListMoviesPage());
             }
             else if (LoginViewModel.LoggedInUser == UserType.ContentProvider)
             {

@@ -41,7 +41,7 @@
 
         private void MostRented(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MostRentedPage());
+            NavigationService.Navigate(new ListMoviesPage());
         }
 
         private void ViewProfile(object sender, RoutedEventArgs e)

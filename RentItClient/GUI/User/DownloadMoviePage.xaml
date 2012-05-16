@@ -8,7 +8,7 @@
 	Title="DownloadMoviePage">
 
     <Grid Width="720">
-        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="MostRented"/>
+        <Button Content="List movies" Height="24" HorizontalAlignment="Left" Margin="12,42,0,0" Name="button1" VerticalAlignment="Top" Width="141" Click="ListMovies"/>
         <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="175,42,0,0" Name="button2" VerticalAlignment="Top" Width="141" Click="ViewProfile" />
         <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="339,42,0,0" Name="button3" VerticalAlignment="Top" Width="141" Click="YourRentals" />
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>

@@ -31,14 +31,14 @@ namespace RentItClient.ViewModels.UserViewModels
             foreach (var r in current)
             {
                 var mId = r.MovieID;
-                var title = GetMovieInformationModel.GetMovieInfo(r.MovieID).Title;
+                var title = MovieInformationModel.GetMovieInfo(r.MovieID).Title;
                 result.Add(Tuple.Create(title, mId, true));
             }
 
             foreach (var r in all)
             {
                 var mId = r.MovieID;
-                var title = GetMovieInformationModel.GetMovieInfo(r.MovieID).Title;
+                var title = MovieInformationModel.GetMovieInfo(r.MovieID).Title;
                 if (result.All(t => t.Item2 != mId))
                 {
                     result.Add(Tuple.Create(title, mId, false));

@@ -32,14 +32,14 @@ namespace RentItClient.ViewModels
         public static List<Tuple<string, int, bool>> Search(string searchString)
         {
             var current = UserModel.CurrentRentals().ToList();
-            var search = GetMovieInformationModel.Search(searchString).ToList();
+            var search = MovieInformationModel.Search(searchString).ToList();
 
             var result = new List<Tuple<string, int, bool>>();
 
             foreach (var s in search)
             {
                 var mId = s.ID;
-                var movie = GetMovieInformationModel.GetMovieInfo(s.ID);
+                var movie = MovieInformationModel.GetMovieInfo(s.ID);
                 var title = movie.Title;
                 if (movie.Released < DateTime.Now)
                 {

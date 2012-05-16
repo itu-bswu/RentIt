@@ -1,77 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentItService.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" />
-  <xs:complexType name="Movie">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Genres" nillable="true" type="tns:ArrayOfGenre" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
-      <xs:element minOccurs="0" name="OwnerID" type="xs:int" />
-      <xs:element minOccurs="0" name="Released" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Rentals" nillable="true" type="tns:ArrayOfRental" />
-      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Movie" nillable="true" type="tns:Movie" />
-  <xs:complexType name="ArrayOfGenre">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Genre" nillable="true" type="tns:Genre" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfGenre" nillable="true" type="tns:ArrayOfGenre" />
-  <xs:complexType name="Genre">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AssociatedMovies" nillable="true" type="tns:ArrayOfMovie" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Genre" nillable="true" type="tns:Genre" />
-  <xs:complexType name="ArrayOfMovie">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Movie" nillable="true" type="tns:Movie" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfMovie" nillable="true" type="tns:ArrayOfMovie" />
-  <xs:complexType name="User">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Rentals" nillable="true" type="tns:ArrayOfRental" />
-      <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RentItService.Enums" minOccurs="0" name="Type" type="q1:UserType" />
-      <xs:element minOccurs="0" name="TypeValue" type="xs:short" />
-      <xs:element minOccurs="0" name="UploadedMovies" nillable="true" type="tns:ArrayOfMovie" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="User" nillable="true" type="tns:User" />
-  <xs:complexType name="ArrayOfRental">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Rental" nillable="true" type="tns:Rental" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfRental" nillable="true" type="tns:ArrayOfRental" />
-  <xs:complexType name="Rental">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Movie" nillable="true" type="tns:Movie" />
-      <xs:element minOccurs="0" name="MovieID" type="xs:int" />
-      <xs:element minOccurs="0" name="Time" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
-      <xs:element minOccurs="0" name="UserID" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Rental" nillable="true" type="tns:Rental" />
-  <xs:complexType name="ArrayOfUser">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentItService.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="MovieSorting">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="Newest" />
+      <xs:enumeration value="MostDownloaded" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MovieSorting" nillable="true" type="tns:MovieSorting" />
+  <xs:simpleType name="UserType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="User">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ContentProvider">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SystemAdmin">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserType" nillable="true" type="tns:UserType" />
+  <xs:simpleType name="RentalScope">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All" />
+      <xs:enumeration value="Current" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="RentalScope" nillable="true" type="tns:RentalScope" />
 </xs:schema>

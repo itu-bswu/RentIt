@@ -21,7 +21,7 @@ namespace RentItClient.ViewModels.UserViewModels
         /// <returns>The requested movie.</returns>
         public static Movie GetMovieInfo(int id)
         {
-            return Movie.ConvertServiceMovie(GetMovieInformationModel.GetMovieInfo(id));
+            return Movie.ConvertServiceMovie(MovieInformationModel.GetMovieInfo(id));
         }
 
         /// <summary>

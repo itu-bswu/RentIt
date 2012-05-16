@@ -3,9 +3,9 @@
     using System.Windows;
     using System.Windows.Forms;
 
-    using RentItClient.Types;
-    using RentItClient.ViewModels;
-    using RentItClient.ViewModels.UserViewModels;
+    using Types;
+    using ViewModels;
+    using ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for DownloadMoviePage.xaml
@@ -43,9 +43,9 @@
             InitializeComponent();
         }
 
-        private void MostRented(object sender, RoutedEventArgs e)
+        private void ListMovies(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MostRentedPage());
+            NavigationService.Navigate(new ListMoviesPage());
         }
 
         private void ViewProfile(object sender, RoutedEventArgs e)
