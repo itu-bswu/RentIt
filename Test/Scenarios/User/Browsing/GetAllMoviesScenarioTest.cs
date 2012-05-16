@@ -40,7 +40,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
 
-            var allMovies = RentItContext.Db.Movies;
+            var allMovies = RentItContext.Db.Movies.ToList();
 
             foreach (var m in Movie.All)
             {
@@ -64,7 +64,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             Assert.AreEqual(numberOfMoviesFromDb, numberOfMoviesFromMethod, "The database does not contain the same amount of movies as returned by the All method.");
 
-            allMovies = RentItContext.Db.Movies;
+            allMovies = RentItContext.Db.Movies.ToList();
 
             foreach (var m in Movie.All)
             {

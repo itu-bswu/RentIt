@@ -337,7 +337,7 @@ namespace RentItService.Entities
 
             foreach (var genre in updatedMovie.Genres)
             {
-                referenceMovie.AddGenre(Genre.All.Single(genre.Equals));
+                referenceMovie.AddGenre(Genre.All.Single(genre.Name.Equals));
             }
 
             RentItContext.Db.SaveChanges();
