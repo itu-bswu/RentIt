@@ -8,7 +8,6 @@ namespace RentItService.Services
 {
     using Entities;
     using Enums;
-    using FunctionClasses;
     using Interfaces;
     using Library;
 

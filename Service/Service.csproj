@@ -139,7 +139,6 @@
     <Compile Include="Exceptions\UnknownGenreException.cs" />
     <Compile Include="Exceptions\UsernameInUseException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
-    <Compile Include="FunctionClasses\UploadDownload.cs" />
     <Compile Include="Interfaces\IRentalManagement.cs" />
     <Compile Include="Interfaces\IContentBrowsing.cs" />
     <Compile Include="Interfaces\IContentManagement.cs" />

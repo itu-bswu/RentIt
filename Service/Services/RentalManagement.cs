@@ -7,8 +7,8 @@
 namespace RentItService.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Entities;
-    using FunctionClasses;
     using Interfaces;
     using Library;
     using RentItService.Enums;
@@ -64,17 +64,25 @@ namespace RentItService.Services
         /// <param name="token">The user token</param>
         /// <param name="edition">The edition to download</param>
         /// <param name="stream">A filestream for downloading the movie</param>
-        /// <returns>Wether the request succeeded or not</returns>
+        /// <returns>Whether the request succeeded or not</returns>
         public bool DownloadFile(string token, Edition edition, out RemoteFileStream stream)
         {
-            if (token == null || User.GetByToken(token) == null)
+            if (token == null || edition == null)
             {
                 stream = null;
                 return false;
             }
 
-            stream = UploadDownload.DownloadFile(token, edition);
+            var user = User.GetByToken(token);
+            var downloadEdition = Edition.Get(user, edition.ID);
+            if (user == null || downloadEdition == null || 
+                !user.Rentals.Any(r => r.EditionID == downloadEdition.ID && r.UserID == user.ID))
+            {
+                stream = null;
+                return false;
+            }
 
+            stream = downloadEdition.Download(user);
             return true;
         }
     }

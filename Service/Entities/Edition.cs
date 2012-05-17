@@ -101,6 +101,33 @@ namespace RentItService.Entities
         }
 
         /// <summary>
+        /// Creates a stream for downloading a file from the server. 
+        /// The movie is identified by the ID in the instance of the Movie class.
+        /// </summary>
+        /// <param name="downloadingUser">The user downloading the file</param>
+        /// <returns>Remote File Stream</returns>
+        public RemoteFileStream Download(User downloadingUser)
+        {
+            Contract.Requires<ArgumentNullException>(downloadingUser != null);
+            Contract.Requires<InsufficientRightsException>(downloadingUser.Rentals.Any(x => x.EditionID == this.ID & x.UserID == downloadingUser.ID));
+
+            var filePath = Path.Combine(ConfigurationManager.AppSettings["BaseFilePath"], this.FilePath);
+            var fileInfo = new FileInfo(filePath);
+
+            // Check to see if file exists.
+            if (!fileInfo.Exists)
+            {
+                throw new FileNotFoundException("File not found", fileInfo.Name);
+            }
+
+            // Open stream
+            var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
+
+            // Set up rfs
+            return new RemoteFileStream(this.FilePath, fileInfo.Length, stream);
+        }
+
+        /// <summary>
         /// Delete the current edition. The deleting user has to 
         /// be owner of the movie of which the edition belongs.
         /// </summary>
