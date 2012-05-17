@@ -3,13 +3,15 @@
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------
+
 namespace RentItClient.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    using RentItClient.Models;
+    using System.Windows;
+    using Models;
+    using RentItService;
 
     /// <summary>
     /// View model containing functionality shared between many pages.
@@ -19,9 +21,10 @@ namespace RentItClient.ViewModels
         /// <summary>
         /// Logs the user out.
         /// </summary>
-        public static void LogOut()
+        /// <returns>True if logout was successful, false if not..</returns>
+        public static bool LogOut()
         {
-            AccessModel.LogOut();
+            return AccessModel.LogOut();
         }
 
         /// <summary>
@@ -29,28 +32,52 @@ namespace RentItClient.ViewModels
         /// </summary>
         /// <param name="searchString">The search string.</param>
         /// <returns>List of tuples containing movie titles and ids.</returns>
-        public static List<Tuple<string, int, bool>> Search(string searchString)
+        public static List<Tuple<string, int>> Search(string searchString)
         {
-            var current = UserModel.CurrentRentals().ToList();
-            var search = MovieInformationModel.Search(searchString).ToList();
+            List<Tuple<string, int>> returnValue = new List<Tuple<string, int>>();
+            IEnumerable<Movie> searchResult;
 
-            var result = new List<Tuple<string, int, bool>>();
+            var success = MovieInformationModel.Search(out searchResult, searchString);
 
-            foreach (var s in search)
+            if (success)
             {
-                var mId = s.ID;
-                var movie = MovieInformationModel.GetMovieInfo(s.ID);
-                var title = movie.Title;
-                if (movie.Released < DateTime.Now)
+                foreach (var s in searchResult)
                 {
-                    result.Add(
-                        current.All(a => a.MovieID != mId)
-                            ? Tuple.Create(title, mId, false)
-                            : Tuple.Create(title, mId, true));
+                    returnValue.Add(Tuple.Create(s.Title, s.ID));
                 }
+
+                return returnValue;
             }
 
-            return result;
+            AuthenticationError();
+            return null;
+        }
+
+        /// <summary>
+        /// Checks if a movie is currently rented.
+        /// </summary>
+        /// <param name="editionId">The movie id to check.</param>
+        /// <returns>True if movie is currently rented, false if not.</returns>
+        public static bool IsCurrentRental(int editionId)
+        {
+            IEnumerable<Rental> currentRentals;
+
+            if (UserModel.CurrentRentals(out currentRentals))
+            {
+                return currentRentals.Any(r => r.EditionID == editionId);
+            }
+
+            AuthenticationError();
+            return false;
+        }
+
+        /// <summary>
+        /// Shows a message box with an authentication error message then closes the application.
+        /// </summary>
+        public static void AuthenticationError()
+        {
+            MessageBox.Show("An authentication error occured. The client will have to close.");
+            Application.Current.MainWindow.Close();
         }
     }
 }

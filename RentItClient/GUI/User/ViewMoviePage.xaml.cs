@@ -2,34 +2,55 @@
 {
     using System.Windows;
 
-    using RentItClient.Types;
-    using RentItClient.ViewModels;
-    using RentItClient.ViewModels.UserViewModels;
+    using Types;
+    using ViewModels;
+    using ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for ViewMoviePage.xaml
     /// </summary>
     public partial class ViewMoviePage
     {
+        #region Fields
+
         /// <summary>
         /// The movie the page is showing.
         /// </summary>
         private readonly Movie movie;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewMoviePage"/> class.
         /// </summary>
-        /// <param name="mId">
-        /// The id of the movie to display.
-        /// </param>
+        /// <param name="mId">The id of the movie to display.</param>
         public ViewMoviePage(int mId)
             : this()
         {
             movie = ViewMovieViewModel.GetMovieInfo(mId);
-            textBoxDescription.Text = movie.Description;
+            var genres = string.Empty;
+            foreach (var g in movie.Genres)
+            {
+                genres += g + ", ";
+            }
 
-            // textBlockRelease.Text = movie.ReleaseDate.Year != 0001 ? movie.ReleaseDate.ToLongDateString() : "Not yet released"; TODO: use this elsewhere
+            if (movie.ReleaseDate != null)
+            {
+                textBoxRelease.Text = movie.ReleaseDate.Value.ToLongDateString();
+            }
+            else
+            {
+                textBoxRelease.Text = "Not Yet Released";
+            }
+            textBoxGenre.Text = genres;
+            textBoxDescription.Text = movie.Description;
             textBoxTitle.Text = movie.Title;
+
+            // Edition list box
+            EditionListBox.ItemsSource = movie.Editions;
+            EditionListBox.DisplayMemberPath = "Item1";
+            EditionListBox.SelectedValuePath = "Item2";
+
         }
 
         /// <summary>
@@ -39,39 +60,54 @@
         {
             InitializeComponent();
         }
+        #endregion
 
-        private void MostRented(object sender, RoutedEventArgs e)
+        #region Click Methods
+
+        private void ListMoviesClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListMoviesPage());
         }
 
-        private void ViewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfileClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void YourRentals(object sender, RoutedEventArgs e)
+        private void YourRentalsClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RentalHistory());
+            NavigationService.Navigate(new RentalHistoryPage());
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+            NavigationService.Navigate(new ListMoviesPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
-            MasterViewModel.LogOut();
-            NavigationService.Navigate(new LoginPage());
+            if (MainWindow.LogOut())
+            {
+                NavigationService.Navigate(new LoginPage());
+            }
         }
 
         private void SelectEditionClick(object sender, RoutedEventArgs e)
         {
-            //TODO: skal tage den valgte edition i listboxen og giver det videre
-            ViewMovieViewModel.RentMovie(movie.ID);
-            //TODO: skal rettes så den tage de korrekte parameter
-            //NavigationService.Navigate(new RentMoviePage(movie.ID));
+            if (EditionListBox.SelectedIndex != -1)
+            {
+                var selectedId = (int)EditionListBox.SelectedValue;
+
+                if (MasterViewModel.IsCurrentRental(selectedId))
+                {
+                    NavigationService.Navigate(new DownloadEditionPage(movie, selectedId));
+                }
+                else
+                {
+                    NavigationService.Navigate(new ViewEditionPage(movie, selectedId));
+                }
+            }
         }
+        #endregion
     }
 }

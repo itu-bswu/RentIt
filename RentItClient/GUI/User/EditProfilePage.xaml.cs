@@ -2,14 +2,16 @@
 {
     using System.Windows;
 
-    using RentItClient.ViewModels;
-    using RentItClient.ViewModels.UserViewModels;
+    using ViewModels;
+    using ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for EditProfilePage.xaml
     /// </summary>
     public partial class EditProfilePage
     {
+        #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EditProfilePage"/> class.
         /// </summary>
@@ -22,82 +24,45 @@
             passwordBoxPassword.Password = u.Password;
             passwordBoxConfirmPassword.Password = u.Password;
         }
+        #endregion
 
-        private void MostRented(object sender, RoutedEventArgs e)
+        #region Click methods
+
+        private void ListMoviesClick(object sender, RoutedEventArgs e)
         {
-            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
-            const string Caption = "Change window?";
-            const MessageBoxButton Button = MessageBoxButton.YesNo;
-            const MessageBoxImage Icon = MessageBoxImage.Warning;
-
-            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
-
-            // Process message box results
-            switch (result)
+            if (MainWindow.ChangeWindow())
             {
-                case MessageBoxResult.Yes:
-                    // User pressed Yes button
-                    NavigationService.Navigate(new ListMoviesPage());
-                    break;
-                case MessageBoxResult.No:
-                    // User pressed No button
-                    break;
+                NavigationService.Navigate(new ListMoviesPage());
             }
         }
 
-        private void ViewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfileClick(object sender, RoutedEventArgs e)
         {
-            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
-            const string Caption = "Change window?";
-            const MessageBoxButton Button = MessageBoxButton.YesNo;
-            const MessageBoxImage Icon = MessageBoxImage.Warning;
-
-            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
-
-            // Process message box results
-            switch (result)
+            if (MainWindow.ChangeWindow())
             {
-                case MessageBoxResult.Yes:
-                    // User pressed Yes button
-                    this.NavigationService.Navigate(new ViewProfilePage());
-                    break;
-                case MessageBoxResult.No:
-                    // User pressed No button
-                    break;
+                NavigationService.Navigate(new ViewProfilePage());
             }
         }
 
-        private void YourRentals(object sender, RoutedEventArgs e)
+        private void YourRentalsClick(object sender, RoutedEventArgs e)
         {
-            const string MessageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
-            const string Caption = "Change window?";
-            const MessageBoxButton Button = MessageBoxButton.YesNo;
-            const MessageBoxImage Icon = MessageBoxImage.Warning;
-
-            MessageBoxResult result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
-
-            // Process message box results
-            switch (result)
+            if (MainWindow.ChangeWindow())
             {
-                case MessageBoxResult.Yes:
-                    // User pressed Yes button
-                    this.NavigationService.Navigate(new RentalHistory());
-                    break;
-                case MessageBoxResult.No:
-                    // User pressed No button
-                    break;
+                NavigationService.Navigate(new RentalHistoryPage());
             }
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+            NavigationService.Navigate(new ListMoviesPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
-            MasterViewModel.LogOut();
-            NavigationService.Navigate(new LoginPage());
+            if (MainWindow.LogOut())
+            {
+                NavigationService.Navigate(new LoginPage());
+            }
         }
 
         private void SaveChangesClick(object sender, RoutedEventArgs e)
@@ -108,28 +73,36 @@
                 return;
             }
 
-            const string MessageBoxText = "Do you want to save changes?";
-            const string Caption = "Save Changes?";
-            const MessageBoxButton Button = MessageBoxButton.YesNoCancel;
-            const MessageBoxImage Icon = MessageBoxImage.Warning;
-            var result = MessageBox.Show(MessageBoxText, Caption, Button, Icon);
+            const string messageBoxText = "Do you want to save changes?";
+            const string caption = "Save Changes?";
+            const MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            const MessageBoxImage icon = MessageBoxImage.Warning;
+            var result = MessageBox.Show(messageBoxText, caption, button, icon);
 
             // Process message box results
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    // User pressed Yes button
-                    EditProfileViewModel.EditUserProfile(textBoxEmail.Text, textBoxFullName.Text, passwordBoxPassword.Password);
+                    if (EditProfileViewModel.EditUserProfile(textBoxEmail.Text, textBoxFullName.Text, passwordBoxPassword.Password))
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong when trying edit your information. " +
+                                "This error may occur if there is something wrong with the data you input" +
+                                " or if there is a problem with the service." +
+                                "\n If all data appears ok, please restart the client.");
+                    }
                     NavigationService.Navigate(new ViewProfilePage());
                     break;
                 case MessageBoxResult.No:
-                    // User pressed No button
                     NavigationService.Navigate(new ViewProfilePage());
                     break;
                 case MessageBoxResult.Cancel:
-                    // User pressed Cancel button
                     break;
             }
         }
+        #endregion
     }
 }

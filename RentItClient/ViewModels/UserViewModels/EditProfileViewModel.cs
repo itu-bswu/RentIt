@@ -6,8 +6,8 @@
 
 namespace RentItClient.ViewModels.UserViewModels
 {
-    using RentItClient.Models;
-    using RentItClient.RentItService;
+    using Models;
+    using RentItService;
 
     /// <summary>
     /// Viewmodel for the EditProfile page.
@@ -20,10 +20,11 @@ namespace RentItClient.ViewModels.UserViewModels
         /// <param name="email">The email.</param>
         /// <param name="fullName">The full name.</param>
         /// <param name="password">The password.</param>
-        public static void EditUserProfile(string email, string fullName, string password)
+        /// <returns>True if edit was successful, false if not.</returns>
+        public static bool EditUserProfile(string email, string fullName, string password)
         {
             var user = new User { Email = email, FullName = fullName, Password = password, Username = AccessModel.LoggedIn.Username };
-            UserModel.EditProfile(user);
+            return UserModel.EditProfile(user);
         }
     }
 }

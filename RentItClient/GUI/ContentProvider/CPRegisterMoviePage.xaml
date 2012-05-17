@@ -1,0 +1,43 @@
+﻿<Page x:Class="RentItClient.GUI.ContentProvider.CPRegisterMoviePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Types="clr-namespace:RentItClient.Types"
+      mc:Ignorable="d" 
+	  d:DesignHeight="400" d:DesignWidth="700"
+	Title="CPRegisterMoviePage">
+
+	<Page.Resources>
+		<ObjectDataProvider x:Key="GenreList" ObjectType="{x:Type Types:GenreCheckList}" />
+	</Page.Resources>
+	<Grid Width="698" Height="400">
+        <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
+		<Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="137" Click="YourMoviesClick" />
+		<Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,5,0,0" Name="logoutbutton" VerticalAlignment="Top" Width="59" Click="LogoutClick" />
+
+		<TextBlock Height="23" HorizontalAlignment="Left" Margin="24,72,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
+		<TextBlock Height="23" HorizontalAlignment="Left" Margin="24,172,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
+		<TextBlock Height="23" HorizontalAlignment="Left" Margin="23,120,0,0" Name="textReleaseDate" Text="Release date: " VerticalAlignment="Top" Width="110" />
+		
+		<TextBox Height="26" HorizontalAlignment="Left" Margin="24,87,0,0" Name="textBoxTitle" VerticalAlignment="Top" Width="223" />
+		<TextBox Height="165" HorizontalAlignment="Left" Margin="23,191,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="359" />
+		<DatePicker Height="26" HorizontalAlignment="Left" Margin="24,140,0,0" Name="DatePickerReleaseDate" VerticalAlignment="Top" Width="223" />
+
+        <ListView Name="GenreCheckList" DataContext="{Binding Source={StaticResource GenreList}}" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True"  Margin="410,72,32,44">
+				<ListView.View>
+					<GridView>
+						<GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Path=GenreName}" Width="200"/>
+						<GridViewColumn Header="Add?" Width="50">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<CheckBox IsChecked="{Binding Path=Checked}"/>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+					</GridView>
+			</ListView.View>
+		</ListView>
+		<Button Content="Register movie" Height="25" HorizontalAlignment="Left" Margin="450,363,0,0" Name="registermovie" VerticalAlignment="Top" Width="216" Click="RegisterMovieClick"/>
+
+	</Grid>
+</Page>

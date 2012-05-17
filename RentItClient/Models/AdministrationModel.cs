@@ -18,7 +18,7 @@ namespace RentItClient.Models
     /// <author>Jakob Melnyk</author>
     public static class AdministrationModel
     {
-        #region Deletetion methods 
+        #region Deletetion methods
         /// <summary>
         /// Deletes a movie from the service.
         /// </summary>
@@ -44,7 +44,7 @@ namespace RentItClient.Models
             return ServiceClients.ContentManagement.DeleteEdition(AccessModel.LoggedIn.Token, edition);
         }
         #endregion
-      
+
         #region Management methods
 
         /// <summary>
@@ -68,14 +68,14 @@ namespace RentItClient.Models
         /// </summary>
         /// <param name="movieObject">The movie to register.</param>
         /// <returns>True if movie was successfully registered, false if not.</returns>
-        public static bool RegisterMovie(Movie movieObject)
+        public static bool RegisterMovie(ref Movie movieObject)
         {
             Contract.Requires(movieObject != null);
 
             return ServiceClients.ContentManagement.RegisterMovie(AccessModel.LoggedIn.Token, ref movieObject);
         }
         #endregion
-        
+
         #region Down/Up-load methods
         /// <summary>
         /// Downloads a movie from the service.
@@ -115,7 +115,7 @@ namespace RentItClient.Models
 
             try
             {
-                 using (var targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (var targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     // Read from the input stream in 65000 byte chunks
                     const int bufferLen = 65000;
@@ -143,17 +143,19 @@ namespace RentItClient.Models
         /// <summary>
         /// Uploads a file to the service.
         /// </summary>
-        /// <param name="editionId">The edition id.</param>
+        /// <param name="editionName">The edition to upload.</param>
+        /// <param name="movieId">Id of the movie the edition should be attached to.</param>
         /// <param name="file">The path of the file.</param>
         /// <returns>True if the upload is successful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static bool UploadMovie(int editionId, FileInfo file)
+        public static bool UploadEdition(string editionName, int movieId, FileInfo file)
         {
             Contract.Requires(file != null);
 
             var edit = new Edition
             {
-                ID = editionId
+                Name = editionName,
+                MovieID = movieId
             };
 
             if (!file.Exists)

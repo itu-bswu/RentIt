@@ -5,8 +5,8 @@
 //------------------------------------------------------------------------
 namespace RentItClient.ViewModels.AdministrationViewModels
 {
-    using RentItClient.Models;
-    using RentItClient.RentItService;
+    using Models;
+    using RentItService;
 
     /// <summary>
     /// Viewmodel for the registration window.
@@ -23,7 +23,7 @@ namespace RentItClient.ViewModels.AdministrationViewModels
         /// <returns>True, if the sign up is successful. False, if it is not.</returns>
         public static bool SignUp(string email, string fullName, string password, string username)
         {
-            var user = new User { Email = email, FullName = fullName, Password = password, Username = username };
+            var user = new User { Email = email, FullName = fullName, Password = password, Username = username, Type = UserType.User };
 
             return AccessModel.SignUp(user);
         }

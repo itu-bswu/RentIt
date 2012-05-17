@@ -3,9 +3,15 @@
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------
+
+using RentItClient.Models;
+using RentItClient.RentItService;
+
 namespace RentItClient.Types
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Class describing 
@@ -17,16 +23,32 @@ namespace RentItClient.Types
         /// <summary>
         /// Initializes a new instance of the <see cref="Movie"/> class.
         /// </summary>
-        /// <param name="id">The id of the movie.</param>
-        /// <param name="title">The title of the movie.</param>
-        /// <param name="description">The description of the movie.</param>
-        /// <param name="released">The release date of the movie.</param>
-        public Movie(int id, string title, string description, DateTime released)
+        /// <param name="id">
+        /// The id of the movie.
+        /// </param>
+        /// <param name="title">
+        /// The title of the movie.
+        /// </param>
+        /// <param name="description">
+        /// The description of the movie.
+        /// </param>
+        /// <param name="released">
+        /// The release date of the movie.
+        /// </param>
+        /// <param name="genres">
+        /// The genres of the movie.
+        /// </param>
+        /// <param name="editions">
+        /// The editions.
+        /// </param>
+        public Movie(int id, string title, string description, DateTime? released, IEnumerable<string> genres, IEnumerable<Tuple<string, int>> editions)
         {
             ID = id;
             Title = title;
             Description = description;
             ReleaseDate = released;
+            Genres = genres;
+            Editions = editions;
         }
         #endregion
 
@@ -49,7 +71,17 @@ namespace RentItClient.Types
         /// <summary>
         /// Gets the date the movie was released.
         /// </summary>
-        public DateTime ReleaseDate { get; private set; }
+        public DateTime? ReleaseDate { get; private set; }
+
+        /// <summary>
+        /// Gets the genres of the movie.
+        /// </summary>
+        public IEnumerable<string> Genres { get; private set; }
+
+        /// <summary>
+        /// Gets the editions of the movie.
+        /// </summary>
+        public IEnumerable<Tuple<string, int>> Editions { get; private set; }
         #endregion
 
         #region Static Methods
@@ -62,22 +94,64 @@ namespace RentItClient.Types
         {
             Movie result;
 
-            if (movie.Released != null)
+            var genres = movie.Genres.Select(g => g.Name).ToList();
+
+            var editions = movie.Editions.Select(e => Tuple.Create(e.Name, e.ID)).ToList();
+
+            if (movie.ReleaseDate != null)
             {
                 result = new Movie(
                 movie.ID,
                 movie.Title,
-                movie.Title,
-                movie.Released.Value);
+                movie.Description,
+                movie.ReleaseDate.Value,
+                genres,
+                editions
+                );
             }
             else
             {
                 result = new Movie(
                 movie.ID,
                 movie.Title,
-                movie.Title,
-                new DateTime(0001, 01, 01, 00, 00, 00));
+                movie.Description,
+                new DateTime(0001, 01, 01, 00, 00, 00),
+                genres,
+                editions);
             }
+
+            return result;
+        }
+
+        public static RentItService.Movie ConvertClientMovie(Movie m)
+        {
+            var gList = new List<Genre>();
+
+            foreach (var g in m.Genres)
+            {
+                gList.Add(new Genre
+                              {
+                                  Name = g
+                              });
+            }
+
+            var x = new RentItService.Movie();
+
+            if (m.Editions.Count() != 0)
+            {
+                MovieInformationModel.GetMovieInfo(m.ID, out x);
+            }
+
+            var result =
+                new RentItService.Movie
+                {
+                    ID = m.ID,
+                    Description = m.Description,
+                    Genres = gList.ToArray(),
+                    Editions = x.Editions,
+                    ReleaseDate = m.ReleaseDate,
+                    Title = m.Title
+                };
 
             return result;
         }

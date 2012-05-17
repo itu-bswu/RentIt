@@ -1,0 +1,27 @@
+﻿<Page x:Class="RentItClient.GUI.User.DownloadEditionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+	Title="DownloadEditionPage">
+
+    <Grid Width="720">
+
+        <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
+        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="ListMovies"/>
+        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="137,12,0,0" Name="button2" VerticalAlignment="Top" Width="128" Click="ViewProfile" />
+        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="271,13,0,0" Name="button3" VerticalAlignment="Top" Width="124" Click="YourRentals" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="416,12,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133" />
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
+        <Button Content="Download movie" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="downloadmovie" VerticalAlignment="Top" Width="216" Click="DownloadClick" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,72,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="107,72,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="247" />
+        <TextBox IsReadOnly="True" Height="196" HorizontalAlignment="Left" Margin="12,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="454" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,103,0,0" Name="textChosenEdition" Text="Chosen edition: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,132,0,0" Name="textBlockDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
+        <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,103,366,0" Name="textBlockEdition" Text="" VerticalAlignment="Top" Width="247" />
+    </Grid>
+</Page>

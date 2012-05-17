@@ -9,17 +9,20 @@
 
     <Grid Width="720">
         <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
-        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="MostRented"/>
+        <Button Content="List movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="ListMoviesClick"/>
         <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="137,12,0,0" Name="button2" VerticalAlignment="Top" Width="128" Click="ViewProfile" />
         <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="271,13,0,0" Name="button3" VerticalAlignment="Top" Width="124" Click="YourRentals" />
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="416,12,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133" />
         <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
 
-        <ListBox Name="MovieListBox" Margin="21,97,34,66">
-        </ListBox>
+        <ListBox Name="MovieListBox" Margin="21,106,34,57"/>
         
-        <Button Content="View Movie" Height="24" Margin="525,340,34,36" Name="View" Width="141" Click="ViewMovieClick"/>
-
+        <Button Content="View Movie" Height="24" Margin="545,349,34,27" Name="View" Width="141" Click="ViewMovieClick"/>
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="271,77,0,0" Name="genreComboBox" VerticalAlignment="Top" Width="165" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="227,77,0,0" Name="genreTextBlock" Text="Genre:" VerticalAlignment="Top" Width="38" FontSize="13" />
+        <TextBlock FontSize="13" Height="23" HorizontalAlignment="Left" Margin="21,77,0,0" Name="sortByTextBlock" Text="Sort by:" VerticalAlignment="Top" Width="70" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="67,77,0,0" Name="sortModeComboBox" VerticalAlignment="Top" Width="154" />
+        <Button Content="Sort movies" Height="24" HorizontalAlignment="Left" Margin="442,77,0,0" Name="sortButton" VerticalAlignment="Top" Width="119" Click="SortClick"/>
     </Grid>
 </Page>

@@ -35,12 +35,14 @@ namespace RentItClient.Models
         /// Gets the most downloaded movies.
         /// </summary>
         /// <param name="mostDownloadedMovies">The most downloaded movies.</param>
+        /// <param name="genre">The genre to filter by. Default is null, meaning no filter.</param>
+        /// <param name="limit">The maximum of movies to get. Default is 0, meaning all movies are requested.</param>
         /// <returns>True if movies were collected successfully, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static bool MostDownloaded(out IEnumerable<Movie> mostDownloadedMovies)
+        public static bool MostDownloaded(out IEnumerable<Movie> mostDownloadedMovies, string genre = null, int limit = 0)
         {
             Movie[] movies;
-            var ret = ServiceClients.ContentBrowsing.GetMovies(out movies, AccessModel.LoggedIn.Token, MovieSorting.MostDownloaded, genre: null, limit: 10);
+            var ret = ServiceClients.ContentBrowsing.GetMovies(out movies, AccessModel.LoggedIn.Token, MovieSorting.MostDownloaded, genre, limit);
             mostDownloadedMovies = movies;
             return ret;
         }
@@ -48,20 +50,14 @@ namespace RentItClient.Models
         /// <summary>
         /// Gets the movies with a specific genre.
         /// </summary>
-        /// <param name="moviesInGenre">
-        /// The movies In Genre.
-        /// </param>
-        /// <param name="genre">
-        /// The genre to be filtered by.
-        /// </param>
-        /// <returns>
-        /// True if movies were collected successfully, false if not.
-        /// </returns>
+        /// <param name="moviesInGenre">The movies with the specified genre.</param>
+        /// <param name="genre">The genre to be filtered by.</param>
+        /// <returns>True if movies were collected successfully, false if not.</returns>
         /// <author>Jakob Melnyk</author>
         public static bool MoviesByGenre(out IEnumerable<Movie> moviesInGenre, string genre)
         {
             Movie[] movies;
-            var ret = ServiceClients.ContentBrowsing.GetMovies(out movies, AccessModel.LoggedIn.Token, MovieSorting.Newest, genre, limit: 0);
+            var ret = ServiceClients.ContentBrowsing.GetMovies(out movies, AccessModel.LoggedIn.Token, MovieSorting.Newest, genre, 0);
             moviesInGenre = movies;
             return ret;
         }
@@ -70,13 +66,14 @@ namespace RentItClient.Models
         /// Gets the newest movies.
         /// </summary>
         /// <param name="newestMovies">The newest movies.</param>
+        /// <param name="genre">The genre to filter by. Default is null, meaning no filter.</param>
         /// <param name="limit">The maximum of movies to get. Default is 0, meaning all movies are requested.</param>
         /// <returns>True if movies were collected successfully, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static bool Newest(out IEnumerable<Movie> newestMovies, int limit = 0)
+        public static bool Newest(out IEnumerable<Movie> newestMovies, string genre = null, int limit = 0)
         {
             Movie[] movies;
-            var ret = ServiceClients.ContentBrowsing.GetMovies(out movies, AccessModel.LoggedIn.Token, MovieSorting.Newest, genre: null, limit: 0);
+            var ret = ServiceClients.ContentBrowsing.GetMovies(out movies, AccessModel.LoggedIn.Token, MovieSorting.Default, genre, limit);
             newestMovies = movies;
             return ret;
         }

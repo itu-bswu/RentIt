@@ -20,7 +20,7 @@ namespace RentItClient.Models
         /// <param name="editionId">The id of the movie to rent.</param>
         /// <returns>True if rent was succesful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static bool RentMovie(int editionId)
+        public static bool RentEdition(int editionId)
         {
             var edition = new Edition
                         {

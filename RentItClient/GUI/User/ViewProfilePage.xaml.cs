@@ -2,14 +2,16 @@
 {
     using System.Windows;
 
-    using RentItClient.ViewModels;
-    using RentItClient.ViewModels.UserViewModels;
+    using ViewModels;
+    using ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for ViewProfilePage.xaml
     /// </summary>
     public partial class ViewProfilePage
     {
+        #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewProfilePage"/> class.
         /// </summary>
@@ -21,36 +23,41 @@
             textBoxFullName.Text = u.FullName;
             textBoxUserName.Text = u.Username;
         }
+        #endregion
 
-        private void MostRented(object sender, RoutedEventArgs e)
+        #region Click methods
+
+        private void ListMoviesClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListMoviesPage());
         }
 
-        private void ViewProfile(object sender, RoutedEventArgs e)
+        private void ViewProfileClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewProfilePage());
         }
 
-        private void YourRentals(object sender, RoutedEventArgs e)
+        private void YourRentalsClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RentalHistory());
+            NavigationService.Navigate(new RentalHistoryPage());
         }
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ViewMovieListPage(MasterViewModel.Search(textBoxSearch.Text)));
+            NavigationService.Navigate(new ListMoviesPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
-            MasterViewModel.LogOut();
-            NavigationService.Navigate(new LoginPage());
+            if (MainWindow.LogOut())
+            {
+                NavigationService.Navigate(new LoginPage());
+            }
         }
 
         private void EditProfileClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new EditProfilePage());
         }
+        #endregion
     }
 }

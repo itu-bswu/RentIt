@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentItService.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/RentItService.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" />
   <xs:complexType name="ArrayOfMovie">
     <xs:sequence>
@@ -17,9 +18,10 @@
       <xs:element minOccurs="0" name="Owner" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="OwnerID" type="xs:int" />
       <xs:element minOccurs="0" name="ReleaseDate" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Rentals" nillable="true" type="tns:ArrayOfRental" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Movie" nillable="true" type="tns:Movie" />
   <xs:complexType name="ArrayOfEdition">
@@ -30,13 +32,14 @@
   <xs:element name="ArrayOfEdition" nillable="true" type="tns:ArrayOfEdition" />
   <xs:complexType name="Edition">
     <xs:sequence>
-      <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Movie" nillable="true" type="tns:Movie" />
       <xs:element minOccurs="0" name="MovieID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Rentals" nillable="true" type="tns:ArrayOfRental" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Edition" nillable="true" type="tns:Edition" />
   <xs:complexType name="ArrayOfRental">
@@ -54,6 +57,8 @@
       <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
       <xs:element minOccurs="0" name="UserID" type="xs:int" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Rental" nillable="true" type="tns:Rental" />
   <xs:complexType name="User">
@@ -69,20 +74,24 @@
       <xs:element minOccurs="0" name="UploadedMovies" nillable="true" type="tns:ArrayOfMovie" />
       <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
-  <xs:complexType name="ArrayOfGenre">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Genre" nillable="true" type="tns:Genre" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfGenre" nillable="true" type="tns:ArrayOfGenre" />
   <xs:complexType name="Genre">
     <xs:sequence>
       <xs:element minOccurs="0" name="AssociatedMovies" nillable="true" type="tns:ArrayOfMovie" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Genre" nillable="true" type="tns:Genre" />
+  <xs:complexType name="ArrayOfGenre">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Genre" nillable="true" type="tns:Genre" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGenre" nillable="true" type="tns:ArrayOfGenre" />
 </xs:schema>

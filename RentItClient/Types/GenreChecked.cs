@@ -7,19 +7,15 @@
 namespace RentItClient.Types
 {
     /// <summary>
-    /// Used to construct a list of genres.
+    /// Used to construct a list of checked and unchecked genres.
     /// </summary>
     public class GenreChecked
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GenreChecked"/> class.
         /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="isChecked">
-        /// The is checked.
-        /// </param>
+        /// <param name="name">The genre.</param>
+        /// <param name="isChecked">The genre is checked.</param>
         public GenreChecked(string name, bool isChecked)
         {
             GenreName = name;
@@ -35,7 +31,5 @@ namespace RentItClient.Types
         /// Gets or sets a value indicating whether Checked.
         /// </summary>
         public bool Checked { get; set; }
-
-        
     }
 }

@@ -3,14 +3,13 @@
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------
-
 namespace RentItClient.ViewModels.UserViewModels
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
-    using RentItClient.Models;
+    using Models;
+    using Types;
 
     /// <summary>
     /// Viewmodel for the Rental History page.
@@ -21,31 +20,28 @@ namespace RentItClient.ViewModels.UserViewModels
         /// Gets the rentals of the user that is logged in.
         /// </summary>
         /// <returns>A list of rentals as tuples of string, int and bool types.</returns>
-        public static List<Tuple<string, int, bool>> GetRentals()
+        public static List<Tuple<string, int, Movie>> GetRentals()
         {
-            var current = UserModel.CurrentRentals();
-            var all = UserModel.RentalHistory();
+            IEnumerable<RentItService.Rental> res;
+            var result = new List<Tuple<string, int, Movie>>();
 
-            var result = new List<Tuple<string, int, bool>>();
-
-            foreach (var r in current)
+            var success = UserModel.RentalHistory(out res);
+            if (success)
             {
-                var mId = r.MovieID;
-                var title = MovieInformationModel.GetMovieInfo(r.MovieID).Title;
-                result.Add(Tuple.Create(title, mId, true));
-            }
-
-            foreach (var r in all)
-            {
-                var mId = r.MovieID;
-                var title = MovieInformationModel.GetMovieInfo(r.MovieID).Title;
-                if (result.All(t => t.Item2 != mId))
+                foreach (var r in res)
                 {
-                    result.Add(Tuple.Create(title, mId, false));
+                    var e = r.Edition;
+                    RentItService.Movie m; // = e.Movie;
+                    MovieInformationModel.GetMovieInfo(e.MovieID, out m);
+
+                    result.Add(Tuple.Create(m.Title + " - " + e.Name, e.ID, Movie.ConvertServiceMovie(m)));
                 }
+
+                return result;
             }
 
-            return result;
+            MasterViewModel.AuthenticationError();
+            return null;
         }
     }
 }

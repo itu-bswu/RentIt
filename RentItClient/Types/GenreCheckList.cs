@@ -1,15 +1,16 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="GenreCheckList.cs" company="Hewlett-Packard">
-// TODO: Update copyright text.
+// <copyright file="GenreCheckList.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//------------------------------------------------------------------------
 
 namespace RentItClient.Types
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// A list of genres and bool values indicating if a genre has been checked or not.
     /// </summary>
     public class GenreCheckList : ObservableCollection<GenreChecked>
     {
@@ -17,12 +18,14 @@ namespace RentItClient.Types
         /// Initializes a new instance of the <see cref="GenreCheckList"/> class.
         /// </summary>
         public GenreCheckList()
-        {/*
-            foreach (var g in Models.GetMovieInformationModel.AllGenres())
+        {
+            IEnumerable<string> genres;
+            Models.MovieInformationModel.AllGenres(out genres);
+
+            foreach (var g in genres)
             {
-                this.Add(new GenreChecked(g.Name, false));
+                Add(new GenreChecked(g, false));
             }
-          * */
         }
     }
 }
