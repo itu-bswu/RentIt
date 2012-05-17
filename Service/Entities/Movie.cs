@@ -111,7 +111,7 @@ namespace RentItService.Entities
         }
 
         /// <summary>
-        /// Gets or sets the movie's genres.
+        /// Gets the movie's genres.
         /// </summary>
         public virtual ICollection<Genre> Genres { get; set; }
 

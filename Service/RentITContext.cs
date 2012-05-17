@@ -42,8 +42,8 @@ namespace RentItService
         /// </summary>
         public RentItContext()
         {
-            Configuration.LazyLoadingEnabled = true;
-            Configuration.ProxyCreationEnabled = true;
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         #endregion Constructor(s)

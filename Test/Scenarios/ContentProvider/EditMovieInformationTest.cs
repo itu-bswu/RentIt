@@ -62,7 +62,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 ImagePath = "N/A",
                 Title = newTitle,
                 ReleaseDate = newReleaseDate,
-                Genres = newGenres,
             };
 
             newMovie.Edit(loggedinUser, newMovie);
