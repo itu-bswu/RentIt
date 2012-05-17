@@ -269,22 +269,22 @@ namespace RentItService.Entities
         }
 
         /// <summary>
-        /// Updates a user profile.
+        /// Updates a user's profile.
         /// </summary>
         /// <param name="editedUser">User object with updated info.</param>
         public void Edit(User editedUser)
         {
             Contract.Requires<ArgumentNullException>(editedUser != null);
-            Contract.Requires<ArgumentNullException>(editedUser.Email != null);
-            Contract.Requires<ArgumentNullException>(editedUser.Password != null);
-            Contract.Requires<ArgumentException>(Validator.ValidateEmail(editedUser.Email));
-
             Contract.Requires<InsufficientRightsException>(this.ID == editedUser.ID);
 
-            this.Email = editedUser.Email;
-            this.FullName = editedUser.FullName;
-            this.Password = Hash.Sha512(editedUser.Password + Salt);
+            this.FullName = !string.IsNullOrEmpty(editedUser.FullName) ? editedUser.FullName : this.FullName;
+            this.Password = !string.IsNullOrEmpty(editedUser.Password) ? Hash.Sha512(editedUser.Password + Salt) : this.Password;
 
+            if (!string.IsNullOrEmpty(editedUser.Email) && Validator.ValidateEmail(editedUser.Email))
+            {
+                this.Email = editedUser.Email;
+            }
+            
             RentItContext.Db.SaveChanges();
         }
 
