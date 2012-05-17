@@ -1,14 +1,21 @@
-﻿namespace RentIt.Tests.Service_level.ContentBrowsing
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="GetRentalsServiceTest.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentIt.Tests.Service_level.ContentBrowsing
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService.Services;
-    using Utils;
-    using System.Collections.Generic;
-    using RentItService.Entities;
     using System.Linq;
-    using RentItService.Enums;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;
+    using RentItService.Entities;
+    using RentItService.Enums;
+    using Utils;
     
+    /// <summary>
+    /// Tests for RentalManagement.GetRentals.
+    /// </summary>
     [TestClass]
     public class GetRentalsServiceTest : ServiceTest
     {

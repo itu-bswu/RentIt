@@ -1,23 +1,28 @@
-﻿namespace RentIt.Tests.Service_level.ContentBrowsing
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="LogoutServiceTest.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentIt.Tests.Service_level.ContentBrowsing
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService.Services;
-    using Utils;
-    using System.Collections.Generic;
     using RentItService.Entities;
-    using System.Linq;
-    using RentItService.Enums;
-    
+    using Utils;
+
+    /// <summary>
+    /// Tests for UserManagement.Logout.
+    /// </summary>
     [TestClass]
     public class LogoutServiceTest : ServiceTest
     {
         /// <summary>
-        /// Purpose: Verify that you can log out
+        /// Purpose: Verify that you can log out.
         /// 
         /// Steps:
-        ///     1. Login to the system
-        ///     2. Logout of the system
-        ///     3. Verify that the user was logged out
+        ///     1. Login to the system.
+        ///     2. Logout of the system.
+        ///     3. Verify that the user was logged out.
         /// </summary>
         [TestMethod]
         public void LogoutTest()
