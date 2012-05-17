@@ -14,6 +14,7 @@ namespace RentItService.Entities
     /// Genre entity (Entity Framework POCO class).
     /// </summary>
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Movie))]
     public class Genre
     {
         #region Constructor(s)

@@ -21,6 +21,9 @@ namespace RentItService.Entities
     /// User entity (Entity Framework POCO class).
     /// </summary>
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Movie))]
+    [KnownType(typeof(Rental))]
+    [KnownType(typeof(UserType))]
     public class User
     {
         #region Fields

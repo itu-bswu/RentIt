@@ -21,6 +21,10 @@ namespace RentItService.Entities
     /// Movie entity (Entity Framework POCO class).
     /// </summary>
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Edition))]
+    [KnownType(typeof(Genre))]
+    [KnownType(typeof(Rental))]
+    [KnownType(typeof(User))]
     public class Movie
     {
         #region Constructor(s)
