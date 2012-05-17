@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Jgj50p0gvimFRqdRCJL7cbt/13w=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="nAzHl6snO8GF7L0UK/mIzexRJ1A=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IContentBrowsing1">
       <properties>
@@ -439,7 +439,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IContentBrowsing1" contract="ServiceReference.IContentBrowsing" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentBrowsing" bindingConfiguration="BasicHttpBinding_IContentBrowsing1">
+    <endpoint name="BasicHttpBinding_IContentBrowsing" contract="ServiceReference.IContentBrowsing" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentBrowsing" bindingConfiguration="BasicHttpBinding_IContentBrowsing1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentBrowsing</serializedValue>
@@ -514,7 +514,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IContentBrowsing1</serializedValue>
+          <serializedValue>BasicHttpBinding_IContentBrowsing</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -524,7 +524,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IContentManagement1" contract="ServiceReference.IContentManagement" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentManagement" bindingConfiguration="BasicHttpBinding_IContentManagement1">
+    <endpoint name="BasicHttpBinding_IContentManagement" contract="ServiceReference.IContentManagement" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentManagement" bindingConfiguration="BasicHttpBinding_IContentManagement1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/ContentManagement</serializedValue>
@@ -599,7 +599,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IContentManagement1</serializedValue>
+          <serializedValue>BasicHttpBinding_IContentManagement</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -609,7 +609,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IRentalManagement1" contract="ServiceReference.IRentalManagement" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/RentalManagement" bindingConfiguration="BasicHttpBinding_IRentalManagement1">
+    <endpoint name="BasicHttpBinding_IRentalManagement" contract="ServiceReference.IRentalManagement" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/RentalManagement" bindingConfiguration="BasicHttpBinding_IRentalManagement1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/RentalManagement</serializedValue>
@@ -684,7 +684,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IRentalManagement1</serializedValue>
+          <serializedValue>BasicHttpBinding_IRentalManagement</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -694,7 +694,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IUserManagement1" contract="ServiceReference.IUserManagement" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/UserManagement" bindingConfiguration="BasicHttpBinding_IUserManagement1">
+    <endpoint name="BasicHttpBinding_IUserManagement" contract="ServiceReference.IUserManagement" bindingType="basicHttpBinding" address="http://rentit.itu.dk/RentIt12/Services/Service.svc/UserManagement" bindingConfiguration="BasicHttpBinding_IUserManagement1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://rentit.itu.dk/RentIt12/Services/Service.svc/UserManagement</serializedValue>
@@ -769,7 +769,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IUserManagement1</serializedValue>
+          <serializedValue>BasicHttpBinding_IUserManagement</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

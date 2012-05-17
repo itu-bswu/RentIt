@@ -116,12 +116,11 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets an enumerable of rentals of the movie.
         /// </summary>
-        [DataMember]
         public IEnumerable<Rental> Rentals
         {
             get
             {
-                return this.Editions.SelectMany(edition => edition.Rentals);
+                return this.Editions.SelectMany(edition => edition.Rentals).ToList();
             }
         }
 
@@ -232,13 +231,13 @@ namespace RentItService.Entities
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
             var movies =
-                sorting == MovieSorting.MostDownloaded ? MostDownloaded(limit) :
-                sorting == MovieSorting.Newest ? Newest(limit) :
-                limit == 0 ? All.ToList() : All.Take(limit).ToList();
+                (sorting == MovieSorting.MostDownloaded ? MostDownloaded(limit) :
+                 sorting == MovieSorting.Newest ? Newest(limit) :
+                 limit == 0 ? All.ToList() : All.Take(limit)).ToList();
 
             if (genre != null)
             {
-                movies = movies.Where(movie => movie.Genres.Contains(Genre.GetOrCreateGenre(genre)));
+                movies = movies.Where(movie => movie.Genres.Contains(Genre.GetOrCreateGenre(genre))).ToList();
             }
 
             return movies;
