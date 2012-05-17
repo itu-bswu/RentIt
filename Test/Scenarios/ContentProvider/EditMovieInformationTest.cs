@@ -46,7 +46,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var testUser = TestUser.SystemAdmin;
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            Movie testMovie = Movie.All.First();
+            var testMovie = Movie.All.First();
 
             var newTitle = "Trolling for beginners";
             var newDescription = "How to troll, for people new to the art";
@@ -65,9 +65,9 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 Genres = newGenres,
             };
 
-            Movie.Edit(loggedinUser, newMovie);
+            newMovie.Edit(loggedinUser, newMovie);
 
-            Movie foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
+            var foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
             Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
@@ -168,7 +168,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     Title = "Trolling for beginners"
                 };
 
-            Movie.Edit(loggedinUser, newMovie);
+            newMovie.Edit(loggedinUser, newMovie);
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     Title = "Trolling for beginners"
                 };
 
-            Movie.Edit(loggedinUser, newMovie);
+            newMovie.Edit(loggedinUser, newMovie);
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(Username, Password);
 
             // Step 4
-            Movie.Edit(user, movie);
+            movie.Edit(user, movie);
         }
     }
 }
