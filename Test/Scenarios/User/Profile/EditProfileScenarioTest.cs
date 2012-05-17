@@ -25,20 +25,12 @@ namespace RentIt.Tests.Scenarios.User.Profile
     {
         /// <summary>
         /// Purpose: Verify that it is possible to edit a user profile.
-        /// <para>
-        /// Pre-condtions:
-        ///     1. A user with user name "Smith" must exist in the database.
-        ///     2. "Smith" must have the FullName 'James Smith'.
-        ///     3. "Smith" must have the email 'smith@matrix.org'.
-        /// </para>
-        /// <para>
+        /// 
         /// Steps:
-        ///     1. Assert that pre-conditions hold.
-        ///     2. Copy password, full name and email into local variables.
-        ///     3. Create new user with changed informaton.
-        ///     4. Call editprofile with the new user.
-        ///     5. Assert that the user information has changed.
-        /// </para>
+        ///     1. Copy password, full name and email into local variables.
+        ///     2. Create new user with changed informaton.
+        ///     3. Call editprofile with the new user.
+        ///     4. Assert that the user information has changed.
         /// </summary>
         [TestMethod]
         public void EditProfileTest()
@@ -46,10 +38,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             // Arrange
             var user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
-            Assert.AreEqual("James Smith", user.FullName, "The full name did not match pre-condition 2.");
-            Assert.AreEqual("smith@matrix.org", user.Email, "The email did not match pre-condition 3.");
-
-            var oldPassword = "userPassword";
+            var oldPassword = TestUser.User.Password;
             var oldName = user.FullName;
             var oldEmail = user.Email;
             var oldID = user.ID;
@@ -72,49 +61,11 @@ namespace RentIt.Tests.Scenarios.User.Profile
             RentItContext.ReloadDb();
 
             // Assert and clean
-            var user3 = User.All.First(u => u.Username == "Smith");
+            var user3 = User.All.First(u => u.Username == TestUser.User.Username);
 
             Assert.AreEqual(oldID, User.Login(user3.Username, oldPassword.ToUpper()).ID, "Password change did not succeed.");
             Assert.AreEqual(oldName.ToUpper(), user3.FullName, "The name was not changed as expected.");
             Assert.AreEqual(oldEmail.ToUpper(), user3.Email, "The email was not changed as expected.");
-        }
-
-        /// <summary>
-        /// Purpose: Verify that a different user cannot edit a users information.
-        /// <para>
-        /// Pre-condtions:
-        ///     1. A user with user name "Smith" must exist in the database.
-        ///     2. A user with user name "Universal" must exist in the database.
-        /// </para>
-        /// <para>
-        /// Steps:
-        ///     1. Make sure pre-condtions hold.
-        ///     2. Create a new user object as a copy of the "Smith" user.
-        ///     3. Call edit profile with "Universal" token and the "Smith" copy object.
-        ///     4. Verify that InsufficientRightsException is thrown.
-        /// </para>
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(InsufficientRightsException))]
-        public void InsufficientRightsEditProfileTest()
-        {
-            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
-            var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-
-            var user2 = new User
-            {
-                Email = user.Email.ToUpper(),
-                FullName = user.FullName.ToUpper(),
-                ID = user.ID,
-                Password = user.Password.ToUpper(),
-                Rentals = user.Rentals,
-                Token = user.Token,
-                Type = user.Type,
-                TypeValue = user.TypeValue,
-                Username = user.Username
-            };
-
-            user1.Edit(user2);
         }
 
         /// <summary>
@@ -151,6 +102,98 @@ namespace RentIt.Tests.Scenarios.User.Profile
             };
 
             user.Edit(user2);
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is possible to edit only part of a user's profile.
+        /// 
+        /// Steps:
+        ///     1. Log in as a user.
+        ///     2. Keep a copy of all old values of the user.
+        ///     3. Edit profile with only a changed email address.
+        ///     4. Refresh user info.
+        ///     5. Verify that the email has changed.
+        ///     6. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditPartOfProfileInfoTest()
+        {
+            var newEmail = "new@email.dk";
+
+            // Step 1
+            var user = User.Login(TestUser.User);
+
+            // Step 2
+            var oldName = user.FullName;
+            var oldEmail = user.Email;
+            var oldPassword = user.Password;
+
+            // Step 3
+            user.Edit(new User
+            {
+                Email = newEmail
+            });
+
+            // Step 4
+            user = User.Login(TestUser.User);
+
+            // Step 5
+            Assert.AreEqual(newEmail, user.Email, "Email has not changed!");
+            Assert.AreNotEqual(oldEmail, user.Email, "Email has not changed!");
+
+            // Step 6
+            Assert.AreEqual(oldName, user.FullName, "Full name has changed!");
+            Assert.AreEqual(oldPassword, user.Password, "Password has changed!");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is possible to edit a user's password, and nothing else.
+        /// 
+        /// Steps:
+        ///     1. Log in as a user.
+        ///     2. Keep a copy of all old values of the user.
+        ///     3. Edit profile with only a changed password.
+        ///     4. Refresh user info.
+        ///     5. Verify that the password has changed (and has been re-hashed).
+        ///     6. Verify that the rest has not been updated.
+        ///     7. Verify that it is possible to login with the new password.
+        ///     8. Verify that it is not possible to login with the old password.
+        /// </summary>
+        [TestMethod]
+        public void EditPartOfProfileOnlyPasswordTest()
+        {
+            var newPassword = User.GenerateToken();
+
+            // Step 1
+            var user = User.Login(TestUser.User);
+
+            // Step 2
+            var oldName = user.FullName;
+            var oldEmail = user.Email;
+            var oldPassword = user.Password;
+
+            // Step 3
+            user.Edit(new User
+            {
+                Password = newPassword
+            });
+
+            // Step 4
+            user = User.Login(TestUser.User);
+
+            // Step 5
+            Assert.AreNotEqual(oldPassword, user.Password, "Password has not changed!");
+            Assert.AreNotEqual(newPassword, user.Password, "Password has not been hashed!");
+
+            // Step 6
+            Assert.AreEqual(oldName, user.FullName, "Full name has changed!");
+            Assert.AreEqual(oldEmail, user.Email, "Email has changed!");
+
+            // Step 7
+            Assert.IsNotNull(User.Login(TestUser.User.Username, newPassword), "Not able to login with new password!");
+
+            // Step 8
+            Assert.IsNull(User.Login(TestUser.User), "Able to login with old password!");
         }
     }
 }
