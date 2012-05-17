@@ -389,16 +389,15 @@ namespace RentItService.Entities
 
         /// <summary>
         /// Edit a movie's information. Title, Description, ImagePath, ReleaseDate 
-        /// and Genres will be updated. Movie will be identified by the ID in the 
-        /// Movie instance passed to the method. The user editing must be the owner 
-        /// of the movie, or a system administrator.
+        /// and Genres can be updated. The user editing must be the owner of the 
+        /// movie, or a system administrator. Release date cannot be set to null, 
+        /// if it already has another value.
         /// </summary>
         /// <param name="user">User editing the movie. Must be the owner of the movie.</param>
         /// <param name="updatedMovie">Updated movie information.</param>
         public void Edit(User user, Movie updatedMovie)
         {
             Contract.Requires<ArgumentNullException>(user != null && updatedMovie != null);
-            Contract.Requires<ArgumentException>(!string.IsNullOrEmpty(updatedMovie.Title));
             Contract.Requires<InsufficientRightsException>((user.Type == UserType.ContentProvider && this.OwnerID == user.ID) ||
                                                             user.Type == UserType.SystemAdmin);
 
@@ -407,25 +406,28 @@ namespace RentItService.Entities
                 Genre.GetOrCreateGenre(genre.Name);
             }
 
-            this.Title = updatedMovie.Title;
-            this.Description = updatedMovie.Description;
-            this.ImagePath = updatedMovie.ImagePath;
-            this.ReleaseDate = updatedMovie.ReleaseDate;
+            this.Title = !string.IsNullOrEmpty(updatedMovie.Title) ? updatedMovie.Title : this.Title;
+            this.Description = updatedMovie.Description ?? this.Description; // Description can be empty.
+            this.ImagePath = updatedMovie.ImagePath ?? this.ImagePath; // Imagepath can be empty.
+            this.ReleaseDate = updatedMovie.ReleaseDate ?? this.ReleaseDate; // Release date cannot be set to null again.
 
-            var removeGenres = from genre in this.Genres
-                               where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
-                               select Genre.All.Single(genre.Name.Equals);
-
-            foreach (var genre in removeGenres.ToList())
+            if (updatedMovie.Genres != null)
             {
-                this.RemoveGenre(genre);
-            }
+                var removeGenres = from genre in this.Genres
+                                   where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
+                                   select Genre.All.Single(genre.Name.Equals);
 
-            foreach (var genre in updatedMovie.Genres)
-            {
-                this.AddGenre(Genre.All.Single(genre.Name.Equals));
-            }
+                foreach (var genre in removeGenres.ToList())
+                {
+                    this.RemoveGenre(genre);
+                }
 
+                foreach (var genre in updatedMovie.Genres)
+                {
+                    this.AddGenre(Genre.All.Single(genre.Name.Equals));
+                }
+            }
+            
             RentItContext.Db.SaveChanges();
         }
 

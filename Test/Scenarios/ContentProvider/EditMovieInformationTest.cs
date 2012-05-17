@@ -247,5 +247,174 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             // Step 4
             movie.Edit(user, movie);
         }
+
+        /// <summary>
+        /// Purpose: Verify that it is possible to only update 
+        ///          part of the information about a movie.
+        /// 
+        /// Steps:
+        ///     1. Log in as a content provider with movies.
+        ///     2. Choose a movie to update.
+        ///     3. Keep a copy of all old values of the movie.
+        ///     4. Update the movie with another title and empty description.
+        ///     5. Refresh movie information.
+        ///     6. Verify that title has changed.
+        ///     7. Verify that description is now empty.
+        ///     8. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditMoviePartOfInfo()
+        {
+            string newTitle = "Awesome new movie", newDescription = string.Empty;
+
+            // Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Step 2
+            var movie = user.UploadedMovies.First();
+
+            // Step 3
+            var oldTitle = movie.Title;
+            var oldDescription = movie.Description;
+            var oldImagePath = movie.ImagePath;
+            var oldReleaseDate = movie.ReleaseDate;
+
+            // Step 4
+            movie.Edit(
+                user,
+                new Movie
+                {
+                    Title = newTitle,
+                    Description = newDescription
+                });
+
+            // Step 5
+            movie = Movie.Get(user, movie.ID);
+
+            // Step 6
+            Assert.AreEqual(newTitle, movie.Title, "Title has incorrect value!");
+            Assert.AreNotEqual(oldTitle, movie.Title, "Title has not changed!");
+
+            // Step 7
+            Assert.AreEqual(newDescription, movie.Description, "Description has incorrect value!");
+            Assert.AreNotEqual(oldDescription, movie.Description, "Description has not changed!");
+
+            // Step 8
+            Assert.AreEqual(oldImagePath, movie.ImagePath, "Imagepath has changed!");
+            Assert.AreEqual(oldReleaseDate, movie.ReleaseDate, "Release date has changed!");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that a field is only updated, if 
+        ///          the new value is valid.
+        /// 
+        /// Steps:
+        ///     1. Log in as a content provider with movies.
+        ///     2. Choose a movie to update.
+        ///     3. Keep a copy of all old values of the movie.
+        ///     4. Update the movie with empty title and null description.
+        ///     5. Refresh movie information.
+        ///     6. Verify that title has not changed.
+        ///     7. Verify that description has not changed.
+        ///     8. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditMoviePartOfInfoInvalidValues()
+        {
+            string newTitle = string.Empty;
+
+            // Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Step 2
+            var movie = user.UploadedMovies.First();
+
+            // Step 3
+            var oldTitle = movie.Title;
+            var oldDescription = movie.Description;
+            var oldImagePath = movie.ImagePath;
+            var oldReleaseDate = movie.ReleaseDate;
+
+            // Step 4
+            movie.Edit(
+                user,
+                new Movie
+                {
+                    Title = newTitle,
+                    Description = null
+                });
+
+            // Step 5
+            movie = Movie.Get(user, movie.ID);
+
+            // Step 6
+            Assert.AreNotEqual(newTitle, movie.Title, "Title has changed!");
+            Assert.AreEqual(oldTitle, movie.Title, "Title has changed!");
+
+            // Step 7
+            Assert.IsNotNull(movie.Description, "Description has changed!");
+            Assert.AreEqual(oldDescription, movie.Description, "Description has changed!");
+
+            // Step 8
+            Assert.AreEqual(oldImagePath, movie.ImagePath, "Imagepath has changed!");
+            Assert.AreEqual(oldReleaseDate, movie.ReleaseDate, "Release date has changed!");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that fields with new valid values will 
+        ///          be updated, even when other fields will not 
+        ///          be updated, because of invalid values.
+        /// 
+        /// Steps:
+        ///     1. Log in as a content provider with movies.
+        ///     2. Choose a movie to update.
+        ///     3. Keep a copy of all old values of the movie.
+        ///     4. Update the movie with empty title (invalid) and empty description (valid).
+        ///     5. Refresh movie information.
+        ///     6. Verify that title has not changed.
+        ///     7. Verify that description has changed.
+        ///     8. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditMoviePartOfInfoMixedValidInvalid()
+        {
+            string newTitle = string.Empty, newDescription = string.Empty;
+
+            // Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Step 2
+            var movie = user.UploadedMovies.First();
+
+            // Step 3
+            var oldTitle = movie.Title;
+            var oldDescription = movie.Description;
+            var oldImagePath = movie.ImagePath;
+            var oldReleaseDate = movie.ReleaseDate;
+
+            // Step 4
+            movie.Edit(
+                user,
+                new Movie
+                {
+                    Title = newTitle,
+                    Description = newDescription
+                });
+
+            // Step 5
+            movie = Movie.Get(user, movie.ID);
+
+            // Step 6
+            Assert.AreNotEqual(newTitle, movie.Title, "Title has changed!");
+            Assert.AreEqual(oldTitle, movie.Title, "Title has changed!");
+
+            // Step 7
+            Assert.AreEqual(newDescription, movie.Description, "Description has incorrect value!");
+            Assert.AreNotEqual(oldDescription, movie.Description, "Description has not changed!");
+
+            // Step 8
+            Assert.AreEqual(oldImagePath, movie.ImagePath, "Imagepath has changed!");
+            Assert.AreEqual(oldReleaseDate, movie.ReleaseDate, "Release date has changed!");
+        }
     }
 }
