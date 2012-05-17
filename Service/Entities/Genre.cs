@@ -114,6 +114,38 @@ namespace RentItService.Entities
         }
 
         /// <summary>
+        /// Equals operator overloading.
+        /// </summary>
+        /// <param name="a">Genre A</param>
+        /// <param name="b">Genre B</param>
+        /// <returns>True if equals; false otherwise</returns>
+        public static bool operator ==(Genre a, Genre b)
+        {
+            if (ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            return a.Equals(b);
+        }
+
+        /// <summary>
+        /// Not equals operator overloading.
+        /// </summary>
+        /// <param name="a">Genre A</param>
+        /// <param name="b">Genre B</param>
+        /// <returns>True if not equals; false otherwise</returns>
+        public static bool operator !=(Genre a, Genre b)
+        {
+            return !(a == b);
+        }
+
+        /// <summary>
         /// Determines whether or not two objects of type Genre are equal.
         /// </summary>
         /// <param name="obj">The object to compare with.</param>
@@ -125,7 +157,7 @@ namespace RentItService.Entities
                 return false;
             }
 
-            if (this == obj)
+            if (ReferenceEquals(this, obj))
             {
                 return true;
             }
