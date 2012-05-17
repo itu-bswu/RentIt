@@ -1,4 +1,6 @@
-﻿namespace RentItClient.GUI.User
+﻿using System.Linq;
+
+namespace RentItClient.GUI.User
 {
     using System.Windows;
 
@@ -28,20 +30,9 @@
             : this()
         {
             movie = ViewMovieViewModel.GetMovieInfo(mId);
-            var genres = string.Empty;
-            foreach (var g in movie.Genres)
-            {
-                genres += g + ", ";
-            }
+            var genres = movie.Genres.Aggregate(string.Empty, (current, g) => current + (g + ", "));
 
-            if (movie.ReleaseDate != null)
-            {
-                textBoxRelease.Text = movie.ReleaseDate.Value.ToLongDateString();
-            }
-            else
-            {
-                textBoxRelease.Text = "Not Yet Released";
-            }
+            textBoxRelease.Text = movie.ReleaseDate != null ? movie.ReleaseDate.Value.ToLongDateString() : "Not Yet Released";
             textBoxGenre.Text = genres;
             textBoxDescription.Text = movie.Description;
             textBoxTitle.Text = movie.Title;

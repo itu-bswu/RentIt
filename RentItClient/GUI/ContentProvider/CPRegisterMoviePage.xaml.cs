@@ -1,9 +1,8 @@
-﻿using System.Linq;
-
-namespace RentItClient.GUI.ContentProvider
+﻿namespace RentItClient.GUI.ContentProvider
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using Types;
     using ViewModels.ProviderViewModels;
@@ -21,6 +20,7 @@ namespace RentItClient.GUI.ContentProvider
         public CPRegisterMoviePage()
         {
             InitializeComponent();
+            GenreCheckList.ItemsSource = new GenreCheckList();
         }
         #endregion
 

@@ -1,10 +1,9 @@
-﻿using System.IO;
-using RentItClient.ViewModels.ProviderViewModels;
-
-namespace RentItClient.GUI.ContentProvider
+﻿namespace RentItClient.GUI.ContentProvider
 {
+    using System.IO;
     using System.Windows;
     using Types;
+    using ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPUploadEditionPage.xaml
@@ -13,11 +12,20 @@ namespace RentItClient.GUI.ContentProvider
     {
         #region Fields
 
-        private Movie associatedMovie;
+        /// <summary>
+        /// The movie associated with the edition to upload.
+        /// </summary>
+        private readonly Movie associatedMovie;
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CPUploadEditionPage"/> class.
+        /// </summary>
+        /// <param name="movie">
+        /// The movie.
+        /// </param>
         public CPUploadEditionPage(Movie movie)
             : this()
         {
@@ -59,7 +67,7 @@ namespace RentItClient.GUI.ContentProvider
 
         private void UploadEditionClick(object sender, RoutedEventArgs e)
         {
-            FileInfo fi = new FileInfo(textBoxFiletoUpload.Text);
+            var fi = new FileInfo(textBoxFiletoUpload.Text);
             if (CPUploadEditionViewModel.UploadEdition(associatedMovie, textBoxTitle.Text, fi))
             {
                 MessageBox.Show("Edition was uploaded successfully!");

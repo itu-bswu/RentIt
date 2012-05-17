@@ -10,6 +10,7 @@ namespace RentItClient.ViewModels.UserViewModels
     using System.Collections.Generic;
 
     using Models;
+    using System.Linq;
 
     /// <summary>
     /// Viewmodel for the ListMovie page.
@@ -56,10 +57,7 @@ namespace RentItClient.ViewModels.UserViewModels
             var success = MovieInformationModel.Newest(out res, genre);
             if (success)
             {
-                foreach (var m in res)
-                {
-                    result.Add(Tuple.Create(m.Title, m.ID));
-                }
+                result.AddRange(res.Select(m => Tuple.Create(m.Title, m.ID)));
 
                 return result;
             }
@@ -81,10 +79,7 @@ namespace RentItClient.ViewModels.UserViewModels
             var success = MovieInformationModel.MostDownloaded(out res, genre);
             if (success)
             {
-                foreach (var m in res)
-                {
-                    result.Add(Tuple.Create(m.Title, m.ID));
-                }
+                result.AddRange(res.Select(m => Tuple.Create(m.Title, m.ID)));
 
                 return result;
             }

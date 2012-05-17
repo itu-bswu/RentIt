@@ -1,8 +1,9 @@
-﻿namespace RentItClient.GUI.ContentProvider
+﻿using System.Linq;
+
+namespace RentItClient.GUI.ContentProvider
 {
     using System.Windows;
     using Types;
-    using User;
     using ViewModels.ProviderViewModels;
 
     /// <summary>
@@ -33,11 +34,7 @@
             textBoxDescription.Text = shownMovie.Description;
             textBoxTitle.Text = shownMovie.Title;
 
-            var genres = string.Empty;
-            foreach (var g in shownMovie.Genres)
-            {
-                genres += g + ", ";
-            }
+            var genres = shownMovie.Genres.Aggregate(string.Empty, (current, g) => current + (g + ", "));
 
             textBoxGenre.Text = genres;
 
