@@ -93,7 +93,7 @@ namespace RentItService.Services
                 return false;
             }
 
-            Movie.Delete(user, movie);
+            movie.Delete(user);
             return true;
         }
 

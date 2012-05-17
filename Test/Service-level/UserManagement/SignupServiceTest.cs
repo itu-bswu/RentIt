@@ -28,6 +28,13 @@
             Assert.IsNotNull(user.ID, "User has not been assigned an id");
         }
 
+        /// <summary>
+        /// Purpose: Verify that you cannot create a user without basic information
+        /// 
+        /// Steps:
+        ///     1. Create a new user without the required info
+        ///     2. Verify that the user wasn't created
+        /// </summary>
         [TestMethod]
         public void SignupMissingInfoTest()
         {

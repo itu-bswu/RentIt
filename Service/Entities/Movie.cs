@@ -145,23 +145,19 @@ namespace RentItService.Entities
         /// </summary>
         /// <param name="user">The user deleting the movie.</param>
         /// <param name="movieObject">The movie to be deleted.</param>
-        /// <author>Jakob Melnyk</author>
-        public static void Delete(User user, Movie movieObject)
+        public void Delete(User user)
         {
             Contract.Requires<ArgumentNullException>(user != null);
-            Contract.Requires<ArgumentNullException>(movieObject != null);
             Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
 
-            var movie = All.First(m => m.ID == movieObject.ID);
-
-            if (movie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+            if (OwnerID != user.ID && user.Type != UserType.SystemAdmin)
             {
                 throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
             }
 
-            var files = movie.Editions.Select(edition => edition.FilePath).ToList();
+            var files = Editions.Select(edition => edition.FilePath).ToList();
 
-            RentItContext.Db.Movies.Remove(movie);
+            RentItContext.Db.Movies.Remove(this);
             RentItContext.Db.SaveChanges();
 
             foreach (var filePath in files.Select(file => ConfigurationManager.AppSettings["BaseFilePath"] + file).Where(File.Exists))
@@ -298,7 +294,7 @@ namespace RentItService.Entities
         /// <param name="user">User editing the movie. Must be the owner of the movie.</param>
         /// <param name="updatedMovie">Updated movie information. ID is used for identifying movie to be updated.</param>
         /// <returns>The updated movie.</returns>
-        public static Movie Edit(User user, Movie updatedMovie)
+        public void Edit(User user, Movie updatedMovie)
         {
             Contract.Requires<ArgumentNullException>(user != null && updatedMovie != null);
             Contract.Requires<ArgumentException>(!string.IsNullOrEmpty(updatedMovie.Title));
@@ -309,40 +305,31 @@ namespace RentItService.Entities
                 Genre.GetOrCreateGenre(genre.Name);
             }
 
-            var referenceMovie = All.FirstOrDefault(movie => movie.ID == updatedMovie.ID);
-
-            if (referenceMovie == null)
-            {
-                throw new NoMovieFoundException();
-            }
-
-            if (referenceMovie.OwnerID != user.ID && user.Type != UserType.SystemAdmin)
+            if (OwnerID != user.ID && user.Type != UserType.SystemAdmin)
             {
                 throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
             }
 
-            referenceMovie.Title = updatedMovie.Title;
-            referenceMovie.Description = updatedMovie.Description;
-            referenceMovie.ImagePath = updatedMovie.ImagePath;
-            referenceMovie.ReleaseDate = updatedMovie.ReleaseDate;
+            Title = updatedMovie.Title;
+            Description = updatedMovie.Description;
+            ImagePath = updatedMovie.ImagePath;
+            ReleaseDate = updatedMovie.ReleaseDate;
 
-            var removeGenres = from genre in referenceMovie.Genres
+            var removeGenres = from genre in Genres
                                where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
                                select Genre.All.Single(genre.Name.Equals);
 
             foreach (var genre in removeGenres.ToList())
             {
-                referenceMovie.RemoveGenre(genre);
+                RemoveGenre(genre);
             }
 
             foreach (var genre in updatedMovie.Genres)
             {
-                referenceMovie.AddGenre(Genre.All.Single(genre.Name.Equals));
+                AddGenre(Genre.All.Single(genre.Name.Equals));
             }
 
             RentItContext.Db.SaveChanges();
-
-            return referenceMovie;
         }
 
         #endregion Static Methods

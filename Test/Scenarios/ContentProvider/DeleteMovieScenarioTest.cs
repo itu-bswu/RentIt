@@ -42,7 +42,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var movie = Movie.All.First(m => m.Editions.Count > 0);
 
             // Step 2
-            Movie.Delete(user, movie);
+            movie.Delete(user);
 
             // Step 3
             Assert.IsFalse(Movie.All.Any(m => m.ID == movie.ID), "Movie is still in the database.");
@@ -66,26 +66,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user1 = User.Login(TestUser.User.Username, TestUser.User.Password);
                 
             // Step 2
-            Movie.Delete(user1, testMovie);
-        }
-
-        /// <summary>
-        /// Purpose: Verify that it is not possible to delete a null movie.
-        /// 
-        /// Steps:
-        ///     1. Login as a content provider.
-        ///     2. Try to delete a null movie.
-        ///     3. Verify ArgumentNullException is thrown.
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InvalidInputDeleteMovieTest()
-        {
-            // Step 1
-            var user1 = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
-
-            // Step 2
-            Movie.Delete(user1, null);
+            testMovie.Delete(user1);
         }
 
         /// <summary>
@@ -123,7 +104,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(Username, Password);
 
             // Step 4
-            Movie.Delete(user, movie);
+            movie.Delete(user);
         }
 
         /// <summary>
