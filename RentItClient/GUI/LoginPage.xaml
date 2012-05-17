@@ -10,7 +10,7 @@
 	<Grid Width="720">
 		<TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="LoginHeading" Text="Welcome:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
 		<TextBlock Height="26" HorizontalAlignment="Left" Margin="177,228,0,0" Name="textBlockHeading" VerticalAlignment="Top" FontSize="12" FontStyle="Italic" Padding="5">
-			If you are not yet a user, please take a minute to signup!
+			If you are not yet a user, please take a minute to sign up!
 		</TextBlock>
 
 		<TextBlock Height="23" HorizontalAlignment="Left" Margin="99,80,0,0" Name="textBlock1" Text="Username" VerticalAlignment="Top" Width="67" />

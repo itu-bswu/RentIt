@@ -17,11 +17,11 @@
         <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,72,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="107,72,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="247" />
+        <TextBox IsReadOnly="True" Height="23" HorizontalAlignment="Left" Margin="107,72,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="247" />
         <TextBox IsReadOnly="True" Height="196" HorizontalAlignment="Left" Margin="12,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="454" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,103,0,0" Name="textChosenEdition" Text="Chosen edition: " VerticalAlignment="Top" Width="110" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,132,0,0" Name="textBlockDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
-        <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,103,366,0" Name="textBlockEdition" Text="" VerticalAlignment="Top" Width="247" />
+        <TextBox IsReadOnly="True" Height="23" HorizontalAlignment="Right" Margin="0,103,366,0" Name="textBlockEdition" Text="" VerticalAlignment="Top" Width="247" />
         <Button Content="Rent movie" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="rentmovie" VerticalAlignment="Top" Width="216" Click="RentMovieClick" />
     </Grid>
 </Page>
