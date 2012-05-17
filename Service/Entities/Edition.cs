@@ -12,6 +12,7 @@ namespace RentItService.Entities
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
+    using System.Runtime.Serialization;
     using Enums;
     using Exceptions;
     using Library;
@@ -19,6 +20,7 @@ namespace RentItService.Entities
     /// <summary>
     /// Movie edition entity (Entity Framework POCO class).
     /// </summary>
+    [DataContract(IsReference = true)]
     public class Edition
     {
         #region Constructor(s)
@@ -49,11 +51,13 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the ID of the movie edition.
         /// </summary>
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the movie edition.
         /// </summary>
+        [DataMember]
         public string Name { get; set; }
 
         /// <summary>
@@ -64,16 +68,19 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the ID of the associated movie.
         /// </summary>
+        [DataMember]
         public int MovieID { get; set; }
 
         /// <summary>
         /// Gets or sets the movie.
         /// </summary>
+        [DataMember]
         public virtual Movie Movie { get; set; }
 
         /// <summary>
         /// Gets or sets a list of rentals for this movie edition.
         /// </summary>
+        [DataMember]
         public virtual ICollection<Rental> Rentals { get; set; }
 
         #endregion Properties

@@ -12,6 +12,7 @@ namespace RentItService.Entities
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Linq;
+    using System.Runtime.Serialization;
     using Enums;
     using Exceptions;
     using Library;
@@ -19,6 +20,7 @@ namespace RentItService.Entities
     /// <summary>
     /// Movie entity (Entity Framework POCO class).
     /// </summary>
+    [DataContract(IsReference = true)]
     public class Movie
     {
         #region Constructor(s)
@@ -51,26 +53,31 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the movie's ID.
         /// </summary>
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the movie title.
         /// </summary>
+        [DataMember]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the movie description.
         /// </summary>
+        [DataMember]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the image path.
         /// </summary>
+        [DataMember]
         public string ImagePath { get; set; }
 
         /// <summary>
         /// Gets or sets the release date.
         /// </summary>
+        [DataMember]
         public DateTime? ReleaseDate { get; set; }
 
         /// <summary>
@@ -87,21 +94,25 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the owner ID.
         /// </summary>
+        [DataMember]
         public int OwnerID { get; set; }
 
         /// <summary>
         /// Gets or sets the owner of the movie.
         /// </summary>
+        [DataMember]
         public virtual User Owner { get; set; }
 
         /// <summary>
         /// Gets or sets a list of movie editions.
         /// </summary>
+        [DataMember]
         public virtual ICollection<Edition> Editions { get; set; } 
 
         /// <summary>
         /// Gets an enumerable of rentals of the movie.
         /// </summary>
+        [DataMember]
         public IEnumerable<Rental> Rentals
         {
             get
@@ -111,8 +122,9 @@ namespace RentItService.Entities
         }
 
         /// <summary>
-        /// Gets the movie's genres.
+        /// Gets or sets the movie's genres.
         /// </summary>
+        [DataMember]
         public virtual ICollection<Genre> Genres { get; set; }
 
         #endregion Properties
@@ -184,8 +196,9 @@ namespace RentItService.Entities
             Contract.Requires<ArgumentException>(limit >= 0);
 
             var movies = (from movie in All
-                          where movie.ReleaseDate <= DateTime.Now
-                          orderby movie.ReleaseDate descending
+                          where movie.ReleaseDate.HasValue &&
+                          movie.ReleaseDate.Value <= DateTime.Now
+                          orderby movie.ReleaseDate.Value descending
                           select movie).ToList();
 
             return (limit > 0 ? movies.Take(limit) : movies);
@@ -214,7 +227,10 @@ namespace RentItService.Entities
         /// <returns>The found movies.</returns>
         public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            var movies = (sorting == MovieSorting.MostDownloaded ? MostDownloaded() : sorting == MovieSorting.Newest ? Newest(limit) : All);
+            var movies =
+                sorting == MovieSorting.MostDownloaded ? MostDownloaded(limit) :
+                sorting == MovieSorting.Newest ? Newest(limit) :
+                limit == 0 ? All.ToList() : All.Take(limit).ToList();
 
             if (genre != null)
             {

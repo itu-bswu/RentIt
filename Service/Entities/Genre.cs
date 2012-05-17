@@ -8,10 +8,12 @@ namespace RentItService.Entities
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Genre entity (Entity Framework POCO class).
     /// </summary>
+    [DataContract(IsReference = true)]
     public class Genre
     {
         #region Constructor(s)
@@ -51,16 +53,19 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the genres's ID.
         /// </summary>
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the genre name.
         /// </summary>
+        [DataMember]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the associated movies.
         /// </summary>
+        [DataMember]
         public virtual ICollection<Movie> AssociatedMovies { get; set; }
 
         #endregion Properties

@@ -11,15 +11,16 @@ namespace RentItService.Entities
     using System.Configuration;
     using System.Diagnostics.Contracts;
     using System.Linq;
+    using System.Runtime.Serialization;
     using Enums;
     using Exceptions;
-
     using Tools;
     using Tools.Encryption;
 
     /// <summary>
     /// User entity (Entity Framework POCO class).
     /// </summary>
+    [DataContract(IsReference = true)]
     public class User
     {
         #region Fields
@@ -60,37 +61,43 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the user's ID.
         /// </summary>
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the username.
         /// </summary>
+        [DataMember]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the user's password.
         /// </summary>
+        [DataMember]
         public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets the user's email.
         /// </summary>
-        [Pure] 
+        [DataMember] 
         public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the user's full name.
         /// </summary>
+        [DataMember]
         public string FullName { get; set; }
 
         /// <summary>
         /// Gets or sets the user's type as an integer.
         /// </summary>
+        [DataMember]
         public short TypeValue { get; set; }
 
         /// <summary>
         /// Gets or sets the user's type.
         /// </summary>
+        [DataMember]
         public UserType Type
         {
             get
@@ -107,17 +114,20 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the user's login token.
         /// </summary>
+        [DataMember]
         public string Token { get; set; }
 
         /// <summary>
         /// Gets or sets a list of the movies that the user has added to the system. 
         /// (Only content providers).
         /// </summary>
+        [DataMember]
         public virtual ICollection<Movie> UploadedMovies { get; set; }
 
         /// <summary>
         /// Gets or sets a list of the user's rentals.
         /// </summary>
+        [DataMember]
         public virtual ICollection<Rental> Rentals { get; set; }
 
         #endregion Properties
