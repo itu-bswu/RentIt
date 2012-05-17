@@ -27,7 +27,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the edition is gone.
         /// </summary>
         [TestMethod]
-        public void DeleteEditionTest()
+        public void DeleteEditionValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);

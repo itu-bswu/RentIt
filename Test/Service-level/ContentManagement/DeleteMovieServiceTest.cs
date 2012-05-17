@@ -27,7 +27,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the movie is gone.
         /// </summary>
         [TestMethod]
-        public void DeleteMovieTest()
+        public void DeleteMovieValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);

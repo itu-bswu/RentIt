@@ -25,7 +25,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the user was logged out.
         /// </summary>
         [TestMethod]
-        public void LogoutTest()
+        public void LogoutValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);

@@ -26,7 +26,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that genres was returned.
         /// </summary>
         [TestMethod]
-        public void AllGenresTest()
+        public void AllGenresValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -47,7 +47,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that none was returned.
         /// </summary>
         [TestMethod]
-        public void AllGenresWithoutTokenTest()
+        public void AllGenresWithoutTokenServiceTest()
         {
             string[] genres;
             var result = ContentBrowsing.GetGenres(out genres, null);
