@@ -53,9 +53,7 @@ namespace RentItClient.GUI.User
             genreComboBox.SelectedValuePath = "Item2";
 
             // Sort mode combo box
-            var sortModes = new List<Tuple<string, int>>();
-            sortModes.Add(Tuple.Create("Newest", 1));
-            sortModes.Add(Tuple.Create("Most downloaded", 2));
+            var sortModes = new List<Tuple<string, int>> { Tuple.Create("Newest", 1), Tuple.Create("Most downloaded", 2) };
 
             sortModeComboBox.ItemsSource = sortModes;
             sortModeComboBox.DisplayMemberPath = "Item1";

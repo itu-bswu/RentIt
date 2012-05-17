@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="CPRegisterMoviePage.xaml.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -27,6 +27,7 @@ namespace RentItClient.GUI.ContentProvider
         public CPRegisterMoviePage()
         {
             InitializeComponent();
+            GenreCheckList.ItemsSource = new GenreCheckList();
         }
         #endregion
 

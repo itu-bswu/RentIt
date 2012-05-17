@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="CPViewMoviePage.xaml.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -8,7 +8,6 @@ namespace RentItClient.GUI.ContentProvider
 {
     using System.Windows;
     using Types;
-
     using ViewModels.ProviderViewModels;
 
     /// <summary>
@@ -39,11 +38,7 @@ namespace RentItClient.GUI.ContentProvider
             textBoxDescription.Text = shownMovie.Description;
             textBoxTitle.Text = shownMovie.Title;
 
-            var genres = string.Empty;
-            foreach (var g in shownMovie.Genres)
-            {
-                genres += g + ", ";
-            }
+            var genres = shownMovie.Genres.Aggregate(string.Empty, (current, g) => current + (g + ", "));
 
             textBoxGenre.Text = genres;
 

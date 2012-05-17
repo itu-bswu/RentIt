@@ -4,8 +4,6 @@
 // </copyright>
 //------------------------------------------------------------------------
 
-using RentItClient.RentItService;
-
 namespace RentItClient.ViewModels.UserViewModels
 {
     using Models;

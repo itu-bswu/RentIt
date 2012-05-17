@@ -19,6 +19,11 @@ namespace RentItClient.ViewModels
     public static class MasterViewModel
     {
         /// <summary>
+        /// Gets or sets a value indicating whether the closing message should be skipped.
+        /// </summary>
+        public static bool SkipClosingMessage { get; set; }
+
+        /// <summary>
         /// Logs the user out.
         /// </summary>
         /// <returns>True if logout was successful, false if not..</returns>
@@ -34,17 +39,14 @@ namespace RentItClient.ViewModels
         /// <returns>List of tuples containing movie titles and ids.</returns>
         public static List<Tuple<string, int>> Search(string searchString)
         {
-            List<Tuple<string, int>> returnValue = new List<Tuple<string, int>>();
+            var returnValue = new List<Tuple<string, int>>();
             IEnumerable<Movie> searchResult;
 
             var success = MovieInformationModel.Search(out searchResult, searchString);
 
             if (success)
             {
-                foreach (var s in searchResult)
-                {
-                    returnValue.Add(Tuple.Create(s.Title, s.ID));
-                }
+                returnValue.AddRange(searchResult.Select(s => Tuple.Create(s.Title, s.ID)));
 
                 return returnValue;
             }
@@ -77,6 +79,7 @@ namespace RentItClient.ViewModels
         public static void AuthenticationError()
         {
             MessageBox.Show("An authentication error occured. The client will have to close.");
+            SkipClosingMessage = false;
             Application.Current.MainWindow.Close();
         }
     }

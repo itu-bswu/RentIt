@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ViewMoviePage.xaml.cs" company="RentIt">
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
@@ -6,6 +6,7 @@
 
 namespace RentItClient.GUI.User
 {
+    using System.Linq;
     using System.Windows;
 
     using Types;
@@ -34,20 +35,9 @@ namespace RentItClient.GUI.User
             : this()
         {
             movie = ViewMovieViewModel.GetMovieInfo(mId);
-            var genres = string.Empty;
-            foreach (var g in movie.Genres)
-            {
-                genres += g + ", ";
-            }
+            var genres = movie.Genres.Aggregate(string.Empty, (current, g) => current + (g + ", "));
 
-            if (movie.ReleaseDate != null)
-            {
-                textBoxRelease.Text = movie.ReleaseDate.Value.ToLongDateString();
-            }
-            else
-            {
-                textBoxRelease.Text = "Not Yet Released";
-            }
+            textBoxRelease.Text = movie.ReleaseDate != null ? movie.ReleaseDate.Value.ToLongDateString() : "Not Yet Released";
             textBoxGenre.Text = genres;
             textBoxDescription.Text = movie.Description;
             textBoxTitle.Text = movie.Title;
@@ -56,7 +46,6 @@ namespace RentItClient.GUI.User
             EditionListBox.ItemsSource = movie.Editions;
             EditionListBox.DisplayMemberPath = "Item1";
             EditionListBox.SelectedValuePath = "Item2";
-
         }
 
         /// <summary>

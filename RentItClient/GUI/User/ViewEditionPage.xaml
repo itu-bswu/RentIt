@@ -18,7 +18,7 @@
 
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,72,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="110"/>
         <TextBox IsReadOnly="True" Height="23" HorizontalAlignment="Left" Margin="107,72,0,0" Name="textBlockTitle" Text="" VerticalAlignment="Top" Width="247" />
-        <TextBox IsReadOnly="True" Height="196" HorizontalAlignment="Left" Margin="12,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="454" />
+        <TextBox TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="196" HorizontalAlignment="Left" Margin="12,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="454" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,103,0,0" Name="textChosenEdition" Text="Chosen edition: " VerticalAlignment="Top" Width="110" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="12,132,0,0" Name="textBlockDescription" Text="Description: " VerticalAlignment="Top" Width="110" />
         <TextBox IsReadOnly="True" Height="23" HorizontalAlignment="Right" Margin="0,103,366,0" Name="textBlockEdition" Text="" VerticalAlignment="Top" Width="247" />

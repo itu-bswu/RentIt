@@ -4,17 +4,16 @@
 // </copyright>
 //------------------------------------------------------------------------
 
-using RentItClient.Models;
-using RentItClient.RentItService;
-
 namespace RentItClient.Types
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Models;
+    using RentItService;
 
     /// <summary>
-    /// Class describing 
+    /// Represents a movie in the client.
     /// </summary>
     public class Movie
     {
@@ -106,8 +105,7 @@ namespace RentItClient.Types
                 movie.Description,
                 movie.ReleaseDate.Value,
                 genres,
-                editions
-                );
+                editions);
             }
             else
             {
@@ -123,18 +121,13 @@ namespace RentItClient.Types
             return result;
         }
 
+        /// <summary>
+        /// Converts a movie of the client type to the service movie type.
+        /// </summary>
+        /// <param name="m">The movie to convert.</param>
+        /// <returns>The converted movie.</returns>
         public static RentItService.Movie ConvertClientMovie(Movie m)
         {
-            var gList = new List<Genre>();
-
-            foreach (var g in m.Genres)
-            {
-                gList.Add(new Genre
-                              {
-                                  Name = g
-                              });
-            }
-
             var x = new RentItService.Movie();
 
             if (m.Editions.Count() != 0)
@@ -147,7 +140,10 @@ namespace RentItClient.Types
                 {
                     ID = m.ID,
                     Description = m.Description,
-                    Genres = gList.ToArray(),
+                    Genres = m.Genres.Select(g => new Genre
+                                                      {
+                                                          Name = g
+                                                      }).ToArray(),
                     Editions = x.Editions,
                     ReleaseDate = m.ReleaseDate,
                     Title = m.Title

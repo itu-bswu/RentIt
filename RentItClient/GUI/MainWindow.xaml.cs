@@ -16,11 +16,6 @@ namespace RentItClient.GUI
     public partial class MainWindow
     {
         /// <summary>
-        /// Indicates whether the OnClosing event should happen.
-        /// </summary>
-        private bool skipClosingMessage;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
@@ -36,7 +31,7 @@ namespace RentItClient.GUI
         /// <returns>True if the user chose to change window, false if not.</returns>
         public static bool ChangeWindow()
         {
-            const string messageBoxText = "All unsaved information will be lost, are you sure you want to change window?";
+            const string messageBoxText = "Are you sure you want to change window? All unsaved information will be lost.";
             const string caption = "Change window?";
             const MessageBoxButton button = MessageBoxButton.YesNo;
             const MessageBoxImage icon = MessageBoxImage.Warning;
@@ -87,12 +82,12 @@ namespace RentItClient.GUI
         /// <param name="e">The eventargs.</param>
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            if (skipClosingMessage)
+            if (MasterViewModel.SkipClosingMessage)
             {
                 return;
             }
 
-            const string messageBoxText = "Are you sure you want to close the application. All unsaved data will be lost?";
+            const string messageBoxText = "Are you sure you want to close the application? All unsaved data will be lost.";
             const string caption = "Close application?";
             const MessageBoxButton button = MessageBoxButton.YesNo;
             const MessageBoxImage icon = MessageBoxImage.Warning;
@@ -121,7 +116,7 @@ namespace RentItClient.GUI
         {
             e.Handled = true;
             MessageBox.Show("An error occured. The client is forced to shut down.");
-            skipClosingMessage = true;
+            MasterViewModel.SkipClosingMessage = true;
             Application.Current.MainWindow.Close();
         }
     }

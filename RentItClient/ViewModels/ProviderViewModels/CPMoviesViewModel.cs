@@ -1,31 +1,32 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CPMoviesViewModel.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="CPMoviesViewModel.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//------------------------------------------------------------------------
+
+using System.Linq;
 
 namespace RentItClient.ViewModels.ProviderViewModels
 {
     using System;
     using System.Collections.Generic;
-    using Types;
     using Models;
+    using Types;
 
     /// <summary>
     /// Viewmodel for the CPYourMoviesPage page.
     /// </summary>
     public static class CPMoviesViewModel
     {
+        /// <summary>
+        /// Gets all the movies registered by the content provider that is currently logged in.
+        /// </summary>
+        /// <returns>Gets the movies of the content provider.</returns>
         public static IEnumerable<Tuple<string, Movie>> GetMovies()
         {
-            var returnValue = new List<Tuple<string, Movie>>();
             IEnumerable<RentItService.Movie> allMovies;
             MovieInformationModel.AllMovies(out allMovies);
-            foreach (var m in allMovies)
-            {
-                returnValue.Add(Tuple.Create(m.Title, Movie.ConvertServiceMovie(m)));
-            }
-            return returnValue; // TODO: Actually implement
+            return allMovies.Select(m => Tuple.Create(m.Title, Movie.ConvertServiceMovie(m))).ToList();
         }
     }
 }
