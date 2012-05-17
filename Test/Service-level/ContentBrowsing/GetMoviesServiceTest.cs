@@ -90,8 +90,7 @@
         /// Steps:
         ///     1. Login to the service
         ///     2. Get all movies with a specific genre
-        ///     3. ???
-        ///     4. PROFIT
+        ///     3. Verify that only movies in that genre was returned
         /// </summary>
         [TestMethod]
         public void GetAllMoviesGenreTest()

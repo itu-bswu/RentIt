@@ -34,7 +34,32 @@
             RentItContext.ReloadDb();
 
             Assert.IsTrue(result, "EditMovie failed");
-            Assert.AreEqual(title, Movie.All.Single(m => m.ID.Equals(movie.ID)).Title);
+            Assert.AreEqual(title, Movie.All.Single(m => m.ID.Equals(movie.ID)).Title, "Movie title wasn't changed");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that normal users cannot edit movies
+        /// 
+        /// Steps:
+        ///     1. Login to the system as a normal user
+        ///     2. Edit a movie
+        ///     3. Verify that the method failed
+        /// </summary>
+        [TestMethod]
+        public void EditMovieInsufficientRightsTest()
+        {
+            User user;
+            UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
+
+            const string title = "New title";
+            var movie = Movie.All.First();
+            movie.Title = title;
+            var result = ContentManagement.EditMovie(user.Token, ref movie);
+
+            RentItContext.ReloadDb();
+
+            Assert.IsFalse(result, "EditMovie didn't fail");
+            Assert.AreNotEqual(title, Movie.All.Single(m => m.ID.Equals(movie.ID)).Title, "Movie title was changed");
         }
     }
 }

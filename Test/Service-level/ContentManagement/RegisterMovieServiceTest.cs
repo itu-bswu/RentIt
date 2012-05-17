@@ -33,5 +33,27 @@
             Assert.IsNotNull(movie.ID, "Movie has no ID");
             Assert.IsNotNull(Movie.All.Single(m => m.Title.Equals(title)));
         }
+
+        /// <summary>
+        /// Purpose: Verify that normal users cannot register movies
+        /// 
+        /// Steps:
+        ///     1. Login to the system as a normal user
+        ///     2. Register a movie
+        ///     3. Verify that it fails
+        /// </summary>
+        [TestMethod]
+        public void RegisterMovieInsufficientAccessTest()
+        {
+            User user;
+            UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
+
+            const string title = "My amazing movie";
+            var movie = new Movie { Title = title };
+            var result = ContentManagement.RegisterMovie(user.Token, ref movie);
+
+            Assert.IsFalse(result, "RegisterMovie didn't fail");
+            Assert.IsFalse(Movie.All.Any(m => m.Title.Equals(title)));
+        }
     }
 }
