@@ -169,7 +169,7 @@ namespace RentItService.Entities
 
             if (!All.ToList().Any(u => u.Username == username && u.Password == password))
             {
-                throw new UserNotFoundException("No user with the given login information was found!");
+                return null;
             }
 
             var user = All.ToList().First(u => u.Username == username && u.Password == password);
