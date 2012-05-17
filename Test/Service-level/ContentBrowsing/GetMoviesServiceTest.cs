@@ -96,16 +96,9 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         /// Purpose: Verify that movies can be limited to a specific genre.
         /// 
         /// Steps:
-<<<<<<< HEAD
         ///     1. Login to the service
         ///     2. Get all movies with a specific genre
         ///     3. Verify that only movies in that genre was returned
-=======
-        ///     1. Login to the service.
-        ///     2. Get all movies with a specific genre.
-        ///     3. ???
-        ///     4. PROFIT
->>>>>>> 2539138bbf2d597cfcd0aa953c6ad0662e8e536c
         /// </summary>
         [TestMethod]
         public void GetAllMoviesGenreTest()

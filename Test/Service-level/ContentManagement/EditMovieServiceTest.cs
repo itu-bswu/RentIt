@@ -32,15 +32,14 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
             User user;
             UserManagement.Login(out user, TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
-            const string Title = "New title";
+            const string title = "New title";
             var movie = Movie.All.First();
-            movie.Title = Title;
+            movie.Title = title;
             var result = ContentManagement.EditMovie(user.Token, ref movie);
 
             RentItContext.ReloadDb();
 
             Assert.IsTrue(result, "EditMovie failed");
-<<<<<<< HEAD
             Assert.AreEqual(title, Movie.All.Single(m => m.ID.Equals(movie.ID)).Title, "Movie title wasn't changed");
         }
 
@@ -67,9 +66,6 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
 
             Assert.IsFalse(result, "EditMovie didn't fail");
             Assert.AreNotEqual(title, Movie.All.Single(m => m.ID.Equals(movie.ID)).Title, "Movie title was changed");
-=======
-            Assert.AreEqual(Title, Movie.All.Single(m => m.ID.Equals(movie.ID)).Title);
->>>>>>> 2539138bbf2d597cfcd0aa953c6ad0662e8e536c
         }
     }
 }
