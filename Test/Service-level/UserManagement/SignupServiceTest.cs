@@ -1,13 +1,17 @@
-﻿namespace RentIt.Tests.Service_level.ContentBrowsing
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="SignupServiceTest.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentIt.Tests.Service_level.ContentBrowsing
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService.Services;
-    using Utils;
-    using System.Collections.Generic;
     using RentItService.Entities;
-    using System.Linq;
-    using RentItService.Enums;
-    
+
+    /// <summary>
+    /// Tests for UserManagement.Signup.
+    /// </summary>
     [TestClass]
     public class SignupServiceTest : ServiceTest
     {
@@ -21,7 +25,7 @@
         [TestMethod]
         public void SignupTest()
         {
-            User user = new User() { Email = "test@example.com", Username = "SteinBagger32", Password = "GOD" };
+            var user = new User { Email = "test@example.com", Username = "SteinBagger32", Password = "GOD" };
             var result = UserManagement.SignUp(ref user);
 
             Assert.IsTrue(result, "Signup failed");
@@ -38,7 +42,7 @@
         [TestMethod]
         public void SignupMissingInfoTest()
         {
-            User user = new User();
+            var user = new User();
             var result = UserManagement.SignUp(ref user);
 
             Assert.IsFalse(result, "Signup didn't fail");

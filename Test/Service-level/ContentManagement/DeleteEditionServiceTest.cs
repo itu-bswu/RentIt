@@ -1,24 +1,30 @@
-﻿namespace RentIt.Tests.Service_level.ContentBrowsing
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="DeleteEditionServiceTest.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentIt.Tests.Service_level.ContentBrowsing
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService.Services;
-    using Utils;
-    using System.Collections.Generic;
-    using RentItService.Entities;
     using System.Linq;
-    using RentItService.Enums;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentItService;
+    using RentItService.Entities;
+    using Utils;
     
+    /// <summary>
+    /// Tests for ContentManagement.DeleteEdition.
+    /// </summary>
     [TestClass]
     public class DeleteEditionServiceTest : ServiceTest
     {
         /// <summary>
-        /// Purpose: Verify that you can delete a movie edition
+        /// Purpose: Verify that you can delete a movie edition.
         /// 
         /// Steps:
-        ///     1. Login to the system
-        ///     2. Delete an edition
-        ///     3. Verify that the edition is gone
+        ///     1. Login to the system.
+        ///     2. Delete an edition.
+        ///     3. Verify that the edition is gone.
         /// </summary>
         [TestMethod]
         public void DeleteEditionTest()

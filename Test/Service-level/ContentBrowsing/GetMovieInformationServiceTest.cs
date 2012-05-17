@@ -1,23 +1,29 @@
-﻿namespace RentIt.Tests.Service_level.ContentBrowsing
+﻿//-------------------------------------------------------------------------------------------------
+// <copyright file="GetMovieInformationServiceTest.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//-------------------------------------------------------------------------------------------------
+
+namespace RentIt.Tests.Service_level.ContentBrowsing
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentItService.Services;
-    using Utils;
-    using System.Collections.Generic;
-    using RentItService.Entities;
     using System.Linq;
-    using RentItService.Enums;
-    
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using RentItService.Entities;
+    using Utils;
+
+    /// <summary>
+    /// Tests for ContentBrowsing.GetMovieInformation.
+    /// </summary>
     [TestClass]
     public class GetMovieInformationServiceTest : ServiceTest
     {
         /// <summary>
-        /// Purpose: Verify that GetMovieInformation gets information about a movie
+        /// Purpose: Verify that GetMovieInformation gets information about a movie.
         /// 
         /// Steps:
-        ///     1. Login to the system
-        ///     2. Get information about a movie
-        ///     3. Verify that the movie object was populated with information
+        ///     1. Login to the system.
+        ///     2. Get information about a movie.
+        ///     3. Verify that the movie object was populated with information.
         /// </summary>
         [TestMethod]
         public void GetMovieInformationTest()
@@ -34,11 +40,11 @@
         }
 
         /// <summary>
-        /// Purpose: Vecrify that without a token, GetMovieInformation doesn't return anything
+        /// Purpose: Vecrify that without a token, GetMovieInformation doesn't return anything.
         /// 
         /// Steps: 
-        ///     1. Get information about a movie
-        ///     2. Verify that the object wasn't populated
+        ///     1. Get information about a movie.
+        ///     2. Verify that the object wasn't populated.
         /// </summary>
         [TestMethod]
         public void GetMovieInformationWithoutTokenTest()
@@ -51,12 +57,13 @@
         }
 
         /// <summary>
-        /// Purpose: Verify that GetMovieInformation doesn't return anything when an unknown movie is referred to
+        /// Purpose: Verify that GetMovieInformation doesn't return 
+        ///          anything when an unknown movie is referred to.
         /// 
         /// Steps:
-        ///     1. Login to the system
-        ///     2. Get information about a non-exsiting movie
-        ///     3. Verify no information was returned
+        ///     1. Login to the system.
+        ///     2. Get information about a non-exsiting movie.
+        ///     3. Verify no information was returned.
         /// </summary>
         [TestMethod]
         public void GetMovieInformationUnknownMovieTest()
