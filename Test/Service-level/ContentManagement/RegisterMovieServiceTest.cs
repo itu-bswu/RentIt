@@ -43,7 +43,7 @@
         ///     3. Verify that it fails
         /// </summary>
         [TestMethod]
-        public void RegisterMovieInsufficientAccessTest()
+        public void RegisterMovieInsufficientRightsTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);

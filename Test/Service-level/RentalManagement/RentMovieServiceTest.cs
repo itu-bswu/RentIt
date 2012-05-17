@@ -26,7 +26,7 @@
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
 
-            var result = RentalManagement.RentMovie(user.Token, Movie.All.First().Editions.First();
+            var result = RentalManagement.RentMovie(user.Token, Movie.All.First().Editions.First());
             RentItContext.ReloadDb();
 
             Assert.IsTrue(result, "RentMovie failed");
