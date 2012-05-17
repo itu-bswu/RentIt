@@ -1,3 +1,9 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LoginPage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
 namespace RentItClient.GUI
 {
     using System.Windows;
@@ -25,6 +31,11 @@ namespace RentItClient.GUI
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Login" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LoginClick(object sender, RoutedEventArgs e)
         {
             var success = LoginViewModel.Login(textBoxUsername.Text, passwordBox.Password);
@@ -52,6 +63,11 @@ namespace RentItClient.GUI
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Signup" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void SignupClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RegistrationPage());

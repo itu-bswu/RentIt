@@ -1,4 +1,10 @@
-﻿namespace RentItClient.GUI.ContentProvider
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CPEditMoviePage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
+namespace RentItClient.GUI.ContentProvider
 {
     using System;
     using System.Collections.Generic;
@@ -52,6 +58,11 @@
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Your Movies" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void YourMoviesClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ChangeWindow())
@@ -60,6 +71,11 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Register Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void RegisterMovieClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ChangeWindow())
@@ -68,6 +84,11 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Logout" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.LogOut())
@@ -76,6 +97,11 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Save Changes" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
             const string messageBoxText = "Do you want to save changes?";

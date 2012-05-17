@@ -1,9 +1,15 @@
-﻿using RentItClient.Types;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CPYourMoviesPage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
 
 namespace RentItClient.GUI.ContentProvider
 {
     using System.Windows;
-    using ViewModels.ProviderViewModels;
+
+    using RentItClient.Types;
+    using RentItClient.ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPYourMoviesPage.xaml
@@ -27,11 +33,21 @@ namespace RentItClient.GUI.ContentProvider
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Register Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void RegisterMovieClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CPRegisterMoviePage());
         }
 
+        /// <summary>
+        /// Method invoked when the "Logout" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.LogOut())
@@ -40,6 +56,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "View Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void ViewClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CPViewMoviePage(((Movie)MovieListBox.SelectedValue).ID));

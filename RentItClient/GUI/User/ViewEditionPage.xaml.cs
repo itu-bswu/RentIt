@@ -1,4 +1,10 @@
-﻿namespace RentItClient.GUI.User
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ViewEditionPage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
+namespace RentItClient.GUI.User
 {
     using System.Linq;
     using System.Windows;
@@ -56,26 +62,51 @@
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "List Movies" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void ListMovieClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListMoviesPage());
         }
 
+        /// <summary>
+        /// Method invoked when the "View Profile" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void ViewProfileClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ViewProfilePage());
         }
 
+        /// <summary>
+        /// Method invoked when the "Your rentals" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void YourRentalsClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RentalHistoryPage());
         }
 
+        /// <summary>
+        /// Method invoked when the "Search" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void SearchClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ListMoviesPage(MasterViewModel.Search(textBoxSearch.Text)));
         }
 
+        /// <summary>
+        /// Method invoked when the "Logout" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.LogOut())
@@ -84,6 +115,11 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Rent mMovie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void RentMovieClick(object sender, RoutedEventArgs e)
         {
             ViewEditionViewModel.RentEdition(eId);

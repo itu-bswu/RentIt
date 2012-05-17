@@ -1,3 +1,9 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RegistrationPage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
 namespace RentItClient.GUI
 {
     using System.Windows;
@@ -21,16 +27,31 @@ namespace RentItClient.GUI
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Reset" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void ResetClick(object sender, RoutedEventArgs e)
         {
             ResetAll();
         }
 
+        /// <summary>
+        /// Method invoked when the "Cancel" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void CancelClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new LoginPage());
         }
 
+        /// <summary>
+        /// Method invoked when the "Submit" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void SubmitClick(object sender, RoutedEventArgs e)
         {
             if (!passwordBox1.Password.Equals(passwordBoxConfirm.Password))

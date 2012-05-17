@@ -1,4 +1,10 @@
-﻿namespace RentItClient.GUI
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MainWindow.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
+namespace RentItClient.GUI
 {
     using System.Windows;
     using System.Windows.Threading;

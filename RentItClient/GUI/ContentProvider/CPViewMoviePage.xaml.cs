@@ -1,8 +1,14 @@
-﻿namespace RentItClient.GUI.ContentProvider
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CPViewMoviePage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
+
+namespace RentItClient.GUI.ContentProvider
 {
     using System.Windows;
     using Types;
-    using User;
+
     using ViewModels.ProviderViewModels;
 
     /// <summary>
@@ -57,16 +63,31 @@
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Your Movies" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void YourMoviesClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CPYourMoviesPage());
         }
 
+        /// <summary>
+        /// Method invoked when the "Register Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void RegisterMovieClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CPRegisterMoviePage());
         }
 
+        /// <summary>
+        /// Method invoked when the "Logout" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.LogOut())
@@ -75,11 +96,21 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Edit Information" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void EditInformationClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CPEditMoviePage(shownMovie));
         }
 
+        /// <summary>
+        /// Method invoked when the "Delete Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void DeleteMovieClick(object sender, RoutedEventArgs e)
         {
             const string messageBoxText = "Are you sure you want to delete this movie, and all the editions aassociated with it?";
@@ -110,6 +141,11 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Delete Edition" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void DeleteEditionClick(object sender, RoutedEventArgs e)
         {
             if (EditionListBox.SelectedIndex < 0)
@@ -137,6 +173,11 @@
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Upload Edition" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void UploadEditionClick(object sender, RoutedEventArgs e)
         {
             const string messageBoxText = "Do you want to add an edition to the movie?";

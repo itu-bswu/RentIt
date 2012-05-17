@@ -1,10 +1,16 @@
-﻿using System.IO;
-using RentItClient.ViewModels.ProviderViewModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CPUploadEditionPage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
 
 namespace RentItClient.GUI.ContentProvider
 {
+    using System.IO;
     using System.Windows;
-    using Types;
+
+    using RentItClient.Types;
+    using RentItClient.ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPUploadEditionPage.xaml
@@ -33,6 +39,11 @@ namespace RentItClient.GUI.ContentProvider
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Your Movies" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void YourMovies(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ChangeWindow())
@@ -41,6 +52,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Register Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void RegisterMovieClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ChangeWindow())
@@ -49,6 +65,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Logout" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.LogOut())
@@ -57,6 +78,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Upload Edition" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void UploadEditionClick(object sender, RoutedEventArgs e)
         {
             FileInfo fi = new FileInfo(textBoxFiletoUpload.Text);
@@ -74,6 +100,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Browse" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void BrowseClick(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog

@@ -1,12 +1,18 @@
-﻿using System.Linq;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CPRegisterMoviePage.xaml.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------
 
 namespace RentItClient.GUI.ContentProvider
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
-    using Types;
-    using ViewModels.ProviderViewModels;
+
+    using RentItClient.Types;
+    using RentItClient.ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPRegisterMoviePage.xaml
@@ -26,6 +32,11 @@ namespace RentItClient.GUI.ContentProvider
 
         #region Click methods
 
+        /// <summary>
+        /// Method invoked when the "Your Movies" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void YourMoviesClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.ChangeWindow())
@@ -34,6 +45,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Logout" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void LogoutClick(object sender, RoutedEventArgs e)
         {
             if (MainWindow.LogOut())
@@ -42,6 +58,11 @@ namespace RentItClient.GUI.ContentProvider
             }
         }
 
+        /// <summary>
+        /// Method invoked when the "Register Movie" button is clicked.
+        /// </summary>
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void RegisterMovieClick(object sender, RoutedEventArgs e)
         {
             var genres = (from GenreChecked gc in GenreCheckList.Items where gc.Checked select gc.GenreName).ToList();
