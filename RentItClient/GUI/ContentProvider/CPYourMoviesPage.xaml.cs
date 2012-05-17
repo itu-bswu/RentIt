@@ -1,4 +1,6 @@
-﻿namespace RentItClient.GUI.ContentProvider
+﻿using RentItClient.Types;
+
+namespace RentItClient.GUI.ContentProvider
 {
     using System.Windows;
     using ViewModels.ProviderViewModels;
@@ -40,7 +42,7 @@
 
         private void ViewClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CPViewMoviePage((int)MovieListBox.SelectedValue));
+            NavigationService.Navigate(new CPViewMoviePage(((Movie)MovieListBox.SelectedValue).ID));
         }
         #endregion
     }

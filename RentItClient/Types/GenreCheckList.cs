@@ -8,6 +8,7 @@ namespace RentItClient.Types
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Models;
 
     /// <summary>
     /// A list of genres and bool values indicating if a genre has been checked or not.
@@ -20,7 +21,7 @@ namespace RentItClient.Types
         public GenreCheckList()
         {
             IEnumerable<string> genres;
-            Models.MovieInformationModel.AllGenres(out genres);
+            MovieInformationModel.AllGenres(out genres);
 
             foreach (var g in genres)
             {

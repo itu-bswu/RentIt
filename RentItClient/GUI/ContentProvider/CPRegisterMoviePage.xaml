@@ -8,8 +8,8 @@
 	Title="CPRegisterMoviePage">
 
 	<Page.Resources>
-		<ObjectDataProvider x:Key="GenreList" ObjectType="{x:Type Types:GenreCheckList}" />
-	</Page.Resources>
+        <ObjectDataProvider x:Key="GenreList" ObjectType="{x:Type Types:GenreCheckList}" />
+    </Page.Resources>
 	<Grid Width="698" Height="400">
         <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
 		<Button Content="Your Movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="yourMoviebutton" VerticalAlignment="Top" Width="137" Click="YourMoviesClick" />

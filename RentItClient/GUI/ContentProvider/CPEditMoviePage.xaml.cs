@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using RentItClient.ViewModels.ProviderViewModels;
-
-namespace RentItClient.GUI.ContentProvider
+﻿namespace RentItClient.GUI.ContentProvider
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using Types;
+    using ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPEditMoviePage.xaml
@@ -25,13 +24,20 @@ namespace RentItClient.GUI.ContentProvider
         {
             textBoxDescription.Text = movie.Description;
             textBoxTitle.Text = movie.Title;
+            if (DatePickerReleaseDate != null & movie.ReleaseDate != null)
+            {
+                DatePickerReleaseDate.DisplayDate = movie.ReleaseDate.Value;
+            }
 
-            GenreCheckList gcl = new GenreCheckList();
+            var gcl = new GenreCheckList();
 
             foreach (var g in movie.Genres)
             {
                 gcl.First(x => x.GenreName.Equals(g)).Checked = true;
             }
+
+            GenreCheckList.ItemsSource = gcl;
+
         }
 
         /// <summary>
@@ -76,7 +82,6 @@ namespace RentItClient.GUI.ContentProvider
             const string caption = "Save Changes?";
             const MessageBoxButton button = MessageBoxButton.YesNoCancel;
             const MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBox.Show(messageBoxText, caption, button, icon);
 
             var result = MessageBox.Show(messageBoxText, caption, button, icon);
 

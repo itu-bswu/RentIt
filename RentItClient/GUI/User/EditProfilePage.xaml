@@ -9,7 +9,7 @@
 
     <Grid Width="720">
         <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
-        <Button Content="Most rented movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="ListMoviesClick"/>
+        <Button Content="List movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="ListMoviesClick"/>
         <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="137,12,0,0" Name="button2" VerticalAlignment="Top" Width="128" Click="ViewProfileClick" />
         <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="271,13,0,0" Name="button3" VerticalAlignment="Top" Width="124" Click="YourRentalsClick" />
         <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
