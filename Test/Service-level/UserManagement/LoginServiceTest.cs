@@ -25,7 +25,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that the user was logged in.
         /// </summary>
         [TestMethod]
-        public void LoginTest()
+        public void LoginValidServiceTest()
         {
             var targetUser = TestUser.User;
 
@@ -47,7 +47,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the returned user is null.
         /// </summary>
         [TestMethod]
-        public void LoginWrongPasswordTest()
+        public void LoginWrongPasswordServiceTest()
         {
             var targetUser = TestUser.User;
 

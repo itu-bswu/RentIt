@@ -27,7 +27,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the user was edited.
         /// </summary>
         [TestMethod]
-        public void EditUserTest()
+        public void EditUserValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.SystemAdmin.Username, TestUser.SystemAdmin.Password);
@@ -54,7 +54,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that the method failed.
         /// </summary>
         [TestMethod]
-        public void EditUserNullTest()
+        public void EditUserNullServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.SystemAdmin.Username, TestUser.SystemAdmin.Password);

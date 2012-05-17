@@ -26,7 +26,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the movie was assigned an ID and is in the database
         /// </summary>
         [TestMethod]
-        public void RegisterMovieTest()
+        public void RegisterMovieValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
@@ -49,7 +49,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that it fails
         /// </summary>
         [TestMethod]
-        public void RegisterMovieInsufficientRightsTest()
+        public void RegisterMovieInsufficientRightsServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);

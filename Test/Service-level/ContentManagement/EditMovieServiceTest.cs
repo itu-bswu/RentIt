@@ -27,7 +27,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the movie was edited.
         /// </summary>
         [TestMethod]
-        public void EditMovieTest()
+        public void EditMovieValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
@@ -52,7 +52,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the method failed
         /// </summary>
         [TestMethod]
-        public void EditMovieInsufficientRightsTest()
+        public void EditMovieInsufficientRightsServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);

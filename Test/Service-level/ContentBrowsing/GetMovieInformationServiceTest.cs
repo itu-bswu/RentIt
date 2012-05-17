@@ -26,7 +26,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the movie object was populated with information.
         /// </summary>
         [TestMethod]
-        public void GetMovieInformationTest()
+        public void GetMovieInformationValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -47,7 +47,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that the object wasn't populated.
         /// </summary>
         [TestMethod]
-        public void GetMovieInformationWithoutTokenTest()
+        public void GetMovieInformationWithoutTokenServiceTest()
         {
             var movie = new Movie { ID = Movie.All.First().ID };
             var result = ContentBrowsing.GetMovieInformation(null, ref movie);
@@ -66,7 +66,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify no information was returned.
         /// </summary>
         [TestMethod]
-        public void GetMovieInformationUnknownMovieTest()
+        public void GetMovieInformationUnknownMovieServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);

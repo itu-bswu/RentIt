@@ -23,7 +23,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that the user was created
         /// </summary>
         [TestMethod]
-        public void SignupTest()
+        public void SignupValidServiceTest()
         {
             var user = new User { Email = "test@example.com", Username = "SteinBagger32", Password = "GOD" };
             var result = UserManagement.SignUp(ref user);
@@ -40,7 +40,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that the user wasn't created
         /// </summary>
         [TestMethod]
-        public void SignupMissingInfoTest()
+        public void SignupMissingInfoServiceTest()
         {
             var user = new User();
             var result = UserManagement.SignUp(ref user);

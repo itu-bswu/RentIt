@@ -28,7 +28,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that the movie was rented
         /// </summary>
         [TestMethod]
-        public void GetRentalsTest()
+        public void GetRentalsValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -52,7 +52,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that the method failed
         /// </summary>
         [TestMethod]
-        public void GetRentalsNullTest()
+        public void GetRentalsNullServiceTest()
         {
             Rental[] rentals;
             var result = RentalManagement.GetRentals(out rentals, null, RentalScope.All);

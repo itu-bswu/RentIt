@@ -26,7 +26,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that movies was returned.
         /// </summary>
         [TestMethod]
-        public void SearchTest()
+        public void SearchValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -47,7 +47,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that nothing is returned.
         /// </summary>
         [TestMethod]
-        public void SearchWithoutTokenTest()
+        public void SearchWithoutTokenServiceTest()
         {
             Movie[] movies;
             var result = ContentBrowsing.Search(out movies, null, "the");
@@ -65,7 +65,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that nothing was returned.
         /// </summary>
         [TestMethod]
-        public void SearchWithoutQuery()
+        public void SearchWithoutQueryServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);

@@ -28,7 +28,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that movies was returned.
         /// </summary>
         [TestMethod]
-        public void GetAllMoviesTest()
+        public void GetAllMoviesValidServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -50,7 +50,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Check that the first is newer than the second.
         /// </summary>
         [TestMethod]
-        public void GetAllMoviesNewestTest()
+        public void GetAllMoviesNewestServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -77,7 +77,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Check that the first is more downloaded than the second.
         /// </summary>
         [TestMethod]
-        public void GetAllMoviesMostDownloadedTest()
+        public void GetAllMoviesMostDownloadedServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -101,7 +101,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that only movies in that genre was returned
         /// </summary>
         [TestMethod]
-        public void GetAllMoviesGenreTest()
+        public void GetAllMoviesGenreServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -124,7 +124,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     3. Verify that only (limit) movies was returned.
         /// </summary>
         [TestMethod]
-        public void GetAllMoviesLimitTest()
+        public void GetAllMoviesLimitServiceTest()
         {
             User user;
             UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
@@ -146,7 +146,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         ///     2. Verify that no movies is returned.
         /// </summary>
         [TestMethod]
-        public void GetAllMoviesWithoutTokenTest()
+        public void GetAllMoviesWithoutTokenServiceTest()
         {
             Movie[] movies;
             var result = ContentBrowsing.GetMovies(out movies, null, MovieSorting.Default, null, 0);
