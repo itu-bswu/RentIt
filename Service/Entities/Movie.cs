@@ -202,7 +202,7 @@ namespace RentItService.Entities
                           where movie.ReleaseDate.HasValue &&
                           movie.ReleaseDate.Value <= DateTime.Now
                           orderby movie.ReleaseDate.Value descending
-                          select movie).ToList();
+                          select movie);
 
             return (limit > 0 ? movies.Take(limit) : movies);
         }
@@ -216,7 +216,7 @@ namespace RentItService.Entities
         {
             var movies = (from movie in All
                           orderby movie.Editions.SelectMany(edition => edition.Rentals).Count() descending
-                          select movie).ToList();
+                          select movie);
 
             return limit > 0 ? movies.Take(limit) : movies;
         }
@@ -224,23 +224,29 @@ namespace RentItService.Entities
         /// <summary>
         /// Get movies with specific parameters.
         /// </summary>
+        /// <param name="user">The user getting the list of movies.</param>
         /// <param name="sorting">How to sort the returned movies.</param>
         /// <param name="genre">What genre to limit to.</param>
         /// <param name="limit">The maximum number of elements to return (0 = no limit).</param>
         /// <returns>The found movies.</returns>
-        public static IEnumerable<Movie> GetMovies(MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
+        public static IEnumerable<Movie> GetMovies(User user, MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
             var movies =
                 (sorting == MovieSorting.MostDownloaded ? MostDownloaded(limit) :
                  sorting == MovieSorting.Newest ? Newest(limit) :
-                 limit == 0 ? All.ToList() : All.Take(limit)).ToList();
+                 limit == 0 ? All : All.Take(limit));
 
             if (genre != null)
             {
-                movies = movies.Where(movie => movie.Genres.Contains(Genre.GetOrCreateGenre(genre))).ToList();
+                movies = movies.Where(movie => movie.Genres.Contains(Genre.GetOrCreateGenre(genre)));
             }
 
-            return movies;
+            if (user.Type == UserType.ContentProvider)
+            {
+                movies = movies.Where(movie => movie.OwnerID == user.ID);
+            }
+
+            return movies.ToList();
         }
 
         /// <summary>

@@ -27,14 +27,20 @@ namespace RentItService.Services
         /// <returns>Wether the request succeeded or not</returns>
         public bool GetMovies(string token, out IEnumerable<Movie> movies, MovieSorting sorting = MovieSorting.Default, string genre = null, int limit = 0)
         {
-            if (token == null || User.GetByToken(token) == null || limit < 0)
+            if (token == null || limit < 0)
             {
                 movies = null;
                 return false;
             }
 
-            movies = Movie.GetMovies(sorting, genre, limit);
+            var user = User.GetByToken(token);
+            if (user == null)
+            {
+                movies = null;
+                return false;
+            }
 
+            movies = Movie.GetMovies(user, sorting, genre, limit);
             return true;
         }
 
