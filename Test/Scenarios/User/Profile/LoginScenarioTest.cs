@@ -12,6 +12,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
     using RentItService;
     using RentItService.Entities;
     using RentItService.Exceptions;
+    using RentIt.Tests.Utils;
 
     /// <summary>
     /// Scenario tests of the Login feature.
@@ -33,9 +34,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [TestMethod]
         public void LoginWithExistingUser()
         {
-            string username = User.GenerateToken(); // Should be unique enough.
+            var username = User.GenerateToken(); // Should be unique enough.
             const string Password = "VeryUniquePassword";
-            int userId;
 
             // Pre-condition
             var user = new User
@@ -46,11 +46,9 @@ namespace RentIt.Tests.Scenarios.User.Profile
             };
 
             User.SignUp(user);
+            RentItContext.ReloadDb();
 
-            using (var db = new RentItContext())
-            {
-                userId = db.Users.First(u => u.Username == username).ID;
-            }
+            var userId = User.All.First(u => u.Username == username).ID;
 
             // Step 1
             var loggedIn = User.Login(username, Password);
@@ -71,25 +69,24 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     2. Verify it is not possible.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserNotFoundException))]
         public void LoginWithNonExistingUser()
         {
             string username;
             string password;
 
             // Pre-condition
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
+                password = User.GenerateToken();
             }
+            while (User.All.Any(u => u.Username == username || u.Password == password));
 
             // Step 1
-            User.Login(username, password);
+            var result = User.Login(username, password);
+
+            // Step 2
+            Assert.IsNull(result, "User logged despite of wrong username and password.");
         }
 
         /// <summary>
@@ -105,33 +102,16 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     2. Verify it is not possible.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserNotFoundException))]
         public void LoginWithWrongPassword()
         {
-            string username;
-            string password;
-
-            // Pre-condition
-            using (var db = new RentItContext())
-            {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
-            }
-
-            var user = new User
-            {
-                Username = username,
-                Password = "very" + password + "unique",
-                Email = "Very@unique.com"
-            };
-            User.SignUp(user);
+            var username = TestUser.User.Username;
+            var password = User.GenerateToken();
 
             // Step 1
-            User.Login(username, password);
+            var result = User.Login(username, password);
+
+            // Step 2
+            Assert.IsNull(result, "User logged in, despite of wrong password.");
         }
 
         /// <summary>
@@ -147,33 +127,23 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     2. Verify it is not possible.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserNotFoundException))]
         public void LoginWithWrongUsername()
         {
             string username;
-            string password;
+            string password = TestUser.User.Password;
 
             // Pre-condition
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
             }
-
-            var user = new User
-            {
-                Username = "very" + username + "unique",
-                Password = password,
-                Email = "Very@unique.com"
-            };
-            User.SignUp(user);
+            while (User.All.Any(u => u.Username == username));
 
             // Step 1
-            User.Login(username, password);
+            var result = User.Login(username, password);
+
+            // Step 2
+            Assert.IsNull(result, "User logged in, despite of wrong username.");
         }
 
         /// <summary>
@@ -191,21 +161,17 @@ namespace RentIt.Tests.Scenarios.User.Profile
         ///     2. Verify it is not possible.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(UserNotFoundException))]
         public void LoginWithDifferentUsernameAndPassword()
         {
             string username;
             string password;
 
-            using (var db = new RentItContext())
+            do
             {
-                do
-                {
-                    username = User.GenerateToken();
-                    password = User.GenerateToken();
-                }
-                while (db.Users.Any(u => u.Username == username || u.Password == password));
+                username = User.GenerateToken();
+                password = User.GenerateToken();
             }
+            while (User.All.Any(u => u.Username == username || u.Password == password));
 
             // Pre-condition 1
             var user1 = new User
@@ -225,8 +191,13 @@ namespace RentIt.Tests.Scenarios.User.Profile
             };
             User.SignUp(user2);
 
+            RentItContext.ReloadDb();
+
             // Step 1
-            User.Login(username, password);
+            var result = User.Login(username, password);
+
+            // Step 2
+            Assert.IsNull(result, "User logged in, despite of using username and password from two different users.");
         }
     }
 }

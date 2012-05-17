@@ -186,8 +186,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
         [ExpectedException(typeof(UsernameInUseException))]
         public void SignUpWithExistingUsername()
         {
-            // Arrange
-            var existingUser = TestHelper.SetUpTestUsers().First();
+            var existingUser = User.All.First();
 
             var user = new User
             {
@@ -197,7 +196,6 @@ namespace RentIt.Tests.Scenarios.User.Profile
                 Password = "Test1234"
             };
 
-            // Act
             User.SignUp(user);
         }
     }
