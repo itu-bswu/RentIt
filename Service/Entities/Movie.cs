@@ -139,34 +139,6 @@ namespace RentItService.Entities
         }
 
         /// <summary>
-        /// Deletes a movie from the service. 
-        /// The movie is identified by the ID in the instance of the Movie class. 
-        /// The other properties in the Movie instance are ignored.
-        /// </summary>
-        /// <param name="user">The user deleting the movie.</param>
-        /// <param name="movieObject">The movie to be deleted.</param>
-        public void Delete(User user)
-        {
-            Contract.Requires<ArgumentNullException>(user != null);
-            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider);
-
-            if (OwnerID != user.ID && user.Type != UserType.SystemAdmin)
-            {
-                throw new InsufficientRightsException("Cannot delete a movie belonging to another content provider!");
-            }
-
-            var files = Editions.Select(edition => edition.FilePath).ToList();
-
-            RentItContext.Db.Movies.Remove(this);
-            RentItContext.Db.SaveChanges();
-
-            foreach (var filePath in files.Select(file => ConfigurationManager.AppSettings["BaseFilePath"] + file).Where(File.Exists))
-            {
-                File.Delete(filePath);
-            }
-        }
-
-        /// <summary>
         /// Searches the database for a specific movie title.
         /// </summary>
         /// <param name="search">The search string.</param>
@@ -285,53 +257,6 @@ namespace RentItService.Entities
             return newMovie;
         }
 
-        /// <summary>
-        /// Edit a movie's information. Title, Description, ImagePath, ReleaseDate 
-        /// and Genres will be updated. Movie will be identified by the ID in the 
-        /// Movie instance passed to the method. The user editing (identified by 
-        /// the token) must be the owner of the movie.
-        /// </summary>
-        /// <param name="user">User editing the movie. Must be the owner of the movie.</param>
-        /// <param name="updatedMovie">Updated movie information. ID is used for identifying movie to be updated.</param>
-        /// <returns>The updated movie.</returns>
-        public void Edit(User user, Movie updatedMovie)
-        {
-            Contract.Requires<ArgumentNullException>(user != null && updatedMovie != null);
-            Contract.Requires<ArgumentException>(!string.IsNullOrEmpty(updatedMovie.Title));
-            Contract.Requires<InsufficientRightsException>(user.Type == UserType.ContentProvider || user.Type == UserType.SystemAdmin);
-
-            foreach (var genre in updatedMovie.Genres)
-            {
-                Genre.GetOrCreateGenre(genre.Name);
-            }
-
-            if (OwnerID != user.ID && user.Type != UserType.SystemAdmin)
-            {
-                throw new InsufficientRightsException("Cannot edit a movie belonging to another content provider!");
-            }
-
-            Title = updatedMovie.Title;
-            Description = updatedMovie.Description;
-            ImagePath = updatedMovie.ImagePath;
-            ReleaseDate = updatedMovie.ReleaseDate;
-
-            var removeGenres = from genre in Genres
-                               where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
-                               select Genre.All.Single(genre.Name.Equals);
-
-            foreach (var genre in removeGenres.ToList())
-            {
-                RemoveGenre(genre);
-            }
-
-            foreach (var genre in updatedMovie.Genres)
-            {
-                AddGenre(Genre.All.Single(genre.Name.Equals));
-            }
-
-            RentItContext.Db.SaveChanges();
-        }
-
         #endregion Static Methods
 
         #region Methods
@@ -435,6 +360,71 @@ namespace RentItService.Entities
             RentItContext.Db.SaveChanges();
 
             return edition;
+        }
+
+        /// <summary>
+        /// Edit a movie's information. Title, Description, ImagePath, ReleaseDate 
+        /// and Genres will be updated. Movie will be identified by the ID in the 
+        /// Movie instance passed to the method. The user editing must be the owner 
+        /// of the movie, or a system administrator.
+        /// </summary>
+        /// <param name="user">User editing the movie. Must be the owner of the movie.</param>
+        /// <param name="updatedMovie">Updated movie information.</param>
+        public void Edit(User user, Movie updatedMovie)
+        {
+            Contract.Requires<ArgumentNullException>(user != null && updatedMovie != null);
+            Contract.Requires<ArgumentException>(!string.IsNullOrEmpty(updatedMovie.Title));
+            Contract.Requires<InsufficientRightsException>((user.Type == UserType.ContentProvider && this.OwnerID == user.ID) ||
+                                                            user.Type == UserType.SystemAdmin);
+
+            foreach (var genre in updatedMovie.Genres)
+            {
+                Genre.GetOrCreateGenre(genre.Name);
+            }
+
+            this.Title = updatedMovie.Title;
+            this.Description = updatedMovie.Description;
+            this.ImagePath = updatedMovie.ImagePath;
+            this.ReleaseDate = updatedMovie.ReleaseDate;
+
+            var removeGenres = from genre in this.Genres
+                               where !updatedMovie.Genres.Any(g => g.Name.Equals(genre.Name))
+                               select Genre.All.Single(genre.Name.Equals);
+
+            foreach (var genre in removeGenres.ToList())
+            {
+                this.RemoveGenre(genre);
+            }
+
+            foreach (var genre in updatedMovie.Genres)
+            {
+                this.AddGenre(Genre.All.Single(genre.Name.Equals));
+            }
+
+            RentItContext.Db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Deletes a movie from the service. User deleting the movie 
+        /// must be a content provider and the owner of the movie. 
+        /// System administrators can also delete movies.
+        /// </summary>
+        /// <param name="user">The user deleting the movie.</param>
+        public void Delete(User user)
+        {
+            Contract.Requires<ArgumentNullException>(user != null);
+            Contract.Requires<InsufficientRightsException>((user.Type == UserType.ContentProvider && this.OwnerID == user.ID) ||
+                                                            user.Type == UserType.SystemAdmin);
+
+            var files = this.Editions.Select(edition => edition.FilePath).ToList();
+
+            RentItContext.Db.Movies.Remove(this);
+            RentItContext.Db.SaveChanges();
+
+            foreach (var filePath in files.Select(file => ConfigurationManager.AppSettings["BaseFilePath"] + file).Where(File.Exists))
+            {
+                File.Delete(filePath);
+            }
         }
 
         #endregion Methods
