@@ -66,7 +66,7 @@ namespace RentItService.Services
                 return false;
             }
 
-            movie = Movie.Edit(user, movie);
+            movie.Edit(user, movie);
             return true;
         }
 
