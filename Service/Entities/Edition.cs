@@ -16,6 +16,7 @@ namespace RentItService.Entities
     using Enums;
     using Exceptions;
     using Library;
+    using System.Web.Configuration;
 
     /// <summary>
     /// Movie edition entity (Entity Framework POCO class).

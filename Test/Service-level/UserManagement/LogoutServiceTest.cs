@@ -4,6 +4,8 @@
 // </copyright>
 //-------------------------------------------------------------------------------------------------
 
+using RentItService;
+
 namespace RentIt.Tests.Service_level.ContentBrowsing
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;

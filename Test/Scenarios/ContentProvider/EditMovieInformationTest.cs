@@ -66,6 +66,8 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             newMovie.Edit(loggedinUser, newMovie);
 
+            RentItContext.ReloadDb();
+
             var foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
@@ -189,12 +191,10 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         ///        is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(NoMovieFoundException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieInformationInvalidMovieIdTypeTest()
         {
-            var testUser = TestUser.ContentProvider;
-
-            var loggedinUser = User.Login(testUser.Username, testUser.Password);
+            var loggedinUser = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             var newMovie = new Movie
                 {

@@ -2,14 +2,14 @@
 <publishData>
   <publishProfile publishUrl="https://rentit.itu.dk:8172/MsDeploy.axd" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/RentIt12" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="True" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Production" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="rentit12" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtL7CJZ0VcU+qvhQ+d4PxsQAAAAACAAAAAAAQZgAAAAEAACAAAAB3bf7Fax83pvVSfZXL/IdaSaqvu5n9XbN5vjX65yNZiwAAAAAOgAAAAAIAACAAAACm8KTtt/zXY0ckTC2OpIyQx45LVNQbHwpmC5E9I7N5mzAAAAAj6kHz3T+uXTacHe4Fs+Eeye9N//5ODKHBtLZC6C5kNzCoCtKSPetfPZbc7N/TicNAAAAAXhLytmk8MxcHZWWnv8prVxi5wPSfb3mmNeF0eRy+tzlg976rzWMxk1L/ODrUb1LgnUMurUkxNdllQ4AQA+oDFA==" SelectedForPublish="True">
     <file relUrl="Services/Service.svc" publishTime="03/24/2012 16:01:24" />
-    <file relUrl="bin/RentItService.pdb" publishTime="04/01/2012 14:02:25" />
+    <file relUrl="bin/RentItService.dll" publishTime="04/01/2012 14:02:25" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="03/20/2012 21:32:30" />
     <file relUrl="Web.config" publishTime="04/01/2012 14:02:40" />
     <file relUrl="bin/Tools.dll" publishTime="04/01/2012 14:02:24" />
-    <file relUrl="bin/Tools.pdb" publishTime="04/01/2012 14:02:24" />
+    <file relUrl="bin/RentItService.pdb" publishTime="04/01/2012 14:02:25" />
     <file relUrl="App.config" publishTime="03/22/2012 14:35:22" />
     <file relUrl="bin/EntityFramework.dll" publishTime="03/20/2012 21:32:30" />
     <file relUrl="packages.config" publishTime="03/22/2012 14:35:15" />
-    <file relUrl="bin/EntityFramework.xml" publishTime="03/20/2012 21:32:30" />
-    <file relUrl="bin/RentItService.dll" publishTime="04/01/2012 14:02:25" />
+    <file relUrl="bin/Tools.pdb" publishTime="04/01/2012 14:02:24" />
   </publishProfile>
 </publishData>
