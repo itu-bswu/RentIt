@@ -38,7 +38,7 @@ namespace RentItService.Entities
         #endregion Constructor(s)
 
         #region Properties
-        
+
         /// <summary>
         /// Gets all editions.
         /// </summary>

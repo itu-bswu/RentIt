@@ -92,7 +92,7 @@ namespace RentItClient.GUI
             const MessageBoxButton button = MessageBoxButton.YesNo;
             const MessageBoxImage icon = MessageBoxImage.Warning;
 
-            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+            var result = MessageBox.Show(messageBoxText, caption, button, icon);
 
             // Process message box results
             switch (result)
@@ -112,7 +112,7 @@ namespace RentItClient.GUI
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The e.</param>
-        private void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs e)
+        private static void HandleExceptions(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
             MessageBox.Show("An error occured. The client is forced to shut down.");

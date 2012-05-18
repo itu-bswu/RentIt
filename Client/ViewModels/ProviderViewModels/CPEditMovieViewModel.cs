@@ -4,8 +4,6 @@
 // </copyright>
 //------------------------------------------------------------------------
 
-
-
 namespace RentItClient.ViewModels.ProviderViewModels
 {
     using Models;

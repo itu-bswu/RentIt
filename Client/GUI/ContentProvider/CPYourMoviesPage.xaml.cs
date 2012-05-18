@@ -8,8 +8,8 @@ namespace RentItClient.GUI.ContentProvider
 {
     using System.Windows;
 
-    using RentItClient.Types;
-    using RentItClient.ViewModels.ProviderViewModels;
+    using Types;
+    using ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPYourMoviesPage.xaml

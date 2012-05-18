@@ -121,7 +121,7 @@ namespace RentItClient.GUI.User
                 case MessageBoxResult.Yes:
                     if (EditProfileViewModel.EditUserProfile(textBoxEmail.Text, textBoxFullName.Text, passwordBoxPassword.Password))
                     {
-
+                        NavigationService.Navigate(new ViewProfilePage());
                     }
                     else
                     {
@@ -130,6 +130,7 @@ namespace RentItClient.GUI.User
                                 " or if there is a problem with the service." +
                                 "\n If all data appears ok, please restart the client.");
                     }
+
                     NavigationService.Navigate(new ViewProfilePage());
                     break;
                 case MessageBoxResult.No:

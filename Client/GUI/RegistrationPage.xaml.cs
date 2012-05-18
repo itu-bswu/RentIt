@@ -59,6 +59,7 @@ namespace RentItClient.GUI
                 MessageBox.Show("Password and Confirm password did not match.");
                 return;
             }
+
             var success = RegistrationViewModel.SignUp(
                 textBoxEmail.Text,
                 textBoxFullName.Text,

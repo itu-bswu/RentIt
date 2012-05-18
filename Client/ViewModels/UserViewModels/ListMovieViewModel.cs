@@ -8,9 +8,9 @@ namespace RentItClient.ViewModels.UserViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Models;
-    using System.Linq;
 
     /// <summary>
     /// Viewmodel for the ListMovie page.

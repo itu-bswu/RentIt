@@ -1,13 +1,14 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CPRegisterViewModel.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="CPRegisterViewModel.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+//------------------------------------------------------------------------
 
 namespace RentItClient.ViewModels.ProviderViewModels
 {
     using Models;
     using Types;
+
     /// <summary>
     /// Viewmodel for the CPRegisterMovie page.
     /// </summary>

@@ -1,15 +1,13 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="CPViewMovieViewModel.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="CPViewMovieViewModel.cs" company="RentIt">
+// Copyright (c) RentIt. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
-
-using System.Windows;
-using RentItClient.Models;
-using RentItClient.RentItService;
+//------------------------------------------------------------------------
 
 namespace RentItClient.ViewModels.ProviderViewModels
 {
+    using System.Windows;
+    using Models;
     using Types;
 
     /// <summary>
@@ -36,7 +34,7 @@ namespace RentItClient.ViewModels.ProviderViewModels
         }
 
         /// <summary>
-        /// 
+        /// Deletes a movie from the service.
         /// </summary>
         /// <param name="m">The movie to delete.</param>
         /// <returns>True if deleteion was successful, false if not.</returns>
@@ -51,7 +49,7 @@ namespace RentItClient.ViewModels.ProviderViewModels
         /// <param name="editionId">The edition to delete.</param>
         public static void DeleteEdition(int editionId)
         {
-            var e = new Edition
+            var e = new RentItService.Edition
                         {
                             ID = editionId
                         };

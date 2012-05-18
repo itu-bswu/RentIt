@@ -42,7 +42,6 @@ namespace RentItClient.GUI.ContentProvider
             }
 
             GenreCheckList.ItemsSource = gcl;
-
         }
 
         /// <summary>
