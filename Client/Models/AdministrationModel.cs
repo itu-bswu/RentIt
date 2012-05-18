@@ -6,7 +6,8 @@
 
 namespace RentItClient.Models
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Diagnostics.Contracts;
     using System.IO;
 
     using RentItService;
@@ -17,41 +18,90 @@ namespace RentItClient.Models
     /// <author>Jakob Melnyk</author>
     public static class AdministrationModel
     {
+        #region Deletetion methods
         /// <summary>
         /// Deletes a movie from the service.
         /// </summary>
         /// <param name="movieObject">The movie to delete.</param>
+        /// <returns>True if deletion was successful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static void DeleteMovie(Movie movieObject)
+        public static bool DeleteMovie(Movie movieObject)
         {
-            ServiceClients.Csc.DeleteMovie(AccessModel.LoggedIn.Token, movieObject);
+            Contract.Requires(movieObject != null);
+
+            return ServiceClients.ContentManagement.DeleteMovie(AccessModel.LoggedIn.Token, movieObject);
         }
+
+        /// <summary>
+        /// Deletes an edition from a movie.
+        /// </summary>
+        /// <param name="edition">The edition to delete.</param>
+        /// <returns>True if deletion was successful, false if not.</returns>
+        public static bool DeleteEdition(Edition edition)
+        {
+            Contract.Requires(edition != null);
+
+            return ServiceClients.ContentManagement.DeleteEdition(AccessModel.LoggedIn.Token, edition);
+        }
+        #endregion
+
+        #region Management methods
 
         /// <summary>
         /// Edits a movie on the service.
         /// </summary>
         /// <param name="movieObject">The movie object containing the new information.</param>
+        /// <param name="newMovie">The updated movie object.</param>
+        /// <returns>True if edit was successful, false if it was not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static void EditMovie(Movie movieObject)
+        public static bool EditMovie(Movie movieObject, out Movie newMovie)
         {
-            ServiceClients.Csc.EditMovieInformation(AccessModel.LoggedIn.Token, movieObject);
+            Contract.Requires(movieObject != null);
+
+            var ret = ServiceClients.ContentManagement.EditMovie(AccessModel.LoggedIn.Token, ref movieObject);
+            newMovie = movieObject;
+            return ret;
         }
 
         /// <summary>
+        /// Registers a movie.
+        /// </summary>
+        /// <param name="movieObject">The movie to register.</param>
+        /// <returns>True if movie was successfully registered, false if not.</returns>
+        public static bool RegisterMovie(ref Movie movieObject)
+        {
+            Contract.Requires(movieObject != null);
+
+            return ServiceClients.ContentManagement.RegisterMovie(AccessModel.LoggedIn.Token, ref movieObject);
+        }
+        #endregion
+
+        #region Down/Up-load methods
+        /// <summary>
         /// Downloads a movie from the service.
         /// </summary>
-        /// <param name="movieId">The ID of the movie to be downloaded.</param>
+        /// <param name="editionId">The edition Id.</param>
         /// <param name="folder">Where the file should be saved.</param>
+        /// <returns>The download file.</returns>
         /// <author>Jakob Melnyk</author>
-        public static void DownloadFile(int movieId, string folder)
+        public static bool DownloadFile(int editionId, string folder)
         {
-            var m = new Movie
-                {
-                    ID = movieId
-                };
+            Contract.Requires(folder != null);
 
-            var remoteDownloadStream = ServiceClients.Dsc.DownloadFile(AccessModel.LoggedIn.Token, m);
-            FileStream targetStream;
+            var edition = new Edition
+                              {
+                                  ID = editionId
+                              };
+
+            RemoteFileStream remoteDownloadStream;
+
+            var res = ServiceClients.RentalManagement.DownloadFile(out remoteDownloadStream, AccessModel.LoggedIn.Token, edition);
+
+            if (!res)
+            {
+                return false;
+            }
+
             var sourceStream = remoteDownloadStream.FileByteStream;
 
             var filePath = folder + remoteDownloadStream.FileName;
@@ -63,33 +113,51 @@ namespace RentItClient.Models
                 fi.Directory.Create();
             }
 
-            using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            try
             {
-                // Read from the input stream in 65000 byte chunks
-                const int BufferLen = 65000;
-
-                var buffer = new byte[BufferLen];
-                int count;
-                while ((count = sourceStream.Read(buffer, 0, BufferLen)) > 0)
+                using (var targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    // Save to output stream
-                    targetStream.Write(buffer, 0, count);
-                }
+                    // Read from the input stream in 65000 byte chunks
+                    const int bufferLen = 65000;
 
-                targetStream.Close();
-                sourceStream.Close();
+                    var buffer = new byte[bufferLen];
+                    int count;
+                    while ((count = sourceStream.Read(buffer, 0, bufferLen)) > 0)
+                    {
+                        // Save to output stream
+                        targetStream.Write(buffer, 0, count);
+                    }
+
+                    targetStream.Close();
+                    sourceStream.Close();
+                }
             }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
         /// Uploads a file to the service.
         /// </summary>
-        /// <param name="movieObject">The movie to upload.</param>
+        /// <param name="editionName">The edition to upload.</param>
+        /// <param name="movieId">Id of the movie the edition should be attached to.</param>
         /// <param name="file">The path of the file.</param>
         /// <returns>True if the upload is successful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static bool UploadMovie(Movie movieObject, FileInfo file)
+        public static bool UploadEdition(string editionName, int movieId, FileInfo file)
         {
+            Contract.Requires(file != null);
+
+            var edit = new Edition
+            {
+                Name = editionName,
+                MovieID = movieId
+            };
+
             if (!file.Exists)
             {
                 throw new FileNotFoundException("File not found", file.Name);
@@ -104,28 +172,9 @@ namespace RentItClient.Models
                     Length = stream.Length
                 };
 
-            ServiceClients.Usc.UploadFile(AccessModel.LoggedIn.Token, uploadStream, movieObject);
-            return false;
+            var ret = ServiceClients.ContentManagement.UploadEdition(AccessModel.LoggedIn.Token, uploadStream, ref edit);
+            return ret;
         }
-
-        /// <summary>
-        /// Gets the content publishers on the service.
-        /// </summary>
-        /// <returns>All the content publishers on the service.</returns>
-        /// <author>Jakob Melnyk</author>
-        public static IEnumerable<User> ContentPublishers()
-        {
-            return ServiceClients.Uic.GetContentPublishers(AccessModel.LoggedIn.Token);
-        }
-
-        /// <summary>
-        /// Gets the users on the service.
-        /// </summary>
-        /// <returns>All the users on the service.</returns>
-        /// <author>Jakob Melnyk</author>
-        public static IEnumerable<User> Users()
-        {
-            return ServiceClients.Uic.GetUsers(AccessModel.LoggedIn.Token);
-        }
+        #endregion
     }
 }

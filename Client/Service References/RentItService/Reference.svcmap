@@ -28,6 +28,7 @@
     <MetadataFile FileName="Service3.xsd" MetadataType="Schema" ID="6cf8b045-1a40-468f-b5ad-197c3d2d91d6" SourceId="1" SourceUrl="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" />
     <MetadataFile FileName="Service4.xsd" MetadataType="Schema" ID="f689db80-daea-49b0-8082-5fd7c31ad6ed" SourceId="1" SourceUrl="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" />
     <MetadataFile FileName="Service5.xsd" MetadataType="Schema" ID="3cb872d6-7344-42f9-b980-af1090593400" SourceId="1" SourceUrl="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd6" />
+    <MetadataFile FileName="Service6.xsd" MetadataType="Schema" ID="945e20f2-bb2e-43eb-bc55-359b5ea9ab3f" SourceId="1" SourceUrl="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd7" />
     <MetadataFile FileName="Service7.xsd" MetadataType="Schema" ID="b4ba064d-d65e-4101-87de-0b006202c8bf" SourceId="1" SourceUrl="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>

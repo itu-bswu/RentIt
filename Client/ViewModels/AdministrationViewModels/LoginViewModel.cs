@@ -6,9 +6,9 @@
 
 namespace RentItClient.ViewModels.AdministrationViewModels
 {
-    using System;
+    using System.Windows;
 
-    using RentItClient.Models;
+    using Models;
 
     /// <summary>
     /// Viewmodel for the login page.
@@ -34,7 +34,9 @@ namespace RentItClient.ViewModels.AdministrationViewModels
                         return Types.UserType.Admin;
 
                     default:
-                        throw new NotImplementedException("User is of a type that is not recognised.");
+                        MessageBox.Show("User is of a type that is not recognised. The application will have to close.");
+                        Application.Current.MainWindow.Close();
+                        return Types.UserType.Admin;
                 }
             }
         }
@@ -42,11 +44,18 @@ namespace RentItClient.ViewModels.AdministrationViewModels
         /// <summary>
         /// Logs the user in.
         /// </summary>
-        /// <param name="username">The user to log in.</param>
-        /// <param name="password">The users password.</param>
-        public static void Login(string username, string password)
+        /// <param name="username">
+        /// The user to log in.
+        /// </param>
+        /// <param name="password">
+        /// The users password.
+        /// </param>
+        /// <returns>
+        /// The login.
+        /// </returns>
+        public static bool Login(string username, string password)
         {
-            AccessModel.Login(username, password);
+            return AccessModel.Login(username, password);
         }
     }
 }

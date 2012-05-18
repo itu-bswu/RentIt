@@ -3,9 +3,11 @@
 // Copyright (c) RentIt. All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------
+
 namespace RentItClient.Models
 {
-    using System;
+    using System.Diagnostics.Contracts;
+    using System.Windows;
     using RentItService;
 
     /// <summary>
@@ -27,12 +29,14 @@ namespace RentItClient.Models
         {
             get
             {
-                if (loggedIn != null)
+                if (loggedIn == null)
                 {
-                    return loggedIn;
+                    MessageBox.Show(
+                        "An error occured when trying to access the service. You will now be taken to the login screen. " +
+                        "\n Any unsaved changes you have made will be lost.");
                 }
 
-                throw new NullReferenceException(); // TODO: Needs some graphical error message.
+                return loggedIn;
             }
 
             private set
@@ -41,33 +45,57 @@ namespace RentItClient.Models
             }
         }
 
-        /// <summary>Attempt to sign up a user on the service.</summary>
+        /// <summary>
+        /// Attempt to sign up a user on the service.
+        /// </summary>
         /// <param name="user">The user to sign up.</param>
         /// <returns>True if signup was successful, false if it failed.</returns>
         /// <author>Jakob Melnyk</author>
         public static bool SignUp(User user)
         {
-            return ServiceClients.Uic.SignUp(user);
+            var ret = ServiceClients.UserManagement.SignUp(ref user);
+            LoggedIn = user;
+            return ret;
         }
 
-        /// <summary>Logs in the user and returns a User object containing a token that can be used to access the service.</summary>
+        /// <summary>
+        /// Logs in the user and returns a User object containing a token that can be used to access the service.
+        /// </summary>
         /// <param name="username">The users username.</param>
         /// <param name="password">The users password.</param>
-        /// <returns>The user object related to the user.</returns>
+        /// <returns>True if login successful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static User Login(string username, string password)
+        public static bool Login(string username, string password)
         {
-            LoggedIn = ServiceClients.Uic.LogIn(username, password);
+            var ret = ServiceClients.UserManagement.Login(out loggedIn, username, password);
             LoggedIn.Password = password;
-            return LoggedIn;
+            return ret;
         }
 
-        /// <summary>Logs the user out of the service by making his/her token invalid.</summary>
+        /// <summary>
+        /// Logs the user out of the service by making his/her token invalid.
+        /// </summary>
+        /// <returns>True if logout successful, false if not.</returns>
         /// <author>Jakob Melnyk</author>
-        public static void LogOut()
+        public static bool LogOut()
         {
-            ServiceClients.Uic.Logout(LoggedIn.Token);
+            var ret = ServiceClients.UserManagement.Logout(LoggedIn.Token);
             LoggedIn = null;
+            return ret;
+        }
+
+        /// <summary>
+        /// Updates the user that is currently logged in.
+        /// </summary>
+        /// <param name="user">The updated user info.</param>
+        public static void UpdateLoggedInUser(User user)
+        {
+            Contract.Requires(user != null);
+            Contract.Requires(user.Username != null &&
+                              user.Token != null &&
+                              user.Password != null);
+
+            LoggedIn = user;
         }
     }
 }

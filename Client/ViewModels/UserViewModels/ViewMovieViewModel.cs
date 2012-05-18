@@ -6,8 +6,8 @@
 
 namespace RentItClient.ViewModels.UserViewModels
 {
-    using RentItClient.Models;
-    using RentItClient.Types;
+    using Models;
+    using Types;
 
     /// <summary>
     /// Viewmodel for the ViewMovie page.
@@ -21,16 +21,16 @@ namespace RentItClient.ViewModels.UserViewModels
         /// <returns>The requested movie.</returns>
         public static Movie GetMovieInfo(int id)
         {
-            return Movie.ConvertServiceMovie(GetMovieInformationModel.GetMovieInfo(id));
-        }
+            RentItService.Movie m;
+            var success = MovieInformationModel.GetMovieInfo(id, out m);
 
-        /// <summary>
-        /// Rents a movie for the user that is logged in.
-        /// </summary>
-        /// <param name="id">The id of the movie to rent.</param>
-        public static void RentMovie(int id)
-        {
-            UserModel.RentMovie(id);
+            if (success)
+            {
+                return Movie.ConvertServiceMovie(m);
+            }
+
+            MasterViewModel.AuthenticationError();
+            return null;
         }
     }
 }
