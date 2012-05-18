@@ -31,7 +31,7 @@ namespace RentItClient.ViewModels.UserViewModels
                 foreach (var r in res)
                 {
                     var e = r.Edition;
-                    RentItService.Movie m; // = e.Movie;
+                    RentItService.Movie m;
                     MovieInformationModel.GetMovieInfo(e.MovieID, out m);
 
                     result.Add(Tuple.Create(m.Title + " - " + e.Name, e.ID, Movie.ConvertServiceMovie(m)));

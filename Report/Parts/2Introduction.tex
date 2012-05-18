@@ -23,12 +23,12 @@ In order to narrow down the focus and requirements for our system, we make some 
 \label{Overview_assumptions_stype}
 As described in the problem analysis, the existing types of media rental services can be narrowed down to a) free public library rental type and b) paid media rental. They can be very similar (depending on development choices) and both types present some security issues (user information, credit cards, etc.).
 
-We decided to develop a paid media rental system, as we felt it had more options (such as payment models) in terms of functionality that could be implemented.
+We decided to develop a paid media rental system, as we felt it had more options (such as payment models) in terms of functionality that could be implemented. While adding payment options is not necessarily a core requirement, we feel we should design our system with payment options in mind.
 \subsection{Choosing a media type}
 \label{Overview_assumptions_mtype}
-At first we wanted to make a streaming service for TV shows. This could involve paying for a single episode of a TV show or for a full season. After doing some research on what streaming would involve (compared to just downloading and saving a file), we changed the way we let users access our content. Instead of doing the streaming version, we decided to just let users download movie files and store them on their system.
+At first we wanted to make a streaming service for TV shows. This could involve paying for a single episode of a TV show or for a full season. \\After doing some research on what streaming would involve (compared to just downloading and saving a file), we changed the way we let users access our content. Instead of doing streaming, we decided to just let users download movie files and store them on their system.
 
-We also changed our intended media type. While we felt it could have been more interesting to do TV shows (compared to other types of media), we decided to pick a slightly less complex system and instead focus on designing the service to offer movie rentals. Designing the service to handle movies instead of TV shows would not make them vastly different, so we decided to focus on movies.
+In addition we changed our media type. While we felt it could have been more interesting to do TV shows (compared to other types of media), we decided to pick a slightly less complex system and instead focus on designing the service to offer movie rentals. \\ We decided on this less complex system, because we wanted to make a compromise with the SMU students\footnote{Described in our \nameref{Collaboration} chapter on page \pageref{Collaboration}} and still something that had a close relation with TV shows, but simpler.
 \subsection{Digital Rights Management}
 \label{Overview_assumptions_DRM}
 Digital Rights Management (DRM) is an issue we will most likely run into. While we may limit how long users have active rentals on the service, there is a technical challenge in making sure users cannot view the downloaded files after rentals have expired. We do not consider DRM functionality core in the service, but we do have it as an optional goal for our service.
