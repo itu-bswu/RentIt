@@ -10,9 +10,9 @@ namespace RentItClient.GUI.User
     using System.Windows;
     using System.Windows.Forms;
 
-    using RentItClient.Types;
-    using RentItClient.ViewModels;
-    using RentItClient.ViewModels.UserViewModels;
+    using Types;
+    using ViewModels;
+    using ViewModels.UserViewModels;
 
     /// <summary>
     /// Interaction logic for DownloadEditionPage.xaml

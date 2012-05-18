@@ -4,12 +4,11 @@
 // </copyright>
 //------------------------------------------------------------------------
 
-using System.Linq;
-
 namespace RentItClient.ViewModels.ProviderViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Models;
     using Types;
 

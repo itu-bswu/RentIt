@@ -49,6 +49,7 @@ namespace RentItClient.GUI.User
             var genres = ListMovieViewModel.GetGenres();
             genres.Insert(0, Tuple.Create("All", 0));
             genreComboBox.ItemsSource = genres;
+            genreComboBox.SelectedItem = 0;
             genreComboBox.DisplayMemberPath = "Item1";
             genreComboBox.SelectedValuePath = "Item2";
 

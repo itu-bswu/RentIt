@@ -9,8 +9,8 @@ namespace RentItClient.GUI.ContentProvider
     using System.IO;
     using System.Windows;
 
-    using RentItClient.Types;
-    using RentItClient.ViewModels.ProviderViewModels;
+    using Types;
+    using ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPUploadEditionPage.xaml
@@ -40,6 +40,9 @@ namespace RentItClient.GUI.ContentProvider
             movieTextBox.Text = associatedMovie.Title;
         }
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="CPUploadEditionPage"/> class from being created.
+        /// </summary>
         private CPUploadEditionPage()
         {
             InitializeComponent();
@@ -117,7 +120,7 @@ namespace RentItClient.GUI.ContentProvider
         private void BrowseClick(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog
-            var dlg = new Microsoft.Win32.OpenFileDialog { DefaultExt = ".avi", Filter = "movie files (.avi)|*.avi" };
+            var dlg = new Microsoft.Win32.OpenFileDialog { DefaultExt = ".avi", Filter = "Movie files |*.avi" };
 
             // Display OpenFileDialog by calling ShowDialog method
             var result = dlg.ShowDialog();

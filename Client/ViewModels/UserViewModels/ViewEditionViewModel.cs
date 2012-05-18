@@ -13,6 +13,10 @@ namespace RentItClient.ViewModels.UserViewModels
     /// </summary>
     public static class ViewEditionViewModel
     {
+        /// <summary>
+        /// Rents an edition of a movie.
+        /// </summary>
+        /// <param name="editionId">The edition to rent.</param>
         public static void RentEdition(int editionId)
         {
             if (!UserModel.RentEdition(editionId))

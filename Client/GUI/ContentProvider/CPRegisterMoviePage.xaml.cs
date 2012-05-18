@@ -11,8 +11,8 @@ namespace RentItClient.GUI.ContentProvider
     using System.Linq;
     using System.Windows;
 
-    using RentItClient.Types;
-    using RentItClient.ViewModels.ProviderViewModels;
+    using Types;
+    using ViewModels.ProviderViewModels;
 
     /// <summary>
     /// Interaction logic for CPRegisterMoviePage.xaml

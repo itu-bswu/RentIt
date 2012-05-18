@@ -88,7 +88,8 @@ namespace RentItClient.GUI.User
         /// <summary>
         /// Method invoked when the "List Movies" button is clicked.
         /// </summary>
-        /// <param name="sender">The object invoking the method.
+        /// <param name="sender">The object invoking the method.</param>
+        /// <param name="e">The event arguments.</param>
         private void EditProfileClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new EditProfilePage());
