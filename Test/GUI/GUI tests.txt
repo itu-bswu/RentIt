@@ -1,0 +1,100 @@
+Have not been made automatic:
+
+Test 1 - User, create new user account
+1. Click the "Signup" button
+2. Fill the different slots
+3. Click the "Submit" button
+
+Test 3 - User, edit user profile (Crasher når man prøver at gemme ændringer)
+1. Login as the user created in test 1
+2. Navigate to the Edit Profile Page
+3. Fill the new info into the textboxes
+4. Click the "Save changes" button
+
+Test 11 - User, download current rentals (Kan ikke automatiseres, da download er for besværlig at automatisere)
+1. Login as the user created in test 1
+2. Click the "Your rentals" button
+3. Find a movie in the list
+4. Click the "View movie" button
+5. Click the "Download movie" button
+
+Test 13 - CP, register and upload movie (Kan ikke automatiseres, da upload er for besværlig at automatisere)
+1. Login as test content provider
+2. Click the "Register movie" button
+3. Fill the information and click the "Register movie" button
+4. Click the "Upload Movies" button
+5. Fill the textboxes
+6. Click the "Upload movie" button
+
+Test 15 - CP, upload new edition to already registered movie (Crasher når man prøver at gemme filmen)
+1. Login as test content provider
+2. Select a movie
+3. Click the "Upload new edition"
+4. Browse for a file
+5. Click the "Upload" button
+
+Test 16 - CP, edit information about a movie (Crasher når man prøver at gemme ændringerne)
+1. Login as test content provider
+2. Click the "Your Movies" button
+3. Find the movie that is to be edited
+4. Fill out the information and click the "Save changes" button
+
+Test 17 - CP, delete movie (Crasher når man prøver at slette filmen)
+1. Login as test content provider
+2. Click the "Your Movies" button
+3. Find the movie that is to be deleted
+4. Click the "View Movie" button
+5. Click the "Delete movie" button
+
+Have been made automatic:
+
+Test 2 - User, login as user
+1. Fill the username and password with the data used to create a user in test 1
+2. Click the "login" button
+3. Assert that the user has logged in
+
+Test 4 - User, logout as user
+1. Login as the user created in test 1
+2. Click the "Logout" at the top right of the screen
+
+Test 5 - User, view list of all offered movies
+1. Login as the user created in test 1
+2. Navigate to the View Movie List Page
+
+Test 6 - User, view list of all movies sorted by release date
+1. Login as the user created in test 1
+2. Navigate to the View Movie List Page
+3. Sort by Newest and All in genre
+4. Assert that the top movie is the newest one, and the the other ones are older
+
+Test 7 - User, search for movie
+1. Login as the user created in test 1
+2. Navigate to the View Movie List Page
+3. Write the name of the movie in the search field
+4. Click the "Search" button
+5. Assert that the movie is in the list
+
+Test 8 - User, view all movies of a specific genre
+1. Login as the user created in test 1
+2. Navigate to the View Movie List Page
+3. Sort by Newest and Sci-fi in genre
+4. Assert that only The Matrix triology is there
+
+Test 9 - User, rent specific movie edition
+1. Login as the user created in test 1
+2. Navigate to the movie
+3. Find the wanted edition
+4. Click the "Download movie" button
+
+Test 10 - User, view current rentals (er en del af Test 9)
+
+Test 12 - CP, login & logou
+1. Login as Universal (test content provider)
+2. Assert that the "Logout" button exists
+3. Click the "Logout" button
+4. Assert that the Welcome screen is shown
+
+Test 13 - CP, register movie and delete movie
+1. Login as test content provider
+2. Click the "Register movie" button
+3. Fill the information and click the "Register movie" button

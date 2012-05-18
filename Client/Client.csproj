@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="GUI\User\RentalHistoryPage.xaml.cs">
       <DependentUpon>RentalHistoryPage.xaml</DependentUpon>
-
     </Compile>
     <Compile Include="GUI\User\ViewEditionPage.xaml.cs">
       <DependentUpon>ViewEditionPage.xaml</DependentUpon>
@@ -177,13 +176,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-
     <Page Include="GUI\User\ListMoviesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\User\RentalHistoryPage.xaml">
-
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -224,6 +221,7 @@
     </EmbeddedResource>
     <Content Include="app.config">
       <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="app.Production.config">
       <DependentUpon>app.config</DependentUpon>
@@ -279,7 +277,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

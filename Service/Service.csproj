@@ -169,6 +169,10 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{DA3090A3-9D54-49D4-A607-BE59B3CE0023}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{ECE3AAC9-455E-4FAD-B8BA-6BFD42F787A8}</Project>
       <Name>Tools</Name>
