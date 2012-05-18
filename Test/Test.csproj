@@ -107,15 +107,38 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="RentItService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Playback">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\Microsoft.VisualStudio.TestTools.UITest.Playback.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -124,6 +147,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTest.cs" />
+    <Compile Include="GUI\CodedUITest1.cs" />
+    <Compile Include="GUI\CodedUITest2.cs" />
+    <Compile Include="GUI\CodedUITest3.cs" />
+    <Compile Include="GUI\CodedUITest4.cs" />
+    <Compile Include="GUI\CodedUITest5.cs" />
+    <Compile Include="GUI\CodedUITest6.cs" />
+    <Compile Include="GUI\CodedUITest7.cs" />
+    <Compile Include="GUI\CodedUITest8.cs" />
+    <Compile Include="GUI\CodedUITest9.cs" />
     <Compile Include="Scenarios\ContentProvider\RegisterMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,6 +194,12 @@
     <Compile Include="Service-level\UserManagement\SignupServiceTest.cs" />
     <Compile Include="ServiceTest.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="UIMap.cs">
+      <DependentUpon>UIMap.uitest</DependentUpon>
+    </Compile>
+    <Compile Include="UIMap.Designer.cs">
+      <DependentUpon>UIMap.uitest</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DataSet.cs" />
     <Compile Include="Utils\DataUtil.cs" />
     <Compile Include="Utils\TestUser.cs" />
@@ -202,8 +240,13 @@
     <None Include="Service References\ServiceReference\Service7.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="UIMap.uitest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{DA3090A3-9D54-49D4-A607-BE59B3CE0023}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{DD96396C-97BF-4DD1-BE3C-7E4D9D1A3B88}</Project>
       <Name>Service</Name>
