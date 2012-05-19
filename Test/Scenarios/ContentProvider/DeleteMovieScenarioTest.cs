@@ -126,7 +126,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider);
 
             // Pre-condition 2
-            var movie = user.UploadedMovies.First();
+            var movie = Movie.All.First(m => m.OwnerID.Equals(user.ID));
 
             // Pre-cdontion 3
             var edition = movie.Editions.First();

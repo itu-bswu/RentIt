@@ -30,10 +30,10 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
         public void EditUserValidServiceTest()
         {
             User user;
-            UserManagement.Login(out user, TestUser.SystemAdmin.Username, TestUser.SystemAdmin.Password);
+            UserManagement.Login(out user, TestUser.User.Username, TestUser.User.Password);
 
             const string Name = "Stein Bagger";
-            var targetUser = User.All.First();
+            var targetUser = TestUser.User;
             var id = targetUser.ID;
             targetUser.FullName = Name;
             var result = UserManagement.EditUser(user.Token, ref targetUser);

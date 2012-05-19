@@ -66,8 +66,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
 
             newMovie.Edit(loggedinUser, newMovie);
 
-            RentItContext.ReloadDb();
-
             var foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
@@ -271,7 +269,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider);
 
             // Step 2
-            var movie = user.UploadedMovies.First();
+            var movie = Movie.All.First(m => m.OwnerID.Equals(user.ID));
 
             // Step 3
             var oldTitle = movie.Title;
@@ -327,7 +325,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider);
 
             // Step 2
-            var movie = user.UploadedMovies.First();
+            var movie = Movie.All.First(m => m.OwnerID.Equals(user.ID));
 
             // Step 3
             var oldTitle = movie.Title;
@@ -384,7 +382,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var user = User.Login(TestUser.ContentProvider);
 
             // Step 2
-            var movie = user.UploadedMovies.First();
+            var movie = Movie.All.First(m => m.OwnerID.Equals(user.ID));
 
             // Step 3
             var oldTitle = movie.Title;
