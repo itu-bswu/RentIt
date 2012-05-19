@@ -39,7 +39,7 @@ namespace RentItClient.GUI.User
         {
             eId = editionId;
             textBlockTitle.Text = m.Title;
-            textBlockDescription.Text = m.Description;
+            textBoxDescription.Text = m.Description;
             textBlockEdition.Text = m.Editions.First(e => e.Item2 == eId).Item1;
         }
 
@@ -125,7 +125,7 @@ namespace RentItClient.GUI.User
                 return;
             }
 
-            DownloadEditionViewModel.DownloadFile(eId, path);
+            DownloadEditionViewModel.DownloadFile(eId, path + @"\");
             NavigationService.Navigate(new RentalHistoryPage());
         }
         #endregion

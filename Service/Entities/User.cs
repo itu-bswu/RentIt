@@ -83,7 +83,7 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the user's email.
         /// </summary>
-        [DataMember] 
+        [DataMember]
         public string Email { get; set; }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace RentItService.Entities
 
             Contract.Requires<ArgumentException>(user.Username != string.Empty);
             Contract.Requires<ArgumentException>(user.Email != string.Empty && Validator.ValidateEmail(user.Email));
-            
+
             user.ID = 0;
             user.Type = UserType.User;
             user.Token = string.Empty;
@@ -298,7 +298,7 @@ namespace RentItService.Entities
             {
                 this.Email = editedUser.Email;
             }
-            
+
             RentItContext.Db.SaveChanges();
         }
 

@@ -47,7 +47,7 @@ namespace RentItClient.GUI.User
             eId = editionId;
             movie = m;
             textBlockTitle.Text = m.Title;
-            textBlockDescription.Text = m.Description;
+            textBoxDescription.Text = m.Description;
             textBlockEdition.Text = m.Editions.First(e => e.Item2 == eId).Item1;
         }
 
