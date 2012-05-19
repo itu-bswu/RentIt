@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Windows.Input;
-using System.Windows.Forms;
-using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UITesting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UITest.Extension;
-using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Test06UserViewMoviesByNewest.cs" company="RentIt">
+//   Copyright (c) RentIt. All rights reserved.
+// </copyright>
+// <summary>
+//   Test 6 - User, view list of all movies sorted by release date
+//   1. Login as the user "Smith"
+//   2. Navigate to the View Movie List Page
+//   3. Sort by Newest and All
+//   4. View Movie for Ocean's Eleven
+//   5. Click the "List Movies" button
+//   6. View Movie for The Matrix
+//   7. Assert that the release date is earlier than Ocean's Eleven
+//   8. Close the window
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.GUI
 {
     using System.IO;
+
+    using Microsoft.VisualStudio.TestTools.UITesting;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Test 6 - User, view list of all movies sorted by release date
@@ -28,62 +36,39 @@ namespace RentIt.Tests.GUI
     [CodedUITest]
     public class Test06UserViewMoviesByNewest
     {
-        public Test06UserViewMoviesByNewest()
-        {
-        }
-
-        [TestMethod]
-        public void CodedUITestMethod1()
-        {
-            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-            // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
-            var projectPath =
-                Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"Client\bin\Debug\RentItClient.exe");
-
-            System.Diagnostics.Process.Start(projectPath);
-
-            this.UIMap.Test06UserViewMovieByNewest();
-        }
-
-        #region Additional test attributes
-
-        // You can use the following additional attributes as you write your tests:
-
-        ////Use TestInitialize to run code before running each test 
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{        
-        //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-        //    // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
-        //}
-
-        ////Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{        
-        //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-        //    // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
-        //}
-
-        #endregion
+        #region Fields and Properties
 
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
+        /// The Test Context
+        /// </summary>
+        private TestContext testContextInstance;
+
+        /// <summary>
+        /// The UIMap that contains the needed methods for the test to r
+        /// </summary>
+        private UIMap map;
+
+        /// <summary>
+        /// Gets or sets the test context which provides
+        /// information about and functionality for the current test run.
+        /// </summary>
         public TestContext TestContext
         {
             get
             {
-                return testContextInstance;
+                return this.testContextInstance;
             }
+
             set
             {
-                testContextInstance = value;
+                this.testContextInstance = value;
             }
         }
-        private TestContext testContextInstance;
 
+        /// <summary>
+        /// Gets the UIMap that contains the methods
+        /// that the test calls.
+        /// </summary>
         public UIMap UIMap
         {
             get
@@ -96,7 +81,28 @@ namespace RentIt.Tests.GUI
                 return this.map;
             }
         }
+        #endregion
 
-        private UIMap map;
+        /// <summary>
+        /// The Test Method for GUI Test 6. 
+        /// See the summary for the class for the test steps.
+        /// </summary>
+        [TestMethod]
+        public void GuiTest06UserViewMoviesByNewest()
+        {
+            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+            // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
+            var projectPath =
+                Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"Client\bin\Debug\RentItClient.exe");
+
+            System.Diagnostics.Process.Start(projectPath);
+
+            this.UIMap.Test06UserViewMovieByNewest();
+
+            // Reset database after method calls, because inheriting from DataTest bugs out the UI test for some reason.
+            var dt = new DataTest();
+            dt.TestInitialize();
+            dt.TestInit();
+        }
     }
 }

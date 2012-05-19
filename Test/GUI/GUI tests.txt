@@ -1,16 +1,5 @@
 Have not been made automatic:
 
-Test 1 - User, create new user account
-1. Click the "Signup" button
-2. Fill the different slots
-3. Click the "Submit" button
-
-Test 3 - User, edit user profile (Crasher når man prøver at gemme ændringer)
-1. Login as the user created in test 1
-2. Navigate to the Edit Profile Page
-3. Fill the new info into the textboxes
-4. Click the "Save changes" button
-
 Test 11 - User, download current rentals (Kan ikke automatiseres, da download er for besværlig at automatisere)
 1. Login as the user created in test 1
 2. Click the "Your rentals" button
@@ -26,7 +15,7 @@ Test 13 - CP, register and upload movie (Kan ikke automatiseres, da upload er fo
 5. Fill the textboxes
 6. Click the "Upload movie" button
 
-Test 15 - CP, upload new edition to already registered movie (Crasher når man prøver at gemme filmen)
+Test 15 - CP, upload new edition to already registered movie (Kan ikke automatiseres, da upload er for besværlig at automatisere)
 1. Login as test content provider
 2. Select a movie
 3. Click the "Upload new edition"
@@ -48,12 +37,26 @@ Test 17 - CP, delete movie (Crasher når man prøver at slette filmen)
 
 Have been made automatic:
 
+Test 1 - User, create new user account
+1. Click the "Signup" button
+2. Fill the different slots
+3. Click the "Submit" button
+4. Login as the new user
+5. Close the window
 
 Test 2 - User, login as user
 1. Login as the user "Smith"
 2. Click the "Login" button
 3. Click the "View Profile" button
 4. Close the window
+
+Test 3 - User, edit user profile
+1. Login as the user "Smith"
+2. Navigate to the Edit Profile Page
+3. Change Full Name to "Neo Smith"
+4. Click the "Save changes" button
+5. See that the full name now is "Neo Smith"
+6. Close the window
 
 Test 4 - User, logout as user
 1. Login as the user "Smith"
@@ -100,11 +103,11 @@ Test 9 - User, rent specific movie edition
 6. Assert that the button now says "Download Movie"
 7. Close the window
 
-Test 10 - User, view current rentals (Not made because Test databse was acting up)
+Test 10 - User, view current rentals
 1. Login as the user "Smith"
-2. Rent the movie "The Matrix - SD"
+2. Rent the movie "The Lord of the Rings - The Fellowship of the Ring - SD"
 3. Click the "Your Rentals" movie
-4. Assert that "The Matrix - SD" is in the list
+4. Assert that "The Lord of the Rings - The Fellowship of the Ring - SD" is in the list
 5. Close the window
 
 Test 12 - CP, login & logou

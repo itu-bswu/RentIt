@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Windows.Input;
-using System.Windows.Forms;
-using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UITesting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UITest.Extension;
-using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Test13CPRegisterMovie.cs" company="RentIt">
+//   Copyright (c) RentIt. All rights reserved.
+// </copyright>
+// <summary>
+//   Test 13 - CP, register movie
+//   1. Login as test content provider
+//   2. Click the "Register movie" button
+//   3. Make a movie with the name "Bleach", release date "12-05-2012", description "Action!" and the genres "Action"
+//   4. Click the "Register movie" button
+//   5. Click "No" when asked if one wants to upload an edition right away
+//   6. Find the movie in the list of Your movies
+//   7. Assert that it's the correct movie
+//   8. Close the window
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace RentIt.Tests.GUI
 {
     using System.IO;
+
+    using Microsoft.VisualStudio.TestTools.UITesting;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Test 13 - CP, register movie
@@ -28,62 +36,39 @@ namespace RentIt.Tests.GUI
     [CodedUITest]
     public class Test13CPRegisterMovie
     {
-        public Test13CPRegisterMovie()
-        {
-        }
-
-        [TestMethod]
-        public void Test13_CPRegisterMovie()
-        {
-            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-            // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
-            var projectPath =
-                Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"Client\bin\Debug\RentItClient.exe");
-
-            System.Diagnostics.Process.Start(projectPath);
-
-            this.UIMap.Test13CPRegisterMovie();
-        }
-
-        #region Additional test attributes
-
-        // You can use the following additional attributes as you write your tests:
-
-        ////Use TestInitialize to run code before running each test 
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{        
-        //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-        //    // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
-        //}
-
-        ////Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{        
-        //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-        //    // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
-        //}
-
-        #endregion
+        #region Fields and Properties
 
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
+        /// The Test Context
+        /// </summary>
+        private TestContext testContextInstance;
+
+        /// <summary>
+        /// The UIMap that contains the needed methods for the test to r
+        /// </summary>
+        private UIMap map;
+
+        /// <summary>
+        /// Gets or sets the test context which provides
+        /// information about and functionality for the current test run.
+        /// </summary>
         public TestContext TestContext
         {
             get
             {
-                return testContextInstance;
+                return this.testContextInstance;
             }
+
             set
             {
-                testContextInstance = value;
+                this.testContextInstance = value;
             }
         }
-        private TestContext testContextInstance;
 
+        /// <summary>
+        /// Gets the UIMap that contains the methods
+        /// that the test calls.
+        /// </summary>
         public UIMap UIMap
         {
             get
@@ -96,7 +81,28 @@ namespace RentIt.Tests.GUI
                 return this.map;
             }
         }
+        #endregion
 
-        private UIMap map;
+        /// <summary>
+        /// The Test Method for GUI Test 13. 
+        /// See the summary for the class for the test steps.
+        /// </summary>
+        [TestMethod]
+        public void GuiTest13CPRegisterMovie()
+        {
+            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+            // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
+            var projectPath =
+                Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"Client\bin\Debug\RentItClient.exe");
+
+            System.Diagnostics.Process.Start(projectPath);
+
+            this.UIMap.Test13CPRegisterMovie();
+
+            // Reset database after method calls, because inheriting from DataTest bugs out the UI test for some reason.
+            var dt = new DataTest();
+            dt.TestInitialize();
+            dt.TestInit();
+        }
     }
 }

@@ -1,13 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Test12CPLoginLogout.cs" company="RentIt">
+// <copyright file="Test03UserEditUserInformation.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // <summary>
-//   Test 12 - CP, login & logout
-//   1. Login as Universal (test content provider)
-//   2. Assert that the "Logout" button exists
-//   3. Click the "Logout" button
-//   4. Close the window
+//   Test 3 - User, edit user profile
+//   1. Login as the user "Smith"
+//   2. Navigate to the Edit Profile Page
+//   3. Change Full Name to "Neo Smith"
+//   4. Click the "Save changes" button
+//   5. See that the full name now is "Neo Smith"
+//   6. Close the window
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,14 +21,16 @@ namespace RentIt.Tests.GUI
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Test 12 - CP, login and logout
-    /// 1. Login as Universal (test content provider)
-    /// 2. Assert that the "Logout" button exists
-    /// 3. Click the "Logout" button
-    /// 4. Close the window
+    /// Test 3 - User, edit user profile
+    /// 1. Login as the user "Smith"
+    /// 2. Navigate to the Edit Profile Page
+    /// 3. Change Full Name to "Neo Smith"
+    /// 4. Click the "Save changes" button
+    /// 5. See that the full name now is "Neo Smith"
+    /// 6. Close the window
     /// </summary>
     [CodedUITest]
-    public class Test12CPLoginLogout
+    public class Test03UserEditUserInformation
     {
         #region Fields and Properties
 
@@ -76,11 +80,11 @@ namespace RentIt.Tests.GUI
         #endregion
 
         /// <summary>
-        /// The Test Method for GUI Test 12. 
+        /// The Test Method for GUI Test 3. 
         /// See the summary for the class for the test steps.
         /// </summary>
         [TestMethod]
-        public void GuiTest12CPLoginLogout()
+        public void GuiTest03UserEditUserInformation()
         {
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
             // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
@@ -89,7 +93,7 @@ namespace RentIt.Tests.GUI
 
             System.Diagnostics.Process.Start(projectPath);
 
-            this.UIMap.Test12CPLoginLogout();
+            this.UIMap.Test03UserEditUserInformation();
 
             // Reset database after method calls, because inheriting from DataTest bugs out the UI test for some reason.
             var dt = new DataTest();

@@ -1,13 +1,14 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Test12CPLoginLogout.cs" company="RentIt">
+// <copyright file="Test01CreateNewUser.cs" company="RentIt">
 //   Copyright (c) RentIt. All rights reserved.
 // </copyright>
 // <summary>
-//   Test 12 - CP, login & logout
-//   1. Login as Universal (test content provider)
-//   2. Assert that the "Logout" button exists
-//   3. Click the "Logout" button
-//   4. Close the window
+//   Test 1 - User, create new user account
+//   1. Click the "Signup" button
+//   2. Fill the different slots
+//   3. Click the "Submit" button
+//   4. Login as the new user
+//   5. Close the window
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,14 +20,15 @@ namespace RentIt.Tests.GUI
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
-    /// Test 12 - CP, login and logout
-    /// 1. Login as Universal (test content provider)
-    /// 2. Assert that the "Logout" button exists
-    /// 3. Click the "Logout" button
-    /// 4. Close the window
+    /// Test 1 - User, create new user account
+    /// 1. Click the "Signup" button
+    /// 2. Fill the different slots
+    /// 3. Click the "Submit" button
+    /// 4. Login as the new user
+    /// 5. Close the window
     /// </summary>
     [CodedUITest]
-    public class Test12CPLoginLogout
+    public class Test01CreateNewUser
     {
         #region Fields and Properties
 
@@ -76,11 +78,11 @@ namespace RentIt.Tests.GUI
         #endregion
 
         /// <summary>
-        /// The Test Method for GUI Test 12. 
+        /// The Test Method for GUI Test 1. 
         /// See the summary for the class for the test steps.
         /// </summary>
         [TestMethod]
-        public void GuiTest12CPLoginLogout()
+        public void GuiTest01CreateNewUser()
         {
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
             // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
@@ -89,7 +91,7 @@ namespace RentIt.Tests.GUI
 
             System.Diagnostics.Process.Start(projectPath);
 
-            this.UIMap.Test12CPLoginLogout();
+            this.UIMap.GUITest01CreateNewUser();
 
             // Reset database after method calls, because inheriting from DataTest bugs out the UI test for some reason.
             var dt = new DataTest();
