@@ -40,11 +40,9 @@ namespace RentItService.Interfaces
         /// <summary>
         /// Downloads a rented movie file.
         /// </summary>
-        /// <param name="token">The user token</param>
-        /// <param name="edition">The edition to download</param>
-        /// <param name="stream">A filestream for downloading the movie</param>
-        /// <returns>Wether the request succeeded or not</returns>
+        /// <param name="downloadRequest">RemoteFileStream containing edition and token</param>
+        /// <returns>The remote filestream</returns>
         [OperationContract]
-        bool DownloadFile(string token, Edition edition, out RemoteFileStream stream);
+        RemoteFileStream DownloadFile(RemoteFileStream downloadRequest);
     }
 }
