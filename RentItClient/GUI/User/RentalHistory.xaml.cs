@@ -1,9 +1,8 @@
 ﻿namespace RentItClient.GUI.User
 {
-    using System.Windows;
     using System;
     using System.Collections.Generic;
-
+    using System.Windows;
     using RentItClient.ViewModels;
     using RentItClient.ViewModels.UserViewModels;
 
