@@ -23,7 +23,15 @@ namespace RentItClient.ViewModels.UserViewModels
         /// <returns>True if edit was successful, false if not.</returns>
         public static bool EditUserProfile(string email, string fullName, string password)
         {
-            var user = new User { Email = email, FullName = fullName, Password = password, Username = AccessModel.LoggedIn.Username };
+            var user = new User
+                {
+                    ID = AccessModel.LoggedIn.ID,
+                    Type = UserType.User,
+                    Email = email,
+                    FullName = fullName,
+                    Password = password,
+                    Username = AccessModel.LoggedIn.Username
+                };
             return UserModel.EditProfile(user);
         }
     }

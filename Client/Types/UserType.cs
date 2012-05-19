@@ -14,16 +14,16 @@ namespace RentItClient.Types
         /// <summary>
         /// User of the system.
         /// </summary>
-        User,
+        User = 1,
 
         /// <summary>
         /// A content provider for the system.
         /// </summary>
-        ContentProvider,
+        ContentProvider = 2,
 
         /// <summary>
         /// Administrator of the system.
         /// </summary>
-        Admin
+        Admin = 3
     }
 }

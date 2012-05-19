@@ -48,96 +48,77 @@ Test 17 - CP, delete movie (Crasher når man prøver at slette filmen)
 
 Have been made automatic:
 
-    /// <summary>
-    /// Test 2 - User, login as user
-    /// 1. Login as the user "Smith"
-    /// 2. Click the "Login" button
-    /// 3. Click the "View Profile" button
-    /// 4. Close the window
-    /// </summary>
 
-    /// <summary>
-    /// Test 4 - User, logout as user
-    /// 1. Login as the user "Smith"
-    /// 2. Click the "Logout" at the top right of the screen
-    /// 3. Close the window
-    /// </summary>
+Test 2 - User, login as user
+1. Login as the user "Smith"
+2. Click the "Login" button
+3. Click the "View Profile" button
+4. Close the window
 
-    /// <summary>
-    /// Test 5 - User, view list of all offered movies
-    /// 1. Login as the user "Smith"
-    /// 2. Navigate to the View Movie List Page
-    /// 3. Sort the movies by Newest and All
-	/// 4. Close the window
-    /// </summary>
+Test 4 - User, logout as user
+1. Login as the user "Smith"
+2. Click the "Logout" at the top right of the screen
+3. Close the window
 
-    /// <summary>
-    /// Test 6 - User, view list of all movies sorted by release date
-    /// 1. Login as the user "Smith"
-    /// 2. Navigate to the View Movie List Page
-    /// 3. Sort by Newest and All
-	/// 4. View Movie for Ocean's Eleven
-	/// 5. Click the "List Movies" button
-	/// 6. View Movie for The Matrix
-	/// 7. Assert that the release date is earlier than Ocean's Eleven
-	/// 8. Close the window
-    /// </summary>
+Test 5 - User, view list of all offered movies
+1. Login as the user "Smith"
+2. Navigate to the View Movie List Page
+3. Sort the movies by Newest and All
+4. Close the window
 
-    /// <summary>
-    /// Test 7 - User, search for movie
-    /// 1. Login as the user "Smith"
-    /// 2. Navigate to the View Movie List Page
-    /// 3. Write "The Matrix" the search field
-    /// 4. Click the "Search" button
-    /// 5. Assert that The Matrix is in the list
-    /// 6. Close the window
-    /// </summary>
+Test 6 - User, view list of all movies sorted by release date
+1. Login as the user "Smith"
+2. Navigate to the View Movie List Page
+3. Sort by Newest and All
+4. View Movie for Ocean's Eleven
+5. Click the "List Movies" button
+6. View Movie for The Matrix
+7. Assert that the release date is earlier than Ocean's Eleven
+8. Close the window
 
-    /// <summary>
-    /// Test 8 - User, view all movies of a specific genre
-    /// 1. Login as the user "Smith"
-    /// 2. Navigate to the View Movie List Page
-    /// 3. Sort movies by Newest and Sci-fi
-    /// 4. Assert that The Matrix, The Matrix Reloaded and The Matrix Revolution are in the list
-	/// 5. Close the window
-    /// </summary>
+Test 7 - User, search for movie
+1. Login as the user "Smith"
+2. Navigate to the View Movie List Page
+3. Write "The Matrix" the search field
+4. Click the "Search" button
+5. Assert that The Matrix is in the list
+6. Close the window
 
-    /// <summary>
-    /// Test 9 - User, rent specific movie edition
-    /// 1. Login as the user "Smith"
-    /// 2. Navigate to the movie
-    /// 3. Find the wanted edition
-    /// 4. Click the "Select edition" button
-    /// 5. Click the "Rent movie" button
-    /// 6. Assert that the button now says "Download Movie"
-	/// 7. Close the window
-    /// </summary>
+Test 8 - User, view all movies of a specific genre
+1. Login as the user "Smith"
+2. Navigate to the View Movie List Page
+3. Sort movies by Newest and Sci-fi
+4. Assert that The Matrix, The Matrix Reloaded and The Matrix Revolution are in the list
+5. Close the window
 
-	/// <summary>
-	/// Test 10 - User, view current rentals
-    /// 1. Login as the user "Smith"
-	/// 2. Rent the movie "The Matrix - SD"
-    /// 3. Click the "Your Rentals" movie
-	/// 4. Assert that "The Matrix - SD" is in the list
-	/// 5. Close the window
-    /// </summary>
+Test 9 - User, rent specific movie edition
+1. Login as the user "Smith"
+2. Navigate to the movie
+3. Find the wanted edition
+4. Click the "Select edition" button
+5. Click the "Rent movie" button
+6. Assert that the button now says "Download Movie"
+7. Close the window
 
-	------------------------
+Test 10 - User, view current rentals (Not made because Test databse was acting up)
+1. Login as the user "Smith"
+2. Rent the movie "The Matrix - SD"
+3. Click the "Your Rentals" movie
+4. Assert that "The Matrix - SD" is in the list
+5. Close the window
 
-    /// <summary>
-    /// Test 12 - CP, login & logou
-    /// 1. Login as Universal (test content provider)
-    /// 2. Assert that the "Logout" button exists
-    /// 3. Click the "Logout" button
-    /// 4. Assert that the Welcome screen is shown
-    /// </summary>
+Test 12 - CP, login & logou
+1. Login as Universal (test content provider)
+2. Assert that the "Logout" button exists
+3. Click the "Logout" button
+4. Assert that the Welcome screen is shown
 
-    /// <summary>
-    /// Test 13 - CP, register movie
-    /// 1. Login as test content provider
-    /// 2. Click the "Register movie" button
-    /// 3. Fill the information and click the "Register movie" button
-    /// 4. Find the movie in the list of Your movies
-    /// 5. Assert that it's the correct movie
-    /// 6. Click the "Delete movie" button
-    /// </summary>
+Test 13 - CP, register movie
+1. Login as test content provider
+2. Click the "Register movie" button
+3. Make a movie with the name "Bleach", release date "12-05-2012", description "Action!" and the genres "Action"
+4. Click the "Register movie" button
+5. Click "No" when asked if one wants to upload an edition right away
+6. Find the movie in the list of Your movies
+7. Assert that it's the correct movie
+8. Close the window

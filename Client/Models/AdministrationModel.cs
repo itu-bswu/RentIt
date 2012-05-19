@@ -9,6 +9,7 @@ namespace RentItClient.Models
     using System;
     using System.Diagnostics.Contracts;
     using System.IO;
+    using System.Windows;
 
     using RentItService;
 
@@ -93,18 +94,21 @@ namespace RentItClient.Models
                                   ID = editionId
                               };
 
-            RemoteFileStream remoteDownloadStream;
+            var fileName = "";
+            long length = 0;
+            var token = AccessModel.LoggedIn.Token;
+            Stream stream = Stream.Null;
 
-            var res = ServiceClients.RentalManagement.DownloadFile(out remoteDownloadStream, AccessModel.LoggedIn.Token, edition);
+            ServiceClients.RentalManagement.DownloadFile(
+                ref edition, ref fileName, ref length, ref token, ref stream);
 
-            if (!res)
-            {
-                return false;
-            }
 
-            var sourceStream = remoteDownloadStream.FileByteStream;
 
-            var filePath = folder + remoteDownloadStream.FileName;
+            var sourceStream = stream;
+
+            var filePath = Path.Combine(folder, fileName);
+
+            MessageBox.Show("Saving movie at location " + filePath);
 
             var fi = new FileInfo(filePath);
 
@@ -118,7 +122,7 @@ namespace RentItClient.Models
                 using (var targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     // Read from the input stream in 65000 byte chunks
-                    const int bufferLen = 65000;
+                    const int bufferLen = 8192;
 
                     var buffer = new byte[bufferLen];
                     int count;
@@ -165,6 +169,7 @@ namespace RentItClient.Models
 
             var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
 
+
             var uploadStream = new RemoteFileStream
                 {
                     FileByteStream = stream,
@@ -172,8 +177,11 @@ namespace RentItClient.Models
                     Length = stream.Length
                 };
 
-            var ret = ServiceClients.ContentManagement.UploadEdition(AccessModel.LoggedIn.Token, uploadStream, ref edit);
-            return ret;
+            var tempToken = AccessModel.LoggedIn.Token;
+
+            ServiceClients.ContentManagement.UploadEdition(edit, uploadStream.FileName, uploadStream.Length, tempToken, uploadStream.FileByteStream);
+
+            return true;
         }
         #endregion
     }

@@ -46,6 +46,7 @@ Section \ref{Requirements_Rfeatures} described the core features of our system. 
 		\item \textbf{View movielists with different sorting}.
 		\item \textbf{Movie release dates}.
 		\item \textbf{Logout}.
+		\item \textbf{View rental history.}.
 	\end{my_itemize}
 	\item Medium priority
 	\begin{my_itemize}
@@ -60,6 +61,10 @@ Section \ref{Requirements_Rfeatures} described the core features of our system. 
 		\item Social network integration.
 		\item Allow users to buy products instead of renting them.
 		\item Instructions and/or tooltips.
+ 		\item Age ratings.
+		\item User banning.
+		\item Trailers.
+		\item "Featured" movies.
 	\end{my_itemize}
 \end{my_itemize}
 
@@ -87,18 +92,20 @@ In addition to our required and optional features, we have a number of project r
 		\item Use a version control system.
 		\item Document design decisions.
 		\item Use an iterative development strategy.
+ 		\item Feature freeze May 8th{After this date, no new "features" can be added.}.
+		\item Code freeze May 18th.
 	\end{my_itemize}
-	\item Quality Assurance (QA)
+	\item Quality Assurance\footnote{The requirements listed here are what we feel need to be successfully covered so that we can say we deliver a well tested product.} (QA)
 	\begin{my_itemize}
 		\item Use cases must be covered by tests\footnote{Functionality must be tested on both the service and the client if possible.}.
 		\item Test code coverage must be thorough\footnote{See chapter \ref{Testing} \nameref{Testing} for reasoning behind	numbers.}.
 		\begin{my_itemize}
-			\item Minimum overall coverage of the service: 50\%
+			\item Minimum overall coverage of the service project: 50\%
 			\item Goal for overall coverage of service: 85\%
 			\item Critical sections of service: 80\%
 		\end{my_itemize}
 		\item All code must be documented\footnote{XML headers for classes, fields, constructors and methods. Additional comments if deemed necessary.}.
-		\item User interface must be usability tested.
+		\item User interface must be usability tested\footnote{}.
 	\end{my_itemize}
 \end{my_itemize}
 

@@ -12,8 +12,18 @@ using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
 
 namespace RentIt.Tests.GUI
 {
+    using System.IO;
+
     /// <summary>
-    /// Summary description for CodedUITest1
+    /// Test 13 - CP, register movie
+    /// 1. Login as test content provider
+    /// 2. Click the "Register movie" button
+    /// 3. Make a movie with the name "Bleach", release date "12-05-2012", description "Action!" and the genres "Action"
+    /// 4. Click the "Register movie" button
+    /// 5. Click "No" when asked if one wants to upload an edition right away
+    /// 6. Find the movie in the list of Your movies
+    /// 7. Assert that it's the correct movie
+    /// 8. Close the window
     /// </summary>
     [CodedUITest]
     public class Test13CPRegisterMovie
@@ -27,6 +37,22 @@ namespace RentIt.Tests.GUI
         {
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
             // For more information on generated code, see http://go.microsoft.com/fwlink/?LinkId=179463
+            string projectPath =
+                Directory.GetParent(
+                    Directory.GetParent(
+                        Directory.GetParent(
+                            Directory.GetParent(
+                                Directory.GetParent(
+                                    Directory.GetCurrentDirectory()
+                                ).FullName
+                            ).FullName
+                        ).FullName
+                     ).FullName
+                ).FullName + @"\Client\bin\Debug\RentItClient.exe"
+             ;
+
+            System.Diagnostics.Process.Start(projectPath);
+
             this.UIMap.Test13CPRegisterMovie();
         }
 
