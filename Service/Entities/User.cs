@@ -178,7 +178,6 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(username != null);
             Contract.Requires<ArgumentNullException>(password != null);
-            Contract.Ensures(Contract.Result<User>() != null);
 
             password = Hash.Sha512(password + Salt);
 
@@ -274,7 +273,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<NotAUserException>(this.Type == UserType.User);
 
-            if (!Movie.All.Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
+            if (!Movie.All.ToList().Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
             {
                 throw new NoMovieFoundException("No released movies found with the given ID.");
             }
