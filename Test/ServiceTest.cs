@@ -7,7 +7,7 @@
 namespace RentIt.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using RentIt.Tests.ServiceReference;
+    using ServiceReference;
 
     /// <summary>
     /// Base class for all service-level tests. 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -7,9 +7,7 @@
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" />
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" />
       <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
-      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/Message" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IContentBrowsing_GetMovies_InputMessage">
@@ -54,12 +52,16 @@
   <wsdl:message name="IContentManagement_DeleteMovie_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteMovieResponse" />
   </wsdl:message>
-  <wsdl:message name="IContentManagement_UploadEdition_InputMessage">
-    <wsdl:part name="parameters" element="tns:UploadEdition" />
+  <wsdl:message name="RemoteFileStream">
+    <wsdl:part name="parameters" element="tns:RemoteFileStream" />
   </wsdl:message>
-  <wsdl:message name="IContentManagement_UploadEdition_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UploadEditionResponse" />
+  <wsdl:message name="RemoteFileStream_Headers">
+    <wsdl:part name="Edition" element="tns:Edition" />
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="Length" element="tns:Length" />
+    <wsdl:part name="Token" element="tns:Token" />
   </wsdl:message>
+  <wsdl:message name="IContentManagement_UploadEdition_OutputMessage" />
   <wsdl:message name="IContentManagement_DeleteEdition_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteEdition" />
   </wsdl:message>
@@ -77,12 +79,6 @@
   </wsdl:message>
   <wsdl:message name="IRentalManagement_RentMovie_OutputMessage">
     <wsdl:part name="parameters" element="tns:RentMovieResponse" />
-  </wsdl:message>
-  <wsdl:message name="IRentalManagement_DownloadFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadFile" />
-  </wsdl:message>
-  <wsdl:message name="IRentalManagement_DownloadFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DownloadFileResponse" />
   </wsdl:message>
   <wsdl:message name="IUserManagement_SignUp_InputMessage">
     <wsdl:part name="parameters" element="tns:SignUp" />
@@ -140,7 +136,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IContentManagement/DeleteMovieResponse" message="tns:IContentManagement_DeleteMovie_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UploadEdition">
-      <wsdl:input wsaw:Action="http://tempuri.org/IContentManagement/UploadEdition" message="tns:IContentManagement_UploadEdition_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentManagement/UploadEdition" name="RemoteFileStream" message="tns:RemoteFileStream" />
       <wsdl:output wsaw:Action="http://tempuri.org/IContentManagement/UploadEditionResponse" message="tns:IContentManagement_UploadEdition_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteEdition">
@@ -158,8 +154,8 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IRentalManagement/RentMovieResponse" message="tns:IRentalManagement_RentMovie_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DownloadFile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRentalManagement/DownloadFile" message="tns:IRentalManagement_DownloadFile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRentalManagement/DownloadFileResponse" message="tns:IRentalManagement_DownloadFile_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IRentalManagement/DownloadFile" name="RemoteFileStream" message="tns:RemoteFileStream" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRentalManagement/DownloadFileResponse" name="RemoteFileStream" message="tns:RemoteFileStream" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUserManagement">
@@ -250,7 +246,11 @@
     </wsdl:operation>
     <wsdl:operation name="UploadEdition">
       <soap:operation soapAction="http://tempuri.org/IContentManagement/UploadEdition" style="document" />
-      <wsdl:input>
+      <wsdl:input name="RemoteFileStream">
+        <soap:header message="tns:RemoteFileStream_Headers" part="Edition" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="Length" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="Token" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -289,10 +289,18 @@
     </wsdl:operation>
     <wsdl:operation name="DownloadFile">
       <soap:operation soapAction="http://tempuri.org/IRentalManagement/DownloadFile" style="document" />
-      <wsdl:input>
+      <wsdl:input name="RemoteFileStream">
+        <soap:header message="tns:RemoteFileStream_Headers" part="Edition" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="Length" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="Token" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
+      <wsdl:output name="RemoteFileStream">
+        <soap:header message="tns:RemoteFileStream_Headers" part="Edition" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="Length" use="literal" />
+        <soap:header message="tns:RemoteFileStream_Headers" part="Token" use="literal" />
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

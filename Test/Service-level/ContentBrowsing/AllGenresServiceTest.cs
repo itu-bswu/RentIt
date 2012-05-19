@@ -19,11 +19,11 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
     {
         /// <summary>
         /// Purpose: Verify that GetGenres return some genres.
-        /// 
+        ///
         /// Steps:
-        ///     1. Login to the service.
-        ///     2. Get all genres.
-        ///     3. Verify that genres was returned.
+        /// 1. Login to the service.
+        /// 2. Get all genres.
+        /// 3. Verify that genres was returned.
         /// </summary>
         [TestMethod]
         public void AllGenresValidServiceTest()
@@ -41,10 +41,10 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
 
         /// <summary>
         /// Purpose: Verify that without a token, GetGenres doesn't return anything.
-        /// 
+        ///
         /// Steps:
-        ///     1. Get all genres.
-        ///     2. Verify that none was returned.
+        /// 1. Get all genres.
+        /// 2. Verify that none was returned.
         /// </summary>
         [TestMethod]
         public void AllGenresWithoutTokenServiceTest()

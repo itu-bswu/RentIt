@@ -11,7 +11,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
     using RentItService;
     using RentItService.Entities;
     using Utils;
-    
+
     /// <summary>
     /// Tests for ContentManagement.DeleteEdition.
     /// </summary>
@@ -37,7 +37,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
             var result = ContentManagement.DeleteEdition(user.Token, edition);
 
             RentItContext.ReloadDb();
-            
+
             Assert.IsTrue(result, "DeleteEdition failed");
             Assert.IsFalse(Movie.All.Any(m => m.Editions.Any(e => e.ID.Equals(id))), "Edition wasn't deleted");
         }
