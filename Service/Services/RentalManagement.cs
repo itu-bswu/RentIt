@@ -61,16 +61,20 @@ namespace RentItService.Services
         /// <summary>
         /// Downloads a rented movie file.
         /// </summary>
-        /// <param name="token">The user token</param>
-        /// <param name="edition">The edition to download</param>
-        /// <param name="stream">A filestream for downloading the movie</param>
-        /// <returns>Whether the request succeeded or not</returns>
-        public bool DownloadFile(string token, Edition edition, out RemoteFileStream stream)
+        /// <param name="downloadRequest">RemoteFileStream containing edition and token</param>
+        /// <returns>The remote filestream</returns>
+        public RemoteFileStream DownloadFile(RemoteFileStream downloadRequest)
         {
+            if (downloadRequest == null)
+            {
+                return null;
+            }
+
+            var token = downloadRequest.Token;
+            var edition = downloadRequest.Edition;
             if (token == null || edition == null)
             {
-                stream = null;
-                return false;
+                return null;
             }
 
             var user = User.GetByToken(token);
@@ -78,12 +82,10 @@ namespace RentItService.Services
             if (user == null || downloadEdition == null || 
                 !user.Rentals.Any(r => r.EditionID == downloadEdition.ID && r.UserID == user.ID))
             {
-                stream = null;
-                return false;
+                return null;
             }
 
-            stream = downloadEdition.Download(user);
-            return true;
+            return downloadEdition.Download(user);
         }
     }
 }

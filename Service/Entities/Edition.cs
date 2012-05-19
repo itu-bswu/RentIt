@@ -134,7 +134,7 @@ namespace RentItService.Entities
             var stream = new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read);
 
             // Set up rfs
-            return new RemoteFileStream(this.FilePath, fileInfo.Length, stream);
+            return new RemoteFileStream(downloadingUser.Token, this.FilePath, fileInfo.Length, this, stream);
         }
 
         /// <summary>
