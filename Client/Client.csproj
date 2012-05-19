@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Types\GenreChecked.cs" />
     <Compile Include="Types\GenreCheckList.cs" />
+    <Compile Include="Types\MessageBoxManager.cs" />
     <Compile Include="Types\Movie.cs" />
     <Compile Include="Types\User.cs" />
     <Compile Include="Types\UserType.cs" />

@@ -8,8 +8,6 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System.CodeDom.Compiler;
-
 namespace RentIt.Tests
 {
     using System;
@@ -28,7 +26,7 @@ namespace RentIt.Tests
     using MouseButtons = System.Windows.Forms.MouseButtons;
 
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public partial class UIMap
     {
 
@@ -44,12 +42,15 @@ namespace RentIt.Tests
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
             WpfButton uIViewprofileButton = this.UIRentItWindow.UIViewprofileButton;
             WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinTitleBar uICloseapplicationTitleBar = this.UICloseapplicationWindow.UICloseapplicationTitleBar;
             WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
+            System.Threading.Thread.Sleep(10000);
             // Click 'RentIt' title bar
             Mouse.Click(uIRentItTitleBar, new Point(340, 18));
 
+            uITextBoxUsernameEdit.WaitForControlEnabled();
             // Type 'Smith' in 'textBoxUsername' text box
             uITextBoxUsernameEdit.Text = this.Test02UserLoginParams.UITextBoxUsernameEditText;
 
@@ -63,14 +64,16 @@ namespace RentIt.Tests
             Mouse.Click(uILoginButton, new Point(29, 10));
 
             // Click 'View profile' button
-
             Mouse.Click(uIViewprofileButton, new Point(61, 14));
 
             // Click 'Close' button
             Mouse.Click(uICloseButton, new Point(25, 16));
 
+            // Click 'Close application?' title bar
+            Mouse.Click(uICloseapplicationTitleBar, new Point(216, 11));
+
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(51, 13));
+            Mouse.Click(uIYesButton, new Point(25, 13));
         }
 
         /// <summary>
@@ -85,7 +88,8 @@ namespace RentIt.Tests
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
             WpfButton uILogoutButton = this.UIRentItWindow.UILogoutButton;
             WinButton uIYesButton = this.UIChangewindowWindow.UIYesWindow.UIYesButton;
-            WinWindow uIRentItWindow1 = this.UIRentItWindow1;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinTitleBar uICloseapplicationTitleBar = this.UICloseapplicationWindow.UICloseapplicationTitleBar;
             WinButton uIYesButton1 = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
@@ -110,11 +114,14 @@ namespace RentIt.Tests
             // Click '&Yes' button
             Mouse.Click(uIYesButton, new Point(58, 8));
 
-            // Click 'RentIt' window
-            Mouse.Click(uIRentItWindow1, new Point(702, 6));
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(25, 16));
+
+            // Click 'Close application?' title bar
+            Mouse.Click(uICloseapplicationTitleBar, new Point(216, 11));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton1, new Point(42, 19));
+            Mouse.Click(uIYesButton1, new Point(25, 13));
         }
 
         /// <summary>
@@ -563,6 +570,82 @@ namespace RentIt.Tests
             Mouse.Click(uIYesButton, new Point(40, 9));
         }
 
+        /// <summary>
+        /// LoginCheck - Use 'LoginCheckParams' to pass parameters into this method.
+        /// </summary>
+        public void LoginCheck()
+        {
+            #region Variable Declarations
+            WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
+            WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
+            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinButton uIJAButton = this.UICloseapplicationWindow.UIYesWindow.UIJAButton;
+            #endregion
+
+            // Type 'Smith' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.LoginCheckParams.UITextBoxUsernameEditText;
+
+            // Type '{Tab}' in 'textBoxUsername' text box
+            Keyboard.SendKeys(uITextBoxUsernameEdit, this.LoginCheckParams.UITextBoxUsernameEditSendKeys, ModifierKeys.None);
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.LoginCheckParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(58, 13));
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(37, 10));
+
+            // Click '&Ja' button
+            Mouse.Click(uIJAButton, new Point(56, 5));
+        }
+
+        /// <summary>
+        /// LoginTest - Use 'LoginTestParams' to pass parameters into this method.
+        /// </summary>
+        public void LoginTest()
+        {
+            #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
+            WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
+            WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
+            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
+            WpfButton uIViewprofileButton = this.UIRentItWindow.UIViewprofileButton;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinTitleBar uICloseapplicationTitleBar = this.UICloseapplicationWindow.UICloseapplicationTitleBar;
+            WinButton uIJAButton = this.UICloseapplicationWindow.UIYesWindow.UIJAButton;
+            #endregion
+
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(366, 17));
+
+            // Type 'Smith' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.LoginTestParams.UITextBoxUsernameEditText;
+
+            // Click 'passwordBox' text box
+            Mouse.Click(uIPasswordBoxEdit, new Point(37, 7));
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.LoginTestParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(25, 7));
+
+            // Click 'View profile' button
+            Mouse.Click(uIViewprofileButton, new Point(81, 17));
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(23, 14));
+
+            // Click 'Close application?' title bar
+            Mouse.Click(uICloseapplicationTitleBar, new Point(216, 11));
+
+            // Click '&Ja' button
+            Mouse.Click(uIJAButton, new Point(25, 13));
+        }
+
         #region Properties
         public virtual Test02UserLoginParams Test02UserLoginParams
         {
@@ -587,7 +670,7 @@ namespace RentIt.Tests
                 return this.mTest04UserLogoutParams;
             }
         }
-        
+
         public virtual Test05UserViewAllMoviesParams Test05UserViewAllMoviesParams
         {
             get
@@ -599,7 +682,7 @@ namespace RentIt.Tests
                 return this.mTest05UserViewAllMoviesParams;
             }
         }
-        
+
         public virtual Test06UserViewMovieByNewestParams Test06UserViewMovieByNewestParams
         {
             get
@@ -611,7 +694,7 @@ namespace RentIt.Tests
                 return this.mTest06UserViewMovieByNewestParams;
             }
         }
-        
+
         public virtual Test07UserSearchForMovieParams Test07UserSearchForMovieParams
         {
             get
@@ -623,7 +706,7 @@ namespace RentIt.Tests
                 return this.mTest07UserSearchForMovieParams;
             }
         }
-        
+
         public virtual Test08UserViewMoviesByGenreParams Test08UserViewMoviesByGenreParams
         {
             get
@@ -635,7 +718,7 @@ namespace RentIt.Tests
                 return this.mTest08UserViewMoviesByGenreParams;
             }
         }
-        
+
         public virtual Test09UserrentSpecificMovieEditionParams Test09UserrentSpecificMovieEditionParams
         {
             get
@@ -647,7 +730,7 @@ namespace RentIt.Tests
                 return this.mTest09UserrentSpecificMovieEditionParams;
             }
         }
-        
+
         public virtual Test12CPLoginLogoutParams Test12CPLoginLogoutParams
         {
             get
@@ -669,6 +752,30 @@ namespace RentIt.Tests
                     this.mTest13CPRegisterMovieParams = new Test13CPRegisterMovieParams();
                 }
                 return this.mTest13CPRegisterMovieParams;
+            }
+        }
+
+        public virtual LoginCheckParams LoginCheckParams
+        {
+            get
+            {
+                if ((this.mLoginCheckParams == null))
+                {
+                    this.mLoginCheckParams = new LoginCheckParams();
+                }
+                return this.mLoginCheckParams;
+            }
+        }
+
+        public virtual LoginTestParams LoginTestParams
+        {
+            get
+            {
+                if ((this.mLoginTestParams == null))
+                {
+                    this.mLoginTestParams = new LoginTestParams();
+                }
+                return this.mLoginTestParams;
             }
         }
 
@@ -731,28 +838,31 @@ namespace RentIt.Tests
                 return this.mUIUploadeditionWindow;
             }
         }
-
         #endregion
 
         #region Fields
         private Test02UserLoginParams mTest02UserLoginParams;
-        
+
         private Test04UserLogoutParams mTest04UserLogoutParams;
-        
+
         private Test05UserViewAllMoviesParams mTest05UserViewAllMoviesParams;
-        
+
         private Test06UserViewMovieByNewestParams mTest06UserViewMovieByNewestParams;
-        
+
         private Test07UserSearchForMovieParams mTest07UserSearchForMovieParams;
-        
+
         private Test08UserViewMoviesByGenreParams mTest08UserViewMoviesByGenreParams;
-        
+
         private Test09UserrentSpecificMovieEditionParams mTest09UserrentSpecificMovieEditionParams;
-        
+
         private Test12CPLoginLogoutParams mTest12CPLoginLogoutParams;
-        
+
         private Test13CPRegisterMovieParams mTest13CPRegisterMovieParams;
-        
+
+        private LoginCheckParams mLoginCheckParams;
+
+        private LoginTestParams mLoginTestParams;
+
         private UIRentItWindow mUIRentItWindow;
 
         private UICloseapplicationWindow mUICloseapplicationWindow;
@@ -762,14 +872,13 @@ namespace RentIt.Tests
         private UIRentItWindow1 mUIRentItWindow1;
 
         private UIUploadeditionWindow mUIUploadeditionWindow;
-
         #endregion
     }
 
     /// <summary>
     /// Parameters to be passed into 'Test02UserLogin'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test02UserLoginParams
     {
 
@@ -789,7 +898,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test04UserLogout'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test04UserLogoutParams
     {
 
@@ -798,7 +907,7 @@ namespace RentIt.Tests
         /// Type 'Smith' in 'textBoxUsername' text box
         /// </summary>
         public string UITextBoxUsernameEditText = "Smith";
-        
+
         /// <summary>
         /// Type '********' in 'passwordBox' text box
         /// </summary>
@@ -809,7 +918,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test05UserViewAllMovies'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test05UserViewAllMoviesParams
     {
 
@@ -818,17 +927,17 @@ namespace RentIt.Tests
         /// Type 'Smith' in 'textBoxUsername' text box
         /// </summary>
         public string UITextBoxUsernameEditText = "Smith";
-        
+
         /// <summary>
         /// Type '********' in 'passwordBox' text box
         /// </summary>
         public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
-        
+
         /// <summary>
         /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
         /// </summary>
         public string UISortModeComboBoxComboBoxSelectedItem = "(Newest, 1)";
-        
+
         /// <summary>
         /// Select '(All, 0)' in 'genreComboBox' combo box
         /// </summary>
@@ -839,7 +948,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test06UserViewMovieByNewest'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test06UserViewMovieByNewestParams
     {
 
@@ -863,12 +972,12 @@ namespace RentIt.Tests
         /// Select '(All, 0)' in 'genreComboBox' combo box
         /// </summary>
         public string UIGenreComboBoxComboBoxSelectedItem = "(All, 0)";
-        
+
         /// <summary>
         /// Select '(Ocean's Eleven\, 1)' in 'MovieListBox' list box
         /// </summary>
         public string UIMovieListBoxListSelectedItemsAsString = "(Ocean\'s Eleven\\, 1)";
-        
+
         /// <summary>
         /// Select '(The Matrix\, 5)' in 'MovieListBox' list box
         /// </summary>
@@ -879,7 +988,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test07UserSearchForMovie'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test07UserSearchForMovieParams
     {
 
@@ -888,17 +997,17 @@ namespace RentIt.Tests
         /// Type 'Smith' in 'textBoxUsername' text box
         /// </summary>
         public string UITextBoxUsernameEditText = "Smith";
-        
+
         /// <summary>
         /// Type '********' in 'passwordBox' text box
         /// </summary>
         public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
-        
+
         /// <summary>
         /// Type 'The Matrix' in 'textBoxSearch' text box
         /// </summary>
         public string UITextBoxSearchEditText = "The Matrix";
-        
+
         /// <summary>
         /// Select '(The Matrix\, 5)' in 'MovieListBox' list box
         /// </summary>
@@ -909,7 +1018,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test08UserViewMoviesByGenre'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test08UserViewMoviesByGenreParams
     {
 
@@ -928,32 +1037,32 @@ namespace RentIt.Tests
         /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
         /// </summary>
         public string UISortModeComboBoxComboBoxSelectedItem = "(Newest, 1)";
-        
+
         /// <summary>
         /// Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
         /// </summary>
         public string UIGenreComboBoxComboBoxSelectedItem = "(Sci-Fi, 9)";
-        
+
         /// <summary>
         /// Select '(The Matrix\, 5)' in 'MovieListBox' list box
         /// </summary>
         public string UIMovieListBoxListSelectedItemsAsString = "(The Matrix\\, 5)";
-        
+
         /// <summary>
         /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
         /// </summary>
         public string UISortModeComboBoxComboBox1SelectedItem = "(Newest, 1)";
-        
+
         /// <summary>
         /// Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
         /// </summary>
         public string UIGenreComboBoxComboBox1SelectedItem = "(Sci-Fi, 9)";
-        
+
         /// <summary>
         /// Select '(The Matrix Reloaded\, 6)' in 'MovieListBox' list box
         /// </summary>
         public string UIMovieListBoxList1SelectedItemsAsString = "(The Matrix Reloaded\\, 6)";
-        
+
         /// <summary>
         /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
         /// </summary>
@@ -974,7 +1083,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test09UserrentSpecificMovieEdition'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test09UserrentSpecificMovieEditionParams
     {
 
@@ -983,12 +1092,12 @@ namespace RentIt.Tests
         /// Type 'Smith' in 'textBoxUsername' text box
         /// </summary>
         public string UITextBoxUsernameEditText = "Smith";
-        
+
         /// <summary>
         /// Type '********' in 'passwordBox' text box
         /// </summary>
         public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
-        
+
         /// <summary>
         /// Select '(The Lord of the Rings: The Return of the King\, 14)' in 'MovieListBox' list box
         /// </summary>
@@ -1004,7 +1113,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test12CPLoginLogout'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test12CPLoginLogoutParams
     {
 
@@ -1013,7 +1122,7 @@ namespace RentIt.Tests
         /// Type 'Universal' in 'textBoxUsername' text box
         /// </summary>
         public string UITextBoxUsernameEditText = "Universal";
-        
+
         /// <summary>
         /// Type '********' in 'passwordBox' text box
         /// </summary>
@@ -1024,7 +1133,7 @@ namespace RentIt.Tests
     /// <summary>
     /// Parameters to be passed into 'Test13CPRegisterMovie'
     /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class Test13CPRegisterMovieParams
     {
 
@@ -1043,7 +1152,7 @@ namespace RentIt.Tests
         /// Type 'Bleach' in 'textBoxTitle' text box
         /// </summary>
         public string UITextBoxTitleEditText = "Bleach";
-        
+
         /// <summary>
         /// Select '12-May-2012' in 'DatePickerReleaseDate' date picker
         /// </summary>
@@ -1053,7 +1162,7 @@ namespace RentIt.Tests
         /// Type 'Action!' in 'textBoxDescription' text box
         /// </summary>
         public string UITextBoxDescriptionEditText = "Action!";
-        
+
         /// <summary>
         /// Select 'Unknown Name' check box
         /// </summary>
@@ -1063,7 +1172,7 @@ namespace RentIt.Tests
         /// Select 'Unknown Name' check box
         /// </summary>
         public bool UIItemCheckBoxChecked1 = true;
-        
+
         /// <summary>
         /// Select 'Unknown Name' check box
         /// </summary>
@@ -1071,7 +1180,53 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    /// <summary>
+    /// Parameters to be passed into 'LoginCheck'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
+    public class LoginCheckParams
+    {
+
+        #region Fields
+        /// <summary>
+        /// Type 'Smith' in 'textBoxUsername' text box
+        /// </summary>
+        public string UITextBoxUsernameEditText = "Smith";
+
+        /// <summary>
+        /// Type '{Tab}' in 'textBoxUsername' text box
+        /// </summary>
+        public string UITextBoxUsernameEditSendKeys = "{Tab}";
+
+        /// <summary>
+        /// Type '********' in 'passwordBox' text box
+        /// </summary>
+        public string UIPasswordBoxEditSendKeys = "9kUTAD7XUBlksbuiNPeUq8wL5H8e/7BXjvjwlcQCeB3JH1vpj9+XNN70xU7d/lNjoVkY0XsQgkrMPq+Vu" +
+            "sQH1g==";
+        #endregion
+    }
+
+    /// <summary>
+    /// Parameters to be passed into 'LoginTest'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
+    public class LoginTestParams
+    {
+
+        #region Fields
+        /// <summary>
+        /// Type 'Smith' in 'textBoxUsername' text box
+        /// </summary>
+        public string UITextBoxUsernameEditText = "Smith";
+
+        /// <summary>
+        /// Type '********' in 'passwordBox' text box
+        /// </summary>
+        public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
+        #endregion
+    }
+
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIRentItWindow : WpfWindow
     {
 
@@ -1096,7 +1251,7 @@ namespace RentIt.Tests
                 return this.mUIRentItTitleBar;
             }
         }
-        
+
         public WpfEdit UITextBoxUsernameEdit
         {
             get
@@ -1176,7 +1331,7 @@ namespace RentIt.Tests
                 return this.mUILogoutButton;
             }
         }
-        
+
         public WpfButton UIListmoviesButton
         {
             get
@@ -1192,7 +1347,7 @@ namespace RentIt.Tests
                 return this.mUIListmoviesButton;
             }
         }
-        
+
         public WpfComboBox UISortModeComboBoxComboBox
         {
             get
@@ -1208,7 +1363,7 @@ namespace RentIt.Tests
                 return this.mUISortModeComboBoxComboBox;
             }
         }
-        
+
         public WpfComboBox UIGenreComboBoxComboBox
         {
             get
@@ -1224,7 +1379,7 @@ namespace RentIt.Tests
                 return this.mUIGenreComboBoxComboBox;
             }
         }
-        
+
         public WpfButton UISortmoviesButton
         {
             get
@@ -1240,7 +1395,7 @@ namespace RentIt.Tests
                 return this.mUISortmoviesButton;
             }
         }
-        
+
         public WpfList UIMovieListBoxList
         {
             get
@@ -1256,7 +1411,7 @@ namespace RentIt.Tests
                 return this.mUIMovieListBoxList;
             }
         }
-        
+
         public WpfButton UIViewMovieButton
         {
             get
@@ -1272,7 +1427,7 @@ namespace RentIt.Tests
                 return this.mUIViewMovieButton;
             }
         }
-        
+
         public WpfEdit UITextBoxSearchEdit
         {
             get
@@ -1288,7 +1443,7 @@ namespace RentIt.Tests
                 return this.mUITextBoxSearchEdit;
             }
         }
-        
+
         public WpfButton UISearchButton
         {
             get
@@ -1304,7 +1459,7 @@ namespace RentIt.Tests
                 return this.mUISearchButton;
             }
         }
-        
+
         public WpfComboBox UISortModeComboBoxComboBox1
         {
             get
@@ -1320,7 +1475,7 @@ namespace RentIt.Tests
                 return this.mUISortModeComboBoxComboBox1;
             }
         }
-        
+
         public WpfComboBox UIGenreComboBoxComboBox1
         {
             get
@@ -1336,7 +1491,7 @@ namespace RentIt.Tests
                 return this.mUIGenreComboBoxComboBox1;
             }
         }
-        
+
         public WpfButton UISortmoviesButton1
         {
             get
@@ -1352,7 +1507,7 @@ namespace RentIt.Tests
                 return this.mUISortmoviesButton1;
             }
         }
-        
+
         public WpfList UIMovieListBoxList1
         {
             get
@@ -1368,7 +1523,7 @@ namespace RentIt.Tests
                 return this.mUIMovieListBoxList1;
             }
         }
-        
+
         public WpfButton UIViewMovieButton1
         {
             get
@@ -1384,7 +1539,7 @@ namespace RentIt.Tests
                 return this.mUIViewMovieButton1;
             }
         }
-        
+
         public WpfButton UIListmoviesButton1
         {
             get
@@ -1400,7 +1555,7 @@ namespace RentIt.Tests
                 return this.mUIListmoviesButton1;
             }
         }
-        
+
         public WpfComboBox UISortModeComboBoxComboBox3
         {
             get
@@ -1416,7 +1571,7 @@ namespace RentIt.Tests
                 return this.mUISortModeComboBoxComboBox3;
             }
         }
-        
+
         public WpfComboBox UIGenreComboBoxComboBox3
         {
             get
@@ -1432,7 +1587,7 @@ namespace RentIt.Tests
                 return this.mUIGenreComboBoxComboBox3;
             }
         }
-        
+
         public WpfButton UISortmoviesButton3
         {
             get
@@ -1448,7 +1603,7 @@ namespace RentIt.Tests
                 return this.mUISortmoviesButton3;
             }
         }
-        
+
         public WpfList UIMovieListBoxList2
         {
             get
@@ -1464,7 +1619,7 @@ namespace RentIt.Tests
                 return this.mUIMovieListBoxList2;
             }
         }
-        
+
         public WpfButton UIViewMovieButton2
         {
             get
@@ -1576,7 +1731,7 @@ namespace RentIt.Tests
                 return this.mUIRegisterMovieButton;
             }
         }
-        
+
         public WpfEdit UITextBoxTitleEdit
         {
             get
@@ -1656,7 +1811,7 @@ namespace RentIt.Tests
 
         #region Fields
         private UIRentItTitleBar mUIRentItTitleBar;
-        
+
         private WpfEdit mUITextBoxUsernameEdit;
 
         private WpfEdit mUIPasswordBoxEdit;
@@ -1664,45 +1819,45 @@ namespace RentIt.Tests
         private WpfButton mUILoginButton;
 
         private WpfButton mUIViewprofileButton;
-        
+
         private WpfButton mUILogoutButton;
-        
+
         private WpfButton mUIListmoviesButton;
-        
+
         private WpfComboBox mUISortModeComboBoxComboBox;
-        
+
         private WpfComboBox mUIGenreComboBoxComboBox;
-        
+
         private WpfButton mUISortmoviesButton;
-        
+
         private WpfList mUIMovieListBoxList;
-        
+
         private WpfButton mUIViewMovieButton;
-        
+
         private WpfEdit mUITextBoxSearchEdit;
 
         private WpfButton mUISearchButton;
-        
+
         private WpfComboBox mUISortModeComboBoxComboBox1;
-        
+
         private WpfComboBox mUIGenreComboBoxComboBox1;
-        
+
         private WpfButton mUISortmoviesButton1;
-        
+
         private WpfList mUIMovieListBoxList1;
-        
+
         private WpfButton mUIViewMovieButton1;
-        
+
         private WpfButton mUIListmoviesButton1;
-        
+
         private WpfComboBox mUISortModeComboBoxComboBox3;
-        
+
         private WpfComboBox mUIGenreComboBoxComboBox3;
-        
+
         private WpfButton mUISortmoviesButton3;
-        
+
         private WpfList mUIMovieListBoxList2;
-        
+
         private WpfButton mUIViewMovieButton2;
 
         private WpfList mUIEditionListBoxList;
@@ -1716,7 +1871,7 @@ namespace RentIt.Tests
         private WpfButton mUILogoutButton1;
 
         private WpfButton mUIRegisterMovieButton;
-        
+
         private WpfEdit mUITextBoxTitleEdit;
 
         private WpfDatePicker mUIDatePickerReleaseDatDatePicker;
@@ -1729,7 +1884,7 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIRentItTitleBar : WpfTitleBar
     {
 
@@ -1765,12 +1920,12 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIGenreCheckListTable : WpfTable
     {
-        
-        public UIGenreCheckListTable(UITestControl searchLimitContainer) : 
-                base(searchLimitContainer)
+
+        public UIGenreCheckListTable(UITestControl searchLimitContainer) :
+            base(searchLimitContainer)
         {
             #region Search Criteria
             this.SearchProperties[WpfTable.PropertyNames.AutomationId] = "GenreCheckList";
@@ -1790,7 +1945,7 @@ namespace RentIt.Tests
                 return this.mUIItemDataItem;
             }
         }
-        
+
         public UIItemDataItem1 UIItemDataItem1
         {
             get
@@ -1802,7 +1957,7 @@ namespace RentIt.Tests
                 return this.mUIItemDataItem1;
             }
         }
-        
+
         public UIItemDataItem2 UIItemDataItem2
         {
             get
@@ -1815,29 +1970,29 @@ namespace RentIt.Tests
             }
         }
         #endregion
-        
+
         #region Fields
         private UIItemDataItem mUIItemDataItem;
-        
+
         private UIItemDataItem1 mUIItemDataItem1;
-        
+
         private UIItemDataItem2 mUIItemDataItem2;
         #endregion
     }
-    
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIItemDataItem : WpfControl
     {
-        
-        public UIItemDataItem(UITestControl searchLimitContainer) : 
-                base(searchLimitContainer)
+
+        public UIItemDataItem(UITestControl searchLimitContainer) :
+            base(searchLimitContainer)
         {
             #region Search Criteria
             this.SearchProperties[UITestControl.PropertyNames.ControlType] = "DataItem";
             this.WindowTitles.Add("RentIt");
             #endregion
         }
-        
+
         #region Properties
         public WpfCheckBox UIItemCheckBox
         {
@@ -1860,12 +2015,12 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIItemDataItem1 : WpfControl
     {
-        
-        public UIItemDataItem1(UITestControl searchLimitContainer) : 
-                base(searchLimitContainer)
+
+        public UIItemDataItem1(UITestControl searchLimitContainer) :
+            base(searchLimitContainer)
         {
             #region Search Criteria
             this.SearchProperties[UITestControl.PropertyNames.ControlType] = "DataItem";
@@ -1896,12 +2051,12 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIItemDataItem2 : WpfControl
     {
-        
-        public UIItemDataItem2(UITestControl searchLimitContainer) : 
-                base(searchLimitContainer)
+
+        public UIItemDataItem2(UITestControl searchLimitContainer) :
+            base(searchLimitContainer)
         {
             #region Search Criteria
             this.SearchProperties[UITestControl.PropertyNames.ControlType] = "DataItem";
@@ -1932,7 +2087,7 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UICloseapplicationWindow : WinWindow
     {
 
@@ -1957,14 +2112,31 @@ namespace RentIt.Tests
                 return this.mUIYesWindow;
             }
         }
+
+        public WinTitleBar UICloseapplicationTitleBar
+        {
+            get
+            {
+                if ((this.mUICloseapplicationTitleBar == null))
+                {
+                    this.mUICloseapplicationTitleBar = new WinTitleBar(this);
+                    #region Search Criteria
+                    this.mUICloseapplicationTitleBar.WindowTitles.Add("Close application?");
+                    #endregion
+                }
+                return this.mUICloseapplicationTitleBar;
+            }
+        }
         #endregion
 
         #region Fields
         private UIYesWindow mUIYesWindow;
+
+        private WinTitleBar mUICloseapplicationTitleBar;
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIYesWindow : WinWindow
     {
 
@@ -1993,14 +2165,32 @@ namespace RentIt.Tests
                 return this.mUIYesButton;
             }
         }
+
+        public WinButton UIJAButton
+        {
+            get
+            {
+                if ((this.mUIJAButton == null))
+                {
+                    this.mUIJAButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIJAButton.SearchProperties[WinButton.PropertyNames.Name] = "Ja";
+                    this.mUIJAButton.WindowTitles.Add("Close application?");
+                    #endregion
+                }
+                return this.mUIJAButton;
+            }
+        }
         #endregion
 
         #region Fields
         private WinButton mUIYesButton;
+
+        private WinButton mUIJAButton;
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIChangewindowWindow : WinWindow
     {
 
@@ -2032,7 +2222,7 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIYesWindow1 : WinWindow
     {
 
@@ -2068,7 +2258,7 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIRentItWindow1 : WinWindow
     {
 
@@ -2082,7 +2272,7 @@ namespace RentIt.Tests
         }
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UIUploadeditionWindow : WinWindow
     {
 
@@ -2114,7 +2304,7 @@ namespace RentIt.Tests
         #endregion
     }
 
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    [GeneratedCode("Coded UITest Builder", "10.0.40219.1")]
     public class UINOWindow : WinWindow
     {
 
