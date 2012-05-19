@@ -58,8 +58,8 @@ namespace RentItService.Services
             }
 
             var user = User.GetByToken(token);
-            if (user == null || 
-                user.Type != UserType.ContentProvider || 
+            if (user == null ||
+                user.Type != UserType.ContentProvider ||
                 Movie.Get(user, movie.ID).OwnerID != user.ID)
             {
                 return false;
@@ -92,7 +92,9 @@ namespace RentItService.Services
                 return false;
             }
 
-            movie.Delete(user);
+            var m = Movie.Get(user, movie.ID);
+
+            m.Delete(user);
             return true;
         }
 
@@ -135,7 +137,6 @@ namespace RentItService.Services
             }
 
             movie.UploadEdition(user, edition.Name, uploadRequest);
-            return;
         }
 
         /// <summary>

@@ -6,6 +6,7 @@
 
 namespace RentItService.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Entities;
@@ -79,7 +80,7 @@ namespace RentItService.Services
 
             var user = User.GetByToken(token);
             var downloadEdition = Edition.Get(user, edition.ID);
-            if (user == null || downloadEdition == null || 
+            if (user == null || downloadEdition == null ||
                 !user.Rentals.Any(r => r.EditionID == downloadEdition.ID && r.UserID == user.ID))
             {
                 return null;

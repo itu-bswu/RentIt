@@ -7,6 +7,7 @@ namespace RentItClient.ViewModels.UserViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
 
     using Models;
     using Types;

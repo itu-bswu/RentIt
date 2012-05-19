@@ -125,7 +125,7 @@ namespace RentItClient.GUI.User
                 return;
             }
 
-            DownloadEditionViewModel.DownloadFile(eId, path);
+            DownloadEditionViewModel.DownloadFile(eId, path + @"\");
             NavigationService.Navigate(new RentalHistoryPage());
         }
         #endregion

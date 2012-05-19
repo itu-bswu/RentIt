@@ -9,6 +9,7 @@ namespace RentItClient.Models
     using System;
     using System.Diagnostics.Contracts;
     using System.IO;
+    using System.Windows;
 
     using RentItService;
 
@@ -93,34 +94,21 @@ namespace RentItClient.Models
                                   ID = editionId
                               };
 
-            var tempString = "";
-            long tempLong = 0;
-            var tempToken = AccessModel.LoggedIn.Token;
-            Stream tempFileStream = null;
+            var fileName = "";
+            long length = 0;
+            var token = AccessModel.LoggedIn.Token;
+            Stream stream = Stream.Null;
 
             ServiceClients.RentalManagement.DownloadFile(
-                ref edition, ref tempString, ref tempLong, ref tempToken, ref tempFileStream);
+                ref edition, ref fileName, ref length, ref token, ref stream);
 
-            var remoteDownloadStream = new RemoteFileStream
-                {
-                    Length = tempLong,
-                    Edition = edition,
-                    FileByteStream = tempFileStream,
-                    FileName = tempString,
-                    Token = tempToken
-                };
 
-            /*
-            var res = ServiceClients.RentalManagement.DownloadFile(out remoteDownloadStream, AccessModel.LoggedIn.Token, edition);
 
-            if (!res)
-            {
-                return false;
-            }
-            */
-            var sourceStream = remoteDownloadStream.FileByteStream;
+            var sourceStream = stream;
 
-            var filePath = folder + remoteDownloadStream.FileName;
+            var filePath = Path.Combine(folder, fileName);
+
+            MessageBox.Show("Saving movie at location " + filePath);
 
             var fi = new FileInfo(filePath);
 
@@ -134,7 +122,7 @@ namespace RentItClient.Models
                 using (var targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     // Read from the input stream in 65000 byte chunks
-                    const int bufferLen = 65000;
+                    const int bufferLen = 8192;
 
                     var buffer = new byte[bufferLen];
                     int count;
