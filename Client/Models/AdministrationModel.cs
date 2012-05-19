@@ -93,15 +93,31 @@ namespace RentItClient.Models
                                   ID = editionId
                               };
 
-            RemoteFileStream remoteDownloadStream;
+            var tempString = "";
+            long tempLong = 0;
+            var tempToken = AccessModel.LoggedIn.Token;
+            Stream tempFileStream = null;
 
+            ServiceClients.RentalManagement.DownloadFile(
+                ref edition, ref tempString, ref tempLong, ref tempToken, ref tempFileStream);
+
+            var remoteDownloadStream = new RemoteFileStream
+                {
+                    Length = tempLong,
+                    Edition = edition,
+                    FileByteStream = tempFileStream,
+                    FileName = tempString,
+                    Token = tempToken
+                };
+
+            /*
             var res = ServiceClients.RentalManagement.DownloadFile(out remoteDownloadStream, AccessModel.LoggedIn.Token, edition);
 
             if (!res)
             {
                 return false;
             }
-
+            */
             var sourceStream = remoteDownloadStream.FileByteStream;
 
             var filePath = folder + remoteDownloadStream.FileName;
@@ -165,6 +181,7 @@ namespace RentItClient.Models
 
             var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
 
+
             var uploadStream = new RemoteFileStream
                 {
                     FileByteStream = stream,
@@ -172,8 +189,11 @@ namespace RentItClient.Models
                     Length = stream.Length
                 };
 
-            var ret = ServiceClients.ContentManagement.UploadEdition(AccessModel.LoggedIn.Token, uploadStream, ref edit);
-            return ret;
+            var tempToken = AccessModel.LoggedIn.Token;
+
+            ServiceClients.ContentManagement.UploadEdition(edit, uploadStream.FileName, uploadStream.Length, tempToken, uploadStream.FileByteStream);
+
+            return true;
         }
         #endregion
     }

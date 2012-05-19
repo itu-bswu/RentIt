@@ -49,9 +49,9 @@ namespace RentItClient.GUI.User
             var genres = ListMovieViewModel.GetGenres();
             genres.Insert(0, Tuple.Create("All", 0));
             genreComboBox.ItemsSource = genres;
-            genreComboBox.SelectedItem = 0;
             genreComboBox.DisplayMemberPath = "Item1";
             genreComboBox.SelectedValuePath = "Item2";
+            genreComboBox.SelectedIndex = 1;
 
             // Sort mode combo box
             var sortModes = new List<Tuple<string, int>> { Tuple.Create("Newest", 1), Tuple.Create("Most downloaded", 2) };
@@ -59,6 +59,7 @@ namespace RentItClient.GUI.User
             sortModeComboBox.ItemsSource = sortModes;
             sortModeComboBox.DisplayMemberPath = "Item1";
             sortModeComboBox.SelectedValuePath = "Item2";
+            sortModeComboBox.SelectedIndex = 1;
         }
 
         #endregion

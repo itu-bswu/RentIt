@@ -32,7 +32,10 @@ namespace RentItClient.ViewModels.UserViewModels
                 {
                     var e = r.Edition;
                     RentItService.Movie m;
-                    MovieInformationModel.GetMovieInfo(e.MovieID, out m);
+                    if (!MovieInformationModel.GetMovieInfo(e.MovieID, out m))
+                    {
+                        MasterViewModel.AuthenticationError();
+                    }
 
                     result.Add(Tuple.Create(m.Title + " - " + e.Name, e.ID, Movie.ConvertServiceMovie(m)));
                 }
