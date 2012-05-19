@@ -148,14 +148,14 @@
   <ItemGroup>
     <Compile Include="DataTest.cs" />
     <Compile Include="GUI\CodedUITest1.cs" />
-    <Compile Include="GUI\CodedUITest2.cs" />
-    <Compile Include="GUI\CodedUITest3.cs" />
-    <Compile Include="GUI\CodedUITest4.cs" />
-    <Compile Include="GUI\CodedUITest5.cs" />
-    <Compile Include="GUI\CodedUITest6.cs" />
-    <Compile Include="GUI\CodedUITest7.cs" />
-    <Compile Include="GUI\CodedUITest8.cs" />
-    <Compile Include="GUI\CodedUITest9.cs" />
+    <Compile Include="GUI\Test12CPLoginLogout.cs" />
+    <Compile Include="GUI\Test09UserRentSpecificMovieEdition.cs" />
+    <Compile Include="GUI\Test08UserViewMoviesByGenre.cs" />
+    <Compile Include="GUI\Test07UserSearchForMovie.cs" />
+    <Compile Include="GUI\Test06UserViewMoviesByNewest.cs" />
+    <Compile Include="GUI\Test05UserViewAllMovies.cs" />
+    <Compile Include="GUI\Test04UserLogout.cs" />
+    <Compile Include="GUI\Test02UserLogin.cs" />
     <Compile Include="Scenarios\ContentProvider\RegisterMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

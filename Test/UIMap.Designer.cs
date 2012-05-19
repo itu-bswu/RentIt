@@ -31,398 +31,148 @@ namespace RentIt.Tests
     {
         
         /// <summary>
-        /// Test2UserLogin - Use 'Test2UserLoginParams' to pass parameters into this method.
+        /// Test02UserLogin - Use 'Test02UserLoginParams' to pass parameters into this method.
         /// </summary>
-        public void Test2UserLogin()
+        public void Test02UserLogin()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
             WpfButton uIViewprofileButton = this.UIRentItWindow.UIViewprofileButton;
-            #endregion
-
-            // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test2UserLoginParams.UITextBoxUsernameEditText;
-
-            // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(19, 5));
-
-            // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test2UserLoginParams.UIPasswordBoxEditSendKeys, true);
-
-            // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(35, 14));
-
-            // Click 'View profile' button
-            Mouse.Click(uIViewprofileButton, new Point(54, 4));
-        }
-        
-        /// <summary>
-        /// Test2AssertFullName - Use 'Test2AssertFullNameExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test2AssertFullName()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxFullNameEdit = this.UIRentItWindow.UITextBoxFullNameEdit;
-            #endregion
-
-            // Verify that 'textBoxFullName' text box's property 'Text' equals 'James Smith'
-            Assert.AreEqual(this.Test2AssertFullNameExpectedValues.UITextBoxFullNameEditText, uITextBoxFullNameEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test2CloseWindow
-        /// </summary>
-        public void Test2CloseWindow()
-        {
-            #region Variable Declarations
-            WpfWindow uIRentItWindow = this.UIRentItWindow;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
             WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
-            // Restore window 'RentIt'.
-            uIRentItWindow.SetProperty("State", ControlStates.Restored);
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(340, 18));
+
+            // Type 'Smith' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.Test02UserLoginParams.UITextBoxUsernameEditText;
+
+            // Click 'passwordBox' text box
+            Mouse.Click(uIPasswordBoxEdit, new Point(71, 11));
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test02UserLoginParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(29, 10));
+
+            // Click 'View profile' button
+            Mouse.Click(uIViewprofileButton, new Point(61, 14));
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(25, 16));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(40, 17));
+            Mouse.Click(uIYesButton, new Point(51, 13));
         }
         
         /// <summary>
-        /// Test4LoginLogout - Use 'Test4LoginLogoutParams' to pass parameters into this method.
+        /// Test04UserLogout - Use 'Test04UserLogoutParams' to pass parameters into this method.
         /// </summary>
-        public void Test4LoginLogout()
+        public void Test04UserLogout()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
             WpfButton uILogoutButton = this.UIRentItWindow.UILogoutButton;
             WinButton uIYesButton = this.UIChangewindowWindow.UIYesWindow.UIYesButton;
+            WinWindow uIRentItWindow1 = this.UIRentItWindow1;
+            WinButton uIYesButton1 = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
+
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(343, 13));
 
             // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test4LoginLogoutParams.UITextBoxUsernameEditText;
+            uITextBoxUsernameEdit.Text = this.Test04UserLogoutParams.UITextBoxUsernameEditText;
 
             // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(100, 12));
+            Mouse.Click(uIPasswordBoxEdit, new Point(98, 11));
 
             // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test4LoginLogoutParams.UIPasswordBoxEditSendKeys, true);
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test04UserLogoutParams.UIPasswordBoxEditSendKeys, true);
 
             // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(49, 4));
+            Mouse.Click(uILoginButton, new Point(34, 5));
 
             // Click 'Logout' button
-            Mouse.Click(uILogoutButton, new Point(32, 14));
+            Mouse.Click(uILogoutButton, new Point(14, 18));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(41, 15));
-        }
-        
-        /// <summary>
-        /// Test4AssertLoginScreen - Use 'Test4AssertLoginScreenExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test4AssertLoginScreen()
-        {
-            #region Variable Declarations
-            WpfText uIWelcomeText = this.UIRentItWindow.UIWelcomeText;
-            #endregion
+            Mouse.Click(uIYesButton, new Point(58, 8));
 
-            // Verify that 'Welcome:' label's property 'DisplayText' equals 'Welcome:'
-            Assert.AreEqual(this.Test4AssertLoginScreenExpectedValues.UIWelcomeTextDisplayText, uIWelcomeText.DisplayText);
-        }
-        
-        /// <summary>
-        /// Test4CloseWindow
-        /// </summary>
-        public void Test4CloseWindow()
-        {
-            #region Variable Declarations
-            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
-            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
-            #endregion
-
-            // Click 'Close' button
-            Mouse.Click(uICloseButton, new Point(18, 7));
+            // Click 'RentIt' window
+            Mouse.Click(uIRentItWindow1, new Point(702, 6));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(47, 10));
+            Mouse.Click(uIYesButton1, new Point(42, 19));
         }
         
         /// <summary>
-        /// Test5UserViewAllMovies - Use 'Test5UserViewAllMoviesParams' to pass parameters into this method.
+        /// Test05UserViewAllMovies - Use 'Test05UserViewAllMoviesParams' to pass parameters into this method.
         /// </summary>
-        public void Test5UserViewAllMovies()
+        public void Test05UserViewAllMovies()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
             WpfButton uIListmoviesButton = this.UIRentItWindow.UIListmoviesButton;
+            WpfComboBox uISortModeComboBoxComboBox = this.UIRentItWindow.UISortModeComboBoxComboBox;
+            WpfComboBox uIGenreComboBoxComboBox = this.UIRentItWindow.UIGenreComboBoxComboBox;
+            WpfButton uISortmoviesButton = this.UIRentItWindow.UISortmoviesButton;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(339, 9));
+
             // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test5UserViewAllMoviesParams.UITextBoxUsernameEditText;
+            uITextBoxUsernameEdit.Text = this.Test05UserViewAllMoviesParams.UITextBoxUsernameEditText;
 
             // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(115, 14));
+            Mouse.Click(uIPasswordBoxEdit, new Point(40, 10));
 
             // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test5UserViewAllMoviesParams.UIPasswordBoxEditSendKeys, true);
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test05UserViewAllMoviesParams.UIPasswordBoxEditSendKeys, true);
 
             // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(61, 5));
+            Mouse.Click(uILoginButton, new Point(8, 8));
 
             // Click 'List movies' button
-            Mouse.Click(uIListmoviesButton, new Point(65, 10));
-        }
-        
-        /// <summary>
-        /// Test5SelectTopMovie - Use 'Test5SelectTopMovieParams' to pass parameters into this method.
-        /// </summary>
-        public void Test5SelectTopMovie()
-        {
-            #region Variable Declarations
-            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
-            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
-            #endregion
-
-            // Select '(Ocean's Eleven\, 1)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test5SelectTopMovieParams.UIMovieListBoxListSelectedItemsAsString;
-
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(70, 16));
-        }
-        
-        /// <summary>
-        /// Test5AssertTopMovieName - Use 'Test5AssertTopMovieNameExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test5AssertTopMovieName()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxTitleEdit = this.UIRentItWindow.UITextBoxTitleEdit;
-            #endregion
-
-            // Verify that 'textBoxTitle' text box's property 'Text' equals 'Ocean's Eleven'
-            Assert.AreEqual(this.Test5AssertTopMovieNameExpectedValues.UITextBoxTitleEditText, uITextBoxTitleEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test5CloseWindow
-        /// </summary>
-        public void Test5CloseWindow()
-        {
-            #region Variable Declarations
-            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
-            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
-            #endregion
-
-            // Click 'Close' button
-            Mouse.Click(uICloseButton, new Point(15, 14));
-
-            // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(48, 9));
-        }
-        
-        /// <summary>
-        /// Test6UserLoginSelectMovie - Use 'Test6UserLoginSelectMovieParams' to pass parameters into this method.
-        /// </summary>
-        public void Test6UserLoginSelectMovie()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
-            WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
-            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
-            WpfComboBox uISortModeComboBoxComboBox = this.UIRentItWindow.UISortModeComboBoxComboBox;
-            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
-            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
-            #endregion
-
-            // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test6UserLoginSelectMovieParams.UITextBoxUsernameEditText;
-
-            // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(67, 14));
-
-            // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test6UserLoginSelectMovieParams.UIPasswordBoxEditSendKeys, true);
-
-            // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(21, 14));
+            Mouse.Click(uIListmoviesButton, new Point(87, 14));
 
             // Select '(Newest, 1)' in 'sortModeComboBox' combo box
-            uISortModeComboBoxComboBox.SelectedItem = this.Test6UserLoginSelectMovieParams.UISortModeComboBoxComboBoxSelectedItem;
+            uISortModeComboBoxComboBox.SelectedItem = this.Test05UserViewAllMoviesParams.UISortModeComboBoxComboBoxSelectedItem;
 
-            // Select '(Ocean's Eleven\, 1)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test6UserLoginSelectMovieParams.UIMovieListBoxListSelectedItemsAsString;
+            // Select '(All, 0)' in 'genreComboBox' combo box
+            uIGenreComboBoxComboBox.SelectedItem = this.Test05UserViewAllMoviesParams.UIGenreComboBoxComboBoxSelectedItem;
 
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(57, 17));
-        }
-        
-        /// <summary>
-        /// Test6AssertNewMovie - Use 'Test6AssertNewMovieExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test6AssertNewMovie()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxReleaseEdit = this.UIRentItWindow.UITextBoxReleaseEdit;
-            #endregion
-
-            // Verify that 'textBoxRelease' text box's property 'Text' equals '5. december 2001'
-            Assert.AreEqual(this.Test6AssertNewMovieExpectedValues.UITextBoxReleaseEditText, uITextBoxReleaseEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test6SelectOlderMovie - Use 'Test6SelectOlderMovieParams' to pass parameters into this method.
-        /// </summary>
-        public void Test6SelectOlderMovie()
-        {
-            #region Variable Declarations
-            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
-            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
-            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
-            #endregion
-
-            // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(39, 13));
-
-            // Select '(The Matrix\, 5)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test6SelectOlderMovieParams.UIMovieListBoxListSelectedItemsAsString;
-
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(38, 8));
-        }
-        
-        /// <summary>
-        /// AssertMethod1 - Use 'AssertMethod1ExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void AssertMethod1()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxReleaseEdit = this.UIRentItWindow.UITextBoxReleaseEdit;
-            #endregion
-
-            // Verify that 'textBoxRelease' text box's property 'Text' equals '31. marts 1999'
-            Assert.AreEqual(this.AssertMethod1ExpectedValues.UITextBoxReleaseEditText, uITextBoxReleaseEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test6AssertOlderMovie - Use 'Test6AssertOlderMovieExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test6AssertOlderMovie()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxReleaseEdit = this.UIRentItWindow.UITextBoxReleaseEdit;
-            #endregion
-
-            // Verify that 'textBoxRelease' text box's property 'Text' equals '31. marts 1999'
-            Assert.AreEqual(this.Test6AssertOlderMovieExpectedValues.UITextBoxReleaseEditText, uITextBoxReleaseEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test6CloseWindow
-        /// </summary>
-        public void Test6CloseWindow()
-        {
-            #region Variable Declarations
-            WinWindow uIRentItWindow1 = this.UIRentItWindow1;
-            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
-            #endregion
-
-            // Click 'RentIt' window
-            Mouse.Click(uIRentItWindow1, new Point(691, 5));
-
-            // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(32, 8));
-        }
-        
-        /// <summary>
-        /// Test7SearchTheMatrix - Use 'Test7SearchTheMatrixParams' to pass parameters into this method.
-        /// </summary>
-        public void Test7SearchTheMatrix()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
-            WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
-            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
-            WpfEdit uITextBoxSearchEdit = this.UIRentItWindow.UITextBoxSearchEdit;
-            WpfButton uISearchButton = this.UIRentItWindow.UISearchButton;
-            #endregion
-
-            // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test7SearchTheMatrixParams.UITextBoxUsernameEditText;
-
-            // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(62, 9));
-
-            // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test7SearchTheMatrixParams.UIPasswordBoxEditSendKeys, true);
-
-            // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(27, 7));
-
-            // Type 'The Matrix' in 'textBoxSearch' text box
-            uITextBoxSearchEdit.Text = this.Test7SearchTheMatrixParams.UITextBoxSearchEditText;
-
-            // Click 'Search' button
-            Mouse.Click(uISearchButton, new Point(9, 15));
-        }
-        
-        /// <summary>
-        /// Test7SelectTheMatrix - Use 'Test7SelectTheMatrixParams' to pass parameters into this method.
-        /// </summary>
-        public void Test7SelectTheMatrix()
-        {
-            #region Variable Declarations
-            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
-            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
-            #endregion
-
-            // Select '(The Matrix\, 5)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test7SelectTheMatrixParams.UIMovieListBoxListSelectedItemsAsString;
-
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(48, 12));
-        }
-        
-        /// <summary>
-        /// Test7AssertTheMatrixName - Use 'Test7AssertTheMatrixNameExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test7AssertTheMatrixName()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxTitleEdit = this.UIRentItWindow.UITextBoxTitleEdit;
-            #endregion
-
-            // Verify that 'textBoxTitle' text box's property 'Text' equals 'The Matrix'
-            Assert.AreEqual(this.Test7AssertTheMatrixNameExpectedValues.UITextBoxTitleEditText, uITextBoxTitleEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test7CloseWindow
-        /// </summary>
-        public void Test7CloseWindow()
-        {
-            #region Variable Declarations
-            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
-            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
-            #endregion
+            // Click 'Sort movies' button
+            Mouse.Click(uISortmoviesButton, new Point(18, 15));
 
             // Click 'Close' button
-            Mouse.Click(uICloseButton, new Point(28, 9));
+            Mouse.Click(uICloseButton, new Point(23, 16));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(27, 20));
+            Mouse.Click(uIYesButton, new Point(38, 4));
         }
         
         /// <summary>
-        /// Test8SciFiGenre - Use 'Test8SciFiGenreParams' to pass parameters into this method.
+        /// Test06UserViewMovieByNewest - Use 'Test06UserViewMovieByNewestParams' to pass parameters into this method.
         /// </summary>
-        public void Test8SciFiGenre()
+        public void Test06UserViewMovieByNewest()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
@@ -431,72 +181,220 @@ namespace RentIt.Tests
             WpfButton uISortmoviesButton = this.UIRentItWindow.UISortmoviesButton;
             WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
             WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
+            WpfButton uIListmoviesButton = this.UIRentItWindow.UIListmoviesButton;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
+
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(356, 7));
 
             // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test8SciFiGenreParams.UITextBoxUsernameEditText;
+            uITextBoxUsernameEdit.Text = this.Test06UserViewMovieByNewestParams.UITextBoxUsernameEditText;
 
             // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(76, 6));
+            Mouse.Click(uIPasswordBoxEdit, new Point(47, 17));
 
             // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test8SciFiGenreParams.UIPasswordBoxEditSendKeys, true);
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test06UserViewMovieByNewestParams.UIPasswordBoxEditSendKeys, true);
 
             // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(17, 8));
+            Mouse.Click(uILoginButton, new Point(30, 17));
 
             // Select '(Newest, 1)' in 'sortModeComboBox' combo box
-            uISortModeComboBoxComboBox.SelectedItem = this.Test8SciFiGenreParams.UISortModeComboBoxComboBoxSelectedItem;
+            uISortModeComboBoxComboBox.SelectedItem = this.Test06UserViewMovieByNewestParams.UISortModeComboBoxComboBoxSelectedItem;
 
-            // Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
-            uIGenreComboBoxComboBox.SelectedItem = this.Test8SciFiGenreParams.UIGenreComboBoxComboBoxSelectedItem;
+            // Select '(All, 0)' in 'genreComboBox' combo box
+            uIGenreComboBoxComboBox.SelectedItem = this.Test06UserViewMovieByNewestParams.UIGenreComboBoxComboBoxSelectedItem;
 
             // Click 'Sort movies' button
-            Mouse.Click(uISortmoviesButton, new Point(40, 9));
+            Mouse.Click(uISortmoviesButton, new Point(12, 11));
 
-            // Select '(The Matrix\, 5)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test8SciFiGenreParams.UIMovieListBoxListSelectedItemsAsString;
+            // Select '(Ocean's Eleven\, 1)' in 'MovieListBox' list box
+            uIMovieListBoxList.SelectedItemsAsString = this.Test06UserViewMovieByNewestParams.UIMovieListBoxListSelectedItemsAsString;
 
             // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(45, 14));
+            Mouse.Click(uIViewMovieButton, new Point(40, 17));
+
+            // Click 'List movies' button
+            Mouse.Click(uIListmoviesButton, new Point(58, 15));
+
+            // Select '(The Matrix\, 5)' in 'MovieListBox' list box
+            uIMovieListBoxList.SelectedItemsAsString = this.Test06UserViewMovieByNewestParams.UIMovieListBoxListSelectedItemsAsString1;
+
+            // Click 'View Movie' button
+            Mouse.Click(uIViewMovieButton, new Point(31, 18));
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(24, 10));
+
+            // Click '&Yes' button
+            Mouse.Click(uIYesButton, new Point(36, 4));
         }
         
         /// <summary>
-        /// Test8AssertTheMatrixFound - Use 'Test8AssertTheMatrixFoundExpectedValues' to pass parameters into this method.
+        /// Test07UserSearchForMovie - Use 'Test07UserSearchForMovieParams' to pass parameters into this method.
         /// </summary>
-        public void Test8AssertTheMatrixFound()
+        public void Test07UserSearchForMovie()
         {
             #region Variable Declarations
-            WpfEdit uITextBoxTitleEdit = this.UIRentItWindow.UITextBoxTitleEdit;
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
+            WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
+            WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
+            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
+            WpfEdit uITextBoxSearchEdit = this.UIRentItWindow.UITextBoxSearchEdit;
+            WpfButton uISearchButton = this.UIRentItWindow.UISearchButton;
+            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
+            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
-            // Verify that 'textBoxTitle' text box's property 'Text' equals 'The Matrix'
-            Assert.AreEqual(this.Test8AssertTheMatrixFoundExpectedValues.UITextBoxTitleEditText, uITextBoxTitleEdit.Text);
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(331, 10));
+
+            // Type 'Smith' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.Test07UserSearchForMovieParams.UITextBoxUsernameEditText;
+
+            // Click 'passwordBox' text box
+            Mouse.Click(uIPasswordBoxEdit, new Point(60, 8));
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test07UserSearchForMovieParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(30, 15));
+
+            // Type 'The Matrix' in 'textBoxSearch' text box
+            uITextBoxSearchEdit.Text = this.Test07UserSearchForMovieParams.UITextBoxSearchEditText;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(7, 8));
+
+            // Select '(The Matrix\, 5)' in 'MovieListBox' list box
+            uIMovieListBoxList.SelectedItemsAsString = this.Test07UserSearchForMovieParams.UIMovieListBoxListSelectedItemsAsString;
+
+            // Click 'View Movie' button
+            Mouse.Click(uIViewMovieButton, new Point(32, 16));
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(14, 17));
+
+            // Click '&Yes' button
+            Mouse.Click(uIYesButton, new Point(26, 9));
         }
         
         /// <summary>
-        /// Test8CloseWindow
+        /// Test08UserViewMoviesByGenre - Use 'Test08UserViewMoviesByGenreParams' to pass parameters into this method.
         /// </summary>
-        public void Test8CloseWindow()
+        public void Test08UserViewMoviesByGenre()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
+            WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
+            WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
+            WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
+            WpfComboBox uISortModeComboBoxComboBox = this.UIRentItWindow.UISortModeComboBoxComboBox;
+            WpfComboBox uIGenreComboBoxComboBox = this.UIRentItWindow.UIGenreComboBoxComboBox;
+            WpfButton uISortmoviesButton = this.UIRentItWindow.UISortmoviesButton;
+            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
+            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
+            WpfButton uIListmoviesButton = this.UIRentItWindow.UIListmoviesButton;
+            WpfComboBox uISortModeComboBoxComboBox1 = this.UIRentItWindow.UISortModeComboBoxComboBox1;
+            WpfComboBox uIGenreComboBoxComboBox1 = this.UIRentItWindow.UIGenreComboBoxComboBox1;
+            WpfButton uISortmoviesButton1 = this.UIRentItWindow.UISortmoviesButton1;
+            WpfList uIMovieListBoxList1 = this.UIRentItWindow.UIMovieListBoxList1;
+            WpfButton uIViewMovieButton1 = this.UIRentItWindow.UIViewMovieButton1;
+            WpfButton uIListmoviesButton1 = this.UIRentItWindow.UIListmoviesButton1;
+            WpfComboBox uISortModeComboBoxComboBox3 = this.UIRentItWindow.UISortModeComboBoxComboBox3;
+            WpfComboBox uIGenreComboBoxComboBox3 = this.UIRentItWindow.UIGenreComboBoxComboBox3;
+            WpfButton uISortmoviesButton3 = this.UIRentItWindow.UISortmoviesButton3;
+            WpfList uIMovieListBoxList2 = this.UIRentItWindow.UIMovieListBoxList2;
+            WpfButton uIViewMovieButton2 = this.UIRentItWindow.UIViewMovieButton2;
             WinWindow uIRentItWindow1 = this.UIRentItWindow1;
             WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(333, 18));
+
+            // Type 'Smith' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.Test08UserViewMoviesByGenreParams.UITextBoxUsernameEditText;
+
+            // Click 'passwordBox' text box
+            Mouse.Click(uIPasswordBoxEdit, new Point(79, 3));
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test08UserViewMoviesByGenreParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(47, 9));
+
+            // Select '(Newest, 1)' in 'sortModeComboBox' combo box
+            uISortModeComboBoxComboBox.SelectedItem = this.Test08UserViewMoviesByGenreParams.UISortModeComboBoxComboBoxSelectedItem;
+
+            // Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
+            uIGenreComboBoxComboBox.SelectedItem = this.Test08UserViewMoviesByGenreParams.UIGenreComboBoxComboBoxSelectedItem;
+
+            // Click 'Sort movies' button
+            Mouse.Click(uISortmoviesButton, new Point(40, 16));
+
+            // Select '(The Matrix\, 5)' in 'MovieListBox' list box
+            uIMovieListBoxList.SelectedItemsAsString = this.Test08UserViewMoviesByGenreParams.UIMovieListBoxListSelectedItemsAsString;
+
+            // Click 'View Movie' button
+            Mouse.Click(uIViewMovieButton, new Point(53, 17));
+
+            // Click 'List movies' button
+            Mouse.Click(uIListmoviesButton, new Point(78, 9));
+
+            // Select '(Newest, 1)' in 'sortModeComboBox' combo box
+            uISortModeComboBoxComboBox1.SelectedItem = this.Test08UserViewMoviesByGenreParams.UISortModeComboBoxComboBox1SelectedItem;
+
+            // Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
+            uIGenreComboBoxComboBox1.SelectedItem = this.Test08UserViewMoviesByGenreParams.UIGenreComboBoxComboBox1SelectedItem;
+
+            // Click 'Sort movies' button
+            Mouse.Click(uISortmoviesButton1, new Point(47, 15));
+
+            // Select '(The Matrix Reloaded\, 6)' in 'MovieListBox' list box
+            uIMovieListBoxList1.SelectedItemsAsString = this.Test08UserViewMoviesByGenreParams.UIMovieListBoxList1SelectedItemsAsString;
+
+            // Click 'View Movie' button
+            Mouse.Click(uIViewMovieButton1, new Point(63, 15));
+
+            // Click 'List movies' button
+            Mouse.Click(uIListmoviesButton1, new Point(96, 15));
+
+            // Select '(Newest, 1)' in 'sortModeComboBox' combo box
+            uISortModeComboBoxComboBox3.SelectedItem = this.Test08UserViewMoviesByGenreParams.UISortModeComboBoxComboBox3SelectedItem;
+
+            // Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
+            uIGenreComboBoxComboBox3.SelectedItem = this.Test08UserViewMoviesByGenreParams.UIGenreComboBoxComboBox3SelectedItem;
+
+            // Click 'Sort movies' button
+            Mouse.Click(uISortmoviesButton3, new Point(47, 11));
+
+            // Select '(The Matrix Revolutions\, 7)' in 'MovieListBox' list box
+            uIMovieListBoxList2.SelectedItemsAsString = this.Test08UserViewMoviesByGenreParams.UIMovieListBoxList2SelectedItemsAsString;
+
+            // Click 'View Movie' button
+            Mouse.Click(uIViewMovieButton2, new Point(84, 9));
+
             // Click 'RentIt' window
-            Mouse.Click(uIRentItWindow1, new Point(702, 7));
+            Mouse.Click(uIRentItWindow1, new Point(704, 7));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(21, 15));
+            Mouse.Click(uIYesButton, new Point(52, 13));
         }
         
         /// <summary>
-        /// Test9RentTheMatrixReloaded - Use 'Test9RentTheMatrixReloadedParams' to pass parameters into this method.
+        /// Test09UserrentSpecificMovieEdition - Use 'Test09UserrentSpecificMovieEditionParams' to pass parameters into this method.
         /// </summary>
-        public void Test9RentTheMatrixReloaded()
+        public void Test09UserrentSpecificMovieEdition()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
@@ -505,169 +403,89 @@ namespace RentIt.Tests
             WpfList uIEditionListBoxList = this.UIRentItWindow.UIEditionListBoxList;
             WpfButton uISelecteditionButton = this.UIRentItWindow.UISelecteditionButton;
             WpfButton uIRentmovieButton = this.UIRentItWindow.UIRentmovieButton;
-            WpfButton uIYourrentalsButton = this.UIRentItWindow.UIYourrentalsButton;
-            #endregion
-
-            // Type 'Smith' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test9RentTheMatrixReloadedParams.UITextBoxUsernameEditText;
-
-            // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(47, 13));
-
-            // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test9RentTheMatrixReloadedParams.UIPasswordBoxEditSendKeys, true);
-
-            // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(54, 8));
-
-            // Select '(The Matrix Reloaded\, 6)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test9RentTheMatrixReloadedParams.UIMovieListBoxListSelectedItemsAsString;
-
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(51, 12));
-
-            // Select '(HD 1080p\, 18)' in 'EditionListBox' list box
-            uIEditionListBoxList.SelectedItemsAsString = this.Test9RentTheMatrixReloadedParams.UIEditionListBoxListSelectedItemsAsString;
-
-            // Click 'Select edition' button
-            Mouse.Click(uISelecteditionButton, new Point(59, 13));
-
-            // Click 'Rent movie' button
-            Mouse.Click(uIRentmovieButton, new Point(59, 13));
-
-            // Click 'Your rentals' button
-            Mouse.Click(uIYourrentalsButton, new Point(67, 12));
-        }
-        
-        /// <summary>
-        /// Test9ViewTheMatrixReloaded - Use 'Test9ViewTheMatrixReloadedParams' to pass parameters into this method.
-        /// </summary>
-        public void Test9ViewTheMatrixReloaded()
-        {
-            #region Variable Declarations
-            WpfList uIMovieListBoxList = this.UIRentItWindow.UIMovieListBoxList;
-            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
-            #endregion
-
-            // Select '(The Matrix Reloaded - HD 1080p\, 18\, RentItClient.Types.Movie)' in 'MovieListBox' list box
-            uIMovieListBoxList.SelectedItemsAsString = this.Test9ViewTheMatrixReloadedParams.UIMovieListBoxListSelectedItemsAsString;
-
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(60, 18));
-        }
-        
-        /// <summary>
-        /// Test9AssertTheMatrixReloadedName - Use 'Test9AssertTheMatrixReloadedNameExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test9AssertTheMatrixReloadedName()
-        {
-            #region Variable Declarations
-            WpfText uITheMatrixReloadedText = this.UIRentItWindow.UITheMatrixReloadedText;
-            #endregion
-
-            // Verify that 'The Matrix Reloaded' label's property 'Name' equals 'The Matrix Reloaded'
-            Assert.AreEqual(this.Test9AssertTheMatrixReloadedNameExpectedValues.UITheMatrixReloadedTextName, uITheMatrixReloadedText.Name);
-        }
-        
-        /// <summary>
-        /// Test9CloseWindow
-        /// </summary>
-        public void Test9CloseWindow()
-        {
-            #region Variable Declarations
             WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
             WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
 
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(330, 13));
+
+            // Type 'Smith' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.Test09UserrentSpecificMovieEditionParams.UITextBoxUsernameEditText;
+
+            // Click 'passwordBox' text box
+            Mouse.Click(uIPasswordBoxEdit, new Point(46, 3));
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test09UserrentSpecificMovieEditionParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(16, 11));
+
+            // Select '(The Lord of the Rings: The Return of the King\, 14)' in 'MovieListBox' list box
+            uIMovieListBoxList.SelectedItemsAsString = this.Test09UserrentSpecificMovieEditionParams.UIMovieListBoxListSelectedItemsAsString;
+
+            // Click 'View Movie' button
+            Mouse.Click(uIViewMovieButton, new Point(26, 14));
+
+            // Select '(SD\, 38)' in 'EditionListBox' list box
+            uIEditionListBoxList.SelectedItemsAsString = this.Test09UserrentSpecificMovieEditionParams.UIEditionListBoxListSelectedItemsAsString;
+
+            // Click 'Select edition' button
+            Mouse.Click(uISelecteditionButton, new Point(82, 10));
+
+            // Click 'Rent movie' button
+            Mouse.Click(uIRentmovieButton, new Point(57, 9));
+
             // Click 'Close' button
-            Mouse.Click(uICloseButton, new Point(16, 7));
+            Mouse.Click(uICloseButton, new Point(22, 14));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(28, 15));
+            Mouse.Click(uIYesButton, new Point(49, 13));
         }
         
         /// <summary>
-        /// Test12CPLogin - Use 'Test12CPLoginParams' to pass parameters into this method.
+        /// Test12CPLoginLogout - Use 'Test12CPLoginLogoutParams' to pass parameters into this method.
         /// </summary>
-        public void Test12CPLogin()
+        public void Test12CPLoginLogout()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
-            #endregion
-
-            // Type 'Universal' in 'textBoxUsername' text box
-            uITextBoxUsernameEdit.Text = this.Test12CPLoginParams.UITextBoxUsernameEditText;
-
-            // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(157, 9));
-
-            // Type '********' in 'passwordBox' text box
-            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test12CPLoginParams.UIPasswordBoxEditSendKeys, true);
-
-            // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(59, 7));
-        }
-        
-        /// <summary>
-        /// Test12AssertLogoutButtonExists - Use 'Test12AssertLogoutButtonExistsExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test12AssertLogoutButtonExists()
-        {
-            #region Variable Declarations
-            WpfButton uILogoutButton1 = this.UIRentItWindow.UILogoutButton1;
-            #endregion
-
-            // Verify that 'Logout' button's property 'DisplayText' equals 'Logout'
-            Assert.AreEqual(this.Test12AssertLogoutButtonExistsExpectedValues.UILogoutButton1DisplayText, uILogoutButton1.DisplayText);
-        }
-        
-        /// <summary>
-        /// Test12CPLogout
-        /// </summary>
-        public void Test12CPLogout()
-        {
-            #region Variable Declarations
             WpfButton uILogoutButton1 = this.UIRentItWindow.UILogoutButton1;
             WinButton uIYesButton = this.UIChangewindowWindow.UIYesWindow.UIYesButton;
+            WinWindow uIRentItWindow1 = this.UIRentItWindow1;
+            WinButton uIYesButton1 = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
+
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(336, 5));
+
+            // Type 'Universal' in 'textBoxUsername' text box
+            uITextBoxUsernameEdit.Text = this.Test12CPLoginLogoutParams.UITextBoxUsernameEditText;
+
+            // Click 'passwordBox' text box
+            Mouse.Click(uIPasswordBoxEdit, new Point(103, 10));
+
+            // Type '********' in 'passwordBox' text box
+            Keyboard.SendKeys(uIPasswordBoxEdit, this.Test12CPLoginLogoutParams.UIPasswordBoxEditSendKeys, true);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(45, 8));
 
             // Click 'Logout' button
-            Mouse.Click(uILogoutButton1, new Point(19, 12));
+            Mouse.Click(uILogoutButton1, new Point(36, 17));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(34, 5));
-        }
-        
-        /// <summary>
-        /// Test12AssertWelcomeScreenShown - Use 'Test12AssertWelcomeScreenShownExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test12AssertWelcomeScreenShown()
-        {
-            #region Variable Declarations
-            WpfText uIWelcomeText = this.UIRentItWindow.UIWelcomeText;
-            #endregion
+            Mouse.Click(uIYesButton, new Point(36, 14));
 
-            // Verify that 'Welcome:' label's property 'DisplayText' equals 'Welcome:'
-            Assert.AreEqual(this.Test12AssertWelcomeScreenShownExpectedValues.UIWelcomeTextDisplayText, uIWelcomeText.DisplayText);
-        }
-        
-        /// <summary>
-        /// Test12CloseWindow
-        /// </summary>
-        public void Test12CloseWindow()
-        {
-            #region Variable Declarations
-            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
-            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
-            #endregion
-
-            // Click 'Close' button
-            Mouse.Click(uICloseButton, new Point(17, 13));
+            // Click 'RentIt' window
+            Mouse.Click(uIRentItWindow1, new Point(693, 6));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(37, 8));
+            Mouse.Click(uIYesButton1, new Point(23, 11));
         }
         
         /// <summary>
@@ -676,6 +494,7 @@ namespace RentIt.Tests
         public void Test13CPRegisterMovie()
         {
             #region Variable Declarations
+            WpfTitleBar uIRentItTitleBar = this.UIRentItWindow.UIRentItTitleBar;
             WpfEdit uITextBoxUsernameEdit = this.UIRentItWindow.UITextBoxUsernameEdit;
             WpfEdit uIPasswordBoxEdit = this.UIRentItWindow.UIPasswordBoxEdit;
             WpfButton uILoginButton = this.UIRentItWindow.UILoginButton;
@@ -684,382 +503,157 @@ namespace RentIt.Tests
             WpfDatePicker uIDatePickerReleaseDatDatePicker = this.UIRentItWindow.UIDatePickerReleaseDatDatePicker;
             WpfEdit uITextBoxDescriptionEdit = this.UIRentItWindow.UITextBoxDescriptionEdit;
             WpfCheckBox uIItemCheckBox = this.UIRentItWindow.UIGenreCheckListTable.UIItemDataItem.UIItemCheckBox;
+            WpfCheckBox uIItemCheckBox1 = this.UIRentItWindow.UIGenreCheckListTable.UIItemDataItem1.UIItemCheckBox;
+            WpfCheckBox uIItemCheckBox2 = this.UIRentItWindow.UIGenreCheckListTable.UIItemDataItem2.UIItemCheckBox;
             WpfButton uIRegistermovieButton1 = this.UIRentItWindow.UIRegistermovieButton1;
             WinButton uINOButton = this.UIUploadeditionWindow.UINOWindow.UINOButton;
+            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
+            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
             #endregion
+
+            // Click 'RentIt' title bar
+            Mouse.Click(uIRentItTitleBar, new Point(353, 11));
 
             // Type 'Universal' in 'textBoxUsername' text box
             uITextBoxUsernameEdit.Text = this.Test13CPRegisterMovieParams.UITextBoxUsernameEditText;
 
             // Click 'passwordBox' text box
-            Mouse.Click(uIPasswordBoxEdit, new Point(88, 1));
+            Mouse.Click(uIPasswordBoxEdit, new Point(54, 6));
 
             // Type '********' in 'passwordBox' text box
             Keyboard.SendKeys(uIPasswordBoxEdit, this.Test13CPRegisterMovieParams.UIPasswordBoxEditSendKeys, true);
 
             // Click 'Login' button
-            Mouse.Click(uILoginButton, new Point(20, 12));
+            Mouse.Click(uILoginButton, new Point(21, 6));
 
             // Click 'Register Movie' button
-            Mouse.Click(uIRegisterMovieButton, new Point(55, 12));
+            Mouse.Click(uIRegisterMovieButton, new Point(88, 8));
 
-            // Type 'Detective Conan' in 'textBoxTitle' text box
+            // Type 'Bleach' in 'textBoxTitle' text box
             uITextBoxTitleEdit.Text = this.Test13CPRegisterMovieParams.UITextBoxTitleEditText;
 
             // Select '12-May-2012' in 'DatePickerReleaseDate' date picker
             uIDatePickerReleaseDatDatePicker.DateAsString = this.Test13CPRegisterMovieParams.UIDatePickerReleaseDatDatePickerDateAsString;
 
-            // Type 'It's crime time!' in 'textBoxDescription' text box
+            // Type 'Action!' in 'textBoxDescription' text box
             uITextBoxDescriptionEdit.Text = this.Test13CPRegisterMovieParams.UITextBoxDescriptionEditText;
 
             // Select 'Unknown Name' check box
             uIItemCheckBox.Checked = this.Test13CPRegisterMovieParams.UIItemCheckBoxChecked;
 
+            // Select 'Unknown Name' check box
+            uIItemCheckBox1.Checked = this.Test13CPRegisterMovieParams.UIItemCheckBoxChecked1;
+
+            // Select 'Unknown Name' check box
+            uIItemCheckBox2.Checked = this.Test13CPRegisterMovieParams.UIItemCheckBoxChecked2;
+
             // Click 'Register movie' button
-            Mouse.Click(uIRegistermovieButton1, new Point(95, 13));
+            Mouse.Click(uIRegistermovieButton1, new Point(134, 12));
 
             // Click '&No' button
-            Mouse.Click(uINOButton, new Point(31, 16));
-        }
-        
-        /// <summary>
-        /// Test13SelectDetectiveConan
-        /// </summary>
-        public void Test13SelectDetectiveConan()
-        {
-            #region Variable Declarations
-            WpfListItem uIDetectiveConanRentItListItem = this.UIRentItWindow.UIMovieListBoxList.UIDetectiveConanRentItListItem;
-            WpfButton uIViewMovieButton = this.UIRentItWindow.UIViewMovieButton;
-            #endregion
-
-            // Click '(Detective Conan, RentItClient.Types.Movie)' list item
-            Mouse.Click(uIDetectiveConanRentItListItem, new Point(215, 9));
-
-            // Click 'View Movie' button
-            Mouse.Click(uIViewMovieButton, new Point(74, 7));
-        }
-        
-        /// <summary>
-        /// Test13AssertDetectiveConanName - Use 'Test13AssertDetectiveConanNameExpectedValues' to pass parameters into this method.
-        /// </summary>
-        public void Test13AssertDetectiveConanName()
-        {
-            #region Variable Declarations
-            WpfEdit uITextBoxTitleEdit = this.UIRentItWindow.UITextBoxTitleEdit;
-            #endregion
-
-            // Verify that 'textBoxTitle' text box's property 'Text' equals 'Detective Conan'
-            Assert.AreEqual(this.Test13AssertDetectiveConanNameExpectedValues.UITextBoxTitleEditText, uITextBoxTitleEdit.Text);
-        }
-        
-        /// <summary>
-        /// Test13DeleteDetectiveConan
-        /// </summary>
-        public void Test13DeleteDetectiveConan()
-        {
-            #region Variable Declarations
-            WpfButton uIDeletemovieButton = this.UIRentItWindow.UIDeletemovieButton;
-            WinButton uIYesButton = this.UIDeleteMovieWindow.UIYesWindow.UIYesButton;
-            #endregion
-
-            // Click 'Delete movie' button
-            Mouse.Click(uIDeletemovieButton, new Point(31, 14));
-
-            // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(36, 8));
-        }
-        
-        /// <summary>
-        /// Test13CloseWindow
-        /// </summary>
-        public void Test13CloseWindow()
-        {
-            #region Variable Declarations
-            WpfButton uICloseButton = this.UIRentItWindow.UIRentItTitleBar.UICloseButton;
-            WinButton uIYesButton = this.UICloseapplicationWindow.UIYesWindow.UIYesButton;
-            #endregion
+            Mouse.Click(uINOButton, new Point(16, 17));
 
             // Click 'Close' button
-            Mouse.Click(uICloseButton, new Point(24, 9));
+            Mouse.Click(uICloseButton, new Point(34, 12));
 
             // Click '&Yes' button
-            Mouse.Click(uIYesButton, new Point(43, 11));
+            Mouse.Click(uIYesButton, new Point(40, 9));
         }
         
         #region Properties
-        public virtual Test2UserLoginParams Test2UserLoginParams
+        public virtual Test02UserLoginParams Test02UserLoginParams
         {
             get
             {
-                if ((this.mTest2UserLoginParams == null))
+                if ((this.mTest02UserLoginParams == null))
                 {
-                    this.mTest2UserLoginParams = new Test2UserLoginParams();
+                    this.mTest02UserLoginParams = new Test02UserLoginParams();
                 }
-                return this.mTest2UserLoginParams;
+                return this.mTest02UserLoginParams;
             }
         }
         
-        public virtual Test2AssertFullNameExpectedValues Test2AssertFullNameExpectedValues
+        public virtual Test04UserLogoutParams Test04UserLogoutParams
         {
             get
             {
-                if ((this.mTest2AssertFullNameExpectedValues == null))
+                if ((this.mTest04UserLogoutParams == null))
                 {
-                    this.mTest2AssertFullNameExpectedValues = new Test2AssertFullNameExpectedValues();
+                    this.mTest04UserLogoutParams = new Test04UserLogoutParams();
                 }
-                return this.mTest2AssertFullNameExpectedValues;
+                return this.mTest04UserLogoutParams;
             }
         }
         
-        public virtual Test4LoginLogoutParams Test4LoginLogoutParams
+        public virtual Test05UserViewAllMoviesParams Test05UserViewAllMoviesParams
         {
             get
             {
-                if ((this.mTest4LoginLogoutParams == null))
+                if ((this.mTest05UserViewAllMoviesParams == null))
                 {
-                    this.mTest4LoginLogoutParams = new Test4LoginLogoutParams();
+                    this.mTest05UserViewAllMoviesParams = new Test05UserViewAllMoviesParams();
                 }
-                return this.mTest4LoginLogoutParams;
+                return this.mTest05UserViewAllMoviesParams;
             }
         }
         
-        public virtual Test4AssertLoginScreenExpectedValues Test4AssertLoginScreenExpectedValues
+        public virtual Test06UserViewMovieByNewestParams Test06UserViewMovieByNewestParams
         {
             get
             {
-                if ((this.mTest4AssertLoginScreenExpectedValues == null))
+                if ((this.mTest06UserViewMovieByNewestParams == null))
                 {
-                    this.mTest4AssertLoginScreenExpectedValues = new Test4AssertLoginScreenExpectedValues();
+                    this.mTest06UserViewMovieByNewestParams = new Test06UserViewMovieByNewestParams();
                 }
-                return this.mTest4AssertLoginScreenExpectedValues;
+                return this.mTest06UserViewMovieByNewestParams;
             }
         }
         
-        public virtual Test5UserViewAllMoviesParams Test5UserViewAllMoviesParams
+        public virtual Test07UserSearchForMovieParams Test07UserSearchForMovieParams
         {
             get
             {
-                if ((this.mTest5UserViewAllMoviesParams == null))
+                if ((this.mTest07UserSearchForMovieParams == null))
                 {
-                    this.mTest5UserViewAllMoviesParams = new Test5UserViewAllMoviesParams();
+                    this.mTest07UserSearchForMovieParams = new Test07UserSearchForMovieParams();
                 }
-                return this.mTest5UserViewAllMoviesParams;
+                return this.mTest07UserSearchForMovieParams;
             }
         }
         
-        public virtual Test5SelectTopMovieParams Test5SelectTopMovieParams
+        public virtual Test08UserViewMoviesByGenreParams Test08UserViewMoviesByGenreParams
         {
             get
             {
-                if ((this.mTest5SelectTopMovieParams == null))
+                if ((this.mTest08UserViewMoviesByGenreParams == null))
                 {
-                    this.mTest5SelectTopMovieParams = new Test5SelectTopMovieParams();
+                    this.mTest08UserViewMoviesByGenreParams = new Test08UserViewMoviesByGenreParams();
                 }
-                return this.mTest5SelectTopMovieParams;
+                return this.mTest08UserViewMoviesByGenreParams;
             }
         }
         
-        public virtual Test5AssertTopMovieNameExpectedValues Test5AssertTopMovieNameExpectedValues
+        public virtual Test09UserrentSpecificMovieEditionParams Test09UserrentSpecificMovieEditionParams
         {
             get
             {
-                if ((this.mTest5AssertTopMovieNameExpectedValues == null))
+                if ((this.mTest09UserrentSpecificMovieEditionParams == null))
                 {
-                    this.mTest5AssertTopMovieNameExpectedValues = new Test5AssertTopMovieNameExpectedValues();
+                    this.mTest09UserrentSpecificMovieEditionParams = new Test09UserrentSpecificMovieEditionParams();
                 }
-                return this.mTest5AssertTopMovieNameExpectedValues;
+                return this.mTest09UserrentSpecificMovieEditionParams;
             }
         }
         
-        public virtual Test6UserLoginSelectMovieParams Test6UserLoginSelectMovieParams
+        public virtual Test12CPLoginLogoutParams Test12CPLoginLogoutParams
         {
             get
             {
-                if ((this.mTest6UserLoginSelectMovieParams == null))
+                if ((this.mTest12CPLoginLogoutParams == null))
                 {
-                    this.mTest6UserLoginSelectMovieParams = new Test6UserLoginSelectMovieParams();
+                    this.mTest12CPLoginLogoutParams = new Test12CPLoginLogoutParams();
                 }
-                return this.mTest6UserLoginSelectMovieParams;
-            }
-        }
-        
-        public virtual Test6AssertNewMovieExpectedValues Test6AssertNewMovieExpectedValues
-        {
-            get
-            {
-                if ((this.mTest6AssertNewMovieExpectedValues == null))
-                {
-                    this.mTest6AssertNewMovieExpectedValues = new Test6AssertNewMovieExpectedValues();
-                }
-                return this.mTest6AssertNewMovieExpectedValues;
-            }
-        }
-        
-        public virtual Test6SelectOlderMovieParams Test6SelectOlderMovieParams
-        {
-            get
-            {
-                if ((this.mTest6SelectOlderMovieParams == null))
-                {
-                    this.mTest6SelectOlderMovieParams = new Test6SelectOlderMovieParams();
-                }
-                return this.mTest6SelectOlderMovieParams;
-            }
-        }
-        
-        public virtual AssertMethod1ExpectedValues AssertMethod1ExpectedValues
-        {
-            get
-            {
-                if ((this.mAssertMethod1ExpectedValues == null))
-                {
-                    this.mAssertMethod1ExpectedValues = new AssertMethod1ExpectedValues();
-                }
-                return this.mAssertMethod1ExpectedValues;
-            }
-        }
-        
-        public virtual Test6AssertOlderMovieExpectedValues Test6AssertOlderMovieExpectedValues
-        {
-            get
-            {
-                if ((this.mTest6AssertOlderMovieExpectedValues == null))
-                {
-                    this.mTest6AssertOlderMovieExpectedValues = new Test6AssertOlderMovieExpectedValues();
-                }
-                return this.mTest6AssertOlderMovieExpectedValues;
-            }
-        }
-        
-        public virtual Test7SearchTheMatrixParams Test7SearchTheMatrixParams
-        {
-            get
-            {
-                if ((this.mTest7SearchTheMatrixParams == null))
-                {
-                    this.mTest7SearchTheMatrixParams = new Test7SearchTheMatrixParams();
-                }
-                return this.mTest7SearchTheMatrixParams;
-            }
-        }
-        
-        public virtual Test7SelectTheMatrixParams Test7SelectTheMatrixParams
-        {
-            get
-            {
-                if ((this.mTest7SelectTheMatrixParams == null))
-                {
-                    this.mTest7SelectTheMatrixParams = new Test7SelectTheMatrixParams();
-                }
-                return this.mTest7SelectTheMatrixParams;
-            }
-        }
-        
-        public virtual Test7AssertTheMatrixNameExpectedValues Test7AssertTheMatrixNameExpectedValues
-        {
-            get
-            {
-                if ((this.mTest7AssertTheMatrixNameExpectedValues == null))
-                {
-                    this.mTest7AssertTheMatrixNameExpectedValues = new Test7AssertTheMatrixNameExpectedValues();
-                }
-                return this.mTest7AssertTheMatrixNameExpectedValues;
-            }
-        }
-        
-        public virtual Test8SciFiGenreParams Test8SciFiGenreParams
-        {
-            get
-            {
-                if ((this.mTest8SciFiGenreParams == null))
-                {
-                    this.mTest8SciFiGenreParams = new Test8SciFiGenreParams();
-                }
-                return this.mTest8SciFiGenreParams;
-            }
-        }
-        
-        public virtual Test8AssertTheMatrixFoundExpectedValues Test8AssertTheMatrixFoundExpectedValues
-        {
-            get
-            {
-                if ((this.mTest8AssertTheMatrixFoundExpectedValues == null))
-                {
-                    this.mTest8AssertTheMatrixFoundExpectedValues = new Test8AssertTheMatrixFoundExpectedValues();
-                }
-                return this.mTest8AssertTheMatrixFoundExpectedValues;
-            }
-        }
-        
-        public virtual Test9RentTheMatrixReloadedParams Test9RentTheMatrixReloadedParams
-        {
-            get
-            {
-                if ((this.mTest9RentTheMatrixReloadedParams == null))
-                {
-                    this.mTest9RentTheMatrixReloadedParams = new Test9RentTheMatrixReloadedParams();
-                }
-                return this.mTest9RentTheMatrixReloadedParams;
-            }
-        }
-        
-        public virtual Test9ViewTheMatrixReloadedParams Test9ViewTheMatrixReloadedParams
-        {
-            get
-            {
-                if ((this.mTest9ViewTheMatrixReloadedParams == null))
-                {
-                    this.mTest9ViewTheMatrixReloadedParams = new Test9ViewTheMatrixReloadedParams();
-                }
-                return this.mTest9ViewTheMatrixReloadedParams;
-            }
-        }
-        
-        public virtual Test9AssertTheMatrixReloadedNameExpectedValues Test9AssertTheMatrixReloadedNameExpectedValues
-        {
-            get
-            {
-                if ((this.mTest9AssertTheMatrixReloadedNameExpectedValues == null))
-                {
-                    this.mTest9AssertTheMatrixReloadedNameExpectedValues = new Test9AssertTheMatrixReloadedNameExpectedValues();
-                }
-                return this.mTest9AssertTheMatrixReloadedNameExpectedValues;
-            }
-        }
-        
-        public virtual Test12CPLoginParams Test12CPLoginParams
-        {
-            get
-            {
-                if ((this.mTest12CPLoginParams == null))
-                {
-                    this.mTest12CPLoginParams = new Test12CPLoginParams();
-                }
-                return this.mTest12CPLoginParams;
-            }
-        }
-        
-        public virtual Test12AssertLogoutButtonExistsExpectedValues Test12AssertLogoutButtonExistsExpectedValues
-        {
-            get
-            {
-                if ((this.mTest12AssertLogoutButtonExistsExpectedValues == null))
-                {
-                    this.mTest12AssertLogoutButtonExistsExpectedValues = new Test12AssertLogoutButtonExistsExpectedValues();
-                }
-                return this.mTest12AssertLogoutButtonExistsExpectedValues;
-            }
-        }
-        
-        public virtual Test12AssertWelcomeScreenShownExpectedValues Test12AssertWelcomeScreenShownExpectedValues
-        {
-            get
-            {
-                if ((this.mTest12AssertWelcomeScreenShownExpectedValues == null))
-                {
-                    this.mTest12AssertWelcomeScreenShownExpectedValues = new Test12AssertWelcomeScreenShownExpectedValues();
-                }
-                return this.mTest12AssertWelcomeScreenShownExpectedValues;
+                return this.mTest12CPLoginLogoutParams;
             }
         }
         
@@ -1072,18 +666,6 @@ namespace RentIt.Tests
                     this.mTest13CPRegisterMovieParams = new Test13CPRegisterMovieParams();
                 }
                 return this.mTest13CPRegisterMovieParams;
-            }
-        }
-        
-        public virtual Test13AssertDetectiveConanNameExpectedValues Test13AssertDetectiveConanNameExpectedValues
-        {
-            get
-            {
-                if ((this.mTest13AssertDetectiveConanNameExpectedValues == null))
-                {
-                    this.mTest13AssertDetectiveConanNameExpectedValues = new Test13AssertDetectiveConanNameExpectedValues();
-                }
-                return this.mTest13AssertDetectiveConanNameExpectedValues;
             }
         }
         
@@ -1146,70 +728,26 @@ namespace RentIt.Tests
                 return this.mUIUploadeditionWindow;
             }
         }
-        
-        public UIDeleteMovieWindow UIDeleteMovieWindow
-        {
-            get
-            {
-                if ((this.mUIDeleteMovieWindow == null))
-                {
-                    this.mUIDeleteMovieWindow = new UIDeleteMovieWindow();
-                }
-                return this.mUIDeleteMovieWindow;
-            }
-        }
         #endregion
         
         #region Fields
-        private Test2UserLoginParams mTest2UserLoginParams;
+        private Test02UserLoginParams mTest02UserLoginParams;
         
-        private Test2AssertFullNameExpectedValues mTest2AssertFullNameExpectedValues;
+        private Test04UserLogoutParams mTest04UserLogoutParams;
         
-        private Test4LoginLogoutParams mTest4LoginLogoutParams;
+        private Test05UserViewAllMoviesParams mTest05UserViewAllMoviesParams;
         
-        private Test4AssertLoginScreenExpectedValues mTest4AssertLoginScreenExpectedValues;
+        private Test06UserViewMovieByNewestParams mTest06UserViewMovieByNewestParams;
         
-        private Test5UserViewAllMoviesParams mTest5UserViewAllMoviesParams;
+        private Test07UserSearchForMovieParams mTest07UserSearchForMovieParams;
         
-        private Test5SelectTopMovieParams mTest5SelectTopMovieParams;
+        private Test08UserViewMoviesByGenreParams mTest08UserViewMoviesByGenreParams;
         
-        private Test5AssertTopMovieNameExpectedValues mTest5AssertTopMovieNameExpectedValues;
+        private Test09UserrentSpecificMovieEditionParams mTest09UserrentSpecificMovieEditionParams;
         
-        private Test6UserLoginSelectMovieParams mTest6UserLoginSelectMovieParams;
-        
-        private Test6AssertNewMovieExpectedValues mTest6AssertNewMovieExpectedValues;
-        
-        private Test6SelectOlderMovieParams mTest6SelectOlderMovieParams;
-        
-        private AssertMethod1ExpectedValues mAssertMethod1ExpectedValues;
-        
-        private Test6AssertOlderMovieExpectedValues mTest6AssertOlderMovieExpectedValues;
-        
-        private Test7SearchTheMatrixParams mTest7SearchTheMatrixParams;
-        
-        private Test7SelectTheMatrixParams mTest7SelectTheMatrixParams;
-        
-        private Test7AssertTheMatrixNameExpectedValues mTest7AssertTheMatrixNameExpectedValues;
-        
-        private Test8SciFiGenreParams mTest8SciFiGenreParams;
-        
-        private Test8AssertTheMatrixFoundExpectedValues mTest8AssertTheMatrixFoundExpectedValues;
-        
-        private Test9RentTheMatrixReloadedParams mTest9RentTheMatrixReloadedParams;
-        
-        private Test9ViewTheMatrixReloadedParams mTest9ViewTheMatrixReloadedParams;
-        
-        private Test9AssertTheMatrixReloadedNameExpectedValues mTest9AssertTheMatrixReloadedNameExpectedValues;
-        
-        private Test12CPLoginParams mTest12CPLoginParams;
-        
-        private Test12AssertLogoutButtonExistsExpectedValues mTest12AssertLogoutButtonExistsExpectedValues;
-        
-        private Test12AssertWelcomeScreenShownExpectedValues mTest12AssertWelcomeScreenShownExpectedValues;
+        private Test12CPLoginLogoutParams mTest12CPLoginLogoutParams;
         
         private Test13CPRegisterMovieParams mTest13CPRegisterMovieParams;
-        
-        private Test13AssertDetectiveConanNameExpectedValues mTest13AssertDetectiveConanNameExpectedValues;
         
         private UIRentItWindow mUIRentItWindow;
         
@@ -1220,16 +758,14 @@ namespace RentIt.Tests
         private UIRentItWindow1 mUIRentItWindow1;
         
         private UIUploadeditionWindow mUIUploadeditionWindow;
-        
-        private UIDeleteMovieWindow mUIDeleteMovieWindow;
         #endregion
     }
     
     /// <summary>
-    /// Parameters to be passed into 'Test2UserLogin'
+    /// Parameters to be passed into 'Test02UserLogin'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test2UserLoginParams
+    public class Test02UserLoginParams
     {
         
         #region Fields
@@ -1246,25 +782,10 @@ namespace RentIt.Tests
     }
     
     /// <summary>
-    /// Parameters to be passed into 'Test2AssertFullName'
+    /// Parameters to be passed into 'Test04UserLogout'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test2AssertFullNameExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'textBoxFullName' text box's property 'Text' equals 'James Smith'
-        /// </summary>
-        public string UITextBoxFullNameEditText = "James Smith";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test4LoginLogout'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test4LoginLogoutParams
+    public class Test04UserLogoutParams
     {
         
         #region Fields
@@ -1281,75 +802,10 @@ namespace RentIt.Tests
     }
     
     /// <summary>
-    /// Parameters to be passed into 'Test4AssertLoginScreen'
+    /// Parameters to be passed into 'Test05UserViewAllMovies'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test4AssertLoginScreenExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'Welcome:' label's property 'DisplayText' equals 'Welcome:'
-        /// </summary>
-        public string UIWelcomeTextDisplayText = "Welcome:";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test5UserViewAllMovies'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test5UserViewAllMoviesParams
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Type 'Smith' in 'textBoxUsername' text box
-        /// </summary>
-        public string UITextBoxUsernameEditText = "Smith";
-        
-        /// <summary>
-        /// Type '********' in 'passwordBox' text box
-        /// </summary>
-        public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test5SelectTopMovie'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test5SelectTopMovieParams
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Select '(Ocean's Eleven\, 1)' in 'MovieListBox' list box
-        /// </summary>
-        public string UIMovieListBoxListSelectedItemsAsString = "(Ocean\'s Eleven\\, 1)";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test5AssertTopMovieName'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test5AssertTopMovieNameExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'textBoxTitle' text box's property 'Text' equals 'Ocean's Eleven'
-        /// </summary>
-        public string UITextBoxTitleEditText = "Ocean\'s Eleven";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test6UserLoginSelectMovie'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test6UserLoginSelectMovieParams
+    public class Test05UserViewAllMoviesParams
     {
         
         #region Fields
@@ -1369,77 +825,57 @@ namespace RentIt.Tests
         public string UISortModeComboBoxComboBoxSelectedItem = "(Newest, 1)";
         
         /// <summary>
+        /// Select '(All, 0)' in 'genreComboBox' combo box
+        /// </summary>
+        public string UIGenreComboBoxComboBoxSelectedItem = "(All, 0)";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'Test06UserViewMovieByNewest'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    public class Test06UserViewMovieByNewestParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type 'Smith' in 'textBoxUsername' text box
+        /// </summary>
+        public string UITextBoxUsernameEditText = "Smith";
+        
+        /// <summary>
+        /// Type '********' in 'passwordBox' text box
+        /// </summary>
+        public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
+        
+        /// <summary>
+        /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
+        /// </summary>
+        public string UISortModeComboBoxComboBoxSelectedItem = "(Newest, 1)";
+        
+        /// <summary>
+        /// Select '(All, 0)' in 'genreComboBox' combo box
+        /// </summary>
+        public string UIGenreComboBoxComboBoxSelectedItem = "(All, 0)";
+        
+        /// <summary>
         /// Select '(Ocean's Eleven\, 1)' in 'MovieListBox' list box
         /// </summary>
         public string UIMovieListBoxListSelectedItemsAsString = "(Ocean\'s Eleven\\, 1)";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test6AssertNewMovie'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test6AssertNewMovieExpectedValues
-    {
         
-        #region Fields
-        /// <summary>
-        /// Verify that 'textBoxRelease' text box's property 'Text' equals '5. december 2001'
-        /// </summary>
-        public string UITextBoxReleaseEditText = "5. december 2001";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test6SelectOlderMovie'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test6SelectOlderMovieParams
-    {
-        
-        #region Fields
         /// <summary>
         /// Select '(The Matrix\, 5)' in 'MovieListBox' list box
         /// </summary>
-        public string UIMovieListBoxListSelectedItemsAsString = "(The Matrix\\, 5)";
+        public string UIMovieListBoxListSelectedItemsAsString1 = "(The Matrix\\, 5)";
         #endregion
     }
     
     /// <summary>
-    /// Parameters to be passed into 'AssertMethod1'
+    /// Parameters to be passed into 'Test07UserSearchForMovie'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class AssertMethod1ExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'textBoxRelease' text box's property 'Text' equals '31. marts 1999'
-        /// </summary>
-        public string UITextBoxReleaseEditText = "31. marts 1999";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test6AssertOlderMovie'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test6AssertOlderMovieExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'textBoxRelease' text box's property 'Text' equals '31. marts 1999'
-        /// </summary>
-        public string UITextBoxReleaseEditText = "31. marts 1999";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test7SearchTheMatrix'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test7SearchTheMatrixParams
+    public class Test07UserSearchForMovieParams
     {
         
         #region Fields
@@ -1457,17 +893,7 @@ namespace RentIt.Tests
         /// Type 'The Matrix' in 'textBoxSearch' text box
         /// </summary>
         public string UITextBoxSearchEditText = "The Matrix";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test7SelectTheMatrix'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test7SelectTheMatrixParams
-    {
         
-        #region Fields
         /// <summary>
         /// Select '(The Matrix\, 5)' in 'MovieListBox' list box
         /// </summary>
@@ -1476,25 +902,10 @@ namespace RentIt.Tests
     }
     
     /// <summary>
-    /// Parameters to be passed into 'Test7AssertTheMatrixName'
+    /// Parameters to be passed into 'Test08UserViewMoviesByGenre'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test7AssertTheMatrixNameExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'textBoxTitle' text box's property 'Text' equals 'The Matrix'
-        /// </summary>
-        public string UITextBoxTitleEditText = "The Matrix";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test8SciFiGenre'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test8SciFiGenreParams
+    public class Test08UserViewMoviesByGenreParams
     {
         
         #region Fields
@@ -1522,29 +933,44 @@ namespace RentIt.Tests
         /// Select '(The Matrix\, 5)' in 'MovieListBox' list box
         /// </summary>
         public string UIMovieListBoxListSelectedItemsAsString = "(The Matrix\\, 5)";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test8AssertTheMatrixFound'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test8AssertTheMatrixFoundExpectedValues
-    {
         
-        #region Fields
         /// <summary>
-        /// Verify that 'textBoxTitle' text box's property 'Text' equals 'The Matrix'
+        /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
         /// </summary>
-        public string UITextBoxTitleEditText = "The Matrix";
+        public string UISortModeComboBoxComboBox1SelectedItem = "(Newest, 1)";
+        
+        /// <summary>
+        /// Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
+        /// </summary>
+        public string UIGenreComboBoxComboBox1SelectedItem = "(Sci-Fi, 9)";
+        
+        /// <summary>
+        /// Select '(The Matrix Reloaded\, 6)' in 'MovieListBox' list box
+        /// </summary>
+        public string UIMovieListBoxList1SelectedItemsAsString = "(The Matrix Reloaded\\, 6)";
+        
+        /// <summary>
+        /// Select '(Newest, 1)' in 'sortModeComboBox' combo box
+        /// </summary>
+        public string UISortModeComboBoxComboBox3SelectedItem = "(Newest, 1)";
+        
+        /// <summary>
+        /// Select '(Sci-Fi, 9)' in 'genreComboBox' combo box
+        /// </summary>
+        public string UIGenreComboBoxComboBox3SelectedItem = "(Sci-Fi, 9)";
+        
+        /// <summary>
+        /// Select '(The Matrix Revolutions\, 7)' in 'MovieListBox' list box
+        /// </summary>
+        public string UIMovieListBoxList2SelectedItemsAsString = "(The Matrix Revolutions\\, 7)";
         #endregion
     }
     
     /// <summary>
-    /// Parameters to be passed into 'Test9RentTheMatrixReloaded'
+    /// Parameters to be passed into 'Test09UserrentSpecificMovieEdition'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test9RentTheMatrixReloadedParams
+    public class Test09UserrentSpecificMovieEditionParams
     {
         
         #region Fields
@@ -1559,52 +985,22 @@ namespace RentIt.Tests
         public string UIPasswordBoxEditSendKeys = "MluVNJaqPVseObD/Ywall3SuCl4LG9/bOcZKj5w2JF8=";
         
         /// <summary>
-        /// Select '(The Matrix Reloaded\, 6)' in 'MovieListBox' list box
+        /// Select '(The Lord of the Rings: The Return of the King\, 14)' in 'MovieListBox' list box
         /// </summary>
-        public string UIMovieListBoxListSelectedItemsAsString = "(The Matrix Reloaded\\, 6)";
+        public string UIMovieListBoxListSelectedItemsAsString = "(The Lord of the Rings: The Return of the King\\, 14)";
         
         /// <summary>
-        /// Select '(HD 1080p\, 18)' in 'EditionListBox' list box
+        /// Select '(SD\, 38)' in 'EditionListBox' list box
         /// </summary>
-        public string UIEditionListBoxListSelectedItemsAsString = "(HD 1080p\\, 18)";
+        public string UIEditionListBoxListSelectedItemsAsString = "(SD\\, 38)";
         #endregion
     }
     
     /// <summary>
-    /// Parameters to be passed into 'Test9ViewTheMatrixReloaded'
+    /// Parameters to be passed into 'Test12CPLoginLogout'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test9ViewTheMatrixReloadedParams
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Select '(The Matrix Reloaded - HD 1080p\, 18\, RentItClient.Types.Movie)' in 'MovieListBox' list box
-        /// </summary>
-        public string UIMovieListBoxListSelectedItemsAsString = "(The Matrix Reloaded - HD 1080p\\, 18\\, RentItClient.Types.Movie)";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test9AssertTheMatrixReloadedName'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test9AssertTheMatrixReloadedNameExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'The Matrix Reloaded' label's property 'Name' equals 'The Matrix Reloaded'
-        /// </summary>
-        public string UITheMatrixReloadedTextName = "The Matrix Reloaded";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test12CPLogin'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test12CPLoginParams
+    public class Test12CPLoginLogoutParams
     {
         
         #region Fields
@@ -1617,36 +1013,6 @@ namespace RentIt.Tests
         /// Type '********' in 'passwordBox' text box
         /// </summary>
         public string UIPasswordBoxEditSendKeys = "Ov7Oe6g5JgnDgRD8h/313Y7NbHIFUPlDU5u7HL24uaQ=";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test12AssertLogoutButtonExists'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test12AssertLogoutButtonExistsExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'Logout' button's property 'DisplayText' equals 'Logout'
-        /// </summary>
-        public string UILogoutButton1DisplayText = "Logout";
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test12AssertWelcomeScreenShown'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test12AssertWelcomeScreenShownExpectedValues
-    {
-        
-        #region Fields
-        /// <summary>
-        /// Verify that 'Welcome:' label's property 'DisplayText' equals 'Welcome:'
-        /// </summary>
-        public string UIWelcomeTextDisplayText = "Welcome:";
         #endregion
     }
     
@@ -1669,9 +1035,9 @@ namespace RentIt.Tests
         public string UIPasswordBoxEditSendKeys = "Ov7Oe6g5JgnDgRD8h/313Y7NbHIFUPlDU5u7HL24uaQ=";
         
         /// <summary>
-        /// Type 'Detective Conan' in 'textBoxTitle' text box
+        /// Type 'Bleach' in 'textBoxTitle' text box
         /// </summary>
-        public string UITextBoxTitleEditText = "Detective Conan";
+        public string UITextBoxTitleEditText = "Bleach";
         
         /// <summary>
         /// Select '12-May-2012' in 'DatePickerReleaseDate' date picker
@@ -1679,29 +1045,24 @@ namespace RentIt.Tests
         public string UIDatePickerReleaseDatDatePickerDateAsString = "12-May-2012";
         
         /// <summary>
-        /// Type 'It's crime time!' in 'textBoxDescription' text box
+        /// Type 'Action!' in 'textBoxDescription' text box
         /// </summary>
-        public string UITextBoxDescriptionEditText = "It\'s crime time!";
+        public string UITextBoxDescriptionEditText = "Action!";
         
         /// <summary>
         /// Select 'Unknown Name' check box
         /// </summary>
         public bool UIItemCheckBoxChecked = true;
-        #endregion
-    }
-    
-    /// <summary>
-    /// Parameters to be passed into 'Test13AssertDetectiveConanName'
-    /// </summary>
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class Test13AssertDetectiveConanNameExpectedValues
-    {
         
-        #region Fields
         /// <summary>
-        /// Verify that 'textBoxTitle' text box's property 'Text' equals 'Detective Conan'
+        /// Select 'Unknown Name' check box
         /// </summary>
-        public string UITextBoxTitleEditText = "Detective Conan";
+        public bool UIItemCheckBoxChecked1 = true;
+        
+        /// <summary>
+        /// Select 'Unknown Name' check box
+        /// </summary>
+        public bool UIItemCheckBoxChecked2 = true;
         #endregion
     }
     
@@ -1719,6 +1080,18 @@ namespace RentIt.Tests
         }
         
         #region Properties
+        public UIRentItTitleBar UIRentItTitleBar
+        {
+            get
+            {
+                if ((this.mUIRentItTitleBar == null))
+                {
+                    this.mUIRentItTitleBar = new UIRentItTitleBar(this);
+                }
+                return this.mUIRentItTitleBar;
+            }
+        }
+        
         public WpfEdit UITextBoxUsernameEdit
         {
             get
@@ -1783,22 +1156,6 @@ namespace RentIt.Tests
             }
         }
         
-        public WpfEdit UITextBoxFullNameEdit
-        {
-            get
-            {
-                if ((this.mUITextBoxFullNameEdit == null))
-                {
-                    this.mUITextBoxFullNameEdit = new WpfEdit(this);
-                    #region Search Criteria
-                    this.mUITextBoxFullNameEdit.SearchProperties[WpfEdit.PropertyNames.AutomationId] = "textBoxFullName";
-                    this.mUITextBoxFullNameEdit.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUITextBoxFullNameEdit;
-            }
-        }
-        
         public WpfButton UILogoutButton
         {
             get
@@ -1812,34 +1169,6 @@ namespace RentIt.Tests
                     #endregion
                 }
                 return this.mUILogoutButton;
-            }
-        }
-        
-        public WpfText UIWelcomeText
-        {
-            get
-            {
-                if ((this.mUIWelcomeText == null))
-                {
-                    this.mUIWelcomeText = new WpfText(this);
-                    #region Search Criteria
-                    this.mUIWelcomeText.SearchProperties[WpfText.PropertyNames.AutomationId] = "LoginHeading";
-                    this.mUIWelcomeText.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUIWelcomeText;
-            }
-        }
-        
-        public UIRentItTitleBar UIRentItTitleBar
-        {
-            get
-            {
-                if ((this.mUIRentItTitleBar == null))
-                {
-                    this.mUIRentItTitleBar = new UIRentItTitleBar(this);
-                }
-                return this.mUIRentItTitleBar;
             }
         }
         
@@ -1859,13 +1188,65 @@ namespace RentIt.Tests
             }
         }
         
-        public UIMovieListBoxList UIMovieListBoxList
+        public WpfComboBox UISortModeComboBoxComboBox
+        {
+            get
+            {
+                if ((this.mUISortModeComboBoxComboBox == null))
+                {
+                    this.mUISortModeComboBoxComboBox = new WpfComboBox(this);
+                    #region Search Criteria
+                    this.mUISortModeComboBoxComboBox.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "sortModeComboBox";
+                    this.mUISortModeComboBoxComboBox.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUISortModeComboBoxComboBox;
+            }
+        }
+        
+        public WpfComboBox UIGenreComboBoxComboBox
+        {
+            get
+            {
+                if ((this.mUIGenreComboBoxComboBox == null))
+                {
+                    this.mUIGenreComboBoxComboBox = new WpfComboBox(this);
+                    #region Search Criteria
+                    this.mUIGenreComboBoxComboBox.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "genreComboBox";
+                    this.mUIGenreComboBoxComboBox.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIGenreComboBoxComboBox;
+            }
+        }
+        
+        public WpfButton UISortmoviesButton
+        {
+            get
+            {
+                if ((this.mUISortmoviesButton == null))
+                {
+                    this.mUISortmoviesButton = new WpfButton(this);
+                    #region Search Criteria
+                    this.mUISortmoviesButton.SearchProperties[WpfButton.PropertyNames.AutomationId] = "sortButton";
+                    this.mUISortmoviesButton.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUISortmoviesButton;
+            }
+        }
+        
+        public WpfList UIMovieListBoxList
         {
             get
             {
                 if ((this.mUIMovieListBoxList == null))
                 {
-                    this.mUIMovieListBoxList = new UIMovieListBoxList(this);
+                    this.mUIMovieListBoxList = new WpfList(this);
+                    #region Search Criteria
+                    this.mUIMovieListBoxList.SearchProperties[WpfList.PropertyNames.AutomationId] = "MovieListBox";
+                    this.mUIMovieListBoxList.WindowTitles.Add("RentIt");
+                    #endregion
                 }
                 return this.mUIMovieListBoxList;
             }
@@ -1884,54 +1265,6 @@ namespace RentIt.Tests
                     #endregion
                 }
                 return this.mUIViewMovieButton;
-            }
-        }
-        
-        public WpfEdit UITextBoxTitleEdit
-        {
-            get
-            {
-                if ((this.mUITextBoxTitleEdit == null))
-                {
-                    this.mUITextBoxTitleEdit = new WpfEdit(this);
-                    #region Search Criteria
-                    this.mUITextBoxTitleEdit.SearchProperties[WpfEdit.PropertyNames.AutomationId] = "textBoxTitle";
-                    this.mUITextBoxTitleEdit.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUITextBoxTitleEdit;
-            }
-        }
-        
-        public WpfComboBox UISortModeComboBoxComboBox
-        {
-            get
-            {
-                if ((this.mUISortModeComboBoxComboBox == null))
-                {
-                    this.mUISortModeComboBoxComboBox = new WpfComboBox(this);
-                    #region Search Criteria
-                    this.mUISortModeComboBoxComboBox.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "sortModeComboBox";
-                    this.mUISortModeComboBoxComboBox.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUISortModeComboBoxComboBox;
-            }
-        }
-        
-        public WpfEdit UITextBoxReleaseEdit
-        {
-            get
-            {
-                if ((this.mUITextBoxReleaseEdit == null))
-                {
-                    this.mUITextBoxReleaseEdit = new WpfEdit(this);
-                    #region Search Criteria
-                    this.mUITextBoxReleaseEdit.SearchProperties[WpfEdit.PropertyNames.AutomationId] = "textBoxRelease";
-                    this.mUITextBoxReleaseEdit.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUITextBoxReleaseEdit;
             }
         }
         
@@ -1967,35 +1300,179 @@ namespace RentIt.Tests
             }
         }
         
-        public WpfComboBox UIGenreComboBoxComboBox
+        public WpfComboBox UISortModeComboBoxComboBox1
         {
             get
             {
-                if ((this.mUIGenreComboBoxComboBox == null))
+                if ((this.mUISortModeComboBoxComboBox1 == null))
                 {
-                    this.mUIGenreComboBoxComboBox = new WpfComboBox(this);
+                    this.mUISortModeComboBoxComboBox1 = new WpfComboBox(this);
                     #region Search Criteria
-                    this.mUIGenreComboBoxComboBox.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "genreComboBox";
-                    this.mUIGenreComboBoxComboBox.WindowTitles.Add("RentIt");
+                    this.mUISortModeComboBoxComboBox1.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "sortModeComboBox";
+                    this.mUISortModeComboBoxComboBox1.WindowTitles.Add("RentIt");
                     #endregion
                 }
-                return this.mUIGenreComboBoxComboBox;
+                return this.mUISortModeComboBoxComboBox1;
             }
         }
         
-        public WpfButton UISortmoviesButton
+        public WpfComboBox UIGenreComboBoxComboBox1
         {
             get
             {
-                if ((this.mUISortmoviesButton == null))
+                if ((this.mUIGenreComboBoxComboBox1 == null))
                 {
-                    this.mUISortmoviesButton = new WpfButton(this);
+                    this.mUIGenreComboBoxComboBox1 = new WpfComboBox(this);
                     #region Search Criteria
-                    this.mUISortmoviesButton.SearchProperties[WpfButton.PropertyNames.AutomationId] = "sortButton";
-                    this.mUISortmoviesButton.WindowTitles.Add("RentIt");
+                    this.mUIGenreComboBoxComboBox1.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "genreComboBox";
+                    this.mUIGenreComboBoxComboBox1.WindowTitles.Add("RentIt");
                     #endregion
                 }
-                return this.mUISortmoviesButton;
+                return this.mUIGenreComboBoxComboBox1;
+            }
+        }
+        
+        public WpfButton UISortmoviesButton1
+        {
+            get
+            {
+                if ((this.mUISortmoviesButton1 == null))
+                {
+                    this.mUISortmoviesButton1 = new WpfButton(this);
+                    #region Search Criteria
+                    this.mUISortmoviesButton1.SearchProperties[WpfButton.PropertyNames.AutomationId] = "sortButton";
+                    this.mUISortmoviesButton1.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUISortmoviesButton1;
+            }
+        }
+        
+        public WpfList UIMovieListBoxList1
+        {
+            get
+            {
+                if ((this.mUIMovieListBoxList1 == null))
+                {
+                    this.mUIMovieListBoxList1 = new WpfList(this);
+                    #region Search Criteria
+                    this.mUIMovieListBoxList1.SearchProperties[WpfList.PropertyNames.AutomationId] = "MovieListBox";
+                    this.mUIMovieListBoxList1.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIMovieListBoxList1;
+            }
+        }
+        
+        public WpfButton UIViewMovieButton1
+        {
+            get
+            {
+                if ((this.mUIViewMovieButton1 == null))
+                {
+                    this.mUIViewMovieButton1 = new WpfButton(this);
+                    #region Search Criteria
+                    this.mUIViewMovieButton1.SearchProperties[WpfButton.PropertyNames.AutomationId] = "View";
+                    this.mUIViewMovieButton1.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIViewMovieButton1;
+            }
+        }
+        
+        public WpfButton UIListmoviesButton1
+        {
+            get
+            {
+                if ((this.mUIListmoviesButton1 == null))
+                {
+                    this.mUIListmoviesButton1 = new WpfButton(this);
+                    #region Search Criteria
+                    this.mUIListmoviesButton1.SearchProperties[WpfButton.PropertyNames.AutomationId] = "button1";
+                    this.mUIListmoviesButton1.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIListmoviesButton1;
+            }
+        }
+        
+        public WpfComboBox UISortModeComboBoxComboBox3
+        {
+            get
+            {
+                if ((this.mUISortModeComboBoxComboBox3 == null))
+                {
+                    this.mUISortModeComboBoxComboBox3 = new WpfComboBox(this);
+                    #region Search Criteria
+                    this.mUISortModeComboBoxComboBox3.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "sortModeComboBox";
+                    this.mUISortModeComboBoxComboBox3.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUISortModeComboBoxComboBox3;
+            }
+        }
+        
+        public WpfComboBox UIGenreComboBoxComboBox3
+        {
+            get
+            {
+                if ((this.mUIGenreComboBoxComboBox3 == null))
+                {
+                    this.mUIGenreComboBoxComboBox3 = new WpfComboBox(this);
+                    #region Search Criteria
+                    this.mUIGenreComboBoxComboBox3.SearchProperties[WpfComboBox.PropertyNames.AutomationId] = "genreComboBox";
+                    this.mUIGenreComboBoxComboBox3.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIGenreComboBoxComboBox3;
+            }
+        }
+        
+        public WpfButton UISortmoviesButton3
+        {
+            get
+            {
+                if ((this.mUISortmoviesButton3 == null))
+                {
+                    this.mUISortmoviesButton3 = new WpfButton(this);
+                    #region Search Criteria
+                    this.mUISortmoviesButton3.SearchProperties[WpfButton.PropertyNames.AutomationId] = "sortButton";
+                    this.mUISortmoviesButton3.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUISortmoviesButton3;
+            }
+        }
+        
+        public WpfList UIMovieListBoxList2
+        {
+            get
+            {
+                if ((this.mUIMovieListBoxList2 == null))
+                {
+                    this.mUIMovieListBoxList2 = new WpfList(this);
+                    #region Search Criteria
+                    this.mUIMovieListBoxList2.SearchProperties[WpfList.PropertyNames.AutomationId] = "MovieListBox";
+                    this.mUIMovieListBoxList2.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIMovieListBoxList2;
+            }
+        }
+        
+        public WpfButton UIViewMovieButton2
+        {
+            get
+            {
+                if ((this.mUIViewMovieButton2 == null))
+                {
+                    this.mUIViewMovieButton2 = new WpfButton(this);
+                    #region Search Criteria
+                    this.mUIViewMovieButton2.SearchProperties[WpfButton.PropertyNames.AutomationId] = "View";
+                    this.mUIViewMovieButton2.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIViewMovieButton2;
             }
         }
         
@@ -2063,22 +1540,6 @@ namespace RentIt.Tests
             }
         }
         
-        public WpfText UITheMatrixReloadedText
-        {
-            get
-            {
-                if ((this.mUITheMatrixReloadedText == null))
-                {
-                    this.mUITheMatrixReloadedText = new WpfText(this);
-                    #region Search Criteria
-                    this.mUITheMatrixReloadedText.SearchProperties[WpfText.PropertyNames.AutomationId] = "textBlockTitle";
-                    this.mUITheMatrixReloadedText.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUITheMatrixReloadedText;
-            }
-        }
-        
         public WpfButton UILogoutButton1
         {
             get
@@ -2108,6 +1569,22 @@ namespace RentIt.Tests
                     #endregion
                 }
                 return this.mUIRegisterMovieButton;
+            }
+        }
+        
+        public WpfEdit UITextBoxTitleEdit
+        {
+            get
+            {
+                if ((this.mUITextBoxTitleEdit == null))
+                {
+                    this.mUITextBoxTitleEdit = new WpfEdit(this);
+                    #region Search Criteria
+                    this.mUITextBoxTitleEdit.SearchProperties[WpfEdit.PropertyNames.AutomationId] = "textBoxTitle";
+                    this.mUITextBoxTitleEdit.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUITextBoxTitleEdit;
             }
         }
         
@@ -2170,25 +1647,11 @@ namespace RentIt.Tests
                 return this.mUIRegistermovieButton1;
             }
         }
-        
-        public WpfButton UIDeletemovieButton
-        {
-            get
-            {
-                if ((this.mUIDeletemovieButton == null))
-                {
-                    this.mUIDeletemovieButton = new WpfButton(this);
-                    #region Search Criteria
-                    this.mUIDeletemovieButton.SearchProperties[WpfButton.PropertyNames.AutomationId] = "deletemovie";
-                    this.mUIDeletemovieButton.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUIDeletemovieButton;
-            }
-        }
         #endregion
         
         #region Fields
+        private UIRentItTitleBar mUIRentItTitleBar;
+        
         private WpfEdit mUITextBoxUsernameEdit;
         
         private WpfEdit mUIPasswordBoxEdit;
@@ -2197,33 +1660,45 @@ namespace RentIt.Tests
         
         private WpfButton mUIViewprofileButton;
         
-        private WpfEdit mUITextBoxFullNameEdit;
-        
         private WpfButton mUILogoutButton;
-        
-        private WpfText mUIWelcomeText;
-        
-        private UIRentItTitleBar mUIRentItTitleBar;
         
         private WpfButton mUIListmoviesButton;
         
-        private UIMovieListBoxList mUIMovieListBoxList;
-        
-        private WpfButton mUIViewMovieButton;
-        
-        private WpfEdit mUITextBoxTitleEdit;
-        
         private WpfComboBox mUISortModeComboBoxComboBox;
         
-        private WpfEdit mUITextBoxReleaseEdit;
+        private WpfComboBox mUIGenreComboBoxComboBox;
+        
+        private WpfButton mUISortmoviesButton;
+        
+        private WpfList mUIMovieListBoxList;
+        
+        private WpfButton mUIViewMovieButton;
         
         private WpfEdit mUITextBoxSearchEdit;
         
         private WpfButton mUISearchButton;
         
-        private WpfComboBox mUIGenreComboBoxComboBox;
+        private WpfComboBox mUISortModeComboBoxComboBox1;
         
-        private WpfButton mUISortmoviesButton;
+        private WpfComboBox mUIGenreComboBoxComboBox1;
+        
+        private WpfButton mUISortmoviesButton1;
+        
+        private WpfList mUIMovieListBoxList1;
+        
+        private WpfButton mUIViewMovieButton1;
+        
+        private WpfButton mUIListmoviesButton1;
+        
+        private WpfComboBox mUISortModeComboBoxComboBox3;
+        
+        private WpfComboBox mUIGenreComboBoxComboBox3;
+        
+        private WpfButton mUISortmoviesButton3;
+        
+        private WpfList mUIMovieListBoxList2;
+        
+        private WpfButton mUIViewMovieButton2;
         
         private WpfList mUIEditionListBoxList;
         
@@ -2233,11 +1708,11 @@ namespace RentIt.Tests
         
         private WpfButton mUIYourrentalsButton;
         
-        private WpfText mUITheMatrixReloadedText;
-        
         private WpfButton mUILogoutButton1;
         
         private WpfButton mUIRegisterMovieButton;
+        
+        private WpfEdit mUITextBoxTitleEdit;
         
         private WpfDatePicker mUIDatePickerReleaseDatDatePicker;
         
@@ -2246,8 +1721,6 @@ namespace RentIt.Tests
         private UIGenreCheckListTable mUIGenreCheckListTable;
         
         private WpfButton mUIRegistermovieButton1;
-        
-        private WpfButton mUIDeletemovieButton;
         #endregion
     }
     
@@ -2288,60 +1761,6 @@ namespace RentIt.Tests
     }
     
     [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class UIMovieListBoxList : WpfList
-    {
-        
-        public UIMovieListBoxList(UITestControl searchLimitContainer) : 
-                base(searchLimitContainer)
-        {
-            #region Search Criteria
-            this.SearchProperties[WpfList.PropertyNames.AutomationId] = "MovieListBox";
-            this.WindowTitles.Add("RentIt");
-            #endregion
-        }
-        
-        #region Properties
-        public WpfListItem UIOceansEleven1ListItem
-        {
-            get
-            {
-                if ((this.mUIOceansEleven1ListItem == null))
-                {
-                    this.mUIOceansEleven1ListItem = new WpfListItem(this);
-                    #region Search Criteria
-                    this.mUIOceansEleven1ListItem.SearchProperties[WpfListItem.PropertyNames.Name] = "(Ocean\'s Eleven, 1)";
-                    this.mUIOceansEleven1ListItem.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUIOceansEleven1ListItem;
-            }
-        }
-        
-        public WpfListItem UIDetectiveConanRentItListItem
-        {
-            get
-            {
-                if ((this.mUIDetectiveConanRentItListItem == null))
-                {
-                    this.mUIDetectiveConanRentItListItem = new WpfListItem(this);
-                    #region Search Criteria
-                    this.mUIDetectiveConanRentItListItem.SearchProperties[WpfListItem.PropertyNames.Name] = "(Detective Conan, RentItClient.Types.Movie)";
-                    this.mUIDetectiveConanRentItListItem.WindowTitles.Add("RentIt");
-                    #endregion
-                }
-                return this.mUIDetectiveConanRentItListItem;
-            }
-        }
-        #endregion
-        
-        #region Fields
-        private WpfListItem mUIOceansEleven1ListItem;
-        
-        private WpfListItem mUIDetectiveConanRentItListItem;
-        #endregion
-    }
-    
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
     public class UIGenreCheckListTable : WpfTable
     {
         
@@ -2366,10 +1785,38 @@ namespace RentIt.Tests
                 return this.mUIItemDataItem;
             }
         }
+        
+        public UIItemDataItem1 UIItemDataItem1
+        {
+            get
+            {
+                if ((this.mUIItemDataItem1 == null))
+                {
+                    this.mUIItemDataItem1 = new UIItemDataItem1(this);
+                }
+                return this.mUIItemDataItem1;
+            }
+        }
+        
+        public UIItemDataItem2 UIItemDataItem2
+        {
+            get
+            {
+                if ((this.mUIItemDataItem2 == null))
+                {
+                    this.mUIItemDataItem2 = new UIItemDataItem2(this);
+                }
+                return this.mUIItemDataItem2;
+            }
+        }
         #endregion
         
         #region Fields
         private UIItemDataItem mUIItemDataItem;
+        
+        private UIItemDataItem1 mUIItemDataItem1;
+        
+        private UIItemDataItem2 mUIItemDataItem2;
         #endregion
     }
     
@@ -2382,7 +1829,78 @@ namespace RentIt.Tests
         {
             #region Search Criteria
             this.SearchProperties[UITestControl.PropertyNames.ControlType] = "DataItem";
-            this.SearchProperties["Instance"] = "4";
+            this.WindowTitles.Add("RentIt");
+            #endregion
+        }
+        
+        #region Properties
+        public WpfCheckBox UIItemCheckBox
+        {
+            get
+            {
+                if ((this.mUIItemCheckBox == null))
+                {
+                    this.mUIItemCheckBox = new WpfCheckBox(this);
+                    #region Search Criteria
+                    this.mUIItemCheckBox.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIItemCheckBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WpfCheckBox mUIItemCheckBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    public class UIItemDataItem1 : WpfControl
+    {
+        
+        public UIItemDataItem1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[UITestControl.PropertyNames.ControlType] = "DataItem";
+            this.SearchProperties["Instance"] = "2";
+            this.WindowTitles.Add("RentIt");
+            #endregion
+        }
+        
+        #region Properties
+        public WpfCheckBox UIItemCheckBox
+        {
+            get
+            {
+                if ((this.mUIItemCheckBox == null))
+                {
+                    this.mUIItemCheckBox = new WpfCheckBox(this);
+                    #region Search Criteria
+                    this.mUIItemCheckBox.WindowTitles.Add("RentIt");
+                    #endregion
+                }
+                return this.mUIItemCheckBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WpfCheckBox mUIItemCheckBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
+    public class UIItemDataItem2 : WpfControl
+    {
+        
+        public UIItemDataItem2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[UITestControl.PropertyNames.ControlType] = "DataItem";
+            this.SearchProperties["Instance"] = "3";
             this.WindowTitles.Add("RentIt");
             #endregion
         }
@@ -2624,74 +2142,6 @@ namespace RentIt.Tests
         
         #region Fields
         private WinButton mUINOButton;
-        #endregion
-    }
-    
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class UIDeleteMovieWindow : WinWindow
-    {
-        
-        public UIDeleteMovieWindow()
-        {
-            #region Search Criteria
-            this.SearchProperties[WinWindow.PropertyNames.Name] = "Delete Movie?";
-            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32770";
-            this.WindowTitles.Add("Delete Movie?");
-            #endregion
-        }
-        
-        #region Properties
-        public UIYesWindow2 UIYesWindow
-        {
-            get
-            {
-                if ((this.mUIYesWindow == null))
-                {
-                    this.mUIYesWindow = new UIYesWindow2(this);
-                }
-                return this.mUIYesWindow;
-            }
-        }
-        #endregion
-        
-        #region Fields
-        private UIYesWindow2 mUIYesWindow;
-        #endregion
-    }
-    
-    [GeneratedCode("Coded UITest Builder", "10.0.30319.1")]
-    public class UIYesWindow2 : WinWindow
-    {
-        
-        public UIYesWindow2(UITestControl searchLimitContainer) : 
-                base(searchLimitContainer)
-        {
-            #region Search Criteria
-            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "6";
-            this.WindowTitles.Add("Delete Movie?");
-            #endregion
-        }
-        
-        #region Properties
-        public WinButton UIYesButton
-        {
-            get
-            {
-                if ((this.mUIYesButton == null))
-                {
-                    this.mUIYesButton = new WinButton(this);
-                    #region Search Criteria
-                    this.mUIYesButton.SearchProperties[WinButton.PropertyNames.Name] = "Yes";
-                    this.mUIYesButton.WindowTitles.Add("Delete Movie?");
-                    #endregion
-                }
-                return this.mUIYesButton;
-            }
-        }
-        #endregion
-        
-        #region Fields
-        private WinButton mUIYesButton;
         #endregion
     }
 }
