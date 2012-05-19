@@ -1,4 +1,8 @@
 <StyleCopSettings Version="105">
+  <GlobalSettings>
+    <BooleanProperty Name="WriteCache">False</BooleanProperty>
+    <StringProperty Name="MergeSettingsFiles">NoMerge</StringProperty>
+  </GlobalSettings>
   <Analyzers>
     <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
       <Rules>
@@ -30,6 +34,29 @@
         <Rule Name="DocumentationTextMustBeginWithACapitalLetter">
           <RuleSettings>
             <BooleanProperty Name="Enabled">True</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings>
+        <StringProperty Name="CompanyName">RentIt</StringProperty>
+        <StringProperty Name="Copyright">Copyright (c) RentIt. All rights reserved.</StringProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.ReadabilityRules">
+      <Rules>
+        <Rule Name="PrefixLocalCallsWithThis">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.NamingRules">
+      <Rules>
+        <Rule Name="ConstFieldNamesMustBeginWithUpperCaseLetter">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
       </Rules>

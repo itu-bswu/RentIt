@@ -7,8 +7,7 @@
 namespace RentIt.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using RentIt.Tests.RentItServiceReference;
+    using RentIt.Tests.ServiceReference;
 
     /// <summary>
     /// Base class for all service-level tests. 
@@ -27,12 +26,10 @@ namespace RentIt.Tests
         /// </summary>
         protected ServiceTest()
         {
-            this.UserInformation = new UserInformationClient();
-            this.GetMovieData = new GetMovieDataClient();
-            this.ContentService = new ContentServiceClient();
-            this.UploadService = new UploadServiceClient();
-            this.DownloadService = new DownloadServiceClient();
-            System.Console.WriteLine("ServiceTest");
+            this.UserManagement = new UserManagementClient();
+            this.ContentBrowsing = new ContentBrowsingClient();
+            this.RentalManagement = new RentalManagementClient();
+            this.ContentManagement = new ContentManagementClient();
         }
 
         #endregion Constructor(s)
@@ -40,29 +37,24 @@ namespace RentIt.Tests
         #region Properties
 
         /// <summary>
-        /// Gets or sets the UserInformation service.
+        /// Gets or sets the UserManagement service.
         /// </summary>
-        protected IUserInformation UserInformation { get; set; }
+        protected IUserManagement UserManagement { get; set; }
 
         /// <summary>
-        /// Gets or sets the GetMovieData service.
+        /// Gets or sets the ContentBrowsing service.
         /// </summary>
-        protected IGetMovieData GetMovieData { get; set; }
+        protected IContentBrowsing ContentBrowsing { get; set; }
 
         /// <summary>
-        /// Gets or sets the Content service.
+        /// Gets or sets the RentalManagement service.
         /// </summary>
-        protected IContentService ContentService { get; set; }
+        protected IRentalManagement RentalManagement { get; set; }
 
         /// <summary>
-        /// Gets or sets the Upload service.
+        /// Gets or sets the ContentManagement service.
         /// </summary>
-        protected IUploadService UploadService { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Download service.
-        /// </summary>
-        protected IDownloadService DownloadService { get; set; }
+        protected IContentManagement ContentManagement { get; set; }
 
         #endregion Properties
     }

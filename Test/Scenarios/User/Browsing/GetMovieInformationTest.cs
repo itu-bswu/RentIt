@@ -12,8 +12,6 @@ namespace RentIt.Tests.Scenarios.User.Browsing
     using RentIt.Tests.Utils;
     using RentItService;
     using RentItService.Entities;
-    using RentItService.Exceptions;
-    using RentItService.Services;
 
     /// <summary>
     /// Class for testing the GetMovieInformation method
@@ -40,26 +38,21 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetMovieInformationValidTest()
         {
-            var service = new Service();
+            var testUser = TestUser.User;
+            var testMovie = Movie.All.First();
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            using (var db = new RentItContext())
+            var foundMovie = Movie.Get(loggedinUser, testMovie.ID);
+
+            Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
+            Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
+            Assert.AreEqual(testMovie.Description, foundMovie.Description, "The description doesn't match");
+
+            Assert.AreEqual(testMovie.Genres.Count(), foundMovie.Genres.Count(), "The amount of genres doesn't match");
+
+            foreach (var genre in testMovie.Genres)
             {
-                var testUser = TestUser.User;
-                var testMovie = db.Movies.First();
-                var loggedinUser = User.Login(testUser.Username, testUser.Password);
-
-                var foundMovie = service.GetMovieInformation(loggedinUser.Token, testMovie.ID);
-
-                Assert.AreEqual(testMovie.ID, foundMovie.ID, "The IDs doesn't match");
-                Assert.AreEqual(testMovie.Title, foundMovie.Title, "The title doesn't match");
-                Assert.AreEqual(testMovie.Description, foundMovie.Description, "The description doesn't match");
-
-                Assert.AreEqual(testMovie.Genres.Count(), foundMovie.Genres.Count(), "The amount of genres doesn't match");
-
-                foreach (var genre in testMovie.Genres)
-                {
-                    Assert.IsTrue(foundMovie.Genres.Contains(genre), "The genres doesn't match");
-                }
+                Assert.IsTrue(foundMovie.Genres.Contains(genre), "The genres doesn't match");
             }
         }
 
@@ -77,21 +70,17 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         ///        the ID from the found movie.
         ///     4. Assert that a UserNotFoundException is thrown
         /// </summary>
-        [TestMethod]
+        /*[TestMethod]
         [ExpectedException(typeof(UserNotFoundException))]
-        public void GetMovieInformationInvalidTokenTest()
+        public void GetMovieInformationInvalidTokenTest()  // WHAT IS THIS I DONT EVEN
         {
-            var service = new Service();
-
             string testToken = "Hello thar";
 
-            using (var db = new RentItContext())
-            {
-                var testMovie = db.Movies.First();
+            var testMovie = Movie.All.First();
 
-                service.GetMovieInformation(testToken, testMovie.ID);
-            }
-        }
+            //Movie.Get(testToken, testMovie.ID);
+            Assert.IsTrue(false, "Take another look at this test");
+        }*/
 
         /// <summary>
         /// Purpose: Verify that the method returns null when called with
@@ -112,19 +101,14 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetMovieInformationInvalidMovieIdTest()
         {
-            var service = new Service();
-
             int testID = 178915368;
 
-            using (var db = new RentItContext())
-            {
-                var testUser = TestUser.User;
-                var loggedinUser = User.Login(testUser.Username, testUser.Password);
+            var testUser = TestUser.User;
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                Movie foundMovie = service.GetMovieInformation(loggedinUser.Token, testID);
+            Movie foundMovie = Movie.Get(loggedinUser, testID);
 
-                Assert.IsNull(foundMovie);
-            }
+            Assert.IsNull(foundMovie);
         }
 
         /// <summary>
@@ -143,15 +127,15 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetUnreleasedMovieInfoFutureRelease()
         {
-            int movieId;
             var title = "Some movie";
             var desc = "Movie for testing purposes";
             var releaseDate = DateTime.Now.AddDays(14);
 
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+            RentItContext.ReloadDb();
 
             // Pre-condition 1
-            Movie.RegisterMovie(user.Token, new Movie
+            Movie.Register(user, new Movie
             {
                 Title = title,
                 Description = desc,
@@ -159,29 +143,29 @@ namespace RentIt.Tests.Scenarios.User.Browsing
                 ReleaseDate = releaseDate
             });
 
+            RentItContext.ReloadDb();
+
             // Pre-condition 2
-            using (var db = new RentItContext())
+            var movie = Movie
+                .All
+                .OrderByDescending(m => m.ID)
+                .First();
+
+            Assert.AreEqual(title, movie.Title, "Wrong movie found.");
+            Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
+            var movieId = movie.ID;
+
+            movie.Editions.Add(new Edition
             {
-                var movie = Movie
-                    .GetAllMovies(user.Token)
-                    .OrderByDescending(m => m.ID)
-                    .First();
+                Name = "Super Hi-Res Retina Edition",
+                FilePath = "Does/Not/Exist.avi"
+            });
 
-                Assert.AreEqual(title, movie.Title, "Wrong movie found.");
-                Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
-                movieId = movie.ID;
-
-                movie.Editions.Add(new Edition
-                {
-                    Name = "Super Hi-Res Retina Edition",
-                    FilePath = "Does/Not/Exist.avi"
-                });
-
-                db.SaveChanges();
-            }
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             // Step 1
-            var movieInfo = Movie.Get(user.Token, movieId);
+            var movieInfo = Movie.Get(user, movieId);
 
             // Step 2
             Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");
@@ -203,43 +187,43 @@ namespace RentIt.Tests.Scenarios.User.Browsing
         [TestMethod]
         public void GetUnreleasedMovieInfoNoReleaseDate()
         {
-            int movieId;
             var title = "Some movie";
             var desc = "Movie for testing purposes";
 
             var user = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
+            RentItContext.ReloadDb();
 
             // Pre-condition 1
-            Movie.RegisterMovie(user.Token, new Movie
+            Movie.Register(user, new Movie
             {
                 Title = title,
                 Description = desc,
                 OwnerID = user.ID
             });
 
+            RentItContext.ReloadDb();
+
             // Pre-condition 2
-            using (var db = new RentItContext())
+            var movie = Movie
+                .All
+                .OrderByDescending(m => m.ID)
+                .First();
+
+            Assert.AreEqual(title, movie.Title, "Wrong movie found.");
+            Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
+            var movieId = movie.ID;
+
+            movie.Editions.Add(new Edition
             {
-                var movie = Movie
-                    .GetAllMovies(user.Token)
-                    .OrderByDescending(m => m.ID)
-                    .First();
+                Name = "Super Hi-Res Retina Edition",
+                FilePath = "Does/Not/Exist.avi"
+            });
 
-                Assert.AreEqual(title, movie.Title, "Wrong movie found.");
-                Assert.AreEqual(desc, movie.Description, "Wrong movie found.");
-                movieId = movie.ID;
-
-                movie.Editions.Add(new Edition
-                {
-                    Name = "Super Hi-Res Retina Edition",
-                    FilePath = "Does/Not/Exist.avi"
-                });
-
-                db.SaveChanges();
-            }
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             // Step 1
-            var movieInfo = Movie.Get(user.Token, movieId);
+            var movieInfo = Movie.Get(user, movieId);
 
             // Step 2
             Assert.IsFalse(movieInfo.Editions.Any(), "Movie editions passed to client, even though movie is not released.");

@@ -1,0 +1,32 @@
+﻿<Page x:Class="RentItClient.GUI.User.ViewMoviePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+	Title="ViewMoviePage">
+
+    <Grid Width="720">
+        <Line X1="00" X2="720" Stroke="Gray" StrokeThickness="4"  Margin="0,42,0,356" />
+        <Button Content="List movies" Height="24" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="119" Click="ListMoviesClick"/>
+        <Button Content="View profile" Height="24" HorizontalAlignment="Left" Margin="137,12,0,0" Name="button2" VerticalAlignment="Top" Width="128" Click="ViewProfileClick" />
+        <Button Content="Your rentals" Height="24" HorizontalAlignment="Left" Margin="271,13,0,0" Name="button3" VerticalAlignment="Top" Width="124" Click="YourRentalsClick" />
+        <Button Content="Logout" Height="22" HorizontalAlignment="Left" Margin="636,0,0,0" Name="logout" VerticalAlignment="Top" Width="59" Click="LogoutClick"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="416,12,0,0" Name="textBoxSearch" VerticalAlignment="Top" Width="133" />
+        <Button Content="Search" Height="24" HorizontalAlignment="Right" Name="search" VerticalAlignment="Top" Width="62" Margin="0,11,103,0" Click="SearchClick" />
+
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,77,0,0" Name="textTitle" Text="Title: " VerticalAlignment="Top" Width="27"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,144,0,0" Name="textDescription" Text="Description: " VerticalAlignment="Top" Width="110"/>
+        <TextBox IsReadOnly="True" Height="23" HorizontalAlignment="Right" Margin="0,77,455,0" Name="textBoxTitle" Text="" VerticalAlignment="Top" Width="211" />
+        <TextBox TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Height="227" HorizontalAlignment="Left" Margin="21,161,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="437" />
+        <Button Content="Select edition" Height="25" HorizontalAlignment="Left" Margin="472,363,0,0" Name="selectEdition" VerticalAlignment="Top" Width="216" Click="SelectEditionClick" />
+        <TextBlock Height="23" Width="170" Name="textBlockEdition" Text="Editions" Margin="472,144,78,232" />
+        <ListBox Name="EditionListBox" Margin="472,161,32,51">
+        </ListBox>
+        <TextBox IsReadOnly="True"  Height="23" HorizontalAlignment="Right" Margin="0,106,78,0" Name="textBoxGenre" Text="" VerticalAlignment="Top" Width="314" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="280,106,0,0" Name="textBlockGenre" Text="Genres: " VerticalAlignment="Top" Width="42" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="21,109,0,0" Name="textBlockRelease" Text="Release date: " VerticalAlignment="Top" Width="69" />
+        <TextBox IsReadOnly="true" Height="23" HorizontalAlignment="Right" Margin="0,106,455,0" Name="textBoxRelease" Text="" VerticalAlignment="Top" Width="169" />
+    </Grid>
+</Page>

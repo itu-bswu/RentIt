@@ -8,15 +8,10 @@ namespace RentIt.Tests.Scenarios.User.Rental
 {
     using System;
     using System.Linq;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     using RentIt.Tests.Utils;
-
     using RentItService;
     using RentItService.Entities;
-
-    using Tools;
 
     /// <summary>
     /// Scenario tests for the Get Current Rentals 
@@ -44,58 +39,41 @@ namespace RentIt.Tests.Scenarios.User.Rental
         public void GetCurrentRentalsTest()
         {
             var smith = User.Login(TestUser.User.Username, TestUser.User.Password);
-            var movies = Movie.GetAllMovies(smith.Token);
 
+            int daysToRent = 7;
             int rentalsCount = smith.Rentals.Count;
-            int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
+            int currentRentalsCount = smith.Rentals.Count(r => r.Time.AddDays(daysToRent) > DateTime.Now);
 
-            using (var db = new RentItContext())
-            {
-                Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
-                Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
+            Assert.IsTrue(smith.GetCurrentRentals().All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
+            Assert.IsTrue(smith.GetCurrentRentals().All(r => r.UserID == smith.ID), "One or more of the current rentals do not belong to the the user 'Smith'.");
 
-                var rent1 = new Rental
-                    {
-                        UserID = smith.ID,
-                        EditionID = movies.First(m => m.Title == "The Matrix").Editions.First().ID,
-                        Time = DateTime.Now
-                    };
+            var rent1 = new Rental
+                {
+                    UserID = smith.ID,
+                    EditionID = Movie.All.First(m => m.Title == "The Matrix").Editions.First().ID,
+                    Time = DateTime.Now
+                };
 
-                var rent2 = new Rental
-                    {
-                        UserID = smith.ID,
-                        EditionID = movies.First(m => m.Title == "Die Hard").Editions.First().ID,
-                        Time = new DateTime(1753, 5, 15, 0, 0, 0)
-                    };
+            var rent2 = new Rental
+                {
+                    UserID = smith.ID,
+                    EditionID = Movie.All.First(m => m.Title == "Die Hard").Editions.First().ID,
+                    Time = new DateTime(1753, 5, 15, 0, 0, 0)
+                };
 
-                db.Rentals.Add(rent1);
-                db.Rentals.Add(rent2);
-                db.SaveChanges();  
-            }
+            RentItContext.Db.Rentals.Add(rent1);
+            RentItContext.Db.Rentals.Add(rent2);
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
             smith = User.GetByToken(smith.Token);
             var rentalsCount1 = smith.Rentals.Count;
-            var currentRentalsCount1 = smith.Rentals.Count(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now);
+            var currentRentalsCount1 = smith.Rentals.Count(r => r.Time.AddDays(daysToRent) > DateTime.Now);
 
             Assert.AreEqual(rentalsCount + 2, rentalsCount1, "The amount of rentals did not increase by 2.");
             Assert.AreEqual(currentRentalsCount + 1, currentRentalsCount1, "The current rentals did not increase by 1.");
 
-            Assert.IsTrue(User.GetCurrentRentals(smith.Token).All(r => r.Time.AddDays(Constants.DaysToRent) > DateTime.Now), "The 'current rentals' are not current.");
-        }
-
-        /// <summary>
-        /// Purpose: Verify that it is not possible to call the method with a null value.
-        /// <para>
-        /// Steps:
-        ///     1. Attempt to call Get Current Users with a null value.
-        ///     2. Verify that ArgumentNullExpception is thrown.
-        /// </para>
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InvalidInputGetCurrentRentalsTest()
-        {
-            User.GetCurrentRentals(null);
+            Assert.IsTrue(smith.GetCurrentRentals().All(r => r.Time.AddDays(daysToRent) > DateTime.Now), "The 'current rentals' are not current.");
         }
     }
 }

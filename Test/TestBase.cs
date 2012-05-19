@@ -6,7 +6,6 @@
 
 namespace RentIt.Tests
 {
-    using System.Transactions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using RentIt.Tests.Utils;
 
@@ -57,6 +56,7 @@ namespace RentIt.Tests
         [TestCleanup]
         public void TestCleanup()
         {
+            RentItService.RentItContext.ReloadDb();
             //this.scope.Dispose();
         }
     }

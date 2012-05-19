@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RentItService.Library" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RentItService.Library" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+  <xs:complexType name="RemoteFileStream">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="FileByteStream" nillable="true" type="q1:Stream" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Length" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoteFileStream" nillable="true" type="tns:RemoteFileStream" />
+</xs:schema>

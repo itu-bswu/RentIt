@@ -14,7 +14,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
     using RentItService.Entities;
     using RentItService.Enums;
     using RentItService.Exceptions;
-    using RentItService.Services;
     using Utils;
 
     /// <summary>
@@ -47,14 +46,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var testUser = TestUser.SystemAdmin;
             var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-            var service = new Service();
-
-            Movie testMovie;
-
-            using (var db = new RentItContext())
-            {
-                testMovie = db.Movies.First();
-            }
+            var testMovie = Movie.All.First();
 
             var newTitle = "Trolling for beginners";
             var newDescription = "How to troll, for people new to the art";
@@ -70,17 +62,13 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 ImagePath = "N/A",
                 Title = newTitle,
                 ReleaseDate = newReleaseDate,
-                Genres = newGenres,
             };
 
-            service.EditMovieInformation(loggedinUser.Token, newMovie);
+            newMovie.Edit(loggedinUser, newMovie);
 
-            Movie foundMovie;
+            RentItContext.ReloadDb();
 
-            using (var db = new RentItContext())
-            {
-                foundMovie = db.Movies.Include("Genres").First(m => m.ID == testMovie.ID);
-            }
+            var foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
             Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
@@ -105,30 +93,16 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void AddGenreTest()
         {
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
-                Genre genre;
+            var movie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
+            var genre = "Sci-Fi2";
 
-                using (var db2 = new RentItContext())
-                {
-                    genre = db2.Genres.Single(g => g.Name.Equals("Sci-Fi"));
-                }
+            movie.AddGenre(genre);
 
-                Assert.IsTrue(genre != null);
-                Assert.IsTrue(movie != null);
-
-                movie.AddGenre(db.Genres.Single(g => g.Name.Equals(genre.Name)));
-
-                db.SaveChanges();
-            }
+            RentItContext.ReloadDb();
             
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+            var foundMovie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
 
-                Assert.IsTrue(movie.Genres.Any(g => g.Name.Equals("Sci-Fi")));
-            }
+            Assert.IsTrue(foundMovie.HasGenre(genre));
         }
 
         /// <summary>
@@ -143,25 +117,20 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [TestMethod]
         public void RemoveGenreTest()
         {
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
-                var genre = Genre.GetOrCreateGenre("Action");
+            var movie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
+            var genre = Genre.GetOrCreateGenre("Action");
 
-                Assert.IsTrue(genre != null);
-                Assert.IsTrue(movie != null);
+            Assert.IsTrue(genre != null);
+            Assert.IsTrue(movie != null);
 
-                movie.RemoveGenre(genre);
+            movie.RemoveGenre(genre);
 
-                db.SaveChanges();
-            }
+            RentItContext.Db.SaveChanges();
+            RentItContext.ReloadDb();
 
-            using (var db = new RentItContext())
-            {
-                var movie = db.Movies.Include("Genres").Single(m => m.Title.Equals("Die Hard"));
+            var foundMovie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
 
-                Assert.IsFalse(movie.Genres.Any(g => g.Name.Equals("Action")));
-            }
+            Assert.IsFalse(foundMovie.Genres.Any(g => g.Name.Equals("Action")));
         }
 
         /// <summary>
@@ -187,25 +156,20 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieInformationInvalidUserTypeTest()
         {
-            var service = new Service();
+            var testUser = TestUser.User;
+            var testMovie = Movie.All.First();
 
-            using (var db = new RentItContext())
-            {
-                var testUser = TestUser.User;
-                var testMovie = db.Movies.First();
+            var loggedinUser = User.Login(testUser.Username, testUser.Password);
 
-                var loggedinUser = User.Login(testUser.Username, testUser.Password);
+            var newMovie = new Movie
+                {
+                    ID = testMovie.ID,
+                    Description = "How to troll, for people new to the art",
+                    ImagePath = "N/A",
+                    Title = "Trolling for beginners"
+                };
 
-                var newMovie = new Movie
-                    {
-                        ID = testMovie.ID,
-                        Description = "How to troll, for people new to the art",
-                        ImagePath = "N/A",
-                        Title = "Trolling for beginners"
-                    };
-
-                service.EditMovieInformation(loggedinUser.Token, newMovie);
-            }
+            newMovie.Edit(loggedinUser, newMovie);
         }
 
         /// <summary>
@@ -227,13 +191,10 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         ///        is thrown.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(NoMovieFoundException))]
+        [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieInformationInvalidMovieIdTypeTest()
         {
-            var service = new Service();
-            var testUser = TestUser.ContentProvider;
-
-            var loggedinUser = User.Login(testUser.Username, testUser.Password);
+            var loggedinUser = User.Login(TestUser.ContentProvider.Username, TestUser.ContentProvider.Password);
 
             var newMovie = new Movie
                 {
@@ -243,7 +204,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                     Title = "Trolling for beginners"
                 };
 
-            service.EditMovieInformation(loggedinUser.Token, newMovie);
+            newMovie.Edit(loggedinUser, newMovie);
         }
 
         /// <summary>
@@ -263,33 +224,197 @@ namespace RentIt.Tests.Scenarios.ContentProvider
         [ExpectedException(typeof(InsufficientRightsException))]
         public void EditMovieFromOtherProvider()
         {
-            using (var db = new RentItContext())
+            const string Username = "SomeContentPublisher";
+            const string Password = "12345";
+
+            // Step 1
+            var movie = Movie.All.First();
+
+            // Step 2
+            User.SignUp(new User
             {
-                const string Username = "SomeContentPublisher";
-                const string Password = "12345";
+                Username = Username,
+                Password = Password,
+                Email = "publisher@somecompany.org"
+            });
 
-                var service = new Service();
+            User.All.First(u => u.Username == Username).Type = UserType.ContentProvider;
+            RentItContext.Db.SaveChanges();
 
-                // Step 1
-                var movie = db.Movies.First();
+            // Step 3
+            var user = User.Login(Username, Password);
 
-                // Step 2
-                User.SignUp(new User
+            // Step 4
+            movie.Edit(user, movie);
+        }
+
+        /// <summary>
+        /// Purpose: Verify that it is possible to only update 
+        ///          part of the information about a movie.
+        /// 
+        /// Steps:
+        ///     1. Log in as a content provider with movies.
+        ///     2. Choose a movie to update.
+        ///     3. Keep a copy of all old values of the movie.
+        ///     4. Update the movie with another title and empty description.
+        ///     5. Refresh movie information.
+        ///     6. Verify that title has changed.
+        ///     7. Verify that description is now empty.
+        ///     8. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditMoviePartOfInfo()
+        {
+            string newTitle = "Awesome new movie", newDescription = string.Empty;
+
+            // Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Step 2
+            var movie = user.UploadedMovies.First();
+
+            // Step 3
+            var oldTitle = movie.Title;
+            var oldDescription = movie.Description;
+            var oldImagePath = movie.ImagePath;
+            var oldReleaseDate = movie.ReleaseDate;
+
+            // Step 4
+            movie.Edit(
+                user,
+                new Movie
                 {
-                    Username = Username,
-                    Password = Password,
-                    Email = "publisher@somecompany.org"
+                    Title = newTitle,
+                    Description = newDescription
                 });
 
-                db.Users.First(u => u.Username == Username).Type = UserType.ContentProvider;
-                db.SaveChanges();
+            // Step 5
+            movie = Movie.Get(user, movie.ID);
 
-                // Step 3
-                var user = User.Login(Username, Password);
+            // Step 6
+            Assert.AreEqual(newTitle, movie.Title, "Title has incorrect value!");
+            Assert.AreNotEqual(oldTitle, movie.Title, "Title has not changed!");
 
-                // Step 4
-                service.EditMovieInformation(user.Token, movie);
-            }
+            // Step 7
+            Assert.AreEqual(newDescription, movie.Description, "Description has incorrect value!");
+            Assert.AreNotEqual(oldDescription, movie.Description, "Description has not changed!");
+
+            // Step 8
+            Assert.AreEqual(oldImagePath, movie.ImagePath, "Imagepath has changed!");
+            Assert.AreEqual(oldReleaseDate, movie.ReleaseDate, "Release date has changed!");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that a field is only updated, if 
+        ///          the new value is valid.
+        /// 
+        /// Steps:
+        ///     1. Log in as a content provider with movies.
+        ///     2. Choose a movie to update.
+        ///     3. Keep a copy of all old values of the movie.
+        ///     4. Update the movie with empty title and null description.
+        ///     5. Refresh movie information.
+        ///     6. Verify that title has not changed.
+        ///     7. Verify that description has not changed.
+        ///     8. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditMoviePartOfInfoInvalidValues()
+        {
+            string newTitle = string.Empty;
+
+            // Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Step 2
+            var movie = user.UploadedMovies.First();
+
+            // Step 3
+            var oldTitle = movie.Title;
+            var oldDescription = movie.Description;
+            var oldImagePath = movie.ImagePath;
+            var oldReleaseDate = movie.ReleaseDate;
+
+            // Step 4
+            movie.Edit(
+                user,
+                new Movie
+                {
+                    Title = newTitle,
+                    Description = null
+                });
+
+            // Step 5
+            movie = Movie.Get(user, movie.ID);
+
+            // Step 6
+            Assert.AreNotEqual(newTitle, movie.Title, "Title has changed!");
+            Assert.AreEqual(oldTitle, movie.Title, "Title has changed!");
+
+            // Step 7
+            Assert.IsNotNull(movie.Description, "Description has changed!");
+            Assert.AreEqual(oldDescription, movie.Description, "Description has changed!");
+
+            // Step 8
+            Assert.AreEqual(oldImagePath, movie.ImagePath, "Imagepath has changed!");
+            Assert.AreEqual(oldReleaseDate, movie.ReleaseDate, "Release date has changed!");
+        }
+
+        /// <summary>
+        /// Purpose: Verify that fields with new valid values will 
+        ///          be updated, even when other fields will not 
+        ///          be updated, because of invalid values.
+        /// 
+        /// Steps:
+        ///     1. Log in as a content provider with movies.
+        ///     2. Choose a movie to update.
+        ///     3. Keep a copy of all old values of the movie.
+        ///     4. Update the movie with empty title (invalid) and empty description (valid).
+        ///     5. Refresh movie information.
+        ///     6. Verify that title has not changed.
+        ///     7. Verify that description has changed.
+        ///     8. Verify that the rest has not been updated.
+        /// </summary>
+        [TestMethod]
+        public void EditMoviePartOfInfoMixedValidInvalid()
+        {
+            string newTitle = string.Empty, newDescription = string.Empty;
+
+            // Step 1
+            var user = User.Login(TestUser.ContentProvider);
+
+            // Step 2
+            var movie = user.UploadedMovies.First();
+
+            // Step 3
+            var oldTitle = movie.Title;
+            var oldDescription = movie.Description;
+            var oldImagePath = movie.ImagePath;
+            var oldReleaseDate = movie.ReleaseDate;
+
+            // Step 4
+            movie.Edit(
+                user,
+                new Movie
+                {
+                    Title = newTitle,
+                    Description = newDescription
+                });
+
+            // Step 5
+            movie = Movie.Get(user, movie.ID);
+
+            // Step 6
+            Assert.AreNotEqual(newTitle, movie.Title, "Title has changed!");
+            Assert.AreEqual(oldTitle, movie.Title, "Title has changed!");
+
+            // Step 7
+            Assert.AreEqual(newDescription, movie.Description, "Description has incorrect value!");
+            Assert.AreNotEqual(oldDescription, movie.Description, "Description has not changed!");
+
+            // Step 8
+            Assert.AreEqual(oldImagePath, movie.ImagePath, "Imagepath has changed!");
+            Assert.AreEqual(oldReleaseDate, movie.ReleaseDate, "Release date has changed!");
         }
     }
 }
