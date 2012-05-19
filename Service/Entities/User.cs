@@ -44,6 +44,7 @@ namespace RentItService.Entities
         {
             this.Rentals = new List<Rental>();
             this.UploadedMovies = new List<Movie>();
+            this.Type = UserType.User;
         }
 
         #endregion Constructor(s)

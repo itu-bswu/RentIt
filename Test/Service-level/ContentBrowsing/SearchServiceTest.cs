@@ -73,9 +73,8 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
             Movie[] movies;
             var result = ContentBrowsing.Search(out movies, user.Token, null);
 
-            Assert.IsTrue(result, "Result is false");
-            Assert.IsNotNull(movies, "Movie object wasn't set");
-            Assert.IsTrue(movies.Any(), "No movies returned");
+            Assert.IsFalse(result, "Result is true");
+            Assert.IsNull(movies, "Movie object was set");
         }
     }
 }

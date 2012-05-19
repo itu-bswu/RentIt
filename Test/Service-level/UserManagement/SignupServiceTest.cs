@@ -46,7 +46,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
             var result = UserManagement.SignUp(ref user);
 
             Assert.IsFalse(result, "Signup didn't fail");
-            Assert.IsNull(user.ID, "User has been assigned an id");
+            Assert.AreEqual(0, user.ID, "User has been assigned an id");
         }
     }
 }
