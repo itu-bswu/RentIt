@@ -21,3 +21,25 @@ In the case where you login as a contentprovider, you get a startscreen where yo
 
 \section{Service}
 \label{Manual_Service}
+
+\subsection{Using the API}
+\label{Manual_Service_Usage}
+The following section is a short manual on how to use the service API in custom client applications. It will follow the same two tasks as those in the client manual, only focusing on the service calls.
+
+All methods in the API have the same format. The return type is always a boolean, which is true if the input was valid, but false if the input was invalid. All objects to be sent to the client is sent through either an out or ref parameter.
+
+All methods are places in 4 different classes: \class{ContentBrowsing}, \class{UserManagement}, \class{RentalManagement}, and \class{ContentManagement}.
+
+\subsection{Renting a movie}
+\label{Manual_Service_Usage_Rent}
+The first step to using the service is always either log in or sign up for a new user. The \method{Login} method in \class{UserManagement} takes a username and password, and sends back the logged in user object. The \method{SignUp} method takes a referenced \class{User} object, where at least username, password and email is filled out. The returned user object for both methods will contain a token property, which will be used in all subsequent method calls.
+
+After login, there is several ways to get movies, all using the \class{ContentBrowsing} class. The \method{GetMovies} method can get all movies, newest movies, and most downloaded movies in either all or a specified genre. The genres can be retrieved with the \method{GetGenres} method. Alternatively, you can search for movie titles with the \method{Search} method.
+
+To rent a movie, the \method{RentMovie} method in the \class{RentalManagement} class is used. This takes a movie edition. The list of editions for a movie can be retrieved with the \method{GetMovieInformation} method in the \class{ContentBrowsing} class. When a movie edition has been rented, it can be downloaded with the \method{DownloadFile} method.
+
+\subsection{Uploading a movie}
+\label{Manual_Service_Usage_Upload}
+When you log in as a content provider, you get the ability to upload, edit and remove movies through the \class{ContentManagement} class. The \method{RegisterMovie} method registers a new movie in the system. It takes a referenced movie instance, which has to at least have a title. A release date can also be set, and if it's a day in the future, the movie won't be visible in the system before then. A movie can afterwards be edited and removed using the \method{EditMovie} and \method{DeleteMovie} method.
+
+After a movie has been registered, versions of it can be uploaded with the \method{UploadEdition}, and afterwards be removed with the \method{DeleteEdition} method.
