@@ -1,0 +1,1501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="BottomToTop" Layout="ForceDirected" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 @10 @29 @124)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:add_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=add_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @10 @29 @125)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:remove_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=remove_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @10 @29 @270)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:Edition ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=.ctor))" IsUnreferenced="True" Label="Edition" />
+    <Node Id="(@1 @10 @29 @300)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=get_ExtensionData))" IsUnreferenced="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @10 @29 @92)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=set_ExtensionData OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll&quot; Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])))" IsUnreferenced="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @10 @29 Member=get_MovieID)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_MovieID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=get_MovieID))" IsUnreferenced="True" Label="get_MovieID" />
+    <Node Id="(@1 @10 @33 @124)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:add_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=(Name=add_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @10 @33 @125)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:remove_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=(Name=remove_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @10 @33 @300)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=get_ExtensionData))" IsUnreferenced="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @10 @33 @306)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=get_ID))" IsUnreferenced="True" Label="get_ID" />
+    <Node Id="(@1 @10 @33 @92)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=(Name=set_ExtensionData OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll&quot; Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])))" IsUnreferenced="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @10 @48 @124)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:add_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=(Name=add_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @10 @48 @125)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:remove_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=(Name=remove_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @10 @48 @300)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=get_ExtensionData))" IsUnreferenced="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @10 @48 @92)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=(Name=set_ExtensionData OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll&quot; Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])))" IsUnreferenced="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @10 @48 Member=get_ImagePath)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ImagePath ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=get_ImagePath))" IsUnreferenced="True" Label="get_ImagePath" />
+    <Node Id="(@1 @10 @48 Member=get_OwnerID)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_OwnerID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=get_OwnerID))" IsUnreferenced="True" Label="get_OwnerID" />
+    <Node Id="(@1 @10 @53 @124)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:add_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=add_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @10 @53 @125)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:remove_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=remove_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @10 @53 @270)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:Rental ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=.ctor))" IsUnreferenced="True" Label="Rental" />
+    <Node Id="(@1 @10 @53 @300)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_ExtensionData))" IsUnreferenced="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @10 @53 @306)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_ID))" IsUnreferenced="True" Label="get_ID" />
+    <Node Id="(@1 @10 @53 @92)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_ExtensionData OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll&quot; Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])))" IsUnreferenced="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @10 @53 Member=get_EditionID)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_EditionID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_EditionID))" IsUnreferenced="True" Label="get_EditionID" />
+    <Node Id="(@1 @10 @53 Member=get_Time)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Time ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_Time))" IsUnreferenced="True" Label="get_Time" />
+    <Node Id="(@1 @10 @53 Member=get_UserID)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_UserID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_UserID))" IsUnreferenced="True" Label="get_UserID" />
+    <Node Id="(@1 @10 @57 @124)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:add_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=add_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @10 @57 @125)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:remove_PropertyChanged ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=remove_PropertyChanged OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])))" IsUnreferenced="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @10 @57 @270)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:User ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=.ctor))" IsUnreferenced="True" Label="User" />
+    <Node Id="(@1 @10 @57 @300)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=get_ExtensionData))" IsUnreferenced="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @10 @57 @306)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=get_ID))" IsUnreferenced="True" Label="get_ID" />
+    <Node Id="(@1 @10 @57 @92)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ExtensionData ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_ExtensionData OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll&quot; Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])))" IsUnreferenced="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @10 @57 Member=get_Token)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Token ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=get_Token))" IsUnreferenced="True" Label="get_Token" />
+    <Node Id="(@1 @4 @46 @270)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:MessageBoxManager ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=MessageBoxManager Member=.ctor))" IsUnreferenced="True" Label="MessageBoxManager" />
+    <Node Id="(@1 @4 @46 Member=(Name=EndDialog OverloadingParameters=[@115,@115]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:EndDialog ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=MessageBoxManager Member=(Name=EndDialog OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr)])))" IsUnreferenced="True" Label="EndDialog" />
+    <Node Id="(@1 @4 @46 Member=(Name=GetWindowText OverloadingParameters=[@115,(@69 Namespace=System.Text Type=StringBuilder),@72]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:GetWindowText ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=MessageBoxManager Member=(Name=GetWindowText OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System.Text Type=StringBuilder),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="GetWindowText" />
+    <Node Id="(@1 @4 @46 Member=(Name=SendMessage OverloadingParameters=[@115,@72,@115,@115]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:SendMessage ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=MessageBoxManager Member=(Name=SendMessage OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr)])))" IsUnreferenced="True" Label="SendMessage" />
+    <Node Id="(@1 @4 @6 Member=(Name=BeginInvoke OverloadingParameters=[@115,@115,(@69 @70 Type=AsyncCallback),@157]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:BeginInvoke ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=(Name=EnumChildProc ParentType=MessageBoxManager) Member=(Name=BeginInvoke OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=AsyncCallback),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="BeginInvoke" />
+    <Node Id="(@1 @4 @6 Member=(Name=EndInvoke OverloadingParameters=[(@69 @70 Type=IAsyncResult)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:EndInvoke ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=(Name=EnumChildProc ParentType=MessageBoxManager) Member=(Name=EndInvoke OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IAsyncResult)])))" IsUnreferenced="True" Label="EndInvoke" />
+    <Node Id="(@1 @4 @6 Member=(Name=Invoke OverloadingParameters=[@115,@115]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:Invoke ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=(Name=EnumChildProc ParentType=MessageBoxManager) Member=(Name=Invoke OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr)])))" IsUnreferenced="True" Label="Invoke" />
+    <Node Id="(@1 @4 @8 Member=(Name=BeginInvoke OverloadingParameters=[@72,@115,@115,(@69 @70 Type=AsyncCallback),@157]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:BeginInvoke ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=(Name=HookProc ParentType=MessageBoxManager) Member=(Name=BeginInvoke OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=AsyncCallback),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="BeginInvoke" />
+    <Node Id="(@1 @4 @8 Member=(Name=EndInvoke OverloadingParameters=[(@69 @70 Type=IAsyncResult)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:EndInvoke ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=(Name=HookProc ParentType=MessageBoxManager) Member=(Name=EndInvoke OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IAsyncResult)])))" IsUnreferenced="True" Label="EndInvoke" />
+    <Node Id="(@1 @4 @8 Member=(Name=Invoke OverloadingParameters=[@72,@115,@115]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:Invoke ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=(Name=HookProc ParentType=MessageBoxManager) Member=(Name=Invoke OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=IntPtr)])))" IsUnreferenced="True" Label="Invoke" />
+    <Node Id="(@1 @41 @44 @166)" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI Type=MainWindow Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="(@1 @41 @44 Member=(Name=OnClosing OverloadingParameters=[(@87 Namespace=System.ComponentModel Type=CancelEventArgs)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" ErrorMessage="Unreferenced node detected:OnClosing ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI Type=MainWindow Member=(Name=OnClosing OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/System.dll&quot; Namespace=System.ComponentModel Type=CancelEventArgs)])))" IsUnreferenced="True" Label="OnClosing" />
+    <Node Id="@100" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_TypeValue ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_TypeValue OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int16)])))" IsUnreferenced="True" Label="set_TypeValue" />
+    <Node Id="@102" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPViewMoviePage" />
+    <Node Id="@103" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewMoviePage" />
+    <Node Id="@104" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_EditionID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_EditionID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_EditionID" />
+    <Node Id="@106" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=set_ID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_ID" />
+    <Node Id="@107" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=(Name=set_ID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_ID" />
+    <Node Id="@108" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@109" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@110" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_ID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_ID" />
+    <Node Id="@111" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_ID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_ID" />
+    <Node Id="@112" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_MovieID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=set_MovieID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_MovieID" />
+    <Node Id="@113" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_OwnerID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=(Name=set_OwnerID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_OwnerID" />
+    <Node Id="@114" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_UserID ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_UserID OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32)])))" IsUnreferenced="True" Label="set_UserID" />
+    <Node Id="@116" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="GetDlgCtrlID" />
+    <Node Id="@117" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="GetWindowTextLength" />
+    <Node Id="@118" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UnhookWindowsHookEx" />
+    <Node Id="@119" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:ConvertServiceMovie ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.Types Type=Movie Member=(Name=ConvertServiceMovie OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie)])))" IsUnreferenced="True" Label="ConvertServiceMovie" />
+    <Node Id="@12" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Edition.Edition[]" />
+    <Node Id="@120" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Movie ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=set_Movie OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie)])))" IsUnreferenced="True" Label="set_Movie" />
+    <Node Id="@121" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPEditMoviePage" />
+    <Node Id="@122" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPUploadEditionPage" />
+    <Node Id="@123" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:ConvertClientMovie ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.Types Type=Movie Member=(Name=ConvertClientMovie OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.Types Type=Movie)])))" IsUnreferenced="True" Label="ConvertClientMovie" />
+    <Node Id="@127" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;ConvertClientMovie&gt;b__6" />
+    <Node Id="@129" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@13" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Genre.Genre[]" />
+    <Node Id="@130" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@131" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@132" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@133" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@134" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Description" />
+    <Node Id="@135" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Description" />
+    <Node Id="@136" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Email ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_Email OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_Email" />
+    <Node Id="@137" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Email" />
+    <Node Id="@138" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_FullName ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_FullName OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_FullName" />
+    <Node Id="@139" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_FullName" />
+    <Node Id="@14" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Movie.Movie[]" />
+    <Node Id="@140" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_GenreName" />
+    <Node Id="@141" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_ImagePath ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=(Name=set_ImagePath OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_ImagePath" />
+    <Node Id="@142" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Name ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=set_Name OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_Name" />
+    <Node Id="@143" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Name" />
+    <Node Id="@144" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Password ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_Password OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_Password" />
+    <Node Id="@145" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Password" />
+    <Node Id="@146" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Title" />
+    <Node Id="@147" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Title" />
+    <Node Id="@148" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Token ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_Token OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_Token" />
+    <Node Id="@149" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Username ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_Username OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=String)])))" IsUnreferenced="True" Label="set_Username" />
+    <Node Id="@15" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Rental.Rental[]" />
+    <Node Id="@150" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Username" />
+    <Node Id="@151" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:ConvertServiceUser ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.Types Type=User Member=(Name=ConvertServiceUser OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User)])))" IsUnreferenced="True" Label="ConvertServiceUser" />
+    <Node Id="@152" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Owner ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=(Name=set_Owner OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User)])))" IsUnreferenced="True" Label="set_Owner" />
+    <Node Id="@153" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_User ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_User OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User)])))" IsUnreferenced="True" Label="set_User" />
+    <Node Id="@154" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Type ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_Type OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=UserType)])))" IsUnreferenced="True" Label="set_Type" />
+    <Node Id="@155" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Type" />
+    <Node Id="@156" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="GenreChecked" />
+    <Node Id="@159" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="HandleExceptions" />
+    <Node Id="@160" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="GetDlgItem" />
+    <Node Id="@161" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="DownloadEditionPage" />
+    <Node Id="@162" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewEditionPage" />
+    <Node Id="@163" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="MessageBoxEnumProc" />
+    <Node Id="@164" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="EnumChildProc" />
+    <Node Id="@165" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="HookProc" />
+    <Node Id="@167" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.ContentProvider Type=CPEditMoviePage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@168" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.ContentProvider Type=CPRegisterMoviePage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@169" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.ContentProvider Type=CPUploadEditionPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@17" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPEditMoviePage" />
+    <Node Id="@170" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.ContentProvider Type=CPViewMoviePage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@171" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.ContentProvider Type=CPYourMoviesPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@172" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=DownloadEditionPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@173" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=EditProfilePage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@174" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=ListMoviesPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@175" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI Type=LoginPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@176" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI Type=RegistrationPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@177" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=RentalHistoryPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@178" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=ViewEditionPage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@179" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=ViewMoviePage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@180" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" ErrorMessage="Unreferenced node detected:System.Windows.Markup.IComponentConnector.Connect ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI.User Type=ViewProfilePage Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Int32),(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=Object)])))" IsUnreferenced="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@183" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="BrowseClick" />
+    <Node Id="@184" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="CancelClick" />
+    <Node Id="@185" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="DeleteEditionClick" />
+    <Node Id="@186" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="DeleteMovieClick" />
+    <Node Id="@187" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="DownloadClick" />
+    <Node Id="@188" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="EditInformationClick" />
+    <Node Id="@189" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="EditProfileClick" />
+    <Node Id="@19" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPRegisterMoviePage" />
+    <Node Id="@190" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMovieClick" />
+    <Node Id="@191" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMovies" />
+    <Node Id="@193" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMoviesClick" />
+    <Node Id="@194" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMoviesClick" />
+    <Node Id="@195" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMoviesClick" />
+    <Node Id="@196" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMoviesClick" />
+    <Node Id="@197" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMoviesClick" />
+    <Node Id="@198" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LoginClick" />
+    <Node Id="@200" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@201" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@202" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@203" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@204" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@205" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@206" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@207" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@208" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@209" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@21" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPUploadEditionPage" />
+    <Node Id="@210" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@211" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@213" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RegisterMovieClick" />
+    <Node Id="@214" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RegisterMovieClick" />
+    <Node Id="@215" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RegisterMovieClick" />
+    <Node Id="@216" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RegisterMovieClick" />
+    <Node Id="@217" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RegisterMovieClick" />
+    <Node Id="@218" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RentMovieClick" />
+    <Node Id="@219" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ResetClick" />
+    <Node Id="@220" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SaveChangesClick" />
+    <Node Id="@221" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SaveChangesClick" />
+    <Node Id="@223" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@224" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@225" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@226" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@227" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@228" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@229" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@23" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPViewMoviePage" />
+    <Node Id="@230" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SelectEditionClick" />
+    <Node Id="@231" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SignupClick" />
+    <Node Id="@232" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SortClick" />
+    <Node Id="@233" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SubmitClick" />
+    <Node Id="@234" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UploadEditionClick" />
+    <Node Id="@235" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="UploadEditionClick" />
+    <Node Id="@236" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewClick" />
+    <Node Id="@237" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewClick" />
+    <Node Id="@238" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewMovieClick" />
+    <Node Id="@239" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfile" />
+    <Node Id="@240" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfile" />
+    <Node Id="@242" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfileClick" />
+    <Node Id="@243" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfileClick" />
+    <Node Id="@244" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfileClick" />
+    <Node Id="@245" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfileClick" />
+    <Node Id="@246" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfileClick" />
+    <Node Id="@247" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourMovies" />
+    <Node Id="@248" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourMoviesClick" />
+    <Node Id="@249" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourMoviesClick" />
+    <Node Id="@25" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPYourMoviesPage" />
+    <Node Id="@250" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourMoviesClick" />
+    <Node Id="@251" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentals" />
+    <Node Id="@252" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentals" />
+    <Node Id="@254" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentalsClick" />
+    <Node Id="@255" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentalsClick" />
+    <Node Id="@256" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentalsClick" />
+    <Node Id="@257" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentalsClick" />
+    <Node Id="@258" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentalsClick" />
+    <Node Id="@259" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SetWindowText" />
+    <Node Id="@260" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;.ctor&gt;b__0" />
+    <Node Id="@261" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;.ctor&gt;b__0" />
+    <Node Id="@262" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="GetClassName" />
+    <Node Id="@263" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="EnumChildWindows" />
+    <Node Id="@264" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="MessageBoxHookProc" />
+    <Node Id="@265" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SetWindowsHookEx" />
+    <Node Id="@266" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="CallNextHookEx" />
+    <Node Id="@267" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="User" />
+    <Node Id="@268" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Movie" />
+    <Node Id="@269" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:static MessageBoxManager ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=MessageBoxManager Member=.cctor))" IsUnreferenced="True" Label="static MessageBoxManager" />
+    <Node Id="@271" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="&lt;&gt;c__DisplayClass2" />
+    <Node Id="@272" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="CPEditMoviePage" />
+    <Node Id="@273" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPRegisterMoviePage" />
+    <Node Id="@274" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="CPUploadEditionPage" />
+    <Node Id="@275" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="CPViewMoviePage" />
+    <Node Id="@276" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPYourMoviesPage" />
+    <Node Id="@277" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="DownloadEditionPage" />
+    <Node Id="@278" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="EditProfilePage" />
+    <Node Id="@279" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Genre" />
+    <Node Id="@28" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="DownloadEditionPage" />
+    <Node Id="@280" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="GenreCheckList" />
+    <Node Id="@281" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ListMoviesPage" />
+    <Node Id="@282" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="LoginPage" />
+    <Node Id="@283" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:MainWindow ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.GUI Type=MainWindow Member=.ctor))" IsUnreferenced="True" Label="MainWindow" />
+    <Node Id="@284" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Movie" />
+    <Node Id="@285" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RegistrationPage" />
+    <Node Id="@286" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalHistoryPage" />
+    <Node Id="@287" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewEditionPage" />
+    <Node Id="@288" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewMoviePage" />
+    <Node Id="@289" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewProfilePage" />
+    <Node Id="@290" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="ChangeWindow" />
+    <Node Id="@291" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_AssociatedMovies ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=get_AssociatedMovies))" IsUnreferenced="True" Label="get_AssociatedMovies" />
+    <Node Id="@292" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Checked" />
+    <Node Id="@293" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Description" />
+    <Node Id="@294" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Description" />
+    <Node Id="@295" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Edition ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_Edition))" IsUnreferenced="True" Label="get_Edition" />
+    <Node Id="@296" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Editions" />
+    <Node Id="@297" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Editions" />
+    <Node Id="@298" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Email" />
+    <Node Id="@299" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Email" />
+    <Node Id="@3" Category="CodeSchema_Class" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Group="Collapsed" Label="CPEditMoviePage.&lt;&gt;c__DisplayClass2" />
+    <Node Id="@30" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Edition" />
+    <Node Id="@301" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_FullName" />
+    <Node Id="@302" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_FullName" />
+    <Node Id="@303" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_GenreName" />
+    <Node Id="@304" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Genres" />
+    <Node Id="@305" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Genres" />
+    <Node Id="@307" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@308" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@309" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@310" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Movie ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=get_Movie))" IsUnreferenced="True" Label="get_Movie" />
+    <Node Id="@311" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Name" />
+    <Node Id="@312" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Name" />
+    <Node Id="@313" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Owner ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Movie Member=get_Owner))" IsUnreferenced="True" Label="get_Owner" />
+    <Node Id="@314" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Password" />
+    <Node Id="@315" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Password" />
+    <Node Id="@316" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ReleaseDate" />
+    <Node Id="@317" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ReleaseDate" />
+    <Node Id="@318" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Rentals ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=get_Rentals))" IsUnreferenced="True" Label="get_Rentals" />
+    <Node Id="@319" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Rentals ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=get_Rentals))" IsUnreferenced="True" Label="get_Rentals" />
+    <Node Id="@32" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="EditProfilePage" />
+    <Node Id="@320" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Title" />
+    <Node Id="@321" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Title" />
+    <Node Id="@322" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Type ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=get_Type))" IsUnreferenced="True" Label="get_Type" />
+    <Node Id="@323" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_Type ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.Types Type=User Member=get_Type))" IsUnreferenced="True" Label="get_Type" />
+    <Node Id="@324" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_TypeValue" />
+    <Node Id="@325" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_UploadedMovies ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=get_UploadedMovies))" IsUnreferenced="True" Label="get_UploadedMovies" />
+    <Node Id="@326" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:get_User ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=get_User))" IsUnreferenced="True" Label="get_User" />
+    <Node Id="@327" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Username" />
+    <Node Id="@328" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Username" />
+    <Node Id="@330" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@331" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@332" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@333" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@334" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@335" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@336" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@337" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@338" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@339" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@34" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Genre" />
+    <Node Id="@340" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@341" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@342" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@343" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@344" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@345" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="LogOut" />
+    <Node Id="@346" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Register" />
+    <Node Id="@347" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ResetAll" />
+    <Node Id="@348" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" ErrorMessage="Unreferenced node detected:Unregister ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=System.Windows.Forms Type=MessageBoxManager Member=Unregister))" IsUnreferenced="True" Label="Unregister" />
+    <Node Id="@37" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="GenreChecked" />
+    <Node Id="@38" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="GenreCheckList" />
+    <Node Id="@40" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ListMoviesPage" />
+    <Node Id="@43" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="LoginPage" />
+    <Node Id="@45" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="MainWindow" />
+    <Node Id="@47" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="MessageBoxManager" />
+    <Node Id="@49" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Movie" />
+    <Node Id="@5" Category="CodeSchema_Struct" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="MessageBoxManager.CWPRETSTRUCT" />
+    <Node Id="@50" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Movie" />
+    <Node Id="@52" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="RegistrationPage" />
+    <Node Id="@54" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Rental" />
+    <Node Id="@56" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="RentalHistoryPage" />
+    <Node Id="@58" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="User" />
+    <Node Id="@59" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="User" />
+    <Node Id="@60" Category="CodeSchema_Enum" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UserType" />
+    <Node Id="@61" Category="CodeSchema_Enum" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UserType" />
+    <Node Id="@63" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewEditionPage" />
+    <Node Id="@65" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewMoviePage" />
+    <Node Id="@67" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewProfilePage" />
+    <Node Id="@7" Category="CodeSchema_Delegate" CodeSchemaProperty_IsPrivate="True" Group="Collapsed" Label="MessageBoxManager.EnumChildProc" />
+    <Node Id="@73" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ListMoviesPage" />
+    <Node Id="@74" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Editions" />
+    <Node Id="@75" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ReleaseDate" />
+    <Node Id="@76" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ReleaseDate" />
+    <Node Id="@77" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Genres" />
+    <Node Id="@78" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;.ctor&gt;b__0" />
+    <Node Id="@79" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;.ctor&gt;b__0" />
+    <Node Id="@80" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Editions" />
+    <Node Id="@81" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Genres" />
+    <Node Id="@82" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_AssociatedMovies ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Genre Member=(Name=set_AssociatedMovies OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=(Name=Movie ArrayRank=1 ParentType=Movie))])))" IsUnreferenced="True" Label="set_AssociatedMovies" />
+    <Node Id="@83" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_UploadedMovies ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_UploadedMovies OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=(Name=Movie ArrayRank=1 ParentType=Movie))])))" IsUnreferenced="True" Label="set_UploadedMovies" />
+    <Node Id="@84" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Rentals ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition Member=(Name=set_Rentals OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=(Name=Rental ArrayRank=1 ParentType=Rental))])))" IsUnreferenced="True" Label="set_Rentals" />
+    <Node Id="@85" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Rentals ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=User Member=(Name=set_Rentals OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=(Name=Rental ArrayRank=1 ParentType=Rental))])))" IsUnreferenced="True" Label="set_Rentals" />
+    <Node Id="@86" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Checked" />
+    <Node Id="@88" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Time ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_Time OverloadingParameters=[(Assembly=&quot;file:///C:/Program Files/Reference Assemblies/Microsoft/Framework/.NETFramework/v4.0/Profile/Client/mscorlib.dll&quot; Namespace=System Type=DateTime)])))" IsUnreferenced="True" Label="set_Time" />
+    <Node Id="@89" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;ConvertServiceMovie&gt;b__1" />
+    <Node Id="@9" Category="CodeSchema_Delegate" CodeSchemaProperty_IsPrivate="True" Group="Collapsed" Label="MessageBoxManager.HookProc" />
+    <Node Id="@90" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" ErrorMessage="Unreferenced node detected:set_Edition ((Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Rental Member=(Name=set_Edition OverloadingParameters=[(Assembly=&quot;file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe&quot; Namespace=RentItClient.RentItService Type=Edition)])))" IsUnreferenced="True" Label="set_Edition" />
+    <Node Id="@93" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;ConvertServiceMovie&gt;b__0" />
+    <Node Id="@95" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="&lt;.ctor&gt;b__0" />
+    <Node Id="@96" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;RegisterMovieClick&gt;b__0" />
+    <Node Id="@97" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;RegisterMovieClick&gt;b__1" />
+    <Node Id="@98" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;SaveChangesClick&gt;b__4" />
+    <Node Id="@99" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;SaveChangesClick&gt;b__5" />
+  </Nodes>
+  <Links>
+    <Link Source="@100" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@102" Target="@260" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@102" Target="@275" Category="CodeSchema_Calls" />
+    <Link Source="@102" Target="@294" Category="CodeSchema_Calls" />
+    <Link Source="@102" Target="@297" Category="CodeSchema_Calls" />
+    <Link Source="@102" Target="@305" Category="CodeSchema_Calls" />
+    <Link Source="@102" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@261" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@103" Target="@288" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@294" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@297" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@305" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@317" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@104" Target="@132" Category="CodeSchema_Calls" />
+    <Link Source="@106" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@107" Target="@130" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@110" Target="@132" Category="CodeSchema_Calls" />
+    <Link Source="@111" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@112" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@113" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@114" Target="@132" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@268" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@293" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@296" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@304" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@308" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@316" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@320" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@50" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@119" Target="@89" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@119" Target="@93" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@12" Target="@30" Category="CodeSchema_ElementType" />
+    <Link Source="@120" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@272" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@280" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@294" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@3" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_FunctionPointer" />
+    </Link>
+    <Link Source="@121" Target="@305" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@317" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@38" Category="References" />
+    <Link Source="@121" Target="@86" Category="CodeSchema_Calls" />
+    <Link Source="@121" Target="@95" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@122" Target="@274" Category="CodeSchema_Calls" />
+    <Link Source="@122" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@108" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@127" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@123" Target="@134" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@146" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@284" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@294" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@296" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@297" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@305" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@309" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@317" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@49" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@123" Target="@75" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@80" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@81" Category="CodeSchema_Calls" />
+    <Link Source="@127" Target="@143" Category="CodeSchema_Calls" />
+    <Link Source="@127" Target="@279" Category="CodeSchema_Calls" />
+    <Link Source="@127" Target="@34" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@13" Target="@34" Category="CodeSchema_ElementType" />
+    <Link Source="@134" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@136" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@138" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@14" Target="@49" Category="CodeSchema_ElementType" />
+    <Link Source="@141" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@142" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@143" Target="@130" Category="CodeSchema_Calls" />
+    <Link Source="@144" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@146" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@148" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@149" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@15" Target="@54" Category="CodeSchema_ElementType" />
+    <Link Source="@151" Target="@267" Category="CodeSchema_Calls" />
+    <Link Source="@151" Target="@298" Category="CodeSchema_Calls" />
+    <Link Source="@151" Target="@301" Category="CodeSchema_Calls" />
+    <Link Source="@151" Target="@314" Category="CodeSchema_Calls" />
+    <Link Source="@151" Target="@324" Category="CodeSchema_Calls" />
+    <Link Source="@151" Target="@327" Category="CodeSchema_Calls" />
+    <Link Source="@151" Target="@59" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@152" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@153" Target="@132" Category="CodeSchema_Calls" />
+    <Link Source="@154" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@156" Target="@140" Category="CodeSchema_Calls" />
+    <Link Source="@156" Target="@86" Category="CodeSchema_Calls" />
+    <Link Source="@161" Target="@277" Category="CodeSchema_Calls" />
+    <Link Source="@161" Target="@294" Category="CodeSchema_Calls" />
+    <Link Source="@161" Target="@297" Category="CodeSchema_Calls" />
+    <Link Source="@161" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@161" Target="@78" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@162" Target="@287" Category="CodeSchema_Calls" />
+    <Link Source="@162" Target="@294" Category="CodeSchema_Calls" />
+    <Link Source="@162" Target="@297" Category="CodeSchema_Calls" />
+    <Link Source="@162" Target="@321" Category="CodeSchema_Calls" />
+    <Link Source="@162" Target="@79" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@163" Target="@116" Category="CodeSchema_Calls" />
+    <Link Source="@163" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@163" Target="@262" Category="CodeSchema_Calls" />
+    <Link Source="@167" Target="@200" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@167" Target="@213" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@167" Target="@220" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@167" Target="@248" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@168" Target="@201" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@168" Target="@214" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@168" Target="@249" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@169" Target="@183" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@169" Target="@202" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@169" Target="@215" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@169" Target="@234" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@169" Target="@247" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@17" Target="@121" Category="Contains" />
+    <Link Source="@17" Target="@167" Category="Contains" />
+    <Link Source="@17" Target="@200" Category="Contains" />
+    <Link Source="@17" Target="@213" Category="Contains" />
+    <Link Source="@17" Target="@220" Category="Contains" />
+    <Link Source="@17" Target="@248" Category="Contains" />
+    <Link Source="@17" Target="@272" Category="Contains" />
+    <Link Source="@17" Target="@3" Category="Contains" />
+    <Link Source="@17" Target="@330" Category="Contains" />
+    <Link Source="@17" Target="@98" Category="Contains" />
+    <Link Source="@17" Target="@99" Category="Contains" />
+    <Link Source="@170" Target="@185" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@170" Target="@186" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@170" Target="@188" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@170" Target="@203" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@170" Target="@216" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@170" Target="@235" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@170" Target="@250" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@171" Target="@204" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@171" Target="@217" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@171" Target="@236" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@172" Target="@187" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@172" Target="@191" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@172" Target="@205" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@172" Target="@223" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@172" Target="@239" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@172" Target="@251" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@173" Target="@193" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@173" Target="@206" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@173" Target="@221" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@173" Target="@224" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@173" Target="@242" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@173" Target="@254" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@194" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@207" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@225" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@232" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@238" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@240" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@174" Target="@252" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@175" Target="@198" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@175" Target="@231" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@176" Target="@184" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@176" Target="@219" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@176" Target="@233" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@177" Target="@195" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@177" Target="@208" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@177" Target="@226" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@177" Target="@237" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@177" Target="@243" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@177" Target="@255" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@178" Target="@190" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@178" Target="@209" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@178" Target="@218" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@178" Target="@227" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@178" Target="@244" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@178" Target="@256" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@179" Target="@196" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@179" Target="@210" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@179" Target="@228" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@179" Target="@230" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@179" Target="@245" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@179" Target="@257" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@180" Target="@189" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@180" Target="@197" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@180" Target="@211" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@180" Target="@229" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@180" Target="@246" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@180" Target="@258" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@184" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@185" Target="@102" Category="CodeSchema_Calls" />
+    <Link Source="@185" Target="@309" Category="CodeSchema_Calls" />
+    <Link Source="@186" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@187" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@188" Target="@121" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@278" Category="CodeSchema_Calls" />
+    <Link Source="@19" Target="@168" Category="Contains" />
+    <Link Source="@19" Target="@201" Category="Contains" />
+    <Link Source="@19" Target="@214" Category="Contains" />
+    <Link Source="@19" Target="@249" Category="Contains" />
+    <Link Source="@19" Target="@273" Category="Contains" />
+    <Link Source="@19" Target="@331" Category="Contains" />
+    <Link Source="@19" Target="@96" Category="Contains" />
+    <Link Source="@19" Target="@97" Category="Contains" />
+    <Link Source="@190" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@191" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@193" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@193" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@194" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@195" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@196" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@197" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@198" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@198" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@198" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@198" Target="@61" Category="References" />
+    <Link Source="@200" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@200" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@201" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@201" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@202" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@202" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@203" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@203" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@204" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@204" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@206" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@206" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@207" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@207" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@208" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@208" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@209" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@209" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@21" Target="@122" Category="Contains" />
+    <Link Source="@21" Target="@169" Category="Contains" />
+    <Link Source="@21" Target="@183" Category="Contains" />
+    <Link Source="@21" Target="@202" Category="Contains" />
+    <Link Source="@21" Target="@215" Category="Contains" />
+    <Link Source="@21" Target="@234" Category="Contains" />
+    <Link Source="@21" Target="@247" Category="Contains" />
+    <Link Source="@21" Target="@274" Category="Contains" />
+    <Link Source="@21" Target="@332" Category="Contains" />
+    <Link Source="@21" Target="@50" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@210" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@210" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@211" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@211" Target="@345" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@214" Target="@122" Category="CodeSchema_Calls" />
+    <Link Source="@214" Target="@268" Category="CodeSchema_Calls" />
+    <Link Source="@214" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@214" Target="@50" Category="References" />
+    <Link Source="@214" Target="@96" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@214" Target="@97" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@215" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@215" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@216" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@217" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@218" Target="@161" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@347" Category="CodeSchema_Calls" />
+    <Link Source="@220" Target="@268" Category="CodeSchema_Calls" />
+    <Link Source="@220" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@220" Target="@50" Category="References" />
+    <Link Source="@220" Target="@98" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@220" Target="@99" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@221" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@223" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@224" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@225" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@227" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@228" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@229" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@23" Target="@102" Category="Contains" />
+    <Link Source="@23" Target="@170" Category="Contains" />
+    <Link Source="@23" Target="@185" Category="Contains" />
+    <Link Source="@23" Target="@186" Category="Contains" />
+    <Link Source="@23" Target="@188" Category="Contains" />
+    <Link Source="@23" Target="@203" Category="Contains" />
+    <Link Source="@23" Target="@216" Category="Contains" />
+    <Link Source="@23" Target="@235" Category="Contains" />
+    <Link Source="@23" Target="@250" Category="Contains" />
+    <Link Source="@23" Target="@260" Category="Contains" />
+    <Link Source="@23" Target="@275" Category="Contains" />
+    <Link Source="@23" Target="@333" Category="Contains" />
+    <Link Source="@23" Target="@50" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@230" Target="@161" Category="CodeSchema_Calls" />
+    <Link Source="@230" Target="@162" Category="CodeSchema_Calls" />
+    <Link Source="@231" Target="@285" Category="CodeSchema_Calls" />
+    <Link Source="@232" Target="@73" Category="CodeSchema_Calls" />
+    <Link Source="@233" Target="@282" Category="CodeSchema_Calls" />
+    <Link Source="@234" Target="@102" Category="CodeSchema_Calls" />
+    <Link Source="@234" Target="@309" Category="CodeSchema_Calls" />
+    <Link Source="@235" Target="@122" Category="CodeSchema_Calls" />
+    <Link Source="@236" Target="@102" Category="CodeSchema_Calls" />
+    <Link Source="@236" Target="@309" Category="CodeSchema_Calls" />
+    <Link Source="@237" Target="@161" Category="CodeSchema_Calls" />
+    <Link Source="@237" Target="@162" Category="CodeSchema_Calls" />
+    <Link Source="@237" Target="@50" Category="References" />
+    <Link Source="@238" Target="@103" Category="CodeSchema_Calls" />
+    <Link Source="@239" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@240" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@242" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@242" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@243" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@244" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@245" Target="@289" Category="CodeSchema_Calls" />
+    <Link Source="@247" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@247" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@248" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@248" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@249" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@249" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@25" Target="@171" Category="Contains" />
+    <Link Source="@25" Target="@204" Category="Contains" />
+    <Link Source="@25" Target="@217" Category="Contains" />
+    <Link Source="@25" Target="@236" Category="Contains" />
+    <Link Source="@25" Target="@276" Category="Contains" />
+    <Link Source="@25" Target="@334" Category="Contains" />
+    <Link Source="@250" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@251" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@252" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@254" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@254" Target="@290" Category="CodeSchema_Calls" />
+    <Link Source="@256" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@257" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@258" Target="@286" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@117" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@160" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@262" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@263" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@266" Category="CodeSchema_Calls" />
+    <Link Source="@264" Target="@5" Category="References" />
+    <Link Source="@267" Target="@137" Category="CodeSchema_Calls" />
+    <Link Source="@267" Target="@139" Category="CodeSchema_Calls" />
+    <Link Source="@267" Target="@145" Category="CodeSchema_Calls" />
+    <Link Source="@267" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@267" Target="@155" Category="CodeSchema_Calls" />
+    <Link Source="@268" Target="@109" Category="CodeSchema_Calls" />
+    <Link Source="@268" Target="@135" Category="CodeSchema_Calls" />
+    <Link Source="@268" Target="@147" Category="CodeSchema_Calls" />
+    <Link Source="@268" Target="@74" Category="CodeSchema_Calls" />
+    <Link Source="@268" Target="@76" Category="CodeSchema_Calls" />
+    <Link Source="@268" Target="@77" Category="CodeSchema_Calls" />
+    <Link Source="@269" Target="@163" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@269" Target="@164" Category="CodeSchema_Calls" />
+    <Link Source="@269" Target="@165" Category="CodeSchema_Calls" />
+    <Link Source="@269" Target="@264" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@272" Target="@330" Category="CodeSchema_Calls" />
+    <Link Source="@273" Target="@280" Category="CodeSchema_Calls" />
+    <Link Source="@273" Target="@331" Category="CodeSchema_Calls" />
+    <Link Source="@274" Target="@332" Category="CodeSchema_Calls" />
+    <Link Source="@275" Target="@333" Category="CodeSchema_Calls" />
+    <Link Source="@276" Target="@334" Category="CodeSchema_Calls" />
+    <Link Source="@277" Target="@335" Category="CodeSchema_Calls" />
+    <Link Source="@278" Target="@299" Category="CodeSchema_Calls" />
+    <Link Source="@278" Target="@302" Category="CodeSchema_Calls" />
+    <Link Source="@278" Target="@315" Category="CodeSchema_Calls" />
+    <Link Source="@278" Target="@336" Category="CodeSchema_Calls" />
+    <Link Source="@278" Target="@59" Category="References" />
+    <Link Source="@28" Target="@161" Category="Contains" />
+    <Link Source="@28" Target="@172" Category="Contains" />
+    <Link Source="@28" Target="@187" Category="Contains" />
+    <Link Source="@28" Target="@191" Category="Contains" />
+    <Link Source="@28" Target="@205" Category="Contains" />
+    <Link Source="@28" Target="@223" Category="Contains" />
+    <Link Source="@28" Target="@239" Category="Contains" />
+    <Link Source="@28" Target="@251" Category="Contains" />
+    <Link Source="@28" Target="@277" Category="Contains" />
+    <Link Source="@28" Target="@335" Category="Contains" />
+    <Link Source="@28" Target="@78" Category="Contains" />
+    <Link Source="@280" Target="@156" Category="CodeSchema_Calls" />
+    <Link Source="@281" Target="@337" Category="CodeSchema_Calls" />
+    <Link Source="@282" Target="@338" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@159" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@283" Target="@339" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@346" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@47" Category="References" />
+    <Link Source="@285" Target="@340" Category="CodeSchema_Calls" />
+    <Link Source="@286" Target="@341" Category="CodeSchema_Calls" />
+    <Link Source="@287" Target="@342" Category="CodeSchema_Calls" />
+    <Link Source="@288" Target="@343" Category="CodeSchema_Calls" />
+    <Link Source="@289" Target="@299" Category="CodeSchema_Calls" />
+    <Link Source="@289" Target="@302" Category="CodeSchema_Calls" />
+    <Link Source="@289" Target="@328" Category="CodeSchema_Calls" />
+    <Link Source="@289" Target="@344" Category="CodeSchema_Calls" />
+    <Link Source="@289" Target="@59" Category="References" />
+    <Link Source="@291" Target="@14" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@295" Target="@30" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@296" Target="@12" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@3" Target="@271" Category="Contains" />
+    <Link Source="@3" Target="@95" Category="Contains" />
+    <Link Source="@30" Target="(@1 @10 @29 @124)" Category="Contains" />
+    <Link Source="@30" Target="(@1 @10 @29 @125)" Category="Contains" />
+    <Link Source="@30" Target="(@1 @10 @29 @270)" Category="Contains" />
+    <Link Source="@30" Target="(@1 @10 @29 @300)" Category="Contains" />
+    <Link Source="@30" Target="(@1 @10 @29 @92)" Category="Contains" />
+    <Link Source="@30" Target="(@1 @10 @29 Member=get_MovieID)" Category="Contains" />
+    <Link Source="@30" Target="@106" Category="Contains" />
+    <Link Source="@30" Target="@112" Category="Contains" />
+    <Link Source="@30" Target="@120" Category="Contains" />
+    <Link Source="@30" Target="@129" Category="Contains" />
+    <Link Source="@30" Target="@142" Category="Contains" />
+    <Link Source="@30" Target="@15" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@30" Target="@307" Category="Contains" />
+    <Link Source="@30" Target="@310" Category="Contains" />
+    <Link Source="@30" Target="@311" Category="Contains" />
+    <Link Source="@30" Target="@318" Category="Contains" />
+    <Link Source="@30" Target="@49" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@30" Target="@84" Category="Contains" />
+    <Link Source="@304" Target="@13" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@310" Target="@49" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@313" Target="@58" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@318" Target="@15" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@319" Target="@15" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@32" Target="@173" Category="Contains" />
+    <Link Source="@32" Target="@193" Category="Contains" />
+    <Link Source="@32" Target="@206" Category="Contains" />
+    <Link Source="@32" Target="@221" Category="Contains" />
+    <Link Source="@32" Target="@224" Category="Contains" />
+    <Link Source="@32" Target="@242" Category="Contains" />
+    <Link Source="@32" Target="@254" Category="Contains" />
+    <Link Source="@32" Target="@278" Category="Contains" />
+    <Link Source="@32" Target="@336" Category="Contains" />
+    <Link Source="@322" Target="@60" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@323" Target="@61" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@325" Target="@14" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@326" Target="@58" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@34" Target="(@1 @10 @33 @124)" Category="Contains" />
+    <Link Source="@34" Target="(@1 @10 @33 @125)" Category="Contains" />
+    <Link Source="@34" Target="(@1 @10 @33 @300)" Category="Contains" />
+    <Link Source="@34" Target="(@1 @10 @33 @306)" Category="Contains" />
+    <Link Source="@34" Target="(@1 @10 @33 @92)" Category="Contains" />
+    <Link Source="@34" Target="@107" Category="Contains" />
+    <Link Source="@34" Target="@130" Category="Contains" />
+    <Link Source="@34" Target="@14" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@34" Target="@143" Category="Contains" />
+    <Link Source="@34" Target="@279" Category="Contains" />
+    <Link Source="@34" Target="@291" Category="Contains" />
+    <Link Source="@34" Target="@312" Category="Contains" />
+    <Link Source="@34" Target="@82" Category="Contains" />
+    <Link Source="@346" Target="@265" Category="CodeSchema_Calls" />
+    <Link Source="@348" Target="@118" Category="CodeSchema_Calls" />
+    <Link Source="@37" Target="@140" Category="Contains" />
+    <Link Source="@37" Target="@156" Category="Contains" />
+    <Link Source="@37" Target="@292" Category="Contains" />
+    <Link Source="@37" Target="@303" Category="Contains" />
+    <Link Source="@37" Target="@86" Category="Contains" />
+    <Link Source="@38" Target="@280" Category="Contains" />
+    <Link Source="@40" Target="@174" Category="Contains" />
+    <Link Source="@40" Target="@194" Category="Contains" />
+    <Link Source="@40" Target="@207" Category="Contains" />
+    <Link Source="@40" Target="@225" Category="Contains" />
+    <Link Source="@40" Target="@232" Category="Contains" />
+    <Link Source="@40" Target="@238" Category="Contains" />
+    <Link Source="@40" Target="@240" Category="Contains" />
+    <Link Source="@40" Target="@252" Category="Contains" />
+    <Link Source="@40" Target="@281" Category="Contains" />
+    <Link Source="@40" Target="@337" Category="Contains" />
+    <Link Source="@40" Target="@73" Category="Contains" />
+    <Link Source="@43" Target="@175" Category="Contains" />
+    <Link Source="@43" Target="@198" Category="Contains" />
+    <Link Source="@43" Target="@231" Category="Contains" />
+    <Link Source="@43" Target="@282" Category="Contains" />
+    <Link Source="@43" Target="@338" Category="Contains" />
+    <Link Source="@45" Target="(@1 @41 @44 @166)" Category="Contains" />
+    <Link Source="@45" Target="(@1 @41 @44 Member=(Name=OnClosing OverloadingParameters=[(@87 Namespace=System.ComponentModel Type=CancelEventArgs)]))" Category="Contains" />
+    <Link Source="@45" Target="@159" Category="Contains" />
+    <Link Source="@45" Target="@283" Category="Contains" />
+    <Link Source="@45" Target="@290" Category="Contains" />
+    <Link Source="@45" Target="@339" Category="Contains" />
+    <Link Source="@45" Target="@345" Category="Contains" />
+    <Link Source="@47" Target="(@1 @4 @46 @270)" Category="Contains" />
+    <Link Source="@47" Target="(@1 @4 @46 Member=(Name=EndDialog OverloadingParameters=[@115,@115]))" Category="Contains" />
+    <Link Source="@47" Target="(@1 @4 @46 Member=(Name=GetWindowText OverloadingParameters=[@115,(@69 Namespace=System.Text Type=StringBuilder),@72]))" Category="Contains" />
+    <Link Source="@47" Target="(@1 @4 @46 Member=(Name=SendMessage OverloadingParameters=[@115,@72,@115,@115]))" Category="Contains" />
+    <Link Source="@47" Target="@116" Category="Contains" />
+    <Link Source="@47" Target="@117" Category="Contains" />
+    <Link Source="@47" Target="@118" Category="Contains" />
+    <Link Source="@47" Target="@160" Category="Contains" />
+    <Link Source="@47" Target="@163" Category="Contains" />
+    <Link Source="@47" Target="@259" Category="Contains" />
+    <Link Source="@47" Target="@262" Category="Contains" />
+    <Link Source="@47" Target="@263" Category="Contains" />
+    <Link Source="@47" Target="@264" Category="Contains" />
+    <Link Source="@47" Target="@265" Category="Contains" />
+    <Link Source="@47" Target="@266" Category="Contains" />
+    <Link Source="@47" Target="@269" Category="Contains" />
+    <Link Source="@47" Target="@346" Category="Contains" />
+    <Link Source="@47" Target="@348" Category="Contains" />
+    <Link Source="@47" Target="@5" Category="Contains" />
+    <Link Source="@47" Target="@7" Category="References">
+      <Category Ref="Contains" />
+    </Link>
+    <Link Source="@47" Target="@9" Category="References">
+      <Category Ref="Contains" />
+    </Link>
+    <Link Source="@49" Target="(@1 @10 @48 @124)" Category="Contains" />
+    <Link Source="@49" Target="(@1 @10 @48 @125)" Category="Contains" />
+    <Link Source="@49" Target="(@1 @10 @48 @300)" Category="Contains" />
+    <Link Source="@49" Target="(@1 @10 @48 @92)" Category="Contains" />
+    <Link Source="@49" Target="(@1 @10 @48 Member=get_ImagePath)" Category="Contains" />
+    <Link Source="@49" Target="(@1 @10 @48 Member=get_OwnerID)" Category="Contains" />
+    <Link Source="@49" Target="@108" Category="Contains" />
+    <Link Source="@49" Target="@113" Category="Contains" />
+    <Link Source="@49" Target="@12" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@49" Target="@13" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@49" Target="@131" Category="Contains" />
+    <Link Source="@49" Target="@134" Category="Contains" />
+    <Link Source="@49" Target="@141" Category="Contains" />
+    <Link Source="@49" Target="@146" Category="Contains" />
+    <Link Source="@49" Target="@152" Category="Contains" />
+    <Link Source="@49" Target="@284" Category="Contains" />
+    <Link Source="@49" Target="@293" Category="Contains" />
+    <Link Source="@49" Target="@296" Category="Contains" />
+    <Link Source="@49" Target="@304" Category="Contains" />
+    <Link Source="@49" Target="@308" Category="Contains" />
+    <Link Source="@49" Target="@313" Category="Contains" />
+    <Link Source="@49" Target="@316" Category="Contains" />
+    <Link Source="@49" Target="@320" Category="Contains" />
+    <Link Source="@49" Target="@58" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@49" Target="@75" Category="Contains" />
+    <Link Source="@49" Target="@80" Category="Contains" />
+    <Link Source="@49" Target="@81" Category="Contains" />
+    <Link Source="@50" Target="@109" Category="Contains" />
+    <Link Source="@50" Target="@119" Category="Contains" />
+    <Link Source="@50" Target="@123" Category="Contains" />
+    <Link Source="@50" Target="@127" Category="Contains" />
+    <Link Source="@50" Target="@135" Category="Contains" />
+    <Link Source="@50" Target="@147" Category="Contains" />
+    <Link Source="@50" Target="@268" Category="Contains" />
+    <Link Source="@50" Target="@294" Category="Contains" />
+    <Link Source="@50" Target="@297" Category="Contains" />
+    <Link Source="@50" Target="@305" Category="Contains" />
+    <Link Source="@50" Target="@309" Category="Contains" />
+    <Link Source="@50" Target="@317" Category="Contains" />
+    <Link Source="@50" Target="@321" Category="Contains" />
+    <Link Source="@50" Target="@74" Category="Contains" />
+    <Link Source="@50" Target="@76" Category="Contains" />
+    <Link Source="@50" Target="@77" Category="Contains" />
+    <Link Source="@50" Target="@89" Category="Contains" />
+    <Link Source="@50" Target="@93" Category="Contains" />
+    <Link Source="@52" Target="@176" Category="Contains" />
+    <Link Source="@52" Target="@184" Category="Contains" />
+    <Link Source="@52" Target="@219" Category="Contains" />
+    <Link Source="@52" Target="@233" Category="Contains" />
+    <Link Source="@52" Target="@285" Category="Contains" />
+    <Link Source="@52" Target="@340" Category="Contains" />
+    <Link Source="@52" Target="@347" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 @124)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 @125)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 @270)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 @300)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 @306)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 @92)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 Member=get_EditionID)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 Member=get_Time)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @10 @53 Member=get_UserID)" Category="Contains" />
+    <Link Source="@54" Target="@104" Category="Contains" />
+    <Link Source="@54" Target="@110" Category="Contains" />
+    <Link Source="@54" Target="@114" Category="Contains" />
+    <Link Source="@54" Target="@132" Category="Contains" />
+    <Link Source="@54" Target="@153" Category="Contains" />
+    <Link Source="@54" Target="@295" Category="Contains" />
+    <Link Source="@54" Target="@30" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@54" Target="@326" Category="Contains" />
+    <Link Source="@54" Target="@58" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@54" Target="@88" Category="Contains" />
+    <Link Source="@54" Target="@90" Category="Contains" />
+    <Link Source="@56" Target="@177" Category="Contains" />
+    <Link Source="@56" Target="@195" Category="Contains" />
+    <Link Source="@56" Target="@208" Category="Contains" />
+    <Link Source="@56" Target="@226" Category="Contains" />
+    <Link Source="@56" Target="@237" Category="Contains" />
+    <Link Source="@56" Target="@243" Category="Contains" />
+    <Link Source="@56" Target="@255" Category="Contains" />
+    <Link Source="@56" Target="@286" Category="Contains" />
+    <Link Source="@56" Target="@341" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 @124)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 @125)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 @270)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 @300)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 @306)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 @92)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @10 @57 Member=get_Token)" Category="Contains" />
+    <Link Source="@58" Target="@100" Category="Contains" />
+    <Link Source="@58" Target="@111" Category="Contains" />
+    <Link Source="@58" Target="@133" Category="Contains" />
+    <Link Source="@58" Target="@136" Category="Contains" />
+    <Link Source="@58" Target="@138" Category="Contains" />
+    <Link Source="@58" Target="@14" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@58" Target="@144" Category="Contains" />
+    <Link Source="@58" Target="@148" Category="Contains" />
+    <Link Source="@58" Target="@149" Category="Contains" />
+    <Link Source="@58" Target="@15" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@58" Target="@154" Category="Contains" />
+    <Link Source="@58" Target="@298" Category="Contains" />
+    <Link Source="@58" Target="@301" Category="Contains" />
+    <Link Source="@58" Target="@314" Category="Contains" />
+    <Link Source="@58" Target="@319" Category="Contains" />
+    <Link Source="@58" Target="@322" Category="Contains" />
+    <Link Source="@58" Target="@324" Category="Contains" />
+    <Link Source="@58" Target="@325" Category="Contains" />
+    <Link Source="@58" Target="@327" Category="Contains" />
+    <Link Source="@58" Target="@60" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@58" Target="@83" Category="Contains" />
+    <Link Source="@58" Target="@85" Category="Contains" />
+    <Link Source="@59" Target="@137" Category="Contains" />
+    <Link Source="@59" Target="@139" Category="Contains" />
+    <Link Source="@59" Target="@145" Category="Contains" />
+    <Link Source="@59" Target="@150" Category="Contains" />
+    <Link Source="@59" Target="@151" Category="Contains" />
+    <Link Source="@59" Target="@155" Category="Contains" />
+    <Link Source="@59" Target="@267" Category="Contains" />
+    <Link Source="@59" Target="@299" Category="Contains" />
+    <Link Source="@59" Target="@302" Category="Contains" />
+    <Link Source="@59" Target="@315" Category="Contains" />
+    <Link Source="@59" Target="@323" Category="Contains" />
+    <Link Source="@59" Target="@328" Category="Contains" />
+    <Link Source="@59" Target="@61" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@60" Target="@60" Category="References" />
+    <Link Source="@61" Target="@61" Category="References" />
+    <Link Source="@63" Target="@162" Category="Contains" />
+    <Link Source="@63" Target="@178" Category="Contains" />
+    <Link Source="@63" Target="@190" Category="Contains" />
+    <Link Source="@63" Target="@209" Category="Contains" />
+    <Link Source="@63" Target="@218" Category="Contains" />
+    <Link Source="@63" Target="@227" Category="Contains" />
+    <Link Source="@63" Target="@244" Category="Contains" />
+    <Link Source="@63" Target="@256" Category="Contains" />
+    <Link Source="@63" Target="@287" Category="Contains" />
+    <Link Source="@63" Target="@342" Category="Contains" />
+    <Link Source="@63" Target="@50" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@63" Target="@79" Category="Contains" />
+    <Link Source="@65" Target="@103" Category="Contains" />
+    <Link Source="@65" Target="@179" Category="Contains" />
+    <Link Source="@65" Target="@196" Category="Contains" />
+    <Link Source="@65" Target="@210" Category="Contains" />
+    <Link Source="@65" Target="@228" Category="Contains" />
+    <Link Source="@65" Target="@230" Category="Contains" />
+    <Link Source="@65" Target="@245" Category="Contains" />
+    <Link Source="@65" Target="@257" Category="Contains" />
+    <Link Source="@65" Target="@261" Category="Contains" />
+    <Link Source="@65" Target="@288" Category="Contains" />
+    <Link Source="@65" Target="@343" Category="Contains" />
+    <Link Source="@65" Target="@50" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@67" Target="@180" Category="Contains" />
+    <Link Source="@67" Target="@189" Category="Contains" />
+    <Link Source="@67" Target="@197" Category="Contains" />
+    <Link Source="@67" Target="@211" Category="Contains" />
+    <Link Source="@67" Target="@229" Category="Contains" />
+    <Link Source="@67" Target="@246" Category="Contains" />
+    <Link Source="@67" Target="@258" Category="Contains" />
+    <Link Source="@67" Target="@289" Category="Contains" />
+    <Link Source="@67" Target="@344" Category="Contains" />
+    <Link Source="@7" Target="(@1 @4 @6 Member=(Name=BeginInvoke OverloadingParameters=[@115,@115,(@69 @70 Type=AsyncCallback),@157]))" Category="Contains" />
+    <Link Source="@7" Target="(@1 @4 @6 Member=(Name=EndInvoke OverloadingParameters=[(@69 @70 Type=IAsyncResult)]))" Category="Contains" />
+    <Link Source="@7" Target="(@1 @4 @6 Member=(Name=Invoke OverloadingParameters=[@115,@115]))" Category="Contains" />
+    <Link Source="@7" Target="@164" Category="Contains" />
+    <Link Source="@73" Target="@281" Category="CodeSchema_Calls" />
+    <Link Source="@75" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@80" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@81" Target="@131" Category="CodeSchema_Calls" />
+    <Link Source="@82" Target="@130" Category="CodeSchema_Calls" />
+    <Link Source="@83" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@84" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@85" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@88" Target="@132" Category="CodeSchema_Calls" />
+    <Link Source="@89" Target="@307" Category="CodeSchema_Calls" />
+    <Link Source="@89" Target="@311" Category="CodeSchema_Calls" />
+    <Link Source="@9" Target="(@1 @4 @8 Member=(Name=BeginInvoke OverloadingParameters=[@72,@115,@115,(@69 @70 Type=AsyncCallback),@157]))" Category="Contains" />
+    <Link Source="@9" Target="(@1 @4 @8 Member=(Name=EndInvoke OverloadingParameters=[(@69 @70 Type=IAsyncResult)]))" Category="Contains" />
+    <Link Source="@9" Target="(@1 @4 @8 Member=(Name=Invoke OverloadingParameters=[@72,@115,@115]))" Category="Contains" />
+    <Link Source="@9" Target="@165" Category="Contains" />
+    <Link Source="@90" Target="@132" Category="CodeSchema_Calls" />
+    <Link Source="@93" Target="@312" Category="CodeSchema_Calls" />
+    <Link Source="@95" Target="@303" Category="CodeSchema_Calls" />
+    <Link Source="@96" Target="@292" Category="CodeSchema_Calls" />
+    <Link Source="@97" Target="@303" Category="CodeSchema_Calls" />
+    <Link Source="@98" Target="@292" Category="CodeSchema_Calls" />
+    <Link Source="@99" Target="@303" Category="CodeSchema_Calls" />
+  </Links>
+  <Categories>
+    <Category Id="CodeSchema_Block" Label="Block" BasedOn="CodeSchema_Statement" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" IsProviderRoot="False" NavigationActionLabel="Blocks" />
+    <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
+    <Category Id="CodeSchema_Class" Label="Class" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" IsProviderRoot="False" NavigationActionLabel="Classes" />
+    <Category Id="CodeSchema_Delegate" Label="Delegate" BasedOn="CodeSchema_Class" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Delegate" IsProviderRoot="False" NavigationActionLabel="Delegates" />
+    <Category Id="CodeSchema_ElementType" Label="Element Type" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Element Types" OutgoingActionLabel="Element Types" />
+    <Category Id="CodeSchema_Enum" Label="Enum" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Enum" IsProviderRoot="False" NavigationActionLabel="Enums" />
+    <Category Id="CodeSchema_FunctionPointer" Label="Function Pointer" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Function Pointers" OutgoingActionLabel="Function Pointers" />
+    <Category Id="CodeSchema_Member" Label="Member" BasedOn="CodeSchema_Block" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" IsProviderRoot="False" NavigationActionLabel="Members" />
+    <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" IsProviderRoot="False" NavigationActionLabel="Methods" />
+    <Category Id="CodeSchema_ReturnTypeLink" Label="Return" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Return types" OutgoingActionLabel="Return types" />
+    <Category Id="CodeSchema_Statement" Label="Statement" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" IsProviderRoot="False" NavigationActionLabel="Statement" />
+    <Category Id="CodeSchema_Struct" Label="Struct" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Struct" IsProviderRoot="False" NavigationActionLabel="Structs" />
+    <Category Id="CodeSchema_Type" Label="Type" BasedOn="CodeSchema_Block" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" IsProviderRoot="False" NavigationActionLabel="Types" />
+    <Category Id="Contains" Label="Contains" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="References" Label="References" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Referenced By" OutgoingActionLabel="References" />
+  </Categories>
+  <Properties>
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsArray" Label="IsArray" Description="IsArray" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsCompilerGenerated" Label="IsCompilerGenerated" Description="IsCompilerGenerated" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsConstructor" Label="IsConstructor" Description="IsConstructor" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsGeneratedCode" Label="IsGeneratedCode" Description="IsGeneratedCode" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPrivate" Label="IsPrivate" Description="IsPrivate" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsProtected" Label="IsProtected" Description="IsProtected" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="IsPublic" Description="IsPublic" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsSpecialName" Label="IsSpecialName" Description="IsSpecialName" DataType="System.Boolean" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="ErrorMessage" Label="Error" Description="Error" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Progression.Layout.GraphDirection" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.Progression.GraphModel.GroupStyle" />
+    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="IsUnreferenced" Label="Unreferenced" Description="Node has no links pointing to it from other nodes in the graph" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="ArrayRank" Label="Array Rank" ValueType="System.String" />
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="GenericArguments" Label="Generic Arguments" ValueType="Microsoft.VisualStudio.Progression.GraphModel.QualifiedIdentifierArrayCollection" />
+    <Name Id="GenericParameterCount" Label="Generic Parameter Count" ValueType="System.String" />
+    <Name Id="Member" Label="Member" ValueType="System.Object" />
+    <Name Id="Name" Label="Name" ValueType="System.String" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="OverloadingParameters" Label="Parameter" ValueType="Microsoft.VisualStudio.Progression.GraphModel.QualifiedIdentifierArrayCollection" Formatter="NameValueNoEscape" />
+    <Name Id="ParentType" Label="Parent Type" ValueType="System.Object" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Unreferenced" ToolTip="Node has no links pointing to it from other nodes in the graph" ValueLabel="True">
+      <Condition Expression="IsUnreferenced" />
+      <Setter Property="Background" Value="Purple" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Assembly" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Assembly')" />
+      <Setter Property="Background" Value="#1C3068" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Namespace" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Namespace')" />
+      <Setter Property="Background" Value="#4A65A0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Type" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Type')" />
+      <Setter Property="Background" Value="#D3DCEF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Method" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Method')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Generics" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Generics')" />
+      <Setter Property="Background" Value="#FFA080A0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Externals" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Externals')" />
+      <Setter Property="Background" Value="#FFA08080" />
+    </Style>
+  </Styles>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(da3090a3-9d54-49d4-a607-be59b3ce0023.OutputPathUri)" />
+    <Alias n="2" Id="Namespace=RentItClient.GUI.ContentProvider" />
+    <Alias n="3" Id="(@1 @2 Type=(Name=&lt;&gt;c__DisplayClass2 ParentType=CPEditMoviePage))" />
+    <Alias n="4" Id="Namespace=System.Windows.Forms" />
+    <Alias n="5" Id="(@1 @4 Type=(Name=CWPRETSTRUCT ParentType=MessageBoxManager))" />
+    <Alias n="6" Id="Type=(Name=EnumChildProc ParentType=MessageBoxManager)" />
+    <Alias n="7" Id="(@1 @4 @6)" />
+    <Alias n="8" Id="Type=(Name=HookProc ParentType=MessageBoxManager)" />
+    <Alias n="9" Id="(@1 @4 @8)" />
+    <Alias n="10" Id="Namespace=RentItClient.RentItService" />
+    <Alias n="11" Id="ArrayRank=1" />
+    <Alias n="12" Id="(@1 @10 Type=(Name=Edition @11 ParentType=Edition))" />
+    <Alias n="13" Id="(@1 @10 Type=(Name=Genre @11 ParentType=Genre))" />
+    <Alias n="14" Id="(@1 @10 Type=(Name=Movie @11 ParentType=Movie))" />
+    <Alias n="15" Id="(@1 @10 Type=(Name=Rental @11 ParentType=Rental))" />
+    <Alias n="16" Id="Type=CPEditMoviePage" />
+    <Alias n="17" Id="(@1 @2 @16)" />
+    <Alias n="18" Id="Type=CPRegisterMoviePage" />
+    <Alias n="19" Id="(@1 @2 @18)" />
+    <Alias n="20" Id="Type=CPUploadEditionPage" />
+    <Alias n="21" Id="(@1 @2 @20)" />
+    <Alias n="22" Id="Type=CPViewMoviePage" />
+    <Alias n="23" Id="(@1 @2 @22)" />
+    <Alias n="24" Id="Type=CPYourMoviesPage" />
+    <Alias n="25" Id="(@1 @2 @24)" />
+    <Alias n="26" Id="Namespace=RentItClient.GUI.User" />
+    <Alias n="27" Id="Type=DownloadEditionPage" />
+    <Alias n="28" Id="(@1 @26 @27)" />
+    <Alias n="29" Id="Type=Edition" />
+    <Alias n="30" Id="(@1 @10 @29)" />
+    <Alias n="31" Id="Type=EditProfilePage" />
+    <Alias n="32" Id="(@1 @26 @31)" />
+    <Alias n="33" Id="Type=Genre" />
+    <Alias n="34" Id="(@1 @10 @33)" />
+    <Alias n="35" Id="Namespace=RentItClient.Types" />
+    <Alias n="36" Id="Type=GenreChecked" />
+    <Alias n="37" Id="(@1 @35 @36)" />
+    <Alias n="38" Id="(@1 @35 Type=GenreCheckList)" />
+    <Alias n="39" Id="Type=ListMoviesPage" />
+    <Alias n="40" Id="(@1 @26 @39)" />
+    <Alias n="41" Id="Namespace=RentItClient.GUI" />
+    <Alias n="42" Id="Type=LoginPage" />
+    <Alias n="43" Id="(@1 @41 @42)" />
+    <Alias n="44" Id="Type=MainWindow" />
+    <Alias n="45" Id="(@1 @41 @44)" />
+    <Alias n="46" Id="Type=MessageBoxManager" />
+    <Alias n="47" Id="(@1 @4 @46)" />
+    <Alias n="48" Id="Type=Movie" />
+    <Alias n="49" Id="(@1 @10 @48)" />
+    <Alias n="50" Id="(@1 @35 @48)" />
+    <Alias n="51" Id="Type=RegistrationPage" />
+    <Alias n="52" Id="(@1 @41 @51)" />
+    <Alias n="53" Id="Type=Rental" />
+    <Alias n="54" Id="(@1 @10 @53)" />
+    <Alias n="55" Id="Type=RentalHistoryPage" />
+    <Alias n="56" Id="(@1 @26 @55)" />
+    <Alias n="57" Id="Type=User" />
+    <Alias n="58" Id="(@1 @10 @57)" />
+    <Alias n="59" Id="(@1 @35 @57)" />
+    <Alias n="60" Id="(@1 @10 Type=UserType)" />
+    <Alias n="61" Id="(@1 @35 Type=UserType)" />
+    <Alias n="62" Id="Type=ViewEditionPage" />
+    <Alias n="63" Id="(@1 @26 @62)" />
+    <Alias n="64" Id="Type=ViewMoviePage" />
+    <Alias n="65" Id="(@1 @26 @64)" />
+    <Alias n="66" Id="Type=ViewProfilePage" />
+    <Alias n="67" Id="(@1 @26 @66)" />
+    <Alias n="68" Id="Name=.ctor" />
+    <Alias n="69" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/mscorlib.dll" />
+    <Alias n="70" Id="Namespace=System" />
+    <Alias n="71" Id="(@69 @70 Type=String)" />
+    <Alias n="72" Id="(@69 @70 Type=Int32)" />
+    <Alias n="73" Id="(@1 @26 @39 Member=(@68 OverloadingParameters=[(@69 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[(@69 @70 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@71,@72]))]))]))" />
+    <Alias n="74" Id="(@1 @35 @48 Member=(Name=set_Editions OverloadingParameters=[(@69 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[(@69 @70 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@71,@72]))]))]))" />
+    <Alias n="75" Id="(@1 @10 @48 Member=(Name=set_ReleaseDate OverloadingParameters=[(@69 @70 Type=(Name=Nullable GenericParameterCount=1 GenericArguments=[(@69 @70 Type=DateTime)]))]))" />
+    <Alias n="76" Id="(@1 @35 @48 Member=(Name=set_ReleaseDate OverloadingParameters=[(@69 @70 Type=(Name=Nullable GenericParameterCount=1 GenericArguments=[(@69 @70 Type=DateTime)]))]))" />
+    <Alias n="77" Id="(@1 @35 @48 Member=(Name=set_Genres OverloadingParameters=[(@69 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[@71]))]))" />
+    <Alias n="78" Id="(@1 @26 @27 Member=(Name=&lt;.ctor&gt;b__0 OverloadingParameters=[(@69 @70 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@71,@72]))]))" />
+    <Alias n="79" Id="(@1 @26 @62 Member=(Name=&lt;.ctor&gt;b__0 OverloadingParameters=[(@69 @70 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@71,@72]))]))" />
+    <Alias n="80" Id="(@1 @10 @48 Member=(Name=set_Editions OverloadingParameters=[@12]))" />
+    <Alias n="81" Id="(@1 @10 @48 Member=(Name=set_Genres OverloadingParameters=[@13]))" />
+    <Alias n="82" Id="(@1 @10 @33 Member=(Name=set_AssociatedMovies OverloadingParameters=[@14]))" />
+    <Alias n="83" Id="(@1 @10 @57 Member=(Name=set_UploadedMovies OverloadingParameters=[@14]))" />
+    <Alias n="84" Id="(@1 @10 @29 Member=(Name=set_Rentals OverloadingParameters=[@15]))" />
+    <Alias n="85" Id="(@1 @10 @57 Member=(Name=set_Rentals OverloadingParameters=[@15]))" />
+    <Alias n="86" Id="(@1 @35 @36 Member=(Name=set_Checked OverloadingParameters=[(@69 @70 Type=Boolean)]))" />
+    <Alias n="87" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/System.dll" />
+    <Alias n="88" Id="(@1 @10 @53 Member=(Name=set_Time OverloadingParameters=[(@69 @70 Type=DateTime)]))" />
+    <Alias n="89" Id="(@1 @35 @48 Member=(Name=&lt;ConvertServiceMovie&gt;b__1 OverloadingParameters=[@30]))" />
+    <Alias n="90" Id="(@1 @10 @53 Member=(Name=set_Edition OverloadingParameters=[@30]))" />
+    <Alias n="91" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll" />
+    <Alias n="92" Id="Member=(Name=set_ExtensionData OverloadingParameters=[(@91 Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])" />
+    <Alias n="93" Id="(@1 @35 @48 Member=(Name=&lt;ConvertServiceMovie&gt;b__0 OverloadingParameters=[@34]))" />
+    <Alias n="94" Id="OverloadingParameters=[@37]" />
+    <Alias n="95" Id="(@1 @2 Type=(Name=&lt;&gt;c__DisplayClass2 ParentType=CPEditMoviePage) Member=(Name=&lt;.ctor&gt;b__0 @94))" />
+    <Alias n="96" Id="(@1 @2 @18 Member=(Name=&lt;RegisterMovieClick&gt;b__0 @94))" />
+    <Alias n="97" Id="(@1 @2 @18 Member=(Name=&lt;RegisterMovieClick&gt;b__1 @94))" />
+    <Alias n="98" Id="(@1 @2 @16 Member=(Name=&lt;SaveChangesClick&gt;b__4 @94))" />
+    <Alias n="99" Id="(@1 @2 @16 Member=(Name=&lt;SaveChangesClick&gt;b__5 @94))" />
+    <Alias n="100" Id="(@1 @10 @57 Member=(Name=set_TypeValue OverloadingParameters=[(@69 @70 Type=Int16)]))" />
+    <Alias n="101" Id="OverloadingParameters=[@72]" />
+    <Alias n="102" Id="(@1 @2 @22 Member=(@68 @101))" />
+    <Alias n="103" Id="(@1 @26 @64 Member=(@68 @101))" />
+    <Alias n="104" Id="(@1 @10 @53 Member=(Name=set_EditionID @101))" />
+    <Alias n="105" Id="Member=(Name=set_ID @101)" />
+    <Alias n="106" Id="(@1 @10 @29 @105)" />
+    <Alias n="107" Id="(@1 @10 @33 @105)" />
+    <Alias n="108" Id="(@1 @10 @48 @105)" />
+    <Alias n="109" Id="(@1 @35 @48 @105)" />
+    <Alias n="110" Id="(@1 @10 @53 @105)" />
+    <Alias n="111" Id="(@1 @10 @57 @105)" />
+    <Alias n="112" Id="(@1 @10 @29 Member=(Name=set_MovieID @101))" />
+    <Alias n="113" Id="(@1 @10 @48 Member=(Name=set_OwnerID @101))" />
+    <Alias n="114" Id="(@1 @10 @53 Member=(Name=set_UserID @101))" />
+    <Alias n="115" Id="(@69 @70 Type=IntPtr)" />
+    <Alias n="116" Id="(@1 @4 @46 Member=(Name=GetDlgCtrlID OverloadingParameters=[@115]))" />
+    <Alias n="117" Id="(@1 @4 @46 Member=(Name=GetWindowTextLength OverloadingParameters=[@115]))" />
+    <Alias n="118" Id="(@1 @4 @46 Member=(Name=UnhookWindowsHookEx OverloadingParameters=[@115]))" />
+    <Alias n="119" Id="(@1 @35 @48 Member=(Name=ConvertServiceMovie OverloadingParameters=[@49]))" />
+    <Alias n="120" Id="(@1 @10 @29 Member=(Name=set_Movie OverloadingParameters=[@49]))" />
+    <Alias n="121" Id="(@1 @2 @16 Member=(@68 OverloadingParameters=[@50]))" />
+    <Alias n="122" Id="(@1 @2 @20 Member=(@68 OverloadingParameters=[@50]))" />
+    <Alias n="123" Id="(@1 @35 @48 Member=(Name=ConvertClientMovie OverloadingParameters=[@50]))" />
+    <Alias n="124" Id="Member=(Name=add_PropertyChanged OverloadingParameters=[(@87 Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])" />
+    <Alias n="125" Id="Member=(Name=remove_PropertyChanged OverloadingParameters=[(@87 Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])" />
+    <Alias n="126" Id="OverloadingParameters=[@71]" />
+    <Alias n="127" Id="(@1 @35 @48 Member=(Name=&lt;ConvertClientMovie&gt;b__6 @126))" />
+    <Alias n="128" Id="Member=(Name=RaisePropertyChanged @126)" />
+    <Alias n="129" Id="(@1 @10 @29 @128)" />
+    <Alias n="130" Id="(@1 @10 @33 @128)" />
+    <Alias n="131" Id="(@1 @10 @48 @128)" />
+    <Alias n="132" Id="(@1 @10 @53 @128)" />
+    <Alias n="133" Id="(@1 @10 @57 @128)" />
+    <Alias n="134" Id="(@1 @10 @48 Member=(Name=set_Description @126))" />
+    <Alias n="135" Id="(@1 @35 @48 Member=(Name=set_Description @126))" />
+    <Alias n="136" Id="(@1 @10 @57 Member=(Name=set_Email @126))" />
+    <Alias n="137" Id="(@1 @35 @57 Member=(Name=set_Email @126))" />
+    <Alias n="138" Id="(@1 @10 @57 Member=(Name=set_FullName @126))" />
+    <Alias n="139" Id="(@1 @35 @57 Member=(Name=set_FullName @126))" />
+    <Alias n="140" Id="(@1 @35 @36 Member=(Name=set_GenreName @126))" />
+    <Alias n="141" Id="(@1 @10 @48 Member=(Name=set_ImagePath @126))" />
+    <Alias n="142" Id="(@1 @10 @29 Member=(Name=set_Name @126))" />
+    <Alias n="143" Id="(@1 @10 @33 Member=(Name=set_Name @126))" />
+    <Alias n="144" Id="(@1 @10 @57 Member=(Name=set_Password @126))" />
+    <Alias n="145" Id="(@1 @35 @57 Member=(Name=set_Password @126))" />
+    <Alias n="146" Id="(@1 @10 @48 Member=(Name=set_Title @126))" />
+    <Alias n="147" Id="(@1 @35 @48 Member=(Name=set_Title @126))" />
+    <Alias n="148" Id="(@1 @10 @57 Member=(Name=set_Token @126))" />
+    <Alias n="149" Id="(@1 @10 @57 Member=(Name=set_Username @126))" />
+    <Alias n="150" Id="(@1 @35 @57 Member=(Name=set_Username @126))" />
+    <Alias n="151" Id="(@1 @35 @57 Member=(Name=ConvertServiceUser OverloadingParameters=[@58]))" />
+    <Alias n="152" Id="(@1 @10 @48 Member=(Name=set_Owner OverloadingParameters=[@58]))" />
+    <Alias n="153" Id="(@1 @10 @53 Member=(Name=set_User OverloadingParameters=[@58]))" />
+    <Alias n="154" Id="(@1 @10 @57 Member=(Name=set_Type OverloadingParameters=[@60]))" />
+    <Alias n="155" Id="(@1 @35 @57 Member=(Name=set_Type OverloadingParameters=[@61]))" />
+    <Alias n="156" Id="(@1 @35 @36 Member=(@68 OverloadingParameters=[@71,(@69 @70 Type=Boolean)]))" />
+    <Alias n="157" Id="(@69 @70 Type=Object)" />
+    <Alias n="158" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/WindowsBase.dll" />
+    <Alias n="159" Id="(@1 @41 @44 Member=(Name=HandleExceptions OverloadingParameters=[@157,(@158 Namespace=System.Windows.Threading Type=DispatcherUnhandledExceptionEventArgs)]))" />
+    <Alias n="160" Id="(@1 @4 @46 Member=(Name=GetDlgItem OverloadingParameters=[@115,@72]))" />
+    <Alias n="161" Id="(@1 @26 @27 Member=(@68 OverloadingParameters=[@50,@72]))" />
+    <Alias n="162" Id="(@1 @26 @62 Member=(@68 OverloadingParameters=[@50,@72]))" />
+    <Alias n="163" Id="(@1 @4 @46 Member=(Name=MessageBoxEnumProc OverloadingParameters=[@115,@115]))" />
+    <Alias n="164" Id="(@1 @4 @6 Member=(@68 OverloadingParameters=[@157,@115]))" />
+    <Alias n="165" Id="(@1 @4 @8 Member=(@68 OverloadingParameters=[@157,@115]))" />
+    <Alias n="166" Id="Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[@72,@157])" />
+    <Alias n="167" Id="(@1 @2 @16 @166)" />
+    <Alias n="168" Id="(@1 @2 @18 @166)" />
+    <Alias n="169" Id="(@1 @2 @20 @166)" />
+    <Alias n="170" Id="(@1 @2 @22 @166)" />
+    <Alias n="171" Id="(@1 @2 @24 @166)" />
+    <Alias n="172" Id="(@1 @26 @27 @166)" />
+    <Alias n="173" Id="(@1 @26 @31 @166)" />
+    <Alias n="174" Id="(@1 @26 @39 @166)" />
+    <Alias n="175" Id="(@1 @41 @42 @166)" />
+    <Alias n="176" Id="(@1 @41 @51 @166)" />
+    <Alias n="177" Id="(@1 @26 @55 @166)" />
+    <Alias n="178" Id="(@1 @26 @62 @166)" />
+    <Alias n="179" Id="(@1 @26 @64 @166)" />
+    <Alias n="180" Id="(@1 @26 @66 @166)" />
+    <Alias n="181" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/PresentationCore.dll" />
+    <Alias n="182" Id="OverloadingParameters=[@157,(@181 Namespace=System.Windows Type=RoutedEventArgs)]" />
+    <Alias n="183" Id="(@1 @2 @20 Member=(Name=BrowseClick @182))" />
+    <Alias n="184" Id="(@1 @41 @51 Member=(Name=CancelClick @182))" />
+    <Alias n="185" Id="(@1 @2 @22 Member=(Name=DeleteEditionClick @182))" />
+    <Alias n="186" Id="(@1 @2 @22 Member=(Name=DeleteMovieClick @182))" />
+    <Alias n="187" Id="(@1 @26 @27 Member=(Name=DownloadClick @182))" />
+    <Alias n="188" Id="(@1 @2 @22 Member=(Name=EditInformationClick @182))" />
+    <Alias n="189" Id="(@1 @26 @66 Member=(Name=EditProfileClick @182))" />
+    <Alias n="190" Id="(@1 @26 @62 Member=(Name=ListMovieClick @182))" />
+    <Alias n="191" Id="(@1 @26 @27 Member=(Name=ListMovies @182))" />
+    <Alias n="192" Id="Member=(Name=ListMoviesClick @182)" />
+    <Alias n="193" Id="(@1 @26 @31 @192)" />
+    <Alias n="194" Id="(@1 @26 @39 @192)" />
+    <Alias n="195" Id="(@1 @26 @55 @192)" />
+    <Alias n="196" Id="(@1 @26 @64 @192)" />
+    <Alias n="197" Id="(@1 @26 @66 @192)" />
+    <Alias n="198" Id="(@1 @41 @42 Member=(Name=LoginClick @182))" />
+    <Alias n="199" Id="Member=(Name=LogoutClick @182)" />
+    <Alias n="200" Id="(@1 @2 @16 @199)" />
+    <Alias n="201" Id="(@1 @2 @18 @199)" />
+    <Alias n="202" Id="(@1 @2 @20 @199)" />
+    <Alias n="203" Id="(@1 @2 @22 @199)" />
+    <Alias n="204" Id="(@1 @2 @24 @199)" />
+    <Alias n="205" Id="(@1 @26 @27 @199)" />
+    <Alias n="206" Id="(@1 @26 @31 @199)" />
+    <Alias n="207" Id="(@1 @26 @39 @199)" />
+    <Alias n="208" Id="(@1 @26 @55 @199)" />
+    <Alias n="209" Id="(@1 @26 @62 @199)" />
+    <Alias n="210" Id="(@1 @26 @64 @199)" />
+    <Alias n="211" Id="(@1 @26 @66 @199)" />
+    <Alias n="212" Id="Member=(Name=RegisterMovieClick @182)" />
+    <Alias n="213" Id="(@1 @2 @16 @212)" />
+    <Alias n="214" Id="(@1 @2 @18 @212)" />
+    <Alias n="215" Id="(@1 @2 @20 @212)" />
+    <Alias n="216" Id="(@1 @2 @22 @212)" />
+    <Alias n="217" Id="(@1 @2 @24 @212)" />
+    <Alias n="218" Id="(@1 @26 @62 Member=(Name=RentMovieClick @182))" />
+    <Alias n="219" Id="(@1 @41 @51 Member=(Name=ResetClick @182))" />
+    <Alias n="220" Id="(@1 @2 @16 Member=(Name=SaveChangesClick @182))" />
+    <Alias n="221" Id="(@1 @26 @31 Member=(Name=SaveChangesClick @182))" />
+    <Alias n="222" Id="Member=(Name=SearchClick @182)" />
+    <Alias n="223" Id="(@1 @26 @27 @222)" />
+    <Alias n="224" Id="(@1 @26 @31 @222)" />
+    <Alias n="225" Id="(@1 @26 @39 @222)" />
+    <Alias n="226" Id="(@1 @26 @55 @222)" />
+    <Alias n="227" Id="(@1 @26 @62 @222)" />
+    <Alias n="228" Id="(@1 @26 @64 @222)" />
+    <Alias n="229" Id="(@1 @26 @66 @222)" />
+    <Alias n="230" Id="(@1 @26 @64 Member=(Name=SelectEditionClick @182))" />
+    <Alias n="231" Id="(@1 @41 @42 Member=(Name=SignupClick @182))" />
+    <Alias n="232" Id="(@1 @26 @39 Member=(Name=SortClick @182))" />
+    <Alias n="233" Id="(@1 @41 @51 Member=(Name=SubmitClick @182))" />
+    <Alias n="234" Id="(@1 @2 @20 Member=(Name=UploadEditionClick @182))" />
+    <Alias n="235" Id="(@1 @2 @22 Member=(Name=UploadEditionClick @182))" />
+    <Alias n="236" Id="(@1 @2 @24 Member=(Name=ViewClick @182))" />
+    <Alias n="237" Id="(@1 @26 @55 Member=(Name=ViewClick @182))" />
+    <Alias n="238" Id="(@1 @26 @39 Member=(Name=ViewMovieClick @182))" />
+    <Alias n="239" Id="(@1 @26 @27 Member=(Name=ViewProfile @182))" />
+    <Alias n="240" Id="(@1 @26 @39 Member=(Name=ViewProfile @182))" />
+    <Alias n="241" Id="Member=(Name=ViewProfileClick @182)" />
+    <Alias n="242" Id="(@1 @26 @31 @241)" />
+    <Alias n="243" Id="(@1 @26 @55 @241)" />
+    <Alias n="244" Id="(@1 @26 @62 @241)" />
+    <Alias n="245" Id="(@1 @26 @64 @241)" />
+    <Alias n="246" Id="(@1 @26 @66 @241)" />
+    <Alias n="247" Id="(@1 @2 @20 Member=(Name=YourMovies @182))" />
+    <Alias n="248" Id="(@1 @2 @16 Member=(Name=YourMoviesClick @182))" />
+    <Alias n="249" Id="(@1 @2 @18 Member=(Name=YourMoviesClick @182))" />
+    <Alias n="250" Id="(@1 @2 @22 Member=(Name=YourMoviesClick @182))" />
+    <Alias n="251" Id="(@1 @26 @27 Member=(Name=YourRentals @182))" />
+    <Alias n="252" Id="(@1 @26 @39 Member=(Name=YourRentals @182))" />
+    <Alias n="253" Id="Member=(Name=YourRentalsClick @182)" />
+    <Alias n="254" Id="(@1 @26 @31 @253)" />
+    <Alias n="255" Id="(@1 @26 @55 @253)" />
+    <Alias n="256" Id="(@1 @26 @62 @253)" />
+    <Alias n="257" Id="(@1 @26 @64 @253)" />
+    <Alias n="258" Id="(@1 @26 @66 @253)" />
+    <Alias n="259" Id="(@1 @4 @46 Member=(Name=SetWindowText OverloadingParameters=[@115,@71]))" />
+    <Alias n="260" Id="(@1 @2 @22 Member=(Name=&lt;.ctor&gt;b__0 OverloadingParameters=[@71,@71]))" />
+    <Alias n="261" Id="(@1 @26 @64 Member=(Name=&lt;.ctor&gt;b__0 OverloadingParameters=[@71,@71]))" />
+    <Alias n="262" Id="(@1 @4 @46 Member=(Name=GetClassName OverloadingParameters=[@115,(@69 Namespace=System.Text Type=StringBuilder),@72]))" />
+    <Alias n="263" Id="(@1 @4 @46 Member=(Name=EnumChildWindows OverloadingParameters=[@115,@7,@115]))" />
+    <Alias n="264" Id="(@1 @4 @46 Member=(Name=MessageBoxHookProc OverloadingParameters=[@72,@115,@115]))" />
+    <Alias n="265" Id="(@1 @4 @46 Member=(Name=SetWindowsHookEx OverloadingParameters=[@72,@9,@115,@72]))" />
+    <Alias n="266" Id="(@1 @4 @46 Member=(Name=CallNextHookEx OverloadingParameters=[@115,@72,@115,@115]))" />
+    <Alias n="267" Id="(@1 @35 @57 Member=(@68 OverloadingParameters=[@71,@71,@71,@71,@61]))" />
+    <Alias n="268" Id="(@1 @35 @48 Member=(@68 OverloadingParameters=[@72,@71,@71,(@69 @70 Type=(Name=Nullable GenericParameterCount=1 GenericArguments=[(@69 @70 Type=DateTime)])),(@69 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[@71])),(@69 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[(@69 @70 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@71,@72]))]))]))" />
+    <Alias n="269" Id="(@1 @4 @46 Member=.cctor)" />
+    <Alias n="270" Id="Member=.ctor" />
+    <Alias n="271" Id="(@1 @2 Type=(Name=&lt;&gt;c__DisplayClass2 ParentType=CPEditMoviePage) @270)" />
+    <Alias n="272" Id="(@1 @2 @16 @270)" />
+    <Alias n="273" Id="(@1 @2 @18 @270)" />
+    <Alias n="274" Id="(@1 @2 @20 @270)" />
+    <Alias n="275" Id="(@1 @2 @22 @270)" />
+    <Alias n="276" Id="(@1 @2 @24 @270)" />
+    <Alias n="277" Id="(@1 @26 @27 @270)" />
+    <Alias n="278" Id="(@1 @26 @31 @270)" />
+    <Alias n="279" Id="(@1 @10 @33 @270)" />
+    <Alias n="280" Id="(@1 @35 Type=GenreCheckList @270)" />
+    <Alias n="281" Id="(@1 @26 @39 @270)" />
+    <Alias n="282" Id="(@1 @41 @42 @270)" />
+    <Alias n="283" Id="(@1 @41 @44 @270)" />
+    <Alias n="284" Id="(@1 @10 @48 @270)" />
+    <Alias n="285" Id="(@1 @41 @51 @270)" />
+    <Alias n="286" Id="(@1 @26 @55 @270)" />
+    <Alias n="287" Id="(@1 @26 @62 @270)" />
+    <Alias n="288" Id="(@1 @26 @64 @270)" />
+    <Alias n="289" Id="(@1 @26 @66 @270)" />
+    <Alias n="290" Id="(@1 @41 @44 Member=ChangeWindow)" />
+    <Alias n="291" Id="(@1 @10 @33 Member=get_AssociatedMovies)" />
+    <Alias n="292" Id="(@1 @35 @36 Member=get_Checked)" />
+    <Alias n="293" Id="(@1 @10 @48 Member=get_Description)" />
+    <Alias n="294" Id="(@1 @35 @48 Member=get_Description)" />
+    <Alias n="295" Id="(@1 @10 @53 Member=get_Edition)" />
+    <Alias n="296" Id="(@1 @10 @48 Member=get_Editions)" />
+    <Alias n="297" Id="(@1 @35 @48 Member=get_Editions)" />
+    <Alias n="298" Id="(@1 @10 @57 Member=get_Email)" />
+    <Alias n="299" Id="(@1 @35 @57 Member=get_Email)" />
+    <Alias n="300" Id="Member=get_ExtensionData" />
+    <Alias n="301" Id="(@1 @10 @57 Member=get_FullName)" />
+    <Alias n="302" Id="(@1 @35 @57 Member=get_FullName)" />
+    <Alias n="303" Id="(@1 @35 @36 Member=get_GenreName)" />
+    <Alias n="304" Id="(@1 @10 @48 Member=get_Genres)" />
+    <Alias n="305" Id="(@1 @35 @48 Member=get_Genres)" />
+    <Alias n="306" Id="Member=get_ID" />
+    <Alias n="307" Id="(@1 @10 @29 @306)" />
+    <Alias n="308" Id="(@1 @10 @48 @306)" />
+    <Alias n="309" Id="(@1 @35 @48 @306)" />
+    <Alias n="310" Id="(@1 @10 @29 Member=get_Movie)" />
+    <Alias n="311" Id="(@1 @10 @29 Member=get_Name)" />
+    <Alias n="312" Id="(@1 @10 @33 Member=get_Name)" />
+    <Alias n="313" Id="(@1 @10 @48 Member=get_Owner)" />
+    <Alias n="314" Id="(@1 @10 @57 Member=get_Password)" />
+    <Alias n="315" Id="(@1 @35 @57 Member=get_Password)" />
+    <Alias n="316" Id="(@1 @10 @48 Member=get_ReleaseDate)" />
+    <Alias n="317" Id="(@1 @35 @48 Member=get_ReleaseDate)" />
+    <Alias n="318" Id="(@1 @10 @29 Member=get_Rentals)" />
+    <Alias n="319" Id="(@1 @10 @57 Member=get_Rentals)" />
+    <Alias n="320" Id="(@1 @10 @48 Member=get_Title)" />
+    <Alias n="321" Id="(@1 @35 @48 Member=get_Title)" />
+    <Alias n="322" Id="(@1 @10 @57 Member=get_Type)" />
+    <Alias n="323" Id="(@1 @35 @57 Member=get_Type)" />
+    <Alias n="324" Id="(@1 @10 @57 Member=get_TypeValue)" />
+    <Alias n="325" Id="(@1 @10 @57 Member=get_UploadedMovies)" />
+    <Alias n="326" Id="(@1 @10 @53 Member=get_User)" />
+    <Alias n="327" Id="(@1 @10 @57 Member=get_Username)" />
+    <Alias n="328" Id="(@1 @35 @57 Member=get_Username)" />
+    <Alias n="329" Id="Member=InitializeComponent" />
+    <Alias n="330" Id="(@1 @2 @16 @329)" />
+    <Alias n="331" Id="(@1 @2 @18 @329)" />
+    <Alias n="332" Id="(@1 @2 @20 @329)" />
+    <Alias n="333" Id="(@1 @2 @22 @329)" />
+    <Alias n="334" Id="(@1 @2 @24 @329)" />
+    <Alias n="335" Id="(@1 @26 @27 @329)" />
+    <Alias n="336" Id="(@1 @26 @31 @329)" />
+    <Alias n="337" Id="(@1 @26 @39 @329)" />
+    <Alias n="338" Id="(@1 @41 @42 @329)" />
+    <Alias n="339" Id="(@1 @41 @44 @329)" />
+    <Alias n="340" Id="(@1 @41 @51 @329)" />
+    <Alias n="341" Id="(@1 @26 @55 @329)" />
+    <Alias n="342" Id="(@1 @26 @62 @329)" />
+    <Alias n="343" Id="(@1 @26 @64 @329)" />
+    <Alias n="344" Id="(@1 @26 @66 @329)" />
+    <Alias n="345" Id="(@1 @41 @44 Member=LogOut)" />
+    <Alias n="346" Id="(@1 @4 @46 Member=Register)" />
+    <Alias n="347" Id="(@1 @41 @51 Member=ResetAll)" />
+    <Alias n="348" Id="(@1 @4 @46 Member=Unregister)" />
+  </IdentifierAliases>
+  <Paths>
+    <Path Id="da3090a3-9d54-49d4-a607-be59b3ce0023.OutputPath" Value="C:\Users\BUGTEN\Documents\Visual Studio 2010\Projects\RentIt\Client\bin\Release\RentItClient.exe" />
+    <Path Id="da3090a3-9d54-49d4-a607-be59b3ce0023.OutputPathUri" Value="file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe" />
+    <Path Id="FxReferenceAssemblies" Value="C:\Program Files\Reference Assemblies\Microsoft\Framework" />
+    <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files/Reference Assemblies/Microsoft/Framework" />
+  </Paths>
+</DirectedGraph>

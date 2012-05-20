@@ -1,0 +1,1321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="BottomToTop" Layout="ForceDirected" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 @10 @46 @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="MovieInformationModel" />
+    <Node Id="(@1 @19 @24 @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPViewMovieViewModel" />
+    <Node Id="(@1 @19 Type=CPEditMovieViewModel @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="CPEditMovieViewModel" />
+    <Node Id="(@1 @2 @41 Member=get_SkipClosingMessage)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_SkipClosingMessage" />
+    <Node Id="(@1 @26 Type=DownloadEditionViewModel @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="DownloadEditionViewModel" />
+    <Node Id="(@1 @26 Type=EditProfileViewModel @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="EditProfileViewModel" />
+    <Node Id="(@1 @26 Type=RentalHistoryViewModel @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalHistoryViewModel" />
+    <Node Id="(@1 @33 @34 Member=get_Checked)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Checked" />
+    <Node Id="(@1 @33 @34 Member=get_GenreName)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_GenreName" />
+    <Node Id="(@1 @33 @57 Member=get_Email)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Email" />
+    <Node Id="(@1 @33 @57 Member=get_FullName)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_FullName" />
+    <Node Id="(@1 @33 @57 Member=get_Password)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Password" />
+    <Node Id="(@1 @33 @57 Member=get_Username)" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Username" />
+    <Node Id="(@1 @4 @15 @142)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentBrowsingClient" />
+    <Node Id="(@1 @4 @15 @186)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentBrowsingClient" />
+    <Node Id="(@1 @4 @15 @187)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentBrowsingClient" />
+    <Node Id="(@1 @4 @15 @207)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentBrowsingClient" />
+    <Node Id="(@1 @4 @17 @142)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentManagementClient" />
+    <Node Id="(@1 @4 @17 @186)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentManagementClient" />
+    <Node Id="(@1 @4 @17 @187)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentManagementClient" />
+    <Node Id="(@1 @4 @17 @207)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentManagementClient" />
+    <Node Id="(@1 @4 @28 @136)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @4 @28 @137)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @4 @28 @250)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @4 @28 @93)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @4 @31 @136)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @4 @31 @137)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @4 @31 @250)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @4 @31 @254)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="(@1 @4 @31 @93)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @4 @43 @136)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @4 @43 @137)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @4 @43 @250)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @4 @43 @93)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @4 @43 Member=get_ImagePath)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ImagePath" />
+    <Node Id="(@1 @4 @43 Member=get_OwnerID)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_OwnerID" />
+    <Node Id="(@1 @4 @50 @136)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @4 @50 @137)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @4 @50 @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Rental" />
+    <Node Id="(@1 @4 @50 @250)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @4 @50 @254)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="(@1 @4 @50 @93)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @4 @50 Member=get_Time)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Time" />
+    <Node Id="(@1 @4 @50 Member=get_UserID)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_UserID" />
+    <Node Id="(@1 @4 @53 @142)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalManagementClient" />
+    <Node Id="(@1 @4 @53 @186)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalManagementClient" />
+    <Node Id="(@1 @4 @53 @187)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalManagementClient" />
+    <Node Id="(@1 @4 @53 @207)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalManagementClient" />
+    <Node Id="(@1 @4 @57 @136)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="add_PropertyChanged" />
+    <Node Id="(@1 @4 @57 @137)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="remove_PropertyChanged" />
+    <Node Id="(@1 @4 @57 @250)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ExtensionData" />
+    <Node Id="(@1 @4 @57 @93)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ExtensionData" />
+    <Node Id="(@1 @4 @60 @142)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="UserManagementClient" />
+    <Node Id="(@1 @4 @60 @186)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="UserManagementClient" />
+    <Node Id="(@1 @4 @60 @187)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="UserManagementClient" />
+    <Node Id="(@1 @4 @60 @207)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="UserManagementClient" />
+    <Node Id="(@1 @4 Type=RemoteFileStream Member=(@101 OverloadingParameters=[@29,@74,(@72 @73 Type=Int64),@74,(@72 Namespace=System.IO Type=Stream)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RemoteFileStream" />
+    <Node Id="(@1 @4 Type=UploadEditionResponse @228)" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="UploadEditionResponse" />
+    <Node Id="(@1)" Category="CodeSchema_Assembly" Visibility="Hidden" />
+    <Node Id="@100" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_TypeValue" />
+    <Node Id="@103" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewMoviePage" />
+    <Node Id="@104" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DeleteEdition" />
+    <Node Id="@105" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMovieInfo" />
+    <Node Id="@106" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMovieInformation" />
+    <Node Id="@107" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="IsCurrentRental" />
+    <Node Id="@108" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RentEdition" />
+    <Node Id="@109" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RentEdition" />
+    <Node Id="@110" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_EditionID" />
+    <Node Id="@112" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@113" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@114" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@115" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@116" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@117" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ID" />
+    <Node Id="@118" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_MovieID" />
+    <Node Id="@119" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_OwnerID" />
+    <Node Id="@12" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="AccessModel" />
+    <Node Id="@120" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_UserID" />
+    <Node Id="@122" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;GetMostPopularMovies&gt;b__2" />
+    <Node Id="@123" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;GetMovies&gt;b__0" />
+    <Node Id="@124" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;GetNewestMovies&gt;b__0" />
+    <Node Id="@125" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;Search&gt;b__0" />
+    <Node Id="@126" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="ConvertServiceMovie" />
+    <Node Id="@127" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DeleteMovie" />
+    <Node Id="@128" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Movie" />
+    <Node Id="@129" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="ConvertClientMovie" />
+    <Node Id="@130" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DeleteMovie" />
+    <Node Id="@131" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="EditMovie" />
+    <Node Id="@133" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RegisterMovie" />
+    <Node Id="@134" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RegisterMovie" />
+    <Node Id="@138" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RentItClient.RentItService.IContentManagement.UploadEdition" />
+    <Node Id="@139" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="RentItClient.RentItService.IRentalManagement.DownloadFile" />
+    <Node Id="@14" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="AdministrationModel" />
+    <Node Id="@140" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="&lt;IsCurrentRental&gt;b__2" />
+    <Node Id="@143" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;ConvertClientMovie&gt;b__6" />
+    <Node Id="@144" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMostPopularMovies" />
+    <Node Id="@145" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetNewestMovies" />
+    <Node Id="@146" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Logout" />
+    <Node Id="@148" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@149" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@150" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@151" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@152" Category="CodeSchema_Method" CodeSchemaProperty_IsProtected="True" Label="RaisePropertyChanged" />
+    <Node Id="@153" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Search" />
+    <Node Id="@154" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Description" />
+    <Node Id="@155" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Description" />
+    <Node Id="@156" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Email" />
+    <Node Id="@157" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Email" />
+    <Node Id="@158" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_FullName" />
+    <Node Id="@159" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_FullName" />
+    <Node Id="@16" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ContentBrowsingClient" />
+    <Node Id="@160" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_GenreName" />
+    <Node Id="@161" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ImagePath" />
+    <Node Id="@162" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Name" />
+    <Node Id="@163" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Name" />
+    <Node Id="@164" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Password" />
+    <Node Id="@165" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Password" />
+    <Node Id="@166" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Title" />
+    <Node Id="@167" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Title" />
+    <Node Id="@168" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Token" />
+    <Node Id="@169" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Username" />
+    <Node Id="@170" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Username" />
+    <Node Id="@172" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="ConvertServiceUser" />
+    <Node Id="@173" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="EditProfile" />
+    <Node Id="@174" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_LoggedIn" />
+    <Node Id="@175" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Owner" />
+    <Node Id="@176" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_User" />
+    <Node Id="@177" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="SignUp" />
+    <Node Id="@178" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="UpdateLoggedInUser" />
+    <Node Id="@179" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="SignUp" />
+    <Node Id="@18" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ContentManagementClient" />
+    <Node Id="@180" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Type" />
+    <Node Id="@181" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Type" />
+    <Node Id="@182" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="GenreChecked" />
+    <Node Id="@183" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DeleteEdition" />
+    <Node Id="@184" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RentMovie" />
+    <Node Id="@188" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DeleteMovie" />
+    <Node Id="@189" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMovieInfo" />
+    <Node Id="@190" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="EditMovie" />
+    <Node Id="@191" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="EditMovie" />
+    <Node Id="@192" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMovieInformation" />
+    <Node Id="@193" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RegisterMovie" />
+    <Node Id="@194" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="System.Windows.Markup.IComponentConnector.Connect" />
+    <Node Id="@197" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ListMoviesClick" />
+    <Node Id="@198" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="LogoutClick" />
+    <Node Id="@199" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SearchClick" />
+    <Node Id="@20" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPEditMovieViewModel" />
+    <Node Id="@200" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="SelectEditionClick" />
+    <Node Id="@201" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="ViewProfileClick" />
+    <Node Id="@202" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" Label="YourRentalsClick" />
+    <Node Id="@203" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="MoviesByGenre" />
+    <Node Id="@204" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Search" />
+    <Node Id="@205" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DownloadFile" />
+    <Node Id="@206" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DownloadFile" />
+    <Node Id="@208" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;.ctor&gt;b__0" />
+    <Node Id="@209" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Login" />
+    <Node Id="@21" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPMoviesViewModel" />
+    <Node Id="@210" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Login" />
+    <Node Id="@211" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetGenres" />
+    <Node Id="@212" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="EditUser" />
+    <Node Id="@213" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="UploadEdition" />
+    <Node Id="@214" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="UploadEdition" />
+    <Node Id="@215" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="MostDownloaded" />
+    <Node Id="@216" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Newest" />
+    <Node Id="@217" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetRentals" />
+    <Node Id="@218" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Search" />
+    <Node Id="@219" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="EditUserProfile" />
+    <Node Id="@22" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPRegisterViewModel" />
+    <Node Id="@220" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="Login" />
+    <Node Id="@221" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="SignUp" />
+    <Node Id="@222" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMovies" />
+    <Node Id="@223" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="UploadEdition" />
+    <Node Id="@224" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DownloadFile" />
+    <Node Id="@225" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="User" />
+    <Node Id="@226" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Movie" />
+    <Node Id="@227" Category="CodeSchema_Method" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="static ServiceClients" />
+    <Node Id="@229" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="&lt;&gt;c__DisplayClass4" />
+    <Node Id="@23" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPUploadEditionViewModel" />
+    <Node Id="@230" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentBrowsingClient" />
+    <Node Id="@231" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="ContentManagementClient" />
+    <Node Id="@232" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Edition" />
+    <Node Id="@233" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Genre" />
+    <Node Id="@234" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="GenreCheckList" />
+    <Node Id="@235" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="Movie" />
+    <Node Id="@236" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RemoteFileStream" />
+    <Node Id="@237" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="RentalManagementClient" />
+    <Node Id="@238" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="User" />
+    <Node Id="@239" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="UserManagementClient" />
+    <Node Id="@240" Category="CodeSchema_Method" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="ViewMoviePage" />
+    <Node Id="@241" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="AuthenticationError" />
+    <Node Id="@242" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_AssociatedMovies" />
+    <Node Id="@243" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Description" />
+    <Node Id="@244" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Description" />
+    <Node Id="@245" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Edition" />
+    <Node Id="@246" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_EditionID" />
+    <Node Id="@247" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Editions" />
+    <Node Id="@248" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Editions" />
+    <Node Id="@249" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Email" />
+    <Node Id="@25" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="CPViewMovieViewModel" />
+    <Node Id="@251" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_FullName" />
+    <Node Id="@252" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Genres" />
+    <Node Id="@253" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Genres" />
+    <Node Id="@255" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@256" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@257" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@258" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ID" />
+    <Node Id="@259" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_LoggedIn" />
+    <Node Id="@260" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_LoggedInUser" />
+    <Node Id="@261" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Movie" />
+    <Node Id="@262" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_MovieID" />
+    <Node Id="@263" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Name" />
+    <Node Id="@264" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Name" />
+    <Node Id="@265" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Owner" />
+    <Node Id="@266" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Password" />
+    <Node Id="@267" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ReleaseDate" />
+    <Node Id="@268" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_ReleaseDate" />
+    <Node Id="@269" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Rentals" />
+    <Node Id="@27" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="DownloadEditionViewModel" />
+    <Node Id="@270" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Rentals" />
+    <Node Id="@271" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Title" />
+    <Node Id="@272" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Title" />
+    <Node Id="@273" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Token" />
+    <Node Id="@274" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Type" />
+    <Node Id="@275" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Type" />
+    <Node Id="@276" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_TypeValue" />
+    <Node Id="@277" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_UploadedMovies" />
+    <Node Id="@278" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_User" />
+    <Node Id="@279" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="get_Username" />
+    <Node Id="@280" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetCurrentUserInfo" />
+    <Node Id="@281" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetGenres" />
+    <Node Id="@282" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetMovies" />
+    <Node Id="@283" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="GetRentals" />
+    <Node Id="@284" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="InitializeComponent" />
+    <Node Id="@285" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="LogOut" />
+    <Node Id="@286" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="LogOut" />
+    <Node Id="@29" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Edition" />
+    <Node Id="@3" Category="CodeSchema_Class" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Group="Collapsed" Label="MasterViewModel.&lt;&gt;c__DisplayClass4" />
+    <Node Id="@30" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="EditProfileViewModel" />
+    <Node Id="@32" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Genre" />
+    <Node Id="@35" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="GenreChecked" />
+    <Node Id="@36" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="GenreCheckList" />
+    <Node Id="@38" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ListMovieViewModel" />
+    <Node Id="@40" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="LoginViewModel" />
+    <Node Id="@42" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="MasterViewModel" />
+    <Node Id="@44" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Movie" />
+    <Node Id="@45" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Movie" />
+    <Node Id="@47" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="MovieInformationModel" />
+    <Node Id="@48" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="RegistrationViewModel" />
+    <Node Id="@49" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="RemoteFileStream" />
+    <Node Id="@51" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Rental" />
+    <Node Id="@52" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="RentalHistoryViewModel" />
+    <Node Id="@54" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="RentalManagementClient" />
+    <Node Id="@55" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ServiceClients" />
+    <Node Id="@56" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UploadEditionResponse" />
+    <Node Id="@58" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="User" />
+    <Node Id="@59" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="User" />
+    <Node Id="@6" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Edition.Edition[]" />
+    <Node Id="@61" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UserManagementClient" />
+    <Node Id="@63" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UserModel" />
+    <Node Id="@64" Category="CodeSchema_Enum" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UserType" />
+    <Node Id="@65" Category="CodeSchema_Enum" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="UserType" />
+    <Node Id="@66" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewEditionViewModel" />
+    <Node Id="@69" Category="CodeSchema_Class" CodeSchemaProperty_IsGeneratedCode="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewMoviePage" />
+    <Node Id="@7" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Genre.Genre[]" />
+    <Node Id="@70" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewMovieViewModel" />
+    <Node Id="@71" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="ViewProfileViewModel" />
+    <Node Id="@76" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Editions" />
+    <Node Id="@77" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ReleaseDate" />
+    <Node Id="@78" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_ReleaseDate" />
+    <Node Id="@79" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Genres" />
+    <Node Id="@8" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Movie.Movie[]" />
+    <Node Id="@80" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Editions" />
+    <Node Id="@81" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Genres" />
+    <Node Id="@82" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_AssociatedMovies" />
+    <Node Id="@83" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_UploadedMovies" />
+    <Node Id="@84" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Rentals" />
+    <Node Id="@85" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Rentals" />
+    <Node Id="@86" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Checked" />
+    <Node Id="@87" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_SkipClosingMessage" />
+    <Node Id="@88" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Time" />
+    <Node Id="@89" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;ConvertServiceMovie&gt;b__1" />
+    <Node Id="@9" Category="CodeSchema_Class" CodeSchemaProperty_IsArray="True" CodeSchemaProperty_IsPublic="True" Group="Collapsed" Label="Rental.Rental[]" />
+    <Node Id="@90" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="DeleteEdition" />
+    <Node Id="@91" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" Label="set_Edition" />
+    <Node Id="@94" Category="CodeSchema_Method" CodeSchemaProperty_IsCompilerGenerated="True" CodeSchemaProperty_IsPrivate="True" Label="&lt;ConvertServiceMovie&gt;b__0" />
+    <Node Id="@96" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="AllGenres" />
+    <Node Id="@97" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="AllMovies" />
+    <Node Id="@98" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="CurrentRentals" />
+    <Node Id="@99" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" Label="RentalHistory" />
+  </Nodes>
+  <Links>
+    <Link Source="@100" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@105" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@208" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@103" Target="@240" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@244" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@248" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@253" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@268" Category="CodeSchema_Calls" />
+    <Link Source="@103" Target="@272" Category="CodeSchema_Calls" />
+    <Link Source="@104" Target="@112" Category="CodeSchema_Calls" />
+    <Link Source="@104" Target="@232" Category="CodeSchema_Calls" />
+    <Link Source="@104" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@104" Target="@29" Category="References" />
+    <Link Source="@104" Target="@90" Category="CodeSchema_Calls" />
+    <Link Source="@105" Target="@126" Category="CodeSchema_Calls" />
+    <Link Source="@105" Target="@189" Category="CodeSchema_Calls" />
+    <Link Source="@105" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@105" Target="@44" Category="References" />
+    <Link Source="@105" Target="@45" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@106" Target="@126" Category="CodeSchema_Calls" />
+    <Link Source="@106" Target="@189" Category="CodeSchema_Calls" />
+    <Link Source="@106" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@106" Target="@44" Category="References" />
+    <Link Source="@106" Target="@45" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@107" Target="@140" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@107" Target="@229" Category="CodeSchema_Calls" />
+    <Link Source="@107" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@107" Target="@3" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_FunctionPointer" />
+    </Link>
+    <Link Source="@107" Target="@98" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@112" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@184" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@232" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@108" Target="@29" Category="References" />
+    <Link Source="@108" Target="@55" Category="References" />
+    <Link Source="@109" Target="@108" Category="CodeSchema_Calls" />
+    <Link Source="@109" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@110" Target="@151" Category="CodeSchema_Calls" />
+    <Link Source="@112" Target="@148" Category="CodeSchema_Calls" />
+    <Link Source="@113" Target="@149" Category="CodeSchema_Calls" />
+    <Link Source="@114" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@116" Target="@151" Category="CodeSchema_Calls" />
+    <Link Source="@117" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@118" Target="@148" Category="CodeSchema_Calls" />
+    <Link Source="@119" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@12" Target="@174" Category="Contains" />
+    <Link Source="@12" Target="@177" Category="Contains" />
+    <Link Source="@12" Target="@178" Category="Contains" />
+    <Link Source="@12" Target="@209" Category="Contains" />
+    <Link Source="@12" Target="@259" Category="Contains" />
+    <Link Source="@12" Target="@285" Category="Contains" />
+    <Link Source="@12" Target="@58" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@120" Target="@151" Category="CodeSchema_Calls" />
+    <Link Source="@122" Target="@256" Category="CodeSchema_Calls" />
+    <Link Source="@122" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@126" Category="CodeSchema_Calls" />
+    <Link Source="@123" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@124" Target="@256" Category="CodeSchema_Calls" />
+    <Link Source="@124" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@125" Target="@256" Category="CodeSchema_Calls" />
+    <Link Source="@125" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@226" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@243" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@247" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@252" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@256" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@267" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@126" Target="@45" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@126" Target="@89" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@126" Target="@94" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@127" Target="@188" Category="CodeSchema_Calls" />
+    <Link Source="@127" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@127" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@127" Target="@55" Category="References" />
+    <Link Source="@128" Target="@148" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@114" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@143" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@129" Target="@154" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@166" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@189" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@235" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@244" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@247" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@248" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@253" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@257" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@268" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@272" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@44" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@129" Target="@77" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@80" Category="CodeSchema_Calls" />
+    <Link Source="@129" Target="@81" Category="CodeSchema_Calls" />
+    <Link Source="@130" Target="@127" Category="CodeSchema_Calls" />
+    <Link Source="@130" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@131" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@131" Target="@190" Category="CodeSchema_Calls" />
+    <Link Source="@131" Target="@44" Category="References" />
+    <Link Source="@133" Target="@193" Category="CodeSchema_Calls" />
+    <Link Source="@133" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@133" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@133" Target="@55" Category="References" />
+    <Link Source="@134" Target="@126" Category="CodeSchema_Calls" />
+    <Link Source="@134" Target="@129" Category="CodeSchema_Calls" />
+    <Link Source="@134" Target="@133" Category="CodeSchema_Calls" />
+    <Link Source="@134" Target="@44" Category="References" />
+    <Link Source="@138" Target="@56" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@139" Target="@49" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@14" Target="@127" Category="Contains" />
+    <Link Source="@14" Target="@133" Category="Contains" />
+    <Link Source="@14" Target="@190" Category="Contains" />
+    <Link Source="@14" Target="@205" Category="Contains" />
+    <Link Source="@14" Target="@213" Category="Contains" />
+    <Link Source="@14" Target="@90" Category="Contains" />
+    <Link Source="@140" Target="@246" Category="CodeSchema_Calls" />
+    <Link Source="@143" Target="@163" Category="CodeSchema_Calls" />
+    <Link Source="@143" Target="@233" Category="CodeSchema_Calls" />
+    <Link Source="@143" Target="@32" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@144" Target="@122" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@144" Target="@215" Category="CodeSchema_Calls" />
+    <Link Source="@144" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@145" Target="@124" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@145" Target="@216" Category="CodeSchema_Calls" />
+    <Link Source="@145" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@153" Target="@125" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@153" Target="@204" Category="CodeSchema_Calls" />
+    <Link Source="@153" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@154" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@156" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@158" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@16" Target="(@1 @4 @15 @142)" Category="Contains" />
+    <Link Source="@16" Target="(@1 @4 @15 @186)" Category="Contains" />
+    <Link Source="@16" Target="(@1 @4 @15 @187)" Category="Contains" />
+    <Link Source="@16" Target="(@1 @4 @15 @207)" Category="Contains" />
+    <Link Source="@16" Target="@192" Category="Contains" />
+    <Link Source="@16" Target="@211" Category="Contains" />
+    <Link Source="@16" Target="@218" Category="Contains" />
+    <Link Source="@16" Target="@222" Category="Contains" />
+    <Link Source="@16" Target="@230" Category="Contains" />
+    <Link Source="@161" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@162" Target="@148" Category="CodeSchema_Calls" />
+    <Link Source="@163" Target="@149" Category="CodeSchema_Calls" />
+    <Link Source="@164" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@166" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@168" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@169" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@225" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@249" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@251" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@266" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@276" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@279" Category="CodeSchema_Calls" />
+    <Link Source="@172" Target="@59" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@173" Target="@164" Category="CodeSchema_Calls" />
+    <Link Source="@173" Target="@178" Category="CodeSchema_Calls" />
+    <Link Source="@173" Target="@212" Category="CodeSchema_Calls" />
+    <Link Source="@173" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@173" Target="@266" Category="CodeSchema_Calls" />
+    <Link Source="@173" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@173" Target="@55" Category="References" />
+    <Link Source="@175" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@176" Target="@151" Category="CodeSchema_Calls" />
+    <Link Source="@177" Target="@174" Category="CodeSchema_Calls" />
+    <Link Source="@177" Target="@179" Category="CodeSchema_Calls" />
+    <Link Source="@177" Target="@55" Category="References" />
+    <Link Source="@178" Target="@174" Category="CodeSchema_Calls" />
+    <Link Source="@178" Target="@266" Category="CodeSchema_Calls" />
+    <Link Source="@178" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@178" Target="@279" Category="CodeSchema_Calls" />
+    <Link Source="@18" Target="(@1 @4 @17 @142)" Category="Contains" />
+    <Link Source="@18" Target="(@1 @4 @17 @186)" Category="Contains" />
+    <Link Source="@18" Target="(@1 @4 @17 @187)" Category="Contains" />
+    <Link Source="@18" Target="(@1 @4 @17 @207)" Category="Contains" />
+    <Link Source="@18" Target="@138" Category="Contains" />
+    <Link Source="@18" Target="@183" Category="Contains" />
+    <Link Source="@18" Target="@188" Category="Contains" />
+    <Link Source="@18" Target="@191" Category="Contains" />
+    <Link Source="@18" Target="@193" Category="Contains" />
+    <Link Source="@18" Target="@223" Category="Contains" />
+    <Link Source="@18" Target="@231" Category="Contains" />
+    <Link Source="@180" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@182" Target="@160" Category="CodeSchema_Calls" />
+    <Link Source="@182" Target="@86" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@114" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@192" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@235" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@189" Target="@44" Category="References" />
+    <Link Source="@189" Target="@55" Category="References" />
+    <Link Source="@190" Target="@191" Category="CodeSchema_Calls" />
+    <Link Source="@190" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@190" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@190" Target="@55" Category="References" />
+    <Link Source="@194" Target="@197" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@194" Target="@198" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@194" Target="@199" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@194" Target="@200" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@194" Target="@201" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@194" Target="@202" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@199" Target="@153" Category="CodeSchema_Calls" />
+    <Link Source="@20" Target="(@1 @19 Type=CPEditMovieViewModel @228)" Category="Contains" />
+    <Link Source="@20" Target="@131" Category="Contains" />
+    <Link Source="@200" Target="@107" Category="CodeSchema_Calls" />
+    <Link Source="@203" Target="@222" Category="CodeSchema_Calls" />
+    <Link Source="@203" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@203" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@203" Target="@55" Category="References" />
+    <Link Source="@203" Target="@8" Category="References" />
+    <Link Source="@204" Target="@218" Category="CodeSchema_Calls" />
+    <Link Source="@204" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@204" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@204" Target="@55" Category="References" />
+    <Link Source="@204" Target="@8" Category="References" />
+    <Link Source="@205" Target="@112" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@224" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@232" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@205" Target="@29" Category="References" />
+    <Link Source="@205" Target="@55" Category="References" />
+    <Link Source="@206" Target="@205" Category="CodeSchema_Calls" />
+    <Link Source="@209" Target="@164" Category="CodeSchema_Calls" />
+    <Link Source="@209" Target="@220" Category="CodeSchema_Calls" />
+    <Link Source="@209" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@209" Target="@55" Category="References" />
+    <Link Source="@21" Target="@123" Category="Contains" />
+    <Link Source="@21" Target="@282" Category="Contains" />
+    <Link Source="@210" Target="@209" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@118" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@162" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@223" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@232" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@236" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@213" Target="@29" Category="References" />
+    <Link Source="@213" Target="@49" Category="References" />
+    <Link Source="@213" Target="@55" Category="References" />
+    <Link Source="@214" Target="@213" Category="CodeSchema_Calls" />
+    <Link Source="@214" Target="@257" Category="CodeSchema_Calls" />
+    <Link Source="@215" Target="@222" Category="CodeSchema_Calls" />
+    <Link Source="@215" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@215" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@215" Target="@55" Category="References" />
+    <Link Source="@215" Target="@8" Category="References" />
+    <Link Source="@216" Target="@222" Category="CodeSchema_Calls" />
+    <Link Source="@216" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@216" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@216" Target="@55" Category="References" />
+    <Link Source="@216" Target="@8" Category="References" />
+    <Link Source="@219" Target="@117" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@156" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@158" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@164" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@169" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@173" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@180" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@238" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@258" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@279" Category="CodeSchema_Calls" />
+    <Link Source="@219" Target="@58" Category="References" />
+    <Link Source="@22" Target="@134" Category="Contains" />
+    <Link Source="@221" Target="@156" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@158" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@164" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@169" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@177" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@180" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@238" Category="CodeSchema_Calls" />
+    <Link Source="@221" Target="@58" Category="References" />
+    <Link Source="@223" Target="@236" Category="CodeSchema_Calls" />
+    <Link Source="@223" Target="@49" Category="References" />
+    <Link Source="@224" Target="@236" Category="CodeSchema_Calls" />
+    <Link Source="@224" Target="@49" Category="References" />
+    <Link Source="@225" Target="@157" Category="CodeSchema_Calls" />
+    <Link Source="@225" Target="@159" Category="CodeSchema_Calls" />
+    <Link Source="@225" Target="@165" Category="CodeSchema_Calls" />
+    <Link Source="@225" Target="@170" Category="CodeSchema_Calls" />
+    <Link Source="@225" Target="@181" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@115" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@155" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@167" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@76" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@78" Category="CodeSchema_Calls" />
+    <Link Source="@226" Target="@79" Category="CodeSchema_Calls" />
+    <Link Source="@227" Target="@230" Category="CodeSchema_Calls" />
+    <Link Source="@227" Target="@231" Category="CodeSchema_Calls" />
+    <Link Source="@227" Target="@237" Category="CodeSchema_Calls" />
+    <Link Source="@227" Target="@239" Category="CodeSchema_Calls" />
+    <Link Source="@23" Target="@214" Category="Contains" />
+    <Link Source="@234" Target="@182" Category="CodeSchema_Calls" />
+    <Link Source="@234" Target="@96" Category="CodeSchema_Calls" />
+    <Link Source="@240" Target="@284" Category="CodeSchema_Calls" />
+    <Link Source="@241" Target="@87" Category="CodeSchema_Calls" />
+    <Link Source="@242" Target="@8" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@245" Target="@29" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@247" Target="@6" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@25" Target="(@1 @19 @24 @228)" Category="Contains" />
+    <Link Source="@25" Target="@104" Category="Contains" />
+    <Link Source="@25" Target="@106" Category="Contains" />
+    <Link Source="@25" Target="@130" Category="Contains" />
+    <Link Source="@252" Target="@7" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@259" Target="@58" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@260" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@260" Target="@274" Category="CodeSchema_Calls" />
+    <Link Source="@260" Target="@64" Category="References" />
+    <Link Source="@260" Target="@65" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@261" Target="@44" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@265" Target="@58" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@269" Target="@9" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@27" Target="(@1 @26 Type=DownloadEditionViewModel @228)" Category="Contains" />
+    <Link Source="@27" Target="@206" Category="Contains" />
+    <Link Source="@270" Target="@9" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@274" Target="@64" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@275" Target="@65" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@277" Target="@8" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@278" Target="@58" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@280" Target="@172" Category="CodeSchema_Calls" />
+    <Link Source="@280" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@280" Target="@59" Category="CodeSchema_ReturnTypeLink" />
+    <Link Source="@281" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@281" Target="@96" Category="CodeSchema_Calls" />
+    <Link Source="@282" Target="@123" Category="CodeSchema_FunctionPointer" />
+    <Link Source="@282" Target="@97" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@126" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@189" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@241" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@245" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@255" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@262" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@263" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@271" Category="CodeSchema_Calls" />
+    <Link Source="@283" Target="@29" Category="References" />
+    <Link Source="@283" Target="@44" Category="References" />
+    <Link Source="@283" Target="@51" Category="References" />
+    <Link Source="@283" Target="@99" Category="CodeSchema_Calls" />
+    <Link Source="@285" Target="@146" Category="CodeSchema_Calls" />
+    <Link Source="@285" Target="@174" Category="CodeSchema_Calls" />
+    <Link Source="@285" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@285" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@285" Target="@55" Category="References" />
+    <Link Source="@286" Target="@285" Category="CodeSchema_Calls" />
+    <Link Source="@29" Target="(@1 @4 @28 @136)" Category="Contains" />
+    <Link Source="@29" Target="(@1 @4 @28 @137)" Category="Contains" />
+    <Link Source="@29" Target="(@1 @4 @28 @250)" Category="Contains" />
+    <Link Source="@29" Target="(@1 @4 @28 @93)" Category="Contains" />
+    <Link Source="@29" Target="@112" Category="Contains" />
+    <Link Source="@29" Target="@118" Category="Contains" />
+    <Link Source="@29" Target="@128" Category="Contains" />
+    <Link Source="@29" Target="@148" Category="Contains" />
+    <Link Source="@29" Target="@162" Category="Contains" />
+    <Link Source="@29" Target="@232" Category="Contains" />
+    <Link Source="@29" Target="@255" Category="Contains" />
+    <Link Source="@29" Target="@261" Category="Contains" />
+    <Link Source="@29" Target="@262" Category="Contains" />
+    <Link Source="@29" Target="@263" Category="Contains" />
+    <Link Source="@29" Target="@269" Category="Contains" />
+    <Link Source="@29" Target="@44" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@29" Target="@84" Category="Contains" />
+    <Link Source="@29" Target="@9" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@3" Target="@140" Category="Contains" />
+    <Link Source="@3" Target="@229" Category="Contains" />
+    <Link Source="@30" Target="(@1 @26 Type=EditProfileViewModel @228)" Category="Contains" />
+    <Link Source="@30" Target="@219" Category="Contains" />
+    <Link Source="@32" Target="(@1 @4 @31 @136)" Category="Contains" />
+    <Link Source="@32" Target="(@1 @4 @31 @137)" Category="Contains" />
+    <Link Source="@32" Target="(@1 @4 @31 @250)" Category="Contains" />
+    <Link Source="@32" Target="(@1 @4 @31 @254)" Category="Contains" />
+    <Link Source="@32" Target="(@1 @4 @31 @93)" Category="Contains" />
+    <Link Source="@32" Target="@113" Category="Contains" />
+    <Link Source="@32" Target="@149" Category="Contains" />
+    <Link Source="@32" Target="@163" Category="Contains" />
+    <Link Source="@32" Target="@233" Category="Contains" />
+    <Link Source="@32" Target="@242" Category="Contains" />
+    <Link Source="@32" Target="@264" Category="Contains" />
+    <Link Source="@32" Target="@8" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@32" Target="@82" Category="Contains" />
+    <Link Source="@35" Target="(@1 @33 @34 Member=get_Checked)" Category="Contains" />
+    <Link Source="@35" Target="(@1 @33 @34 Member=get_GenreName)" Category="Contains" />
+    <Link Source="@35" Target="@160" Category="Contains" />
+    <Link Source="@35" Target="@182" Category="Contains" />
+    <Link Source="@35" Target="@86" Category="Contains" />
+    <Link Source="@36" Target="@234" Category="Contains" />
+    <Link Source="@38" Target="@122" Category="Contains" />
+    <Link Source="@38" Target="@124" Category="Contains" />
+    <Link Source="@38" Target="@144" Category="Contains" />
+    <Link Source="@38" Target="@145" Category="Contains" />
+    <Link Source="@38" Target="@281" Category="Contains" />
+    <Link Source="@40" Target="@210" Category="Contains" />
+    <Link Source="@40" Target="@260" Category="Contains" />
+    <Link Source="@42" Target="(@1 @2 @41 Member=get_SkipClosingMessage)" Category="Contains" />
+    <Link Source="@42" Target="@107" Category="Contains" />
+    <Link Source="@42" Target="@125" Category="Contains" />
+    <Link Source="@42" Target="@153" Category="Contains" />
+    <Link Source="@42" Target="@241" Category="Contains" />
+    <Link Source="@42" Target="@286" Category="Contains" />
+    <Link Source="@42" Target="@3" Category="Contains" />
+    <Link Source="@42" Target="@87" Category="Contains" />
+    <Link Source="@44" Target="(@1 @4 @43 @136)" Category="Contains" />
+    <Link Source="@44" Target="(@1 @4 @43 @137)" Category="Contains" />
+    <Link Source="@44" Target="(@1 @4 @43 @250)" Category="Contains" />
+    <Link Source="@44" Target="(@1 @4 @43 @93)" Category="Contains" />
+    <Link Source="@44" Target="(@1 @4 @43 Member=get_ImagePath)" Category="Contains" />
+    <Link Source="@44" Target="(@1 @4 @43 Member=get_OwnerID)" Category="Contains" />
+    <Link Source="@44" Target="@114" Category="Contains" />
+    <Link Source="@44" Target="@119" Category="Contains" />
+    <Link Source="@44" Target="@150" Category="Contains" />
+    <Link Source="@44" Target="@154" Category="Contains" />
+    <Link Source="@44" Target="@161" Category="Contains" />
+    <Link Source="@44" Target="@166" Category="Contains" />
+    <Link Source="@44" Target="@175" Category="Contains" />
+    <Link Source="@44" Target="@235" Category="Contains" />
+    <Link Source="@44" Target="@243" Category="Contains" />
+    <Link Source="@44" Target="@247" Category="Contains" />
+    <Link Source="@44" Target="@252" Category="Contains" />
+    <Link Source="@44" Target="@256" Category="Contains" />
+    <Link Source="@44" Target="@265" Category="Contains" />
+    <Link Source="@44" Target="@267" Category="Contains" />
+    <Link Source="@44" Target="@271" Category="Contains" />
+    <Link Source="@44" Target="@58" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@44" Target="@6" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@44" Target="@7" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@44" Target="@77" Category="Contains" />
+    <Link Source="@44" Target="@80" Category="Contains" />
+    <Link Source="@44" Target="@81" Category="Contains" />
+    <Link Source="@45" Target="@115" Category="Contains" />
+    <Link Source="@45" Target="@126" Category="Contains" />
+    <Link Source="@45" Target="@129" Category="Contains" />
+    <Link Source="@45" Target="@143" Category="Contains" />
+    <Link Source="@45" Target="@155" Category="Contains" />
+    <Link Source="@45" Target="@167" Category="Contains" />
+    <Link Source="@45" Target="@226" Category="Contains" />
+    <Link Source="@45" Target="@244" Category="Contains" />
+    <Link Source="@45" Target="@248" Category="Contains" />
+    <Link Source="@45" Target="@253" Category="Contains" />
+    <Link Source="@45" Target="@257" Category="Contains" />
+    <Link Source="@45" Target="@268" Category="Contains" />
+    <Link Source="@45" Target="@272" Category="Contains" />
+    <Link Source="@45" Target="@76" Category="Contains" />
+    <Link Source="@45" Target="@78" Category="Contains" />
+    <Link Source="@45" Target="@79" Category="Contains" />
+    <Link Source="@45" Target="@89" Category="Contains" />
+    <Link Source="@45" Target="@94" Category="Contains" />
+    <Link Source="@47" Target="(@1 @10 @46 @228)" Category="Contains" />
+    <Link Source="@47" Target="@189" Category="Contains" />
+    <Link Source="@47" Target="@203" Category="Contains" />
+    <Link Source="@47" Target="@204" Category="Contains" />
+    <Link Source="@47" Target="@215" Category="Contains" />
+    <Link Source="@47" Target="@216" Category="Contains" />
+    <Link Source="@47" Target="@96" Category="Contains" />
+    <Link Source="@47" Target="@97" Category="Contains" />
+    <Link Source="@48" Target="@221" Category="Contains" />
+    <Link Source="@49" Target="(@1 @4 Type=RemoteFileStream Member=(@101 OverloadingParameters=[@29,@74,(@72 @73 Type=Int64),@74,(@72 Namespace=System.IO Type=Stream)]))" Category="Contains" />
+    <Link Source="@49" Target="@236" Category="Contains" />
+    <Link Source="@49" Target="@29" Category="References" />
+    <Link Source="@51" Target="(@1 @4 @50 @136)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 @137)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 @228)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 @250)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 @254)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 @93)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 Member=get_Time)" Category="Contains" />
+    <Link Source="@51" Target="(@1 @4 @50 Member=get_UserID)" Category="Contains" />
+    <Link Source="@51" Target="@110" Category="Contains" />
+    <Link Source="@51" Target="@116" Category="Contains" />
+    <Link Source="@51" Target="@120" Category="Contains" />
+    <Link Source="@51" Target="@151" Category="Contains" />
+    <Link Source="@51" Target="@176" Category="Contains" />
+    <Link Source="@51" Target="@245" Category="Contains" />
+    <Link Source="@51" Target="@246" Category="Contains" />
+    <Link Source="@51" Target="@278" Category="Contains" />
+    <Link Source="@51" Target="@29" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@51" Target="@58" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@51" Target="@88" Category="Contains" />
+    <Link Source="@51" Target="@91" Category="Contains" />
+    <Link Source="@52" Target="(@1 @26 Type=RentalHistoryViewModel @228)" Category="Contains" />
+    <Link Source="@52" Target="@283" Category="Contains" />
+    <Link Source="@54" Target="(@1 @4 @53 @142)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @4 @53 @186)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @4 @53 @187)" Category="Contains" />
+    <Link Source="@54" Target="(@1 @4 @53 @207)" Category="Contains" />
+    <Link Source="@54" Target="@139" Category="Contains" />
+    <Link Source="@54" Target="@184" Category="Contains" />
+    <Link Source="@54" Target="@217" Category="Contains" />
+    <Link Source="@54" Target="@224" Category="Contains" />
+    <Link Source="@54" Target="@237" Category="Contains" />
+    <Link Source="@55" Target="@16" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@55" Target="@18" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@55" Target="@227" Category="Contains" />
+    <Link Source="@55" Target="@54" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@55" Target="@61" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@56" Target="(@1 @4 Type=UploadEditionResponse @228)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @4 @57 @136)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @4 @57 @137)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @4 @57 @250)" Category="Contains" />
+    <Link Source="@58" Target="(@1 @4 @57 @93)" Category="Contains" />
+    <Link Source="@58" Target="@100" Category="Contains" />
+    <Link Source="@58" Target="@117" Category="Contains" />
+    <Link Source="@58" Target="@152" Category="Contains" />
+    <Link Source="@58" Target="@156" Category="Contains" />
+    <Link Source="@58" Target="@158" Category="Contains" />
+    <Link Source="@58" Target="@164" Category="Contains" />
+    <Link Source="@58" Target="@168" Category="Contains" />
+    <Link Source="@58" Target="@169" Category="Contains" />
+    <Link Source="@58" Target="@180" Category="Contains" />
+    <Link Source="@58" Target="@238" Category="Contains" />
+    <Link Source="@58" Target="@249" Category="Contains" />
+    <Link Source="@58" Target="@251" Category="Contains" />
+    <Link Source="@58" Target="@258" Category="Contains" />
+    <Link Source="@58" Target="@266" Category="Contains" />
+    <Link Source="@58" Target="@270" Category="Contains" />
+    <Link Source="@58" Target="@273" Category="Contains" />
+    <Link Source="@58" Target="@274" Category="Contains" />
+    <Link Source="@58" Target="@276" Category="Contains" />
+    <Link Source="@58" Target="@277" Category="Contains" />
+    <Link Source="@58" Target="@279" Category="Contains" />
+    <Link Source="@58" Target="@64" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@58" Target="@8" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@58" Target="@83" Category="Contains" />
+    <Link Source="@58" Target="@85" Category="Contains" />
+    <Link Source="@58" Target="@9" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@59" Target="(@1 @33 @57 Member=get_Email)" Category="Contains" />
+    <Link Source="@59" Target="(@1 @33 @57 Member=get_FullName)" Category="Contains" />
+    <Link Source="@59" Target="(@1 @33 @57 Member=get_Password)" Category="Contains" />
+    <Link Source="@59" Target="(@1 @33 @57 Member=get_Username)" Category="Contains" />
+    <Link Source="@59" Target="@157" Category="Contains" />
+    <Link Source="@59" Target="@159" Category="Contains" />
+    <Link Source="@59" Target="@165" Category="Contains" />
+    <Link Source="@59" Target="@170" Category="Contains" />
+    <Link Source="@59" Target="@172" Category="Contains" />
+    <Link Source="@59" Target="@181" Category="Contains" />
+    <Link Source="@59" Target="@225" Category="Contains" />
+    <Link Source="@59" Target="@275" Category="Contains" />
+    <Link Source="@59" Target="@65" Category="References">
+      <Category Ref="CodeSchema_ReturnTypeLink" />
+    </Link>
+    <Link Source="@6" Target="@29" Category="CodeSchema_ElementType" />
+    <Link Source="@61" Target="(@1 @4 @60 @142)" Category="Contains" />
+    <Link Source="@61" Target="(@1 @4 @60 @186)" Category="Contains" />
+    <Link Source="@61" Target="(@1 @4 @60 @187)" Category="Contains" />
+    <Link Source="@61" Target="(@1 @4 @60 @207)" Category="Contains" />
+    <Link Source="@61" Target="@146" Category="Contains" />
+    <Link Source="@61" Target="@179" Category="Contains" />
+    <Link Source="@61" Target="@212" Category="Contains" />
+    <Link Source="@61" Target="@220" Category="Contains" />
+    <Link Source="@61" Target="@239" Category="Contains" />
+    <Link Source="@63" Target="@108" Category="Contains" />
+    <Link Source="@63" Target="@173" Category="Contains" />
+    <Link Source="@63" Target="@98" Category="Contains" />
+    <Link Source="@63" Target="@99" Category="Contains" />
+    <Link Source="@64" Target="@64" Category="References" />
+    <Link Source="@65" Target="@65" Category="References" />
+    <Link Source="@66" Target="@109" Category="Contains" />
+    <Link Source="@69" Target="@103" Category="Contains" />
+    <Link Source="@69" Target="@194" Category="Contains" />
+    <Link Source="@69" Target="@197" Category="Contains" />
+    <Link Source="@69" Target="@198" Category="Contains" />
+    <Link Source="@69" Target="@199" Category="Contains" />
+    <Link Source="@69" Target="@200" Category="Contains" />
+    <Link Source="@69" Target="@201" Category="Contains" />
+    <Link Source="@69" Target="@202" Category="Contains" />
+    <Link Source="@69" Target="@208" Category="Contains" />
+    <Link Source="@69" Target="@240" Category="Contains" />
+    <Link Source="@69" Target="@284" Category="Contains" />
+    <Link Source="@69" Target="@45" Category="References">
+      <Category Ref="CodeSchema_Calls" />
+    </Link>
+    <Link Source="@7" Target="@32" Category="CodeSchema_ElementType" />
+    <Link Source="@70" Target="@105" Category="Contains" />
+    <Link Source="@71" Target="@280" Category="Contains" />
+    <Link Source="@77" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@8" Target="@44" Category="CodeSchema_ElementType" />
+    <Link Source="@80" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@81" Target="@150" Category="CodeSchema_Calls" />
+    <Link Source="@82" Target="@149" Category="CodeSchema_Calls" />
+    <Link Source="@83" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@84" Target="@148" Category="CodeSchema_Calls" />
+    <Link Source="@85" Target="@152" Category="CodeSchema_Calls" />
+    <Link Source="@88" Target="@151" Category="CodeSchema_Calls" />
+    <Link Source="@89" Target="@255" Category="CodeSchema_Calls" />
+    <Link Source="@89" Target="@263" Category="CodeSchema_Calls" />
+    <Link Source="@9" Target="@51" Category="CodeSchema_ElementType" />
+    <Link Source="@90" Target="@183" Category="CodeSchema_Calls" />
+    <Link Source="@90" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@90" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@90" Target="@55" Category="References" />
+    <Link Source="@91" Target="@151" Category="CodeSchema_Calls" />
+    <Link Source="@94" Target="@264" Category="CodeSchema_Calls" />
+    <Link Source="@96" Target="@211" Category="CodeSchema_Calls" />
+    <Link Source="@96" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@96" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@96" Target="@55" Category="References" />
+    <Link Source="@97" Target="@222" Category="CodeSchema_Calls" />
+    <Link Source="@97" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@97" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@97" Target="@55" Category="References" />
+    <Link Source="@97" Target="@8" Category="References" />
+    <Link Source="@98" Target="@217" Category="CodeSchema_Calls" />
+    <Link Source="@98" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@98" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@98" Target="@55" Category="References" />
+    <Link Source="@98" Target="@9" Category="References" />
+    <Link Source="@99" Target="@217" Category="CodeSchema_Calls" />
+    <Link Source="@99" Target="@259" Category="CodeSchema_Calls" />
+    <Link Source="@99" Target="@273" Category="CodeSchema_Calls" />
+    <Link Source="@99" Target="@55" Category="References" />
+    <Link Source="@99" Target="@9" Category="References" />
+  </Links>
+  <Categories>
+    <Category Id="CodeSchema_Assembly" Label="Assembly" BasedOn="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Assembly" IsProviderRoot="False" NavigationActionLabel="Assemblies" />
+    <Category Id="CodeSchema_Block" Label="Block" BasedOn="CodeSchema_Statement" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" IsProviderRoot="False" NavigationActionLabel="Blocks" />
+    <Category Id="CodeSchema_Calls" Label="Calls" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Called By" OutgoingActionLabel="Calls" />
+    <Category Id="CodeSchema_Class" Label="Class" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" IsProviderRoot="False" NavigationActionLabel="Classes" />
+    <Category Id="CodeSchema_ElementType" Label="Element Type" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Element Types" OutgoingActionLabel="Element Types" />
+    <Category Id="CodeSchema_Enum" Label="Enum" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Enum" IsProviderRoot="False" NavigationActionLabel="Enums" />
+    <Category Id="CodeSchema_FunctionPointer" Label="Function Pointer" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Function Pointers" OutgoingActionLabel="Function Pointers" />
+    <Category Id="CodeSchema_Member" Label="Member" BasedOn="CodeSchema_Block" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" IsProviderRoot="False" NavigationActionLabel="Members" />
+    <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" IsProviderRoot="False" NavigationActionLabel="Methods" />
+    <Category Id="CodeSchema_ReturnTypeLink" Label="Return" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Return types" OutgoingActionLabel="Return types" />
+    <Category Id="CodeSchema_Statement" Label="Statement" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" IsProviderRoot="False" NavigationActionLabel="Statement" />
+    <Category Id="CodeSchema_Type" Label="Type" BasedOn="CodeSchema_Block" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" IsProviderRoot="False" NavigationActionLabel="Types" />
+    <Category Id="Contains" Label="Contains" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+    <Category Id="File" Label="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="File" IsProviderRoot="False" NavigationActionLabel="Files" />
+    <Category Id="References" Label="References" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Referenced By" OutgoingActionLabel="References" />
+  </Categories>
+  <Properties>
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsArray" Label="IsArray" Description="IsArray" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsCompilerGenerated" Label="IsCompilerGenerated" Description="IsCompilerGenerated" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsConstructor" Label="IsConstructor" Description="IsConstructor" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsGeneratedCode" Label="IsGeneratedCode" Description="IsGeneratedCode" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPrivate" Label="IsPrivate" Description="IsPrivate" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsProtected" Label="IsProtected" Description="IsProtected" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="IsPublic" Description="IsPublic" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsSpecialName" Label="IsSpecialName" Description="IsSpecialName" DataType="System.Boolean" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Progression.Layout.GraphDirection" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.Progression.GraphModel.GroupStyle" />
+    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Visibility" Label="Visibility" Description="Defines whether a node in the graph is visible or not" DataType="System.Windows.Visibility" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="ArrayRank" Label="Array Rank" ValueType="System.String" />
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="GenericArguments" Label="Generic Arguments" ValueType="Microsoft.VisualStudio.Progression.GraphModel.QualifiedIdentifierArrayCollection" />
+    <Name Id="GenericParameterCount" Label="Generic Parameter Count" ValueType="System.String" />
+    <Name Id="Member" Label="Member" ValueType="System.Object" />
+    <Name Id="Name" Label="Name" ValueType="System.String" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="OverloadingParameters" Label="Parameter" ValueType="Microsoft.VisualStudio.Progression.GraphModel.QualifiedIdentifierArrayCollection" Formatter="NameValueNoEscape" />
+    <Name Id="ParentType" Label="Parent Type" ValueType="System.Object" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Assembly" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Assembly')" />
+      <Setter Property="Background" Value="#1C3068" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Namespace" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Namespace')" />
+      <Setter Property="Background" Value="#4A65A0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Type" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Type')" />
+      <Setter Property="Background" Value="#D3DCEF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Method" ValueLabel="Has category">
+      <Condition Expression="HasCategory('CodeSchema_Method')" />
+      <Setter Property="Background" Value="#FFE0E0E0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Generics" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Generics')" />
+      <Setter Property="Background" Value="#FFA080A0" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Externals" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Externals')" />
+      <Setter Property="Background" Value="#FFA08080" />
+    </Style>
+  </Styles>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(da3090a3-9d54-49d4-a607-be59b3ce0023.OutputPathUri)" />
+    <Alias n="2" Id="Namespace=RentItClient.ViewModels" />
+    <Alias n="3" Id="(@1 @2 Type=(Name=&lt;&gt;c__DisplayClass4 ParentType=MasterViewModel))" />
+    <Alias n="4" Id="Namespace=RentItClient.RentItService" />
+    <Alias n="5" Id="ArrayRank=1" />
+    <Alias n="6" Id="(@1 @4 Type=(Name=Edition @5 ParentType=Edition))" />
+    <Alias n="7" Id="(@1 @4 Type=(Name=Genre @5 ParentType=Genre))" />
+    <Alias n="8" Id="(@1 @4 Type=(Name=Movie @5 ParentType=Movie))" />
+    <Alias n="9" Id="(@1 @4 Type=(Name=Rental @5 ParentType=Rental))" />
+    <Alias n="10" Id="Namespace=RentItClient.Models" />
+    <Alias n="11" Id="Type=AccessModel" />
+    <Alias n="12" Id="(@1 @10 @11)" />
+    <Alias n="13" Id="Type=AdministrationModel" />
+    <Alias n="14" Id="(@1 @10 @13)" />
+    <Alias n="15" Id="Type=ContentBrowsingClient" />
+    <Alias n="16" Id="(@1 @4 @15)" />
+    <Alias n="17" Id="Type=ContentManagementClient" />
+    <Alias n="18" Id="(@1 @4 @17)" />
+    <Alias n="19" Id="Namespace=RentItClient.ViewModels.ProviderViewModels" />
+    <Alias n="20" Id="(@1 @19 Type=CPEditMovieViewModel)" />
+    <Alias n="21" Id="(@1 @19 Type=CPMoviesViewModel)" />
+    <Alias n="22" Id="(@1 @19 Type=CPRegisterViewModel)" />
+    <Alias n="23" Id="(@1 @19 Type=CPUploadEditionViewModel)" />
+    <Alias n="24" Id="Type=CPViewMovieViewModel" />
+    <Alias n="25" Id="(@1 @19 @24)" />
+    <Alias n="26" Id="Namespace=RentItClient.ViewModels.UserViewModels" />
+    <Alias n="27" Id="(@1 @26 Type=DownloadEditionViewModel)" />
+    <Alias n="28" Id="Type=Edition" />
+    <Alias n="29" Id="(@1 @4 @28)" />
+    <Alias n="30" Id="(@1 @26 Type=EditProfileViewModel)" />
+    <Alias n="31" Id="Type=Genre" />
+    <Alias n="32" Id="(@1 @4 @31)" />
+    <Alias n="33" Id="Namespace=RentItClient.Types" />
+    <Alias n="34" Id="Type=GenreChecked" />
+    <Alias n="35" Id="(@1 @33 @34)" />
+    <Alias n="36" Id="(@1 @33 Type=GenreCheckList)" />
+    <Alias n="37" Id="Type=ListMovieViewModel" />
+    <Alias n="38" Id="(@1 @26 @37)" />
+    <Alias n="39" Id="Namespace=RentItClient.ViewModels.AdministrationViewModels" />
+    <Alias n="40" Id="(@1 @39 Type=LoginViewModel)" />
+    <Alias n="41" Id="Type=MasterViewModel" />
+    <Alias n="42" Id="(@1 @2 @41)" />
+    <Alias n="43" Id="Type=Movie" />
+    <Alias n="44" Id="(@1 @4 @43)" />
+    <Alias n="45" Id="(@1 @33 @43)" />
+    <Alias n="46" Id="Type=MovieInformationModel" />
+    <Alias n="47" Id="(@1 @10 @46)" />
+    <Alias n="48" Id="(@1 @39 Type=RegistrationViewModel)" />
+    <Alias n="49" Id="(@1 @4 Type=RemoteFileStream)" />
+    <Alias n="50" Id="Type=Rental" />
+    <Alias n="51" Id="(@1 @4 @50)" />
+    <Alias n="52" Id="(@1 @26 Type=RentalHistoryViewModel)" />
+    <Alias n="53" Id="Type=RentalManagementClient" />
+    <Alias n="54" Id="(@1 @4 @53)" />
+    <Alias n="55" Id="(@1 @10 Type=ServiceClients)" />
+    <Alias n="56" Id="(@1 @4 Type=UploadEditionResponse)" />
+    <Alias n="57" Id="Type=User" />
+    <Alias n="58" Id="(@1 @4 @57)" />
+    <Alias n="59" Id="(@1 @33 @57)" />
+    <Alias n="60" Id="Type=UserManagementClient" />
+    <Alias n="61" Id="(@1 @4 @60)" />
+    <Alias n="62" Id="Type=UserModel" />
+    <Alias n="63" Id="(@1 @10 @62)" />
+    <Alias n="64" Id="(@1 @4 Type=UserType)" />
+    <Alias n="65" Id="(@1 @33 Type=UserType)" />
+    <Alias n="66" Id="(@1 @26 Type=ViewEditionViewModel)" />
+    <Alias n="67" Id="Namespace=RentItClient.GUI.User" />
+    <Alias n="68" Id="Type=ViewMoviePage" />
+    <Alias n="69" Id="(@1 @67 @68)" />
+    <Alias n="70" Id="(@1 @26 Type=ViewMovieViewModel)" />
+    <Alias n="71" Id="(@1 @26 Type=ViewProfileViewModel)" />
+    <Alias n="72" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/mscorlib.dll" />
+    <Alias n="73" Id="Namespace=System" />
+    <Alias n="74" Id="(@72 @73 Type=String)" />
+    <Alias n="75" Id="(@72 @73 Type=Int32)" />
+    <Alias n="76" Id="(@1 @33 @43 Member=(Name=set_Editions OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[(@72 @73 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@74,@75]))]))]))" />
+    <Alias n="77" Id="(@1 @4 @43 Member=(Name=set_ReleaseDate OverloadingParameters=[(@72 @73 Type=(Name=Nullable GenericParameterCount=1 GenericArguments=[(@72 @73 Type=DateTime)]))]))" />
+    <Alias n="78" Id="(@1 @33 @43 Member=(Name=set_ReleaseDate OverloadingParameters=[(@72 @73 Type=(Name=Nullable GenericParameterCount=1 GenericArguments=[(@72 @73 Type=DateTime)]))]))" />
+    <Alias n="79" Id="(@1 @33 @43 Member=(Name=set_Genres OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[@74]))]))" />
+    <Alias n="80" Id="(@1 @4 @43 Member=(Name=set_Editions OverloadingParameters=[@6]))" />
+    <Alias n="81" Id="(@1 @4 @43 Member=(Name=set_Genres OverloadingParameters=[@7]))" />
+    <Alias n="82" Id="(@1 @4 @31 Member=(Name=set_AssociatedMovies OverloadingParameters=[@8]))" />
+    <Alias n="83" Id="(@1 @4 @57 Member=(Name=set_UploadedMovies OverloadingParameters=[@8]))" />
+    <Alias n="84" Id="(@1 @4 @28 Member=(Name=set_Rentals OverloadingParameters=[@9]))" />
+    <Alias n="85" Id="(@1 @4 @57 Member=(Name=set_Rentals OverloadingParameters=[@9]))" />
+    <Alias n="86" Id="(@1 @33 @34 Member=(Name=set_Checked OverloadingParameters=[(@72 @73 Type=Boolean)]))" />
+    <Alias n="87" Id="(@1 @2 @41 Member=(Name=set_SkipClosingMessage OverloadingParameters=[(@72 @73 Type=Boolean)]))" />
+    <Alias n="88" Id="(@1 @4 @50 Member=(Name=set_Time OverloadingParameters=[(@72 @73 Type=DateTime)]))" />
+    <Alias n="89" Id="(@1 @33 @43 Member=(Name=&lt;ConvertServiceMovie&gt;b__1 OverloadingParameters=[@29]))" />
+    <Alias n="90" Id="(@1 @10 @13 Member=(Name=DeleteEdition OverloadingParameters=[@29]))" />
+    <Alias n="91" Id="(@1 @4 @50 Member=(Name=set_Edition OverloadingParameters=[@29]))" />
+    <Alias n="92" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/System.Runtime.Serialization.dll" />
+    <Alias n="93" Id="Member=(Name=set_ExtensionData OverloadingParameters=[(@92 Namespace=System.Runtime.Serialization Type=ExtensionDataObject)])" />
+    <Alias n="94" Id="(@1 @33 @43 Member=(Name=&lt;ConvertServiceMovie&gt;b__0 OverloadingParameters=[@32]))" />
+    <Alias n="95" Id="OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=IEnumerable`1&amp;)]" />
+    <Alias n="96" Id="(@1 @10 @46 Member=(Name=AllGenres @95))" />
+    <Alias n="97" Id="(@1 @10 @46 Member=(Name=AllMovies @95))" />
+    <Alias n="98" Id="(@1 @10 @62 Member=(Name=CurrentRentals @95))" />
+    <Alias n="99" Id="(@1 @10 @62 Member=(Name=RentalHistory @95))" />
+    <Alias n="100" Id="(@1 @4 @57 Member=(Name=set_TypeValue OverloadingParameters=[(@72 @73 Type=Int16)]))" />
+    <Alias n="101" Id="Name=.ctor" />
+    <Alias n="102" Id="OverloadingParameters=[@75]" />
+    <Alias n="103" Id="(@1 @67 @68 Member=(@101 @102))" />
+    <Alias n="104" Id="(@1 @19 @24 Member=(Name=DeleteEdition @102))" />
+    <Alias n="105" Id="(@1 @26 Type=ViewMovieViewModel Member=(Name=GetMovieInfo @102))" />
+    <Alias n="106" Id="(@1 @19 @24 Member=(Name=GetMovieInformation @102))" />
+    <Alias n="107" Id="(@1 @2 @41 Member=(Name=IsCurrentRental @102))" />
+    <Alias n="108" Id="(@1 @10 @62 Member=(Name=RentEdition @102))" />
+    <Alias n="109" Id="(@1 @26 Type=ViewEditionViewModel Member=(Name=RentEdition @102))" />
+    <Alias n="110" Id="(@1 @4 @50 Member=(Name=set_EditionID @102))" />
+    <Alias n="111" Id="Member=(Name=set_ID @102)" />
+    <Alias n="112" Id="(@1 @4 @28 @111)" />
+    <Alias n="113" Id="(@1 @4 @31 @111)" />
+    <Alias n="114" Id="(@1 @4 @43 @111)" />
+    <Alias n="115" Id="(@1 @33 @43 @111)" />
+    <Alias n="116" Id="(@1 @4 @50 @111)" />
+    <Alias n="117" Id="(@1 @4 @57 @111)" />
+    <Alias n="118" Id="(@1 @4 @28 Member=(Name=set_MovieID @102))" />
+    <Alias n="119" Id="(@1 @4 @43 Member=(Name=set_OwnerID @102))" />
+    <Alias n="120" Id="(@1 @4 @50 Member=(Name=set_UserID @102))" />
+    <Alias n="121" Id="OverloadingParameters=[@44]" />
+    <Alias n="122" Id="(@1 @26 @37 Member=(Name=&lt;GetMostPopularMovies&gt;b__2 @121))" />
+    <Alias n="123" Id="(@1 @19 Type=CPMoviesViewModel Member=(Name=&lt;GetMovies&gt;b__0 @121))" />
+    <Alias n="124" Id="(@1 @26 @37 Member=(Name=&lt;GetNewestMovies&gt;b__0 @121))" />
+    <Alias n="125" Id="(@1 @2 @41 Member=(Name=&lt;Search&gt;b__0 @121))" />
+    <Alias n="126" Id="(@1 @33 @43 Member=(Name=ConvertServiceMovie @121))" />
+    <Alias n="127" Id="(@1 @10 @13 Member=(Name=DeleteMovie @121))" />
+    <Alias n="128" Id="(@1 @4 @28 Member=(Name=set_Movie @121))" />
+    <Alias n="129" Id="(@1 @33 @43 Member=(Name=ConvertClientMovie OverloadingParameters=[@45]))" />
+    <Alias n="130" Id="(@1 @19 @24 Member=(Name=DeleteMovie OverloadingParameters=[@45]))" />
+    <Alias n="131" Id="(@1 @19 Type=CPEditMovieViewModel Member=(Name=EditMovie OverloadingParameters=[@45]))" />
+    <Alias n="132" Id="(@1 @4 Type=Movie&amp;)" />
+    <Alias n="133" Id="(@1 @10 @13 Member=(Name=RegisterMovie OverloadingParameters=[@132]))" />
+    <Alias n="134" Id="(@1 @19 Type=CPRegisterViewModel Member=(Name=RegisterMovie OverloadingParameters=[(@1 @33 Type=Movie&amp;)]))" />
+    <Alias n="135" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/System.dll" />
+    <Alias n="136" Id="Member=(Name=add_PropertyChanged OverloadingParameters=[(@135 Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])" />
+    <Alias n="137" Id="Member=(Name=remove_PropertyChanged OverloadingParameters=[(@135 Namespace=System.ComponentModel Type=PropertyChangedEventHandler)])" />
+    <Alias n="138" Id="(@1 @4 @17 Member=(Name=RentItClient.RentItService.IContentManagement.UploadEdition OverloadingParameters=[@49]))" />
+    <Alias n="139" Id="(@1 @4 @53 Member=(Name=RentItClient.RentItService.IRentalManagement.DownloadFile OverloadingParameters=[@49]))" />
+    <Alias n="140" Id="(@1 @2 Type=(Name=&lt;&gt;c__DisplayClass4 ParentType=MasterViewModel) Member=(Name=&lt;IsCurrentRental&gt;b__2 OverloadingParameters=[@51]))" />
+    <Alias n="141" Id="OverloadingParameters=[@74]" />
+    <Alias n="142" Id="Member=(@101 @141)" />
+    <Alias n="143" Id="(@1 @33 @43 Member=(Name=&lt;ConvertClientMovie&gt;b__6 @141))" />
+    <Alias n="144" Id="(@1 @26 @37 Member=(Name=GetMostPopularMovies @141))" />
+    <Alias n="145" Id="(@1 @26 @37 Member=(Name=GetNewestMovies @141))" />
+    <Alias n="146" Id="(@1 @4 @60 Member=(Name=Logout @141))" />
+    <Alias n="147" Id="Member=(Name=RaisePropertyChanged @141)" />
+    <Alias n="148" Id="(@1 @4 @28 @147)" />
+    <Alias n="149" Id="(@1 @4 @31 @147)" />
+    <Alias n="150" Id="(@1 @4 @43 @147)" />
+    <Alias n="151" Id="(@1 @4 @50 @147)" />
+    <Alias n="152" Id="(@1 @4 @57 @147)" />
+    <Alias n="153" Id="(@1 @2 @41 Member=(Name=Search @141))" />
+    <Alias n="154" Id="(@1 @4 @43 Member=(Name=set_Description @141))" />
+    <Alias n="155" Id="(@1 @33 @43 Member=(Name=set_Description @141))" />
+    <Alias n="156" Id="(@1 @4 @57 Member=(Name=set_Email @141))" />
+    <Alias n="157" Id="(@1 @33 @57 Member=(Name=set_Email @141))" />
+    <Alias n="158" Id="(@1 @4 @57 Member=(Name=set_FullName @141))" />
+    <Alias n="159" Id="(@1 @33 @57 Member=(Name=set_FullName @141))" />
+    <Alias n="160" Id="(@1 @33 @34 Member=(Name=set_GenreName @141))" />
+    <Alias n="161" Id="(@1 @4 @43 Member=(Name=set_ImagePath @141))" />
+    <Alias n="162" Id="(@1 @4 @28 Member=(Name=set_Name @141))" />
+    <Alias n="163" Id="(@1 @4 @31 Member=(Name=set_Name @141))" />
+    <Alias n="164" Id="(@1 @4 @57 Member=(Name=set_Password @141))" />
+    <Alias n="165" Id="(@1 @33 @57 Member=(Name=set_Password @141))" />
+    <Alias n="166" Id="(@1 @4 @43 Member=(Name=set_Title @141))" />
+    <Alias n="167" Id="(@1 @33 @43 Member=(Name=set_Title @141))" />
+    <Alias n="168" Id="(@1 @4 @57 Member=(Name=set_Token @141))" />
+    <Alias n="169" Id="(@1 @4 @57 Member=(Name=set_Username @141))" />
+    <Alias n="170" Id="(@1 @33 @57 Member=(Name=set_Username @141))" />
+    <Alias n="171" Id="OverloadingParameters=[@58]" />
+    <Alias n="172" Id="(@1 @33 @57 Member=(Name=ConvertServiceUser @171))" />
+    <Alias n="173" Id="(@1 @10 @62 Member=(Name=EditProfile @171))" />
+    <Alias n="174" Id="(@1 @10 @11 Member=(Name=set_LoggedIn @171))" />
+    <Alias n="175" Id="(@1 @4 @43 Member=(Name=set_Owner @171))" />
+    <Alias n="176" Id="(@1 @4 @50 Member=(Name=set_User @171))" />
+    <Alias n="177" Id="(@1 @10 @11 Member=(Name=SignUp @171))" />
+    <Alias n="178" Id="(@1 @10 @11 Member=(Name=UpdateLoggedInUser @171))" />
+    <Alias n="179" Id="(@1 @4 @60 Member=(Name=SignUp OverloadingParameters=[(@1 @4 Type=User&amp;)]))" />
+    <Alias n="180" Id="(@1 @4 @57 Member=(Name=set_Type OverloadingParameters=[@64]))" />
+    <Alias n="181" Id="(@1 @33 @57 Member=(Name=set_Type OverloadingParameters=[@65]))" />
+    <Alias n="182" Id="(@1 @33 @34 Member=(@101 OverloadingParameters=[@74,(@72 @73 Type=Boolean)]))" />
+    <Alias n="183" Id="(@1 @4 @17 Member=(Name=DeleteEdition OverloadingParameters=[@74,@29]))" />
+    <Alias n="184" Id="(@1 @4 @53 Member=(Name=RentMovie OverloadingParameters=[@74,@29]))" />
+    <Alias n="185" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/System.ServiceModel.dll" />
+    <Alias n="186" Id="Member=(@101 OverloadingParameters=[(@185 Namespace=System.ServiceModel.Channels Type=Binding),(@185 Namespace=System.ServiceModel Type=EndpointAddress)])" />
+    <Alias n="187" Id="Member=(@101 OverloadingParameters=[@74,(@185 Namespace=System.ServiceModel Type=EndpointAddress)])" />
+    <Alias n="188" Id="(@1 @4 @17 Member=(Name=DeleteMovie OverloadingParameters=[@74,@44]))" />
+    <Alias n="189" Id="(@1 @10 @46 Member=(Name=GetMovieInfo OverloadingParameters=[@75,@132]))" />
+    <Alias n="190" Id="(@1 @10 @13 Member=(Name=EditMovie OverloadingParameters=[@44,@132]))" />
+    <Alias n="191" Id="(@1 @4 @17 Member=(Name=EditMovie OverloadingParameters=[@74,@132]))" />
+    <Alias n="192" Id="(@1 @4 @15 Member=(Name=GetMovieInformation OverloadingParameters=[@74,@132]))" />
+    <Alias n="193" Id="(@1 @4 @17 Member=(Name=RegisterMovie OverloadingParameters=[@74,@132]))" />
+    <Alias n="194" Id="(@1 @67 @68 Member=(Name=System.Windows.Markup.IComponentConnector.Connect OverloadingParameters=[@75,(@72 @73 Type=Object)]))" />
+    <Alias n="195" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/Profile/Client/PresentationCore.dll" />
+    <Alias n="196" Id="OverloadingParameters=[(@72 @73 Type=Object),(@195 Namespace=System.Windows Type=RoutedEventArgs)]" />
+    <Alias n="197" Id="(@1 @67 @68 Member=(Name=ListMoviesClick @196))" />
+    <Alias n="198" Id="(@1 @67 @68 Member=(Name=LogoutClick @196))" />
+    <Alias n="199" Id="(@1 @67 @68 Member=(Name=SearchClick @196))" />
+    <Alias n="200" Id="(@1 @67 @68 Member=(Name=SelectEditionClick @196))" />
+    <Alias n="201" Id="(@1 @67 @68 Member=(Name=ViewProfileClick @196))" />
+    <Alias n="202" Id="(@1 @67 @68 Member=(Name=YourRentalsClick @196))" />
+    <Alias n="203" Id="(@1 @10 @46 Member=(Name=MoviesByGenre OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=IEnumerable`1&amp;),@74]))" />
+    <Alias n="204" Id="(@1 @10 @46 Member=(Name=Search OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=IEnumerable`1&amp;),@74]))" />
+    <Alias n="205" Id="(@1 @10 @13 Member=(Name=DownloadFile OverloadingParameters=[@75,@74]))" />
+    <Alias n="206" Id="(@1 @26 Type=DownloadEditionViewModel Member=(Name=DownloadFile OverloadingParameters=[@75,@74]))" />
+    <Alias n="207" Id="Member=(@101 OverloadingParameters=[@74,@74])" />
+    <Alias n="208" Id="(@1 @67 @68 Member=(Name=&lt;.ctor&gt;b__0 OverloadingParameters=[@74,@74]))" />
+    <Alias n="209" Id="(@1 @10 @11 Member=(Name=Login OverloadingParameters=[@74,@74]))" />
+    <Alias n="210" Id="(@1 @39 Type=LoginViewModel Member=(Name=Login OverloadingParameters=[@74,@74]))" />
+    <Alias n="211" Id="(@1 @4 @15 Member=(Name=GetGenres OverloadingParameters=[(@72 @73 Type=&quot;String[]&amp;&quot;),@74]))" />
+    <Alias n="212" Id="(@1 @4 @60 Member=(Name=EditUser OverloadingParameters=[@74,(@1 @4 Type=User&amp;)]))" />
+    <Alias n="213" Id="(@1 @10 @13 Member=(Name=UploadEdition OverloadingParameters=[@74,@75,(@72 Namespace=System.IO Type=FileInfo)]))" />
+    <Alias n="214" Id="(@1 @19 Type=CPUploadEditionViewModel Member=(Name=UploadEdition OverloadingParameters=[@45,@74,(@72 Namespace=System.IO Type=FileInfo)]))" />
+    <Alias n="215" Id="(@1 @10 @46 Member=(Name=MostDownloaded OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=IEnumerable`1&amp;),@74,@75]))" />
+    <Alias n="216" Id="(@1 @10 @46 Member=(Name=Newest OverloadingParameters=[(@72 Namespace=System.Collections.Generic Type=IEnumerable`1&amp;),@74,@75]))" />
+    <Alias n="217" Id="(@1 @4 @53 Member=(Name=GetRentals OverloadingParameters=[(@1 @4 Type=&quot;Rental[]&amp;&quot;),@74,(@1 @4 Type=RentalScope)]))" />
+    <Alias n="218" Id="(@1 @4 @15 Member=(Name=Search OverloadingParameters=[(@1 @4 Type=&quot;Movie[]&amp;&quot;),@74,@74]))" />
+    <Alias n="219" Id="(@1 @26 Type=EditProfileViewModel Member=(Name=EditUserProfile OverloadingParameters=[@74,@74,@74]))" />
+    <Alias n="220" Id="(@1 @4 @60 Member=(Name=Login OverloadingParameters=[(@1 @4 Type=User&amp;),@74,@74]))" />
+    <Alias n="221" Id="(@1 @39 Type=RegistrationViewModel Member=(Name=SignUp OverloadingParameters=[@74,@74,@74,@74]))" />
+    <Alias n="222" Id="(@1 @4 @15 Member=(Name=GetMovies OverloadingParameters=[(@1 @4 Type=&quot;Movie[]&amp;&quot;),@74,(@1 @4 Type=MovieSorting),@74,@75]))" />
+    <Alias n="223" Id="(@1 @4 @17 Member=(Name=UploadEdition OverloadingParameters=[@29,@74,(@72 @73 Type=Int64),@74,(@72 Namespace=System.IO Type=Stream)]))" />
+    <Alias n="224" Id="(@1 @4 @53 Member=(Name=DownloadFile OverloadingParameters=[(@1 @4 Type=Edition&amp;),(@72 @73 Type=String&amp;),(@72 @73 Type=Int64&amp;),(@72 @73 Type=String&amp;),(@72 Namespace=System.IO Type=Stream&amp;)]))" />
+    <Alias n="225" Id="(@1 @33 @57 Member=(@101 OverloadingParameters=[@74,@74,@74,@74,@65]))" />
+    <Alias n="226" Id="(@1 @33 @43 Member=(@101 OverloadingParameters=[@75,@74,@74,(@72 @73 Type=(Name=Nullable GenericParameterCount=1 GenericArguments=[(@72 @73 Type=DateTime)])),(@72 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[@74])),(@72 Namespace=System.Collections.Generic Type=(Name=IEnumerable GenericParameterCount=1 GenericArguments=[(@72 @73 Type=(Name=Tuple GenericParameterCount=2 GenericArguments=[@74,@75]))]))]))" />
+    <Alias n="227" Id="(@1 @10 Type=ServiceClients Member=.cctor)" />
+    <Alias n="228" Id="Member=.ctor" />
+    <Alias n="229" Id="(@1 @2 Type=(Name=&lt;&gt;c__DisplayClass4 ParentType=MasterViewModel) @228)" />
+    <Alias n="230" Id="(@1 @4 @15 @228)" />
+    <Alias n="231" Id="(@1 @4 @17 @228)" />
+    <Alias n="232" Id="(@1 @4 @28 @228)" />
+    <Alias n="233" Id="(@1 @4 @31 @228)" />
+    <Alias n="234" Id="(@1 @33 Type=GenreCheckList @228)" />
+    <Alias n="235" Id="(@1 @4 @43 @228)" />
+    <Alias n="236" Id="(@1 @4 Type=RemoteFileStream @228)" />
+    <Alias n="237" Id="(@1 @4 @53 @228)" />
+    <Alias n="238" Id="(@1 @4 @57 @228)" />
+    <Alias n="239" Id="(@1 @4 @60 @228)" />
+    <Alias n="240" Id="(@1 @67 @68 @228)" />
+    <Alias n="241" Id="(@1 @2 @41 Member=AuthenticationError)" />
+    <Alias n="242" Id="(@1 @4 @31 Member=get_AssociatedMovies)" />
+    <Alias n="243" Id="(@1 @4 @43 Member=get_Description)" />
+    <Alias n="244" Id="(@1 @33 @43 Member=get_Description)" />
+    <Alias n="245" Id="(@1 @4 @50 Member=get_Edition)" />
+    <Alias n="246" Id="(@1 @4 @50 Member=get_EditionID)" />
+    <Alias n="247" Id="(@1 @4 @43 Member=get_Editions)" />
+    <Alias n="248" Id="(@1 @33 @43 Member=get_Editions)" />
+    <Alias n="249" Id="(@1 @4 @57 Member=get_Email)" />
+    <Alias n="250" Id="Member=get_ExtensionData" />
+    <Alias n="251" Id="(@1 @4 @57 Member=get_FullName)" />
+    <Alias n="252" Id="(@1 @4 @43 Member=get_Genres)" />
+    <Alias n="253" Id="(@1 @33 @43 Member=get_Genres)" />
+    <Alias n="254" Id="Member=get_ID" />
+    <Alias n="255" Id="(@1 @4 @28 @254)" />
+    <Alias n="256" Id="(@1 @4 @43 @254)" />
+    <Alias n="257" Id="(@1 @33 @43 @254)" />
+    <Alias n="258" Id="(@1 @4 @57 @254)" />
+    <Alias n="259" Id="(@1 @10 @11 Member=get_LoggedIn)" />
+    <Alias n="260" Id="(@1 @39 Type=LoginViewModel Member=get_LoggedInUser)" />
+    <Alias n="261" Id="(@1 @4 @28 Member=get_Movie)" />
+    <Alias n="262" Id="(@1 @4 @28 Member=get_MovieID)" />
+    <Alias n="263" Id="(@1 @4 @28 Member=get_Name)" />
+    <Alias n="264" Id="(@1 @4 @31 Member=get_Name)" />
+    <Alias n="265" Id="(@1 @4 @43 Member=get_Owner)" />
+    <Alias n="266" Id="(@1 @4 @57 Member=get_Password)" />
+    <Alias n="267" Id="(@1 @4 @43 Member=get_ReleaseDate)" />
+    <Alias n="268" Id="(@1 @33 @43 Member=get_ReleaseDate)" />
+    <Alias n="269" Id="(@1 @4 @28 Member=get_Rentals)" />
+    <Alias n="270" Id="(@1 @4 @57 Member=get_Rentals)" />
+    <Alias n="271" Id="(@1 @4 @43 Member=get_Title)" />
+    <Alias n="272" Id="(@1 @33 @43 Member=get_Title)" />
+    <Alias n="273" Id="(@1 @4 @57 Member=get_Token)" />
+    <Alias n="274" Id="(@1 @4 @57 Member=get_Type)" />
+    <Alias n="275" Id="(@1 @33 @57 Member=get_Type)" />
+    <Alias n="276" Id="(@1 @4 @57 Member=get_TypeValue)" />
+    <Alias n="277" Id="(@1 @4 @57 Member=get_UploadedMovies)" />
+    <Alias n="278" Id="(@1 @4 @50 Member=get_User)" />
+    <Alias n="279" Id="(@1 @4 @57 Member=get_Username)" />
+    <Alias n="280" Id="(@1 @26 Type=ViewProfileViewModel Member=GetCurrentUserInfo)" />
+    <Alias n="281" Id="(@1 @26 @37 Member=GetGenres)" />
+    <Alias n="282" Id="(@1 @19 Type=CPMoviesViewModel Member=GetMovies)" />
+    <Alias n="283" Id="(@1 @26 Type=RentalHistoryViewModel Member=GetRentals)" />
+    <Alias n="284" Id="(@1 @67 @68 Member=InitializeComponent)" />
+    <Alias n="285" Id="(@1 @10 @11 Member=LogOut)" />
+    <Alias n="286" Id="(@1 @2 @41 Member=LogOut)" />
+  </IdentifierAliases>
+  <Paths>
+    <Path Id="da3090a3-9d54-49d4-a607-be59b3ce0023.OutputPath" Value="C:\Users\BUGTEN\Documents\Visual Studio 2010\Projects\RentIt\Client\bin\Release\RentItClient.exe" />
+    <Path Id="da3090a3-9d54-49d4-a607-be59b3ce0023.OutputPathUri" Value="file:///C:/Users/BUGTEN/Documents/Visual Studio 2010/Projects/RentIt/Client/bin/Release/RentItClient.exe" />
+    <Path Id="FxReferenceAssemblies" Value="C:\Program Files\Reference Assemblies\Microsoft\Framework" />
+    <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files/Reference Assemblies/Microsoft/Framework" />
+  </Paths>
+</DirectedGraph>
