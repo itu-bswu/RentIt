@@ -3,7 +3,10 @@
 This section covers design decisions we made regarding the client implementation and Graphical User Interface (GUI) design.
 \subsection{Analysis}
 \label{Design_Client_Analysis}
-We looked into what architectures were commonly used and suggested when developing a client with a GUI front-end and a WCF-service backend. We have seen (and used) the Model-View-Control (MVC\footnote{Wikipedia description of Model-View-Control}\cite{WIKI-MVC}})
+We looked into what architectures were commonly used and suggested when developing a client with a GUI front-end and a WCF-service backend. We have seen (and used) the Model-View-Control (MVC\footnote{Wikipedia description of Model-View-Control\cite{WIKI-MVC}}) before this project, and we felt it fit nicely with having a model (the service), a view (GUI) and a controller to make it all work. 
+\\While looking into MVC and how we could apply to our client, we found the Model-View-Viewmodel (MVVM\footnote{References on Wikipedia \cite{WIKI-MVVM} and MSDN \cite{MSDN-WPF-MVVM}}) architecture pattern. The MVVM pattern is based largely on MVC, but is targeted at modern UI development platforms (such as HTML5, Windows Presentation Foundation and Silverlight).
+
+Because we decided to use Windows Presentation Foundation (WPF)\footnote{Decision described in section \ref{Implementation_Client} on page \pageref{Implementation_Client}.}, we decided that trying out the MVVM pattern felt like a good idea. MVVM offers a complete seperation of the model (in our case the WCF service) and the Graphical User Interface (GUI). The viewmodels serve as translators (and sometimes logic functionality, depending on implementation), and thus is used to convert the objects we get from the service to 
 \subsection{Architecture}
 \label{Design_Client_Architecture}
 
