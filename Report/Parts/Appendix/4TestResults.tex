@@ -105,43 +105,43 @@ RentalHistoryTest & Verify that it is possible to retreive list of the user rent
 \hline
 RentalOfMovieWithFutureRelease & Verify it is not possible to rent a movie with a release date in the future & Pass\\
 \hline
-RentalOfMovieWithoutRelease Date & Verify it is not possible to rent a movie without a release date & \\
+RentalOfMovieWithoutRelease Date & Verify it is not possible to rent a movie without a release date & Pass\\
 \hline
-RentMovieTest & Verify that it is possible to rent a movie & \\
+RentMovieTest & Verify that it is possible to rent a movie & Pass\\
 \hline
-SearchBadSpelling & verify that search results includes movies with spelling errors in the title & \\
+SearchBadSpelling & verify that search results includes movies with spelling errors in the title & Pass\\
 \hline
-SearchDifferentCase & verify that a movie is returned when a user searches for the title but with incorrect case & \\
+SearchDifferentCase & verify that a movie is returned when a user searches for the title but with incorrect case & Pass\\
 \hline
-SearchExcactTitle & Verify that a movie gets returned when the user searches for its exact title & \\
+SearchExcactTitle & Verify that a movie gets returned when the user searches for its exact title & Pass\\
 \hline
-SearchLimit & verify that putting a limit on the search results actually limits the number of returned movies & \\
+SearchLimit & verify that putting a limit on the search results actually limits the number of returned movies & Pass\\
 \hline
-SearchMoreTokens & verify that a movie will be returned, even if tokens not in the name is part of the search string & \\
+SearchMoreTokens & verify that a movie will be returned, even if tokens not in the name is part of the search string & Pass\\
 \hline
-SearchOrder & verify that the exact movie title match will be ordered before a partly match & \\
+SearchOrder & verify that the exact movie title match will be ordered before a partly match & Pass\\
 \hline
-SearchPartlyTitle & verify that a movie is returned when a user searches for a part of the title & \\
+SearchPartlyTitle & verify that a movie is returned when a user searches for a part of the title & Pass\\
 \hline
-SearchTokenMatchCountOrder & verify that the search results is ordered by the number of token matches & \\
+SearchTokenMatchCountOrder & verify that the search results is ordered by the number of token matches & Pass\\
 \hline
-SearchVeryBadSpelling & verify that the search result does not include words that are too badly spelled & \\
+SearchVeryBadSpelling & verify that the search result does not include words that are too badly spelled & Pass\\
 \hline
-SearchWithoutResult & verify that an empty collection is returned when the user searches for a title not in the database & \\
+SearchWithoutResult & verify that an empty collection is returned when the user searches for a title not in the database & Pass\\
 \hline
-SignUpWithEmptyEmail & Verify that email has to be set & \\
+SignUpWithEmptyEmail & Verify that email has to be set & Pass\\
 \hline
-SignUpWithEmptyPassword & Verify that password has to be set & \\
+SignUpWithEmptyPassword & Verify that password has to be set & Pass\\
 \hline
-SignUpWithEmptyUsername & Verify that username has to be set & \\
+SignUpWithEmptyUsername & Verify that username has to be set & Pass\\
 \hline
-SignUpWithExistingUsername & Verify that it is not possible to signup with a username that is already in use & \\
+SignUpWithExistingUsername & Verify that it is not possible to signup with a username that is already in use & Pass\\
 \hline
-SignUpWithInvalidInfo & Verify that type is automatically set to user, token is reset and ID is auto-generated when trying to set those settings to invalid values & \\
+SignUpWithInvalidInfo & Verify that type is automatically set to user, token is reset and ID is auto-generated when trying to set those settings to invalid values & Pass\\
 \hline
-SignUpWithValidInfo & Verify that it is possible to sign up & \\
+SignUpWithValidInfo & Verify that it is possible to sign up & Pass\\
 \hline
-WrongUserTypeRegisterMovie Test & Verify that it is not possible to use the method as a user of type User & \\
+WrongUserTypeRegisterMovie Test & Verify that it is not possible to use the method as a user of type User & Pass\\
 \hline
 \end{longtable}
 \end{centering}
@@ -152,67 +152,67 @@ WrongUserTypeRegisterMovie Test & Verify that it is not possible to use the meth
 \hline
 Test title & Test Purpose & Result\\
 \hline
-AllGenresValidServiceTest & Verify that GetGenres return some genres & \\
+AllGenresValidServiceTest & Verify that GetGenres return some genres & Pass\\
 \hline
-AllGenresWihtoutTokenService Test & Verify that without a token, GetGenres doesn't return anything & \\
+AllGenresWihtoutTokenService Test & Verify that without a token, GetGenres doesn't return anything & Fail\\
 \hline
-DeleteEditionValidServiceTest & Verify that you can delete a movie edition & \\
+DeleteEditionValidServiceTest & Verify that you can delete a movie edition & Fail\\
 \hline
-DeleteMovieValidServiceTest & Verify that you can delete a movie & \\
+DeleteMovieValidServiceTest & Verify that you can delete a movie & Fail\\
 \hline
-EditMovieInsufficientRightsService Test & Verify that normal users cannot edit movies & \\
+EditMovieInsufficientRightsService Test & Verify that normal users cannot edit movies & Pass\\
 \hline
-EditMovieValidServiceTest & Verify that you can edit movies & \\
+EditMovieValidServiceTest & Verify that you can edit movies & Fail\\
 \hline
-EditUserNullServiceTest & Verify that EditUser fails on invalid input & \\
+EditUserNullServiceTest & Verify that EditUser fails on invalid input & Pass\\
 \hline
-EditUserValidServiceTest & Verfiy that you can edit a user & \\
+EditUserValidServiceTest & Verfiy that you can edit a user & Fail\\
 \hline
-GetAllMoviesGenreServiceTest & Verify that movies can be limited to a specific genre & \\
+GetAllMoviesGenreServiceTest & Verify that movies can be limited to a specific genre & Fail\\
 \hline
-GetAllMoviesLimitServiceTest & Verify that you can limit the number of movies returned & \\
+GetAllMoviesLimitServiceTest & Verify that you can limit the number of movies returned & Fail\\
 \hline
-GetAllMoviesMostDownloaded ServiceTest & Verify that movies can be sorted by number of rentals & \\
+GetAllMoviesMostDownloaded ServiceTest & Verify that movies can be sorted by number of rentals & Fail\\
 \hline
-GetAllMoviesNewestServiceTest & Verify that movies can be sorted by newest & \\
+GetAllMoviesNewestServiceTest & Verify that movies can be sorted by newest & Fail\\
 \hline
-GetAllMoviesValidServiceTest & Verify that movies are returned on valid input to GetMovies & \\
+GetAllMoviesValidServiceTest & Verify that movies are returned on valid input to GetMovies & Fail\\
 \hline
-GetAllMoviesWithoutToken ServiceTest & Verify that a token is needed to browse movies & \\
+GetAllMoviesWithoutToken ServiceTest & Verify that a token is needed to browse movies & Pass\\
 \hline
-GetMovieInformationUnknown MovieServiceTest & Verify that GetMovieInformation doesn't return anything when an unknown movie is referred to & \\
+GetMovieInformationUnknown MovieServiceTest & Verify that GetMovieInformation doesn't return anything when an unknown movie is referred to & Fail\\
 \hline
-GetMovieInformationValidService Test & Verify that GetMovieInformation gets information about a movie & \\
+GetMovieInformationValidService Test & Verify that GetMovieInformation gets information about a movie & Pass\\
 \hline
-GetMovieInformationWithout Token ServiceTest & Vecrify that without a token, GetMovieInformation doesn't return anything & \\
+GetMovieInformationWithout Token ServiceTest & Vecrify that without a token, GetMovieInformation doesn't return anything & Pass\\
 \hline
-GetRentalsNullServiceTest & Verify that GetRentals fail without a user toke & \\
+GetRentalsNullServiceTest & Verify that GetRentals fail without a user toke & Pass\\
 \hline
-GetRentalsValidServiceTest & Verify that you can get a users rentals & \\
+GetRentalsValidServiceTest & Verify that you can get a users rentals & Fail\\
 \hline
-LoginValidServiceTest & Verify that you can log in & \\
+LoginValidServiceTest & Verify that you can log in & Pass\\
 \hline
-LoginWrongPasswordServiceTest & Verify that the user won't get logged in, if using a wrong password & \\
+LoginWrongPasswordServiceTest & Verify that the user won't get logged in, if using a wrong password & Fail\\
 \hline
-LogoutValidServiceTest & Verify that you can log out & \\
+LogoutValidServiceTest & Verify that you can log out & Pass\\
 \hline
-RegisterMovieInsufficientRights ServiceTest & Verify that normal users cannot register movies & \\
+RegisterMovieInsufficientRights ServiceTest & Verify that normal users cannot register movies & Pass\\
 \hline
-RegisterMovieValidServiceTest & Verify that you can register a movie & \\
+RegisterMovieValidServiceTest & Verify that you can register a movie & Fail\\
 \hline
-RentMovieContentProviderService Test & Verify that content providers cannot rent movies & \\
+RentMovieContentProviderService Test & Verify that content providers cannot rent movies & Fail\\
 \hline
-RentMovieValidServiceTest & Verify that users can rent movies & \\
+RentMovieValidServiceTest & Verify that users can rent movies & Fail\\
 \hline
-SearchValidServiceTest & Verifies that movies are returned from a search & \\
+SearchValidServiceTest & Verifies that movies are returned from a search & Fail\\
 \hline
-SearchWihtoutQueryServiceTest & Verify that nothing is returned for a null query & \\
+SearchWithoutQueryServiceTest & Verify that nothing is returned for a null query & Pass\\
 \hline
-SearchWithoutTokenServiceTest & Verifies that nothing is returned without a user token & \\
+SearchWithoutTokenServiceTest & Verifies that nothing is returned without a user token & Pass\\
 \hline
-SignupMissingInfoServiceTest & Verify that you cannot create a user without basic information & \\
+SignupMissingInfoServiceTest & Verify that you cannot create a user without basic information & Pass\\
 \hline
-SignupValidServiceTest & Verify that you can create a new user & \\
+SignupValidServiceTest & Verify that you can create a new user & Pass\\
 \hline
 \end{longtable}
 \end{centering}

@@ -152,7 +152,6 @@
     <Compile Include="Interfaces\IContentManagement.cs" />
     <Compile Include="Interfaces\IUserManagement.cs" />
     <Compile Include="Library\FileRequest.cs" />
-    <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Library\StringDifference.cs" />
     <Compile Include="Mapping\EditionMap.cs" />
