@@ -42,7 +42,7 @@ We have most of the logic of the entities in the entity classes, but we do have 
 
 \subsection{Interface}
 \label{Design_Service_Interface}
-Our public API should cover 4 different topics: user management (login, logout, sign up), content browsing (get movies, search, get movies in genre, etc.), rental management (rent movie, download movie, view rentals), and content management (register movie, upload edition, edit movie information, delete movie). That's why we have 4 interfaces: IUserManagement, IContentBrowsing, IRentalManagement, and IContentManagement. These four interfaces contains service methods for everything you need.
+Our public API should cover 4 different topics: user management (login, logout, sign up), content browsing (get movies, search, get movies in genre, etc.), rental management (rent movie, download movie, view rentals), and content management (register movie, upload edition, edit movie information, delete movie). That's why we have 4 interfaces: IUserManagement, IContentBrowsing, IRentalManagement, and IContentManagement. These four interfaces contain service methods for everything you need.
 
 When designing the API, we had the goals that we wanted it to be simple, easy to figure out, easy to use, small and precise. That's why we decided to have a unified style for all methods: a boolean return value, which is false if an error occurred, a string token as the first parameter, and any return objects as either out or ref parameters. This gives us a unified API, where you don't need to learn how every method works, but are able to use it without much friction.
 

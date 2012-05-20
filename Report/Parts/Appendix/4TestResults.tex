@@ -216,7 +216,7 @@ SignupValidServiceTest & Verify that you can create a new user & Pass\\
 \hline
 \end{longtable}
 \end{centering}
-\subsection{Graphical User Interface tests}
+\subsection{Automated Graphical User Interface tests}
 \label{Appendix_Test_Table_GUI}
 \begin{centering}
 \begin{longtable}{| p{5 cm} | p{9 cm} | c |}
@@ -435,7 +435,6 @@ For the second usability test we got no comments regarding the missing feeling o
 
 \subsection{Usability goals and scenarios}
 \label{Appendix_Test_Usability_GoalsandScenario}
-
 List of usability goals:
 \begin{itemize}\addtolength{\itemsep}{-5pt}
 \item The user should be able to finish all given tasks within a time periode of 45 seconds.
@@ -455,3 +454,47 @@ List of usability scenarios:
 \item As an admin for the service you've seen some companies upload explicit material to service, delete those companies from the service.
 \item You would like to see a list of all the users who are using the service.
 \end {itemize}
+
+\section{Code coverage results}
+\label{Appendix_Test_Coverage}
+\begin{my_itemize}
+	\item Service | 58\%
+	\begin{my_itemize}
+	\item RentItService.Services | 0\%
+	\item RentItService.Exceptions | 17\%
+		\begin{my_itemize}
+		\item InsufficientRightsException | 17\%
+		\item NoMovieFoundException | 25\%
+		\item NotAUserException | 25\%
+		\item UnknownGenreException | 0\%
+		\item UsernameInUseException | 25\%
+		\item UserNotFoundException | 0\%
+		\end{my_itemize}
+	\item RentItService.Library | 61\%
+		\begin{my_itemize}
+		\item FileRequest | 0\%
+		\item RemoteFileStream | 0\%
+		\item StringDifference | 100\%
+		\end{my_itemize}
+	\item RentItService.Entities | 75\%
+		\begin{my_itemize}
+		\item Edition | 38\%
+		\item Genre | 88\%
+		\item Movie | 71\%
+		\item Rental | 50\%
+		\item User | 90\%
+		\end{my_itemize}
+	\item RentItService | 100\%
+		\begin{my_itemize}
+		\item RentItContext | 100\%
+		\end{my_itemize}
+	\item RentItService.Mapping| 100\%
+		\begin{my_itemize}
+		\item EditionMap | 100\%
+		\item GenreMap | 100\%
+		\item  MovieMap | 100\%
+		\item RentalMap | 100\%
+		\item UserMap | 100\%
+		\end{my_itemize}
+	\end{my_itemize}
+\end{my_itemize}

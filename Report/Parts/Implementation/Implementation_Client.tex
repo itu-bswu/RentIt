@@ -35,6 +35,10 @@ Our implementation of the \class{View} is done in \class{WPF}. It involves a sin
 \item Upload and download of movies rarely succeeds due to stability issues.
 \item Some null references (output from the service) are not caught at the Model level, and because of this, the client can crash when it is supposed to show a different error.
 \item Client does a forced shutdown if any method with a token returns false. If this is due to some kind of authentication issue, we could retry login instead of just closing right away.
+\item User is not logged out when he closes the client with clicking log out.
+\item Sorting by newest rarely works.
+\item Sometimes editions do not display (possibly a bug on the service end).
+\item Edit movie does not work.
 \end{my_itemize}
 
 \paragraph{Workarounds} We also have a few odd ways of dealing with some issues we have run in to.
@@ -46,5 +50,8 @@ Our implementation of the \class{View} is done in \class{WPF}. It involves a sin
 \subsection{Error handling}
 \label{Implementation_Client_Error}
 We handle errors in two different ways in the client.
-\paragraph{Bad input to server} If the server returns false (meaning bad input), in all cases, except at login, we should tell the user of the client that an authentication error has occured.
-\paragraph{}
+\paragraph{Bad input to server} If the server returns false (meaning bad input), in all cases, except at login, we tell the user of the client that an authentication error has occured. We chose this, because a lot of the method calls to the service contain nothing but the token as input, but they all return the same error (false in the return of the method).
+
+\paragraph{Communication/faultexceptions} If any of our method calls result in an exception, we tell the user an error has occured and that we will shut down the client. We do this because we believe that these exceptions refer to either corrupt data in the client (and so will have to be reset somewhere) or there is a problem with the service connection in one way or the other.
+
+\paragraph{Improvements} If an implementation of the fault enums\footnote{Described in section \ref{Implementation_Service_Error} on page \pageref{Implementation_Service_Error}.} was done on the service, it would make it a lot easier to show a better error description to users and give the developer(s) of the client more options in terms of "error recovery".
