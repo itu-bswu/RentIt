@@ -317,33 +317,88 @@ GuiTest12CPLoginLogout & Could not find 'Close application' control\\
 \begin{longtable}{| p{5 cm} | p{7 cm} | c |}
 \hline
 Test title \& steps & Fulfilled requirement & Result\\
+
 \hline
-Test 11 - User, download current rentals
+Test 3 - User, edit user profile (GuiTest03UserEditUserInformation)
 \begin{my_enumerate}
-\item Login as the user created in test 1
-\item Click the "Your rentals" button
-\item Find a movie in the list
-\item Click the "View movie" button
-\item Click the "Download movie" button\end{my_enumerate}& User - Download Media &  \\
+\item Login as the user "Smith"
+\item Navigate to the Edit Profile Page
+\item Change Full Name to "Neo Smith"
+\item Click the "Save changes" button
+\item See that the full name now is "Neo Smith"
+\item Close the window
+\end{my_enumerate}& User - Edit Profile & Pass  \\
+
+\hline
+Test 4 - User, logout as user (GuiTest04UserLogout)
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Click the "Logout" at the top right of the screen
+\item Close the window
+\end{my_enumerate}& User - Logout & Pass  \\
+
+\hline
+Test 6 - User, view list of all movies sorted by release date (GuiTest06UserViewMoviesByNewest)
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Navigate to the View Movie List Page
+\item Sort by Newest and All
+\item View Movie for Ocean's Eleven
+\item Click the "List Movies" button
+\item View Movie for The Matrix
+\item Assert that the release date is earlier than Ocean's Eleven
+\item Close the window
+\end{my_enumerate}& User - View a list of all movies & Pass  \\
+
+\hline
+Test 8 - User, view all movies of a specific genre (GuiTest08UserViewMoviesByGenre)
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Navigate to the View Movie List Page
+\item Sort movies by Newest and Sci-fi
+\item Assert that The Matrix, The Matrix Reloaded and The Matrix Revolution are in the list
+\item Close the window
+\end{my_enumerate}& User - View Movielists with different sortings & Pass  \\
+
+\hline
+Test 10 - User, view current rentals (GuiTest10UserRentAndViewRentals)
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Rent the movie "The Lord of the Rings - The Fellowship of the Ring - SD"
+\item Click the "Your Rentals" movie
+\item Assert that "The Lord of the Rings - The Fellowship of the Ring - SD" is in the list
+\item Close the window
+\end{my_enumerate} & User - View rental history & Pass  \\
+
+\hline
+Test 12 - CP, login \& logout (GuiTest12CPLoginLogout)
+\begin{my_enumerate}
+\item Login as Universal (test content provider)
+\item Assert that the "Logout" button exists
+\item Click the "Logout" button
+\item Assert that the Welcome screen is shown
+\end{my_enumerate} & Content Provider - Login and Logout & Pass \\
 
 \hline
 Test 13 - CP, register and upload movie
 \begin{my_enumerate}
-\item Login as test content provider
+\item Login as Universal (test content provider)
 \item Click the "Register movie" button
 \item Fill the information and click the "Register movie" button
 \item Click the "Upload Movies" button
 \item Fill the textboxes
-\item Click the "Upload movie" button\end{my_enumerate} & Content Provider - Upload Media &  \\
+\item Click the "Upload movie" button
+\end{my_enumerate} & Content Provider - Upload Media & Pass  \\
 
 \hline
 Test 15 - CP, upload new edition to already registered movie
 \begin{my_enumerate}
-\item Login as test content provider
+\item Login as Universal (test content provider)
 \item Select a movie
 \item Click the "Upload new edition"
 \item Browse for a file
-\item Click the "Upload" button\end{my_enumerate}  & Content Provider - Upload Media &  \\
+\item Click the "Upload" button
+\end{my_enumerate} & Content Provider - Upload Media & Pass  \\
 
 \hline
 Test 16 - CP, edit information about a movie
@@ -351,22 +406,20 @@ Test 16 - CP, edit information about a movie
 \item Login as test content provider
 \item Click the "Your Movies" button
 \item Find the movie that is to be edited
-\item Fill out the information and click the "Save changes" button\end{my_enumerate} & Content Provider - Edit Uploaded Media &  \\
+\item Fill out the information and click the "Save changes" button
+\end{my_enumerate} & Content Provider - Edit Uploaded Media & Pass  \\
 
 \hline
 Test 17 - CP, delete movie
 \begin{my_enumerate}
-\item Login as test content provider
+\item Login as Universal (test content provider)
 \item Click the "Your Movies" button
 \item Find the movie that is to be deleted
 \item Click the "View Movie" button
-\item Click the "Delete movie" button\end{my_enumerate} & Content Provider - Delete Media & \\
-
-\hline
- & & \\
-\hline
+\item Click the "Delete movie" button
+\end{my_enumerate} & Content Provider - Delete Media & Pass \\
 \end{longtable}
-\end{centering}
+\end{centering}	
 
 \section{Usability tests}
 \label{Appendix_Test_Usability}
