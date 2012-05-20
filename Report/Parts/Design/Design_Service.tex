@@ -6,7 +6,7 @@
 
 \subsubsection{Entities}
 \label{Design_Service_Analysis_Entities}
-For most tables in the database, we have a corresponding class in our solution, which is managed with Entity Framework as POCO classes. 
+For most tables in the database, we have a corresponding class in our solution, which is managed with Entity Framework as POCO classes. We have a POCO class for each of the tables, where we want to be able to pass it around - which is why there is no entity class for the has_genre table. 
 
 \subsubsection{User Types}
 \label{Design_Service_Analysis_UserTypes}
@@ -34,18 +34,20 @@ Having a end date for a rental and allowing content providers to customize price
 \label{Design_Service_Architecture}
 Since the service part of our solution is relatively simple, we didn't use any specific common architecture. The key elements of our design was the database entities and the API methods, and we didn't need anything to control everything, it was obvious to put most logic right into the entity classes, as either instance- or class methods, and logic that doesn't fit into any entity class into its own class. This simple design should keep our solution simple and easy to use, which is important when using it as part of an API, that third party developers should be able to use.
 
-
+To communicate with the database, we have the \class{RentItContext} object, which is an Entity Framework object context. This class has a set of all out entities, which is mapped to the tables in the database, so that it will pull the data from there, when we're iterating through. This class is the way we handle reads and writes to the database. The intended way to use it is to create a new context each time you want to access the database in some way. Unfortunately, this conflicted with the way we had chosen to do POCO classes, because the same object received from two different contexts weren't compatible. This caused a lot of trouble, so we ended up with instead having a shared singleton instance, which is lazily initialized first time it's accessed, and will be preserved for the next call you want to make through it. If you want to reload it, we made a method for disposing the context, and a new one would be initialized next time the context was accessed. This solved a lot of the problems we had, because the same context was now used all the time. The only problem was that a multithreaded service would still access the same context, and multiple requests being processed at the same time would cause trouble. That's why we store the context in a thread local storage. This makes sure that a context will only exist in a single thread, and if another thread tries to access it, a new one will be initialized to run in parallel.
 
 \subsection{Interface}
 \label{Design_Service_Interface}
 Our public API should cover 4 different topics: user management (login, logout, sign up), content browsing (get movies, search, get movies in genre, etc.), rental management (rent movie, download movie, view rentals), and content management (register movie, upload edition, edit movie information, delete movie). That's why we have 4 interfaces: IUserManagement, IContentBrowsing, IRentalManagement, and IContentManagement. These four interfaces contains service methods for everything you need.
 
-When designing the API, we had the goals that we wanted it to be simple, easy to figure out, easy to use, small and precise. That's why we decided to have a unified style for all methods: a boolean return value, which is false if an error occured, a string token as the first parameter, and any return objects as either out or ref parameters. This gives us a unified API, where you don't need to learn how every method works, but are able to use it without much friction.
+When designing the API, we had the goals that we wanted it to be simple, easy to figure out, easy to use, small and precise. That's why we decided to have a unified style for all methods: a boolean return value, which is false if an error occurred, a string token as the first parameter, and any return objects as either out or ref parameters. This gives us a unified API, where you don't need to learn how every method works, but are able to use it without much friction.
 
 \subsubsection{Testing}
-note: flyt til testing afsnittet?
-Other than scenario tests, we have a lot of service level tests. Since the service interface is only a thin wrapper around the actual logic classes, and almost only validates the input, these tests focuses a lot on trying to call the service methods with invalid input. For each method in the service interface, there is one tests that checks that a valid input produces an output and no error. It doesn't neccecarily check wether or not the result is correct - that is up to the scenario tests, since the returned value is just the result of a logic-level method call
+Other than scenario tests, we have a lot of service level tests. Since the service interface is only a thin wrapper around the actual logic classes, and almost only validates the input, these tests focuses a lot on trying to call the service methods with invalid input. For each method in the service interface, there is one tests that checks that a valid input produces an output and no error. It doesn't necessarily check wether or not the result is correct - that is up to the scenario tests, since the returned value is just the result of a logic-level method call
 %mention bindings
 
 \subsubsection{SMU involvement}
 \label{Design_Service_Interface_SMU}
+When collaborating with the SMU team, they pushed to get a interface quick, so the first interface wasn't as well designed as we wanted it to be. It wasn't consistent and it was difficult to extent. An example of this was when we wanted to change the way genres worked: there was no way to do this without breaking the interface. That's why we chose to make the new interface, which improved the old one in every way.
+
+We did exchange ideas with the SMU team about what features should be in the interface, which has been discussed earlier, and some of these has made it even to the new API.
