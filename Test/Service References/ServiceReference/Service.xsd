@@ -3,7 +3,7 @@
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums" />
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RentItService.Entities" />
   <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RentItService.Library" />
+  <xs:import schemaLocation="http://rentit.itu.dk/RentIt12/Services/Service.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/Message" />
   <xs:element name="GetMovies">
     <xs:complexType>
       <xs:sequence>
@@ -116,28 +116,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UploadEdition">
+  <xs:element name="RemoteFileStream">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/RentItService.Library" minOccurs="0" name="stream" nillable="true" type="q12:RemoteFileStream" />
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q13:Edition" />
+        <xs:element xmlns:q12="http://schemas.microsoft.com/Message" name="FileByteStream" type="q12:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UploadEditionResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="UploadEditionResult" type="xs:boolean" />
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q14:Edition" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/RentItService.Entities" name="Edition" nillable="true" type="q13:Edition" />
+  <xs:element name="FileName" nillable="true" type="xs:string" />
+  <xs:element name="Length" type="xs:long" />
+  <xs:element name="Token" nillable="true" type="xs:string" />
   <xs:element name="DeleteEdition">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q15:Edition" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q14:Edition" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -152,7 +146,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RentItService.Enums" minOccurs="0" name="scope" type="q16:RentalScope" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RentItService.Enums" minOccurs="0" name="scope" type="q15:RentalScope" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -160,7 +154,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetRentalsResult" type="xs:boolean" />
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="rentals" nillable="true" type="q17:ArrayOfRental" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="rentals" nillable="true" type="q16:ArrayOfRental" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -168,7 +162,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q18:Edition" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q17:Edition" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -179,26 +173,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DownloadFile">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="edition" nillable="true" type="q19:Edition" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DownloadFileResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="DownloadFileResult" type="xs:boolean" />
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/RentItService.Library" minOccurs="0" name="stream" nillable="true" type="q20:RemoteFileStream" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="SignUp">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q21:User" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q18:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -206,7 +184,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SignUpResult" type="xs:boolean" />
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q22:User" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q19:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -222,7 +200,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="LoginResult" type="xs:boolean" />
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q23:User" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q20:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -244,7 +222,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q24:User" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q21:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -252,7 +230,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="EditUserResult" type="xs:boolean" />
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q25:User" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/RentItService.Entities" minOccurs="0" name="user" nillable="true" type="q22:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

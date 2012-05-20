@@ -6,19 +6,24 @@
 
 namespace RentItService.Enums
 {
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Enum representing rental scopes.
     /// </summary>
+    [DataContract]
     public enum RentalScope
     {
         /// <summary>
         /// All rentals
         /// </summary>
+        [EnumMember]
         All,
 
         /// <summary>
         /// Only current rentals
         /// </summary>
+        [EnumMember]
         Current,
     }
 }

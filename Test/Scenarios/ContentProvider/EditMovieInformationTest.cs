@@ -53,7 +53,6 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             var newReleaseDate = testMovie.ReleaseDate.HasValue
                                         ? testMovie.ReleaseDate.Value.AddDays(14)
                                         : DateTime.Now.AddDays(14);
-            var newGenres = new Collection<Genre> { Genre.GetOrCreateGenre("new genre") };
 
             var newMovie = new Movie
             {
@@ -64,18 +63,20 @@ namespace RentIt.Tests.Scenarios.ContentProvider
                 ReleaseDate = newReleaseDate,
             };
 
-            newMovie.Edit(loggedinUser, newMovie);
+            newMovie.Genres.Add(new Genre("new Genre"));
+            testMovie.Edit(loggedinUser, newMovie);
+
 
             var foundMovie = Movie.All.First(m => m.ID == testMovie.ID);
 
             Assert.AreEqual(newTitle, foundMovie.Title, "The titles doesn't match");
             Assert.AreEqual(newDescription, foundMovie.Description, "The descriptions doesn't match");
             Assert.AreEqual(newReleaseDate, foundMovie.ReleaseDate, "Release date doesn't match");
-            Assert.AreEqual(newGenres.Count(), foundMovie.Genres.Count(), "Number of genres doesn't match");
+            Assert.AreEqual(1, foundMovie.Genres.Count(), "Number of genres doesn't match");
 
             foreach (var genre in foundMovie.Genres)
             {
-                Assert.IsTrue(newGenres.Contains(genre), "The genres doesn't match");
+                Assert.IsTrue(newMovie.Genres.Contains(genre), "The genres doesn't match");
             }
         }
 
@@ -97,7 +98,7 @@ namespace RentIt.Tests.Scenarios.ContentProvider
             movie.AddGenre(genre);
 
             RentItContext.ReloadDb();
-            
+
             var foundMovie = Movie.All.Single(m => m.Title.Equals("Die Hard"));
 
             Assert.IsTrue(foundMovie.HasGenre(genre));
