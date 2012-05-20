@@ -6,10 +6,7 @@ This section describes the implementation of our client, the issues/bugs in the 
 Our implementation of the client is seperated into two parts. The implementation of the \class{MVVM} architectural pattern and the implementation of the \class{WPF} framework.
 \subsubsection{Model-View-ViewModel}
 \label{Implementation_Client_Architecture_MVVM}
-Our intention is for the client to follow a simple dependency flow such as described in \ref{fig:Implementation_Client_Architecture_MVVM_Namespace} on page \pageref{fig:Implementation_Client_Architecture_MVVM_Namespace}. The \class{View} (\class{GUI}) should only request information from the \class{ViewMode}l and should never be called by anything but classes from the GUI namespace. Similarly the \class{ViewModel} should only be called by their respective \class{View} classes\footnote{This is better described in \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.}. 
-\\At the "bottom" level of our architecture, the \class{Model} classes should only be called by eachother and the \class{Viewmodel}s (although no \class{Viewmodel} should ever call the \class{ServiceClient} class). 
-
-\paragraph{Static classes}
+Our intention is for the client to follow a simple dependency flow such as described by figure \ref{fig:Implementation_Client_Architecture_MVVM_Namespace} on page \pageref{fig:Implementation_Client_Architecture_MVVM_Namespace}. The \class{View} (\class{GUI}) should only request information from the \class{ViewMode}l and should never be called by anything but classes from the GUI namespace. Similarly the \class{ViewModel} should only be called by their respective \class{View} classes\footnote{This is described in more detail in \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.}. 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.5\textwidth]{Parts/Images/Implementation/NamespaceDependency}
@@ -17,7 +14,12 @@ Our intention is for the client to follow a simple dependency flow such as descr
 \label{fig:Implementation_Client_Architecture_MVVM_Namespace}
 \end{figure}
 
-\paragraph{Upload/download} 
+At the "bottom" level of our architecture, the \class{Model} classes should only be called by eachother and the \class{Viewmodel}s (although no \class{Viewmodel} should ever call the \class{ServiceClient} class). The only calls outside the namespace that the \class{Model} should make is to the RentItService (not included in figure \ref{fig:Implementation_Client_Architecture_MVVM_Namespace}). The actual data source that the \class{Model} classes use should not be of consequence to the \class{ViewModel} or the \class{GUI}. 
+
+\paragraph{Static classes}
+The reason we use static classes and methods for the \class{ViewModel} and \class{Model} is due to the actual application being a singleton in itself, but the way we use \class{WPF}\footnote{See section \ref{Implementation_Client_Architecture_WPF} for our implementation of the \class{GUI} using \class{WPF}.} means that we do not have access to static objects in the \class{GUI}.
+
+\paragraph{Upload/download} Our upload and download implementation heavily inspired by "Streaming upload/download files over HTTP" on \cite{CODE:UPLDL}. 
 
 \subsubsection{Windows Presentation Foundation}
 \label{Implementation_Client_Architecture_WPF}
