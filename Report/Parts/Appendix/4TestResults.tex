@@ -261,8 +261,64 @@ GuiTest13CPRegisterMovie & See if the content provider can register a movie & \\
 \hline
 \end{longtable}
 \end{centering}
+
 \section{Manual test}
 \label{Appendix_Test_Manual}
+
+\begin{centering}
+\begin{longtable}{| p{5 cm} | p{7 cm} | c |}
+\hline
+Test title \& steps & Fulfilled requirement & Result\\
+\hline
+Test 11 - User, download current rentals
+\begin{my_enumerate}
+\item Login as the user created in test 1
+\item Click the "Your rentals" button
+\item Find a movie in the list
+\item Click the "View movie" button
+\item Click the "Download movie" button\end{my_enumerate}& User - Download Media &  \\
+
+\hline
+Test 13 - CP, register and upload movie
+\begin{my_enumerate}
+\item Login as test content provider
+\item Click the "Register movie" button
+\item Fill the information and click the "Register movie" button
+\item Click the "Upload Movies" button
+\item Fill the textboxes
+\item Click the "Upload movie" button\end{my_enumerate} & Content Provider - Upload Media &  \\
+
+\hline
+Test 15 - CP, upload new edition to already registered movie
+\begin{my_enumerate}
+\item Login as test content provider
+\item Select a movie
+\item Click the "Upload new edition"
+\item Browse for a file
+\item Click the "Upload" button\end{my_enumerate}  & Content Provider - Upload Media &  \\
+
+\hline
+Test 16 - CP, edit information about a movie
+\begin{my_enumerate}
+\item Login as test content provider
+\item Click the "Your Movies" button
+\item Find the movie that is to be edited
+\item Fill out the information and click the "Save changes" button\end{my_enumerate} & Content Provider - Edit Uploaded Media &  \\
+
+\hline
+Test 17 - CP, delete movie
+\begin{my_enumerate}
+\item Login as test content provider
+\item Click the "Your Movies" button
+\item Find the movie that is to be deleted
+\item Click the "View Movie" button
+\item Click the "Delete movie" button\end{my_enumerate} & Content Provider - Delete Media & \\
+
+\hline
+ & & \\
+\hline
+\end{longtable}
+\end{centering}
 
 \section{Usability tests}
 \label{Appendix_Test_Usability}
