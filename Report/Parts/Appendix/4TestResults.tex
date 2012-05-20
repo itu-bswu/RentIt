@@ -7,129 +7,422 @@ This section shows the result of running our automated tests the day following t
 \subsection{Scenario tests}
 \label{Appendix_Test_Table_Scenario}
 \begin{centering}
-\begin{longtable}{| p{5 cm} | p{7 cm} | c |}
+\begin{longtable}{| p{5 cm} | p{9 cm} | c |}
 \hline
 Test title & Test Purpose & Result\\
 \hline
- & & \\
+AddGenreTest & Verify that you can add a genre to a movie & Pass\\
 \hline
- & & \\
+AddOne & Verify that if I add a new movie, the first movie to be returned is the new one & Pass\\
 \hline
- & & \\
+AddOneInFuture & Verify that movies with a release date in the future, will not appear in the newest movies & Pass\\
 \hline
- & & \\
+AddOneWithoutReleaseDate & Verify that movies without a release date, will not appear in the newest movies & Pass\\
 \hline
- & & \\
+AdminRentalHistory & Verify that a admin has no rental history & Pass\\
 \hline
- & & \\
+BrowseKnownGenreTest & verify that when the user browses for a specific known genre, all movies with that genre gets returned & Pass\\
 \hline
- & & \\
+ContentproviderRentalHistory & Verify that a contentProvider has no rental history & Pass\\
 \hline
- & & \\
+DeleteMovieEdition & Verify that it is possible to delete a movie edition & Pass\\
 \hline
- & & \\
+DeleteMovieEditionFromOther Provider & Verify that it is not possible to delete a movie edition, from another content provider & Pass\\
 \hline
- & & \\
+DeleteMovieFromOtherProvider & Verify that it is not possible to delete a movie that belongs to another content provider & Pass\\
 \hline
- & & \\
+DeleteMovieTest & Verify that deletion of a movie is possible & Pass\\
 \hline
- & & \\
+EditMovieFromOtherProvider & Verify that it is not possible to edit a movie uploaded by another content publisher & Pass\\
 \hline
- & & \\
+EditMovieInformationInvalid MovieIdTypeTest & Verify that the method throws the correct exception when called by an account with an insufficient user type & Pass\\
 \hline
- & & \\
+EditMovieInformationInvalid UserTypeTest & Verify that the method throws the correct exception when called by an account with an insufficient user type & Pass\\
 \hline
- & & \\
+EditMovieInformationValidTest & Verify that the method changes the values of the movie & Pass\\
 \hline
- & & \\
+EditMoviePartOfInfo & Verify that it is possible to only update part of the information about a movie & Pass\\
 \hline
- & & \\
+EditMoviePartOfInfoInvalid Values & Verify that a field is only updated, if the new value is valid & Pass\\
 \hline
- & & \\
+EditMoviePartOfInfoMixed ValidInvalid & Verify that fields with new valid values will be updated, even when other fields will not be updated, because of invalid values & Pass\\
+\hline
+EditPartOfProfileInfoTest & Verify that it is possible to edit only part of a user's profile & Pass\\
+\hline
+EditPartOfProfileOnlyPassword Test & Verify that it is possible to edit a user's password, and nothing else & Pass\\
+\hline
+EditProfileTest & Verify that it is possible to edit a user profile & Pass\\
+\hline
+GetAllGenresTest & verify that all genres in the database gets returned by GetAllGenres & Pass\\
+\hline
+GetAllMovies & Verify that All work as intended & Pass\\
+\hline
+GetCurrentRentalsTest & Verify that the user only gets current rentals and that they all belong to him & Fail\\
+\hline
+GetMovieInformationInvalid MovieIdTest & Verify that the method returns null when called with a movie ID that doesn't corrospond to a movie in the database & Pass\\
+\hline
+GetMovieInformationValidTest & Verify that the method returns the correct data & Pass\\
+\hline
+GetUnreleasedMovieInfoFuture Release & Verify that even though editions have been added to a movie, they will not appear / be passed to the clients, if the movie is not released & Pass\\
+\hline
+GetUnreleasedMovieInfoNo ReleaseDate & Verify that even though editions have been added to a movie, they will not appear / be passed to the clients, if the movie is not released & Pass\\
+\hline
+InsufficientAccessDeleteMovieTest & Verify that only Content Providers can delete movies & Pass\\
+\hline
+InvalidValuesRegisterMovieTest & Verify that it is not possible to use invalid values in the method & Pass\\
+\hline
+Limiting & Verify that it is possible to limit the amount of movies returned & Pass\\
+\hline
+LoginWithDifferentUsernameAnd Password & Verify that even though a user with a given username exists, and a user with a given password exists, login will fail if those two users are not the same & Pass\\
+\hline
+LoginWithExistingUser & Verify that login is possible when using the right username and password & Pass\\
+\hline
+LoginWithNonExistingUser & Verify it is not possible to login, when no users with the given username and password exists & Pass\\
+\hline
+LoginWithWrongPassword & Verify that even though a user with a given username exists, login will fail if the password is wrong & Pass\\
+\hline
+LoginWithWrongUsername & Verify that even though a user with a given password exists, login will fail if the username is wrong & Pass\\
+\hline
+LogoutValidToken & Verify that it is possible to logout, when specifying a valid token & Pass\\
+\hline
+MostDownloadedMultipleEditions & Verify that even though the rentals are split between multiple editions, the right movies in the right order is still returned & Pass\\
+\hline
+MostDownloadedWithRentals & Verify that when trying to get the most downloaded movies, the right movies are returned in the right order & Pass\\
+\hline
+MultipleRentalHistory & Verify that a user wtih serveral movies in rental history and with multiple instance of the same movie will return the correct list & Fail\\
+\hline
+NotAUserRentMovieTest & Verify that only users can rent movies & Pass\\
+\hline
+NullTokenRegisterMovieTest & Verify that it is not possible to call the method with a null token & Pass\\
+\hline
+RegisterMovieTest & Verify that a content provider is able to register movies in the database & Pass\\
+\hline
+RemoveGenreTest & verify that you can remove a genre from a movie & Pass\\
+\hline
+RentalHistoryNoRentals & Verify that you will get a empty list from a user with no rental history & Pass\\
+\hline
+RentalHistoryTest & Verify that it is possible to retreive list of the user rental history & Pass\\
+\hline
+RentalOfMovieWithFutureRelease & Verify it is not possible to rent a movie with a release date in the future & Pass\\
+\hline
+RentalOfMovieWithoutRelease Date & Verify it is not possible to rent a movie without a release date & Pass\\
+\hline
+RentMovieTest & Verify that it is possible to rent a movie & Pass\\
+\hline
+SearchBadSpelling & verify that search results includes movies with spelling errors in the title & Pass\\
+\hline
+SearchDifferentCase & verify that a movie is returned when a user searches for the title but with incorrect case & Pass\\
+\hline
+SearchExcactTitle & Verify that a movie gets returned when the user searches for its exact title & Pass\\
+\hline
+SearchLimit & verify that putting a limit on the search results actually limits the number of returned movies & Pass\\
+\hline
+SearchMoreTokens & verify that a movie will be returned, even if tokens not in the name is part of the search string & Pass\\
+\hline
+SearchOrder & verify that the exact movie title match will be ordered before a partly match & Pass\\
+\hline
+SearchPartlyTitle & verify that a movie is returned when a user searches for a part of the title & Pass\\
+\hline
+SearchTokenMatchCountOrder & verify that the search results is ordered by the number of token matches & Pass\\
+\hline
+SearchVeryBadSpelling & verify that the search result does not include words that are too badly spelled & Pass\\
+\hline
+SearchWithoutResult & verify that an empty collection is returned when the user searches for a title not in the database & Pass\\
+\hline
+SignUpWithEmptyEmail & Verify that email has to be set & Pass\\
+\hline
+SignUpWithEmptyPassword & Verify that password has to be set & Pass\\
+\hline
+SignUpWithEmptyUsername & Verify that username has to be set & Pass\\
+\hline
+SignUpWithExistingUsername & Verify that it is not possible to signup with a username that is already in use & Pass\\
+\hline
+SignUpWithInvalidInfo & Verify that type is automatically set to user, token is reset and ID is auto-generated when trying to set those settings to invalid values & Pass\\
+\hline
+SignUpWithValidInfo & Verify that it is possible to sign up & Pass\\
+\hline
+WrongUserTypeRegisterMovie Test & Verify that it is not possible to use the method as a user of type User & Pass\\
 \hline
 \end{longtable}
 \end{centering}
 \subsection{Service tests}
 \label{Appendix_Test_Table_Service}
 \begin{centering}
-\begin{longtable}{| p{5 cm} | p{7 cm} | c |}
+\begin{longtable}{| p{5 cm} | p{9 cm} | c |}
 \hline
 Test title & Test Purpose & Result\\
 \hline
- & & \\
+AllGenresValidServiceTest & Verify that GetGenres return some genres & Pass\\
 \hline
- & & \\
+AllGenresWihtoutTokenService Test & Verify that without a token, GetGenres doesn't return anything & Fail\\
 \hline
- & & \\
+DeleteEditionValidServiceTest & Verify that you can delete a movie edition & Fail\\
 \hline
- & & \\
+DeleteMovieValidServiceTest & Verify that you can delete a movie & Fail\\
 \hline
- & & \\
+EditMovieInsufficientRightsService Test & Verify that normal users cannot edit movies & Pass\\
 \hline
- & & \\
+EditMovieValidServiceTest & Verify that you can edit movies & Fail\\
 \hline
- & & \\
+EditUserNullServiceTest & Verify that EditUser fails on invalid input & Pass\\
 \hline
- & & \\
+EditUserValidServiceTest & Verfiy that you can edit a user & Fail\\
 \hline
- & & \\
+GetAllMoviesGenreServiceTest & Verify that movies can be limited to a specific genre & Fail\\
 \hline
- & & \\
+GetAllMoviesLimitServiceTest & Verify that you can limit the number of movies returned & Fail\\
 \hline
- & & \\
+GetAllMoviesMostDownloaded ServiceTest & Verify that movies can be sorted by number of rentals & Fail\\
 \hline
- & & \\
+GetAllMoviesNewestServiceTest & Verify that movies can be sorted by newest & Fail\\
 \hline
- & & \\
+GetAllMoviesValidServiceTest & Verify that movies are returned on valid input to GetMovies & Fail\\
 \hline
- & & \\
+GetAllMoviesWithoutToken ServiceTest & Verify that a token is needed to browse movies & Pass\\
 \hline
- & & \\
+GetMovieInformationUnknown MovieServiceTest & Verify that GetMovieInformation doesn't return anything when an unknown movie is referred to & Fail\\
 \hline
- & & \\
+GetMovieInformationValidService Test & Verify that GetMovieInformation gets information about a movie & Pass\\
 \hline
- & & \\
+GetMovieInformationWithout Token ServiceTest & Vecrify that without a token, GetMovieInformation doesn't return anything & Pass\\
 \hline
- & & \\
+GetRentalsNullServiceTest & Verify that GetRentals fail without a user toke & Pass\\
+\hline
+GetRentalsValidServiceTest & Verify that you can get a users rentals & Fail\\
+\hline
+LoginValidServiceTest & Verify that you can log in & Pass\\
+\hline
+LoginWrongPasswordServiceTest & Verify that the user won't get logged in, if using a wrong password & Fail\\
+\hline
+LogoutValidServiceTest & Verify that you can log out & Pass\\
+\hline
+RegisterMovieInsufficientRights ServiceTest & Verify that normal users cannot register movies & Pass\\
+\hline
+RegisterMovieValidServiceTest & Verify that you can register a movie & Fail\\
+\hline
+RentMovieContentProviderService Test & Verify that content providers cannot rent movies & Fail\\
+\hline
+RentMovieValidServiceTest & Verify that users can rent movies & Fail\\
+\hline
+SearchValidServiceTest & Verifies that movies are returned from a search & Fail\\
+\hline
+SearchWithoutQueryServiceTest & Verify that nothing is returned for a null query & Pass\\
+\hline
+SearchWithoutTokenServiceTest & Verifies that nothing is returned without a user token & Pass\\
+\hline
+SignupMissingInfoServiceTest & Verify that you cannot create a user without basic information & Pass\\
+\hline
+SignupValidServiceTest & Verify that you can create a new user & Pass\\
 \hline
 \end{longtable}
 \end{centering}
 \subsection{Graphical User Interface tests}
 \label{Appendix_Test_Table_GUI}
 \begin{centering}
-\begin{longtable}{| p{5 cm} | p{7 cm} | c |}
+\begin{longtable}{| p{5 cm} | p{9 cm} | c |}
 \hline
 Test title & Test Purpose & Result\\
 \hline
-GuiTest01CreateNewUser & See if it is possible to create a new user account & \\
+GuiTest01CreateNewUser & See if it's possible to create a new user account & Pass\\
 \hline
-GuiTest02UserLogin & See if the user is able to log in to the service & \\
+GuiTest02UserLogin & See if it's possible for the user to log in & Pass\\
 \hline
-GuiTest03UserEditUserInformation & See if the user is able to change his/her user information & \\
+GuiTest03UserEditUser Information & See if it's possible for the user to edit his/her information & Fail\\
 \hline
-GuiTest04UserLogout & See if the user is able to log out from the service & \\
+GuiTest04UserLogout & See if it's possible for the user to log out & Fail\\
 \hline
-GuiTest05UserViewAllMovies & See if the user can see all available movies & \\
+GuiTest05UserViewAllMovies & See if it's possible for the user to view all the offered movies & Pass\\
 \hline
-GuiTest06UserViewMoviesByNewest & See if the user can sort all avaiable movies by their release date & \\
+GuiTest06UserViewMoviesBy Newest & See if it's possible for the user to sort all movies with the newest movie first & Fail\\
 \hline
-GuiTest07UserSearchForMovie & See if the user can find the correct movie when using the search function & \\
+GuiTest07UserSearchForMovie & See if it'sp ossible for the user to search for a movie & Pass\\
 \hline
-GuiTest08UserViewMoviesByGenre & See if the user can sort the movies by a specific genre & \\
+GuiTest08UserViewMoviesBy Genre & See if it's possible for the user to see all movies from a specific genre & Fail\\
 \hline
-GuiTest09UserRentSpecificMovieEdition & See if the user can rent a specific movie & \\
+GuiTest09UserRentSpecific MovieEdition & See if it's possible for the user to rent a specific movie edition & Pass\\
 \hline
-GuiTest10UserRentAndViewRentals & See if the user can rent a specific movie and find it in his/her rental list & \\
+GuiTest10UserRentAndView Rentals & See if it's possible for the user to rent a movie and find it in his/her rental list & Fail\\
 \hline
-GuiTest12CPLoginLogout & See if the content provider is able to log in and log out & \\
+GuiTest12CPLoginLogout & See if the content provider can log in and log out & Fail\\
 \hline
-GuiTest13CPRegisterMovie & See if the content provider can register a movie, to make it ready for uploading & \\
+GuiTest13CPRegisterMovie & See if the content provider can register a movie & Pass\\
 \hline
 \end{longtable}
 \end{centering}
-\section{Manual test}
 
+\subsection{Failed automatic tests}
+\label{Appendix_Test_Table_FailedTests}
+This section describes which of our automatic tests that fail and what error they fail with.
+
+\begin{centering}
+\begin{longtable}{| p{6 cm} | p {9 cm} |}
+\hline
+Test title & Fail reason \\
+\hline
+GetCurrentRentalsTest & Threw exception: "ArgumentNullException: Value cannot be null. Parameter name: String"\\
+\hline
+MultipleRentalHistory & Threw exception: "System.InvalidOperationException: There is already an open DataReader associated with this Command which must be closed first. \\
+\hline
+DeleteEditionValidServiceTest & Threw exception: "System.ServiceModel.Fault-Exception" \\
+\hline
+DeleteMovieValidServiceTest & "AssertIsTrue failed. DeleteMovie failed"\\
+\hline
+EditMovieValidServiceTest & Assert.AreEqual failed. Expected: \textless New title\textgreater . Actual:\textless Ocean's Eleven\textgreater. Movie title wasn't changed\\
+\hline
+EditUserValidServiceTest & System.ServiceModel.Dispatcher.NetDispatcherFault-Exception: The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter\\
+\hline
+GetMovieInformationUnknownMovie-ServiceTest & Assert.IsFalse failed. GetMovieInformation didn't fail\\
+\hline
+GetAllMoviesGenreServiceTest & System.ServiceModel.Dispatcher.NetDispatcherFault-Exception: The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter \\
+\hline
+GetAllMoviesLimitServiceTest & Assert.IsTrue failed. Result is false\\
+\hline
+GetAllMoviesMostDownloadedService-Test & Assert.IsTrue failed. Result is false\\
+\hline
+GetAllMoviesNewestServiceTest & System.ServiceModel.Dispatcher.NetDispatcherFault-Exception: The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter \\
+\hline
+GetAllMoviesValidServiceTest & System.ServiceModel.Dispatcher.NetDispatcherFault-Exception: The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter\\
+\hline
+GetRentalsValidServiceTest & Assert.IsTrue failed. GetRentals failed\\
+\hline
+LoginWrongPasswordServiceTest  & Assert.IsFalse failed. Login didn't fail.\\
+\hline
+RegisterMovieValidServiceTest & System.ServiceModel.Dispatcher.NetDispatcherFault-Exception: The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter\\
+\hline
+RentMovieContentProviderServiceTest & System.ServiceModel.Dispatcher.NetDispatcherFault-Exception: The formatter threw an exception while trying to deserialize the message: There was an error while trying to deserialize parameter\\
+\hline
+RentMovieValidServiceTest  & Assert.AreNotEqual failed. Expected any value except:\textless 0\textgreater . Actual: \textless 0\textgreater. rentals is null\\
+\hline
+SearchValidServiceTest & Assert.IsTrue failed. Result is false\\
+\hline
+GuiTest03UserEditUserInformation & Could not find 'Close application' control\\
+\hline
+GuiTest04UserLogout & Could not find 'Close application' control\\
+\hline
+GuiTest06UserViewMoviesByNewest & Could not find 'MovieListBox' control\\
+\hline
+GuiTest08UserViewMoviesByGenre & Could not find 'Close application' control\\
+\hline
+GuiTest10UserRentAndViewRentals & Could not find 'Close application' control\\
+\hline
+GuiTest12CPLoginLogout & Could not find 'Close application' control\\
+\hline
+\end{longtable}
+\end{centering}
+
+\section{Manual GUI test}
 \label{Appendix_Test_Manual}
+
+\paragraph{Test 3} - User, edit user profile (GuiTest03UserEditUserInformation). \\
+Tests whether it's possible for the user to edit his/her information or not. \\
+This test covers the requirement "User - Edit profile".
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Navigate to the Edit Profile Page
+\item Change Full Name to "Neo Smith"
+\item Click the "Save changes" button
+\item See that the full name now is "Neo Smith"
+\item Close the window
+\end{my_enumerate}
+
+\paragraph{Test 4} - User, logout as user (GuiTest04UserLogout). \\
+Tests if the user can log out from the service. \\
+This test covers the requirement "Optional - High priority -  Logout".
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Click the "Logout" at the top right of the screen
+\item Close the window
+\end{my_enumerate}
+
+\paragraph{Test 6} - User, view list of all movies sorted by release date (GuiTest06UserViewMoviesByNewest). \\
+Tests if the user can see all movies sorted by their release date. \\
+This test covers the requirement "User - View a list of all movies" and "Optional - High priority - View movielists with different sorting".
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Navigate to the View Movie List Page
+\item Sort by Newest and All
+\item View Movie for Ocean's Eleven
+\item Click the "List Movies" button
+\item View Movie for The Matrix
+\item Assert that the release date is earlier than Ocean's Eleven
+\item Close the window
+\end{my_enumerate}
+
+\paragraph{Test 8} - User, view all movies of a specific genre (GuiTest08UserViewMoviesByGenre). \\
+Tests if the user can see all movies of a certain genre. \\
+This test covers the requirement "Optional - High priority - View movielists with different sorting".
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Navigate to the View Movie List Page
+\item Sort movies by Newest and Sci-fi
+\item Assert that The Matrix, The Matrix Reloaded and The Matrix Revolution are in the list
+\item Close the window
+\end{my_enumerate}
+
+\paragraph{Test 10} - User, view current rentals (GuiTest10UserRentAndViewRentals). \\
+Tests if the user can see his/her current rentals. \\
+This test covers the requirement "Optional - High priority - View rental history".
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Rent the movie "The Lord of the Rings - The Fellowship of the Ring - SD"
+\item Click the "Your Rentals" movie
+\item Assert that "The Lord of the Rings - The Fellowship of the Ring - SD" is in the list
+\item Close the window
+\end{my_enumerate}
+
+\paragraph{Test 12} - CP, login \& logout (GuiTest12CPLoginLogout). \\
+Tests if the content provider can log in and log out. \\
+This test covers the requirement "Content Provider - Login" and "Optional - High priority - Logout".
+\begin{my_enumerate}
+\item Login as Universal (test content provider)
+\item Assert that the "Logout" button exists
+\item Click the "Logout" button
+\item Assert that the Welcome screen is shown
+\end{my_enumerate}
+
+\paragraph{Test 13} - CP, register and upload movie. \\
+Tests if the content provider register a movie and upload a file. \\
+This test covers the requirement "Content Provider - Upload media", "Optional - High priority - Movie release dates" and "Optional - Medium priority - Movie editions".
+\begin{my_enumerate}
+\item Login as Universal (test content provider)
+\item Click the "Register movie" button
+\item Fill the information and click the "Register movie" button
+\item Click the "Upload Movies" button
+\item Fill the textboxes
+\item Click the "Upload movie" button
+\end{my_enumerate}
+
+\paragraph{Test 15} - CP, upload new edition to already registered movie. \\
+Tests if the content provider can upload an edition to a movie that has already been registered. \\
+This test covers the requirement "Content Provider - Upload media" and "Optional - Medium priority - Movie editions".
+\begin{my_enumerate}
+\item Login as Universal (test content provider)
+\item Select a movie
+\item Click the "Upload new edition"
+\item Browse for a file
+\item Click the "Upload" button
+\end{my_enumerate}
+
+\paragraph{Test 16} - CP, edit information about a movie. \\
+Tests if the content provider can edit the information about a movie. \\
+This test covers the requirement "Content Provider - Edit uploaded media".
+\begin{my_enumerate}
+\item Login as test content provider
+\item Click the "Your Movies" button
+\item Find the movie that is to be edited
+\item Fill out the information and click the "Save changes" button
+\end{my_enumerate}
+
+\paragraph{Test 17} - CP, delete movie. \\
+Tests if the content provider can delete a movie that he/she has registered. \\
+This test covers the requirement "Content Provider - Delete media".
+\begin{my_enumerate}
+\item Login as Universal (test content provider)
+\item Click the "Your Movies" button
+\item Find the movie that is to be deleted
+\item Click the "View Movie" button
+\item Click the "Delete movie" button
+\end{my_enumerate}
 
 \section{Usability tests}
 \label{Appendix_Test_Usability}

@@ -139,7 +139,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 Title = title,
                 Description = desc,
-                OwnerID = user.ID,
+                OwnerID = 2,
                 ReleaseDate = releaseDate
             });
 
@@ -163,6 +163,8 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             RentItContext.Db.SaveChanges();
             RentItContext.ReloadDb();
+
+            user = User.Login(TestUser.User.Username, TestUser.User.Password);
 
             // Step 1
             var movieInfo = Movie.Get(user, movieId);
@@ -198,7 +200,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
             {
                 Title = title,
                 Description = desc,
-                OwnerID = user.ID
+                OwnerID = 2
             });
 
             RentItContext.ReloadDb();
@@ -221,7 +223,7 @@ namespace RentIt.Tests.Scenarios.User.Browsing
 
             RentItContext.Db.SaveChanges();
             RentItContext.ReloadDb();
-
+            user = User.Login(TestUser.User.Username, TestUser.User.Password);
             // Step 1
             var movieInfo = Movie.Get(user, movieId);
 

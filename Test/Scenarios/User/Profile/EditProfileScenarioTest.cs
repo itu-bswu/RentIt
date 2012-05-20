@@ -144,7 +144,7 @@ namespace RentIt.Tests.Scenarios.User.Profile
             });
 
             // Step 4
-            user = User.Login(TestUser.User);
+            user = User.Login(TestUser.User.Username, newPassword);
 
             // Step 5
             Assert.AreNotEqual(oldPassword, user.Password, "Password has not changed!");

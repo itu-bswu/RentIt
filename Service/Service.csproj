@@ -109,6 +109,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="RentItClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -116,8 +119,13 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\RentItClient.RentItService.Edition.datasource" />
+    <None Include="Properties\DataSources\RentItClient.RentItService.Movie.datasource" />
+    <None Include="Properties\DataSources\RentItClient.RentItService.Rental.datasource" />
+    <None Include="Properties\DataSources\RentItClient.RentItService.User.datasource" />
     <Content Include="Service.Publish.xml" />
     <Content Include="Services\Service.svc" />
     <Content Include="Web.config">
@@ -144,7 +152,6 @@
     <Compile Include="Interfaces\IContentManagement.cs" />
     <Compile Include="Interfaces\IUserManagement.cs" />
     <Compile Include="Library\FileRequest.cs" />
-    <Compile Include="Library\MovieDownload.cs" />
     <Compile Include="Library\RemoteFileStream.cs" />
     <Compile Include="Library\StringDifference.cs" />
     <Compile Include="Mapping\EditionMap.cs" />
