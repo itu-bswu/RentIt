@@ -15,8 +15,13 @@
 
 \subsubsection{Graphical user interface tests}
 \label{Testing_Strategy_Types_EndUser}
+Testing that the service works is not the only important thing to do. It is also important to make sure that the graphical user interface works, because otherwise the user will not be able to use the service for anything. We split the testing of the graphical user interface into two parts: Automatic tests, and manual tests. These will be further described below.
+
+\paragraph{Automatic GUI tests}
+The automatic gui tests have been made through the use of the Coded UI Tests in Visual Studio 2010. When one creates such a test, one can record all the actions that are taken, and save these. When a test has been recorded, it can be run any amount of times, and it will take the same actions every time. Using this, we made automatic tests for all the basic features, such as signing in, logging in, searching for movies, etc.
 
 \paragraph{Manual GUI test}
+While we could automate some tests, there were others that were not worth automating. Automating things like upload/download would be too hard, as file directories change from computer to computer. This meant that we had to test certain functionalities manually, simply by opening the client and going through the necessary steps.
 
 \subsection{Regression tests}
 \label{Testing_Strategy_Regression}
