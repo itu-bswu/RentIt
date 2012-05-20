@@ -4,11 +4,47 @@
 \subsection{Analysis}
 \label{Design_Service_Analysis}
 
+\subsubsection{Entities}
+\label{Design_Service_Analysis_Entities}
+For most tables in the database, we have a corresponding class in our solution, which is managed with Entity Framework as POCO classes. 
+
+\subsubsection{User Types}
+\label{Design_Service_Analysis_UserTypes}
+The user entity has a type field, which specifies wether the user is just a normal user, or some kind of admin user. A normal user is just someone who has signed up for the service through the signup form, and is able to browse and rent movies. The admin users does not have the ability to rent movies, but are controlling the content in the system. We chose this way to have the same method calls for normal users and admin users, keeping a clean and consistent API. 
+
+There are two kind of admin users: content providers and system admins. The content providers is those who own and manage movies. This could be movie studios, e.g. Universal, or independent movie makers. When logged in as a content provider, you are allowed access to editing and deleting your own movies, as well as registering and uploading new ones. System admins are users, who can manage all content in the system. They can create content providers, and they can view, edit and delete movies. They are also able to ban users, who in some way misuse the system. They can't rent movies, and they can't add new movies, but they are a way for the owners of the system to manage content, without having to modify the database directly.
+
+\subsubsection{Genres}
+\label{Design_Service_Analysis_Genres}
+Each movie should have at least one genre each, such as action, comedy, etc. to make users able to browse movies by the genres that interests them. Our first naïve implementation of this was to have genres as a string on each movie, separating each genre with a slash character. This was not a very good design: it was expensive to compile a list of all genres, genres could be misspelled, and you couldn't have genres without any movies. That is why we changed this to instead have genre as a table, and having each movie connect to a genre. This allows us to have a list of genres, having genres without movies, and a content provider shouldn't need to enter the name of the genre each time, since it's just connecting to a already-existing genre object.
+
+\subsubsection{Movie Editions}
+\label{Design_Service_Analysis_MovieEditions}
+Typically, movies exists in more editions than just one. A movie can have a directors cut edition, extra material versions, etc., and they can be in both SD, 720p HD and 1080p full HD. Instead of having each version as a new movie in the database, we wanted to group them as editions of the same movie. This is not only to un-clutter movie listings and search results, but also to make it easier for both users and content providers.
+
+We have a special table in the database for editions, and when the user rents a movie, it is actually an edition they rent. On the user interface side, when a user wants to rent a movie, they should be shown all editions of the movie, and be able to choose which one they want. When a content provider is adding a new movie, they first register the movie in the database, without actually uploading any movie data, and they are then able to add editions to the movie. Many movies will have only one edition, but many never movies should be available in both HD and non-HD, which should be uploaded as two different editions. Each edition will have one corresponding movie file uploaded, which is the one the user will receive when renting that edition of the movie.
+
+\subsubsection{Rentals}
+\label{Design_Service_Analysis_Rentals}
+When a user rents a movie, they will have the ability to download the movie file for as long as the rental period lasts. We decided to have a standard 7 day download period, and if the user wants the movie after that period, he will have to rent it again. There is no payment in the system, but we would have liked to extent the system to make a content provider able to set a price for renting a movie, and possibly also for buying the movie. Other features that could be implemented is discounts on multiple purchases and discount periods.
+
+Having a end date for a rental and allowing content providers to customize prices on movies was some of the ideas suggested by the SMU team, that made it into our feature considerations. 
+
 \subsection{Architecture}
 \label{Design_Service_Architecture}
+Since the service part of our solution is relatively simple, we didn't use any specific common architecture. The key elements of our design was the database entities and the API methods, and we didn't need anything to control everything, it was obvious to put most logic right into the entity classes, as either instance- or class methods, and logic that doesn't fit into any entity class into its own class. This simple design should keep our solution simple and easy to use, which is important when using it as part of an API, that third party developers should be able to use.
+
+
 
 \subsection{Interface}
 \label{Design_Service_Interface}
+Our public API should cover 4 different topics: user management (login, logout, sign up), content browsing (get movies, search, get movies in genre, etc.), rental management (rent movie, download movie, view rentals), and content management (register movie, upload edition, edit movie information, delete movie). That's why we have 4 interfaces: IUserManagement, IContentBrowsing, IRentalManagement, and IContentManagement. These four interfaces contains service methods for everything you need.
+
+When designing the API, we had the goals that we wanted it to be simple, easy to figure out, easy to use, small and precise. That's why we decided to have a unified style for all methods: a boolean return value, which is false if an error occured, a string token as the first parameter, and any return objects as either out or ref parameters. This gives us a unified API, where you don't need to learn how every method works, but are able to use it without much friction.
+
+\subsubsection{Testing}
+note: flyt til testing afsnittet?
+Other than scenario tests, we have a lot of service level tests. Since the service interface is only a thin wrapper around the actual logic classes, and almost only validates the input, these tests focuses a lot on trying to call the service methods with invalid input. For each method in the service interface, there is one tests that checks that a valid input produces an output and no error. It doesn't neccecarily check wether or not the result is correct - that is up to the scenario tests, since the returned value is just the result of a logic-level method call
 %mention bindings
 
 \subsubsection{SMU involvement}

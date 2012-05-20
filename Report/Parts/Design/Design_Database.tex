@@ -1,5 +1,8 @@
 \section{Database}
 \label{Design_Database}
+A good designed database can help out a lot in development. If adding foreign keys and unique constraints, the integrity of the data in the database will be high, and we can trust that data when implementing our service. We don't have to worry about whether or not a movie still exists, when we receive a movie ID from another table.
+
+This is why we decided to put a lot of effort into our database, as we knew we would benefit from it in the long run.
 
 \subsection{Analysis}
 \label{Design_Database_Analysis}
@@ -7,14 +10,141 @@
 \subsubsection{Decisions}
 \label{Design_Database_Analysis_Decisions}
 
+When we started designing our data model, we had to decide on how much data we want to contain in our databases. We could go all-in IMDB-style, and keep information about actors and cast of each individual movie. Or we could do the exact opposite, and only keep the relevant data for the user to identify a movie.
+
+We decided not to include actors, as IMDB provides this functionality brilliantly for free. Of course it would be nice to have these information, so that our users wouldn't have to go to two different services, to get the job done. But this isn't crucial for the service to work properly, so we decided to just include enough information for the users to identify the movies, and if they need more information than that, they can use IMDB.
+
+We decided to focus on simplicity and feature completeness in general, instead of adding a lot of half-done feature and/or untested functionality. In our experience it is better to have a program with limited functionality that does what it is designed to do quite well, instead of having a lot of features, which aren't finished and isn't properly tested. This of course meant a very simple data model, that would evolve over time, to only fit those requirements we ended up implementing properly.
+
 \subsubsection{ER-model}
 \label{Design_Database_Analysis_ERmodel}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.75\textwidth]{Parts/Images/Design/Database/Datamodel_Initial}
+  \caption{Initial datamodel}
+  \label{fig:Design_Database_Analysis_ERmodel_Initial}
+\end{figure}
+
+Figure \ref{fig:Design_Database_Analysis_ERmodel_Initial} displays our simple initial data model. This captures the basic information about users, such as username, password, email address and the user's full name. We also have a field called type, representing whether a given user is a normal user, a content provider or a system administrator.
+
+To begin with we also only wanted to capture the basic information about the movies, like title, description, genre and the file path. To finish it off, we added a table for capturing movie rentals. This basically was a junction table, with references to the user renting the movie, the movie being rented and the time of the rental.
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.75\textwidth]{Parts/Images/Design/Database/Datamodel_final}
+  \caption{Final datamodel}
+  \label{fig:Design_Database_Analysis_ERmodel_Final}
+\end{figure}
+
+Since we were using scrum and were working in sprints, our data model was constantly evolving. Figure \ref{fig:Design_Database_Analysis_ERmodel_Final} shows our final data model. We only added elements to the code and the data model when it was needed. This of course means that our data model changed quite a lot over the time of the project, where we could probably have designed it up front and let it be through out the project. But since it can be hard to figure out what features we actually wanted to implement two months into the future, we did it this way.
+
+The most important changes are the Genre and Edition tables. The problem with genres beforehand, was that in order to add multiple genres to a movie, they must all be added to the same string, split by a pre-defined delimiter. Besides that, it was complicated to add and remove genres, and genres couldn't be re-used. That's why we separated it from the Movie table, and joined them by a junction table called HasGenre.
+
+We decided to make it possible to add several editions of a movie (like SD, HD, Director's Cut and so on), and these should have their own files. That's why we made the Edition table and movie file path from Movie to Edition. We also changed Rental to reference a specific Edition instead of a Movie.
 
 \subsubsection{SMU involvement}
 \label{Design_Database_Analysis_SMU}
 
+The SMU team didn't impact our data model a lot directly, as the database is an element behind the scenes of the service, and the data model doesn't directly affect a client team (such as SMU), as long as everything works as it should. But to be safe we did send our data model to them, for them to review and give ideas.
+
+One of the suggestions, that we actually ended up implementing, was the release date. They suggested adding a release year, and after a little talk back and forth, we ended up expanding the idea. We ended up adding a release date to movies, and decided that movies with a release date in the future could not be rented before that date, giving greater flexibility to content providers.
+
+They also suggested adding a price to movies and adding an end date for rentals. These suggestions were put in the product backlog, to be implemented if we got the time.
+
 \subsection{Tables}
 \label{Design_Database_Tables}
 
+\subsubsection{User}
+\label{Design_Database_Tables_User}
+
+\begin{my_description}
+\item[user\_id] The user's unique ID number.
+\item[username] The user's unique username - used for login.
+\item[password] The user's password - hashed and salted.
+\item[email] The user's email address.
+\item[full\_name] Full name of the user.
+\item[type] User, Content provider or System administrator.
+\item[token] Unique session token generated at login and cleared at logout.
+\end{my_description}
+
+The User table contains data about our users. To provide some security to the passwords, we salt and hash (with the SHA512 algorithm) the passwords before putting it into the database. This means that if the database is hacked, then, unless they know the salt, they will still have a hard time figuring out the password of the users. The value in the password field will be useless to them, so they only find out the usernames and they will need to try and login to our service with all possible passwords in a bruteforce attack, to try and figuring the passwords of our users. The problem comes up if they get access to our codebase, as they will also get access to the salt. This will make them able to bruteforce the passwords locally (and not using the login feature on our service), which will be much faster.
+
+The ``Type'' field is an integer (since SQL Server 2008 doesn't have enum support) between 1 and 3. A value of 1 means that a given user is ``just'' a normal user, where a value of 2 means that the user is a content provider. A value of 3 indicates a system administrator.
+
+The ``token'' field is a session token. We didn't look much into the different WCF bindings, but we found a binding with streaming support, but with no session support. So we created our own sessions, by generating a session key upon login. This session token is then stored in the ``token'' field, and is cleared upon logout. This session token has to be provided at every service call (that requires the user to be logged in).
+
+\subsubsection{Movie}
+\label{Design_Database_Tables_Movie}
+
+\begin{my_description}
+\item[movie\_id] The movie's unique ID number.
+\item[title] Title of the movie.
+\item[description] A more or less detailed description of the movie.
+\item[owner\_id] Reference to the user creating the movie.
+\item[release\_date] The release date when the movie is available for rental.
+\end{my_description}
+
+The Movie table is quite straight forward. A movie has a title and a description to help identify the movie. The ``owner\_id'' is a reference to the User table, to a content provider that created that movie. The release date is quite important. We took a decision to view all movies (also the ones not yet released) to the user, but it is only possible to rent a movie that has been released, and a movie has only been released if the release date has been set and is a time and date before the current time and date.
+
+\subsubsection{Edition}
+\label{Design_Database_Tables_Edition}
+
+\begin{my_description}
+\item[edition\_id] The edition's unique ID number.
+\item[movie\_id] Reference to the movie the entry is an edition of.
+\item[name] Name of the edition.
+\item[file\_path] Relative file path to the video file.
+\end{my_description}
+
+An edition belongs a movie, and is referenced by the ``movie\_id'' field. An edition can only belong to one movie, as it wouldn't make much sense to share editions between movies, as an edition has its own file path, and these are not shared between movies. The file path is a relative path, based from the movie root folder. Currently it is only a file name, but it is called ``file\_path'' if this was to be changed later on.
+
+\subsubsection{Genre}
+\label{Design_Database_Tables_Genre}
+
+\begin{my_description}
+\item[genre\_id] The genre's unique ID number.
+\item[name] The name of the genre.
+\end{my_description}
+
+We changed this to be its own table, when we discovered that a movie very easily can be of several genres, and instead of putting all these together in one string with a delimiter in between, we decided to move it to its own table. It also makes it easier to re-use genres, which will make it easier when searching for a specific genre, as it is quite easy to misspell a genre. So when the most genres already have been added, and the system suggests genres for a given movie upon creation, genres are re-used, which makes it easier to browse genres.
+
+\subsubsection{HasGenre}
+\label{Design_Database_Tables_HasGenre}
+
+\begin{my_description}
+\item[hasgenre\_id] Unique ID.
+\item[movie\_id] Reference to a movie in the Movie table.
+\item[genre\_id] Reference to a genre in the Genre table.
+\end{my_description}
+
+Junction table used to associate genres with movies. Contains references to a specific movie (by the ``movie\_id'' field) and a reference to a specific genre (by the ``genre\_id'' field). This is a many-to-many relationship, as a genre can belong to multiple movies (which is the reason we did it this way), and a movie can easily have multiple genres.
+
+\subsubsection{Rental}
+\label{Design_Database_Tables_Rental}
+
+\begin{my_description}
+\item[rental\_id] The unique ID number of the rental.
+\item[user\_id] Reference to a user in the User table.
+\item[edition\_id] Reference to an edition in the Edition table.
+\item[time] Time of rental.
+\end{my_description}
+
+This is probably the most important database in a rental system: the tracking of rentals. This has been made quite simple. We capture the user renting the movie edition, the movie edition being rented and the time of rental. As our rental period is 7 days, we don't need to save the end time of a rental, but if we were to make it more dynamic, this would be a field to add.
+
 \subsection{Entity Framework}
 \label{Design_Database_EntityFramework}
+
+We used Entity Framework version 4.1 as an ORM (Object-Relational Mapping), which is Microsoft's ORM to compete with NHibernate and the like. With Entity Framework it is possible to query data with LINQ (the so-called LINQ-to-Entities), but where Entity Framework really shines, is that it focuses on code over configuration. There isn't any need to do a lot of configuration to get it working.
+
+There are four different ways of getting started with Entity Framework, where the two last ones mentioned below are more or less the same approach, but in a different order:
+
+\begin{my_description}
+\item[Model-First] Drag and drop. You get a visual editor where you can create new boxes (which will end up as tables and entities) and put lines between them, to model how the different entities interact with each other. An XML-file is created automatically, and the database and entities are created from this.
+\item[Database-First] The other way round compared to Model-First. You start with creating the database, and then Entity Framework creates the XML file from the database. Then, just like Model-First, entities are created.
+\item[Code-First] With code-first you start out from the code. You create your own entities, which are a lot simpler than the generated entities in the two previous modes. These are called POCO-classes, which means ``Plain Old CLR Objects'', referring to the simplicity of these classes. When the POCO entities are created, you get Entity Framework to create the database for you.
+\item[Code-First] The final way of doing it is also called Code-First, but you start out with the database. Code-First doesn't refer to what component you start out with, but it means that you are ``code-centric''. Just like Database-First you start out with creating the database, and then use a simple tool for Visual Studio to generate the POCO entities from this database. This is also nicknamed ``Code-Second''.
+\end{my_description}
+
+We chose to use Code-Second, as we really wanted to get the simple POCO entities. The reason being that we wanted to send these entities back and forth over the service to transport data, but without any trace of Entity Framework. The reason we chose Code-Second over Code-First, is that we have more control over the database with Code-Second. Entity Framework doesn't add any indices or unique constraints by itself, so to get these, we had to create the database ourselves.
+This has proved to be a bit more difficult than first expected, as no-one in our team had experience with SQL Server 2008, which is different from MySQL in certain areas. If we used Model-First, anyone in the team could have changed the data model, where as with Code-Second either the entire group had to read up on SQL Server and T-SQL or one team member should be responsible for the database part all by himself. We chose to pick one person as the database responsible, to make sure the rest of the group could continue working on the service in the meantime. This meant that only that person could alter the data model, but we did get complete control over our data model and database, which we felt was a big advantage.
