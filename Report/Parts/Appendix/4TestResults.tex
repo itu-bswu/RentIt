@@ -313,13 +313,9 @@ GuiTest12CPLoginLogout & Could not find 'Close application' control\\
 \section{Manual test}
 \label{Appendix_Test_Manual}
 
-\begin{centering}
-\begin{longtable}{| p{5 cm} | p{7 cm} | c |}
-\hline
-Test title \& steps & Fulfilled requirement & Result\\
-
-\hline
-Test 3 - User, edit user profile (GuiTest03UserEditUserInformation)
+\paragraph{Test 3} - User, edit user profile (GuiTest03UserEditUserInformation). \\
+Tests whether it's possible for the user to edit his/her information or not. \\
+This test covers the requirement "User - Edit profile".
 \begin{my_enumerate}
 \item Login as the user "Smith"
 \item Navigate to the Edit Profile Page
@@ -327,18 +323,20 @@ Test 3 - User, edit user profile (GuiTest03UserEditUserInformation)
 \item Click the "Save changes" button
 \item See that the full name now is "Neo Smith"
 \item Close the window
-\end{my_enumerate}& User - Edit Profile & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 4 - User, logout as user (GuiTest04UserLogout)
+\paragraph{Test 4} - User, logout as user (GuiTest04UserLogout). \\
+Tests if the user can log out from the service. \\
+This test covers the requirement "Optional - High priority -  Logout".
 \begin{my_enumerate}
 \item Login as the user "Smith"
 \item Click the "Logout" at the top right of the screen
 \item Close the window
-\end{my_enumerate}& User - Logout & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 6 - User, view list of all movies sorted by release date (GuiTest06UserViewMoviesByNewest)
+\paragraph{Test 6} - User, view list of all movies sorted by release date (GuiTest06UserViewMoviesByNewest). \\
+Tests if the user can see all movies sorted by their release date. \\
+This test covers the requirement "User - View a list of all movies" and "Optional - High priority - View movielists with different sorting".
 \begin{my_enumerate}
 \item Login as the user "Smith"
 \item Navigate to the View Movie List Page
@@ -348,39 +346,43 @@ Test 6 - User, view list of all movies sorted by release date (GuiTest06UserView
 \item View Movie for The Matrix
 \item Assert that the release date is earlier than Ocean's Eleven
 \item Close the window
-\end{my_enumerate}& User - View a list of all movies & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 8 - User, view all movies of a specific genre (GuiTest08UserViewMoviesByGenre)
+\paragraph{Test 8} - User, view all movies of a specific genre (GuiTest08UserViewMoviesByGenre). \\
+Tests if the user can see all movies of a certain genre. \\
+This test covers the requirement "Optional - High priority - View movielists with different sorting".
 \begin{my_enumerate}
 \item Login as the user "Smith"
 \item Navigate to the View Movie List Page
 \item Sort movies by Newest and Sci-fi
 \item Assert that The Matrix, The Matrix Reloaded and The Matrix Revolution are in the list
 \item Close the window
-\end{my_enumerate}& User - View Movielists with different sortings & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 10 - User, view current rentals (GuiTest10UserRentAndViewRentals)
+\paragraph{Test 10} - User, view current rentals (GuiTest10UserRentAndViewRentals). \\
+Tests if the user can see his/her current rentals. \\
+This test covers the requirement "Optional - High priority - View rental history".
 \begin{my_enumerate}
 \item Login as the user "Smith"
 \item Rent the movie "The Lord of the Rings - The Fellowship of the Ring - SD"
 \item Click the "Your Rentals" movie
 \item Assert that "The Lord of the Rings - The Fellowship of the Ring - SD" is in the list
 \item Close the window
-\end{my_enumerate} & User - View rental history & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 12 - CP, login \& logout (GuiTest12CPLoginLogout)
+\paragraph{Test 12} - CP, login \& logout (GuiTest12CPLoginLogout). \\
+Tests if the content provider can log in and log out. \\
+This test covers the requirement "Content Provider - Login" and "Optional - High priority - Logout".
 \begin{my_enumerate}
 \item Login as Universal (test content provider)
 \item Assert that the "Logout" button exists
 \item Click the "Logout" button
 \item Assert that the Welcome screen is shown
-\end{my_enumerate} & Content Provider - Login and Logout & Pass \\
+\end{my_enumerate}
 
-\hline
-Test 13 - CP, register and upload movie
+\paragraph{Test 13} - CP, register and upload movie. \\
+Tests if the content provider register a movie and upload a file. \\
+This test covers the requirement "Content Provider - Upload media", "Optional - High priority - Movie release dates" and "Optional - Medium priority - Movie editions".
 \begin{my_enumerate}
 \item Login as Universal (test content provider)
 \item Click the "Register movie" button
@@ -388,38 +390,39 @@ Test 13 - CP, register and upload movie
 \item Click the "Upload Movies" button
 \item Fill the textboxes
 \item Click the "Upload movie" button
-\end{my_enumerate} & Content Provider - Upload Media & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 15 - CP, upload new edition to already registered movie
+\paragraph{Test 15} - CP, upload new edition to already registered movie. \\
+Tests if the content provider can upload an edition to a movie that has already been registered. \\
+This test covers the requirement "Content Provider - Upload media" and "Optional - Medium priority - Movie editions".
 \begin{my_enumerate}
 \item Login as Universal (test content provider)
 \item Select a movie
 \item Click the "Upload new edition"
 \item Browse for a file
 \item Click the "Upload" button
-\end{my_enumerate} & Content Provider - Upload Media & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 16 - CP, edit information about a movie
+\paragraph{Test 16} - CP, edit information about a movie. \\
+Tests if the content provider can edit the information about a movie. \\
+This test covers the requirement "Content Provider - Edit uploaded media".
 \begin{my_enumerate}
 \item Login as test content provider
 \item Click the "Your Movies" button
 \item Find the movie that is to be edited
 \item Fill out the information and click the "Save changes" button
-\end{my_enumerate} & Content Provider - Edit Uploaded Media & Pass  \\
+\end{my_enumerate}
 
-\hline
-Test 17 - CP, delete movie
+\paragraph{Test 17} - CP, delete movie. \\
+Tests if the content provider can delete a movie that he/she has registered. \\
+This test covers the requirement "Content Provider - Delete media".
 \begin{my_enumerate}
 \item Login as Universal (test content provider)
 \item Click the "Your Movies" button
 \item Find the movie that is to be deleted
 \item Click the "View Movie" button
 \item Click the "Delete movie" button
-\end{my_enumerate} & Content Provider - Delete Media & Pass \\
-\end{longtable}
-\end{centering}	
+\end{my_enumerate}
 
 \section{Usability tests}
 \label{Appendix_Test_Usability}
