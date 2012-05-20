@@ -100,6 +100,110 @@ let timeArg1 f a = time(fun () -> f(a))
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Melnyk_3}
 \begin{lstlisting}
+odule FSharpHandIn3
+
+type 'a BinTree =
+    Leaf
+    |   Node of 'a * 'a BinTree * 'a BinTree
+
+let intBinTree = 
+    Node(
+        43, 
+        Node(25, Node(56,Leaf, Leaf), Leaf), 
+        Node(562, Leaf, Node(78, Leaf, Leaf))
+        )
+
+// Exercise 16
+let rec inOrder tree = 
+    match tree with
+    Leaf -> []
+    |   Node(n, treeL, treeR) -> inOrder treeL @ [n] @ inOrder treeR
+
+// Exercise 17
+let rec mapInOrder (f:'a -> 'b) (tree:'a BinTree) : 'b BinTree = 
+    match tree with
+    Leaf -> Leaf
+    |   Node(n, treeL, treeR) -> 
+            let left = mapInOrder f treeL
+            let root = f(n)
+            let right = mapInOrder f treeR
+            Node(root, left, right)
+(*Example: 
+The result tree should always be the same, as the function should 
+access all the elements no matter what. 
+The reason the individual nodes may not contain the same information 
+could be that the function depends on the order in which 
+the elements are accessed.*)
+
+// Exercise 18
+let rec foldInOrder f a t = 
+    match t with
+    | Leaf -> a
+    | Node(x, leftTree, rightTree) ->
+    let left = foldInOrder f a leftTree
+    foldInOrder f (f x left) rightTree
+
+// Exercise 19 & 21 & 22
+type expr =
+    | Const of int
+    | If of expr * expr * expr
+    | Bind of string * expr * expr
+    | Var of string
+    | Prim of string * expr * expr
+
+let rec evalN expr (d:System.Collections.Generic.Dictionary<string, expr>) =
+    match expr with
+    | Const i -> i
+    | Prim("-", expr1, expr2) -> 
+        evalN expr1 d - evalN expr2 d
+    | Prim("+", expr1, expr2) -> 
+        evalN expr1 d + evalN expr2 d
+    | Prim("max", expr1, expr2) -> 
+        List.max [evalN expr1 d; evalN expr2 d]
+    | Prim("min", expr1, expr2) -> 
+        List.min [evalN expr1 d; evalN expr2 d]
+    | Prim("=", expr1, expr2) -> 
+        if evalN expr1 d = evalN expr2 d then 1 else 0
+    | If(expr1, expr2, expr3) -> 
+        if evalN expr1 d <> 0 then evalN expr2 d else evalN expr3 d
+    | Bind(var, value, expr1) -> 
+        d.Add(var, value) 
+        evalN expr1 d
+    | Var(name) when d.ContainsKey(name) -> 
+        evalN (d.[name]) d
+    | Var(name) -> 
+        failwithf "Unknown variable '%s'" name
+    | Prim(opr, _, _) -> 
+        (printfn "Operation %s not supported" opr; 0)
+
+let eval expr = 
+    evalN expr (new System.Collections.Generic.Dictionary<string, expr>())
+
+// Exercise 20
+let testMinus = 
+    eval (Prim("-",Const(20),Const(30))) // Expected result = -10
+let testPlus = 
+    eval (Prim("+",Const(20),Const(30))) // Expected result = 50
+let testMax = 
+    eval (Prim("max",Const(20),Const(30))) // Expected result = 30
+let testMin = 
+    eval (Prim("min",Const(20),Const(30))) // Expected result = 20
+let testEqualFalse = 
+    eval (Prim("=",Const(20),Const(30))) // Expected result = 0
+let testEqualTrue = 
+    eval (Prim("=",Const(20),Const(20))) // Expected result = 1
+
+// Exercise 23
+let testBindOne = // Expected result = 57
+    eval (Bind("p", Prim("+", Const(13), Const(29)), Prim("+", Var("p"), Const(15)))) 
+let testBindTwo = // Expected result = -16
+    eval (Bind("x", Prim("-", Const(13), Const(29)), Prim("+", Var("x"), Const(15)))) 
+let testBindThree = // Expected result = 97
+    eval (Bind("x", Const(97), Bind("y", Const(3), Prim("max", Var("x"), Var("y"))))) 
+let testBindFour = // Expected result = 0
+    eval (Bind("x", Const(97), Bind("y", Const(3), Prim("=", Var("x"), Var("y"))))) 
+let testBindFive =  // Fail case
+    eval (Bind("x", Prim("+", Const(13), Const(29)), Prim("+", Var("y"), Const(15))))
 \end{lstlisting}
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Melnyk_4and5}

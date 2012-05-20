@@ -79,7 +79,7 @@ namespace RentItClient.ViewModels
         public static void AuthenticationError()
         {
             MessageBox.Show("An authentication error occured. The client will have to close.");
-            SkipClosingMessage = false;
+            SkipClosingMessage = true;
             Application.Current.MainWindow.Close();
         }
     }

@@ -58,8 +58,8 @@ namespace RentItService.Services
             }
 
             var user = User.GetByToken(token);
-            if (user == null || 
-                user.Type != UserType.ContentProvider || 
+            if (user == null ||
+                user.Type != UserType.ContentProvider ||
                 Movie.Get(user, movie.ID).OwnerID != user.ID)
             {
                 return false;
@@ -92,30 +92,37 @@ namespace RentItService.Services
                 return false;
             }
 
-            movie.Delete(user);
+            var m = Movie.Get(user, movie.ID);
+
+            m.Delete(user);
             return true;
         }
 
         /// <summary>
         /// Upload a new movie edition. Must set Name and MovieID in the 
-        /// Edition instance passed to the method. The rest will be filled 
-        /// out by the service, and ready to use afterwards. Please be 
-        /// aware that edition name is unique for the movie - meaning that 
-        /// it is not possible to have two different editions for the same 
-        /// movie with the same name. 
-        /// The user creating the edition (identified by the session token) 
-        /// must be the owner of the movie.
+        /// Edition instance passed to the RemoteFileStream. Please be aware 
+        /// that edition name is unique for the movie - meaning that it is not 
+        /// possible to have two different editions for the same movie with the 
+        /// same name. 
+        /// The user creating the edition (identified by the session token in 
+        /// the RemoteFileStream) must be the owner of the movie.
         /// </summary>
-        /// <param name="token">The user's session token.</param>
-        /// <param name="stream">The file stream</param>
-        /// <param name="edition">The edition. Should have title and movie id.</param>
+        /// <param name="uploadRequest">The file stream</param>
         /// <returns>True on success; false otherwise.</returns>
-        public bool UploadEdition(string token, RemoteFileStream stream, ref Edition edition)
+        public void UploadEdition(RemoteFileStream uploadRequest)
         {
-            if (token == null || stream == null || edition == null ||
-                stream.FileByteStream == null || stream.FileName == null)
+            if (uploadRequest == null)
             {
-                return false;
+                return;
+            }
+
+            var token = uploadRequest.Token;
+            var edition = uploadRequest.Edition;
+
+            if (token == null || edition == null ||
+                uploadRequest.FileByteStream == null || uploadRequest.FileName == null)
+            {
+                return;
             }
 
             var user = User.GetByToken(token);
@@ -126,11 +133,10 @@ namespace RentItService.Services
                 user.Type != UserType.ContentProvider ||
                 movie.OwnerID != user.ID)
             {
-                return false;
+                return;
             }
 
-            edition = movie.UploadEdition(user, edition.Name, stream);
-            return true;
+            movie.UploadEdition(user, edition.Name, uploadRequest);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace RentIt.Tests
+namespace RentIt.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +12,8 @@
     using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
     using Mouse = Microsoft.VisualStudio.TestTools.UITesting.Mouse;
     using MouseButtons = System.Windows.Forms.MouseButtons;
-    
-    
+
+
     public partial class UIMap
     {
     }

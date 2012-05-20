@@ -7,8 +7,12 @@
 namespace RentItClient.GUI
 {
     using System.Windows;
+    using System.Windows.Forms;
     using System.Windows.Threading;
     using ViewModels;
+
+    using Application = System.Windows.Application;
+    using MessageBox = System.Windows.MessageBox;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -21,6 +25,18 @@ namespace RentItClient.GUI
         public MainWindow()
         {
             InitializeComponent();
+
+            // Set MessageBox values
+            MessageBoxManager.Abort = "Abort";
+            MessageBoxManager.Cancel = "Cancel";
+            MessageBoxManager.Ignore = "Ignore";
+            MessageBoxManager.No = "No";
+            MessageBoxManager.OK = "OK";
+            MessageBoxManager.Retry = "Retry";
+            MessageBoxManager.Yes = "Yes";
+
+            // Register the MessageBox values
+            MessageBoxManager.Register();
 
             Application.Current.DispatcherUnhandledException += HandleExceptions;
         }

@@ -714,83 +714,6 @@ namespace RentItClient.RentItService {
         SystemAdmin = 3,
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RemoteFileStream", Namespace="http://schemas.datacontract.org/2004/07/RentItService.Library")]
-    [System.SerializableAttribute()]
-    public partial class RemoteFileStream : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.IO.Stream FileByteStreamField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FileNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long LengthField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.IO.Stream FileByteStream {
-            get {
-                return this.FileByteStreamField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileByteStreamField, value) != true)) {
-                    this.FileByteStreamField = value;
-                    this.RaisePropertyChanged("FileByteStream");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FileName {
-            get {
-                return this.FileNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
-                    this.FileNameField = value;
-                    this.RaisePropertyChanged("FileName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Length {
-            get {
-                return this.LengthField;
-            }
-            set {
-                if ((this.LengthField.Equals(value) != true)) {
-                    this.LengthField = value;
-                    this.RaisePropertyChanged("Length");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RentalScope", Namespace="http://schemas.datacontract.org/2004/07/RentItService.Enums")]
     public enum RentalScope : int {
@@ -876,11 +799,55 @@ namespace RentItClient.RentItService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentManagement/DeleteMovie", ReplyAction="http://tempuri.org/IContentManagement/DeleteMovieResponse")]
         bool DeleteMovie(string token, RentItClient.RentItService.Movie movie);
         
+        // CODEGEN: Generating message contract since the operation UploadEdition is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentManagement/UploadEdition", ReplyAction="http://tempuri.org/IContentManagement/UploadEditionResponse")]
-        bool UploadEdition(string token, RentItClient.RentItService.RemoteFileStream stream, ref RentItClient.RentItService.Edition edition);
+        RentItClient.RentItService.UploadEditionResponse UploadEdition(RentItClient.RentItService.RemoteFileStream request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IContentManagement/DeleteEdition", ReplyAction="http://tempuri.org/IContentManagement/DeleteEditionResponse")]
         bool DeleteEdition(string token, RentItClient.RentItService.Edition edition);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoteFileStream", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RemoteFileStream {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public RentItClient.RentItService.Edition Edition;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string FileName;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public long Length;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string Token;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.IO.Stream FileByteStream;
+        
+        public RemoteFileStream() {
+        }
+        
+        public RemoteFileStream(RentItClient.RentItService.Edition Edition, string FileName, long Length, string Token, System.IO.Stream FileByteStream) {
+            this.Edition = Edition;
+            this.FileName = FileName;
+            this.Length = Length;
+            this.Token = Token;
+            this.FileByteStream = FileByteStream;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UploadEditionResponse {
+        
+        public UploadEditionResponse() {
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -922,8 +889,19 @@ namespace RentItClient.RentItService {
             return base.Channel.DeleteMovie(token, movie);
         }
         
-        public bool UploadEdition(string token, RentItClient.RentItService.RemoteFileStream stream, ref RentItClient.RentItService.Edition edition) {
-            return base.Channel.UploadEdition(token, stream, ref edition);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RentItClient.RentItService.UploadEditionResponse RentItClient.RentItService.IContentManagement.UploadEdition(RentItClient.RentItService.RemoteFileStream request) {
+            return base.Channel.UploadEdition(request);
+        }
+        
+        public void UploadEdition(RentItClient.RentItService.Edition Edition, string FileName, long Length, string Token, System.IO.Stream FileByteStream) {
+            RentItClient.RentItService.RemoteFileStream inValue = new RentItClient.RentItService.RemoteFileStream();
+            inValue.Edition = Edition;
+            inValue.FileName = FileName;
+            inValue.Length = Length;
+            inValue.Token = Token;
+            inValue.FileByteStream = FileByteStream;
+            RentItClient.RentItService.UploadEditionResponse retVal = ((RentItClient.RentItService.IContentManagement)(this)).UploadEdition(inValue);
         }
         
         public bool DeleteEdition(string token, RentItClient.RentItService.Edition edition) {
@@ -941,8 +919,9 @@ namespace RentItClient.RentItService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentalManagement/RentMovie", ReplyAction="http://tempuri.org/IRentalManagement/RentMovieResponse")]
         bool RentMovie(string token, RentItClient.RentItService.Edition edition);
         
+        // CODEGEN: Generating message contract since the wrapper name (RemoteFileStream) of message RemoteFileStream does not match the default value (DownloadFile)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRentalManagement/DownloadFile", ReplyAction="http://tempuri.org/IRentalManagement/DownloadFileResponse")]
-        bool DownloadFile(out RentItClient.RentItService.RemoteFileStream stream, string token, RentItClient.RentItService.Edition edition);
+        RentItClient.RentItService.RemoteFileStream DownloadFile(RentItClient.RentItService.RemoteFileStream request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -980,8 +959,24 @@ namespace RentItClient.RentItService {
             return base.Channel.RentMovie(token, edition);
         }
         
-        public bool DownloadFile(out RentItClient.RentItService.RemoteFileStream stream, string token, RentItClient.RentItService.Edition edition) {
-            return base.Channel.DownloadFile(out stream, token, edition);
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        RentItClient.RentItService.RemoteFileStream RentItClient.RentItService.IRentalManagement.DownloadFile(RentItClient.RentItService.RemoteFileStream request) {
+            return base.Channel.DownloadFile(request);
+        }
+        
+        public void DownloadFile(ref RentItClient.RentItService.Edition Edition, ref string FileName, ref long Length, ref string Token, ref System.IO.Stream FileByteStream) {
+            RentItClient.RentItService.RemoteFileStream inValue = new RentItClient.RentItService.RemoteFileStream();
+            inValue.Edition = Edition;
+            inValue.FileName = FileName;
+            inValue.Length = Length;
+            inValue.Token = Token;
+            inValue.FileByteStream = FileByteStream;
+            RentItClient.RentItService.RemoteFileStream retVal = ((RentItClient.RentItService.IRentalManagement)(this)).DownloadFile(inValue);
+            Edition = retVal.Edition;
+            FileName = retVal.FileName;
+            Length = retVal.Length;
+            Token = retVal.Token;
+            FileByteStream = retVal.FileByteStream;
         }
     }
     

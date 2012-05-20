@@ -68,41 +68,6 @@ namespace RentIt.Tests.Scenarios.User.Profile
         }
 
         /// <summary>
-        /// Purpose: Verify that values in the userObject parameter cannot be null values.
-        /// <para>
-        /// Pre-condtions:
-        ///     1. A user called "Smith" must exist in the database.
-        /// </para>
-        /// <para>
-        /// Steps:
-        ///     1. Make sure pre-conditions hold.
-        ///     2. Create a new user object with invalid information.
-        ///     3. Call edit profile with the new user object.
-        ///     4. Verify that "ArgumentNullException" is thrown.
-        /// </para>
-        /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void InvalidInputEditProfileTest()
-        {
-            var user = User.Login(TestUser.User.Username, TestUser.User.Password);
-
-            var user2 = new User
-            {
-                Email = user.Email.ToUpper(),
-                FullName = null,
-                ID = user.ID,
-                Password = null,
-                Token = user.Token,
-                Type = user.Type,
-                TypeValue = user.TypeValue,
-                Username = user.Username
-            };
-
-            user.Edit(user2);
-        }
-
-        /// <summary>
         /// Purpose: Verify that it is possible to edit only part of a user's profile.
         /// 
         /// Steps:
@@ -129,7 +94,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
             // Step 3
             user.Edit(new User
             {
-                Email = newEmail
+                ID = user.ID,
+                Email = newEmail,
             });
 
             // Step 4
@@ -173,7 +139,8 @@ namespace RentIt.Tests.Scenarios.User.Profile
             // Step 3
             user.Edit(new User
             {
-                Password = newPassword
+                ID = user.ID,
+                Password = newPassword,
             });
 
             // Step 4

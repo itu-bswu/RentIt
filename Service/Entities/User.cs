@@ -83,7 +83,7 @@ namespace RentItService.Entities
         /// <summary>
         /// Gets or sets the user's email.
         /// </summary>
-        [DataMember] 
+        [DataMember]
         public string Email { get; set; }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace RentItService.Entities
 
             Contract.Requires<ArgumentException>(user.Username != string.Empty);
             Contract.Requires<ArgumentException>(user.Email != string.Empty && Validator.ValidateEmail(user.Email));
-            
+
             user.ID = 0;
             user.Type = UserType.User;
             user.Token = string.Empty;
@@ -178,7 +178,6 @@ namespace RentItService.Entities
         {
             Contract.Requires<ArgumentNullException>(username != null);
             Contract.Requires<ArgumentNullException>(password != null);
-            Contract.Ensures(Contract.Result<User>() != null);
 
             password = Hash.Sha512(password + Salt);
 
@@ -274,7 +273,7 @@ namespace RentItService.Entities
         {
             Contract.Requires<NotAUserException>(this.Type == UserType.User);
 
-            if (!Movie.All.Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
+            if (!Movie.All.ToList().Any(m => m.Editions.Any(e => e.ID == movieEdition.ID) && m.ReleaseDate != null && m.ReleaseDate <= DateTime.Now))
             {
                 throw new NoMovieFoundException("No released movies found with the given ID.");
             }
@@ -299,7 +298,7 @@ namespace RentItService.Entities
             {
                 this.Email = editedUser.Email;
             }
-            
+
             RentItContext.Db.SaveChanges();
         }
 

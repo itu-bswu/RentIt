@@ -112,19 +112,12 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Playback">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\Microsoft.VisualStudio.TestTools.UITest.Playback.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -147,15 +140,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTest.cs" />
-    <Compile Include="GUI\CodedUITest1.cs" />
-    <Compile Include="GUI\CodedUITest2.cs" />
-    <Compile Include="GUI\CodedUITest3.cs" />
-    <Compile Include="GUI\CodedUITest4.cs" />
-    <Compile Include="GUI\CodedUITest5.cs" />
-    <Compile Include="GUI\CodedUITest6.cs" />
-    <Compile Include="GUI\CodedUITest7.cs" />
-    <Compile Include="GUI\CodedUITest8.cs" />
-    <Compile Include="GUI\CodedUITest9.cs" />
+    <Compile Include="GUI\Test10UserRentAndViewRentals.cs" />
+    <Compile Include="GUI\Test03UserEditUserInformation.cs" />
+    <Compile Include="GUI\Test01CreateNewUser.cs" />
+    <Compile Include="GUI\Test12CPLoginLogout.cs" />
+    <Compile Include="GUI\Test09UserRentSpecificMovieEdition.cs" />
+    <Compile Include="GUI\Test08UserViewMoviesByGenre.cs" />
+    <Compile Include="GUI\Test07UserSearchForMovie.cs" />
+    <Compile Include="GUI\Test06UserViewMoviesByNewest.cs" />
+    <Compile Include="GUI\Test05UserViewAllMovies.cs" />
+    <Compile Include="GUI\Test04UserLogout.cs" />
+    <Compile Include="GUI\Test02UserLogin.cs" />
+    <Compile Include="GUI\Test13CPRegisterMovie.cs" />
     <Compile Include="Scenarios\ContentProvider\RegisterMovieScenarioTest.cs" />
     <Compile Include="Scenarios\User\Browsing\GenreScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

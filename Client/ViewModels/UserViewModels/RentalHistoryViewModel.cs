@@ -7,6 +7,7 @@ namespace RentItClient.ViewModels.UserViewModels
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
 
     using Models;
     using Types;
@@ -31,8 +32,11 @@ namespace RentItClient.ViewModels.UserViewModels
                 foreach (var r in res)
                 {
                     var e = r.Edition;
-                    RentItService.Movie m; // = e.Movie;
-                    MovieInformationModel.GetMovieInfo(e.MovieID, out m);
+                    RentItService.Movie m;
+                    if (!MovieInformationModel.GetMovieInfo(e.MovieID, out m))
+                    {
+                        MasterViewModel.AuthenticationError();
+                    }
 
                     result.Add(Tuple.Create(m.Title + " - " + e.Name, e.ID, Movie.ConvertServiceMovie(m)));
                 }

@@ -37,7 +37,7 @@ namespace RentIt.Tests.Service_level.ContentBrowsing
             var result = UserManagement.Logout(user.Token);
 
             Assert.IsTrue(result, "Logout failed");
-            Assert.IsNull(user.Token, "Token was not reset");
+            Assert.IsNull(User.GetByToken(user.Token), "Token was not reset");
         }
     }
 }
