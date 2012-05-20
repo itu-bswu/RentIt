@@ -1,12 +1,21 @@
 \section{Client}
 \label{Design_Client}
-
+This section covers design decisions we made regarding the client implementation and Graphical User Interface (GUI) design.
 \subsection{Analysis}
 \label{Design_Client_Analysis}
+We looked into what architectures were commonly used and suggested when developing a client with a \class{GUI} front-end and a \class{WCF}-service backend. We have seen (and used) the \class{Model-View-Control} (\class{MVC}\footnote{Wikipedia description of Model-View-Control\cite{WIKI-MVC}}) before this project, and we felt it fit nicely with having a model (the service), a view (\class{GUI}) and a controller to make it all work. 
+\\While looking into \class{MVC} and how we could apply to our client, we found the \class{Model-View-Viewmodel} (MVVM\footnote{References on Wikipedia \cite{WIKI-MVVM} and MSDN \cite{MSDN-WPF-MVVM}}) architecture pattern. The \class{MVVM} pattern is based largely on \class{MVC}, but is targeted at modern \class{UI} development platforms (such as HTML5, Windows Presentation Foundation and Silverlight).
 
-\subsection{Architecture}
+Because we decided to use Windows Presentation Foundation (\class{WPF})\footnote{Decision described in section \ref{Implementation_Client} on page \pageref{Implementation_Client}.}, we decided that trying out the \class{MVVM}-pattern felt like a good idea. \class{MVVM} offers a complete seperation of the model (in our case the \class{WCF} service) and \class{GUI}. The viewmodels serve as translators (and sometimes logic functionality, depending on implementation).
+\subsection[Architecture]{Our version of the MVVM Architecture}
 \label{Design_Client_Architecture}
+Having decided on using the MVVM architecture, we decided to implementing\footnote{How we implement this is described in section \ref{Implementation_Client_Architecture} on page \pageref{Implementation_Client_Architecture}.} our own version of it (instead of using frameworks set up to use MVVM). It gave us more control over what we wanted to do with the architecture, as well as letting us make our own twist on it.
 
+The biggest change we have made to the usual architecture\footnote{\class{View}(\class{GUI})-\class{Model}(database/datafiles)-\class{ViewModel}(translator).} is our interpretation of models. Instead of having models be the actual database, we use it as a communicator with the service. The MSDN blog post on the MVVM architecture \cite{MSDN-WPF-MVVM} and how it can be used with WPF and a WCF service, the model is described as being the actual service. 
+
+In our approach, we design the models as being seperate classes with an interface that the view models can use. This completely seperates the viewmodels from the service calls (meaning the mode could actually be anyway, as long as it implements the same interface). We will still use classes and objects from the service reference in the view models, but to change the data/service the model accesses, one could simply use the model to translate the types into the types from the service reference. This allows a modular approach to the system.
+
+Because we have a modular approach to the model-viewmodel relationship, we feel the view-viewmodel relationship should be modular as well. Because of this, the implementation of the view models could change vastly without having any real effect on the views (except if it changes interface).
 \subsection{Graphical User Interface}
 \label{Design_Client_GUI}
 Designing the GUI we had two different approachs. One where we opened a new window each time the user would access a new functionality, and one where we had one window in which all the functionallities would be shown. The design team tried out both options and found that having multiple windows to show the functionallities in was to clumsy and would disturb the users more than help them. We therefore went with the one window solution,  since it felt naturally and we could represent new functionallities without disturbing or confusing the user. With the one window design we had each functionallity page consist of three areas: In the top we had shared buttons for the user type, in the middel we represented the page content associated with the functionallity and in the bottom we had the buttons associated with the page content. See figure \ref{fig:Design_Client_GUI_Usability_design} on page \pageref{fig:Design_Client_GUI_Usability_design} for graphical representation.
@@ -21,16 +30,16 @@ Designing the GUI we had two different approachs. One where we opened a new wind
 
 \subsubsection{Usability}
 \label{Design_Client_GUI_Usability}
-When we sat down to design our GUI, we felt that it was important it was user friendly, we therefore choose to make some usability tests (see \ref{Testing_Strategy_Usability}) since they will allways grant some degree of usability if performed correctly. In all we conducted two usability tests.
-\\From the first of the tests we got the feedback that we didn't have enough user confirmation in the GUI. We discussed this in the design team and came up with a solution which added dialog and confirmation boxses to alot of our buttons which contained a save function see figure \ref{fig:Design_Client_GUI_Usability_popup}on page \pageref{fig:Design_Client_GUI_Usability_popup}.
+When we began designing our GUI, we felt that it was important it was user friendly. Therefore, we choose to make usability tests (see \ref{Testing_Strategy_Usability}), since they always will grant some degree of usability if performed correctly. In total we conducted two usability tests.
+\\From the first of the tests, the feedback told us that we didn't have enough user confirmation in the GUI. We discussed this in the design team and came up with a solution, which added dialog and confirmation boxses to a lot of our buttons which contained a save function (see figure \ref{fig:Design_Client_GUI_Usability_popup}on page \pageref{fig:Design_Client_GUI_Usability_popup}).
 
 \begin{figure}[h!]
+  \centering
+\includegraphics[width=0.4\textwidth]{Parts/Images/Design/Confirmationbox}
 \caption{Confirmation box}
 \label{fig:Design_Client_GUI_Usability_popup}
-  \centering
-\includegraphics[width=0.75\textwidth]{Parts/Images/Design/Confirmationbox}
 \end{figure}
 
-In the second usability test we went from testing on a papermockup of our client to testing on our client prototype which incorporated the design changes from the first test. In this we got no feedback concerning the lack of conformation in the client, which told us that our solution for the problem from test one was working. We did however get feedback on the navigation of the client, our test users found it hard to navigate to the correct pages doing tests. When asked why they answered that either they had to navigate through to many pages to get to the correct one or the buttons was ambiguous named, for example thought one of the users that the view movie button would play the selected movie when clicked.
+In the second usability test, we went from testing on a papermockup of our client, to testing on our client prototype, which incorporated the design changes from the first test. In this test, we received no feedback concerning the lack of conformation in the client, which meant that we had sovled the problem from test one. We did however get feedback on the navigation of the client. Our test users found it hard to navigate to the correct pages during tests. They said that either they had to navigate through too many pages to get to the correct one or the buttons were named ambiguously. For example, one of the users thought that the view movie button would play the selected movie when clicked.
 
-The second usability test was unfortunately made to late in the process which meant that we didn't have time to incorporate changes to the client. But if we had time we would have done the following: we would have revised our naming of our buttons such that there could be no confusion on their functionality. In addition we would probably makes changes to our "menu bar" in the top of client such that the user would allways have more pages to navigate to, such that the unnecessary navigation through other pages would be redundant.
+Unfortunately, the second usability test was carried out too late in the process, which meant that we didn't have time to incorporate changes to the client. If we had had time, we would have done the following: We would have revised the naming of our buttons, such that there would be no confusion with regards to their functionality. In addition, we would makes changes to our "menu bar" at the top of the client, such that the user would allways have more pages to navigate to. This would make unnecessary navigation through other pages redundant.
