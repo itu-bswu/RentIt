@@ -19,10 +19,12 @@ At the "bottom" level of our architecture, the \class{Model} classes should only
 \paragraph{Static classes}
 The reason we use static classes and methods for the \class{ViewModel} and \class{Model} is due to the actual application being a singleton in itself, but the way we use \class{WPF}\footnote{See section \ref{Implementation_Client_Architecture_WPF} for our implementation of the \class{GUI} using \class{WPF}.} means that we do not have access to static objects in the \class{GUI}.
 
-\paragraph{Upload/download} Our upload and download implementation heavily inspired by "Streaming upload/download files over HTTP" on \cite{CODE:UPLDL}. 
+\paragraph{Upload/download} Our upload and download implementation is heavily inspired by "Streaming upload/download files over HTTP" on \cite{CODE:UPLDL}. 
 
 \subsubsection{Windows Presentation Foundation}
 \label{Implementation_Client_Architecture_WPF}
+Our implementation of the \class{View} is done in \class{WPF}. It involves a single \class{MainWindow} which is essentially a \class{WCF} \class{NavigationWindow}. It opens up a \method{LoginPage} inside the window. Whenever we change to a new page (for example on login), we use the \method{NavigationService} of the window to open a new page.
+\\The way we navigate using the navigation service means we have to create new \method{Page} objects every time we want to change to a new page.
 
 \subsubsection{Issues, workarounds and fixes}
 \label{Implementation_Client_Architecture_Issues}
