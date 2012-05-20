@@ -3,9 +3,21 @@
 This section describes the implementation of our client, the issues/bugs in the code, the fixes and workarounds we used to circumvent those issues and how we handled errors.
 \subsection{Architecture implementation}
 \label{Implementation_Client_Architecture}
-
+Our implementation of the client is seperated into two parts. The implementation of the \class{MVVM} architectural pattern and the implementation of the \class{WPF} framework.
 \subsubsection{Model-View-ViewModel}
 \label{Implementation_Client_Architecture_MVVM}
+Our intention is for the client to follow a simple dependency flow such as described in \ref{fig:Implementation_Client_Architecture_MVVM_Namespace} on page \pageref{fig:Implementation_Client_Architecture_MVVM_Namespace}. The \class{View} (\class{GUI}) should only request information from the \class{ViewMode}l and should never be called by anything but classes from the GUI namespace. Similarly the \class{ViewModel} should only be called by their respective \class{View} classes\footnote{This is better described in \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.}. 
+\\At the "bottom" level of our architecture, the \class{Model} classes should only be called by eachother and the \class{Viewmodel}s (although no \class{Viewmodel} should ever call the \class{ServiceClient} class). 
+
+\paragraph{Static classes}
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{Parts/Images/Implementation/NamespaceDependency}
+  \caption{Namespace dependency in the client}
+\label{fig:Implementation_Client_Architecture_MVVM_Namespace}
+\end{figure}
+
+\paragraph{Upload/download} 
 
 \subsubsection{Windows Presentation Foundation}
 \label{Implementation_Client_Architecture_WPF}
@@ -15,3 +27,5 @@ This section describes the implementation of our client, the issues/bugs in the 
 
 \subsection{Error handling}
 \label{Implementation_Client_Error}
+
+\class{}
