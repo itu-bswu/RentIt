@@ -82,3 +82,4 @@ packages/
 *.vrb
 *.xdy
 *.pdt
+*.synctex.gz(busy)
