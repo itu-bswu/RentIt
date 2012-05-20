@@ -1,11 +1,20 @@
 \section{Database}
 \label{Design_Database}
+A good designed database can help out a lot in development. If adding foreign keys and unique constraints, the integrity of the data in the database will be high, and we can trust that data when implementing our service. We don't have to worry about whether or not a movie still exists, when we receive a movie ID from another table.
+
+This is why we decided to put a lot of effort into our database, as we knew we would benefit from it in the long run.
 
 \subsection{Analysis}
 \label{Design_Database_Analysis}
 
 \subsubsection{Decisions}
 \label{Design_Database_Analysis_Decisions}
+
+When we started designing our data model, we had to decide on how much data we want to contain in our databases. We could go all-in IMDB-style, and keep information about actors and cast of each individual movie. Or we could do the exact opposite, and only keep the relevant data for the user to identify a movie.
+
+We decided not to include actors, as IMDB provides this functionality brilliantly for free. Of course it would be nice to have these information, so that our users wouldn't have to go to two different services, to get the job done. But this isn't crucial for the service to work properly, so we decided to just include enough information for the users to identify the movies, and if they need more information than that, they can use IMDB.
+
+We decided to focus on simplicity and feature completeness in general, instead of adding a lot of half-done feature and/or untested functionality. In our experience it is better to have a program with limited functionality that does what it is designed to do quite well, instead of having a lot of features, which aren't finished and isn't properly tested. This of course meant a very simple data model, that would evolve over time, to only fit those requirements we ended up implementing properly.
 
 \subsubsection{ER-model}
 \label{Design_Database_Analysis_ERmodel}
