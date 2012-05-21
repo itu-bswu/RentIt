@@ -3,9 +3,9 @@
 In this chapter we discuss our testing strategy, our results using said strategy and what we feel we could have done to improve our testing overall.
 \section{Strategy}
 \label{Testing_Strategy}
-Our testing strategy consists of different kinds of tests and a tight integration with how user stories work in the Scrum development strategy we are using. We have three different kinds of software tests: Scenario tests, Service tests and Graphical User Interface (GUI) tests. We also have usability tests to ensure we have decent interface in terms of usability.
+Our testing strategy consists of different kinds of tests and a tight integration with how user stories work in the Scrum development strategy we are using. We have three different kinds of software tests: Scenario tests, Service tests and Graphical User Interface (GUI) tests. Then we also have usability tests to ensure we have a decent interface in terms of usability.
 
-Almost all functionality in our RentIt system is implemented by user stories. A user story is not accepted until tests of the functionality pass and the tests have been reviewed by the team member responsible for QA. The team member responsible for QA is Jakob Melnyk. If he is the one who created the test, a different teammember takes care of the QA for that test.
+Almost all functionality in our RentIt system is implemented by user stories. A user story is not accepted until tests of the functionality pass and the tests have been reviewed by the team member responsible for QA. The team member responsible for QA is Jakob Melnyk. If he is the one who created the test, a different team member takes care of the QA for that test.
 
 In our opinion, this ensures an acceptable level of peer review during development of the system. Between the feature freeze and code freeze dates, everyone reviews both the code and the tests, so that we get a more thorough peer review.
 
@@ -21,7 +21,7 @@ We have different testing categories for testing different levels of the code of
 
 \subsubsection{Scenario-level tests}
 \label{Testing_Strategy_Types_Scenario}
-We have used scenario tests to test features in our project. Features such as editing a user profile or renting a movie are tested on the classes containing the logic for editing the database and filtering information. This is done to seperate the logic from the Service class itself, such that the service can be exchanged without affecting the logic much (if at all). This also enables us to test the logic seperately from the service itself.
+We have used scenario tests to test features in our project. Features such as editing a user profile or renting a movie are tested on the classes containing the logic for editing the database and filtering information. This is done to separate the logic from the Service class itself, such that the service can be exchanged without affecting the logic much (if at all). This also enables us to test the logic separately from the service itself.
 
 Most of our automated tests are scenario tests\footnote{Our automated tests number 66 scenario tests, 31 service tests and 13 GUI tests.}. We have chosen to put our focus on scenario tests, because scenarios are integral to the way, we have developed our service. Most features are implemented by making one or two test methods to cover the necessary implementation of the feature \footnote{Design and architecture is more thoroughly covered in chapter \ref{Design} \nameref{Design}.}. Our scenario test list (with results) can be found in the appendix on page \pageref{Appendix_Test_Table_Scenario}.
 \subsubsection{Service-level tests}
@@ -30,10 +30,10 @@ Our service levels tests do not cover as much of the API as our scenario tests a
 
 \subsubsection{Graphical user interface tests}
 \label{Testing_Strategy_Types_EndUser}
-Testing that the service works is not the only important thing to do. It is also important to make sure that the graphical user interface works, because otherwise the user will not be able to use the service for anything. We split the testing of the graphical user interface into two parts: Automatic tests and manual tests. They are described below. 
+Testing that the service works is not the only important thing to do. It is also important to make sure that the graphical user interface works,  otherwise the user will not be able to use the service for anything. We split the testing of the graphical user interface into two parts: Automatic tests and manual tests. They are described below. 
 
 \paragraph{Automatic GUI tests}
-The automatic GUI tests have been made through the use of the Coded UI Tests in Visual Studio 2010. When one creates such a test, one can record all the actions that are taken using a program and save these. When a test has been recorded, it can be run any amount of times and it will take the same actions every time. Using this we made automatic tests for all the basic features, such as signing in, logging in, searching for movies, etc. They are listed in the appendix under \ref{Appendix_Test_Table_GUI} on page \pageref{Appendix_Test_Table_GUI}.
+The automatic GUI tests have been made through the use of the Coded UI Tests in Visual Studio 2010. When we create such a test, we record the actions we make in the client through a program, which then saves the workflows. When a test has been recorded, it can be run any amount of times and it will take the same actions every time. Using this we made automatic tests for all the basic features, such as signing in, logging in, searching for movies, etc. They are listed in the appendix under \ref{Appendix_Test_Table_GUI} on page \pageref{Appendix_Test_Table_GUI}.
 
 \paragraph{Manual GUI test}
 While we could automate some tests, there were others that were not worth automating. Automating things like upload/download would be too hard, as file directories change from computer to computer. This meant that we had to test certain functionalities manually, simply by opening the client and going through the necessary steps. They are listed in the appendix under \ref{Appendix_Test_Manual} on page \pageref{Appendix_Test_Manual}.
@@ -45,27 +45,30 @@ These tests are only meant to cover the specific bug they were designed for, but
 
 \subsection{Usability tests}
 \label{Testing_Strategy_Usability}
-When designing a user interface you have to take into account that not all users is equally proficient in navigating IT systems, therefore we have to design a interface which is easy to use. To accomplish this we did a couple of usability tests. Usability tests, is a testing technique which focuses on the usability of a user interface, this is measured in non-functional requirements. For usability testing you need a mockup to test against, you then make a list of usability goals\footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability goals} if these goals is fulfilled then you have the user interface that you wanted. For the usability test itself you make a list of scenarios that the your user shall go through \footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability scenarios}, while performing the scenarios, the user is asked to think aloud, such that the overseer of the test can take notes on how to improve the system.
+When designing a user interface, one needs to take into account that not all users are equally proficient when it comes to navigating IT systems. Because of this, it's important to design an interface that is easy to use. To accomplish this, we conducted some usability tests. Usability testing is a testing technique which focuses on the usability of the user interface. The usability is measured in non-functional requirements.
 
-The way we went about doing our usability tests, was to first set down as a team and create some paper mockups, which we found user friendly and had high ease-of-use. We then made some usability goals which if fulfilled, would ensure us that our interfaced was indeed user friendly and had a high ease-of-use. With these we made our first usability test on the paper mockups, where we had two test users go through our usability scenarios, when they where done we then assessed how they compared to the usability goals.
+For usability testing, you need a mockup to test on, and a list of usability goals \footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability goals}. If these goals are fulfilled, then you have made a good user interface. For the testing itself, you need a list of scenarios that the user shall go through \footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability scenarios}. While the user is performing these scenarios, the user is asked to think aloud, so the test overseer can take notes on how to improve the system.
 
-For the second usability test we created a digital version of our paper mockups, but this time we added some dialog and confirmationboxses to ensure that the user didn't feel that their changes would go unsaved. Besides that we change abit of the design but without deviating to much from the paper mockups. When then conducted the test the same way as we did with the first, but this time on the digital version.
+The way we conducted our usability tests, was to create paper mockups that we thought were user friendly and had a high ease-of-use. We then made a list of usability goals which, if fulfilled, would ensure that out interface was indeed user friendly and had the high ease-of-use that we were looking for. With these mockups made, we made our first usability test. We had two test users go through the scenarios, and when they were done, we assessed how well they had done compared to our usability goals.
+
+For the second usability test, we created a digital version of our paper mockup. But this time we added dialog- and confirmation boxes to the mockup, to ensure that the user did not think that their changes would go unsaved. We changed the design as well, but without deviating too much from the paper mockups. The second test was then conducted like the first one, but on the digital version.
 
 \subsection{Code coverage}
 \label{Testing_Strategy_Coverage}
-It is rarely an effective strategy to cover every combination of paths through the code, because it is very time-consuming (both in creating tests and actually running those tests). Instead it is important to test enough to cover a lot of code and functionaliy without crossing the line of where it starts being redundant to do so\cite{WoT}. With that in mind, we have decided to use a twofold approach to our tests. We write tests to cover different inputs and scenarios for our features, then assess our code coverage. If the coverage has not reached our goal, we think up new tests to increase the coverage procentages.
+It is rarely an effective strategy to cover every combination of paths through the code, because it is very time-consuming (both in creating tests and actually running those tests). Instead it is important to test enough to cover a lot of code and functionaliy without crossing the line of where it starts being redundant to do so\cite{WoT}. With that in mind, we have decided to use a twofold approach to our tests. We write tests to cover different inputs and scenarios for our features, then assess our code coverage. If the coverage has not reached our goal, we think up new tests to increase the coverage percentages.
 
 Our requirements for code coverage are as follows:
 \begin{my_itemize}
-\item Minimum overall coverage is 50\% across solution.
-\item Goal is to have 80\% overall coverage of client and service.
+\item Minimum overall coverage is 50\% of service.
+\item Goal is to have 80\% overall coverage of service.
+\item Workflows: All use cases must be covered.
 \end{my_itemize}
 
 \paragraph{Minimum overall}
-While a 50\% code coverage may seem like a low number, we use this number because the critical parts of our system do not take up a big percentage of the code. This is due to the GUI elements, the Model-View-ViewModel architecture of the client and some elements in the service. In addition, the 50\% requirement is only an absolute minimum and not necessarily a number we will be close to in the end.
+While a 50\% code coverage may seem like a low number, we have it at this level because we do not plan on writing scenario tests for the the \class{Services} namespace. This means a lot of the precondition checking will not be covered, and so a lot of statements will not be covered. In addition the 50\% requirement is only an absolute minimum so we aim to do better than 50\%.
 
 \paragraph{Overall goal}
-The overall coverage percentage goal is quite different from our minimum requirement. This is because, in an optimal scenario, we will be able to test the MVVM architecture and the GUI parts (and run code coverage) on the tests we write for those parts. The best code coverage percentage is of course 100\%. However, seeing as our system is not "mission critical"\footnote{Mission critical in this case refers to loss of life and/or loss of money.} as we have not (yet) implemented actual payment options, we feel that 80\% is a good number based on previous experiences.
+The overall coverage perecentage goal for the service is a lot higher than the minimum coverage. This is because, in an optimal scenario, we will test the \class{Services} namespace more thoroughly and cover more a lot of statemets in it. While a true optimal coverage percentage would be 100\%, this is rarely feasible (as mentioned in \ref{Testing_Strategy_Coverage} in a real-life environment, as it is often costly to do so. As our software is not "mission critical"\footnote{In this context, mission critical means any software that can cost lifes or a lot of money in case of a failure.} (especially not since we have yet to implement any payment options).
 
 \paragraph{Workflows}
 \label{Testing_Strategy_Coverage_Workflows}
@@ -78,7 +81,7 @@ We use a different service and database for running our tests. The aim is to hav
 
 \section{Test results}
 \label{Testing_Results}
-We do not have 100\% test pass in our automatic tests. 
+We do not have 100\% test pass in our automatic tests. This is disappointing, but due to delays our system was not anywhere near being finished before very close to the deadline, so we ended up not being able to fix all of the bugs (both in code and tests). We have  3 scenario tests that fail and 16 service tests that fail. We have 6 automated GUI tests that fail and 3 manual GUI tests that fail. In total, 28 tests fail out of 111 total tests.
 \subsection{Code coverage}
 \label{Testing_Results_Coverage}
 \begin{my_itemize}
@@ -96,10 +99,10 @@ We do not have 100\% test pass in our automatic tests.
 All in all we feel our values are quite acceptable.A coverage of 0\% in the \class{Services} namespace was to be expected, as we did not design scenario tests for that namespace. We could have done more to increase code coverage, but because we also do service-level tests, we felt we should put our focus elsewhere.
 \\ All the exceptions inherit from the base \class{Exception} class and as such have constructors we do not use. We could artificially pump up the coverage of the \class{Exceptions} namespace by making tests for it, but we felt it unnecessary. The library has a low 61\% because we do not test upload and/or download in the scenario tests. Because we have some bugs in both editions and rental, we have low coverage in some of the classes in \class{Entities}.
 
-Our goal was a 80\% overall coverage of the service, which we are a bit ways away from achieving, but the numbers could be reached through testing of the service code and fixing the problems in Edition and Rental.
+Our goal was a 80\% overall coverage of the service, which we are a bit away from achieving, but the numbers could be reached through testing of the service code and fixing the problems in Edition and Rental.
 \subsection{Results of GUI workflows}
 \label{Testing_Results_Workflows}
-Some of our automatic tests for the GUI workflows fail because of weird bug outs in the framework we use. The ones that fail (and the non automated GUI tests we have) have been done manually. During testing we found that some of our use cases (and thus requirements, see \ref{Requirements_UC} on page \pageref{Requirements_UC}) are not fulfilled as some of our tests fail. \\The requirements we do not cover with successful tests of the use cases are: "User - Download media", "Content Provider - Upload Media" \&  "Content Provider - Edit Media".
+Some of our automatic tests for the GUI workflows fail because of weird bugs in the framework we use. The ones that fail (and the non automated GUI tests we have) have been done manually. During testing we found that some of our use cases (and thus requirements, see \ref{Requirements_UC} on page \pageref{Requirements_UC}) are not fulfilled as some of our tests fail. \\The requirements we do not cover with successful tests of the use cases are: "User - Download media", "Content Provider - Upload Media" \&  "Content Provider - Edit Media".
 \section{Reflection on test strategy}
 \label{Testing_Reflection}
 We are pretty happy with the way our strategy turned out. It forces us to develop our service in modules and forces us to make our client able to perform the use cases from our requirements. Because we designed tests quite early (tests were made for each user story every time it was finished), we were forced to change them when we made major changes to the service logic during refactoring. This was both good and bad, as we could not use our code coverage tools for a while.

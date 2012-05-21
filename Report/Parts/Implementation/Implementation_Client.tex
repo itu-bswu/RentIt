@@ -23,8 +23,9 @@ The reason we use static classes and methods for the \class{ViewModel} and \clas
 
 \subsubsection{Windows Presentation Foundation}
 \label{Implementation_Client_Architecture_WPF}
-Our implementation of the \class{View} is done in \class{WPF}. It involves a single \class{MainWindow} which is essentially a \class{WCF} \class{NavigationWindow}. It opens up a \method{LoginPage} inside the window on startup. Whenever we change to a new page (for example on when a user completes login), we use the \method{NavigationService} of the window to open a new page.
-\\The way we navigate using the navigation service means we have to create new \method{Page} objects every time we want to change to a new page. Because of this, we placed all of our "page initialisation" in the constructors of our pages. The full overview of the dependencies of the \class{View} part of our client can be on \ref{fig:Appendix_Diagrams_Class_Client_View} found in section \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.
+Our implementation of the \class{View} is done in \class{WPF} and XAML. It involves a single \class{MainWindow} which is essentially a \class{WPF} \class{NavigationWindow}. It opens up a \method{LoginPage} inside the window on startup. Whenever we change to a new page (for example when a user completes login), we use the \method{NavigationService} of the window to open a new page.
+
+The way we navigate using the navigation service means we have to create new \method{Page} objects every time we want to change to a new page. Because of this, we placed all of our "page initialisation" in the constructors of our pages. The full overview of the dependencies of the \class{View} part of our client can be on \ref{fig:Appendix_Diagrams_Class_Client_View} found in section \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.
 
 \subsubsection{Issues, workarounds and fixes}
 \label{Implementation_Client_Architecture_Issues}
@@ -35,7 +36,7 @@ Our implementation of the \class{View} is done in \class{WPF}. It involves a sin
 \item Upload and download of movies rarely succeeds due to stability issues.
 \item Some \class{null} references (output from the service) are not caught at the Model level, and because of this, the client can crash when it is supposed to show a different error message.
 \item Client does a forced shutdown if any method with a token returns false. If this is due to some kind of authentication issue, we could retry login instead of just closing right away.
-\item User is not logged out when he closes the client with clicking log out.
+\item User is not being logged out when he clickes the logout button.
 \item Sorting by newest rarely works.
 \item Sometimes editions do not display (possibly a bug on the service end).
 \item Edit movie does not work.
