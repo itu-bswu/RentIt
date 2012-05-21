@@ -25,7 +25,7 @@ The reason we use static classes and methods for the \class{ViewModel} and \clas
 \label{Implementation_Client_Architecture_WPF}
 Our implementation of the \class{View} is done in \class{WPF}. It involves a single \class{MainWindow} which is essentially a \class{WCF} \class{NavigationWindow}. It opens up a \method{LoginPage} inside the window on startup. Whenever we change to a new page (for example on when a user completes login), we use the \method{NavigationService} of the window to open a new page.
 
-\\The way we navigate using the navigation service means we have to create new \method{Page} objects every time we want to change to a new page. Because of this, we placed all of our "page initialisation" in the constructors of our pages. The full overview of the dependencies of the \class{View} part of our client can be on \ref{fig:Appendix_Diagrams_Class_Client_View} found in section \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.
+The way we navigate using the navigation service means we have to create new \method{Page} objects every time we want to change to a new page. Because of this, we placed all of our "page initialisation" in the constructors of our pages. The full overview of the dependencies of the \class{View} part of our client can be on \ref{fig:Appendix_Diagrams_Class_Client_View} found in section \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.
 
 \subsubsection{Issues, workarounds and fixes}
 \label{Implementation_Client_Architecture_Issues}
