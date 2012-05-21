@@ -216,7 +216,7 @@ SignupValidServiceTest & Verify that you can create a new user & Pass\\
 \hline
 \end{longtable}
 \end{centering}
-\subsection{Graphical User Interface tests}
+\subsection{Automated Graphical User Interface tests}
 \label{Appendix_Test_Table_GUI}
 \begin{centering}
 \begin{longtable}{| p{5 cm} | p{9 cm} | c |}
@@ -324,6 +324,7 @@ This test covers the requirement "User - Edit profile".
 \item See that the full name now is "Neo Smith"
 \item Close the window
 \end{my_enumerate}
+This test passes.
 
 \paragraph{Test 4} - User, logout as user (GuiTest04UserLogout). \\
 Tests if the user can log out from the service. \\
@@ -333,6 +334,7 @@ This test covers the requirement "Optional - High priority -  Logout".
 \item Click the "Logout" at the top right of the screen
 \item Close the window
 \end{my_enumerate}
+This test passes.
 
 \paragraph{Test 6} - User, view list of all movies sorted by release date (GuiTest06UserViewMoviesByNewest). \\
 Tests if the user can see all movies sorted by their release date. \\
@@ -347,6 +349,7 @@ This test covers the requirement "User - View a list of all movies" and "Optiona
 \item Assert that the release date is earlier than Ocean's Eleven
 \item Close the window
 \end{my_enumerate}
+This test passes.
 
 \paragraph{Test 8} - User, view all movies of a specific genre (GuiTest08UserViewMoviesByGenre). \\
 Tests if the user can see all movies of a certain genre. \\
@@ -358,6 +361,7 @@ This test covers the requirement "Optional - High priority - View movielists wit
 \item Assert that The Matrix, The Matrix Reloaded and The Matrix Revolution are in the list
 \item Close the window
 \end{my_enumerate}
+This test passes.
 
 \paragraph{Test 10} - User, view current rentals (GuiTest10UserRentAndViewRentals). \\
 Tests if the user can see his/her current rentals. \\
@@ -369,6 +373,21 @@ This test covers the requirement "Optional - High priority - View rental history
 \item Assert that "The Lord of the Rings - The Fellowship of the Ring - SD" is in the list
 \item Close the window
 \end{my_enumerate}
+This test passes.
+
+\paragraph{Test 11} - User, download current rentals. \\
+Tests if the user can download a movie that he/she has rented. \\
+This test covers the requirement "User - Download media".
+\begin{my_enumerate}
+\item Login as the user "Smith"
+\item Click the "Your rentals" button
+\item Find a movie in the list
+\item Click the "View movie" button
+\item Click the "Download movie" button
+\item Check that the movie is saved to the chosen directory
+\item Close the window
+\end{my_enumerate}
+This test does not pass. The client crashes.
 
 \paragraph{Test 12} - CP, login \& logout (GuiTest12CPLoginLogout). \\
 Tests if the content provider can log in and log out. \\
@@ -379,6 +398,7 @@ This test covers the requirement "Content Provider - Login" and "Optional - High
 \item Click the "Logout" button
 \item Assert that the Welcome screen is shown
 \end{my_enumerate}
+This test passes.
 
 \paragraph{Test 13} - CP, register and upload movie. \\
 Tests if the content provider register a movie and upload a file. \\
@@ -391,6 +411,7 @@ This test covers the requirement "Content Provider - Upload media", "Optional - 
 \item Fill the textboxes
 \item Click the "Upload movie" button
 \end{my_enumerate}
+This test does not pass. The file is never uploaded to the server.
 
 \paragraph{Test 15} - CP, upload new edition to already registered movie. \\
 Tests if the content provider can upload an edition to a movie that has already been registered. \\
@@ -402,6 +423,7 @@ This test covers the requirement "Content Provider - Upload media" and "Optional
 \item Browse for a file
 \item Click the "Upload" button
 \end{my_enumerate}
+This test does not pass. The file is never uploaded to the server.
 
 \paragraph{Test 16} - CP, edit information about a movie. \\
 Tests if the content provider can edit the information about a movie. \\
@@ -412,6 +434,7 @@ This test covers the requirement "Content Provider - Edit uploaded media".
 \item Find the movie that is to be edited
 \item Fill out the information and click the "Save changes" button
 \end{my_enumerate}
+This test does not pass. The client crashes when one tries to save the changes.
 
 \paragraph{Test 17} - CP, delete movie. \\
 Tests if the content provider can delete a movie that he/she has registered. \\
@@ -423,6 +446,7 @@ This test covers the requirement "Content Provider - Delete media".
 \item Click the "View Movie" button
 \item Click the "Delete movie" button
 \end{my_enumerate}
+This test passes.
 
 \section{Usability tests}
 \label{Appendix_Test_Usability}
@@ -435,7 +459,6 @@ For the second usability test we got no comments regarding the missing feeling o
 
 \subsection{Usability goals and scenarios}
 \label{Appendix_Test_Usability_GoalsandScenario}
-
 List of usability goals:
 \begin{itemize}\addtolength{\itemsep}{-5pt}
 \item The user should be able to finish all given tasks within a time periode of 45 seconds.
@@ -455,3 +478,47 @@ List of usability scenarios:
 \item As an admin for the service you've seen some companies upload explicit material to service, delete those companies from the service.
 \item You would like to see a list of all the users who are using the service.
 \end {itemize}
+
+\section{Code coverage results}
+\label{Appendix_Test_Coverage}
+\begin{my_itemize}
+	\item Service | 58\%
+	\begin{my_itemize}
+	\item RentItService.Services | 0\%
+	\item RentItService.Exceptions | 17\%
+		\begin{my_itemize}
+		\item InsufficientRightsException | 17\%
+		\item NoMovieFoundException | 25\%
+		\item NotAUserException | 25\%
+		\item UnknownGenreException | 0\%
+		\item UsernameInUseException | 25\%
+		\item UserNotFoundException | 0\%
+		\end{my_itemize}
+	\item RentItService.Library | 61\%
+		\begin{my_itemize}
+		\item FileRequest | 0\%
+		\item RemoteFileStream | 0\%
+		\item StringDifference | 100\%
+		\end{my_itemize}
+	\item RentItService.Entities | 75\%
+		\begin{my_itemize}
+		\item Edition | 38\%
+		\item Genre | 88\%
+		\item Movie | 71\%
+		\item Rental | 50\%
+		\item User | 90\%
+		\end{my_itemize}
+	\item RentItService | 100\%
+		\begin{my_itemize}
+		\item RentItContext | 100\%
+		\end{my_itemize}
+	\item RentItService.Mapping| 100\%
+		\begin{my_itemize}
+		\item EditionMap | 100\%
+		\item GenreMap | 100\%
+		\item  MovieMap | 100\%
+		\item RentalMap | 100\%
+		\item UserMap | 100\%
+		\end{my_itemize}
+	\end{my_itemize}
+\end{my_itemize}
