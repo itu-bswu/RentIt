@@ -42,3 +42,26 @@ Other than scenario tests, we have a lot of service level tests. Since the servi
 When collaborating with the SMU team, they pushed to get a interface quick, so the first interface wasn't as well designed as we wanted it to be. It wasn't consistent and it was difficult to extent. An example of this was when we wanted to change the way genres worked: there was no way to do this without breaking the interface. That's why we chose to make the new interface, which improved the old one in every way.
 
 We did exchange ideas with the SMU team about what features should be in the interface, which has been discussed earlier, and some of these has made it even to the new API.
+
+\subsection{Error handling}
+\label{Implementation_Service_Error}
+
+We started by throwing exceptions through the service if an error occurred. Down the line we realized that it probably wasn't a good idea to do it like that. Windows Communication Foundation (WCF) only throws FaultException - even if we throw another exception. The only setting we could tweak, was whether or not the original exception was included in the FaultException, as an inner exception. This obviously isn't easy for the client applications to handle, as they would have to catch FaultExceptions and validate which exception it really was, by looking at the inner exception.
+
+The reason is that it is best practice to inform client application of errors in another way. At this time of the project when we realized that, our system was already built on exceptions. With other, more important tasks to do, we only had time for a simple change.
+
+When we re-designed our service interface (see \ref{Design_Service_Interface}), we used boolean return values for most of the service methods. These would return true for success, and false if any errors occurred (like invalid input). If we were to return anything else, we would use \class{out} or \class{ref} parameters.
+
+An even better solution, which we would have implemented if we had the time or had thought about from the start, would be to use enum return types, together with the \class{out} or \class{ref} parameters for returning data. The problem with only true/false, is that the client application has no way of knowing what went wrong - just that something went wrong. By creating enums we could pass more information about what went wrong to the client application.
+
+For the SignUp service method, the enum could contain the following values:
+
+\begin{my_description}
+\item[Success] Signup successful.
+\item[UsernameInUse] A user with the specified username already exists.
+\item[InvalidEmail] Email specified is invalid.
+\item[InvalidPassword] The password specified is invalid (not long enough or empty).
+\item[Error] An unknown error occurred.
+\end{my_description}
+
+This would provide a lot more information for the client applications, and it would give the client applications to recover and try again.
