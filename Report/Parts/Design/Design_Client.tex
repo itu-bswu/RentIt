@@ -16,6 +16,7 @@ The biggest change we have made to the usual architecture\footnote{\class{View}(
 In our approach, we design the models as being seperate classes with an interface that the view models can use. This completely seperates the viewmodels from the service calls (meaning the model could actually be anything, as long as it implements the same interface). We will still use classes and objects from the service reference in the view models, but to change the data/service the model accesses, one could simply use the model to translate the types into the types from the service reference. This allows a modular approach to the system.
 
 Because we have a modular approach to the model-viewmodel relationship, we feel the view-viewmodel relationship should be modular as well. Because of this, the implementation of the view models could change vastly without having any effect on the views (except if it changes interface).
+
 \subsection{Graphical User Interface}
 \label{Design_Client_GUI}
 When we designed the GUI, we had two different approaches. One approach was to open a new window, every time the user was to access a new functionality. Another approach was to make the GUI change the page it showed, depending on what functionality the user was accessing. The design team tried both options and found that the having multiple windows open was too confusing.Since the second option felt more natrual and less clumsy, the design team chose the second option.
