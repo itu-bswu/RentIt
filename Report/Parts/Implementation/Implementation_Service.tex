@@ -20,24 +20,3 @@ We solved this by creating a static property on each entity class, called All. T
 Another difficulty we experienced, was with WCF. We used \class{MessageContract} (instead of \class{DataContract}) for our \class{RemoteFileStream}, as we gained more control over the SOAP message that way, and because we couldn't get it to function properly with \class{DataContract}. But we discovered that when using a class with \class{MessageContract} attribute as a parameter, no other types of parameters could be used. That meant that we had to move token and \class{Edition} (to identify which edition to download, or to pass name and movie id for uploading) to \class{RemoteFileStream}. Another quirk was that when using a class with \class{MessageContract} attribute as a parameter, we either had to return nothing or return something of the same type as the input parameter. This was also true for the other way around (using a class with \class{MessageContract} attribute as return type).
 
 Because of that we changed \method{RentalManagement.DownloadFile} to take a  \class{RemoteFileStream} as parameter (to identity the user and the movie edition to download) and return a  \class{RemoteFileStream} with the stream. We also changed \method{ContentManagement.UploadEdition} to take a \class{RemoteFileStream} as parameter and changed the return type to \method{void}. This meant a slightly inconsistent service interface, but the service interface was to begin with quite consistent, and we agreed that these small inconsistencies were acceptable, to get it working.
-
-\subsection{Error handling}
-\label{Implementation_Service_Error}
-
-We started by throwing exceptions through the service if an error occurred. Down the line we realized that it probably wasn't a good idea to do it like that. Windows Communication Foundation (WCF) only throws FaultException - even if we throw another exception. The only setting we could tweak, was whether or not the original exception was included in the FaultException, as an inner exception. This obviously isn't easy for the client applications to handle, as they would have to catch FaultExceptions and validate which exception it really was, by looking at the inner exception.
-
-The reason is that it is best practice to inform client application of errors in another way. At this time of the project when we realized that, our system was already built on exceptions. With other, more important tasks to do, we only had time for a simple change.
-
-When we re-designed our service interface (see \ref{Design_Service_Interface}), we used boolean return values for most of the service methods. These would return true for success, and false if any errors occurred (like invalid input). If we were to return anything else, we would use \class{out} or \class{ref} parameters.
-
-An even better solution, which we would have implemented if we had the time or had thought about from the start, would be to use enum return types, together with the \class{out} or \class{ref} parameters for returning data. The problem with only true/false, is that the client application has no way of knowing what went wrong - just that something went wrong. By creating enums we could pass more information about what went wrong to the client application.
-
-For the SignUp service method, the enum could contain the following values:
-
-\begin{my_description}
-\item[Success] Signup successful.
-\item[UsernameInUse] A user with the specified username already exists.
-\item[InvalidEmail] Email specified is invalid.
-\item[InvalidPassword] The password specified is invalid (not long enough or empty).
-\item[Error] An unknown error occurred.
-\end{my_description}
