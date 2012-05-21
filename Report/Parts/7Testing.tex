@@ -57,15 +57,16 @@ It is rarely an effective strategy to cover every combination of paths through t
 
 Our requirements for code coverage are as follows:
 \begin{my_itemize}
-\item Minimum overall coverage is 50\% across solution.
-\item Goal is to have 80\% overall coverage of client and service.
+\item Minimum overall coverage is 50\% of service.
+\item Goal is to have 80\% overall coverage of service.
+\item Workflows: All use cases must be covered.
 \end{my_itemize}
 
 \paragraph{Minimum overall}
-While a 50\% code coverage may seem like a low number, we use this number because the critical parts of our system do not take up a big percentage of the code. This is due to the GUI elements, the Model-View-ViewModel architecture of the client and some elements in the service. In addition, the 50\% requirement is only an absolute minimum and not necessarily a number we will be close to in the end.
+While a 50\% code coverage may seem like a low number, we have it at this level because we do not plan on writing scenario tests for the the \class{Services} namespace. This means a lot of the precondition checking will not be covered, and so a lot of statements will not be covered. In addition the 50\% requirement is only an absolute minimum so we aim to do better than 50\%.
 
 \paragraph{Overall goal}
-The overall coverage percentage goal is quite different from our minimum requirement. This is because, in an optimal scenario, we will be able to test the MVVM architecture and the GUI parts (and run code coverage) on the tests we write for those parts. The best code coverage percentage is of course 100\%. However, seeing as our system is not "mission critical"\footnote{Mission critical in this case refers to loss of life and/or loss of money.} as we have not (yet) implemented actual payment options, we feel that 80\% is a good number based on previous experiences.
+The overall coverage perecentage goal for the service is a lot higher than the minimum coverage. This is because, in an optimal scenario, we will test the \class{Services} namespace more thoroughly and cover more a lot of statemets in it. While a true optimal coverage percentage would be 100\%, this is rarely feasible (as mentioned in \ref{Testing_Strategy_Coverage} in a real-life environment, as it is often costly to do so. As our software is not "mission critical"\footnote{In this context, mission critical means any software that can cost lifes or a lot of money in case of a failure.} (especially not since we have yet to implement any payment options).
 
 \paragraph{Workflows}
 \label{Testing_Strategy_Coverage_Workflows}
@@ -78,7 +79,7 @@ We use a different service and database for running our tests. The aim is to hav
 
 \section{Test results}
 \label{Testing_Results}
-We do not have 100\% test pass in our automatic tests. 
+We do not have 100\% test pass in our automatic tests. This is disappointing, but due to delays our system was not anywhere near being finished before very close to the deadline, so we ended up not being able to fix all of the bugs (both in code and tests). We have  3 scenario tests that fail and 16 service tests that fail. We have 6 automated GUI tests that fail and 3 manual GUI tests that fail. In total, 28 tests fail out of 111 total tests.
 \subsection{Code coverage}
 \label{Testing_Results_Coverage}
 \begin{my_itemize}

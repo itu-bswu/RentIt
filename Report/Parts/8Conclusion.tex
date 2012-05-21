@@ -1,8 +1,58 @@
 \chapter{Conclusion and reflection}
 \label{Conclusion}
+In this chapter we summarize the different faults in our project (both code and in our collaboration), what we would have done differently and how we feel about the overall result of the project.
 
-\section{Issues and potential fixes}
+\section{Collaboration}
+\label{Conclusion_Collaboration}
+Looking back on the project as a whole, we made several mistakes internally in the group when it come to collaboration.
+
+\paragraph{Distribution of workload}In the early part of the project we were not able to properly distribute the workload, so we ended having two people working on quite a lot more than the rest of the group. Because we did not deal with this issue early on, it did not change until quite late in the project. 
+\\The three that had not been as big a part of the project had to be brought into the loop concerning the plans that the two ambitious people had for the project. Due to this we had to spend a lot of time getting everyone up to date and then distributing the workload for the last couple of weeks. Even with a much improved distribution of workload, we still did not have anywhere near an optimal distribution.
+\\As the two ambitious group members were the people with the "know-how" in the plans for the project, a lot of the main work defaulted back to the and the rest of the group was given tasks that mostly featured testing.
+
+\paragraph{Began working on the client too late} Because of the issues with our distribution of the workload, we felt we had enough to do just in the service itself. This meant we hardly gave the client a thought until after we finished working with the SMU group. This meant we discovered a lot of issues with the bindings, interface etc. quite late and so it got a bit stressful in terms of fixing them in time for the code freeze.
+
+\paragraph{Client/service team seperation} After having finished working with SMU we decided to "split" the team into two groups: one working on the client and one working on the service. Two people were assigned to the service and the rest was assigned to the client. This split proved to be a wrong decision, as three people were too many to have working on the client and two people on the service proved to be too few.
+\\We should have put three people on the service and only two on the client. In addition we could have had great benefit from having team members swap between client and service, as it would have given us more insight as a team.
+
+\subsection{SMU collaboration}
+As we point out in our \nameref{Collaboration} chapter, we made several mistakes in our communication with the SMU group during development.
+
+\paragraph{Our biggest mistake} The biggest mistake we made in our communication with SMU was when we thought everything was going well. Throughout the early stages of the co-development with SMU we got a lot of questions and error reports. Suddenly we stopped getting error reports and thus we thought everything was fine.
+\\It was not. Instead they had been trying to fix the problems with keeping in contact with us, so we had no idea of the errors in our service. When we finally received a big bug report from them, we did not have a lot of time to fix the issue before they needed our service work for their hand-in.
+
+\paragraph{Bad communication} As a general mistake we made in our collaboration with SMU was our communication with them. We should have been more clear and verbose in our communication in order to make sure we were not being misunderstood by the SMU. Because we did not do this, we ended spending a lot of time clarifying issues days later. One time we ended figuring out that we had misunderstood what they have said a little over a week later.
+
+\section{Issues and potential fixes in code}
 \label{Conclusion_Issues}
-
+As mentioned previously in the report, we have a number of errors/bugs in our client. This is a quick summary of the previously mentioned errors.
+\paragraph{Service issues}
+\begin{my_itemize}
+\item Download/upload does not work properly.
+\item Signup fails if a username is already in use.
+\item A content provider can currently only see his own movies.
+\item Optional parameters on \class{ContentBrowsing}.\method{GetMovie}() does not work.
+\item Enum types should be used for error returns on method calls to provide a detailed error description.
+\end{my_itemize}
+\paragraph{Client issues}
+\begin{my_itemize}
+\item View Profile page does not display all the fields about a user.
+\item Upload and download of movies does not work.
+\item Some null references from the service are not caught properly and thus we do not show the correct error message on all crashes.
+\item Client does a forced shutdown if an input token is incorrect - should consider doing a "retry login" feature.
+\item User is not logged out when closing the service.
+\item Sorting by release date does not work.
+\item Edit movie does not work.
+\end{my_itemize}
 \subsection{Issues we would prioritise}
 \label{Conclusion_Issues_Prioritise}
+If we were to develop more on this project, we would prioritise making sure upload and download work so that our client and service actually lives up to the core requirements. Any further development time would be spent on implementing the error enums, so that the interface would enable other developers to have an easier time developing their client.
+\section{Summary}
+Looking at our project as a whole, we have had a lot of issues both in implementing the requirements and also in terms of successful collaboration as a group and with the SMU team. We had too much focus on making a very good service interface and reliable backbone that we almost forgot our core requirements. 
+\\Because a digital media rental would not make a lot of sense without download functionality (and upload for the content providers), we feel it is a major issue that we do not meet the upload/download core requirement. 
+
+On the bright side we feel that followed our "project requirements" about development strategy, quality assurance and documentation of our design decisions.
+\subsection{Major learning points of this project}
+The most important point we have learned during this project is that we cannot be sure that everything is just going smoothly when it comes to international and/or intercultural team work. You need to have some sort of channel to keep track of the status of each group. Our weekly updates felt like too few in a project of our size.
+
+Another very important point we have learned is that we really need to make sure that we distribute the workload properly. It is stressful for the the ones taking the big load and the group members that are not "in the loop" do not learn much about the project.

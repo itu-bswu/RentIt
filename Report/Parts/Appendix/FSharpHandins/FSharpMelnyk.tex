@@ -100,7 +100,7 @@ let timeArg1 f a = time(fun () -> f(a))
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Melnyk_3}
 \begin{lstlisting}
-odule FSharpHandIn3
+module FSharpHandIn3
 
 type 'a BinTree =
     Leaf
@@ -140,7 +140,7 @@ let rec foldInOrder f a t =
     match t with
     | Leaf -> a
     | Node(x, leftTree, rightTree) ->
-    let left = foldInOrder f a leftTree
+    let left = foldInOrder f a leftTree in
     foldInOrder f (f x left) rightTree
 
 // Exercise 19 & 21 & 22
@@ -208,4 +208,110 @@ let testBindFive =  // Fail case
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Melnyk_4and5}
 \begin{lstlisting}
+(* Define four functions that given a card with return one of the 
+four clothes on the card. *)
+let findBot (card:card) = card.bot
+let findTop (card:card) = card.top
+let findLeft (card:card) = card.left
+let findRight (card:card) = card.right
+
+(* Define a function that as a string returns a pretty print of the 
+clothes. *)
+let pp_clothes clothes =
+  match clothes with
+    | RED_JACKET     -> "RED_JACKET    "
+    | RED_TROUSERS   -> "RED_TROUSERS  "
+    | GREEN_JACKET   -> "GREEN_JACKET  "
+    | GREEN_TROUSERS -> "GREEN_TROUSERS"
+    | BLUE_JACKET    -> "BLUE_JACKET   "
+    | BLUE_TROUSERS  -> "BLUE_TROUSERS "
+    | BROWN_JACKET   -> "BROWN_JACKET  "
+    | BROWN_TROUSERS -> "BROWN_TROUSERS"
+
+(* Split list [x1,...,xN] in the lists [x1,...,xn-1] and [xn,...,xN] *)
+(* where n >= 0 and n < N .                                          *)
+(* Fx: splitNth (0,[1;2]) gives ([], [1; 2])                         *)
+(*     splitNth (1,[1;2]) gives ([1], [2])                           *)
+(*     splitNth (2,[1;2]) gives ([1; 2], [])                         *)
+(*     splitNth (3,[1;2]) should die : 3 outside range of list       *)
+(*     splitNth (-1,[1;2]) should die : -1 outside range of list     *)
+let rec splitNth (n, xs) =
+    match (n, xs) with
+    | (0, xs) -> ([], xs)
+    | (n, x::xs) -> let (a, b) = splitNth (n - 1, xs);
+                    (x :: a, b) 
+    | _ -> failwith "%s outside range of list" n
+
+(* IT IS REQUIRED THAT THE OUTPUT MATCHES THE EXAMPLES 
+BELOW EXACTLY!!!   *)
+(* Please use the helper functions above: pp_horizontal, 
+pp_vertical etc. *)
+(* PrettyPrint all cards - colNo says number of columns on the board. *)
+(* colNo is defined to be 4 above.                                        *)
+(* A few examples of output below.                                        *)
+let rec pp_cards (cards:card list) = 
+    match cards with
+    | [] -> ()
+    | cards when cards.Length <= 4 -> pp_row cards
+    | _ -> let (a, b) = splitNth (4, cards);
+           pp_row a; pp_cards b
+
+(* matchClothes: the valid combinations of clothe.  *)
+(* There are 8 valid combinations                   *)
+let matchClothes clothe1 clothe2 =
+  match (clothe1,clothe2) with
+    | (RED_JACKET, RED_TROUSERS) -> true
+    | (RED_TROUSERS, RED_JACKET) -> true
+    | (GREEN_JACKET, GREEN_TROUSERS) -> true
+    | (GREEN_TROUSERS, GREEN_JACKET) -> true
+    | (BLUE_JACKET, BLUE_TROUSERS) -> true
+    | (BLUE_TROUSERS, BLUE_JACKET) -> true
+    | (BROWN_JACKET, BROWN_TROUSERS) -> true
+    | (BROWN_TROUSERS, BROWN_JACKET) -> true
+    | _ -> false
+
+(* matchBot: Given a coordinate, match that card with the card 
+immediately below. *)
+(* Notice, cards at the bottom row fulfils this automatically.             
+       *)
+let matchBot (row, col, cards) card = 
+    if row > 0 then
+        let botCard = List.nth cards ((findIndexInList (row, col))+colNo)
+        matchClothes (findTop botCard) (findBot card)
+    else true
+
+(* matchRight: Given a coordinate, match that card with the card immediately 
+to the right. *)
+(* Notice, cards at the rightmost column fulfils this automatically.                   
+    *)
+let matchRight (row, col, cards) card = 
+  if col > 0 then
+    let rightCard = List.nth cards ((findIndexInList(row, col))+1)
+    matchClothes (findLeft rightCard) (findRight card)
+   else true
+
+(* There is ONE error in the code below - and it never terminates *)
+(* If you correct this one error - everything will work just fine *)
+(* You must explain the error as a comment here                   *)
+
+(* Jakob Melnyk comment: The add function was called with 0 as the
+   n parameter. This meant the board never changed index in the list
+   was accessed when cards were matched - meaning it could keep
+   finding the same filled board over and over again or possibly
+   never fill out the board.								
+	  *)
+let rec findSol (rest: 'a list) alreadyTried ((row,col,cards) as board) sols =
+  match (rest,alreadyTried) with
+    | ([],[]) -> board::sols (* No rest and alreadyTried is empty, that is,
+ solution found *)
+    | ([],_) -> sols         (* No solution if alreadyTried is non empty. *)
+    | (x::rest, alreadyTried) ->
+      let sols' = 
+        if Match board x then
+          (* If there is a match, then go on with the rest of the cards *)
+          let (row', col') = add 1 (row, col)
+          findSol(rest@alreadyTried) [] (row', col', cards@[x]) sols
+        else sols (* If no match then no new solutions found. *)
+      (* Put the card x in alreadyTried and move on. *)
+      findSol rest (x::alreadyTried) board sols'
 \end{lstlisting}
