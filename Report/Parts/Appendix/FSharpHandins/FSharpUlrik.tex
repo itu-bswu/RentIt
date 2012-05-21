@@ -108,8 +108,154 @@ let Main = printfn "lol";;
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Ulrik_3}
 \begin{lstlisting}
+type 'a BinTree =
+    | Leaf
+    | Node of 'a * 'a BinTree * 'a BinTree
+
+let rec inOrder = function
+    | Leaf -> []
+    | Node (n, l, r) -> inOrder l @ n :: inOrder r;;
+    
+let rec mapInOrder mapfun = function
+    | Leaf -> Leaf
+    | Node (n, l, r) -> 
+        let left = mapInOrder mapfun l;
+        let right = mapInOrder mapfun r;
+        Node (mapfun n, left, right);;
+        
+let rec foldInOrder foldfun acc = function
+    | Leaf -> acc
+    | Node (n, l, r) ->
+        let left = foldInOrder foldfun acc l;
+        let num = foldfun n left;
+        let right = foldInOrder foldfun num r
+        right;;
+        
+type expr = 
+    | Const of int
+    | Prim of string * expr * expr
+    | If of expr * expr * expr
+    | Var of string
+    | Bind of string * expr * expr
+    
+let variables = new System.Collections.Generic.Dictionary<string, expr>();;
+
+let rec eval = function
+    | Const i -> i
+    | If(cond, expr1, expr2) -> if eval cond <> 0 then eval expr1 else eval expr2
+    | Var str -> if variables.ContainsKey(str) then eval variables.[str] else raise (new System.Exception("No such var"))
+    | Bind (str, expr1, expr2) -> variables.Add(str, expr1); eval expr2
+    | Prim(opr, expr1, expr2) ->
+        let val1 = eval expr1;
+        let val2 = eval expr2;
+        match opr with
+            | "-" -> eval expr1 - eval expr2
+            | "+" -> eval expr1 + eval expr2
+            | "min" -> if val1 < val2 then val1 else val2;
+            | "max" -> if val1 > val2 then val1 else val2;
+            | "=" -> if val1 = val2 then 1 else 0;
+            | opr -> (printf "Operator not supported: %s\n" opr; 0);;
+
+let expressions = [
+    Prim ("-", Const 5, Const 2);
+    Prim ("+", Const 2, Const 5);
+    Prim ("min", Const 2, Const 4);
+    Prim ("max", Const 3, Const 5);
+    Prim ("=", Const 3, Const 3);
+    
+    Bind ("x", Const 42, Var "x");
+    Bind ("q", Bind ("y", Const 1337, Var "y"), Var "q");
+    Bind ("z", Prim ("+", Var "y", Var "x"), Var "z");
+    Bind ("w", Const 101, Bind ("v", Const 202, Var "v"));
+    Var "w";
+    Var "novar";
+];;
+
+let rec testExpressions = function
+    | [] -> 0
+    | elem :: tail -> printf "result: %i\n" (eval elem); testExpressions tail;;
+
+let Main = 
+    let tree = Node(13, Node(37, Leaf, Leaf), Node(42, Leaf, Leaf));
+    let treeInOrder = inOrder tree;
+    let treeMappedInOrder = mapInOrder ((+) 1) tree;
+    let treeFoldedInOrder = foldInOrder (+) 0 tree;
+    let result = testExpressions expressions;
+    0;
 \end{lstlisting}
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Ulrik_4and5}
 \begin{lstlisting}
+let findBot (card:card) = card.bot
+let findTop (card:card) = card.top
+let findLeft (card:card) = card.left
+let findRight (card:card) = card.right
+
+let pp_clothes clothes =
+  match clothes with
+    | RED_JACKET     -> "RED_JACKET    "
+    | RED_TROUSERS   -> "RED_TROUSERS  "
+    | GREEN_JACKET   -> "GREEN_JACKET  "
+    | GREEN_TROUSERS -> "GREEN_TROUSERS"
+    | BLUE_JACKET    -> "BLUE_JACKET   "
+    | BLUE_TROUSERS  -> "BLUE_TROUSERS "
+    | BROWN_JACKET   -> "BROWN_JACKET  "
+    | BROWN_TROUSERS -> "BROWN_TROUSERS"
+
+let rec splitNth (n,xs) =
+  match (n, xs) with
+    | (0, xs) -> ([], xs)
+    | (1, hd :: tl) -> ([hd], tl)
+    | (1, xs) -> (xs, [])
+    | (n, hd :: tl) ->
+      let res = splitNth (n - 1, tl)
+      (hd :: fst res, snd res)
+    | _ -> failwith "invalid input"
+
+let rec pp_cards cards = 
+  match cards with
+    | [] -> ()
+    | _ ->
+      let split = if (cards.Length < colNo) then (cards, []) else splitNth (colNo, cards)
+      let row = fst split
+      pp_row row
+      snd split |> pp_cards
+
+let matchClothes clothe1 clothe2 =
+  match (clothe1,clothe2) with
+    | (RED_JACKET,RED_TROUSERS) -> true
+    | (RED_TROUSERS,RED_JACKET) -> true
+    | (GREEN_JACKET,GREEN_TROUSERS) -> true
+    | (GREEN_TROUSERS,GREEN_JACKET) -> true
+    | (BLUE_JACKET,BLUE_TROUSERS) -> true
+    | (BLUE_TROUSERS,BLUE_JACKET) -> true
+    | (BROWN_JACKET,BROWN_TROUSERS) -> true
+    | (BROWN_TROUSERS,BROWN_JACKET) -> true
+    | _ -> false
+
+let matchBot (row, col, cards) card = 
+  if row < rowNo-1 then
+    let botCard = List.nth cards ((findIndexInList (row, col)) + colNo)
+    matchClothes (findTop botCard) (findBot card)
+  else true
+
+let matchRight (row, col, cards) card =
+  if col < colNo-1 then
+    let rightCard = List.nth cards ((findIndexInList (row, col)) + 1)
+    matchClothes (findLeft rightCard) (findRight card)
+  else true
+
+let rec findSol rest alreadyTried ((row,col,cards) as board) sols =
+  match (rest,alreadyTried) with
+    | ([],[]) -> board::sols (* No rest and alreadyTried is empty, that is, solution found *)
+    | ([],_) -> sols         (* No solution if alreadyTried is non empty. *)
+    | (x::rest, alreadyTried) ->
+      let sols' = 
+        if Match board x then
+          (* If there is a match, then go on with the rest of the cards *)
+          let (row', col') = add 1 (row, col)
+          findSol(rest@alreadyTried) [] (row', col', cards@[x]) sols
+        else sols (* If no match then no new solutions found. *)
+      (* Put the card x in alreadyTried and move on. *)
+      findSol rest (x::alreadyTried) board sols'
 \end{lstlisting}
