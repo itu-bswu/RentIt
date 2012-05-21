@@ -205,5 +205,95 @@ let testingVarFail2 = eval (Bind("fail", Const 117, Var "troll"));;
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Grooss_4and5}
 \begin{lstlisting}
+let findBot (card:card) = card.bot
+let findTop (card:card) = card.top
+let findLeft (card:card) = card.left
+let findRight (card:card) = card.right
+
+let pp_clothes clothes =
+  match clothes with
+    | RED_JACKET     -> "RED_JACKET    "
+    | RED_TROUSERS   -> "RED_TROUSERS  "
+    | GREEN_JACKET   -> "GREEN_JACKET  "
+    | GREEN_TROUSERS -> "GREEN_TROUSERS"
+    | BLUE_JACKET    -> "BLUE_JACKET   "
+    | BLUE_TROUSERS  -> "BLUE_TROUSERS "
+    | BROWN_JACKET   -> "BROWN_JACKET  "
+    | BROWN_TROUSERS -> "BROWN_TROUSERS"
+
+let rec splitNth (n, xs) = 
+    match (n, xs) with
+    | (0, xs) -> ([], xs)
+    | (n, x :: xs) -> let (a, b) = splitNth (n - 1, xs);
+                      (x :: a, b)
+    | _ -> failwith "The input is out of range"
+
+let rec pp_cards (cards : card list) = 
+    match cards with
+    | [] -> ()
+    | card when cards.Length <= 4 -> pp_row (cards)
+    | _ -> let (a, b) = splitNth(colNo, cards);
+      pp_row a; pp_cards b
+
+let matchClothes clothe1 clothe2 =
+  match (clothe1,clothe2) with
+    | (RED_JACKET,RED_TROUSERS) -> true
+    | (RED_TROUSERS,RED_JACKET) -> true
+    | (GREEN_JACKET,GREEN_TROUSERS) -> true
+    | (GREEN_TROUSERS,GREEN_JACKET) -> true
+    | (BLUE_JACKET,BLUE_TROUSERS) -> true
+    | (BLUE_TROUSERS,BLUE_JACKET) -> true
+    | (BROWN_JACKET,BROWN_TROUSERS) -> true
+    | (BROWN_TROUSERS,BROWN_JACKET) -> true
+    | _ -> false
+
+let matchTop (row, col, cards) card =
+  if row > 0 then
+    let topCard = List.nth cards ((findIndexInList (row, col))-colNo)
+    matchClothes (findBot topCard) (findTop card)
+  else true
+
+let matchLeft (row, col, cards) card =
+  if col > 0 then
+    let leftCard = List.nth cards ((findIndexInList(row, col))-1)
+    matchClothes (findRight leftCard) (findLeft card)
+   else true
+
+let matchBot (row, col, cards) card = 
+  if row > 0 then
+    let botCard = List.nth cards ((findIndexInList (row, col))+colNo)
+    matchClothes (findTop botCard) (findBot card)
+  else true
+
+let matchRight (row, col, cards) card =
+  if col > 0 then
+    let rightCard = List.nth cards ((findIndexInList(row, col))+1)
+    matchClothes (findLeft rightCard) (findRight card)
+   else true
+
+(* There is ONE error in the code below - and it never terminates   *)
+(* If you correct this one error - everything will work just fine   *)
+(* You must explain the error as a comment here:                   
+   The add function (line 256) was called with a 0 instead of a 1, 
+   so it never changed the position of where the cards were matched. 
+   This means that the cards constantly were matched on the first
+   position (0, 0), where no other cards were around it.  This would
+   always succeed, and therefore it kept piling the cards on top of
+   each other, and therefore it never terminated.                   *)
+let rec findSol rest alreadyTried ((row,col,cards) as board) sols =
+  match (rest,alreadyTried) with
+    | ([],[]) -> board::sols 
+	(* No rest and alreadyTried is empty, that is, solution found *)
+    | ([],_) -> sols         
+	(* No solution if alreadyTried is non empty. *)
+    | (x::rest, alreadyTried) ->
+      let sols' = 
+        if Match board x then
+          (* If there is a match, then go on with the rest of the cards *)
+          let (row', col') = add 1 (row, col)
+          findSol(rest@alreadyTried) [] (row', col', cards@[x]) sols
+        else sols (* If no match then no new solutions found. *)
+      (* Put the card x in alreadyTried and move on. *)
+      findSol rest (x::alreadyTried) board sols'
 
 \end{lstlisting}

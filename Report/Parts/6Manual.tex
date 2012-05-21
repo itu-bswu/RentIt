@@ -10,30 +10,33 @@ The following section will be a short manual on how to use the client when tryin
 
 \subsubsection{Renting a movie}
 \label{Manual_Client_Navigation_Rent}
+<<<<<<< HEAD
 The first thing you see when you start the client is a login page that requires your username and password, if you are not allready a user you can press the signup button. Which will navigate you to the registration page where you can signup for the service when this is done you will be returned to the login page. If you login as a user a new page will open see figure \ref{fig:Manual_Client_Navigation_Rent_List} on page \pageref{fig:Manual_Client_Navigation_Rent_List}
+=======
+The first thing that you see when opening the client, is the login page that asks for a username and a password. If you do not have an account, you can click the "Signup" button, which will direct you to another page. On this page, you can create a new account, after which you will be returned to the login page. When you log in, you will see a page with a list of all the movies that the database contain (see figure \ref{fig:Manual_Client_Navigation_Rent_List} on page \pageref{fig:Manual_Client_Navigation_Rent_List}).
+>>>>>>> eae0d4a7c6ee3c2e1ac80f420bb2da5f590205cd
 
 \begin{figure}[h!] 
   \centering
  \includegraphics[width=0.5\textwidth]{Parts/Images/Manual/Listmovies}
-\label{fig:Manual_Client_Navigation_Rent_List}
 \caption{List of movies on service}
+\label{fig:Manual_Client_Navigation_Rent_List}
 \end{figure}
  
-and a diffrent if you are an content provider but more on that later.
-\\When logged in as a user you want to rent a movie "Batman begins". You now have two options either to sort your movie list after action genre or you can search after it by typing in the name in the search field and hitting the search button.
-\\If you use the search option you will then be navigated to a new page where the result of the search will be shown like in figure \ref{fig:Manual_Client_Navigation_Rent_List}. You can then choose "Batman begins" and press the view movie button which in turn opens the view movie page, see figure \ref{fig:Manual_Client_Navigation_Rent_View} on page \pageref{fig:Manual_Client_Navigation_Rent_View}.
+A different page will be shown for the content provider, but that will be covered later.
 
+To rent a movie, you'll first have to find the movie in the list. There are two ways of doing this: One way it to sort the list of movies after genre (if you know the genre of the movie). The other way is to do a search for the movie through the use of the search box by entering the name of the movie, and pressing the "Search" button.
+
+If you use the search option, you will be directed to a new page, where you can see the results of the search (see figure \ref{fig:Manual_Client_Navigation_Rent_List} on page \pageref{fig:Manual_Client_Navigation_Rent_View}). This page looks like the previous page, but contains only the movies that matches the serch criteria(s). In this example, "Batman Begins" is the target, so it will be shown in this list. From this list, you can chose the movie ("Batman Begins"), and click the "View movie" button. This will lead you to a page that contains information about the movie in question (see figure \ref{fig:Manual_Client_Navigation_Rent_View} on page \pageref{fig:Manual_Client_Navigation_Rent_View}).
 
 \begin{figure}[h!]  
   \centering
 \includegraphics[width=0.5\textwidth]{Parts/Images/Manual/Viewmovie}
-\label{fig:Manual_Client_Navigation_Rent_View}
 \caption{View movie}
+\label{fig:Manual_Client_Navigation_Rent_View}
 \end{figure}
- 
-Here you will be able to see information about the movie, and also be able to choose which edition to rent.
-\\ You choose an edition you want to rent, in this case we will choose the HD 1080p edition of "Batman begins". You then select it in the list and click select edition, this will promt you to a page similar to the view movie page. The only exception being that we can now press "Rent edition" which will then add the movie to your account for seven days and then navigate to the download page. Where you can press the "Download movie". Here you wil be able to download the movie and choose a filepath to save it in. See figure \ref{fig:Manual_Client_Navigation_Rent_Download} on page \pageref{fig:Manual_Client_Navigation_Rent_Download}.
 
+From this screen, you chose the edition that you want to rent. In this example it will be the HD 1080P edition of "Batman Begins". When you have selected the wanted edition, you click the "Select edition" button, which directs you to a new page. This page is similar to the previous one, except for the fact that the list of editions is gone, and the "Select edition" button has been replaced by a "Download movie" button. Pressing the "Download movie" button will make a popup window appear, asking for the directory to save the movie to (see figure \ref{fig:Manual_Client_Navigation_Rent_Download} on page \pageref{fig:Manual_Client_Navigation_Rent_Download}).
 
 \begin{figure}[h!]  
   \centering
@@ -42,23 +45,24 @@ Here you will be able to see information about the movie, and also be able to ch
 \label{fig:Manual_Client_Navigation_Rent_Download}
 \end{figure}
  
-When done you can then press the logout button to logout and return to the login page or you can press the close button (X) which will then log you out and close down the application completly.
+When the movie has finished downloading, you can press the "Logout" button to log out of the service, and return to the login page. You can also close the program by pressing the red X at the top right of the screen, which will log you out and close the application completely.
 
 \subsubsection{Uploading a movie}
 \label{Manual_Client_Navigation_Upload}
-In the case where you login as a contentprovider, you get a startscreen where you can see a list of your uploaded movies, see figure
-\ref{fig:Manual_Client_Navigation_Upload_List} on page \pageref{fig:Manual_Client_Navigation_Upload_List}.
 
+If you log in as a content provider, you will be shown a different page than the normal user will see. On this page you will see a list of all your movies (see figure
+\ref{fig:Manual_Client_Navigation_Upload_List} on page \pageref{fig:Manual_Client_Navigation_Upload_List}).
 
 \begin{figure}[h!]  
   \centering
 \includegraphics[width=0.5\textwidth]{Parts/Images/Manual/CPmovielist}
-\label{fig:Manual_Client_Navigation_Upload_List}
 \caption{List of uploaded movies}
+\label{fig:Manual_Client_Navigation_Upload_List}
 \end{figure}
  
- You also have the ability to register new movies. To register a new movie you press the " Register movie" button this will then open this image, see figure \ref{fig:Manual_Client_Navigation_Upload_Register} on page \pageref{fig:Manual_Client_Navigation_Upload_Register}.
+From this page, you can chose to register a new movie. To do this, you press the "Register movie" button, which will direct you to a new page (see figure \ref{fig:Manual_Client_Navigation_Upload_Register} on page \pageref{fig:Manual_Client_Navigation_Upload_Register}). On this page, you can give the movie a title, set the release date of the movie, write a description and chose the genres of the movie. 
 
+When you have entered the information you want to, you can press the "Register movie" button to register the movie in the database. When you do this, a popup window will appear, and ask if you want to upload an edition to the registered movie right away (see figure \ref{fig:Manual_Client_Navigation_Upload_Popup} on page \pageref{fig:Manual_Client_Navigation_Upload_Popup}).
 
 \begin{figure}[h!]  
   \centering
@@ -66,9 +70,6 @@ In the case where you login as a contentprovider, you get a startscreen where yo
 \caption{Register movie}
 \label{fig:Manual_Client_Navigation_Upload_Register}
 \end{figure}
- 
- Here you can give the movie a title,  release date, genres and a short description. You can then register the information by pressing "Register movie", when doing so a dialogbox will apear, see figure \ref{fig:Manual_Client_Navigation_Upload_Popup} on page \pageref{fig:Manual_Client_Navigation_Upload_Popup}
-
 
 \begin{figure}[h!]  
   \centering
@@ -76,10 +77,8 @@ In the case where you login as a contentprovider, you get a startscreen where yo
 \caption{Upload edition popup box}
 \label{fig:Manual_Client_Navigation_Upload_Popup}
 \end{figure}
- 
- prompting you if you want to upload editions right away aswell.
-\\If you press yes, the window will then navigate to this page, see figure \ref{fig:Manual_Client_Navigation_Upload_Edition} on page \pageref{fig:Manual_Client_Navigation_Upload_Edition}.
 
+If you press "Yes", you will be directed to a page that allows you to upload editions (see figure \ref{fig:Manual_Client_Navigation_Upload_Edition} on page \pageref{fig:Manual_Client_Navigation_Upload_Edition}). On this page, you can write the title of the movie, the name of the edition and chose a file from your computer to upload. When the fields have been filled, press the "Upload edition" button, and the edition will be attached to the movie in the database, and will show up in the page that shows the movie information. When you have finished uploading the edition, you will be returned to your start page.
 
 \begin{figure}[h!]  
   \centering
@@ -87,8 +86,6 @@ In the case where you login as a contentprovider, you get a startscreen where yo
 \caption{Upload edition}
 \label{fig:Manual_Client_Navigation_Upload_Edition}
 \end{figure}
- 
-Which allows you to upload an edition of the movie with a name and a file, when you press the "Upload edition" button, the edition will be uploaded to the service and you will be returned to your start screen.
 
 \section{Service}
 \label{Manual_Service}

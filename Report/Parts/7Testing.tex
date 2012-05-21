@@ -7,11 +7,11 @@ Our testing strategy consists of different kinds of tests and a tight integratio
 
 Almost all functionality in our RentIt system is implemented by user stories. A user story is not accepted until tests of the functionality pass and the tests have been reviewed by the team member responsible for QA. The team member responsible for QA is Jakob Melnyk. If he is the one who created the test, a different teammember takes care of the QA for that test.
 
-To us, this ensures an acceptable level of peer review during development of the system. Between the feature freeze and code freeze dates, everyone reviews both the code and the tests, so that we get a more thorough peer review.
+In our opinion, this ensures an acceptable level of peer review during development of the system. Between the feature freeze and code freeze dates, everyone reviews both the code and the tests, so that we get a more thorough peer review.
 
 \subsection{Code test types}
 \label{Testing_Strategy_Types}
-We have different testing categories for testing different levels of the code of the system. The different levels we have defined are scenario, service and end-user levels. This section describes the kind of tests done at the different levels. We originally had method/unit testing as well, but we decided the way we have structured our system does not make it easy to do standard unit testing.
+We have different testing categories for testing different levels of the code of the system. The different levels we have defined are scenario, service and end-user levels. This section describes the kind of tests done at the different levels\footnote{We originally had method/unit testing as well, but we decided the way we have structured our system does not make it easy to do standard unit testing.}.
 
 \begin{my_description}
 \item[Scenario-level] Mainly tests designed to cover a specific user story.
@@ -23,10 +23,10 @@ We have different testing categories for testing different levels of the code of
 \label{Testing_Strategy_Types_Scenario}
 We have used scenario tests to test features in our project. Features such as editing a user profile or renting a movie are tested on the classes containing the logic for editing the database and filtering information. This is done to seperate the logic from the Service class itself, such that the service can be exchanged without affecting the logic much (if at all). This also enables us to test the logic seperately from the service itself.
 
-Most of our automated tests are scenario tests\footnote{Our automated tests number 66 scenario tests, 31 service tests and 13 GUI tests.}. We have chosen to put our focus on scenario tests, because scenarios are integral to the way, we have developed our service. Most features are implemented by making one or two methods to cover the necessary implementation of the feature \footnote{Design and architecture is more thoroughly covered in chapter \ref{Design} \nameref{Design}.}. Our service test list (with results) can be found in the appendix on page \pageref{Appendix_Test_Table_Scenario}.
+Most of our automated tests are scenario tests\footnote{Our automated tests number 66 scenario tests, 31 service tests and 13 GUI tests.}. We have chosen to put our focus on scenario tests, because scenarios are integral to the way, we have developed our service. Most features are implemented by making one or two test methods to cover the necessary implementation of the feature \footnote{Design and architecture is more thoroughly covered in chapter \ref{Design} \nameref{Design}.}. Our scenario test list (with results) can be found in the appendix on page \pageref{Appendix_Test_Table_Scenario}.
 \subsubsection{Service-level tests}
 \label{Testing_Strategy_Types_Service}
-Our service levels tests do not cover as much of the API as our scenario tests and are not as thorough in testing the functionality. They are mostly intended to test for connection problems, bindings\footnote{Covered briefly in chapter \ref{Design} \nameref{Design}.} issues, data contracts and error handling. Our service test list (with results) can be found in the appendix on page \pageref{Appendix_Test_Table_Service}.
+Our service levels tests do not cover as much of the API as our scenario tests and are not as thorough in testing the functionality. They are mostly intended to test for connection problems, bindings issues, data contracts and error handling. Our service test list (with results) can be found in the appendix on page \pageref{Appendix_Test_Table_Service}.
 
 \subsubsection{Graphical user interface tests}
 \label{Testing_Strategy_Types_EndUser}
@@ -41,13 +41,11 @@ While we could automate some tests, there were others that were not worth automa
 \subsection{Regression tests}
 \label{Testing_Strategy_Regression}
 Every time we run in to an error or a bug in the system, our strategy is to create a test that covers the scenario the error presented itself in. The test is intended to fail the first time it is run (to verify the bug exists), then when the issue has been fixed, the test passes. 
-\\These tests are only meant to cover the specific bug they were designed to, but because they are already designed (to check if the bug has been fixed), they are kept as regression tests to ensure the bug or error is not reintroduced later.
-\\All of our automated tests can serve as regression tests, as they do the same thing - ensure that functionality is not broken by later changes.
+These tests are only meant to cover the specific bug they were designed for, but because they are already designed (to check if the bug has been fixed), they are kept as regression tests to ensure the bug or error is not reintroduced later. All of our automated tests can serve as regression tests, as they do the same thing - ensure that functionality is not broken by later changes.
 
 \subsection{Usability tests}
 \label{Testing_Strategy_Usability}
-When designing a user interface you have to take into account that not all users is equally proficient in navigating IT systems therefore we have to design a interface which is easy to use. To accomplish this we did a couple of usability tests. Usability tests is a testing technique which focuses on the usability of a user interface, this is measured in non-functional requirements. For usability testing you need a mockup to test against, you then make a list of usability goals
-\footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability goals} if these goals is fulfilled then you have the user interface that you wanted. For the usability test itself you make a list of scenarios that the users is asked to go through \footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability scenarios}. While performing the scenarios, the user is asked to think aloud, such that the overseer of the test can take notes on how to improve the system.
+When designing a user interface you have to take into account that not all users is equally proficient in navigating IT systems, therefore we have to design a interface which is easy to use. To accomplish this we did a couple of usability tests. Usability tests, is a testing technique which focuses on the usability of a user interface, this is measured in non-functional requirements. For usability testing you need a mockup to test against, you then make a list of usability goals\footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability goals} if these goals is fulfilled then you have the user interface that you wanted. For the usability test itself you make a list of scenarios that the your user shall go through \footnote{See \ref{Appendix_Test_Usability_GoalsandScenario} for our usability scenarios}, while performing the scenarios, the user is asked to think aloud, such that the overseer of the test can take notes on how to improve the system.
 
 The way we went about doing our usability tests, was to first set down as a team and create some paper mockups, which we found user friendly and had high ease-of-use. We then made some usability goals which if fulfilled, would ensure us that our interfaced was indeed user friendly and had a high ease-of-use. With these we made our first usability test on the paper mockups.We had two test users go through our usability scenarios, when they where done we then assessed how they compared to the usability goals.
 
@@ -71,12 +69,12 @@ The overall coverage percentage goal is quite different from our minimum require
 
 \paragraph{Workflows}
 \label{Testing_Strategy_Coverage_Workflows}
-In addtion to covering functionality on the service, we also need to cover "workflows" in the client. The easiest way for us to check if we have fulfilled the requirements of the project is to simply do a workflow that incorporates the use cases described in \ref{Requirements_UC} on page \pageref{Requirements_UC}.Our list in the appendix on page \pageref{Appendix_Test_Manual} describes which use cases are covered by which manual test.
+In addtion to covering functionality on the service, we also need to cover "workflows" in the client. The easiest way for us to check if we have fulfilled the requirements of the project is to simply do a workflow that incorporates the use cases described in \ref{Requirements_UC} on page \pageref{Requirements_UC}. Our list in the appendix on page \pageref{Appendix_Test_Manual} describes which use cases are covered by which manual test.
 
 \subsection{Configurations}
 \label{Testing_Strategy_Configurations}
 We use a different service and database for running our tests. The aim is to have a working version of the service on both the production/release address as well as the test address. Having seperate databases lets us reset data on the test database without having to fiddle with data on the production service.
-\\The bad thing about doing this is that we have to make sure that the two versions are kept up to date. Else we cannot be certain about the quality of the service from looking at the tests.
+\\The bad thing about doing this is that we have to make sure that the two versions are kept up to date. Else we cannot be certain about the quality of the production service from looking at the tests.
 
 \section{Test results}
 \label{Testing_Results}
@@ -95,18 +93,18 @@ We do not have 100\% test pass in our automatic tests.
 	\end{my_itemize}
 \end{my_itemize}
 
-All in all we feel our values are quite acceptable.A coverage of 0\% in the \class{Services} namespace was to be expected, as we did not design scenario tests for that namespace. We could have done to increase code coverage, but because we also do service-level tests, we felt we should put our focus elsewhere.
-\\ All the exceptions inherit from the base \class{Exception} class and as such have constructors we don't use. We could artificially pump up the coverage of the \class{Exceptions} namespace by making tests for it, but we felt it unnecessary. The library has a low 61\% because we do not test upload and/or download in the scenario tests. Because we have some bugs in both editions and rental, we have low coverage in \class{Entities}.
+All in all we feel our values are quite acceptable.A coverage of 0\% in the \class{Services} namespace was to be expected, as we did not design scenario tests for that namespace. We could have done more to increase code coverage, but because we also do service-level tests, we felt we should put our focus elsewhere.
+\\ All the exceptions inherit from the base \class{Exception} class and as such have constructors we do not use. We could artificially pump up the coverage of the \class{Exceptions} namespace by making tests for it, but we felt it unnecessary. The library has a low 61\% because we do not test upload and/or download in the scenario tests. Because we have some bugs in both editions and rental, we have low coverage in some of the classes in \class{Entities}.
 
 Our goal was a 80\% overall coverage of the service, which we are a bit ways away from achieving, but the numbers could be reached through testing of the service code and fixing the problems in Edition and Rental.
 \subsection{Results of GUI workflows}
 \label{Testing_Results_Workflows}
-Some of our automatic tests for the GUI workflows fail because of weird bug outs in the framework we use. The ones that fail (and a couple of non automated GUI tests) have been done manually. During testing we found that some of our use cases (and thus requirements, see \ref{Requirements_UC} on page \pageref{Requirements_UC}) are not fulfilled as some of our tests fail. \\The requirements we do not cover with successful tests of the use cases are: "User - Download media", "Content Provider - Upload Media" \&  "Content Provider - Edit Media".
+Some of our automatic tests for the GUI workflows fail because of weird bug outs in the framework we use. The ones that fail (and the non automated GUI tests we have) have been done manually. During testing we found that some of our use cases (and thus requirements, see \ref{Requirements_UC} on page \pageref{Requirements_UC}) are not fulfilled as some of our tests fail. \\The requirements we do not cover with successful tests of the use cases are: "User - Download media", "Content Provider - Upload Media" \&  "Content Provider - Edit Media".
 \section{Reflection on test strategy}
 \label{Testing_Reflection}
 We are pretty happy with the way our strategy turned out. It forces us to develop our service in modules and forces us to make our client able to perform the use cases from our requirements. Because we designed tests quite early (tests were made for each user story every time it was finished), we were forced to change them when we made major changes to the service logic during refactoring. This was both good and bad, as we could not use our code coverage tools for a while.
 \subsection{Improving our testing strategy}
 \label{Testing_Reflection_improvements}
-In order to cover more code with tests, we could have use an automated unit test generation framework such as Pex\cite{PEX}. To really use frameworks such as Pex to their full potential, we would need to design our system in such a way that the logic of the service is not only seperated from the classes representing the endpoints (like we have done), but also seperated the database communication logic from the service logic. We could also "artificially" create more hand-written tests to cover the cases described in \ref{Testing_Results_Coverage}.
+In order to cover more code with tests, we could have used an automated unit test generation framework such as Pex\cite{PEX}. To really use frameworks such as Pex to their full potential, we would need to design our system in such a way that the logic of the service is not only seperated from the classes representing the endpoints (like we have done), but also seperated the database communication logic from the service logic. We could also "artificially" create more hand-written tests to cover the cases described in \ref{Testing_Results_Coverage}.
 
 We should probably have defined some clearly critical sections for testing (such as service logic enabling the core requirements). This would have made us focus on making specific features work first before designing more elaborate ones.
