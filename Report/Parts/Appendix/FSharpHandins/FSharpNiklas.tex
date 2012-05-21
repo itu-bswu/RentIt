@@ -179,8 +179,212 @@ System.Console.ReadKey(true)
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Niklas_3}
 \begin{lstlisting}
+// Author: Niklas Hansen <nikl@itu.dk>
+module Handin3
+open System.Collections.Generic
+
+// Prerequisites
+type 'a BinTree = 
+    Leaf
+  | Node of 'a * 'a BinTree * 'a BinTree
+
+// Test data
+let tree = Node(43, Node(25, Node(56, Leaf, Leaf), Leaf), 
+					Node(562, Leaf, Node(78, Leaf, Leaf)))
+
+// Exercise 16
+let rec inOrder (tree:'a BinTree) =
+    match tree with
+    | Leaf -> []
+    | Node(elem, treeLeft, treeRight) -> inOrder treeLeft @ elem :: inOrder treeRight
+
+// Exercise 17
+// If the map function is doing exactly the same thing to all elements,
+// then mapPostOrder will be different from mapInOrder, because of the 
+// order of which are being processed at what time.
+// Example: Let's say that the map function adds 1 to the first element,
+// 2 to the next, 3 to the third element and so forth. Then it is very 
+// important in which order the elements are being processed.
+let rec mapInOrder (func:'a -> 'b) (tree:'a BinTree) =
+    match tree with
+    | Leaf -> Leaf
+    | Node(elem, treeLeft, treeRight) ->
+        let left = mapInOrder func treeLeft
+        let node = func elem
+        let right = mapInOrder func treeRight
+        Node(node, left, right)
+
+// Exercise 18
+let rec foldInOrder f a tree =
+    match tree with
+    | Leaf -> a
+    | Node(n, ltree, rtree) -> 
+        let a' = foldInOrder f a ltree in
+                 foldInOrder f (f n a') rtree
+
+// Alternative (produces: ('a -> 'b -> 'b) -> 'b -> 'a BinTree -> 'b):
+//let foldInOrder func acc input = List.foldBack func (inOrder input) acc
+// Note: While both of these produces a list in order, this last one 
+// iterates of the list from the back. In most cases this won't matter, 
+// but it might, for the same reason given in exercise 17. But this last 
+// approach produces the signature given in the assignment.
+
+// Exercise 19-22
+type expr =
+    | Const of int
+    | If of expr * expr * expr
+    | Bind of string * expr * expr
+    | Var of string
+    | Prim of string * expr * expr
+
+let rec evaluate expr (dict:Dictionary<string, expr>) =
+    match expr with
+        | Const i -> i
+        | Prim(opr, expr1, expr2) ->
+            let val1 = evaluate expr1 dict;
+            let val2 = evaluate expr2 dict;
+            match opr with
+            | "-" -> val1 - val2
+            | "+" -> val1 + val2
+            | "=" -> if val1 = val2 then 1 else 0
+            | "min" -> if val1 > val2 then val2 else val1
+            | "max" -> if val2 > val1 then val2 else val1
+            | _ -> failwithf "Operation %s not supported" opr
+        | If(expr1, exprThen, exprElse) ->
+            if evaluate expr1 dict <> 0
+            then evaluate exprThen dict
+            else evaluate exprElse dict
+        | Bind(var, value, expr) ->
+            dict.[var] <- value
+            evaluate expr dict
+        | Var(name) when dict.ContainsKey(name) -> evaluate (dict.Item name) dict
+        | Var(name) -> failwithf "Undeclared variable '%s'" name
+
+let eval expr =
+    evaluate expr (new Dictionary<string, expr>())
+
+// Exercise 20
+printfn "20. 30-10: %i" (eval (Prim("-", Const 30, Const 10)))
+printfn "20. 30+10: %i" (eval (Prim("+", Const 30, Const 10)))
+printfn "20. 30=10: %i" (eval (Prim("=", Const 30, Const 10)))
+printfn "20. min [30, 10]: %i" (eval (Prim("min", Const 30, Const 10)))
+printfn "20. max [30, 10]: %i" (eval (Prim("max", Const 30, Const 10)))
+
+// Exercise 23
+printfn "23. #1: %i" (eval (Bind("x", Const 10,
+                                Bind("y", Const 20, 
+                                    Prim("+", Var "x", Var "y")))))
+printfn "23. #2: %i" (eval (Bind("x", Prim("+", Const 123, Const 54),
+                                Prim("max", Var "x", Const 150))))
+printfn "23. #3: %i" (eval (Prim("=", Const 42, 
+                                Bind("x", Const 24,
+                                    Prim("+", Const 18, Var "x")))))
+printfn "23. #4: %i" (eval (Bind("x", Const 42,
+                                Bind("x", Const 43, 
+                                    Var "x"))))
+//printfn "23. #5: %i" (eval (Var "x")) // Expected failure
+//printfn "23. #6: %i" (eval (Bind("y", Const 10, Var "x"))) // Expected failure
+
+
+// Tests
+printfn "16. inOrder tree: %s" ((inOrder tree).ToString())
+printfn "17. mapInOrder (fun x -> x*2) tree: %s" 
+				((mapInOrder (fun x -> x*2) tree |> inOrder).ToString())
+printfn "18. foldInOrder: %s" ((foldInOrder (+) 0 tree).ToString())
+
+// Prevent program exit
+System.Console.ReadKey(true)
 \end{lstlisting}
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Niklas_4and5}
 \begin{lstlisting}
+(* Define four functions that given a card with return one of the four clothes on the card. *)
+let findBot (card:card) = card.bot
+let findTop (card:card) = card.top
+let findLeft (card:card) = card.left
+let findRight (card:card) = card.right
+
+(* Define a function that as a string returns a pretty print of the clothes. *)
+let pp_clothes clothes =
+  match clothes with
+    | RED_JACKET     -> "RED_JACKET    "
+    | RED_TROUSERS   -> "RED_TROUSERS  "
+    | GREEN_JACKET   -> "GREEN_JACKET  "
+    | GREEN_TROUSERS -> "GREEN_TROUSERS"
+    | BLUE_JACKET    -> "BLUE_JACKET   "
+    | BLUE_TROUSERS  -> "BLUE_TROUSERS "
+    | BROWN_JACKET   -> "BROWN_JACKET  "
+    | BROWN_TROUSERS -> "BROWN_TROUSERS"
+
+(* Split list [x1,...,xN] in the lists [x1,...,xn-1] and [xn,...,xN] *)
+(* where n >= 0 and n < N .                                          *)
+(* Fx: splitNth (0,[1;2]) gives ([], [1; 2])                         *)
+(*     splitNth (1,[1;2]) gives ([1], [2])                           *)
+(*     splitNth (2,[1;2]) gives ([1; 2], [])                         *)
+(*     splitNth (3,[1;2]) should die : 3 outside range of list       *)
+(*     splitNth (-1,[1;2]) should die : -1 outside range of list     *)
+let rec splitNth (n, xs) = 
+    match (n, xs) with
+    | (0, xs) -> ([], xs)
+    | (n, x::xs) when n > 0 && n <= (xs.Length + 1) -> 
+        let res = splitNth ((n-1), xs);
+        (x :: (fst res), (snd res))
+    | (n, _) -> die (sprintf "%i outside range of list" n)
+(* (xs.Length + 1) must be used in the second rule, to conform to the 
+    example input/outputs given as documentation above. *)
+
+let rec pp_cards (cards:card list) =
+    match cards with
+    | [] -> ()
+    | cards ->
+        let split = if cards.Length < colNo then (cards, []) else splitNth (colNo, cards)
+        pp_row (fst split)
+        snd split |> pp_cards
+
+let matchClothes clothe1 clothe2 =
+  match (clothe1, clothe2) with
+    | (RED_JACKET, RED_TROUSERS) -> true
+    | (RED_TROUSERS, RED_JACKET) -> true
+    | (GREEN_JACKET, GREEN_TROUSERS) -> true
+    | (GREEN_TROUSERS, GREEN_JACKET) -> true
+    | (BLUE_JACKET, BLUE_TROUSERS) -> true
+    | (BLUE_TROUSERS, BLUE_JACKET) -> true
+    | (BROWN_JACKET, BROWN_TROUSERS) -> true
+    | (BROWN_TROUSERS, BROWN_JACKET) -> true
+    | _ -> false
+
+(* matchBot: Given a coordinate, match that card with the card immediately below. *)
+(* Notice, cards at the bottom row fulfils this automatically.                    *)
+let matchBot (row, col, cards) card = 
+    if row < rowNo then
+        let botCard = List.nth cards ((findIndexInList (row, col))-colNo)
+        matchClothes (findTop botCard) (findBot card)
+    else true
+
+(* matchRight: Given a coordinate, match that card with the card immediately to the right. *)
+(* Notice, cards at the rightmost column fulfils this automatically.                       *)
+let matchRight (row, col, cards) card =
+    if col < colNo then
+        let rightCard = List.nth cards ((findIndexInList(row, col))-1)
+        matchClothes (findLeft rightCard) (findRight card)
+    else true
+
+(* There is ONE error in the code below - and it never terminates *)
+(* If you correct this one error - everything will work just fine *)
+(* When trying to call findSol recursively, it must add 1 to the row and column.
+     This was 0 in the original code, which means that the code never got any further. 
+     Changing it to "add 1" fixed it.                   *)
+let rec findSol rest alreadyTried ((row,col,cards) as board) sols =
+  match (rest,alreadyTried) with
+    | ([],[]) -> board::sols (* No rest and alreadyTried is empty, that is, solution found *)
+    | ([],_) -> sols         (* No solution if alreadyTried is non empty. *)
+    | (x::rest, alreadyTried) ->
+      let sols' = 
+        if Match board x then
+          (* If there is a match, then go on with the rest of the cards *)
+          let (row', col') = add 1 (row, col)
+          findSol(rest@alreadyTried) [] (row', col', cards@[x]) sols
+        else sols (* If no match then no new solutions found. *)
+      (* Put the card x in alreadyTried and move on. *)
+      findSol rest (x::alreadyTried) board sols'
 \end{lstlisting}
