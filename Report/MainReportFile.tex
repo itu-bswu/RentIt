@@ -52,10 +52,14 @@
 \setlength{\headheight}{15.2pt}
 \setlength{\topskip}{20pt}
 \pagestyle{fancy}
-\cfoot{\thepage\ of ??}
+\cfoot{\thepage\ of 108}
 \fancypagestyle{plain}{\fancyhf{}\cfoot{\thepage\ of ??}
 }
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+\fancypagestyle{plain}{
+\fancyhf{}
+\cfoot{\thepage\ of 108}
+}
 
 % Table of contents depth
 \settocdepth{section}
@@ -114,8 +118,10 @@ Jacob Claudius Grooss, jcgr@itu.dk
 \pagebreak
 \input{Parts/7Testing.tex}
 \pagebreak
+\skippage
 \input{Parts/8Conclusion.tex}
 \pagebreak
+\skippage
 \input{Parts/8-1Bibliography.tex}
 \pagestyle{plain}
 \input{Parts/9Appendix.tex}
