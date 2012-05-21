@@ -46,19 +46,20 @@ We did exchange ideas with the SMU team about what features should be in the int
 \subsection{Error handling}
 \label{Implementation_Service_Error}
 
-We started by throwing exceptions through the service if an error occurred. Down the line we realized that it probably was not a good idea to do it like that. Windows Communication Foundation (WCF) only throws FaultException - even if we throw another exception. The only setting we could tweak, was whether or not the original exception was included in the FaultException, as an inner exception. This obviously is not easy for the client applications to handle, as they would have to catch FaultExceptions and validate which exception it really was, by looking at the inner exception.
+We started by throwing exceptions through the service if an error occurred. Down the line we realized that it probably was not a good idea to do it like that. Windows Communication Foundation (WCF) only throws FaultException - even if we throw another exception. The only setting we could tweak was whether or not the original exception was included in the FaultException as an inner exception. This obviously is not easy for the client applications to handle, as they would have to catch FaultExceptions and validate which exception it really was by looking at the inner exception.
 
-The reason is that it is best practice to inform client application of errors in another way. At this time of the project when we realized that, our system was already built on exceptions. With other, more important tasks to do, we only had time for a simple change.
+The reason is that it is best practice to inform client application of errors in another way. At this time in the project we realized that our system was already built on exceptions. With other, more important tasks to do, we only had time for a simple change.
 
-When we re-designed our service interface (see \ref{Design_Service_Interface}), we used boolean return values for most of the service methods. These would return true for success, and false if any errors occurred (like invalid input). If we were to return anything else, we would use \class{out} or \class{ref} parameters.
+When we re-designed our service interface (see \ref{Design_Service_Interface}), we used boolean return values for most of the service methods. These would return true for success, and false if any errors occurred (like invalid input). If we were to return anything else we would use \class{out} or \class{ref} parameters.
 
-An even better solution, which we would have implemented if we had the time or had thought about from the start, would be to use enum return types, together with the \class{out} or \class{ref} parameters for returning data. The problem with only true/false, is that the client application has no way of knowing what went wrong - just that something went wrong. By creating enums we could pass more information about what went wrong to the client application.
+An even better solution, which we would have implemented if we had the time or had thought about from the start, would be to use enum return types together with the \class{out} or \class{ref} parameters for returning data. The problem with only true/false is that the client application has no way of knowing what went wrong - just that something went wrong. By creating enums we could pass more information about what went wrong to the client application.
 
 For the SignUp service method, the enum could contain the following values:
 
 \begin{my_description}
 \item[Success] Signup successful.
 \item[UsernameInUse] A user with the specified username already exists.
+\item[InvalidUsername] Username specified is invalid.
 \item[InvalidEmail] Email specified is invalid.
 \item[InvalidPassword] The password specified is invalid (not long enough or empty).
 \item[Error] An unknown error occurred.

@@ -26,6 +26,7 @@ let timediff (hh1, mm1) (hh2, mm2) = (hh2*60 + mm2) - (hh1*60 + mm1)
 //Opgave 6
 let minutes (hh, mm) = timediff (00, 00) (hh, mm) 
 \end{lstlisting}
+
 \subsection{HandIn 2}
 \label{Appendix_FSharp_Frederik_2}
 \begin{lstlisting}
@@ -103,11 +104,205 @@ let time f =
 
 let timeArg1 f a = time (fun () -> f a)
 \end{lstlisting}
+
 \subsection{HandIn 3}
 \label{Appendix_FSharp_Frederik_3}
 \begin{lstlisting}
+(* Student name: Frederik Roden Lysgaard
+   Mail: Frly@itu.dk *)
+module Handin3
+
+type 'a BinTree = 
+ | Node of 'a * 'a BinTree * 'a BinTree
+ | Leaf;;
+
+ let intBinTree = Node(4, Node(7, Node(5, Leaf, Leaf), Leaf), Node(42, Leaf, Node(11, Leaf, Leaf)));; 
+
+//Opgave 16
+let rec inOrder tree =
+ match tree with
+ | Leaf -> []
+ | Node(n, treeL, treeR) ->
+  inOrder treeL @ n :: inOrder treeR;;
+
+//Opgave 17
+let rec mapInOrder func tree = 
+ match tree with
+  | Leaf -> Leaf
+  | Node(n, treeL, treeR) ->
+        let left = mapInOrder func treeL in
+        let mid = func n in
+        let right = mapInOrder func treeR
+        Node(mid, left, right);;
+
+// mapInOrder traversing the tree in a different way than mapPostOrder which may give a different result. 
+
+
+//Opgave 18
+// I am well aware that this solution dosn't provide the correct signature
+// but it returns the correct answers.
+let rec foldInOrder f a tree =
+match tree with
+| Leaf -> a
+| Node(n,ltree,rtree) -> 
+let a' = foldInOrder f a ltree in
+foldInOrder f (f n a') rtree
+
+//Opgave 19 & 21 & 22
+type expr =
+    | Const of int
+    | Prim of string * expr * expr
+    | If of expr * expr * expr
+    | Bind of string * expr * expr
+    | Var of string
+ 
+ let rec evaluate expr (dic : System.Collections.Generic.Dictionary<string, expr>) =
+     match expr with
+     | Const i -> i
+     | If(expr1, expr2, expr3) ->
+        if ((evaluate expr1 dic) < 0 || (evaluate expr1 dic) > 0) then (evaluate expr2 dic) else (evaluate expr3 dic)
+     | Prim("-", expr1, expr2) -> evaluate expr1 dic - evaluate expr2 dic
+     | Prim("+", expr1, expr2) -> evaluate expr1 dic + evaluate expr2 dic
+     | Prim("min", expr1, expr2) ->(List.min [evaluate expr1 dic; evaluate expr2 dic])
+     | Prim("max", expr1, expr2) ->(List.max [evaluate expr1 dic; evaluate expr2 dic])
+     | Prim("=", expr1, expr2) -> if(evaluate expr1 dic).Equals(evaluate expr2 dic) then 1 else 0
+     | Prim(opr, _, _) -> (printfn "Operation %s not supported" opr; 0)
+     | Bind(var, value, expr1) ->
+        dic.Add(var, value)
+        evaluate expr1 dic
+     | Var (txt) when dic.ContainsKey(txt)->
+        evaluate (dic.Item txt) dic
+     | Var (txt) ->
+        failwithf " Unknow variable '%s'" txt;;
+
+let eval expr =
+    evaluate expr (new System.Collections.Generic.Dictionary<string, expr>());;
+
+//Opgave 20
+eval (Prim ("-", Const 8, Const 4));;
+eval (Prim ("+", Const 8, Const 4));;
+eval (Prim ("min", Const 8, Const 4));;
+eval (Prim ("max", Const 8, Const 4));;
+eval (Prim ("=", Const 8, Const 4));;
+
+//Opgave 23
+
+// negativ test
+eval (Bind("herp", Const 42, Var "derp"));;
+eval (Var("herp"));;
+eval (Bind("derp", Const 1, Var "herp"));;
+
+// positiv test
+eval (Bind("herp", Const 42, Const 21));;
+eval (Bind("a", Bind("b", Const 42, Var "b"), Var"a"));;
+
 \end{lstlisting}
+
 \subsection{HandIn 4 \& 5}
 \label{Appendix_FSharp_Frederik_4and5}
 \begin{lstlisting}
+(* Student name: Frederik Roden Lysgaard
+   Mail: Frly@itu.dk *)
+module Handin4\&5
+
+(* Define four functions that given a card with return one of the four clothes on the card. *)
+let findBot (card:card) = card.bot
+let findTop (card:card) = card.top
+let findLeft (card:card) = card.left
+let findRight (card:card) = card.right
+
+(* Define a function that as a string returns a pretty print of the clothes. *)
+let pp_clothes clothes =
+  match clothes with
+    | RED_JACKET     -> "RED_JACKET    "
+    | RED_TROUSERS   -> "RED_TROUSERS  "
+    | GREEN_JACKET   -> "GREEN_JACKET  "
+    | GREEN_TROUSERS -> "GREEN_TROUSERS" 
+    | BLUE_JACKET    -> "BLUE_JACKET   "
+    | BLUE_TROUSERS  -> "BLUE_TROUSERS "
+    | BROWN_JACKET   -> "BROWN_JACKET  "
+    | BROWN_TROUSERS -> "BROWN_TROUSERS"
+	
+(* Split list [x1,...,xN] in the lists [x1,...,xn-1] and [xn,...,xN] *)
+(* where n >= 0 and n < N .                                          *)
+(* Fx: splitNth (0,[1;2]) gives ([], [1; 2])                         *)
+(*     splitNth (1,[1;2]) gives ([1], [2])                           *)
+(*     splitNth (2,[1;2]) gives ([1; 2], [])                         *)
+(*     splitNth (3,[1;2]) should die : 3 outside range of list       *)
+(*     splitNth (-1,[1;2]) should die : -1 outside range of list     *)
+let rec splitNth (n, xs) = 
+    match (n, xs) with
+    | (0, xs) -> ([], xs)
+    | (n, x::xs) -> let (a, b) = splitNth (n-1, xs);
+                    (x :: a, b)
+    | _-> failwith "outside range of list"n
+	
+(* IT IS REQUIRED THAT THE OUTPUT MATCHES THE EXAMPLES BELOW EXACTLY *)
+(* Please use the helper functions above: pp_horizontal, pp_vertical etc. *)
+(* PrettyPrint all cards - colNo says number of columns on the board.     *)
+(* colNo is defined to be 4 above.                                        *)
+(* A few examples of output below.                                        *)
+let rec pp_cards (cards: card list) =
+    match cards with
+    | cards when cards.Length <= 4 -> pp_row cards
+    | _ -> let (a, b) = splitNth (4, cards);
+           pp_row a; pp_cards b
+ 
+let _ = pp_cards (listTake 1 cardSet)
+let _ = pp_cards (listTake 2 cardSet)
+let _ = pp_cards (listTake 4 cardSet)
+let _ = pp_cards (listTake 5 cardSet)
+let _ = pp_cards cardSet
+
+(* matchClothes: the valid combinations of clothe.  *)
+(* There are 8 valid combinations                   *)
+let matchClothes clothe1 clothe2 =
+  match (clothe1,clothe2) with
+    | (RED_JACKET,RED_TROUSERS) -> true
+    | (RED_TROUSERS,RED_JACKET) -> true
+    | (GREEN_TROUSERS,GREEN_JACKET) -> true
+    | (GREEN_JACKET,GREEN_TROUSERS) -> true
+    | (BROWN_TROUSERS,BROWN_JACKET) -> true
+    | (BROWN_JACKET,BROWN_TROUSERS) -> true
+    | (BLUE_TROUSERS,BLUE_JACKET) -> true
+    | (BLUE_JACKET,BLUE_TROUSERS) -> true
+	
+(* matchBot: Given a coordinate, match that card with the card immediately below. *)
+(* Notice, cards at the bottom row fulfils this automatically.                    *)
+let matchBot (row, col, cards) card =
+  if row > 0 then
+    let botCard = List.nth cards ((findIndexInList (row, col))+colNo)
+    matchClothes (findTop botCard) (findBot card)
+  else true
+  
+(* matchRight: Given a coordinate, match that card with the card immediately to the right. *)
+(* Notice, cards at the rightmost column fulfils this automatically.                       *)
+let matchRight (row, col, cards) card =
+  if col > 0 then
+    let rightCard = List.nth cards ((findIndexInList(row, col))+1)
+    matchClothes (findLeft rightCard) (findRight card)
+  else true
+  
+ 
+(* There is ONE error in the code below - and it never terminates *)
+(* If you correct this one error - everything will work just fine *)
+(* You must explain the error as a comment here:
+   Because the add function was called with 0 instead of a 1, the
+   position of where the cards was matched never changed, even though new cards was added to the board
+   therefore it would keep comparing the same place over and over again.
+           *)
+let rec findSol rest alreadyTried ((row,col,cards) as board) sols =
+  match (rest,alreadyTried) with
+    | ([],[]) -> board::sols (* No rest and alreadyTried is empty, that is, solution found *)
+    | ([],_) -> sols         (* No solution if alreadyTried is non empty. *)
+    | (x::rest, alreadyTried) ->
+      let sols' = 
+        if Match board x then
+          (* If there is a match, then go on with the rest of the cards *)
+          let (row', col') = add 1 (row, col)
+          findSol(rest@alreadyTried) [] (row', col', cards@[x]) sols
+        else sols (* If no match then no new solutions found. *)
+      (* Put the card x in alreadyTried and move on. *)
+      findSol rest (x::alreadyTried) board sols'
+
 \end{lstlisting}
