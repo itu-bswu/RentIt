@@ -1,4 +1,4 @@
-\documentclass[openright]{report}
+\documentclass{report}
 
 % Packages
 \usepackage[utf8]{inputenc}
@@ -61,6 +61,13 @@
 \settocdepth{section}
 
 % New commands and environments
+\newcommand{\skippage}
+{
+	\chapter*{}
+	\thispagestyle{empty}
+	\addtocounter{page}{-1}
+	\pagebreak
+}
 \newcommand{\class}[1]{\texttt{#1}}
 \newcommand{\method}[1]{\texttt{#1}}
 \newenvironment{my_itemize}{\begin{itemize}[itemsep=0pt, topsep=0pt, partopsep=0pt]}{\end{itemize}}
@@ -87,10 +94,12 @@ Jacob Claudius Grooss, jcgr@itu.dk
 \date{April 26th, 2012}
 \begin{document}
 \maketitle
+\skippage
 \tableofcontents
 \pagebreak
 \input{Parts/1Preface.tex}
 \pagebreak
+\skippage
 \input{Parts/2Introduction.tex}
 \pagebreak
 \input{Parts/2-Requirements.tex}
