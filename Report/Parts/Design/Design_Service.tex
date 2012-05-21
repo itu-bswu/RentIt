@@ -46,7 +46,7 @@ We did exchange ideas with the SMU team about what features should be in the int
 \subsection{Error handling}
 \label{Implementation_Service_Error}
 
-We started by throwing exceptions through the service if an error occurred. Down the line we realized that it probably wasn't a good idea to do it like that. Windows Communication Foundation (WCF) only throws FaultException - even if we throw another exception. The only setting we could tweak, was whether or not the original exception was included in the FaultException, as an inner exception. This obviously isn't easy for the client applications to handle, as they would have to catch FaultExceptions and validate which exception it really was, by looking at the inner exception.
+We started by throwing exceptions through the service if an error occurred. Down the line we realized that it probably was not a good idea to do it like that. Windows Communication Foundation (WCF) only throws FaultException - even if we throw another exception. The only setting we could tweak, was whether or not the original exception was included in the FaultException, as an inner exception. This obviously is not easy for the client applications to handle, as they would have to catch FaultExceptions and validate which exception it really was, by looking at the inner exception.
 
 The reason is that it is best practice to inform client application of errors in another way. At this time of the project when we realized that, our system was already built on exceptions. With other, more important tasks to do, we only had time for a simple change.
 
