@@ -14,7 +14,7 @@ Our intention is for the client to follow a simple dependency flow such as descr
 \label{fig:Implementation_Client_Architecture_MVVM_Namespace}
 \end{figure}
 
-At the "bottom" level of our architecture, the \class{Model} classes should only be called by eachother and the \class{Viewmodel}s (although no \class{Viewmodel} should ever call the \class{ServiceClient} class). The only calls outside the namespace that the \class{Model} should make is to the RentItService (not included in figure \ref{fig:Implementation_Client_Architecture_MVVM_Namespace}). The actual data source that the \class{Model} classes use should not be of consequence to the \class{ViewModel} or the \class{GUI}. 
+At the "bottom" level of our architecture, the \class{Model} classes should only be called by eachother and the \class{Viewmodel}s (although no \class{Viewmodel} should ever call the \class{ServiceClient} class). The \class{Model} should never make any calls to the \class{ViewModel}s and \class{View}s. The actual data source that the \class{Model} classes use should not be of consequence to the \class{ViewModel} or the \class{GUI}. 
 
 \paragraph{Static classes}
 The reason we use static classes and methods for the \class{ViewModel} and \class{Model} is due to the actual application being a singleton in itself, but the way we use \class{WPF}\footnote{See section \ref{Implementation_Client_Architecture_WPF} for our implementation of the \class{GUI} using \class{WPF}.} means that we do not have access to static objects in the \class{GUI}.
@@ -23,7 +23,7 @@ The reason we use static classes and methods for the \class{ViewModel} and \clas
 
 \subsubsection{Windows Presentation Foundation}
 \label{Implementation_Client_Architecture_WPF}
-Our implementation of the \class{View} is done in \class{WPF}. It involves a single \class{MainWindow} which is essentially a \class{WCF} \class{NavigationWindow}. It opens up a \method{LoginPage} inside the window. Whenever we change to a new page (for example on login), we use the \method{NavigationService} of the window to open a new page.
+Our implementation of the \class{View} is done in \class{WPF}. It involves a single \class{MainWindow} which is essentially a \class{WCF} \class{NavigationWindow}. It opens up a \method{LoginPage} inside the window on startup. Whenever we change to a new page (for example on when a user completes login), we use the \method{NavigationService} of the window to open a new page.
 \\The way we navigate using the navigation service means we have to create new \method{Page} objects every time we want to change to a new page. Because of this, we placed all of our "page initialisation" in the constructors of our pages. The full overview of the dependencies of the \class{View} part of our client can be on \ref{fig:Appendix_Diagrams_Class_Client_View} found in section \ref{Appendix_Diagrams_Class_Client} on page \pageref{Appendix_Diagrams_Class_Client}.
 
 \subsubsection{Issues, workarounds and fixes}
@@ -31,9 +31,9 @@ Our implementation of the \class{View} is done in \class{WPF}. It involves a sin
 
 \paragraph{Bugs} We have a number bugs in our client - some of them are related to issues from communicating with the service.
 \begin{my_itemize}
-\item View Profile does not display all fields
+\item View Profile does not display all fields.
 \item Upload and download of movies rarely succeeds due to stability issues.
-\item Some null references (output from the service) are not caught at the Model level, and because of this, the client can crash when it is supposed to show a different error.
+\item Some \class{null} references (output from the service) are not caught at the Model level, and because of this, the client can crash when it is supposed to show a different error message.
 \item Client does a forced shutdown if any method with a token returns false. If this is due to some kind of authentication issue, we could retry login instead of just closing right away.
 \item User is not logged out when he closes the client with clicking log out.
 \item Sorting by newest rarely works.
@@ -43,15 +43,15 @@ Our implementation of the \class{View} is done in \class{WPF}. It involves a sin
 
 \paragraph{Workarounds} We also have a few odd ways of dealing with some issues we have run in to.
 \begin{my_itemize}
-\item We use code from \cite{CODE:MSGBOX} to make sure that messageboxes use the right language for the buttons (for example "Yes" should remain "Yes" even on a danish system.
+\item We use code from \cite{CODE:MSGBOX} to make sure that messageboxes use the right language for the buttons (for example "Yes" should remain "Yes" even on a danish system).
 \item \class{GenreChecked} and \class{GenreCheckedList} are a workaround to avoid having to design our completely own XAML element for the \class{CPRegisterMoviePage} and \class{CPEditMoviePage}.
 \end{my_itemize}
 
 \subsection{Error handling}
 \label{Implementation_Client_Error}
 We handle errors in two different ways in the client.
-\paragraph{Bad input to server} If the server returns false (meaning bad input), in all cases, except at login, we tell the user of the client that an authentication error has occured. We chose this, because a lot of the method calls to the service contain nothing but the token as input, but they all return the same error (false in the return of the method).
+\paragraph{Bad input to server} If the server returns false (meaning bad input), in all cases, except at login, we tell the user of the client that an authentication error has occured. We do this because a lot of the method calls to the service contain nothing but the token as input, but they all return the same error (false in the return of the method).
 
-\paragraph{Communication/faultexceptions} If any of our method calls result in an exception, we tell the user an error has occured and that we will shut down the client. We do this because we believe that these exceptions refer to either corrupt data in the client (and so will have to be reset somewhere) or there is a problem with the service connection in one way or the other.
+\paragraph{Communication/faultexceptions} If any of our method calls result in an exception, we tell the user "An error has occured..." and that we will shut down the client. Because the service should only throw exceptions on "bad input", any time where the service throws an exception, we assume that something went wrong and we cannot recover from it.
 
 \paragraph{Improvements} If an implementation of the fault enums\footnote{Described in section \ref{Implementation_Service_Error} on page \pageref{Implementation_Service_Error}.} was done on the service, it would make it a lot easier to show a better error description to users and give the developer(s) of the client more options in terms of "error recovery".
